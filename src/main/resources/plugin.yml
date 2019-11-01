@@ -2,7 +2,7 @@ name: itemmods
 author: CodeDoctorDE
 version: 1.0
 api-version: "1.14"
-main: com.gitlab.vangora.itemmods.main.Main
+main: eu.vangora.itemmods.main.Main
 commands:
   itemmods:
     aliases:

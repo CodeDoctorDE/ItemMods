@@ -32,5 +32,6 @@
     <orderEntry type="library" name="Maven: com.comphenix.protocol:ProtocolLib-API:4.4.0" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib-nodep:3.2.5" level="project" />
     <orderEntry type="library" name="Maven: com.comphenix.executors:BukkitExecutors:1.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.gitlab.codedoctorde:codedoctorapi:unknown" level="project" />
   </component>
 </module>
