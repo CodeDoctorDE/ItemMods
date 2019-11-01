@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Documents/Java/CodeDoctorAPI/CodeDoctorAPI.iml" filepath="$USER_HOME$/Documents/Java/CodeDoctorAPI/CodeDoctorAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ItemMods.iml" filepath="$PROJECT_DIR$/ItemMods.iml" />
+    </modules>
+  </component>
+</project>
