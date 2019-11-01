@@ -52,10 +52,6 @@
             <artifactId>ProtocolLib</artifactId>
             <version>4.4.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.gitlab.codedoctorde</groupId>
-            <artifactId>codedoctorapi</artifactId>
-        </dependency>
     </dependencies>
 
 

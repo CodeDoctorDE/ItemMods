@@ -9,6 +9,7 @@ import eu.vangora.itemmods.commands.BaseCommand;
 import eu.vangora.itemmods.config.MainConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import eu.vangora.itemmods.listener.BlockBreakListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +27,7 @@ public class Main extends JavaPlugin {
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
     private GameStateManager gameStateManager;
+    private JsonConfiguration placedConfig;
 
     public static Main getPlugin() {
         return plugin;
@@ -44,6 +46,7 @@ public class Main extends JavaPlugin {
         translationConfig.setDefaults(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         baseConfig = new JsonConfiguration(new File(getDataFolder(), "config.json"));
         baseConfig.setDefaults(baseConfig);
+        placedConfig = new JsonConfiguration(new File(getDataFolder(), "placed.json"));
 
         mainConfig = (baseConfig != null) ? new MainConfig(baseConfig) : new MainConfig();
         try {
@@ -61,6 +64,9 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
         super.onEnable();
+
+        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), Main.getPlugin());
+
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loaded"));
     }
 

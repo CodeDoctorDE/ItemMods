@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
 import java.text.MessageFormat;
 
 public class ItemGui {
@@ -18,7 +19,7 @@ public class ItemGui {
         this.index = index;
     }
 
-    public Gui createGui(Player player, Gui backGui) {
+    public Gui createGui(Gui backGui) {
         ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(index);
         JsonConfigurationSection guiTranslation = Main.getPlugin().getTranslationConfig().getSection("gui","item");
         return new Gui(Main.getPlugin()){{
@@ -39,18 +40,30 @@ public class ItemGui {
 
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        Player player = (Player) event.getWhoClicked();
-                        ItemStack change = event.getCursor();
-                        player.getInventory().setItemInMainHand(change);
-                        if(change == null)
+                        ItemStack change = event.getWhoClicked().getItemOnCursor();
+                        if(change.getType().isEmpty())
                             itemConfig.setItemStack(null);
-                        else if(change.getType().isEmpty())
-                            itemConfig.setItemStack(null);
-                        else if(!change.getType().isBlock() || change.getType() == Material.PLAYER_HEAD)
-                            itemConfig.setItemStack(change);
                         else
-                            player.sendMessage(guiTranslation.getString("item","invalid"));
-                        createGui(player, backGui);
+                            itemConfig.setItemStack(change);
+                        try {
+                            Main.getPlugin().saveBaseConfig();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                        guiItem.setItemStack((itemConfig.getItemStack() != null)?itemConfig.getItemStack():Main.translateItem(guiTranslation.getSection("item","null")).build());
+                        createGui(backGui).open((Player)event.getWhoClicked());
+                    }
+                }));
+                getGuiItems().put(9+3, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        if(itemConfig.getItemStack() == null){
+                            player.sendMessage(guiTranslation.getString("get","null"));
+                        }
+                        event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
+                        event.getWhoClicked().sendMessage(guiTranslation.getString("get","success"));
                     }
                 }));
             }});

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ItemsGui {
@@ -204,10 +205,10 @@ public class ItemsGui {
                             ClickType clickType = event.getClick();
                             switch (clickType) {
                                 case LEFT:
-                                    new ItemGui(current).createGui(player, gui).open(player);
+                                    new ItemGui(current).createGui(gui).open(player);
                                     break;
                                 case DROP:
-                                    createDeleteGui(player, current, gui, searchText).open(player);
+                                    Objects.requireNonNull(createDeleteGui(player, current, gui, searchText)).open(player);
                                     break;
                             }
                         }
