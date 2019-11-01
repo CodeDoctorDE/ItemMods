@@ -1,0 +1,35 @@
+variables:
+  VERSION: "1.13"
+
+stages:
+  - spigot
+  - image
+
+spigot_build:
+  stage: spigot
+  tags:
+    - docker
+  image: openjdk:8-jre-alpine
+  # cache:
+  #   untracked: true
+  artifacts:
+    paths:
+      - spigot-*.jar
+  script:
+    - apk add --no-cache git tar openssl bash
+    - wget -O BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+    - bash -c "java -jar BuildTools.jar --rev ${VERSION}"
+
+image_build:
+  stage: image
+  tags:
+    - dind
+  dependencies:
+    - spigot_build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/tecnocraft/spigot:${VERSION} .
+    - docker push registry.gitlab.com/tecnocraft/spigot:${VERSION}
