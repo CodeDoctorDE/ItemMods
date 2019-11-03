@@ -3,6 +3,7 @@ package eu.vangora.itemmods.gui;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.ui.*;
 import eu.vangora.itemmods.config.ItemConfig;
+import eu.vangora.itemmods.main.ArmorType;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -41,26 +42,38 @@ public class ItemGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        if(change.getType().isEmpty())
-                            itemConfig.setItemStack(null);
-                        else
-                            itemConfig.setItemStack(change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                        if(change.getType().isEmpty() && itemConfig.getItemStack() == null){
+                            itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
+                            try {
+                                Main.getPlugin().saveBaseConfig();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            createGui(backGui).open((Player) event.getWhoClicked());
+
+                        }else {
+                            if (change.getType().isEmpty())
+                                itemConfig.setItemStack(null);
+                            else
+                                itemConfig.setItemStack(change);
+                            try {
+                                Main.getPlugin().saveBaseConfig();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                            createGui(backGui).open((Player) event.getWhoClicked());
                         }
-                        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                        guiItem.setItemStack((itemConfig.getItemStack() != null)?itemConfig.getItemStack():Main.translateItem(guiTranslation.getSection("item","null")).build());
-                        createGui(backGui).open((Player)event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9*4+4, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
-                        if(itemConfig.getItemStack() == null)
+                        if(itemConfig.getItemStack() == null) {
                             player.sendMessage(guiTranslation.getString("get", "null"));
+                            return;
+                        }
                         event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
                         event.getWhoClicked().sendMessage(guiTranslation.getString("get","success"));
                     }
