@@ -184,15 +184,60 @@
         "name": "§eArmor type",
         "lore": ["","§cComing soon..."],
         "success": "§7[§eItemMods§7] §aSuccessfully set the armortype to §3{0}§a!"
+      }
+    },
+    "itemcreator": {
+      "title": "§eItemMods §7» §6Item creator",
+      "back": {
+        "material": "REDSTONE",
+        "name": "§eBack",
+        "lore": []
+      },
+      "submit": {
+        "material": "GREEN_DYE",
+        "name": "§eSubmit",
+        "lore": [],
+        "success": "§7[§eItemMods§7] §aSuccessfully submit the item!"
+      },
+      "placeholder": {
+        "material": "BLACK_STAINED_GLASS_PANE",
+        "name": "§7",
+        "lore": []
+      },
+      "displayname": {
+        "material": "NAME_TAG",
+        "name": "§eDisplay name",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Left click » Set display name",
+          "§7Right click » Remove display name"
+        ],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the display name to §3{0}§a!",
+        "remove": "§7[§eItemMods§7] §aSuccessfully removed the display name!",
+        "message": "§7[§eItemMods§7] §ePlease enter the displayname! Cancel with a punch in the air!",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the displayname!"
       },
       "lore": {
         "material": "BOOK",
         "name": "§eLore",
-        "lore": ["","§7Left click » Add line", "§7Shift + Left click » Add empty line", "§7Right click » Remove last line","§7Shift + Right click » Remove all lines", "§7Drop » Get lore"]
+        "lore": [
+          "",
+          "§7Left click » Add line",
+          "§7Shift + Left click » Add empty line",
+          "§7Right click » Remove last line",
+          "§7Shift + Right click » Remove all lines",
+          "§7Drop » Get lore"
+        ],
+        "success": "§7[§eItemMods§7] §aSuccessfully add the lore line §3{0}§a!",
+        "remove": "§7[§eItemMods§7] §aSuccessfully removed latest lore line!",
+        "empty": "§7[§eItemMods§7] §aSuccessfully add a empty lore line!",
+        "message": "§7[§eItemMods§7] §ePlease enter a new lore line! Cancel with a punch in the air!",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel it!",
+        "get": "§7[§eItemMods§7] §eThe lore: \n§5{0}",
+        "delimiter": "§7 \r\n§5",
+        "null": "§7[§eItemMods§7] §cThere is no lore!"
       }
-    },
-    "itemcreator": {
-      "title": "§eItem #{1} §7» §6Item creator"
     }
   },
   "event": {

@@ -7,18 +7,17 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.GuiPage;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
-import eu.vangora.itemmods.config.ItemConfig;
 import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 
 public class ItemCreatorGui {
 
@@ -50,39 +49,67 @@ public class ItemCreatorGui {
                 getGuiItems().put(8, new GuiItem(Main.translateItem(guiTranslation.getSection("submit")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        event.getWhoClicked().sendMessage(guiTranslation.getString("submit", "success"));
                         submitEvent.onEvent(itemStack);
                     }
                 }));
-                getGuiItems().put(9, new GuiItem(Main.translateItem(guiTranslation.getSection("displayname")).build(), new GuiItemEvent() {
+                getGuiItems().put(9, new GuiItem(Main.translateItem(guiTranslation.getSection("displayname")).format(itemStack.getItemMeta().getDisplayName()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
-                            @Override
-                            public void onEvent(Player player, String output) {
-                                output = ChatColor.translateAlternateColorCodes('&', output);
-                                player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
-                                createGui(backGui).open(player);
-                            }
+                        switch (event.getClick()) {
+                            case LEFT:
+                                gui.close((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("displayname", "message"));
+                                new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, String output) {
+                                        output = ChatColor.translateAlternateColorCodes('&', output);
+                                        ItemMeta itemMeta = itemStack.getItemMeta();
+                                        itemMeta.setDisplayName(output);
+                                        itemStack.setItemMeta(itemMeta);
+                                        player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
+                                        createGui(backGui).open(player);
+                                    }
 
-                            @Override
-                            public void onCancel(Player player) {
-                                player.sendMessage(guiTranslation.getString("displayname", "cancel"));
-                            }
-                        });
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        player.sendMessage(guiTranslation.getString("displayname", "cancel"));
+                                        createGui(backGui).open(player);
+                                    }
+                                });
+                                break;
+                            case RIGHT:
+                                ItemMeta itemMeta = itemStack.getItemMeta();
+                                itemMeta.setDisplayName(null);
+                                itemStack.setItemMeta(itemMeta);
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("displayname", "remove"));
+                                createGui(backGui).open((Player) event.getWhoClicked());
+                                break;
+                        }
                     }
                 }));
                 getGuiItems().put(10, new GuiItem(Main.translateItem(guiTranslation.getSection("lore")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        ItemMeta itemMeta = itemStack.getItemMeta();
+                        if (itemMeta.getLore() == null)
+                            itemMeta.setLore(new ArrayList<>());
+                        List<String> lore = itemMeta.getLore();
                         switch (event.getClick()){
                             case LEFT:
+                                gui.close((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "message"));
                                 new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
                                     @Override
                                     public void onEvent(Player player, String output) {
                                         output = ChatColor.translateAlternateColorCodes('&', output);
-                                        if(itemStack.getLore() == null)
-                                            itemStack.setLore(new ArrayList<>());
-                                        itemStack.getLore().add(output);
+                                        ItemMeta itemMeta = itemStack.getItemMeta();
+                                        if (itemMeta.getLore() == null)
+                                            itemMeta.setLore(new ArrayList<>());
+                                        List<String> lore = itemMeta.getLore();
+                                        lore.add(output);
+                                        itemMeta.setLore(lore);
+                                        itemStack.setItemMeta(itemMeta);
                                         player.sendMessage(MessageFormat.format(guiTranslation.getString("lore", "success"), output));
                                         createGui(backGui).open(player);
                                     }
@@ -90,30 +117,33 @@ public class ItemCreatorGui {
                                     @Override
                                     public void onCancel(Player player) {
                                         player.sendMessage(guiTranslation.getString("lore", "cancel"));
+                                        createGui(backGui).open(player);
                                     }
                                 });
                                 break;
                             case SHIFT_LEFT:
-                                if(itemStack.getLore() == null)
-                                    itemStack.setLore(new ArrayList<>());
-                                itemStack.getLore().add("");
+                                lore.add(" ");
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "empty"));
+                                itemMeta.setLore(lore);
+                                itemStack.setItemMeta(itemMeta);
+                                createGui(backGui).open((Player) event.getWhoClicked());
                                 break;
                             case RIGHT:
-                                if(itemStack.getLore() == null)
-                                    itemStack.setLore(new ArrayList<>());
-                                if(itemStack.getLore().size() > 0)
-                                    itemStack.getLore().remove(itemStack.getLore().size());
+                                if (!lore.isEmpty())
+                                    lore.remove(lore.size() - 1);
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "remove"));
+                                itemMeta.setLore(lore);
+                                itemStack.setItemMeta(itemMeta);
+                                createGui(backGui).open((Player) event.getWhoClicked());
                                 break;
                             case SHIFT_RIGHT:
-                                itemStack.setLore(new ArrayList<>());
+                                lore.clear();
                             case DROP:
-                                if(itemStack.getLore() != null)
-                                    event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("lore","get"),
-                                            String.join(guiTranslation.getString("lore","delimiter"), itemStack.getLore())));
+                                if (lore.isEmpty())
+                                    event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "null"));
                                 else
-                                    event.getWhoClicked().sendMessage(guiTranslation.getString("lore","null"));
+                                    event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("lore", "get"),
+                                            String.join(guiTranslation.getString("lore", "delimiter"), lore)));
                         }
                     }
                 }));

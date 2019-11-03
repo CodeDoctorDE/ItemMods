@@ -3,7 +3,7 @@ package eu.vangora.itemmods.gui;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.ui.*;
 import eu.vangora.itemmods.config.ItemConfig;
-import eu.vangora.itemmods.main.ArmorType;
+import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -81,7 +81,18 @@ public class ItemGui {
                 getGuiItems().put(9+3, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ?guiTranslation.getSection("creator","item"):guiTranslation.getSection("creator","null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-
+                        new ItemCreatorGui(itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                            @Override
+                            public void onEvent(ItemStack itemStack) {
+                                itemConfig.setItemStack(itemStack);
+                                try {
+                                    Main.getPlugin().saveBaseConfig();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                createGui(backGui).open((Player) event.getWhoClicked());
+                            }
+                        }).createGui(gui).open((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9+5, new GuiItem(Main.translateItem(itemConfig.isCanRename() ?guiTranslation.getSection("rename","yes"):guiTranslation.getSection("rename","no")).build(), new GuiItemEvent() {
