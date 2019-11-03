@@ -179,12 +179,20 @@
           "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §cfalse§a!"
         }
       }
+    },
+    "itemcreator": {
+      "title": "§eItem #{1} §7» §6Item creator"
     }
   },
   "event": {
     "rename": "§7[§eItemMods§7] §cThis item cannot be renamed!"
   },
   "command": {
-    "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!"
+    "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods [<help, give>]§c!",
+    "help": "§7*-* §eItemMods §7*-* \r\n§3/itemmods §7or §3/itemmods gui §7» §eOpen gui \r\n§3/itemmods give <Player> <CustomItemId> §7» §eGive custom item",
+    "give": {
+      "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods give <Player> <CustomItemId>§c!",
+      "success": "§7[§eItemMods§7] §aYou successfully gave §3{0} §athe item §3{1}§a!"
+    }
   }
 }

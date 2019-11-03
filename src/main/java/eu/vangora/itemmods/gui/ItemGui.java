@@ -71,7 +71,25 @@ public class ItemGui {
 
                     }
                 }));
-                getGuiItems().put(9+5, new GuiItem(Main.translateItem(itemConfig.isCanRename() ?guiTranslation.getSection("bonemeal","yes"):guiTranslation.getSection("bonemeal","no")).build(), new GuiItemEvent() {
+                getGuiItems().put(9+5, new GuiItem(Main.translateItem(itemConfig.isCanRename() ?guiTranslation.getSection("rename","yes"):guiTranslation.getSection("rename","no")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        itemConfig.setCanRename(!itemConfig.isCanRename());
+                        try {
+                            Main.getPlugin().saveBaseConfig();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if(itemConfig.isCanRename())
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("rename","yes","success"));
+                        else
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("rename","no","success"));
+                        createGui(backGui).open(player);
+                    }
+                }));
+
+                getGuiItems().put(9+7, new GuiItem(Main.translateItem(itemConfig.isBoneMeal() ?guiTranslation.getSection("bonemeal","yes"):guiTranslation.getSection("bonemeal","no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();

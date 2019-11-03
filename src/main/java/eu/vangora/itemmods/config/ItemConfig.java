@@ -4,6 +4,7 @@ import com.gitlab.codedoctorde.api.config.JsonConfigurationElement;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonElement;
+import eu.vangora.itemmods.main.ArmorType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,6 +19,7 @@ public class ItemConfig extends JsonConfigurationElement {
     private int damage = 0;
     private int speed = 0;
     private boolean boneMeal = false;
+    private ArmorType armorType = ArmorType.NONE;
 
 
     public ItemConfig(JsonElement element) {
@@ -34,6 +36,9 @@ public class ItemConfig extends JsonConfigurationElement {
         JsonConfigurationSection config = new JsonConfigurationSection();
         config.setValue(name, "name");
         config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemStack");
+        config.setValue(canRename, "rename");
+        config.setValue(boneMeal, "bonemeal");
+        config.setValue(armorType.name(),"armortype");
         return config.getElement();
     }
 
@@ -42,6 +47,9 @@ public class ItemConfig extends JsonConfigurationElement {
         JsonConfigurationSection config = new JsonConfigurationSection(element.getAsJsonObject());
         itemStack = new ItemStackBuilder(config.getValue("itemStack")).build();
         name = config.getString("name");
+        canRename = config.getBoolean("rename");
+        boneMeal = config.getBoolean("bonemeal");
+        armorType = ArmorType.valueOf(config.getString("armortype"));
     }
 
     public String getName() {
@@ -122,5 +130,13 @@ public class ItemConfig extends JsonConfigurationElement {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public ArmorType getArmorType() {
+        return armorType;
+    }
+
+    public void setArmorType(ArmorType armorType) {
+        this.armorType = armorType;
     }
 }
