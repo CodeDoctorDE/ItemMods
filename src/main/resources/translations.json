@@ -164,6 +164,20 @@
           "lore": ["§cFALSE","","§7Click to set it on"],
           "success": "§7[§eItemMods§7] §aSuccessfully set rename to §cfalse§a!"
         }
+      },
+      "bonemeal": {
+        "yes": {
+          "material": "BONE_MEAL",
+          "name": "§eBone meal",
+          "lore": ["§aTRUE","","§7Click to set it off"],
+          "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §atrue§a!"
+        },
+        "no": {
+          "material": "BONE_MEAL",
+          "name": "§eBone meal",
+          "lore": ["§cFALSE","","§7Click to set it on"],
+          "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §cfalse§a!"
+        }
       }
     }
   },

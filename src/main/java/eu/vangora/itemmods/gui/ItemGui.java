@@ -81,7 +81,7 @@ public class ItemGui {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        if(itemConfig.isCanRename())
+                        if(itemConfig.isBoneMeal())
                             event.getWhoClicked().sendMessage(guiTranslation.getString("bonemeal","yes","success"));
                         else
                             event.getWhoClicked().sendMessage(guiTranslation.getString("bonemeal","no","success"));
