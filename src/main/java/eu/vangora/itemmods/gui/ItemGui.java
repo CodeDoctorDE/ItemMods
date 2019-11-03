@@ -55,15 +55,37 @@ public class ItemGui {
                         createGui(backGui).open((Player)event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(9+3, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
+                getGuiItems().put(9*4+4, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
-                        if(itemConfig.getItemStack() == null){
-                            player.sendMessage(guiTranslation.getString("get","null"));
-                        }
+                        if(itemConfig.getItemStack() == null)
+                            player.sendMessage(guiTranslation.getString("get", "null"));
                         event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
                         event.getWhoClicked().sendMessage(guiTranslation.getString("get","success"));
+                    }
+                }));
+                getGuiItems().put(9+3, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ?guiTranslation.getSection("creator","item"):guiTranslation.getSection("creator","null")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+
+                    }
+                }));
+                getGuiItems().put(9+5, new GuiItem(Main.translateItem(itemConfig.isCanRename() ?guiTranslation.getSection("bonemeal","yes"):guiTranslation.getSection("bonemeal","no")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        itemConfig.setBoneMeal(!itemConfig.isBoneMeal());
+                        try {
+                            Main.getPlugin().saveBaseConfig();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if(itemConfig.isCanRename())
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("bonemeal","yes","success"));
+                        else
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("bonemeal","no","success"));
+                        createGui(backGui).open(player);
                     }
                 }));
             }});

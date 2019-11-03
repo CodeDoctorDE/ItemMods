@@ -132,14 +132,43 @@
           "lore": ["","§7Left click » Create a skull","§7Drag an item here to set it to the item"]
         }
       },
+      "creator": {
+        "item": {
+          "material": "CHEST",
+          "name": "§eOpen item creator",
+          "lore": []
+        },
+        "null": {
+          "material": "CHEST",
+          "name": "§cNo item for the item creator",
+          "lore": ["","§7Set the item before trying to open the item creator!"]
+        }
+      },
       "get": {
         "material": "STONE",
         "name": "§eGet item",
         "lore": [],
         "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
         "null": "§7[§eItemMods§7] §cThere is no item!"
+      },
+      "rename": {
+        "yes": {
+          "material": "ANVIL",
+          "name": "§eRename",
+          "lore": ["§aTRUE","","§7Click to set it off"],
+          "success": "§7[§eItemMods§7] §aSuccessfully set rename to §atrue§a!"
+        },
+        "no": {
+          "material": "ANVIL",
+          "name": "§eRename",
+          "lore": ["§cFALSE","","§7Click to set it on"],
+          "success": "§7[§eItemMods§7] §aSuccessfully set rename to §cfalse§a!"
+        }
       }
     }
+  },
+  "event": {
+    "rename": "§7[§eItemMods§7] §cThis item cannot be renamed!"
   },
   "command": {
     "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!"

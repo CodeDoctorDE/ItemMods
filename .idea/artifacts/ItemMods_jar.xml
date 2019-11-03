@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ItemMods:jar">
+    <output-path>$USER_HOME$/Documents/MC/plugins</output-path>
+    <root id="archive" name="ItemMods.jar">
+      <element id="module-output" name="itemmods" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/gitlab/codedoctorde/CodeDoctorAPI/1.0-SNAPSHOT/CodeDoctorAPI-1.0-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations-java5/17.0.0/annotations-java5-17.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

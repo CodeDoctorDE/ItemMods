@@ -28,7 +28,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
                 playerGuiHashMap.get(sender).open((Player) sender);
             else
                 if(sender.hasPermission("itemmods.admin"))
-                new MainGui().createGui().open((Player) sender);
+                    new MainGui().createGui().open((Player) sender);
                 else
                     new KnowledgeGui().createGui().open((Player) sender);
         else

@@ -5,11 +5,12 @@ import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.game.GameStateManager;
 import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
-import eu.vangora.itemmods.commands.BaseCommand;
-import eu.vangora.itemmods.config.MainConfig;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import eu.vangora.itemmods.listener.BlockBreakListener;
+import eu.vangora.itemmods.commands.BaseCommand;
+import eu.vangora.itemmods.config.MainConfig;
+import eu.vangora.itemmods.config.PlacedConfig;
+import eu.vangora.itemmods.listener.ItemListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,18 +24,15 @@ public class Main extends JavaPlugin {
     private JsonConfiguration baseConfig;
     private CodeDoctorAPI api;
     private JsonConfiguration translationConfig;
-    private Gson gson = new Gson();
+    private static Gson gson = new Gson();
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
     private GameStateManager gameStateManager;
-    private JsonConfiguration placedConfig;
+    private JsonConfiguration placedJsonConfig;
+    private PlacedConfig placedConfig;
 
     public static Main getPlugin() {
         return plugin;
-    }
-
-    public static ItemStackBuilder translateItem(JsonConfigurationSection section) {
-        return new ItemStackBuilder(section.getString("material")).name(section.getString("name")).lore(section.getStringList("lore"));
     }
 
 
@@ -45,8 +43,8 @@ public class Main extends JavaPlugin {
         translationConfig = new JsonConfiguration(new File(getDataFolder(), "translations.json"));
         translationConfig.setDefaults(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         baseConfig = new JsonConfiguration(new File(getDataFolder(), "config.json"));
-        baseConfig.setDefaults(baseConfig);
-        placedConfig = new JsonConfiguration(new File(getDataFolder(), "placed.json"));
+        placedJsonConfig = new JsonConfiguration(new File(getDataFolder(), "placed.json"));
+
 
         mainConfig = (baseConfig != null) ? new MainConfig(baseConfig) : new MainConfig();
         try {
@@ -54,20 +52,26 @@ public class Main extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        placedConfig = (placedJsonConfig != null) ? new PlacedConfig(placedJsonConfig) : new PlacedConfig();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loading"));
         baseCommand = new BaseCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
         try {
             saveBaseConfig();
+            savePlacedConfig();
         } catch (IOException e) {
             e.printStackTrace();
         }
         super.onEnable();
 
-        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), Main.getPlugin());
+        Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loaded"));
+    }
+
+    public static ItemStackBuilder translateItem(JsonConfigurationSection section) {
+        return new ItemStackBuilder(section.getString("material")).name(section.getString("name")).lore(section.getStringList("lore"));
     }
 
     @Override
@@ -81,6 +85,11 @@ public class Main extends JavaPlugin {
     public void saveBaseConfig() throws IOException {
         baseConfig.set(mainConfig.getElement().getAsJsonObject());
         baseConfig.save();
+    }
+
+    public void savePlacedConfig() throws IOException {
+        placedJsonConfig.set(placedConfig.getElement().getAsJsonObject());
+        placedJsonConfig.save();
     }
 
     public BaseCommand getBaseCommand() {
@@ -97,5 +106,13 @@ public class Main extends JavaPlugin {
 
     public MainConfig getMainConfig() {
         return mainConfig;
+    }
+
+    public PlacedConfig getPlacedConfig() {
+        return placedConfig;
+    }
+
+    public CodeDoctorAPI getApi() {
+        return api;
     }
 }
