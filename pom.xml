@@ -51,9 +51,6 @@
         <repository>
             <id>codedoctorapi</id>
             <url>https://gitlab.com/api/v4/projects/14810643/packages/maven</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
     <dependencies>
@@ -71,7 +68,7 @@
         </dependency>
         <dependency>
             <groupId>com.gitlab.codedoctorde</groupId>
-            <artifactId>codedoctorapi</artifactId>
+            <artifactId>CodeDoctorAPI</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

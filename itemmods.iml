@@ -27,7 +27,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-tree:7.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.ow2.asm:asm-analysis:7.1" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations-java5:17.0.0" level="project" />
-    <orderEntry type="library" name="Maven: com.gitlab.codedoctorde:codedoctorapi:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.gitlab.codedoctorde:CodeDoctorAPI:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:17.0.0" level="project" />
   </component>
 </module>
