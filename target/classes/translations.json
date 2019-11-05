@@ -207,7 +207,12 @@
       "displayname": {
         "material": "NAME_TAG",
         "name": "§eDisplay name",
-        "lore": ["§3{0}","","§7Left click » Set display name","§7Right click » Remove display name"],
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Left click » Set display name",
+          "§7Right click » Remove display name"
+        ],
         "success": "§7[§eItemMods§7] §aSuccessfully set the display name to §3{0}§a!",
         "remove": "§7[§eItemMods§7] §aSuccessfully removed the display name!",
         "message": "§7[§eItemMods§7] §ePlease enter the displayname! Cancel with a punch in the air!",
@@ -216,7 +221,14 @@
       "lore": {
         "material": "BOOK",
         "name": "§eLore",
-        "lore": ["","§7Left click » Add line", "§7Shift + Left click » Add empty line", "§7Right click » Remove last line","§7Shift + Right click » Remove all lines", "§7Drop » Get lore"],
+        "lore": [
+          "",
+          "§7Left click » Add line",
+          "§7Shift + Left click » Add empty line",
+          "§7Right click » Remove last line",
+          "§7Shift + Right click » Remove all lines",
+          "§7Drop » Get lore"
+        ],
         "success": "§7[§eItemMods§7] §aSuccessfully add the lore line §3{0}§a!",
         "remove": "§7[§eItemMods§7] §aSuccessfully removed latest lore line!",
         "empty": "§7[§eItemMods§7] §aSuccessfully add a empty lore line!",
@@ -225,6 +237,18 @@
         "get": "§7[§eItemMods§7] §eThe lore: \n§5{0}",
         "delimiter": "§7 \r\n§5",
         "null": "§7[§eItemMods§7] §cThere is no lore!"
+      },
+      "amount": {
+        "material": "DIRT",
+        "name": "§eAmount",
+        "lore": ["§3{0}","","§7Left click » +1", "§7Right click » -1","§7Shift + Left click » +5","§7Shift + Right click » -5"],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
+      },
+      "custommodeldata": {
+        "material": "GOLD_NUGGET",
+        "name": "§eCustom model data",
+        "lore": ["§3{0}","","§7Left click » +1", "§7Right click » -1","§7Shift + Left click » +5","§7Shift + Right click » -5"],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the custom model data to §3{0}§a!"
       }
     }
   },
