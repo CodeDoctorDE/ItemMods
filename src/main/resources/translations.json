@@ -237,6 +237,32 @@
         "get": "§7[§eItemMods§7] §eThe lore: \n§5{0}",
         "delimiter": "§7 \r\n§5",
         "null": "§7[§eItemMods§7] §cThere is no lore!"
+      },
+      "amount": {
+        "material": "DIRT",
+        "name": "§eAmount",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Left click » +1",
+          "§7Right click » -1",
+          "§7Shift + Left click » +5",
+          "§7Shift + Right click » -5"
+        ],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
+      },
+      "custommodeldata": {
+        "material": "GOLD_NUGGET",
+        "name": "§eCustom model data",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Left click » +1",
+          "§7Right click » -1",
+          "§7Shift + Left click » +5",
+          "§7Shift + Right click » -5"
+        ],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the custom model data to §3{0}§a!"
       }
     }
   },

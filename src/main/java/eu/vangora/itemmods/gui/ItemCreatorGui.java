@@ -147,6 +147,48 @@ public class ItemCreatorGui {
                         }
                     }
                 }));
+                getGuiItems().put(11, new GuiItem(Main.translateItem(guiTranslation.getSection("amount")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        int amount = itemStack.getAmount();
+                        switch (event.getClick()) {
+                            case LEFT:
+                                amount++;
+                                break;
+                            case RIGHT:
+                                amount--;
+                            case SHIFT_LEFT:
+                                amount += 5;
+                            case SHIFT_RIGHT:
+                                amount -= 5;
+                        }
+                        itemStack.setAmount(amount);
+                        event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("amount", "success"), amount));
+                        createGui(backGui).open((Player) event.getWhoClicked());
+                    }
+                }));
+                getGuiItems().put(12, new GuiItem(Main.translateItem(guiTranslation.getSection("custommodeldata")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        ItemMeta itemMeta = itemStack.getItemMeta();
+                        int customModelData = itemMeta.getCustomModelData();
+                        switch (event.getClick()) {
+                            case LEFT:
+                                customModelData++;
+                                break;
+                            case RIGHT:
+                                customModelData--;
+                            case SHIFT_LEFT:
+                                customModelData += 5;
+                            case SHIFT_RIGHT:
+                                customModelData -= 5;
+                        }
+                        itemMeta.setCustomModelData(customModelData);
+                        itemStack.setItemMeta(itemMeta);
+                        event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), customModelData));
+                        createGui(backGui).open((Player) event.getWhoClicked());
+                    }
+                }));
             }});
         }};
     }

@@ -71,7 +71,9 @@ public class Main extends JavaPlugin {
     }
 
     public static ItemStackBuilder translateItem(JsonConfigurationSection section) {
-        return new ItemStackBuilder(section.getString("material")).name(section.getString("name")).lore(section.getStringList("lore"));
+        return new ItemStackBuilder(section.getString("material")).name(section.getString("name"))
+                .lore(section.getStringList("lore"))
+                .amount((section.containsKey("amount")) ? section.getInteger("amount") : 1);
     }
 
     @Override
