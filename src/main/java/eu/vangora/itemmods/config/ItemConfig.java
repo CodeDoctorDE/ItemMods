@@ -1,12 +1,18 @@
 package eu.vangora.itemmods.config;
 
+import com.gitlab.codedoctorde.api.config.JsonConfigurationArray;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationElement;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
+import com.gitlab.codedoctorde.api.config.JsonConfigurationValue;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonElement;
 import eu.vangora.itemmods.main.ArmorType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ItemConfig extends JsonConfigurationElement {
     private String name;
@@ -20,6 +26,14 @@ public class ItemConfig extends JsonConfigurationElement {
     private int speed = 0;
     private boolean boneMeal = false;
     private ArmorType armorType = ArmorType.NONE;
+    private List<String> onHelmet = new ArrayList<>();
+    private List<String> onChestplate = new ArrayList<>();
+    private List<String> onLeggings = new ArrayList<>();
+    private List<String> onBoots = new ArrayList<>();
+    private List<String> onOffHand = new ArrayList<>();
+    private List<String> onMainHand = new ArrayList<>();
+    private List<String> onDrop = new ArrayList<>();
+    private List<String> onPickup = new ArrayList<>();
 
 
     public ItemConfig(JsonElement element) {
@@ -39,6 +53,14 @@ public class ItemConfig extends JsonConfigurationElement {
         config.setValue(canRename, "rename");
         config.setValue(boneMeal, "bonemeal");
         config.setValue(armorType.name(),"armortype");
+        config.setValue((JsonConfigurationElement) onHelmet.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "helmet");
+        config.setValue((JsonConfigurationElement) onChestplate.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "chestplate");
+        config.setValue((JsonConfigurationElement) onLeggings.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "leggings");
+        config.setValue((JsonConfigurationElement) onBoots.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "boots");
+        config.setValue((JsonConfigurationElement) onMainHand.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "mainhand");
+        config.setValue((JsonConfigurationElement) onOffHand.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "offhand");
+        config.setValue((JsonConfigurationElement) onDrop.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "drop");
+        config.setValue((JsonConfigurationElement) onPickup.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "pickup");
         return config.getElement();
     }
 
@@ -50,6 +72,14 @@ public class ItemConfig extends JsonConfigurationElement {
         canRename = config.getBoolean("rename");
         boneMeal = config.getBoolean("bonemeal");
         armorType = ArmorType.valueOf(config.getString("armortype"));
+        config.getArray("helmet").forEach(helmet -> onHelmet.add(helmet.toConfigValue().getString()));
+        config.getArray("chestplate").forEach(chestplate -> onChestplate.add(chestplate.toConfigValue().getString()));
+        config.getArray("leggings").forEach(leggings -> onLeggings.add(leggings.toConfigValue().getString()));
+        config.getArray("boots").forEach(boots -> onBoots.add(boots.toConfigValue().getString()));
+        config.getArray("mainhand").forEach(mainhand -> onMainHand.add(mainhand.toConfigValue().getString()));
+        config.getArray("offhand").forEach(offhand -> onOffHand.add(offhand.toConfigValue().getString()));
+        config.getArray("drop").forEach(drop -> onDrop.add(drop.toConfigValue().getString()));
+        config.getArray("pickup").forEach(pickup -> onPickup.add(pickup.toConfigValue().getString()));
     }
 
     public String getName() {
@@ -138,5 +168,37 @@ public class ItemConfig extends JsonConfigurationElement {
 
     public void setArmorType(ArmorType armorType) {
         this.armorType = armorType;
+    }
+
+    public List<String> getOnBoots() {
+        return onBoots;
+    }
+
+    public List<String> getOnChestplate() {
+        return onChestplate;
+    }
+
+    public List<String> getOnDrop() {
+        return onDrop;
+    }
+
+    public List<String> getOnHelmet() {
+        return onHelmet;
+    }
+
+    public List<String> getOnLeggings() {
+        return onLeggings;
+    }
+
+    public List<String> getOnMainHand() {
+        return onMainHand;
+    }
+
+    public List<String> getOnOffHand() {
+        return onOffHand;
+    }
+
+    public List<String> getOnPickup() {
+        return onPickup;
     }
 }

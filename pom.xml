@@ -6,7 +6,7 @@
 
     <groupId>com.gitlab.vangora</groupId>
     <artifactId>itemmods</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

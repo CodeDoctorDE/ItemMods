@@ -16,9 +16,8 @@
 
 * Custom blocks (available 1.1)​
 *  Custom items (available 1.0)​
-*  Custom tools (available 1.2)
+    *  Custom tools (available 1.2)
     *  Custom bone meals (avaiable 1.1)
-    *  Custom armor (available 1.0)
     *  Custom drops (available 1.2)​
     *  with other tools (coming soon..)​
 *  GUI based configuration with JSON (available 1.0)​
