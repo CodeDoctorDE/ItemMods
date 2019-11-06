@@ -7,10 +7,12 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.GuiPage;
+import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -21,11 +23,15 @@ import java.util.List;
 
 public class ItemCreatorGui {
 
-    private ItemStack itemStack;
+    private ItemStackBuilder itemStackBuilder;
     private ItemCreatorSubmitEvent submitEvent;
 
+    public ItemCreatorGui(ItemStackBuilder itemStackBuilder, ItemCreatorSubmitEvent submitEvent){
+        this.itemStackBuilder = itemStackBuilder;
+        this.submitEvent = submitEvent;
+    }
     public ItemCreatorGui(ItemStack itemStack, ItemCreatorSubmitEvent submitEvent){
-        this.itemStack = itemStack;
+        this.itemStackBuilder = new ItemStackBuilder(itemStack);
         this.submitEvent = submitEvent;
     }
     public Gui createGui(Gui backGui){
@@ -42,7 +48,12 @@ public class ItemCreatorGui {
                 getGuiItems().put(1, placeholder);
                 getGuiItems().put(2, placeholder);
                 getGuiItems().put(3, placeholder);
-                getGuiItems().put(4, new GuiItem(itemStack));
+                getGuiItems().put(4, new GuiItem(itemStackBuilder.build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        event.getWhoClicked().getInventory().addItem(itemStackBuilder.build());
+                    }
+                }));
                 getGuiItems().put(5, placeholder);
                 getGuiItems().put(6, placeholder);
                 getGuiItems().put(7, placeholder);
@@ -50,10 +61,10 @@ public class ItemCreatorGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getString("submit", "success"));
-                        submitEvent.onEvent(itemStack);
+                        submitEvent.onEvent(itemStackBuilder.build());
                     }
                 }));
-                getGuiItems().put(9, new GuiItem(Main.translateItem(guiTranslation.getSection("displayname")).format(itemStack.getItemMeta().getDisplayName()).build(), new GuiItemEvent() {
+                getGuiItems().put(9, new GuiItem(Main.translateItem(guiTranslation.getSection("displayname")).format(itemStackBuilder.getDisplayName()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {
@@ -64,9 +75,7 @@ public class ItemCreatorGui {
                                     @Override
                                     public void onEvent(Player player, String output) {
                                         output = ChatColor.translateAlternateColorCodes('&', output);
-                                        ItemMeta itemMeta = itemStack.getItemMeta();
-                                        itemMeta.setDisplayName(output);
-                                        itemStack.setItemMeta(itemMeta);
+                                        itemStackBuilder.displayName(output);
                                         player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
                                         createGui(backGui).open(player);
                                     }
@@ -79,9 +88,7 @@ public class ItemCreatorGui {
                                 });
                                 break;
                             case RIGHT:
-                                ItemMeta itemMeta = itemStack.getItemMeta();
-                                itemMeta.setDisplayName(null);
-                                itemStack.setItemMeta(itemMeta);
+                                itemStackBuilder.displayName(null);
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("displayname", "remove"));
                                 createGui(backGui).open((Player) event.getWhoClicked());
                                 break;
@@ -91,10 +98,9 @@ public class ItemCreatorGui {
                 getGuiItems().put(10, new GuiItem(Main.translateItem(guiTranslation.getSection("lore")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        ItemMeta itemMeta = itemStack.getItemMeta();
-                        if (itemMeta.getLore() == null)
-                            itemMeta.setLore(new ArrayList<>());
-                        List<String> lore = itemMeta.getLore();
+                        List<String> lore = itemStackBuilder.getLore();
+                        if(lore == null)
+                            lore = new ArrayList<>();
                         switch (event.getClick()){
                             case LEFT:
                                 gui.close((Player) event.getWhoClicked());
@@ -103,13 +109,11 @@ public class ItemCreatorGui {
                                     @Override
                                     public void onEvent(Player player, String output) {
                                         output = ChatColor.translateAlternateColorCodes('&', output);
-                                        ItemMeta itemMeta = itemStack.getItemMeta();
-                                        if (itemMeta.getLore() == null)
-                                            itemMeta.setLore(new ArrayList<>());
-                                        List<String> lore = itemMeta.getLore();
+                                        List<String> lore = itemStackBuilder.getLore();
+                                        if(lore == null)
+                                            lore = new ArrayList<>();
                                         lore.add(output);
-                                        itemMeta.setLore(lore);
-                                        itemStack.setItemMeta(itemMeta);
+                                        itemStackBuilder.lore(lore);
                                         player.sendMessage(MessageFormat.format(guiTranslation.getString("lore", "success"), output));
                                         createGui(backGui).open(player);
                                     }
@@ -124,17 +128,11 @@ public class ItemCreatorGui {
                             case SHIFT_LEFT:
                                 lore.add(" ");
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "empty"));
-                                itemMeta.setLore(lore);
-                                itemStack.setItemMeta(itemMeta);
-                                createGui(backGui).open((Player) event.getWhoClicked());
                                 break;
                             case RIGHT:
                                 if (!lore.isEmpty())
                                     lore.remove(lore.size() - 1);
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("lore", "remove"));
-                                itemMeta.setLore(lore);
-                                itemStack.setItemMeta(itemMeta);
-                                createGui(backGui).open((Player) event.getWhoClicked());
                                 break;
                             case SHIFT_RIGHT:
                                 lore.clear();
@@ -145,47 +143,63 @@ public class ItemCreatorGui {
                                     event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("lore", "get"),
                                             String.join(guiTranslation.getString("lore", "delimiter"), lore)));
                         }
+                        itemStackBuilder.setLore(lore);
+                        if(event.getClick()!= ClickType.LEFT)
+                            createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(11, new GuiItem(Main.translateItem(guiTranslation.getSection("amount")).build(), new GuiItemEvent() {
+                getGuiItems().put(11, new GuiItem(Main.translateItem(guiTranslation.getSection("amount")).format(itemStackBuilder.getAmount()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        int amount = itemStack.getAmount();
+                        int amount = itemStackBuilder.getAmount();
                         switch (event.getClick()) {
                             case LEFT:
                                 amount++;
                                 break;
                             case RIGHT:
                                 amount--;
+                                break;
                             case SHIFT_LEFT:
                                 amount += 5;
+                                break;
                             case SHIFT_RIGHT:
                                 amount -= 5;
+                                break;
                         }
-                        itemStack.setAmount(amount);
+                        itemStackBuilder.setAmount(amount);
                         event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("amount", "success"), amount));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(12, new GuiItem(Main.translateItem(guiTranslation.getSection("custommodeldata")).build(), new GuiItemEvent() {
+                getGuiItems().put(12, new GuiItem((itemStackBuilder.getCustomModelData() != null)?Main.translateItem(guiTranslation.getSection("custommodeldata","yes")).format(itemStackBuilder.getCustomModelData()).build():
+                        Main.translateItem(guiTranslation.getSection("custommodeldata","no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        ItemMeta itemMeta = itemStack.getItemMeta();
-                        int customModelData = itemMeta.getCustomModelData();
-                        switch (event.getClick()) {
-                            case LEFT:
-                                customModelData++;
-                                break;
-                            case RIGHT:
-                                customModelData--;
-                            case SHIFT_LEFT:
-                                customModelData += 5;
-                            case SHIFT_RIGHT:
-                                customModelData -= 5;
+                        if (itemStackBuilder.getCustomModelData() != null) {
+                            Integer customModelData = itemStackBuilder.getCustomModelData();
+                            switch (event.getClick()) {
+                                case LEFT:
+                                    customModelData++;
+                                    break;
+                                case RIGHT:
+                                    customModelData--;
+                                    break;
+                                case SHIFT_LEFT:
+                                    customModelData += 5;
+                                    break;
+                                case SHIFT_RIGHT:
+                                    customModelData -= 5;
+                                    break;
+                                case DROP:
+                                    customModelData = null;
+                                    break;
+                            }
+                            itemStackBuilder.setCustomModelData(customModelData);
+                            event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), customModelData));
+                        }else {
+                            itemStackBuilder.setCustomModelData(0);
+                            event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), itemStackBuilder.getCustomModelData()));
                         }
-                        itemMeta.setCustomModelData(customModelData);
-                        itemStack.setItemMeta(itemMeta);
-                        event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), customModelData));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));

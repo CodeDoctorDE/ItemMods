@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.gitlab.codedoctorde:CodeDoctorAPI:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gitlab/codedoctorde/CodeDoctorAPI/1.0-SNAPSHOT/CodeDoctorAPI-1.0-20191106.121425-5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gitlab/codedoctorde/CodeDoctorAPI/1.0-SNAPSHOT/CodeDoctorAPI-1.0-20191106.121425-5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/gitlab/codedoctorde/CodeDoctorAPI/1.0-SNAPSHOT/CodeDoctorAPI-1.0-20191106.121425-5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -252,16 +252,28 @@
         "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
       },
       "custommodeldata": {
-        "material": "GOLD_NUGGET",
-        "name": "§eCustom model data",
-        "lore": [
-          "§3{0}",
-          "",
-          "§7Left click » +1",
-          "§7Right click » -1",
-          "§7Shift + Left click » +5",
-          "§7Shift + Right click » -5"
-        ],
+        "yes": {
+          "material": "GOLD_NUGGET",
+          "name": "§eCustom model data",
+          "lore": [
+            "§3{0}",
+            "",
+            "§7Left click » +1",
+            "§7Right click » -1",
+            "§7Shift + Left click » +5",
+            "§7Shift + Right click » -5",
+            "§7Drop » Remove custom model data"
+          ]
+        },
+        "no": {
+          "material": "GOLD_NUGGET",
+          "name": "§eCustom model data",
+          "lore": [
+            "§3No custom model data",
+            "",
+            "§7Click to add!"
+          ]
+        },
         "success": "§7[§eItemMods§7] §aSuccessfully set the custom model data to §3{0}§a!"
       }
     }

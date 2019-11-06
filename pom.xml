@@ -51,6 +51,9 @@
         <repository>
             <id>codedoctorapi</id>
             <url>https://gitlab.com/api/v4/projects/14810643/packages/maven</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
     <dependencies>
@@ -63,7 +66,7 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations-java5</artifactId>
-            <version>RELEASE</version>
+            <version>17.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
