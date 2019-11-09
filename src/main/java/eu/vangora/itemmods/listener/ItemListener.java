@@ -1,17 +1,13 @@
 package eu.vangora.itemmods.listener;
 
-import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
-import eu.vangora.itemmods.config.ItemConfig;
+import eu.vangora.itemmods.config.BlockConfig;
 import eu.vangora.itemmods.main.Main;
-import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Objects;
 
@@ -29,6 +25,19 @@ public class ItemListener implements Listener {
             event.setCancelled(true);
             event.getWhoClicked().sendMessage(Main.getPlugin().getTranslationConfig().getString("event", "rename"));
         });
+    }
+
+    @EventHandler
+    public void onCustomBlockPlaced(PlayerInteractEvent event) {
+        if (event.getItem() == null) return;
+        for (BlockConfig block :
+                Main.getPlugin().getMainConfig().getBlocks()) {
+            if (event.getItem().isSimilar(block.getItemStack())) {
+                event.setCancelled(true);
+                Player player = event.getPlayer();
+                player.getEyeLocation().getWorld().getBlockAt(player.getEyeLocation()).setBlockData(block.getBlock());
+            }
+        }
     }
 
 }

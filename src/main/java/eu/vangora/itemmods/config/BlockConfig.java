@@ -22,6 +22,7 @@ public class BlockConfig extends JsonConfigurationElement {
     private boolean small;
     private boolean basePlate;
     private boolean invisible;
+    private ItemStack itemStack;
 
 
     public BlockConfig(JsonElement element) {
@@ -51,6 +52,7 @@ public class BlockConfig extends JsonConfigurationElement {
         config.setValue(basePlate, "baseplate");
         config.setValue(invisible, "invisible");
         config.setValue(block, "block");
+        config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
         return config.getElement();
     }
 
@@ -69,6 +71,7 @@ public class BlockConfig extends JsonConfigurationElement {
         small = config.getBoolean("small");
         invisible = config.getBoolean("invisible");
         basePlate = config.getBoolean("baseplate");
+        itemStack = new ItemStackBuilder(config.getValue("itemstack")).build();
         if (config.containsKey("block"))
             block = Bukkit.createBlockData(config.getString("block"));
     }
@@ -175,5 +178,13 @@ public class BlockConfig extends JsonConfigurationElement {
 
     public void setBoots(ItemStack boots) {
         this.boots = boots;
+    }
+
+    public ItemStack getItemStack() {
+        return itemStack;
+    }
+
+    public void setItemStack(ItemStack itemStack) {
+        this.itemStack = itemStack;
     }
 }

@@ -588,6 +588,152 @@
             "§7Drag an item here to set the boots!"
           ]
         }
+      },
+      "mainhand": {
+        "view": {
+          "material": "DIAMOND_SWORD",
+          "name": "§eArmorStand §f- §6Main hand",
+          "lore": [
+            "",
+            "§7Click to set the item to the item in the main hand",
+            "§7Below you can see the main hand from the armor stand!"
+          ]
+        },
+        "null": {
+          "material": "BARRIER",
+          "name": "§cYou have no main hand set!",
+          "lore": [
+            "",
+            "§7Drag an item here to set the main hand!"
+          ]
+        }
+      },
+      "offhand": {
+        "view": {
+          "material": "SHIELD",
+          "name": "§eArmorStand §f- §6Off hand",
+          "lore": [
+            "",
+            "§7Click to set the item to the item in the main hand",
+            "§7Below you can see the off hand from the armor stand!"
+          ]
+        },
+        "null": {
+          "material": "BARRIER",
+          "name": "§cYou have no off hand set!",
+          "lore": [
+            "",
+            "§7Drag an item here to set the off hand!"
+          ]
+        }
+      },
+      "baseplate": {
+        "yes": {
+          "material": "STONE_PRESSURE_PLATE",
+          "name": "§eBase plate",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to turn it off"
+          ]
+        },
+        "no": {
+          "material": "STONE_PRESSURE_PLATE",
+          "name": "§eBase plate",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to turn it on"
+          ]
+        }
+      },
+      "invisible": {
+        "yes": {
+          "material": "GOLDEN_CARROT",
+          "name": "§eInvisible",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to turn it off"
+          ]
+        },
+        "no": {
+          "material": "GOLDEN_CARROT",
+          "name": "§eInvisible",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to turn it on"
+          ]
+        }
+      },
+      "small": {
+        "yes": {
+          "material": "SKELETON_SKULL",
+          "name": "§eSmall",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to turn it off"
+          ]
+        },
+        "no": {
+          "material": "SKELETON_SKULL",
+          "name": "§eSmall",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to turn it on"
+          ]
+        }
+      },
+      "item": {
+        "null": {
+          "material": "BARRIER",
+          "name": "§cNo item",
+          "lore": [
+            "",
+            "§7Click to set the item to a carrot on a stick ",
+            "§7or drag an item to here!"
+          ]
+        }
+      },
+      "creator": {
+        "item": {
+          "material": "CHEST",
+          "name": "§eOpen item creator",
+          "lore": []
+        },
+        "null": {
+          "material": "CHEST",
+          "name": "§cNo item for the item creator",
+          "lore": [
+            "",
+            "§7Set the item before trying to open the item creator!"
+          ]
+        }
+      },
+      "block": {
+        "set": {
+          "material": "GRASS_BLOCK",
+          "name": "§eBlock",
+          "lore": [
+            "§aSET",
+            "",
+            "§7Left click » Set the block",
+            "§7Drop » Remove block"
+          ]
+        },
+        "null": {
+          "material": "SKELETON_SKULL",
+          "name": "§eSmall",
+          "lore": [
+            "§cNOT SET",
+            "",
+            "§7Left click » Set the block",
+            "§7Drop » Remove block"
+          ]
+        }
       }
     }
   },

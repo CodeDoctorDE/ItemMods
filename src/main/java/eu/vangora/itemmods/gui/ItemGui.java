@@ -93,7 +93,7 @@ public class ItemGui {
                         });
                     }
                 }));
-                getGuiItems().put(9 + 5, new GuiItem((itemConfig.getItemStack() != null) ? itemConfig.getItemStack() : Main.translateItem(guiTranslation.getSection("item", "null")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 7, new GuiItem((itemConfig.getItemStack() != null) ? itemConfig.getItemStack() : Main.translateItem(guiTranslation.getSection("item", "null")).build(), new GuiItemEvent() {
 
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
