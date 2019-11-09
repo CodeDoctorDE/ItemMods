@@ -33,6 +33,13 @@ public class MainGui {
                         new ItemsGui().createGui(player, gui).open(player);
                     }
                 }));
+                getGuiItems().put(9 + 5, new GuiItem(Main.translateItem(guiTranslation.getSection("blocks")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        new BlocksGui().createGui(player, gui).open(player);
+                    }
+                }));
             }});
         }};
     }

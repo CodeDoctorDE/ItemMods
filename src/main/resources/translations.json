@@ -238,13 +238,23 @@
         "yes": {
           "material": "BONE_MEAL",
           "name": "§eBone meal",
-          "lore": ["§aTRUE","","§7Click to set it off"],
+          "lore": [
+            "§aTRUE",
+            "",
+            "§7Click to set it off",
+            "§7Coming soon..."
+          ],
           "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §atrue§a!"
         },
         "no": {
           "material": "BONE_MEAL",
           "name": "§eBone meal",
-          "lore": ["§cFALSE","","§7Click to set it on"],
+          "lore": [
+            "§cFALSE",
+            "",
+            "§7Click to set it on",
+            "§7Coming soon..."
+          ],
           "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §cfalse§a!"
         }
       },
@@ -258,7 +268,8 @@
         "material": "ENDER_CHEST",
         "name": "§eEvents",
         "lore": [
-          ""
+          "",
+          "§7Coming soon..."
         ],
         "title": "§eItem #{1} §7» §6Events",
         "back": {
@@ -269,8 +280,6 @@
         "helmet": {
           "material": "DIAMOND_HELMET",
           "name": "§eHelmet commands",
-          "prefix": "§eEvents §7» §6Helmet ",
-          "suffix": "",
           "lore": [
             "§3{0}",
             "",
@@ -278,11 +287,46 @@
             "§7Right click » Remove latest command",
             "§7Shift + Right click » Remove all commands"
           ],
-          "create": {
-            "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
-            "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
-            "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!"
-          }
+          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
+          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "delimiter": "\n§3",
+          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
+          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
+        },
+        "chestplate": {
+          "material": "DIAMOND_CHESTPLATE",
+          "name": "§eChestplate commands",
+          "lore": [
+            "§3{0}",
+            "",
+            "§7Left click » Add command",
+            "§7Right click » Remove latest command",
+            "§7Shift + Right click » Remove all commands"
+          ],
+          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
+          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your chestplate! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "delimiter": "\n§3",
+          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
+          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
+        },
+        "leggings": {
+          "material": "DIAMOND_HELMET",
+          "name": "§eHelmet commands",
+          "lore": [
+            "§3{0}",
+            "",
+            "§7Left click » Add command",
+            "§7Right click » Remove latest command",
+            "§7Shift + Right click » Remove all commands"
+          ],
+          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
+          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "delimiter": "\n§3",
+          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
+          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
         }
       }
     },

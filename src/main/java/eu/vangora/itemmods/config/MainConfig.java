@@ -10,6 +10,7 @@ import java.util.List;
 
 public class MainConfig extends JsonConfigurationElement {
     private List<ItemConfig> items = new ArrayList<>();
+    private List<BlockConfig> blocks = new ArrayList<>();
 
     public MainConfig(JsonConfigurationSection baseConfig) {
         try {
@@ -26,18 +27,24 @@ public class MainConfig extends JsonConfigurationElement {
     @Override
     public JsonElement getElement() {
         JsonConfigurationSection config = new JsonConfigurationSection();
-        config.setValue(new JsonConfigurationArray(items.toArray(new JsonConfigurationElement[0])), "blocks");
+        config.setValue(new JsonConfigurationArray(items.toArray(new JsonConfigurationElement[0])), "items");
+        config.setValue(new JsonConfigurationArray(blocks.toArray(new JsonConfigurationElement[0])), "blocks");
         return config.getElement();
     }
 
     @Override
     public void fromElement(JsonElement element) {
         JsonConfigurationSection config = new JsonConfigurationSection(element.getAsJsonObject());
-        config.getArray("blocks").getList().forEach(block -> items.add(new ItemConfig(block.getElement())));
+        config.getArray("blocks").getList().forEach(block -> blocks.add(new BlockConfig(block.getElement())));
+        config.getArray("items").getList().forEach(item -> items.add(new ItemConfig(item.getElement())));
 
     }
 
     public List<ItemConfig> getItems() {
         return items;
+    }
+
+    public List<BlockConfig> getBlocks() {
+        return blocks;
     }
 }

@@ -9,15 +9,11 @@ import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ItemGui {
@@ -141,8 +137,8 @@ public class ItemGui {
                 getGuiItems().put(9*3+1, new GuiItem(Main.translateItem(guiTranslation.getSection("events")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        Player player = (Player) event.getWhoClicked();
-                        createEventsGui(gui).open(player);
+//                        Player player = (Player) event.getWhoClicked();
+//                        createEventsGui(gui).open(player);
                     }
                 }));
             }});
@@ -163,11 +159,147 @@ public class ItemGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         backGui.open((Player) event.getWhoClicked());
+
                     }
                 }));
-                getGuiItems().put(9+1, new GuiItem(Main.translateItem(guiTranslation.getSection("helmet")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 1, new GuiItem(Main.translateItem(guiTranslation.getSection("wear")).format(itemConfig.getOnWear().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getString("wear", "delimiter")))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("wear", "message"));
+                                gui.close((Player) event.getWhoClicked());
+                                new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, String output) {
+                                        itemConfig.getOnWear().add(output);
+                                        createEventsGui(backGui).open(player);
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("wear", "success"));
+                                    }
+
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("wear", "cancel"));
+                                    }
+                                });
+                                break;
+                            case RIGHT:
+                                if (!itemConfig.getOnWear().isEmpty())
+                                    itemConfig.getOnWear().remove(itemConfig.getOnWear().size() - 1);
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("wear", "remove"));
+                                break;
+                            case SHIFT_RIGHT:
+                                itemConfig.getOnWear().clear();
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("wear", "clear"));
+                                break;
+                        }
+                    }
+                }));
+                getGuiItems().put(9 + 3, new GuiItem(Main.translateItem(guiTranslation.getSection("rightclick")).format(itemConfig.getOnRightClick().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getString("rightclick", "delimiter")))).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("rightclick", "message"));
+                                gui.close((Player) event.getWhoClicked());
+                                new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, String output) {
+                                        itemConfig.getOnRightClick().add(output);
+                                        createEventsGui(backGui).open(player);
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("rightclick", "success"));
+                                    }
+
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("rightclick", "cancel"));
+                                    }
+                                });
+                                break;
+                            case RIGHT:
+                                if (!itemConfig.getOnRightClick().isEmpty())
+                                    itemConfig.getOnRightClick().remove(itemConfig.getOnRightClick().size() - 1);
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("rightclick", "remove"));
+                                break;
+                            case SHIFT_RIGHT:
+                                itemConfig.getOnRightClick().clear();
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("rightclick", "clear"));
+                                break;
+                        }
+                    }
+                }));
+                getGuiItems().put(9 + 5, new GuiItem(Main.translateItem(guiTranslation.getSection("mainhand")).format(itemConfig.getOnMainHand().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getString("mainhand", "delimiter")))).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("mainhand", "message"));
+                                gui.close((Player) event.getWhoClicked());
+                                new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, String output) {
+                                        itemConfig.getOnMainHand().add(output);
+                                        createEventsGui(backGui).open(player);
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("mainhand", "success"));
+                                    }
+
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("mainhand", "cancel"));
+                                    }
+                                });
+                                break;
+                            case RIGHT:
+                                if (!itemConfig.getOnMainHand().isEmpty())
+                                    itemConfig.getOnMainHand().remove(itemConfig.getOnMainHand().size() - 1);
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("mainhand", "remove"));
+                                break;
+                            case SHIFT_RIGHT:
+                                itemConfig.getOnMainHand().clear();
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("mainhand", "clear"));
+                                break;
+                        }
+                    }
+                }));
+                getGuiItems().put(9 * 3 + 3, new GuiItem(Main.translateItem(guiTranslation.getSection("offhand")).format(itemConfig.getOnOffHand().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getString("offhand", "delimiter")))).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("offhand", "message"));
+                                gui.close((Player) event.getWhoClicked());
+                                new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, String output) {
+                                        itemConfig.getOnOffHand().add(output);
+                                        createEventsGui(backGui).open(player);
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("offhand", "success"));
+                                    }
+
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        event.getWhoClicked().sendMessage(guiTranslation.getString("offhand", "cancel"));
+                                    }
+                                });
+                                break;
+                            case RIGHT:
+                                if (!itemConfig.getOnOffHand().isEmpty())
+                                    itemConfig.getOnOffHand().remove(itemConfig.getOnOffHand().size() - 1);
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("offhand", "remove"));
+                                break;
+                            case SHIFT_RIGHT:
+                                itemConfig.getOnOffHand().clear();
+                                createEventsGui(backGui).open((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("offhand", "clear"));
+                                break;
+                        }
                     }
                 }));
             }});
