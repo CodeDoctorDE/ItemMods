@@ -5,7 +5,6 @@ import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.*;
 import eu.vangora.itemmods.config.BlockConfig;
-import eu.vangora.itemmods.config.ItemConfig;
 import eu.vangora.itemmods.config.MainConfig;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.ChatColor;
@@ -145,7 +144,7 @@ public class BlocksGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
-                                mainConfig.getItems().add(new ItemConfig(output));
+                                mainConfig.getBlocks().add(new BlockConfig(output));
                                 try {
                                     Main.getPlugin().saveBaseConfig();
                                 } catch (IOException e) {
@@ -225,63 +224,65 @@ public class BlocksGui {
         return guiPages;
     }
 
-    private Gui createDeleteGui(Player player, int itemIndex, Gui backGui, String searchText) {
-        List<ItemConfig> itemConfigs = Main.getPlugin().getMainConfig().getItems();
-        JsonConfigurationSection guiTranslation = Main.getPlugin().getTranslationConfig().getSection("gui", "items", "delete");
-        if (itemIndex < 0 || itemIndex >= itemConfigs.size())
+    private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {
+        List<BlockConfig> blockConfigs = Main.getPlugin().getMainConfig().getBlocks();
+        JsonConfigurationSection guiTranslation = Main.getPlugin().getTranslationConfig().getSection("gui", "blocks", "delete");
+        if (blockIndex < 0 || blockIndex >= blockConfigs.size())
             return null;
-        ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(itemIndex);
-        Gui gui = new Gui(Main.getPlugin());
-        gui.getGuiPages().add(new GuiPage(MessageFormat.format(guiTranslation.getString("title"), itemConfig.getName(), itemIndex), 3, new GuiEvent() {
-            @Override
-            public void onTick(Gui gui, GuiPage guiPage, Player player) {
+        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        return new Gui(Main.getPlugin()) {
+            {
+                getGuiPages().add(new GuiPage(MessageFormat.format(guiTranslation.getString("title"), blockConfig.getName(), blockIndex), 3, new GuiEvent() {
+                    @Override
+                    public void onTick(Gui gui, GuiPage guiPage, Player player) {
 
-            }
-
-            @Override
-            public void onOpen(Gui gui, GuiPage guiPage, Player player) {
-
-            }
-
-            @Override
-            public void onClose(Gui gui, GuiPage guiPage, Player player) {
-
-            }
-        }) {{
-            getGuiItems().put(9 + 3, new GuiItem(Main.translateItem(guiTranslation.getSection("yes")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
-
-                @Override
-                public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    itemConfigs.remove(itemConfig);
-                    try {
-                        Main.getPlugin().saveBaseConfig();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                    player.sendMessage(MessageFormat.format(guiTranslation.getString("yes", "success"), itemConfig.getName(), itemIndex));
-                    createGui(player, searchText, new MainGui().createGui()).open(player);
-                }
 
-                @Override
-                public void onTick(Gui gui, GuiPage guiPage, GuiItem guiItem, Player player) {
+                    @Override
+                    public void onOpen(Gui gui, GuiPage guiPage, Player player) {
 
-                }
-            }));
-            getGuiItems().put(9 + 5, new GuiItem(Main.translateItem(guiTranslation.getSection("no")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
+                    }
 
-                @Override
-                public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    backGui.open(player);
-                }
+                    @Override
+                    public void onClose(Gui gui, GuiPage guiPage, Player player) {
 
-                @Override
-                public void onTick(Gui gui, GuiPage guiPage, GuiItem guiItem, Player player) {
+                    }
+                }) {{
+                    getGuiItems().put(9 + 3, new GuiItem(Main.translateItem(guiTranslation.getSection("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
-                }
-            }));
-        }});
-        return gui;
+                        @Override
+                        public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                            Player player = (Player) event.getWhoClicked();
+                            blockConfigs.remove(blockConfig);
+                            try {
+                                Main.getPlugin().saveBaseConfig();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            player.sendMessage(MessageFormat.format(guiTranslation.getString("yes", "success"), blockConfig.getName(), blockIndex));
+                            createGui(player, searchText, new MainGui().createGui()).open(player);
+                        }
+
+                        @Override
+                        public void onTick(Gui gui, GuiPage guiPage, GuiItem guiItem, Player player) {
+
+                        }
+                    }));
+                    getGuiItems().put(9 + 5, new GuiItem(Main.translateItem(guiTranslation.getSection("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+
+                        @Override
+                        public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                            Player player = (Player) event.getWhoClicked();
+                            backGui.open(player);
+                        }
+
+                        @Override
+                        public void onTick(Gui gui, GuiPage guiPage, GuiItem guiItem, Player player) {
+
+                        }
+                    }));
+                }});
+            }
+        };
     }
 }

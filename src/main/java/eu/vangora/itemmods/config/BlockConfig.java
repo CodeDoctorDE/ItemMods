@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class BlockConfig extends JsonConfigurationElement {
     private String name;
-    private String tag;
+    private String tag = "";
     private String displayName;
     private BlockData block;
     private ItemStack helmet;
@@ -30,6 +30,8 @@ public class BlockConfig extends JsonConfigurationElement {
 
     public BlockConfig(String name) {
         this.name = name;
+        this.displayName = name;
+        this.tag = name;
     }
 
 
@@ -67,7 +69,8 @@ public class BlockConfig extends JsonConfigurationElement {
         small = config.getBoolean("small");
         invisible = config.getBoolean("invisible");
         basePlate = config.getBoolean("baseplate");
-        block = Bukkit.createBlockData(config.getString("block"));
+        if (config.containsKey("block"))
+            block = Bukkit.createBlockData(config.getString("block"));
     }
 
     public String getName() {

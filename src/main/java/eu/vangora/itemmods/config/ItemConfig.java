@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 public class ItemConfig extends JsonConfigurationElement {
     private String name;
+    private String displayName;
     private ItemStack itemStack = new ItemStack(Material.GRASS_BLOCK);
     private boolean canRename = true;
     private int pickaxe = 0;
@@ -40,6 +41,7 @@ public class ItemConfig extends JsonConfigurationElement {
 
     public ItemConfig(String name) {
         this.name = name;
+        this.displayName = name;
     }
 
 
@@ -47,7 +49,8 @@ public class ItemConfig extends JsonConfigurationElement {
     public JsonElement getElement() {
         JsonConfigurationSection config = new JsonConfigurationSection();
         config.setValue(name, "name");
-        config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemStack");
+        config.setValue(displayName, "displayname");
+        config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
         config.setValue(canRename, "rename");
         config.setValue(boneMeal, "bonemeal");
         config.setValue(armorType.name(),"armortype");
@@ -65,6 +68,7 @@ public class ItemConfig extends JsonConfigurationElement {
         JsonConfigurationSection config = new JsonConfigurationSection(element.getAsJsonObject());
         itemStack = new ItemStackBuilder(config.getValue("itemStack")).build();
         name = config.getString("name");
+        displayName = config.getString("displayname");
         canRename = config.getBoolean("rename");
         boneMeal = config.getBoolean("bonemeal");
         armorType = ArmorType.valueOf(config.getString("armortype"));
@@ -186,4 +190,13 @@ public class ItemConfig extends JsonConfigurationElement {
     public List<String> getOnRightClick() {
         return onRightClick;
     }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
 }
