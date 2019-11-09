@@ -725,15 +725,26 @@
           ]
         },
         "null": {
-          "material": "SKELETON_SKULL",
-          "name": "§eSmall",
+          "material": "GRASS_BLOCK",
+          "name": "§eBlock",
           "lore": [
             "§cNOT SET",
             "",
             "§7Left click » Set the block",
             "§7Drop » Remove block"
           ]
-        }
+        },
+        "success": "§7[§eItemMods§7] §aSuccessfully set the block§a!",
+        "remove": "§7[§eItemMods§7] §aSuccessfully removed the block!",
+        "message": "§7[§eItemMods§7] §ePlease break the block! Cancel with a punch in the air!",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the block input!"
+      },
+      "get": {
+        "material": "STONE",
+        "name": "§eGet item",
+        "lore": [],
+        "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
+        "null": "§7[§eItemMods§7] §cThere is no item!"
       }
     }
   },

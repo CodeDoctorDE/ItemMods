@@ -51,7 +51,8 @@ public class BlockConfig extends JsonConfigurationElement {
         config.setValue(small, "small");
         config.setValue(basePlate, "baseplate");
         config.setValue(invisible, "invisible");
-        config.setValue(block, "block");
+        if (block != null)
+            config.setValue(block.getAsString(), "block");
         config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
         return config.getElement();
     }

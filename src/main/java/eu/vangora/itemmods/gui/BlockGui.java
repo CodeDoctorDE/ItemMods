@@ -1,6 +1,8 @@
 package eu.vangora.itemmods.gui;
 
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
+import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
+import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.*;
@@ -9,6 +11,7 @@ import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -268,6 +271,39 @@ public class BlockGui {
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
+                getGuiItems().put(9 + 7, new GuiItem(Main.translateItem(guiTranslation.getSection("block", (blockConfig.getBlock() == null) ? "null" : "set")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                gui.close((Player) event.getWhoClicked());
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("block", "message"));
+                                new BlockBreakRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new BlockBreakRequestEvent() {
+                                    @Override
+                                    public void onEvent(Player player, Block output) {
+                                        blockConfig.setBlock(output.getBlockData());
+                                        player.sendMessage(guiTranslation.getString("block", "success"));
+                                        createGui(backGui).open(player);
+                                    }
+
+                                    @Override
+                                    public void onCancel(Player player) {
+                                        player.sendMessage(guiTranslation.getString("block", "cancel"));
+                                    }
+                                });
+                                break;
+                            case DROP:
+                                blockConfig.setBlock(null);
+                                event.getWhoClicked().sendMessage(guiTranslation.getString("block", "remove"));
+                                break;
+                        }
+                        try {
+                            Main.getPlugin().saveBaseConfig();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }));
                 getGuiItems().put(9, new GuiItem((blockConfig.getHelmet() != null) ? blockConfig.getHelmet() : Main.translateItem(guiTranslation.getSection("helmet", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
@@ -350,6 +386,18 @@ public class BlockGui {
                         }
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
+                    }
+                }));
+                getGuiItems().put(9 * 4 + 4, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        if (blockConfig.getItemStack() == null) {
+                            player.sendMessage(guiTranslation.getString("get", "null"));
+                            return;
+                        }
+                        event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack().clone());
+                        event.getWhoClicked().sendMessage(guiTranslation.getString("get", "success"));
                     }
                 }));
             }});
