@@ -50,6 +50,11 @@ public class ItemGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 itemConfig.setName(output);
+                                try {
+                                    Main.getPlugin().saveBaseConfig();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("name", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -71,6 +76,11 @@ public class ItemGui {
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 itemConfig.setDisplayName(output);
+                                try {
+                                    Main.getPlugin().saveBaseConfig();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
                                 createGui(backGui).open(player);
                             }

@@ -501,6 +501,18 @@
         "message": "§7[§eItemMods§7] §ePlease enter the display name! Cancel with a punch in the air!",
         "cancel": "§7[§eItemMods§7] §cYou successfully cancel the display name!"
       },
+      "tag": {
+        "material": "ANVIL",
+        "name": "§eTag",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Click to set the tag of the item"
+        ],
+        "success": "§7[§eItemMods§7] §aSuccessfully set the tag to §3{0}§a!",
+        "message": "§7[§eItemMods§7] §ePlease enter the tag! Cancel with a punch in the air!",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the tag!"
+      },
       "helmet": {
         "view": {
           "material": "DIAMOND_HELMET",
