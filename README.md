@@ -11,8 +11,12 @@
 ![New GUI](assets/item_new.gif)
 ![Item-Settings GUI](./assets/item_settings.gif)
 
+### Custom Blocks
+![Blocks](assets/Blocks.gif)
+
 ## Features
 ![Features Logo](./assets/Features.png)
+
 
 * Custom blocks (available 1.1)​
 *  Custom items (available 1.0)​
