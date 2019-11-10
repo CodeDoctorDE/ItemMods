@@ -53,7 +53,6 @@ public class CustomBlockListener implements Listener {
                         break;
                 }
                 if (location.getNearbyPlayers(1).contains(event.getPlayer())) return;
-                else event.getPlayer().sendMessage("no");
                 if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return;
                 location.getWorld().getBlockAt(location).setBlockData(block.getBlock());
                 ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
