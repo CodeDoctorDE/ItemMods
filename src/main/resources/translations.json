@@ -745,6 +745,78 @@
         "lore": [],
         "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
         "null": "§7[§eItemMods§7] §cThere is no item!"
+      },
+      "marker": {
+        "yes": {
+          "material": "MAP",
+          "name": "§eMarker",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "MAP",
+          "name": "§eMarker",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
+      "invulnerable": {
+        "yes": {
+          "material": "TOTEM_OF_UNDYING",
+          "name": "§eInvulnerable",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "TOTEM_OF_UNDYING",
+          "name": "§eInvulnerable",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
+      "customname": {
+        "visible": {
+          "material": "ARMOR_STAND",
+          "name": "§eCustom name",
+          "lore": [
+            "§3{0}",
+            "§aVISIBLE",
+            "",
+            "§7Left click » Set custom name",
+            "§7Right click » Remove custom name",
+            "§7Drop » Toggle visibility"
+          ]
+        },
+        "invisible": {
+          "material": "ARMOR_STAND",
+          "name": "§eCustom name",
+          "lore": [
+            "§3{0}",
+            "§cINVISIBLE",
+            "",
+            "§7Left click » Set custom name",
+            "§7Right click » Remove custom name",
+            "§7Drop » Toggle visibility"
+          ]
+        },
+        "success": "§7[§eItemMods§7] §aSuccessfully set the custom name to §3{0}§a!",
+        "message": "§7[§eItemMods§7] §ePlease enter a custom name for the armor stand!",
+        "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+        "remove": "§7[§eItemMods§7] §aYou successfully removed the custom name!",
+        "on": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility on!",
+        "off": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility off!"
       }
     }
   },
@@ -752,6 +824,9 @@
     "rename": "§7[§eItemMods§7] §cThis item cannot be renamed!"
   },
   "command": {
-    "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!"
+    "base": {
+      "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!",
+      "noplayer": "§7[§eItemMods§7] §4This command is only for players!"
+    }
   }
 }

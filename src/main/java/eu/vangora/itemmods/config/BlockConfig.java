@@ -19,9 +19,13 @@ public class BlockConfig extends JsonConfigurationElement {
     private ItemStack boots;
     private ItemStack mainHand;
     private ItemStack offHand;
-    private boolean small;
-    private boolean basePlate;
-    private boolean invisible;
+    private boolean small = false;
+    private boolean basePlate = true;
+    private boolean invisible = true;
+    private boolean marker = false;
+    private boolean invulnerable = true;
+    private boolean customNameVisible = false;
+    private String customName;
     private ItemStack itemStack;
 
 
@@ -32,7 +36,8 @@ public class BlockConfig extends JsonConfigurationElement {
     public BlockConfig(String name) {
         this.name = name;
         this.displayName = name;
-        this.tag = name;
+        this.tag = "itemmods:" + name;
+        this.customName = name;
     }
 
 
@@ -187,5 +192,37 @@ public class BlockConfig extends JsonConfigurationElement {
 
     public void setItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
+    }
+
+    public boolean isCustomNameVisible() {
+        return customNameVisible;
+    }
+
+    public void setCustomNameVisible(boolean customNameVisible) {
+        this.customNameVisible = customNameVisible;
+    }
+
+    public String getCustomName() {
+        return customName;
+    }
+
+    public void setCustomName(String customName) {
+        this.customName = customName;
+    }
+
+    public boolean isInvulnerable() {
+        return invulnerable;
+    }
+
+    public void setInvulnerable(boolean invulnerable) {
+        this.invulnerable = invulnerable;
+    }
+
+    public boolean isMarker() {
+        return marker;
+    }
+
+    public void setMarker(boolean marker) {
+        this.marker = marker;
     }
 }
