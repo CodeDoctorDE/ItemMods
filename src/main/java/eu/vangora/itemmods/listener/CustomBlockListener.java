@@ -2,7 +2,6 @@ package eu.vangora.itemmods.listener;
 
 import eu.vangora.itemmods.config.BlockConfig;
 import eu.vangora.itemmods.main.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,13 +11,11 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockFromToEvent;
-import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +85,6 @@ public class CustomBlockListener implements Listener {
     public void onCustomBlockBreak(BlockBreakEvent event) {
         Location location = event.getBlock().getLocation().add(0.5, 0, 0.5);
         List<Entity> entities = new ArrayList<>(location.getNearbyEntitiesByType(ArmorStand.class, 0.01, 0.001, 0.01));
-        Bukkit.broadcastMessage(entities.toString() + location.toString());
         if (entities.size() < 1) return;
         Main.getPlugin().getMainConfig().getBlocks().forEach(block -> entities.stream().filter(entity -> entity.getType() == EntityType.ARMOR_STAND).map(entity -> (ArmorStand) entity).filter(armorStand -> armorStand.getScoreboardTags().contains(block.getTag())).forEach(armorStand -> {
             if (location.distance(armorStand.getLocation()) <= 0.5) {
@@ -103,7 +99,6 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockMove(BlockFromToEvent event) {
-        Bukkit.broadcastMessage("test");
         List<Entity> entities = new ArrayList<>(event.getBlock().getLocation().add(0.5, 0.1, 0.5).getNearbyLivingEntities(0.05, 0.001));
         if (entities.size() < 1) return;
         Main.getPlugin().getMainConfig().getBlocks().forEach(block -> entities.stream().filter(entity -> entity.getType() == EntityType.ARMOR_STAND).map(entity -> (ArmorStand) entity).filter(armorStand -> armorStand.getScoreboardTags().contains(block.getTag())).forEach(armorStand -> {
@@ -113,14 +108,28 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockPistonMove(BlockPistonExtendEvent event) {
+        List<Block> blocks = event.getBlocks();
+        Vector direction = event.getDirection().getDirection();
         for (Block block :
-                event.getBlocks()) {
-            Bukkit.broadcastMessage(block.getLocation().toString());
+                blocks) {
             List<Entity> entities = new ArrayList<>(block.getLocation().add(0.5, 0.1, 0.5).getNearbyLivingEntities(0.05, 0.001));
             if (entities.size() < 1) return;
             Main.getPlugin().getMainConfig().getBlocks().forEach(blockConfig -> entities.stream().filter(entity -> entity.getType() == EntityType.ARMOR_STAND).map(entity -> (ArmorStand) entity).filter(armorStand -> armorStand.getScoreboardTags().contains(blockConfig.getTag())).forEach(armorStand -> {
-                Bukkit.broadcastMessage(armorStand.getUniqueId().toString());
-                armorStand.teleport(block.getLocation().add(event.getDirection().getDirection()).add(0.5, 0, 0.5));
+                event.setCancelled(true);
+            }));
+        }
+    }
+
+    @EventHandler
+    public void onCustomBlockPistonMove(BlockPistonRetractEvent event) {
+        List<Block> blocks = event.getBlocks();
+        Vector direction = event.getDirection().getDirection();
+        for (Block block :
+                blocks) {
+            List<Entity> entities = new ArrayList<>(block.getLocation().add(0.5, 0.1, 0.5).getNearbyLivingEntities(0.05, 0.001));
+            if (entities.size() < 1) return;
+            Main.getPlugin().getMainConfig().getBlocks().forEach(blockConfig -> entities.stream().filter(entity -> entity.getType() == EntityType.ARMOR_STAND).map(entity -> (ArmorStand) entity).filter(armorStand -> armorStand.getScoreboardTags().contains(blockConfig.getTag())).forEach(armorStand -> {
+                event.setCancelled(true);
             }));
         }
     }
