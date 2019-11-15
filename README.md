@@ -37,3 +37,5 @@
 
 Discord: https://discord.gg/5gmv66J
 Please report bugs here: https://gitlab.com/vangora/itemmods/issues and not in the plugin reviews. Thanks :)​
+
+[![Songoda Logo](https://cdn2.songoda.com/branding/icon.png)](https://songoda.com/marketplace/product/itemmods-your-itemblock-modification-plugin-itemmods.162)
