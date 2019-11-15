@@ -35,5 +35,5 @@
 ## Additional information
 ![Additional information Logo](./assets/Additional-information.png)
 
-Discord: https://discord.gg/Z24s8Ey
+Discord: https://discord.gg/5gmv66J
 Please report bugs here: https://gitlab.com/vangora/itemmods/issues and not in the plugin reviews. Thanks :)​
