@@ -6,7 +6,7 @@
 
     <groupId>com.gitlab.vangora</groupId>
     <artifactId>itemmods</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -76,6 +76,16 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>itemmods</id>
+            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>itemmods</id>
+            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 
 </project>
