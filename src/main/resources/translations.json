@@ -786,6 +786,26 @@
           ]
         }
       },
+      "move": {
+        "yes": {
+          "material": "PISTON",
+          "name": "§eMove",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "PISTON",
+          "name": "§eMove",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
       "customname": {
         "visible": {
           "material": "ARMOR_STAND",

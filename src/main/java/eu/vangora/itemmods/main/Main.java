@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
     private GameStateManager gameStateManager;
     private JsonConfiguration placedJsonConfig;
     private PlacedConfig placedConfig;
+    private CustomBlockManager customBlockManager;
 
     public static Main getPlugin() {
         return plugin;
@@ -68,6 +69,7 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
+        customBlockManager = new CustomBlockManager(mainConfig.getBlocks());
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loaded"));
     }
@@ -118,5 +120,14 @@ public class Main extends JavaPlugin {
 
     public CodeDoctorAPI getApi() {
         return api;
+    }
+
+    public void updateCustomBlockManager() {
+        customBlockManager.getBlockConfigs().clear();
+        customBlockManager.getBlockConfigs().addAll(mainConfig.getBlocks());
+    }
+
+    public CustomBlockManager getCustomBlockManager() {
+        return customBlockManager;
     }
 }
