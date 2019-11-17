@@ -1,7 +1,6 @@
 package eu.vangora.itemmods.main;
 
 import eu.vangora.itemmods.config.BlockConfig;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -23,18 +22,11 @@ public class CustomBlockManager {
     public CustomBlock getCustomBlock(final Location location) {
         Location entityLocation = location.clone().add(0.5, 0, 0.5);
         List<Entity> entities = new ArrayList<>(entityLocation.getNearbyEntitiesByType(ArmorStand.class, 0.01, 0.001, 0.01));
-        Bukkit.broadcastMessage(String.valueOf(entities));
-        Bukkit.broadcastMessage(String.valueOf(blockConfigs));
-        for (BlockConfig block : Main.getPlugin().getMainConfig().getBlocks()) {
-            for (Entity entity : entities) {
-                Bukkit.broadcastMessage(String.valueOf(block.getTag()));
-                Bukkit.broadcastMessage(String.valueOf(entity.getScoreboardTags()));
-                Bukkit.broadcastMessage(String.valueOf(entityLocation.distance(entity.getLocation())));
+        for (BlockConfig block : Main.getPlugin().getMainConfig().getBlocks())
+            for (Entity entity : entities)
                 if (entity.getType() == EntityType.ARMOR_STAND) if (entity.getScoreboardTags().contains(block.getTag()))
                     if (entityLocation.distance(entity.getLocation()) <= 0.5)
                         return new CustomBlock(block, location, (ArmorStand) entity);
-            }
-        }
         return null;
     }
 
