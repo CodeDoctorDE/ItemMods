@@ -7,7 +7,6 @@ import com.gitlab.codedoctorde.api.config.JsonConfigurationValue;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonElement;
 import eu.vangora.itemmods.main.ArmorType;
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 public class ItemConfig extends JsonConfigurationElement {
     private String name;
     private String displayName;
-    private ItemStack itemStack = new ItemStack(Material.GRASS_BLOCK);
+    private ItemStack itemStack;
     private boolean canRename = true;
     private int pickaxe = 0;
     private int shovel = 0;

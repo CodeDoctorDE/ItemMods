@@ -93,7 +93,7 @@ public class ItemGui {
                         });
                     }
                 }));
-                getGuiItems().put(9 + 7, new GuiItem((itemConfig.getItemStack() != null) ? itemConfig.getItemStack() : Main.translateItem(guiTranslation.getSection("item", "null")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 5, new GuiItem((itemConfig.getItemStack() != null) ? itemConfig.getItemStack() : Main.translateItem(guiTranslation.getSection("item", "null")).build(), new GuiItemEvent() {
 
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
@@ -119,7 +119,7 @@ public class ItemGui {
                         }
                     }
                 }));
-                getGuiItems().put(9 * 3 + 1, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ? guiTranslation.getSection("creator", "item") : guiTranslation.getSection("creator", "null")).build(), new GuiItemEvent() {
+                getGuiItems().put(5, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ? guiTranslation.getSection("creator", "item") : guiTranslation.getSection("creator", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         new ItemCreatorGui(itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
@@ -136,7 +136,7 @@ public class ItemGui {
                         }).createGui(gui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(9 * 3 + 3, new GuiItem(Main.translateItem(itemConfig.isCanRename() ? guiTranslation.getSection("rename", "yes") : guiTranslation.getSection("rename", "no")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 7, new GuiItem(Main.translateItem(itemConfig.isCanRename() ? guiTranslation.getSection("rename", "yes") : guiTranslation.getSection("rename", "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
@@ -154,7 +154,7 @@ public class ItemGui {
                     }
                 }));
 
-                getGuiItems().put(9 * 3 + 5, new GuiItem(Main.translateItem(itemConfig.isBoneMeal() ? guiTranslation.getSection("bonemeal", "yes") : guiTranslation.getSection("bonemeal", "no")).build(), new GuiItemEvent() {
+                /*getGuiItems().put(9 * 3 + 5, new GuiItem(Main.translateItem(itemConfig.isBoneMeal() ? guiTranslation.getSection("bonemeal", "yes") : guiTranslation.getSection("bonemeal", "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
@@ -170,16 +170,16 @@ public class ItemGui {
                             event.getWhoClicked().sendMessage(guiTranslation.getString("bonemeal","no","success"));
                         createGui(backGui).open(player);
                     }
-                }));
+                }));*/
 
-                getGuiItems().put(9 * 3 + 7, new GuiItem(Main.translateItem(guiTranslation.getSection("events")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 3 + 4, new GuiItem(Main.translateItem(guiTranslation.getSection("events")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
 //                        Player player = (Player) event.getWhoClicked();
 //                        createEventsGui(gui).open(player);
                     }
                 }));
-                getGuiItems().put(9 * 4 + 4, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 4 + 8, new GuiItem(Main.translateItem(guiTranslation.getSection("get")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
