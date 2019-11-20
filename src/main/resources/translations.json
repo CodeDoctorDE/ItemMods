@@ -519,7 +519,7 @@
           "name": "§eArmorStand §f- §6Helmet",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the helmet from the armor stand!"
           ]
         },
@@ -538,7 +538,7 @@
           "name": "§eArmorStand §f- §6Chestplate",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the chestplate from the armor stand!"
           ]
         },
@@ -557,7 +557,7 @@
           "name": "§eArmorStand §f- §6Leggings",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the leggings from the armor stand!"
           ]
         },
@@ -576,7 +576,7 @@
           "name": "§eArmorStand §f- §6Boots",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the boots from the armor stand!"
           ]
         },
@@ -595,7 +595,7 @@
           "name": "§eArmorStand §f- §6Main hand",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the main hand from the armor stand!"
           ]
         },
@@ -614,7 +614,7 @@
           "name": "§eArmorStand §f- §6Off hand",
           "lore": [
             "",
-            "§7Click to set the item to the item in the main hand",
+            "§7Click to get the item to the item",
             "§7Below you can see the off hand from the armor stand!"
           ]
         },

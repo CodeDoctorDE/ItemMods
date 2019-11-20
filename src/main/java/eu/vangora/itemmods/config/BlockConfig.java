@@ -28,6 +28,7 @@ public class BlockConfig extends JsonConfigurationElement {
     private String customName;
     private ItemStack itemStack;
     private boolean move = false;
+    private int gravity;
 
 
     public BlockConfig(JsonElement element) {
@@ -58,6 +59,7 @@ public class BlockConfig extends JsonConfigurationElement {
         config.setValue(basePlate, "baseplate");
         config.setValue(invisible, "invisible");
         config.setValue(move, "move");
+        config.setValue(gravity, "gravity");
         if (block != null)
             config.setValue(block.getAsString(), "block");
         config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
@@ -80,6 +82,7 @@ public class BlockConfig extends JsonConfigurationElement {
         invisible = config.getBoolean("invisible");
         basePlate = config.getBoolean("baseplate");
         move = config.getBoolean("move");
+        gravity = config.getInteger("gravity");
         itemStack = new ItemStackBuilder(config.getValue("itemstack")).build();
         if (config.containsKey("block"))
             block = Bukkit.createBlockData(config.getString("block"));
