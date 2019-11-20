@@ -5,6 +5,7 @@ import eu.vangora.itemmods.main.CustomBlock;
 import eu.vangora.itemmods.main.Main;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -98,20 +99,30 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockPistonRetract(BlockPistonRetractEvent event) {
-        CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(event.getBlock());
-        if (customBlock == null)
-            return;
-        if (!customBlock.getConfig().isMove())
-            event.setCancelled(true);
+        for (Block block :
+                event.getBlocks()) {
+            CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(block);
+            if (customBlock == null)
+                return;
+            if (!customBlock.getConfig().isMove())
+                event.setCancelled(true);
+            else
+                customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));
+        }
     }
 
     @EventHandler
     public void onCustomBlockPistonExtend(BlockPistonExtendEvent event) {
-        CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(event.getBlock());
-        if (customBlock == null)
-            return;
-        if (!customBlock.getConfig().isMove())
-            event.setCancelled(true);
+        for (Block block :
+                event.getBlocks()) {
+            CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(block);
+            if (customBlock == null)
+                return;
+            if (!customBlock.getConfig().isMove())
+                event.setCancelled(true);
+            else
+                customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));
+        }
     }
 
     @EventHandler
