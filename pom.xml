@@ -29,15 +29,9 @@
                 <minimizeJar>true</minimizeJar>
                 <artifactSet>
                     <includes>
-                        <include>com.gitlab.codedoctorde:codedoctorapi</include>
+                        <include>com.gitlab.codedoctorde.api:*</include>
                     </includes>
                 </artifactSet>
-                <relocations>
-                    <relocation>
-                        <pattern>com.gitlab.codedoctorde.api</pattern>
-                        <shadedPattern>com.gitlab.codedoctorde.api</shadedPattern>
-                    </relocation>
-                </relocations>
                 </configuration>
             </plugin>
         </plugins>

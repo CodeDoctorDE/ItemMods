@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gitlab.vangora</groupId>
-  <artifactId>itemmods</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+    <artifactId>ItemMods</artifactId>
+    <version>1.1.1-SNAPSHOT</version>
   <build>
     <plugins>
       <plugin>
@@ -21,15 +21,9 @@
           <minimizeJar>true</minimizeJar>
           <artifactSet>
             <includes>
-              <include>com.gitlab.codedoctorde:codedoctorapi</include>
+                <include>com.gitlab.codedoctorde:*</include>
             </includes>
           </artifactSet>
-          <relocations>
-            <relocation>
-              <pattern>com.gitlab.codedoctorde.api</pattern>
-              <shadedPattern>com.gitlab.codedoctorde.api</shadedPattern>
-            </relocation>
-          </relocations>
         </configuration>
       </plugin>
     </plugins>
@@ -40,7 +34,8 @@
       <url>https://papermc.io/repo/repository/maven-public/</url>
     </repository>
     <repository>
-      <id>codedoctorde</id>
+        <snapshots/>
+        <id>codedoctorapi</id>
       <url>https://gitlab.com/api/v4/projects/14810643/packages/maven</url>
     </repository>
   </repositories>
@@ -96,10 +91,20 @@
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations-java5</artifactId>
-      <version>RELEASE</version>
+        <version>17.0.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>itemmods</id>
+            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>itemmods</id>
+            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
   <properties>
     <maven.compiler.target>8</maven.compiler.target>
     <maven.compiler.source>8</maven.compiler.source>
