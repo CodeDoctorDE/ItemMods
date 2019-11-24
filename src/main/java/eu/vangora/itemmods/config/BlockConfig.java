@@ -1,18 +1,13 @@
 package eu.vangora.itemmods.config;
 
-import com.gitlab.codedoctorde.api.config.JsonConfigurationElement;
-import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
-import com.google.gson.JsonElement;
-import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
-public class BlockConfig extends JsonConfigurationElement {
+public class BlockConfig {
     private String name;
     private String tag = "";
     private String displayName;
-    private BlockData block;
+    private transient BlockData block;
     private ItemStack helmet;
     private ItemStack chestplate;
     private ItemStack leggings;
@@ -31,61 +26,11 @@ public class BlockConfig extends JsonConfigurationElement {
     private int gravity;
 
 
-    public BlockConfig(JsonElement element) {
-        fromElement(element);
-    }
-
     public BlockConfig(String name) {
         this.name = name;
         this.displayName = name;
         this.tag = "itemmods:" + name;
         this.customName = name;
-    }
-
-
-    @Override
-    public JsonElement getElement() {
-        JsonConfigurationSection config = new JsonConfigurationSection();
-        config.setValue(name, "name");
-        config.setValue(tag, "tag");
-        config.setValue(displayName, "displayname");
-        config.setValue(new ItemStackBuilder(helmet).serialize(), "helmet");
-        config.setValue(new ItemStackBuilder(chestplate).serialize(), "chestplate");
-        config.setValue(new ItemStackBuilder(leggings).serialize(), "leggings");
-        config.setValue(new ItemStackBuilder(boots).serialize(), "boots");
-        config.setValue(new ItemStackBuilder(mainHand).serialize(), "mainhand");
-        config.setValue(new ItemStackBuilder(offHand).serialize(), "offhand");
-        config.setValue(small, "small");
-        config.setValue(basePlate, "baseplate");
-        config.setValue(invisible, "invisible");
-        config.setValue(move, "move");
-        config.setValue(gravity, "gravity");
-        if (block != null)
-            config.setValue(block.getAsString(), "block");
-        config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
-        return config.getElement();
-    }
-
-    @Override
-    public void fromElement(JsonElement element) {
-        JsonConfigurationSection config = new JsonConfigurationSection(element.getAsJsonObject());
-        helmet = new ItemStackBuilder(config.getValue("helmet")).build();
-        chestplate = new ItemStackBuilder(config.getValue("chestplate")).build();
-        leggings = new ItemStackBuilder(config.getValue("leggings")).build();
-        boots = new ItemStackBuilder(config.getValue("boots")).build();
-        mainHand = new ItemStackBuilder(config.getValue("mainhand")).build();
-        offHand = new ItemStackBuilder(config.getValue("offhand")).build();
-        name = config.getString("name");
-        displayName = config.getString("displayname");
-        tag = config.getString("tag");
-        small = config.getBoolean("small");
-        invisible = config.getBoolean("invisible");
-        basePlate = config.getBoolean("baseplate");
-        move = config.getBoolean("move");
-        gravity = config.getInteger("gravity");
-        itemStack = new ItemStackBuilder(config.getValue("itemstack")).build();
-        if (config.containsKey("block"))
-            block = Bukkit.createBlockData(config.getString("block"));
     }
 
     public String getName() {

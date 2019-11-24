@@ -1,19 +1,12 @@
 package eu.vangora.itemmods.config;
 
-import com.gitlab.codedoctorde.api.config.JsonConfigurationArray;
-import com.gitlab.codedoctorde.api.config.JsonConfigurationElement;
-import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
-import com.gitlab.codedoctorde.api.config.JsonConfigurationValue;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
-import com.google.gson.JsonElement;
 import eu.vangora.itemmods.main.ArmorType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ItemConfig extends JsonConfigurationElement {
+public class ItemConfig {
     private String name;
     private String displayName;
     private ItemStack itemStack;
@@ -34,48 +27,9 @@ public class ItemConfig extends JsonConfigurationElement {
     private List<String> onRightClick = new ArrayList<>();
 
 
-    public ItemConfig(JsonElement element) {
-        fromElement(element);
-    }
-
     public ItemConfig(String name) {
         this.name = name;
         this.displayName = name;
-    }
-
-
-    @Override
-    public JsonElement getElement() {
-        JsonConfigurationSection config = new JsonConfigurationSection();
-        config.setValue(name, "name");
-        config.setValue(displayName, "displayname");
-        config.setValue(new ItemStackBuilder(itemStack).serialize(), "itemstack");
-        config.setValue(canRename, "rename");
-        config.setValue(boneMeal, "bonemeal");
-        config.setValue(armorType.name(),"armortype");
-        config.setValue((JsonConfigurationElement) onWear.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "wear");
-        config.setValue((JsonConfigurationElement) onRightClick.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "rightclick");
-        config.setValue((JsonConfigurationElement) onMainHand.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "mainhand");
-        config.setValue((JsonConfigurationElement) onOffHand.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "offhand");
-        config.setValue((JsonConfigurationElement) onDrop.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "drop");
-        config.setValue((JsonConfigurationElement) onPickup.stream().map(JsonConfigurationValue::new).collect(Collectors.toCollection(JsonConfigurationArray::new)), "pickup");
-        return config.getElement();
-    }
-
-    @Override
-    public void fromElement(JsonElement element) {
-        JsonConfigurationSection config = new JsonConfigurationSection(element.getAsJsonObject());
-        itemStack = new ItemStackBuilder(config.getValue("itemStack")).build();
-        name = config.getString("name");
-        displayName = config.getString("displayname");
-        canRename = config.getBoolean("rename");
-        boneMeal = config.getBoolean("bonemeal");
-        armorType = ArmorType.valueOf(config.getString("armortype"));
-        config.getArray("wear").forEach(wear -> onWear.add(wear.toConfigValue().getString()));
-        config.getArray("mainhand").forEach(mainhand -> onMainHand.add(mainhand.toConfigValue().getString()));
-        config.getArray("offhand").forEach(offhand -> onOffHand.add(offhand.toConfigValue().getString()));
-        config.getArray("drop").forEach(drop -> onDrop.add(drop.toConfigValue().getString()));
-        config.getArray("pickup").forEach(pickup -> onPickup.add(pickup.toConfigValue().getString()));
     }
 
     public String getName() {
