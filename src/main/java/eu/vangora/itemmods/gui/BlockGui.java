@@ -150,6 +150,8 @@ public class BlockGui {
                 getGuiItems().put(9 * 4 + 4, new GuiItem(Main.translateItem(blockConfig.getItemStack() != null ? guiTranslation.getSection("creator", "item") : guiTranslation.getSection("creator", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (blockConfig.getItemStack() == null)
+                            return;
                         new ItemCreatorGui(blockConfig.getItemStack(), new ItemCreatorSubmitEvent() {
                             @Override
                             public void onEvent(ItemStack itemStack) {

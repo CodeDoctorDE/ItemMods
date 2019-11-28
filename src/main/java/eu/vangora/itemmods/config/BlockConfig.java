@@ -23,7 +23,12 @@ public class BlockConfig {
     private String customName;
     private ItemStack itemStack;
     private boolean move = false;
-    private int gravity;
+    private int gravity = 5;
+    private int stabil = 5;
+
+    public BlockConfig() {
+
+    }
 
 
     public BlockConfig(String name) {

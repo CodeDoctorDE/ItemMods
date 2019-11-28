@@ -122,6 +122,8 @@ public class ItemGui {
                 getGuiItems().put(5, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ? guiTranslation.getSection("creator", "item") : guiTranslation.getSection("creator", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (itemConfig.getItemStack() == null)
+                            return;
                         new ItemCreatorGui(itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
                             @Override
                             public void onEvent(ItemStack itemStack) {
