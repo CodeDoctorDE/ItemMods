@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainConfig {
-    private transient List<ItemConfig> items = new ArrayList<>();
+    private List<ItemConfig> items = new ArrayList<>();
     private List<BlockConfig> blocks = new ArrayList<>();
 
     public MainConfig() {

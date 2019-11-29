@@ -7,7 +7,7 @@ public class BlockConfig {
     private String name;
     private String tag = "";
     private String displayName;
-    private transient BlockData block;
+    private BlockData block;
     private ItemStack helmet;
     private ItemStack chestplate;
     private ItemStack leggings;
@@ -24,7 +24,7 @@ public class BlockConfig {
     private ItemStack itemStack;
     private boolean move = false;
     private int gravity = 5;
-    private int stabil = 5;
+    private int stable = 5;
 
     public BlockConfig() {
 

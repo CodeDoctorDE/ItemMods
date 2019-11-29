@@ -4,10 +4,10 @@ import com.gitlab.codedoctorde.api.config.JsonConfiguration;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.game.GameStateManager;
 import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
+import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -17,17 +17,17 @@ import eu.vangora.itemmods.listener.CustomBlockListener;
 import eu.vangora.itemmods.listener.ItemListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
     private static Main plugin;
-    private JsonConfiguration baseConfig;
+    private File baseConfig = new File(getDataFolder(), "config.json");
     private CodeDoctorAPI api;
     private JsonConfiguration translationConfig;
     private Gson gson;
@@ -40,43 +40,41 @@ public class Main extends JavaPlugin {
         return plugin;
     }
 
+    public Main() {
+        gson = new GsonBuilder()
+                .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
+                .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
+                .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
+                .serializeNulls()
+                .setPrettyPrinting().create();
+    }
+
 
     @Override
     public void onEnable() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(Location.class, new LocationTypeAdapter());
-        gsonBuilder.registerTypeAdapter(ItemStack.class, new ItemStackTypeAdapter());
-        gsonBuilder.setPrettyPrinting();
-        gson = gsonBuilder.create();
         plugin = this;
         api = new CodeDoctorAPI(this);
         translationConfig = new JsonConfiguration(new File(getDataFolder(), "translations.json"));
         translationConfig.setDefaults(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
-        baseConfig = new JsonConfiguration(new File(getDataFolder(), "config.json"));
-
-
-        try {
-            mainConfig = gson.fromJson(baseConfig.getElement(), MainConfig.class);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            mainConfig = new MainConfig();
-        }
         try {
             translationConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loading"));
+
+        try {
+            mainConfig = gson.fromJson(new FileReader(baseConfig), MainConfig.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mainConfig = new MainConfig();
+        }
+        if (mainConfig == null)
+            mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
-        try {
-            saveBaseConfig();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        super.onEnable();
+        saveBaseConfig();
 
         Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
@@ -95,18 +93,24 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "unloading"));
         Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
-        try {
-            saveBaseConfig();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        saveBaseConfig();
         super.onDisable();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "unloaded"));
     }
 
-    public void saveBaseConfig() throws IOException {
-        baseConfig.set(gson.toJsonTree(mainConfig).getAsJsonObject());
-        baseConfig.save();
+    public void saveBaseConfig() {
+        System.out.println("save");
+        try {
+            FileWriter writer = new FileWriter(baseConfig);
+            BufferedWriter bw = new BufferedWriter(writer);
+            bw.write(gson.toJson(mainConfig));
+            bw.close();
+            System.out.println("succss");
+        } catch (Exception ex) {
+            System.out.println("finish");
+            ex.printStackTrace();
+        }
+
     }
 
     public BaseCommand getBaseCommand() {
