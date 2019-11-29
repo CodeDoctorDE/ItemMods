@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -145,11 +144,7 @@ public class ItemsGui {
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 mainConfig.getItems().add(new ItemConfig(output));
-                                try {
                                     Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("create", "success"), output));
                                 createGui(player, backGui).open(player);
                             }
@@ -253,11 +248,7 @@ public class ItemsGui {
                 public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
                     itemConfigs.remove(itemConfig);
-                    try {
                         Main.getPlugin().saveBaseConfig();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     player.sendMessage(MessageFormat.format(guiTranslation.getString("yes", "success"), itemConfig.getName(), itemIndex));
                     createGui(player, searchText, new MainGui().createGui()).open(player);
                 }

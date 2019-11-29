@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.stream.Collectors;
 
@@ -50,11 +49,7 @@ public class ItemGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 itemConfig.setName(output);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("name", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -76,11 +71,7 @@ public class ItemGui {
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 itemConfig.setDisplayName(output);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -100,20 +91,12 @@ public class ItemGui {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         if(change.getType().isEmpty() && itemConfig.getItemStack() == null){
                             itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
-                            try {
                                 Main.getPlugin().saveBaseConfig();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
                             createGui(backGui).open((Player) event.getWhoClicked());
 
                         }else {
                             itemConfig.setItemStack((change.getType().isEmpty()) ? null : change);
-                            try {
                                 Main.getPlugin().saveBaseConfig();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui(backGui).open((Player) event.getWhoClicked());
                         }
@@ -128,11 +111,7 @@ public class ItemGui {
                             @Override
                             public void onEvent(ItemStack itemStack) {
                                 itemConfig.setItemStack(itemStack);
-                                try {
                                     Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
                                 createGui(backGui).open((Player) event.getWhoClicked());
                             }
                         }).createGui(gui).open((Player) event.getWhoClicked());
@@ -143,11 +122,7 @@ public class ItemGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
                         itemConfig.setCanRename(!itemConfig.isCanRename());
-                        try {
                             Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                         if(itemConfig.isCanRename())
                             event.getWhoClicked().sendMessage(guiTranslation.getString("rename","yes","success"));
                         else

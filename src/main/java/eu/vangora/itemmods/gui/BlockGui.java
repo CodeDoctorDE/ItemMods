@@ -17,7 +17,6 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 
 public class BlockGui {
@@ -53,11 +52,7 @@ public class BlockGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setName(output);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("name", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -79,11 +74,7 @@ public class BlockGui {
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 blockConfig.setDisplayName(output);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("displayname", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -105,11 +96,7 @@ public class BlockGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setTag(output);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("tag", "success"), output));
                                 createGui(backGui).open(player);
                             }
@@ -128,20 +115,12 @@ public class BlockGui {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         if (change.getType().isEmpty() && blockConfig.getItemStack() == null) {
                             blockConfig.setItemStack(new ItemStack(Material.CARROT_ON_A_STICK));
-                            try {
-                                Main.getPlugin().saveBaseConfig();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Main.getPlugin().saveBaseConfig();
                             createGui(backGui).open((Player) event.getWhoClicked());
 
                         } else {
                             blockConfig.setItemStack((change.getType().isEmpty()) ? null : change);
-                            try {
-                                Main.getPlugin().saveBaseConfig();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui(backGui).open((Player) event.getWhoClicked());
                         }
@@ -156,11 +135,7 @@ public class BlockGui {
                             @Override
                             public void onEvent(ItemStack itemStack) {
                                 blockConfig.setItemStack(itemStack);
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 createGui(backGui).open((Player) event.getWhoClicked());
                             }
                         }).createGui(gui).open((Player) event.getWhoClicked());
@@ -170,11 +145,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -182,11 +153,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -194,11 +161,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -206,11 +169,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -218,11 +177,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -230,11 +185,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -242,11 +193,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setBasePlate(!blockConfig.isBasePlate());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -254,11 +201,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setInvisible(!blockConfig.isInvisible());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -266,11 +209,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setSmall(!blockConfig.isSmall());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -285,11 +224,7 @@ public class BlockGui {
                                     @Override
                                     public void onEvent(Player player, Block output) {
                                         blockConfig.setBlock(output.getBlockData());
-                                        try {
-                                            Main.getPlugin().saveBaseConfig();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
+                                        Main.getPlugin().saveBaseConfig();
                                         player.sendMessage(guiTranslation.getString("block", "success"));
                                         createGui(backGui).open(player);
                                     }
@@ -305,22 +240,14 @@ public class BlockGui {
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("block", "remove"));
                                 break;
                         }
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                     }
                 }));
                 getGuiItems().put(9 * 2 + 7, new GuiItem(Main.translateItem(guiTranslation.getSection("marker", (blockConfig.isMarker() ? "yes" : "no"))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setMarker(!blockConfig.isMarker());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -328,11 +255,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setInvulnerable(!blockConfig.isInvulnerable());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
@@ -341,11 +264,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setHelmet((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -355,11 +274,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setChestplate((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -369,11 +284,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setLeggings((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -383,11 +294,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setBoots((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -397,11 +304,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setMainHand((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -411,11 +314,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setOffHand((change.getType().isEmpty()) ? null : change);
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -444,11 +343,7 @@ public class BlockGui {
                                     public void onEvent(Player player, String output) {
                                         output = ChatColor.translateAlternateColorCodes('&', output);
                                         blockConfig.setCustomName(output);
-                                        try {
-                                            Main.getPlugin().saveBaseConfig();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
+                                        Main.getPlugin().saveBaseConfig();
                                         event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("customname", "success"), output));
                                         createGui(backGui).open(player);
                                     }
@@ -461,20 +356,12 @@ public class BlockGui {
                                 break;
                             case RIGHT:
                                 blockConfig.setCustomName("");
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("customname", "remove"));
                                 break;
                             case DROP:
                                 blockConfig.setCustomNameVisible(!blockConfig.isCustomNameVisible());
-                                try {
-                                    Main.getPlugin().saveBaseConfig();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                Main.getPlugin().saveBaseConfig();
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("customname", (blockConfig.isCustomNameVisible()) ? "on" : "off"));
                         }
                         if (event.getClick() != ClickType.LEFT)
