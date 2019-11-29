@@ -80,7 +80,6 @@ public class CustomBlockListener implements Listener {
     @EventHandler
     public void onCustomBlockBreak(BlockBreakEvent event) {
         CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(event.getBlock());
-        event.getPlayer().sendMessage("" + customBlock);
         if (customBlock == null)
             return;
         event.setCancelled(true);
