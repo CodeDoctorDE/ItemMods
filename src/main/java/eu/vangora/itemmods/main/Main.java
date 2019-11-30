@@ -99,15 +99,12 @@ public class Main extends JavaPlugin {
     }
 
     public void saveBaseConfig() {
-        System.out.println("save");
         try {
             FileWriter writer = new FileWriter(baseConfig);
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(gson.toJson(mainConfig));
             bw.close();
-            System.out.println("succss");
         } catch (Exception ex) {
-            System.out.println("finish");
             ex.printStackTrace();
         }
 

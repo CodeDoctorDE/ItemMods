@@ -77,7 +77,7 @@
           "§7Click to create a new item"
         ],
         "message": "§7[§eItemMods§7] §ePlease enter the item name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the search",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the creation!",
         "success": "§7[§eItemMods§7] §aSuccessfully created the item {0}!"
       },
       "item": {
@@ -427,7 +427,7 @@
           "§7Click to create a new block"
         ],
         "message": "§7[§eItemMods§7] §ePlease enter the block name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the search",
+        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the creation!",
         "success": "§7[§eItemMods§7] §aSuccessfully created the block {0}!"
       },
       "block": {
