@@ -113,13 +113,13 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        if (change.getType().isEmpty() && blockConfig.getItemStack() == null) {
+                        if (change.getType() == Material.AIR && blockConfig.getItemStack() == null) {
                             blockConfig.setItemStack(new ItemStack(Material.CARROT_ON_A_STICK));
                             Main.getPlugin().saveBaseConfig();
                             createGui(backGui).open((Player) event.getWhoClicked());
 
                         } else {
-                            blockConfig.setItemStack((change.getType().isEmpty()) ? null : change);
+                            blockConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui(backGui).open((Player) event.getWhoClicked());
@@ -144,7 +144,7 @@ public class BlockGui {
                 getGuiItems().put(0, new GuiItem(Main.translateItem(guiTranslation.getSection("helmet", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -152,7 +152,7 @@ public class BlockGui {
                 getGuiItems().put(1, new GuiItem(Main.translateItem(guiTranslation.getSection("chestplate", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -160,7 +160,7 @@ public class BlockGui {
                 getGuiItems().put(2, new GuiItem(Main.translateItem(guiTranslation.getSection("leggings", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -168,7 +168,7 @@ public class BlockGui {
                 getGuiItems().put(3, new GuiItem(Main.translateItem(guiTranslation.getSection("boots", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -176,7 +176,7 @@ public class BlockGui {
                 getGuiItems().put(4, new GuiItem(Main.translateItem(guiTranslation.getSection("mainhand", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -184,7 +184,7 @@ public class BlockGui {
                 getGuiItems().put(5, new GuiItem(Main.translateItem(guiTranslation.getSection("offhand", "view")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType().isEmpty()) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                        blockConfig.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                         Main.getPlugin().saveBaseConfig();
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
@@ -263,7 +263,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setHelmet((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setHelmet((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
@@ -273,7 +273,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setChestplate((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setChestplate((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
@@ -283,7 +283,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setLeggings((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setLeggings((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
@@ -293,7 +293,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setBoots((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setBoots((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
@@ -303,7 +303,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setMainHand((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setMainHand((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());
@@ -313,7 +313,7 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        blockConfig.setOffHand((change.getType().isEmpty()) ? null : change);
+                        blockConfig.setOffHand((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         createGui(backGui).open((Player) event.getWhoClicked());

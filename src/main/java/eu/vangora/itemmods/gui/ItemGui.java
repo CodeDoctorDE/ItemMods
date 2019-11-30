@@ -89,17 +89,15 @@ public class ItemGui {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        if(change.getType().isEmpty() && itemConfig.getItemStack() == null){
+                        if (change.getType() == Material.AIR && itemConfig.getItemStack() == null)
                             itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
-                                Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
-
-                        }else {
-                            itemConfig.setItemStack((change.getType().isEmpty()) ? null : change);
-                                Main.getPlugin().saveBaseConfig();
+                        else {
+                            itemConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
+                            Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
                         }
+                        Main.getPlugin().saveBaseConfig();
+                        createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(5, new GuiItem(Main.translateItem(itemConfig.getItemStack() != null ? guiTranslation.getSection("creator", "item") : guiTranslation.getSection("creator", "null")).build(), new GuiItemEvent() {
