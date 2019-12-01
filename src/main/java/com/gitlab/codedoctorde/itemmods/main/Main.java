@@ -1,4 +1,4 @@
-package eu.vangora.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.main;
 
 import com.gitlab.codedoctorde.api.config.JsonConfiguration;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
@@ -8,13 +8,13 @@ import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.gitlab.codedoctorde.itemmods.commands.BaseCommand;
+import com.gitlab.codedoctorde.itemmods.config.MainConfig;
+import com.gitlab.codedoctorde.itemmods.listener.CustomBlockListener;
+import com.gitlab.codedoctorde.itemmods.listener.ItemListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import eu.vangora.itemmods.commands.BaseCommand;
-import eu.vangora.itemmods.config.MainConfig;
-import eu.vangora.itemmods.listener.CustomBlockListener;
-import eu.vangora.itemmods.listener.ItemListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
@@ -132,6 +132,9 @@ public class Main extends JavaPlugin {
         return api;
     }
 
+    /***
+     * Update the custom block manager with the values in the configs!
+     */
     public void updateCustomBlockManager() {
         customBlockManager.getBlockConfigs().clear();
         customBlockManager.getBlockConfigs().addAll(mainConfig.getBlocks());

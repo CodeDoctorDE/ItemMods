@@ -1,8 +1,8 @@
-package eu.vangora.itemmods.listener;
+package com.gitlab.codedoctorde.itemmods.listener;
 
-import eu.vangora.itemmods.config.BlockConfig;
-import eu.vangora.itemmods.main.CustomBlock;
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.itemmods.main.CustomBlock;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -47,7 +47,8 @@ public class CustomBlockListener implements Listener {
                         location.add(0, 0, 1);
                         break;
                 }
-                Main.getPlugin().getCustomBlockManager().setCustomBlock(location, block);
+                if (Main.getPlugin().getCustomBlockManager().setCustomBlock(location, block))
+                    return;
                 event.getItem().setAmount(event.getItem().getAmount() - block.getItemStack().getAmount());
             }
         }

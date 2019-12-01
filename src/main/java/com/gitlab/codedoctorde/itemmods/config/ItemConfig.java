@@ -1,6 +1,6 @@
-package eu.vangora.itemmods.config;
+package com.gitlab.codedoctorde.itemmods.config;
 
-import eu.vangora.itemmods.main.ArmorType;
+import com.gitlab.codedoctorde.itemmods.main.ArmorType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;

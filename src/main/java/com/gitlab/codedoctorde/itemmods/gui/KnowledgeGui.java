@@ -1,7 +1,7 @@
-package eu.vangora.itemmods.gui;
+package com.gitlab.codedoctorde.itemmods.gui;
 
 import com.gitlab.codedoctorde.api.ui.Gui;
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 
 public class KnowledgeGui {
     public Gui createGui() {

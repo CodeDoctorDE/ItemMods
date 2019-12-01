@@ -1,12 +1,12 @@
-package eu.vangora.itemmods.gui;
+package com.gitlab.codedoctorde.itemmods.gui;
 
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.*;
-import eu.vangora.itemmods.config.ItemConfig;
-import eu.vangora.itemmods.main.ItemCreatorSubmitEvent;
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.config.ItemConfig;
+import com.gitlab.codedoctorde.itemmods.main.ItemCreatorSubmitEvent;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

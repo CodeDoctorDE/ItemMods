@@ -1,8 +1,8 @@
-package eu.vangora.itemmods.gui;
+package com.gitlab.codedoctorde.itemmods.gui;
 
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.ui.*;
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

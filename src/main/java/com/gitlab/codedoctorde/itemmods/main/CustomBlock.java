@@ -1,6 +1,6 @@
-package eu.vangora.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.main;
 
-import eu.vangora.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;

@@ -1,6 +1,5 @@
-package eu.vangora.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.main;
 
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import org.bukkit.inventory.ItemStack;
 
 public interface ItemCreatorSubmitEvent {

@@ -1,4 +1,4 @@
-package eu.vangora.itemmods.config;
+package com.gitlab.codedoctorde.itemmods.config;
 
 import java.util.ArrayList;
 import java.util.List;

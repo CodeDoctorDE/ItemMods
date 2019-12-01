@@ -1,4 +1,4 @@
-package eu.vangora.itemmods.listener;
+package com.gitlab.codedoctorde.itemmods.listener;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;

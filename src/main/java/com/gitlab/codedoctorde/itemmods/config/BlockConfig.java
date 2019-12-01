@@ -1,4 +1,4 @@
-package eu.vangora.itemmods.config;
+package com.gitlab.codedoctorde.itemmods.config;
 
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;

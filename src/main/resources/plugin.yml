@@ -3,7 +3,7 @@ author: CodeDoctorDE
 version: 1.1.6
 load: STARTUP
 api-version: "1.13"
-main: eu.vangora.itemmods.main.Main
+main: com.gitlab.codedoctorde.itemmods.main.Main
 commands:
   itemmods:
     aliases:

@@ -1,6 +1,6 @@
-package eu.vangora.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.main;
 
-import eu.vangora.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -20,6 +20,12 @@ public class CustomBlockManager {
         this.blockConfigs = blockConfigs;
     }
 
+    /**
+     * Get the custom block by the location
+     *
+     * @param location the location of the custom block
+     * @return The custom block
+     */
     @Nullable
     public CustomBlock getCustomBlock(final Location location) {
         Location entityLocation = location.clone().add(0.5, 0, 0.5);
@@ -32,6 +38,12 @@ public class CustomBlockManager {
         return null;
     }
 
+    /**
+     * Get the custom block by the block
+     *
+     * @param block the "real" block of the custom block
+     * @return The custom block
+     */
     @Nullable
     public CustomBlock getCustomBlock(final Block block) {
         return getCustomBlock(block.getLocation());
@@ -41,14 +53,19 @@ public class CustomBlockManager {
         return blockConfigs;
     }
 
-    public void setCustomBlock(Location location, BlockConfig block) {
+    /**
+     * @param location The location where the custom block will be placed!
+     * @param block    The block config for the custom block
+     * @return Returns if it was placed!
+     */
+    public boolean setCustomBlock(Location location, BlockConfig block) {
         if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.5, 0.5, 0.5).size() > 0)
-            return;
-        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return;
+            return false;
+        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return false;
         location.getWorld().getBlockAt(location).setBlockData(block.getBlock());
         ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
         if (armorStand.getEquipment() == null)
-            return;
+            return false;
         EntityEquipment equipment = armorStand.getEquipment();
         armorStand.setBasePlate(block.isBasePlate());
         equipment.setHelmet(block.getHelmet());
@@ -65,5 +82,6 @@ public class CustomBlockManager {
         armorStand.setVisible(!block.isInvisible());
         armorStand.getScoreboardTags().add(block.getTag());
         armorStand.setGravity(false);
+        return true;
     }
 }

@@ -1,6 +1,6 @@
-package eu.vangora.itemmods.listener;
+package com.gitlab.codedoctorde.itemmods.listener;
 
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

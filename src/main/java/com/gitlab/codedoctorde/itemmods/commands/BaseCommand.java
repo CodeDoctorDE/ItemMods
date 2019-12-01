@@ -1,9 +1,9 @@
-package eu.vangora.itemmods.commands;
+package com.gitlab.codedoctorde.itemmods.commands;
 
 import com.gitlab.codedoctorde.api.ui.Gui;
-import eu.vangora.itemmods.gui.KnowledgeGui;
-import eu.vangora.itemmods.gui.MainGui;
-import eu.vangora.itemmods.main.Main;
+import com.gitlab.codedoctorde.itemmods.gui.KnowledgeGui;
+import com.gitlab.codedoctorde.itemmods.gui.MainGui;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

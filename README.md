@@ -28,7 +28,7 @@
 *  Keep names, lores, attributes on this item (available 1.0)​
 *  A developer who are there for the community (eg. discord)​
 *  Developer API​
-*  Wiki: https://gitlab.com/vangora/ItemMods/wikis (coming soon...)​
+*  Wiki: https://gitlab.com/codedoctorde/ItemMods/wikis (coming soon...)​
 *  Custom command support (available 1.2)​
 *  Open source​
 
@@ -36,6 +36,6 @@
 ![Additional information Logo](./assets/Additional-information.png)
 
 Discord: https://discord.gg/5gmv66J
-Please report bugs here: https://gitlab.com/vangora/itemmods/issues and not in the plugin reviews. Thanks :)​
+Please report bugs here: https://gitlab.com/codedoctorde/itemmods/issues and not in the plugin reviews. Thanks :)​
 
 [![Songoda Logo](https://cdn2.songoda.com/branding/icon.png)](https://songoda.com/marketplace/product/itemmods-your-itemblock-modification-plugin-itemmods.162)
