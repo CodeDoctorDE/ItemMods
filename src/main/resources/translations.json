@@ -295,7 +295,7 @@
         "lore": []
       },
       "submit": {
-        "material": "LIME_DYE",
+        "material": "GREEN_DYE",
         "name": "§eSubmit",
         "lore": [],
         "success": "§7[§eItemMods§7] §aSuccessfully submit the item!"

@@ -170,9 +170,8 @@ public class ItemCreatorGui {
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(12, new GuiItem(
-                        (itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
-                                Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build(), new GuiItemEvent() {
+                getGuiItems().put(12, new GuiItem((itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
+                        Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         if (itemStackBuilder.getCustomModelData() != null) {

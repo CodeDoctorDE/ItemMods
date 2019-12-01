@@ -15,7 +15,6 @@ import eu.vangora.itemmods.commands.BaseCommand;
 import eu.vangora.itemmods.config.MainConfig;
 import eu.vangora.itemmods.listener.CustomBlockListener;
 import eu.vangora.itemmods.listener.ItemListener;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
@@ -75,13 +74,12 @@ public class Main extends JavaPlugin {
         baseCommand = new BaseCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
-        Metrics metrics = new Metrics(this);
-
         saveBaseConfig();
 
         Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
         customBlockManager = new CustomBlockManager(mainConfig.getBlocks());
+
         Bukkit.getConsoleSender().sendMessage(translationConfig.getString("plugin", "loaded"));
     }
 
