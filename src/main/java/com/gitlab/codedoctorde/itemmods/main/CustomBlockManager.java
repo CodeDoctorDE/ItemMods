@@ -59,11 +59,12 @@ public class CustomBlockManager {
      * @return Returns if it was placed!
      */
     public boolean setCustomBlock(Location location, BlockConfig block) {
-        if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.5, 0.5, 0.5).size() > 0)
+        if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.25, 1.1, 0.25).size() > 0)
             return false;
         if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return false;
         location.getWorld().getBlockAt(location).setBlockData(block.getBlock());
         ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
+        System.out.println("3");
         if (armorStand.getEquipment() == null)
             return false;
         EntityEquipment equipment = armorStand.getEquipment();

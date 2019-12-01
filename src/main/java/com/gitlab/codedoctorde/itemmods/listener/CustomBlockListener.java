@@ -47,7 +47,7 @@ public class CustomBlockListener implements Listener {
                         location.add(0, 0, 1);
                         break;
                 }
-                if (Main.getPlugin().getCustomBlockManager().setCustomBlock(location, block))
+                if (!Main.getPlugin().getCustomBlockManager().setCustomBlock(location, block))
                     return;
                 event.getItem().setAmount(event.getItem().getAmount() - block.getItemStack().getAmount());
             }

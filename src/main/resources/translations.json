@@ -295,7 +295,7 @@
         "lore": []
       },
       "submit": {
-        "material": "CACTUS_GREEN",
+        "material": "LIME_DYE",
         "name": "§eSubmit",
         "lore": [],
         "success": "§7[§eItemMods§7] §aSuccessfully submit the item!"
@@ -812,6 +812,30 @@
             "§cNO",
             "",
             "§7Click to set it to on!"
+          ]
+        }
+      },
+      "drop": {
+        "yes": {
+          "material": "EMERALD",
+          "name": "§eNeed drop",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!",
+            "",
+            "§7Configure if the drop only drop when the basic block drops something"
+          ]
+        },
+        "no": {
+          "material": "EMERALD",
+          "name": "§eNeed drop",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!",
+            "",
+            "§7Configure if the drop only drop when the basic block drops something"
           ]
         }
       },

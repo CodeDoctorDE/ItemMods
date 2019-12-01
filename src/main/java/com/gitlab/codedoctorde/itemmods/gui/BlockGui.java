@@ -368,6 +368,14 @@ public class BlockGui {
                             createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
+                getGuiItems().put(9 * 3 + 5, new GuiItem(Main.translateItem(guiTranslation.getSection("drop", (blockConfig.isDrop()) ? "yes" : "no")).build(), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        blockConfig.setDrop(!blockConfig.isDrop());
+                        Main.getPlugin().saveBaseConfig();
+                        createGui(backGui).open((Player) event.getWhoClicked());
+                    }
+                }));
             }});
         }};
     }

@@ -19,6 +19,7 @@ public class BlockConfig {
     private boolean invisible = true;
     private boolean marker = false;
     private boolean invulnerable = true;
+    private boolean drop = true;
     private boolean customNameVisible = false;
     private String customName;
     private ItemStack itemStack;
@@ -189,4 +190,30 @@ public class BlockConfig {
     public void setMove(boolean move) {
         this.move = move;
     }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+    }
+
+    public int getStable() {
+        return stable;
+    }
+
+    public void setStable(int stable) {
+        this.stable = stable;
+    }
+
+    public boolean isDrop() {
+        return drop;
+    }
+
+    public void setDrop(boolean drop) {
+        this.drop = drop;
+    }
+
+
 }

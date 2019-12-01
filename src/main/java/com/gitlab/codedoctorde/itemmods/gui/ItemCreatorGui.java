@@ -171,7 +171,7 @@ public class ItemCreatorGui {
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(12, new GuiItem((Version.getVersion().isBiggerThan(Version.v1_14)) ?
+                getGuiItems().put(12, new GuiItem((!Version.getVersion().isBiggerThan(Version.v1_14)) ?
                         ((itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
                                 Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build()) : Main.translateItem(guiTranslation.getSection("custommodeldata", "unavailable")).build(), new GuiItemEvent() {
                     @Override
