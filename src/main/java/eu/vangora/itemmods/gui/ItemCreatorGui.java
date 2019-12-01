@@ -3,6 +3,7 @@ package eu.vangora.itemmods.gui;
 import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
+import com.gitlab.codedoctorde.api.server.Version;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
@@ -170,8 +171,9 @@ public class ItemCreatorGui {
                         createGui(backGui).open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(12, new GuiItem((itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
-                        Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build(), new GuiItemEvent() {
+                getGuiItems().put(12, new GuiItem((Version.getVersion().isBiggerThan(Version.v1_14)) ?
+                        ((itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
+                                Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build()) : Main.translateItem(guiTranslation.getSection("custommodeldata", "unavailable")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
                         if (itemStackBuilder.getCustomModelData() != null) {

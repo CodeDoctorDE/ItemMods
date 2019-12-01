@@ -6,6 +6,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.EntityEquipment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -38,5 +39,31 @@ public class CustomBlockManager {
 
     public List<BlockConfig> getBlockConfigs() {
         return blockConfigs;
+    }
+
+    public void setCustomBlock(Location location, BlockConfig block) {
+        if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.5, 0.5, 0.5).size() > 0)
+            return;
+        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return;
+        location.getWorld().getBlockAt(location).setBlockData(block.getBlock());
+        ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
+        if (armorStand.getEquipment() == null)
+            return;
+        EntityEquipment equipment = armorStand.getEquipment();
+        armorStand.setBasePlate(block.isBasePlate());
+        equipment.setHelmet(block.getHelmet());
+        equipment.setChestplate(block.getChestplate());
+        equipment.setLeggings(block.getLeggings());
+        equipment.setBoots(block.getBoots());
+        equipment.setItemInMainHand(block.getMainHand());
+        equipment.setItemInOffHand(block.getOffHand());
+        armorStand.setSmall(block.isSmall());
+        armorStand.setMarker(block.isMarker());
+        armorStand.setInvulnerable(block.isInvulnerable());
+        armorStand.setCustomNameVisible(block.isCustomNameVisible());
+        armorStand.setCustomName(block.getCustomName());
+        armorStand.setVisible(!block.isInvisible());
+        armorStand.getScoreboardTags().add(block.getTag());
+        armorStand.setGravity(false);
     }
 }

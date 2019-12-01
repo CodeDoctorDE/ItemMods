@@ -295,7 +295,7 @@
         "lore": []
       },
       "submit": {
-        "material": "GREEN_DYE",
+        "material": "CACTUS_GREEN",
         "name": "§eSubmit",
         "lore": [],
         "success": "§7[§eItemMods§7] §aSuccessfully submit the item!"
@@ -353,6 +353,15 @@
         "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
       },
       "custommodeldata": {
+        "unavailable": {
+          "material": "GOLD_NUGGET",
+          "name": "§eCustom model data",
+          "lore": [
+            "",
+            "§cInvalid!",
+            "§cYou need 1.14 or higher to use it!"
+          ]
+        },
         "yes": {
           "material": "GOLD_NUGGET",
           "name": "§eCustom model data",

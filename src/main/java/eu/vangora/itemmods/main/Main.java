@@ -56,6 +56,8 @@ public class Main extends JavaPlugin {
         api = new CodeDoctorAPI(this);
         translationConfig = new JsonConfiguration(new File(getDataFolder(), "translations.json"));
         translationConfig.setDefaults(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
+
+
         try {
             translationConfig.save();
         } catch (IOException e) {
