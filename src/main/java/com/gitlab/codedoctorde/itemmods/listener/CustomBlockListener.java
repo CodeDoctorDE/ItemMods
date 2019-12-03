@@ -3,6 +3,7 @@ package com.gitlab.codedoctorde.itemmods.listener;
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.itemmods.main.CustomBlock;
 import com.gitlab.codedoctorde.itemmods.main.Main;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -23,8 +24,8 @@ public class CustomBlockListener implements Listener {
         for (BlockConfig block :
                 Main.getPlugin().getMainConfig().getBlocks()) {
             if (event.getItem().isSimilar(block.getItemStack())) {
-                if (event.getItem().getAmount() < block.getItemStack().getAmount()) return;
                 event.setCancelled(true);
+                if (event.getItem().getAmount() < block.getItemStack().getAmount()) return;
                 Player player = event.getPlayer();
                 Location location = event.getClickedBlock().getLocation();
                 switch (event.getBlockFace()) {
@@ -49,7 +50,8 @@ public class CustomBlockListener implements Listener {
                 }
                 if (!Main.getPlugin().getCustomBlockManager().setCustomBlock(location, block))
                     return;
-                event.getItem().setAmount(event.getItem().getAmount() - block.getItemStack().getAmount());
+                if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+                    event.getItem().setAmount(event.getItem().getAmount() - block.getItemStack().getAmount());
             }
         }
     }
@@ -59,9 +61,12 @@ public class CustomBlockListener implements Listener {
         CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
-        event.setCancelled(true);
         event.getBlock().setType(Material.AIR);
-        event.getBlock().getLocation().getWorld().dropItem(event.getBlock().getLocation(), customBlock.getConfig().getItemStack());
+        event.setCancelled(true);
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE && (!customBlock.getConfig().isDrop()) || (customBlock.getConfig().isDrop() && event.getBlock().getDrops().size() > 0)) {
+            event.getBlock().getDrops().clear();
+            event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), customBlock.getConfig().getItemStack());
+        }
         customBlock.getArmorStand().remove();
     }
 

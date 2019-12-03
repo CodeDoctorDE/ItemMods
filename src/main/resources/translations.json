@@ -171,9 +171,12 @@
         }
       },
       "get": {
-        "material": "STONE",
-        "name": "§eGet item",
-        "lore": [],
+        "material": "GOLD_NUGGET",
+        "name": "§eGet",
+        "lore": [
+          "§7Left click » Open give gui",
+          "§7Shift + Left click or Middle click » Give item"
+        ],
         "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
         "null": "§7[§eItemMods§7] §cThere is no item!"
       },
@@ -345,10 +348,11 @@
         "lore": [
           "§3{0}",
           "",
-          "§7Left click » +1",
-          "§7Right click » -1",
-          "§7Shift + Left click » +5",
-          "§7Shift + Right click » -5"
+          "§7Left click » + 1",
+          "§7Right click » - 1",
+          "§7Shift + Left click » + 5",
+          "§7Shift + Right click » - 5",
+          "§7Drop » = 1"
         ],
         "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
       },
@@ -749,9 +753,12 @@
         "cancel": "§7[§eItemMods§7] §cYou successfully cancel the block input!"
       },
       "get": {
-        "material": "STONE",
-        "name": "§eGet item",
-        "lore": [],
+        "material": "GOLD_NUGGET",
+        "name": "§eGet",
+        "lore": [
+          "§7Open give gui",
+          "§7Middle click » Give item"
+        ],
         "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
         "null": "§7[§eItemMods§7] §cThere is no item!"
       },
@@ -870,6 +877,32 @@
         "remove": "§7[§eItemMods§7] §aYou successfully removed the custom name!",
         "on": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility on!",
         "off": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility off!"
+      }
+    },
+    "give": {
+      "title": "§eItemMods §f» §6Give item",
+      "back": {
+        "material": "REDSTONE",
+        "name": "§eBack",
+        "lore": []
+      },
+      "info": {
+        "material": "EMERALD",
+        "name": "§bInformation",
+        "lore": [
+          "§7Click on the item above with ...",
+          "",
+          "§7Left click »  + 1",
+          "§7Shift + Left click »  + 5",
+          "§7Right click »  - 1",
+          "§7Shift + Right click »  - 5",
+          "§7Drop »  = 1"
+        ]
+      },
+      "give": {
+        "material": "GOLD_INGOT",
+        "name": "§eGive",
+        "lore": []
       }
     }
   },

@@ -10,6 +10,7 @@ import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -88,6 +89,10 @@ public class ItemGui {
 
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && itemConfig.getItemStack() != null) {
+                            event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         if (change.getType() == Material.AIR && itemConfig.getItemStack() == null)
                             itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
@@ -162,8 +167,12 @@ public class ItemGui {
                             player.sendMessage(guiTranslation.getString("get", "null"));
                             return;
                         }
-                        event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
-                        event.getWhoClicked().sendMessage(guiTranslation.getString("get", "success"));
+                        if (event.getClick() != ClickType.MIDDLE) {
+                            new ItemGiveGui(itemConfig.getItemStack().clone()).createGui(gui).open(player);
+                        } else {
+                            event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("get", "success"));
+                        }
                     }
                 }));
             }});

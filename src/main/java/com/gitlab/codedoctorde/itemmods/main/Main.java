@@ -33,6 +33,7 @@ public class Main extends JavaPlugin {
     private Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
+    private GiveItemCommand giveItemCommand;
     private GameStateManager gameStateManager;
     private CustomBlockManager customBlockManager;
 
@@ -74,8 +75,11 @@ public class Main extends JavaPlugin {
         if (mainConfig == null)
             mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
+        giveItemCommand = new GiveItemCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
+        Objects.requireNonNull(getCommand("giveitem")).setTabCompleter(giveItemCommand);
+        Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
         saveBaseConfig();
 
         Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());

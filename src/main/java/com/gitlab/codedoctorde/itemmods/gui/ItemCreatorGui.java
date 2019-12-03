@@ -165,6 +165,9 @@ public class ItemCreatorGui {
                             case SHIFT_RIGHT:
                                 amount -= 5;
                                 break;
+                            case DROP:
+                                amount = 1;
+                                break;
                         }
                         itemStackBuilder.setAmount(amount);
                         event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("amount", "success"), amount));

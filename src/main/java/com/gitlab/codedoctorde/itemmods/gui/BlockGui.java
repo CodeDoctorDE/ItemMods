@@ -112,6 +112,10 @@ public class BlockGui {
 
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getItemStack() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         if (change.getType() == Material.AIR && blockConfig.getItemStack() == null) {
                             blockConfig.setItemStack(new ItemStack(Material.CARROT_ON_A_STICK));
@@ -262,6 +266,10 @@ public class BlockGui {
                 getGuiItems().put(9, new GuiItem((blockConfig.getHelmet() != null) ? blockConfig.getHelmet() : Main.translateItem(guiTranslation.getSection("helmet", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getHelmet() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getHelmet());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setHelmet((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -272,6 +280,10 @@ public class BlockGui {
                 getGuiItems().put(9 + 1, new GuiItem((blockConfig.getChestplate() != null) ? blockConfig.getChestplate() : Main.translateItem(guiTranslation.getSection("chestplate", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getChestplate() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getChestplate());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setChestplate((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -282,6 +294,10 @@ public class BlockGui {
                 getGuiItems().put(9 + 2, new GuiItem((blockConfig.getLeggings() != null) ? blockConfig.getLeggings() : Main.translateItem(guiTranslation.getSection("leggings", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getLeggings() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getLeggings());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setLeggings((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -292,6 +308,10 @@ public class BlockGui {
                 getGuiItems().put(9 + 3, new GuiItem((blockConfig.getBoots() != null) ? blockConfig.getBoots() : Main.translateItem(guiTranslation.getSection("boots", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getBoots() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getBoots());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setBoots((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -302,6 +322,10 @@ public class BlockGui {
                 getGuiItems().put(9 + 4, new GuiItem((blockConfig.getMainHand() != null) ? blockConfig.getMainHand() : Main.translateItem(guiTranslation.getSection("mainhand", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getMainHand() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getMainHand());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setMainHand((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -312,6 +336,10 @@ public class BlockGui {
                 getGuiItems().put(9 + 5, new GuiItem((blockConfig.getOffHand() != null) ? blockConfig.getOffHand() : Main.translateItem(guiTranslation.getSection("boots", "null")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getOffHand() != null) {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getOffHand());
+                            return;
+                        }
                         ItemStack change = event.getWhoClicked().getItemOnCursor();
                         blockConfig.setOffHand((change.getType() == Material.AIR) ? null : change);
                         Main.getPlugin().saveBaseConfig();
@@ -327,8 +355,12 @@ public class BlockGui {
                             player.sendMessage(guiTranslation.getString("get", "null"));
                             return;
                         }
-                        event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack().clone());
-                        event.getWhoClicked().sendMessage(guiTranslation.getString("get", "success"));
+                        if (event.getClick() != ClickType.MIDDLE) {
+                            new ItemGiveGui(blockConfig.getItemStack().clone()).createGui(gui).open(player);
+                        } else {
+                            event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack().clone());
+                            event.getWhoClicked().sendMessage(guiTranslation.getString("get", "success"));
+                        }
                     }
                 }));
                 getGuiItems().put(9 + 7, new GuiItem(Main.translateItem(guiTranslation.getSection("customname", (blockConfig.isCustomNameVisible()) ? "visible" : "invisible")).format(blockConfig.getCustomName()).build(), new GuiItemEvent() {
