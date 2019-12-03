@@ -11,7 +11,7 @@ import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.gitlab.codedoctorde.itemmods.commands.BaseCommand;
 import com.gitlab.codedoctorde.itemmods.config.MainConfig;
 import com.gitlab.codedoctorde.itemmods.listener.CustomBlockListener;
-import com.gitlab.codedoctorde.itemmods.listener.ItemListener;
+import com.gitlab.codedoctorde.itemmods.listener.CustomItemListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -33,7 +33,6 @@ public class Main extends JavaPlugin {
     private Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
-    private GiveItemCommand giveItemCommand;
     private GameStateManager gameStateManager;
     private CustomBlockManager customBlockManager;
 
@@ -75,14 +74,11 @@ public class Main extends JavaPlugin {
         if (mainConfig == null)
             mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
-        giveItemCommand = new GiveItemCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
-        Objects.requireNonNull(getCommand("giveitem")).setTabCompleter(giveItemCommand);
-        Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
         saveBaseConfig();
 
-        Bukkit.getPluginManager().registerEvents(new ItemListener(), Main.getPlugin());
+        Bukkit.getPluginManager().registerEvents(new CustomItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
         customBlockManager = new CustomBlockManager(mainConfig.getBlocks());
 

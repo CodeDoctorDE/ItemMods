@@ -90,7 +90,7 @@ public class ItemCreatorGui {
                             case RIGHT:
                                 itemStackBuilder.displayName(null);
                                 event.getWhoClicked().sendMessage(guiTranslation.getString("displayname", "remove"));
-                                createGui(backGui).open((Player) event.getWhoClicked());
+                                gui.sync((Player) event.getWhoClicked());
                                 break;
                         }
                     }
@@ -145,7 +145,7 @@ public class ItemCreatorGui {
                         }
                         itemStackBuilder.setLore(lore);
                         if(event.getClick()!= ClickType.LEFT)
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            gui.sync((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(11, new GuiItem(Main.translateItem(guiTranslation.getSection("amount")).format(itemStackBuilder.getAmount()).build(), new GuiItemEvent() {
@@ -171,7 +171,8 @@ public class ItemCreatorGui {
                         }
                         itemStackBuilder.setAmount(amount);
                         event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("amount", "success"), amount));
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        guiItem.setItemStack(Main.translateItem(guiTranslation.getSection("amount")).format(itemStackBuilder.getAmount()).build());
+                        gui.sync((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(12, new GuiItem((!Version.getVersion().isBiggerThan(Version.v1_14)) ?
@@ -179,6 +180,8 @@ public class ItemCreatorGui {
                                 Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build()) : Main.translateItem(guiTranslation.getSection("custommodeldata", "unavailable")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
+                        if (!Version.getVersion().isBiggerThan(Version.v1_14))
+                            return;
                         if (itemStackBuilder.getCustomModelData() != null) {
                             Integer customModelData = itemStackBuilder.getCustomModelData();
                             switch (event.getClick()) {
@@ -200,11 +203,13 @@ public class ItemCreatorGui {
                             }
                             itemStackBuilder.setCustomModelData(customModelData);
                             event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), customModelData));
-                        }else {
+                        } else {
                             itemStackBuilder.setCustomModelData(0);
                             event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getString("custommodeldata", "success"), itemStackBuilder.getCustomModelData()));
                         }
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        guiItem.setItemStack(itemStackBuilder.getCustomModelData() != null ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
+                                Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build());
+                        gui.sync((Player) event.getWhoClicked());
                     }
                 }));
             }});

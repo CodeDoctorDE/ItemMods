@@ -49,7 +49,7 @@ public class ItemGiveGui {
                                 itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
                                 break;
                         }
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        gui.sync((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9 * 2 + 4, new GuiItem(Main.translateItem(guiTranslation.getSection("info")).build(), new GuiItemEvent() {
@@ -69,7 +69,7 @@ public class ItemGiveGui {
                                 itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
                                 break;
                         }
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        gui.sync((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9 * 2 + 8, new GuiItem(Main.translateItem(guiTranslation.getSection("give")).build(), new GuiItemEvent() {

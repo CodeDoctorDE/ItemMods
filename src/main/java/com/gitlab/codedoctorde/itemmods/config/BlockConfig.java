@@ -1,5 +1,6 @@
 package com.gitlab.codedoctorde.itemmods.config;
 
+import com.gitlab.codedoctorde.itemmods.main.BlockTemplate;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,6 +27,7 @@ public class BlockConfig {
     private boolean move = false;
     private int gravity = 5;
     private int stable = 5;
+    private BlockTemplate blockTemplate;
 
     public BlockConfig() {
 
