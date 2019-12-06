@@ -13,8 +13,6 @@ build:
     - "target/*.jar"
 pages:
   image: "openkbs/jdk-mvn-py3"
-  services:
-  - 'maven:3-jdk-8'
   before_script:
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'
