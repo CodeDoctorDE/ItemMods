@@ -8,6 +8,7 @@ import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.gitlab.codedoctorde.itemmods.api.CustomBlockManager;
 import com.gitlab.codedoctorde.itemmods.commands.BaseCommand;
 import com.gitlab.codedoctorde.itemmods.config.MainConfig;
 import com.gitlab.codedoctorde.itemmods.listener.CustomBlockListener;

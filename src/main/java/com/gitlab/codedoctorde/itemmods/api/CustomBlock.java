@@ -1,4 +1,4 @@
-package com.gitlab.codedoctorde.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.api;
 
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Location;

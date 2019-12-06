@@ -1,7 +1,7 @@
 package com.gitlab.codedoctorde.itemmods.listener;
 
+import com.gitlab.codedoctorde.itemmods.api.CustomBlock;
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.itemmods.main.CustomBlock;
 import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.GameMode;
 import org.bukkit.Location;

@@ -1,6 +1,7 @@
-package com.gitlab.codedoctorde.itemmods.main;
+package com.gitlab.codedoctorde.itemmods.api;
 
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.itemmods.main.Main;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -16,7 +17,7 @@ import java.util.Objects;
 public class CustomBlockManager {
     private List<BlockConfig> blockConfigs;
 
-    CustomBlockManager(List<BlockConfig> blockConfigs) {
+    public CustomBlockManager(List<BlockConfig> blockConfigs) {
         this.blockConfigs = blockConfigs;
     }
 

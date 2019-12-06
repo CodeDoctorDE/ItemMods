@@ -5,11 +5,11 @@
 ![Screenshot Logo](./assets/Screenshots.png)
 
 ### Main GUI
-![Main GUI](./assets/main.gif)
+![Main GUI](./assets/main_page.gif)
 
 ### Item GUI
-![New GUI](assets/item_new.gif)
-![Item-Settings GUI](./assets/item_settings.gif)
+![New GUI](assets/item_new_page.gif)
+![Item-Settings GUI](./assets/item_settings_page.gif)
 
 ### Custom Blocks
 ![Blocks](assets/Blocks.gif)
@@ -35,7 +35,10 @@
 ## Additional information
 ![Additional information Logo](./assets/Additional-information.png)
 
-Discord: https://discord.gg/5gmv66J
-Please report bugs here: https://gitlab.com/codedoctorde/itemmods/issues and not in the plugin reviews. Thanks :)​
+* Discord: https://discord.gg/5gmv66J
+* Please report bugs here: https://gitlab.com/codedoctorde/itemmods/issues and not in the plugin reviews. Thanks :)
+* Wiki: https://gitlab.com/codedoctorde/itemmods/wikis/home
+* Website: https://codedoctorde.gitlab.io/itemmods
+* API Docs: https://codedoctorde.gitlab.io/itemmods/apidocs/
 
 [![Songoda Logo](https://cdn2.songoda.com/branding/icon.png)](https://songoda.com/marketplace/product/itemmods-your-itemblock-modification-plugin-itemmods.162)
