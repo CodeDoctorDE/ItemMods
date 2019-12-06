@@ -5,6 +5,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+/**
+ * Coming soon... (available 1.2)
+ */
 public interface BlockTemplate {
     void onBlockBreak(BlockConfig blockConfig, BlockBreakEvent event);
 

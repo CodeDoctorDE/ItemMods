@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class CustomBlockManager {
-    private final List<BlockConfig> blockConfigs;
+    private List<BlockConfig> blockConfigs;
 
-    public CustomBlockManager(List<BlockConfig> blockConfigs) {
+    CustomBlockManager(List<BlockConfig> blockConfigs) {
         this.blockConfigs = blockConfigs;
     }
 
@@ -73,6 +73,7 @@ public class CustomBlockManager {
         equipment.setChestplate(block.getChestplate());
         equipment.setLeggings(block.getLeggings());
         equipment.setBoots(block.getBoots());
+
         equipment.setItemInMainHand(block.getMainHand());
         equipment.setItemInOffHand(block.getOffHand());
         armorStand.setSmall(block.isSmall());

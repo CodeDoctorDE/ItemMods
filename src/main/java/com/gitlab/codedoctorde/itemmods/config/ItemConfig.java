@@ -1,6 +1,5 @@
 package com.gitlab.codedoctorde.itemmods.config;
 
-import com.gitlab.codedoctorde.itemmods.main.ArmorType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class ItemConfig {
     private int damage = 0;
     private int speed = 0;
     private boolean boneMeal = false;
-    private ArmorType armorType = ArmorType.NONE;
     private List<String> onWear = new ArrayList<>();
     private List<String> onOffHand = new ArrayList<>();
     private List<String> onMainHand = new ArrayList<>();
@@ -110,14 +108,6 @@ public class ItemConfig {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    public ArmorType getArmorType() {
-        return armorType;
-    }
-
-    public void setArmorType(ArmorType armorType) {
-        this.armorType = armorType;
     }
 
     public List<String> getOnDrop() {
