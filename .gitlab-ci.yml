@@ -15,6 +15,7 @@ pages:
   before_script:
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'
+  - 'pip install pygments'
   script:
   - 'mv assets docs'
   - 'mv ./*.md docs'
