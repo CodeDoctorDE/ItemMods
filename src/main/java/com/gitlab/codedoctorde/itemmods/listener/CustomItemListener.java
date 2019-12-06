@@ -22,9 +22,4 @@ public class CustomItemListener implements Listener {
             event.getWhoClicked().sendMessage(Main.getPlugin().getTranslationConfig().getString("event", "rename"));
         });
     }
-
-    @EventHandler
-    public void onInventory(InventoryClickEvent event) {
-        event.getWhoClicked().sendMessage("test");
-    }
 }
