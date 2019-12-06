@@ -1,6 +1,5 @@
-image: maven:3-jdk-8
+image: maven:latest
 deploy:
-  image: maven:3.3.9-jdk-8
   script:
     - 'mvn deploy -s ci_settings.xml'
   only:
@@ -12,7 +11,7 @@ build:
     paths: 
     - "target/*.jar"
 pages:
-  image: "openkbs/jdk-mvn-py3"
+  image: "openkbs/jdk-mvn-py"
   before_script:
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'
