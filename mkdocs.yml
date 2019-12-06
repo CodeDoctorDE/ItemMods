@@ -6,5 +6,4 @@ nav:
   - Home: README.md
   - "Items":
       - "Create items": create-items.md
-          -
       - "Create custom items": create-custom-items.md
