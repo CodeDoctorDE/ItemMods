@@ -18,6 +18,7 @@ pages:
   script:
   - 'mvn javadoc:javadoc'
   - 'mv target/site/* public'
+  - 'mv assets public'
   - 'mv ./*.md public'
   - 'mkdocs build'
   
