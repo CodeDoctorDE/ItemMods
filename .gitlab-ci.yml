@@ -1,6 +1,5 @@
 image: maven:3-jdk-8
 deploy:
-  image: maven:3.3.9-jdk-8
   script:
     - 'mvn deploy -s ci_settings.xml'
   only:
@@ -12,8 +11,6 @@ build:
     paths: 
     - "target/*.jar"
 pages:
-  stage: deploy
-  image: maven:3.3.9-jdk-8
   script:
     - 'mvn javadoc:javadoc'
   only:
