@@ -12,12 +12,14 @@ build:
     paths: 
     - "target/*.jar"
 pages:
+  image: python:alpine
+  before_script:
+  - 'pip install mkdocs'
+  - 'pip install mkdocs-material'
   script:
   - 'mvn javadoc:javadoc'
   - 'mv target/site/* public'
   - 'mv ./*.md public'
-  - 'pip install mkdocs'
-  - 'pip install mkdocs-material'
   - 'mkdocs build'
   
   only:
