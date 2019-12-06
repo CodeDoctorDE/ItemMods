@@ -12,6 +12,7 @@ build:
     paths: 
     - "target/*.jar"
 pages:
-  script: 'mvn javadoc:javadoc'
+  script:
+  - 'mvn javadoc:javadoc'
   only:
     - master
