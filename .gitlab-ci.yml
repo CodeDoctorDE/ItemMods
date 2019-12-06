@@ -16,11 +16,11 @@ pages:
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'
   script:
-  - 'mvn javadoc:javadoc'
-  - 'mv target/site/* public'
   - 'mv assets public'
   - 'mv ./*.md public'
   - 'mkdocs build'
+  - 'mvn javadoc:javadoc'
+  - 'mv target/site/* public'
   
   only:
     - master
