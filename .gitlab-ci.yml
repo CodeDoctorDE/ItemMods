@@ -16,3 +16,6 @@ pages:
   - 'mvn javadoc:javadoc'
   only:
     - master
+  artifacts:
+    paths:
+    - "target/site"
