@@ -20,7 +20,7 @@ pages:
   - 'mv ./*.md docs'
   - 'mkdocs build'
   - 'mkdir public'
-  - 'mv site public'
+  - 'mv site/* public'
   - 'mvn javadoc:javadoc'
   - 'mv target/site/* public'
 
