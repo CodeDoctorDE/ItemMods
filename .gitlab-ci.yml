@@ -16,9 +16,9 @@ pages:
   - 'mvn javadoc:javadoc'
   - 'mv target/site/* public'
   - 'mv ./*.md public'
-  - 'mkdocs build'
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'
+  - 'mkdocs build'
   
   only:
     - master
