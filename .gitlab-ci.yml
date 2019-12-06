@@ -1,15 +1,16 @@
 # This file is a template, and might need editing before it works on your project.
 # Full project: https://gitlab.com/pages/plain-html
 image: maven:3-jdk-8
+stages:
+  - build
+  - javadoc
+  - deploy
 deploy:
   image: maven:3.3.9-jdk-8
   script:
     - 'mvn deploy -s ci_settings.xml'
   only:
     - master
-stages:
-  - build
-  - javadoc
 
 build:
   script: "mvn clean package"
