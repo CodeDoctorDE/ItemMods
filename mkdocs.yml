@@ -1,9 +1,10 @@
 site_name: ItemMods - Web
 site_url: https://codedoctorde.gitlab.io/itemmods
 repo_url: https://gitlab.com/codedoctorde/itemmods/
-theme: markdown
+theme: material
 nav:
   - Home: README.md
   - "Items":
       - "Create items": create-items.md
+          -
       - "Create custom items": create-custom-items.md
