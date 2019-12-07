@@ -3,7 +3,8 @@ site_url: https://codedoctorde.gitlab.io/itemmods
 repo_url: https://gitlab.com/codedoctorde/itemmods/
 theme: material
 markdown_extensions:
-  - codehilite
+  - codehilite:
+      linenums: true
 nav:
   - Home: README.md
   - "Items":
