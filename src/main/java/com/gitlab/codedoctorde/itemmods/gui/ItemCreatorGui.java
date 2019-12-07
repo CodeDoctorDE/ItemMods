@@ -175,12 +175,12 @@ public class ItemCreatorGui {
                         gui.sync((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(12, new GuiItem((!Version.getVersion().isBiggerThan(Version.v1_14)) ?
+                getGuiItems().put(12, new GuiItem((Version.getVersion().isBiggerThan(Version.v1_13)) ?
                         ((itemStackBuilder.getCustomModelData() != null) ? Main.translateItem(guiTranslation.getSection("custommodeldata", "yes")).format(itemStackBuilder.getCustomModelData()).build() :
                                 Main.translateItem(guiTranslation.getSection("custommodeldata", "no")).build()) : Main.translateItem(guiTranslation.getSection("custommodeldata", "unavailable")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiPage guiPage, GuiItem guiItem, InventoryClickEvent event) {
-                        if (!Version.getVersion().isBiggerThan(Version.v1_14))
+                        if (!Version.getVersion().isBiggerThan(Version.v1_13))
                             return;
                         if (itemStackBuilder.getCustomModelData() != null) {
                             Integer customModelData = itemStackBuilder.getCustomModelData();
