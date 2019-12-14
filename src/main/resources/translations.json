@@ -6,6 +6,9 @@
     "unloaded": "§7[§eItemMods§7] §aSuccessfully unloaded plugin!"
   },
   "gui": {
+    "knowledge": {
+      "title": "§eItemMods §7» §6Knowledge"
+    },
     "main": {
       "title": "§eItemMods §7» §6Main",
       "reload": {
