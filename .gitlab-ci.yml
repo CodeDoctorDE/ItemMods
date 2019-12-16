@@ -13,9 +13,9 @@ build:
 pages:
   image: "openkbs/jdk-mvn-py3"
   before_script:
-  - 'pip install mkdocs'
-  - 'pip install mkdocs-material'
-  - 'pip install pygments'
+  - 'sudo pip install mkdocs'
+  - 'sudo pip install mkdocs-material'
+  - 'sudo pip install pygments'
   script:
   - 'mv assets docs'
   - 'mv ./*.md docs'
