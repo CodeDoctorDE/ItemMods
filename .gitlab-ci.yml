@@ -11,7 +11,7 @@ build:
     paths: 
     - "target/*.jar"
 pages:
-  image: "openkbs/jdk-mvn-py"
+  image: "openkbs/jdk-mvn-py3"
   before_script:
   - 'pip install mkdocs'
   - 'pip install mkdocs-material'

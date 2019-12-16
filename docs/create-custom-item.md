@@ -1,6 +1,6 @@
 # Create custom items
 
-* You must create a resource pack to add custom textures for items. You need an assets folder and a `pack.mcmeta`. Here is a tutorial: https://minecraft.gamepedia.com/Tutorials/Creating_a_resource_pack
+* You must create a resource pack to add custom textures for items. You need an assets folder and a `pack.mcmeta`. Here is a tutorial: <https://minecraft.gamepedia.com/Tutorials/Creating_a_resource_pack>
 * Create the folder `assets/minecraft/models/item` and then the item which you want to create a custom texture, for example `iron_sword.json`
 * Then copy this:
 
@@ -37,7 +37,7 @@
 * Create the model folders. Here we have say minecraft, the item is in `assets/item/iron_sword/1.json`. When you have more than one custom item, you must create the files too.
   You must create a folder `iron_sword` and a file `1.json`
 * Copy this to the `1.json`:
-
+  
   ``` json
   {
     "parent": "item/handheld",

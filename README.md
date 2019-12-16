@@ -41,10 +41,10 @@
 
 ![Additional information Logo](./assets/Additional-information.png)
 
-* Discord: [https://discord.gg/5gmv66J](https://discord.gg/5gmv66J)
-* Please report bugs here: [https://gitlab.com/codedoctorde/itemmods/issues](https://gitlab.com/codedoctorde/itemmods/issues) and not in the plugin reviews. Thanks :)
-* Wiki: [https://gitlab.com/codedoctorde/itemmods/wikis/home](https://gitlab.com/codedoctorde/itemmods/wikis/home)
-* Website: [https://codedoctorde.gitlab.io/itemmods](https://gitlab.com/codedoctorde/itemmods/wikis/home)
-* API Docs: [https://codedoctorde.gitlab.io/itemmods/apidocs/](https://gitlab.com/codedoctorde/itemmods/wikis/home)
+* Discord: <https://discord.gg/5gmv66J>
+* Please report bugs here: <https://gitlab.com/codedoctorde/itemmods/issues> and not in the plugin reviews. Thanks :)
+* Website: <https://codedoctorde.gitlab.io/itemmods>
+* API Docs: <https://codedoctorde.gitlab.io/itemmods/apidocs/>
+* Maven: <https://gitlab.com/vangora/itemmods/snippets/1918359>
 
 [![Songoda Logo](https://cdn2.songoda.com/branding/icon.png)](https://songoda.com/marketplace/product/itemmods-your-itemblock-modification-plugin-itemmods.162)
