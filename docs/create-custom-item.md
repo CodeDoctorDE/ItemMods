@@ -4,7 +4,7 @@
 * Create the folder `assets/minecraft/models/item` and then the item which you want to create a custom texture, for example `iron_sword.json`
 * Then copy this:
 
-  ```json
+``` json
   {
   "parent": "item/handheld",
     "textures": {
@@ -32,7 +32,7 @@
         { "predicate": { "custom_model_data": 5}, "model": "item/iron_sword/5" }
     ]
   }
-  ```
+```
 
 * Create the model folders. Here we have say minecraft, the item is in `assets/item/iron_sword/1.json`. When you have more than one custom item, you must create the files too.
   You must create a folder `iron_sword` and a file `1.json`
