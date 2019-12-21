@@ -4,7 +4,7 @@
 * Create the folder `assets/minecraft/models/item` and then the item which you want to create a custom texture, for example `iron_sword.json`
 * Then copy this:
 
-  ``` json
+  ```json
   {
   "parent": "item/handheld",
     "textures": {
