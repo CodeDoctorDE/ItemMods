@@ -18,7 +18,7 @@
 
   To add multiple custom items to this item, duplicate the section after the overrides and add a comma. Set the `cutom_model_data` and the model a value higher, for example:
 
-  ``` json
+``` json
   {
     "parent": "item/handheld",
     "textures": {
