@@ -20,7 +20,10 @@
       "items": {
         "material": "DIAMOND",
         "name": "§eItems",
-        "lore": ["","§7Click to open the items list"]
+        "lore": [
+          "",
+          "§7Click to open the items list"
+        ]
       },
       "blocks": {
         "material": "GRASS_BLOCK",
@@ -28,6 +31,32 @@
         "lore": [
           "",
           "§7Click to open the blocks list"
+        ]
+      },
+      "knowledge": {
+        "material": "KNOWLEDGE_BOOK",
+        "name": "§eKnowledge book",
+        "lore": [
+          "",
+          "§7Click to open the knowledge gui"
+        ]
+      },
+      "itemtemplates": {
+        "material": "PAPER",
+        "name": "§eItem templates",
+        "lore": [
+          "",
+          "§7Click to see all item templates",
+          "§7Coming soon..."
+        ]
+      },
+      "blocktemplates": {
+        "material": "FURNACE",
+        "name": "§eBlock templates",
+        "lore": [
+          "",
+          "§7Click to see all item templates",
+          "§7Coming soon..."
         ]
       }
     },

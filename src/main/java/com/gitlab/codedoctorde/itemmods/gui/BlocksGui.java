@@ -22,11 +22,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BlocksGui {
-    public Gui[] createGui(Player player, Gui backGui) {
-        return createGui(player, "", backGui);
+    public Gui[] createGui(Gui backGui) {
+        return createGui("", backGui);
     }
 
-    private Gui[] createGui(Player player, String searchText, Gui backGui) {
+    private Gui[] createGui(String searchText, Gui backGui) {
         MainConfig mainConfig = Main.getPlugin().getMainConfig();
         List<List<BlockConfig>> pages = new ArrayList<>();
         List<BlockConfig> blockConfigs = mainConfig.getBlocks().stream().filter(blockConfig -> blockConfig.getName().contains(searchText)).collect(Collectors.toList());
@@ -66,7 +66,7 @@ public class BlocksGui {
                         if (finalI <= 0)
                             player.sendMessage(guiTranslation.getString("first", "already"));
                         else
-                            createGui(player, searchText, backGui)[0].open(player);
+                            createGui(searchText, backGui)[0].open(player);
                     }
                 }));
                 getGuiItems().put(1, new GuiItem(Main.translateItem(guiTranslation.getSection("previous")).build(), new GuiItemEvent() {
@@ -77,7 +77,7 @@ public class BlocksGui {
                         if (finalI <= 0)
                             player.sendMessage(guiTranslation.getString("previous", "already"));
                         else
-                            createGui(player, searchText, backGui)[finalI - 1].open(player);
+                            createGui(searchText, backGui)[finalI - 1].open(player);
                     }
 
                     @Override
@@ -107,7 +107,7 @@ public class BlocksGui {
                                 new ChatRequest(Main.getPlugin(), player, new ChatRequestEvent() {
                                     @Override
                                     public void onEvent(Player player, String output) {
-                                        createGui(player, output, backGui)[0].open(player);
+                                        createGui(output, backGui)[0].open(player);
                                     }
 
                                     @Override
@@ -119,11 +119,11 @@ public class BlocksGui {
                             case RIGHT:
                                 player.sendMessage(guiTranslation.getString("search", "reset"));
                                 gui.close(player);
-                                createGui(player, backGui)[0].open(player);
+                                createGui(backGui)[0].open(player);
                                 break;
                             case DROP:
                                 player.sendMessage(guiTranslation.getString("search", "refresh"));
-                                createGui(player, searchText, backGui)[0].open(player);
+                                createGui(searchText, backGui)[0].open(player);
                         }
                     }
                 }));
@@ -141,7 +141,7 @@ public class BlocksGui {
                                 mainConfig.getBlocks().add(new BlockConfig(output));
                                 Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getString("create", "success"), output));
-                                createGui(player, backGui)[0].open(player);
+                                createGui(backGui)[0].open(player);
                             }
 
                             @Override
@@ -165,7 +165,7 @@ public class BlocksGui {
                         if (finalI >= pages.size())
                             player.sendMessage(guiTranslation.getString("next", "already"));
                         else
-                            createGui(player, searchText, backGui)[finalI + 1].open(player);
+                            createGui(searchText, backGui)[finalI + 1].open(player);
                     }
 
                     @Override
@@ -181,7 +181,7 @@ public class BlocksGui {
                         if (finalI >= pages.size())
                             player.sendMessage(guiTranslation.getString("last", "already"));
                         else
-                            createGui(player, searchText, backGui)[0].open(player);
+                            createGui(searchText, backGui)[0].open(player);
                     }
 
                     @Override
@@ -248,7 +248,7 @@ public class BlocksGui {
                             blockConfigs.remove(blockConfig);
                             Main.getPlugin().saveBaseConfig();
                             player.sendMessage(MessageFormat.format(guiTranslation.getString("yes", "success"), blockConfig.getName(), blockIndex));
-                            createGui(player, searchText, new MainGui().createGui())[0].open(player);
+                            createGui(searchText, new MainGui().createGui())[0].open(player);
                         }
 
                         @Override
