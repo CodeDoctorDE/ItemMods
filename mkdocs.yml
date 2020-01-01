@@ -6,6 +6,3 @@ markdown_extensions:
   - codehilite
 nav:
   - Home: README.md
-  - "Items":
-      - "Create items": create-item.md
-      - "Create custom items": create-custom-item.md

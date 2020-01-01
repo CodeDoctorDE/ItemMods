@@ -38,15 +38,14 @@
   You must create a folder `iron_sword` and a file `1.json`
 * Copy this to the `1.json`:
   
-  ``` json
+``` json
   {
     "parent": "item/handheld",
     "textures": {
         "layer0": "item/emerald_sword"
     }
   }
-  ```
-
+```
   Replace `emerald_sword` to the name for your sword.
 * Move your image of the custom item in the folder, you set in the `1.json`. For this example it is in `assets/item/emerald_sword.png`
 * Load this resource pack in your game.
