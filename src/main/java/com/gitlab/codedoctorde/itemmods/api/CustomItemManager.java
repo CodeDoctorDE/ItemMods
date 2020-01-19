@@ -17,7 +17,7 @@ public class CustomItemManager {
      * Get the item config by the given item stack.
      *
      * @param itemStack The item stack which you want the item config
-     * @return the ItemConfig from the item stack
+     * @return the ItemConfig from the item stack. If this value is null, the item isn't a custom item.
      */
     @Nullable
     public ItemConfig getItemConfig(ItemStack itemStack) {

@@ -20,7 +20,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 0) {
-            sender.sendMessage(Main.getPlugin().getTranslationConfig().getString("command", "base", "usage"));
+            sender.sendMessage(Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("usage").getAsString());
             return true;
         }
         if (sender instanceof Player)
@@ -32,7 +32,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
                 else
                     new KnowledgeGui().createGui().open((Player) sender);
         else
-            sender.sendMessage(Main.getPlugin().getTranslationConfig().getString("command", "base", "noplayer"));
+            sender.sendMessage(Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("noplayer").getAsString());
         return true;
     }
 

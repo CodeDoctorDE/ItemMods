@@ -16,7 +16,6 @@ public class ItemConfig {
     private int hoe = 0;
     private int damage = 0;
     private int speed = 0;
-    private boolean boneMeal = false;
     private List<String> onWear = new ArrayList<>();
     private List<String> onOffHand = new ArrayList<>();
     private List<String> onMainHand = new ArrayList<>();
@@ -86,14 +85,6 @@ public class ItemConfig {
         this.shovel = shovel;
     }
 
-    public boolean isBoneMeal() {
-        return boneMeal;
-    }
-
-    public void setBoneMeal(boolean boneMeal) {
-        this.boneMeal = boneMeal;
-    }
-
     public int getDamage() {
         return damage;
     }
@@ -141,5 +132,4 @@ public class ItemConfig {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-
 }

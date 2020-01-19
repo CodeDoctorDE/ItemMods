@@ -24,8 +24,6 @@ pages:
   - 'mv site/* public'
   - 'mvn javadoc:javadoc'
   - 'mv target/site/* public'
-
-  
   only:
     - master
   artifacts:

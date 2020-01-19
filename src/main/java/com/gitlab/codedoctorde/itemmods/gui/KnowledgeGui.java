@@ -1,12 +1,12 @@
 package com.gitlab.codedoctorde.itemmods.gui;
 
-import com.gitlab.codedoctorde.api.config.JsonConfigurationSection;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.itemmods.main.Main;
+import com.google.gson.JsonObject;
 
 public class KnowledgeGui {
     public Gui createGui() {
-        JsonConfigurationSection guiTranslation = Main.getPlugin().getTranslationConfig().getSection("gui", "knowledge");
-        return new Gui(Main.getPlugin(), guiTranslation.getString("title"), 5);
+        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("knowledge");
+        return new Gui(Main.getPlugin(), guiTranslation.get("title").getAsString(), 5);
     }
 }

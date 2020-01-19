@@ -10,7 +10,7 @@
       "title": "§eItemMods §7» §6Knowledge"
     },
     "main": {
-      "title": "§eItemMods §7» §6Main",
+      "title": "§eItemMods §6§l{0}",
       "reload": {
         "material": "PRISMARINE_CRYSTALS",
         "name": "§eReload plugin",
@@ -47,7 +47,7 @@
         "lore": [
           "",
           "§7Click to see all item templates",
-          "§7Coming soon..."
+          "§7Coming soon"
         ]
       },
       "blocktemplates": {
@@ -56,7 +56,7 @@
         "lore": [
           "",
           "§7Click to see all item templates",
-          "§7Coming soon..."
+          "§7Coming soon"
         ]
       }
     },
@@ -187,7 +187,10 @@
         "null": {
           "material": "BARRIER",
           "name": "§cNo item",
-          "lore": ["","§7Left click » Create a skull","§7Drag an item here to set it to the item"]
+          "lore": [
+            "§7Left click » Create a skull",
+            "§7Drag an item here to set it to the item"
+          ]
         }
       },
       "creator": {
@@ -199,7 +202,9 @@
         "null": {
           "material": "CHEST",
           "name": "§cNo item for the item creator",
-          "lore": ["","§7Set the item before trying to open the item creator!"]
+          "lore": [
+            "§7Set the item before trying to open the item creator!"
+          ]
         }
       },
       "get": {
@@ -216,13 +221,19 @@
         "yes": {
           "material": "ANVIL",
           "name": "§eRename",
-          "lore": ["§aTRUE","","§7Click to set it off"],
+          "lore": [
+            "§aTRUE",
+            "§7Click to set it off"
+          ],
           "success": "§7[§eItemMods§7] §aSuccessfully set rename to §atrue§a!"
         },
         "no": {
           "material": "ANVIL",
           "name": "§eRename",
-          "lore": ["§cFALSE","","§7Click to set it on"],
+          "lore": [
+            "§cFALSE",
+            "§7Click to set it on"
+          ],
           "success": "§7[§eItemMods§7] §aSuccessfully set rename to §cfalse§a!"
         }
       },
@@ -234,7 +245,7 @@
             "§aTRUE",
             "",
             "§7Click to set it off",
-            "§7Coming soon..."
+            "§7Coming soon"
           ],
           "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §atrue§a!"
         },
@@ -245,7 +256,7 @@
             "§cFALSE",
             "",
             "§7Click to set it on",
-            "§7Coming soon..."
+            "§7Coming soon"
           ],
           "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §cfalse§a!"
         }
@@ -253,15 +264,28 @@
       "armortype": {
         "material": "DIAMOND_CHESTPLATE",
         "name": "§eArmor type",
-        "lore": ["","§cComing soon..."],
+        "lore": [
+          ".§cComing soon"
+        ],
         "success": "§7[§eItemMods§7] §aSuccessfully set the armortype to §3{0}§a!"
+      },
+      "foodlevel": {
+        "yes": {
+          "material": "COOKED_BEEF",
+          "name": "§eFood level",
+          "lore": [
+            "§7{0}",
+            "",
+            "Left click »"
+          ]
+        }
       },
       "events": {
         "material": "ENDER_CHEST",
         "name": "§eEvents",
         "lore": [
           "",
-          "§7Coming soon..."
+          "§7Coming soon"
         ],
         "title": "§eItem #{1} §7» §6Events",
         "back": {
@@ -922,7 +946,7 @@
         "material": "EMERALD",
         "name": "§bInformation",
         "lore": [
-          "§7Click on the item above with ...",
+          "§7Click on the item above with ",
           "",
           "§7Left click »  + 1",
           "§7Shift + Left click »  + 5",
@@ -942,9 +966,7 @@
     "rename": "§7[§eItemMods§7] §cThis item cannot be renamed!"
   },
   "command": {
-    "base": {
       "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!",
       "noplayer": "§7[§eItemMods§7] §4This command is only for players!"
-    }
   }
 }
