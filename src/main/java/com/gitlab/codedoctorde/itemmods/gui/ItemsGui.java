@@ -89,7 +89,6 @@ public class ItemsGui {
                         }
                     }));
                 }
-                System.out.println(guiItems);
                 return guiItems.toArray(new GuiItem[0]);
             }
         }, new GuiEvent() {
