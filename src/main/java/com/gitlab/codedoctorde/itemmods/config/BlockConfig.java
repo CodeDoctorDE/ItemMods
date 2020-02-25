@@ -27,6 +27,7 @@ public class BlockConfig {
     private boolean move = false;
     private int gravity = 5;
     private int stable = 5;
+    private CustomBlockType customBlockType = CustomBlockType.SPAWNER;
     private BlockTemplate blockTemplate;
 
     public BlockConfig() {
@@ -217,5 +218,19 @@ public class BlockConfig {
         this.drop = drop;
     }
 
+    public BlockTemplate getBlockTemplate() {
+        return blockTemplate;
+    }
 
+    public void setBlockTemplate(BlockTemplate blockTemplate) {
+        this.blockTemplate = blockTemplate;
+    }
+
+    public CustomBlockType getCustomBlockType() {
+        return customBlockType;
+    }
+
+    public void setCustomBlockType(CustomBlockType customBlockType) {
+        this.customBlockType = customBlockType;
+    }
 }

@@ -63,7 +63,7 @@ public class CustomBlockListener implements Listener {
             return;
         event.getBlock().setType(Material.AIR);
         event.setCancelled(true);
-        if (event.getPlayer().getGameMode() != GameMode.CREATIVE && (!customBlock.getConfig().isDrop()) || (customBlock.getConfig().isDrop() && event.getBlock().getDrops().size() > 0)) {
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE && (!customBlock.getConfig().isDrop()) || (customBlock.getConfig().isDrop() && event.isDropItems())) {
             event.getBlock().getDrops().clear();
             event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), customBlock.getConfig().getItemStack());
         }

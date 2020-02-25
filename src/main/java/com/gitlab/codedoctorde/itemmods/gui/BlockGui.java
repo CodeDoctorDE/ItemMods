@@ -401,13 +401,21 @@ public class BlockGui {
                         }
                         if (event.getClick() != ClickType.LEFT)
                             createGui(backGui).open((Player) event.getWhoClicked());
-                    }
-                }));
+                }
+            }));
             getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     blockConfig.setDrop(!blockConfig.isDrop());
                     Main.getPlugin().saveBaseConfig();
+                    createGui(backGui).open((Player) event.getWhoClicked());
+                }
+            }));
+            getGuiItems().put(9 * 3 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase())).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    blockConfig.setCustomBlockType(blockConfig.getCustomBlockType().next());
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase()).get("set").getAsString());
                     createGui(backGui).open((Player) event.getWhoClicked());
                 }
             }));

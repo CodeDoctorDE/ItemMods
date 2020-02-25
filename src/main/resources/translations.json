@@ -1,9 +1,9 @@
 {
   "plugin": {
-    "loading": "§7[§eItemMods§7] §eLoading plugin...",
-    "loaded": "§7[§eItemMods§7] §aSuccessfully loaded plugin!",
-    "unloading": "§7[§eItemMods§7] §eUnloading plugin...",
-    "unloaded": "§7[§eItemMods§7] §aSuccessfully unloaded plugin!"
+    "loading": "§eItemMods §f» §eLoading plugin...",
+    "loaded": "§eItemMods §f» §aSuccessfully loaded plugin!",
+    "unloading": "§eItemMods §f» §eUnloading plugin...",
+    "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
   "gui": {
     "knowledge": {
@@ -15,7 +15,7 @@
         "material": "PRISMARINE_CRYSTALS",
         "name": "§eReload plugin",
         "lore": [],
-        "success": "§7[§eItemMods§7] §aSuccessfully reloaded the plugin!"
+        "success": "§eItemMods §f» §aSuccessfully reloaded the plugin!"
       },
       "items": {
         "material": "DIAMOND",
@@ -66,25 +66,25 @@
         "material": "BLAZE_ROD",
         "name": "§eFirst page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the first page!"
+        "already": "§eItemMods §f» §cYou are already on the first page!"
       },
       "previous": {
         "material": "ARROW",
         "name": "§ePrevious page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the first page!"
+        "already": "§eItemMods §f» §cYou are already on the first page!"
       },
       "next": {
         "material": "ARROW",
         "name": "§eNext page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the last page!"
+        "already": "§eItemMods §f» §cYou are already on the last page!"
       },
       "last": {
         "material": "BLAZE_ROD",
         "name": "§eLast page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the last page!"
+        "already": "§eItemMods §f» §cYou are already on the last page!"
       },
       "search": {
         "material": "COMPASS",
@@ -96,10 +96,10 @@
           "§7Right click » Reset search",
           "§7Drop » Refresh"
         ],
-        "message": "§7[§eItemMods§7] §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the search",
-        "reset": "§7[§eItemMods§7] §aYou successfully reset the filter!",
-        "refresh": "§7[§eItemMods§7] §aYou successfully refresh the list!"
+        "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+        "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+        "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
       },
       "create": {
         "material": "KNOWLEDGE_BOOK",
@@ -108,9 +108,9 @@
           "",
           "§7Click to create a new item"
         ],
-        "message": "§7[§eItemMods§7] §ePlease enter the item name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the creation!",
-        "success": "§7[§eItemMods§7] §aSuccessfully created the item {0}!"
+        "message": "§eItemMods §f» §ePlease enter the item name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
+        "success": "§eItemMods §f» §aSuccessfully created the item {0}!"
       },
       "item": {
         "material": "DIAMOND",
@@ -140,7 +140,7 @@
             "",
             "§7Yes, delete §3{0} §3#{1}§7!"
           ],
-          "success": "§7[§eItemMods§7] §aYou successfully delete the item §3{0} §3#{1}§a!"
+          "success": "§eItemMods §f» §aYou successfully delete the item §3{0} §3#{1}§a!"
         },
         "no": {
           "material": "RED_BANNER",
@@ -162,9 +162,9 @@
           "",
           "§7Click to set the name of the item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the name to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter the name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the name!"
+        "success": "§eItemMods §f» §aSuccessfully set the name to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the name!"
       },
       "displayname": {
         "material": "BOOK",
@@ -174,9 +174,9 @@
           "",
           "§7Click to set the display name of the item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the display name to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter the display name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the display name!"
+        "success": "§eItemMods §f» §aSuccessfully set the display name to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the display name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the display name!"
       },
       "back": {
         "material": "REDSTONE",
@@ -214,8 +214,8 @@
           "§7Left click » Open give gui",
           "§7Shift + Left click or Middle click » Give item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
-        "null": "§7[§eItemMods§7] §cThere is no item!"
+        "success": "§eItemMods §f» §aSuccessfully gave you the item!",
+        "null": "§eItemMods §f» §cThere is no item!"
       },
       "rename": {
         "yes": {
@@ -225,7 +225,7 @@
             "§aTRUE",
             "§7Click to set it off"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully set rename to §atrue§a!"
+          "success": "§eItemMods §f» §aSuccessfully set rename to §atrue§a!"
         },
         "no": {
           "material": "ANVIL",
@@ -234,7 +234,7 @@
             "§cFALSE",
             "§7Click to set it on"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully set rename to §cfalse§a!"
+          "success": "§eItemMods §f» §aSuccessfully set rename to §cfalse§a!"
         }
       },
       "bonemeal": {
@@ -247,7 +247,7 @@
             "§7Click to set it off",
             "§7Coming soon"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §atrue§a!"
+          "success": "§eItemMods §f» §aSuccessfully set bonemeal to §atrue§a!"
         },
         "no": {
           "material": "BONE_MEAL",
@@ -258,7 +258,7 @@
             "§7Click to set it on",
             "§7Coming soon"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully set bonemeal to §cfalse§a!"
+          "success": "§eItemMods §f» §aSuccessfully set bonemeal to §cfalse§a!"
         }
       },
       "armortype": {
@@ -267,7 +267,7 @@
         "lore": [
           ".§cComing soon"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the armortype to §3{0}§a!"
+        "success": "§eItemMods §f» §aSuccessfully set the armortype to §3{0}§a!"
       },
       "foodlevel": {
         "yes": {
@@ -303,12 +303,12 @@
             "§7Right click » Remove latest command",
             "§7Shift + Right click » Remove all commands"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
-          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
-          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "success": "§eItemMods §f» §aSuccessfully created a new event command!",
+          "message": "§eItemMods §f» §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§eItemMods §f» §aYou successfully cancel it!",
           "delimiter": "\n§3",
-          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
-          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
+          "remove": "§eItemMods §f» §aYou successfully removed the last command!",
+          "clear": "§eItemMods §f» §aYou successfully cleared the commands!"
         },
         "chestplate": {
           "material": "DIAMOND_CHESTPLATE",
@@ -320,12 +320,12 @@
             "§7Right click » Remove latest command",
             "§7Shift + Right click » Remove all commands"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
-          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your chestplate! §3{0} §eis the player name, §3{1} §ethe player uuid!",
-          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "success": "§eItemMods §f» §aSuccessfully created a new event command!",
+          "message": "§eItemMods §f» §ePlease enter a command which will perform when you have this item as your chestplate! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§eItemMods §f» §aYou successfully cancel it!",
           "delimiter": "\n§3",
-          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
-          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
+          "remove": "§eItemMods §f» §aYou successfully removed the last command!",
+          "clear": "§eItemMods §f» §aYou successfully cleared the commands!"
         },
         "leggings": {
           "material": "DIAMOND_HELMET",
@@ -337,12 +337,12 @@
             "§7Right click » Remove latest command",
             "§7Shift + Right click » Remove all commands"
           ],
-          "success": "§7[§eItemMods§7] §aSuccessfully created a new event command!",
-          "message": "§7[§eItemMods§7] §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
-          "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
+          "success": "§eItemMods §f» §aSuccessfully created a new event command!",
+          "message": "§eItemMods §f» §ePlease enter a command which will perform when you have this item as your helmet! §3{0} §eis the player name, §3{1} §ethe player uuid!",
+          "cancel": "§eItemMods §f» §aYou successfully cancel it!",
           "delimiter": "\n§3",
-          "remove": "§7[§eItemMods§7] §aYou successfully removed the last command!",
-          "clear": "§7[§eItemMods§7] §aYou successfully cleared the commands!"
+          "remove": "§eItemMods §f» §aYou successfully removed the last command!",
+          "clear": "§eItemMods §f» §aYou successfully cleared the commands!"
         }
       }
     },
@@ -357,7 +357,7 @@
         "material": "LIME_DYE",
         "name": "§eSubmit",
         "lore": [],
-        "success": "§7[§eItemMods§7] §aSuccessfully submit the item!"
+        "success": "§eItemMods §f» §aSuccessfully submit the item!"
       },
       "placeholder": {
         "material": "BLACK_STAINED_GLASS_PANE",
@@ -373,10 +373,10 @@
           "§7Left click » Set display name",
           "§7Right click » Remove display name"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the display name to §3{0}§a!",
-        "remove": "§7[§eItemMods§7] §aSuccessfully removed the display name!",
-        "message": "§7[§eItemMods§7] §ePlease enter the displayname! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the displayname!"
+        "success": "§eItemMods §f» §aSuccessfully set the display name to §3{0}§a!",
+        "remove": "§eItemMods §f» §aSuccessfully removed the display name!",
+        "message": "§eItemMods §f» §ePlease enter the displayname! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the displayname!"
       },
       "lore": {
         "material": "BOOK",
@@ -389,14 +389,14 @@
           "§7Shift + Right click » Remove all lines",
           "§7Drop » Get lore"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully add the lore line §3{0}§a!",
-        "remove": "§7[§eItemMods§7] §aSuccessfully removed latest lore line!",
-        "empty": "§7[§eItemMods§7] §aSuccessfully add a empty lore line!",
-        "message": "§7[§eItemMods§7] §ePlease enter a new lore line! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel it!",
-        "get": "§7[§eItemMods§7] §eThe lore: \n§5{0}",
+        "success": "§eItemMods §f» §aSuccessfully add the lore line §3{0}§a!",
+        "remove": "§eItemMods §f» §aSuccessfully removed latest lore line!",
+        "empty": "§eItemMods §f» §aSuccessfully add a empty lore line!",
+        "message": "§eItemMods §f» §ePlease enter a new lore line! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel it!",
+        "get": "§eItemMods §f» §eThe lore: \n§5{0}",
         "delimiter": "§7 \r\n§5",
-        "null": "§7[§eItemMods§7] §cThere is no lore!"
+        "null": "§eItemMods §f» §cThere is no lore!"
       },
       "amount": {
         "material": "DIRT",
@@ -410,7 +410,7 @@
           "§7Shift + Right click » - 5",
           "§7Drop » = 1"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the amount to §3{0}§a!"
+        "success": "§eItemMods §f» §aSuccessfully set the amount to §3{0}§a!"
       },
       "custommodeldata": {
         "unavailable": {
@@ -444,7 +444,7 @@
             "§7Click to add!"
           ]
         },
-        "success": "§7[§eItemMods§7] §aSuccessfully set the custom model data to §3{0}§a!"
+        "success": "§eItemMods §f» §aSuccessfully set the custom model data to §3{0}§a!"
       }
     },
     "blocks": {
@@ -453,25 +453,25 @@
         "material": "BLAZE_ROD",
         "name": "§eFirst page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the first page!"
+        "already": "§eItemMods §f» §cYou are already on the first page!"
       },
       "previous": {
         "material": "ARROW",
         "name": "§ePrevious page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the first page!"
+        "already": "§eItemMods §f» §cYou are already on the first page!"
       },
       "next": {
         "material": "ARROW",
         "name": "§eNext page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the last page!"
+        "already": "§eItemMods §f» §cYou are already on the last page!"
       },
       "last": {
         "material": "BLAZE_ROD",
         "name": "§eLast page",
         "lore": [],
-        "already": "§7[§eItemMods§7] §cYou are already on the last page!"
+        "already": "§eItemMods §f» §cYou are already on the last page!"
       },
       "search": {
         "material": "COMPASS",
@@ -483,10 +483,10 @@
           "§7Right click » Reset search",
           "§7Drop » Refresh"
         ],
-        "message": "§7[§eItemMods§7] §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the search",
-        "reset": "§7[§eItemMods§7] §aYou successfully reset the filter!",
-        "refresh": "§7[§eItemMods§7] §aYou successfully refresh the list!"
+        "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+        "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+        "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
       },
       "create": {
         "material": "KNOWLEDGE_BOOK",
@@ -495,9 +495,9 @@
           "",
           "§7Click to create a new block"
         ],
-        "message": "§7[§eItemMods§7] §ePlease enter the block name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the creation!",
-        "success": "§7[§eItemMods§7] §aSuccessfully created the block {0}!"
+        "message": "§eItemMods §f» §ePlease enter the block name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
+        "success": "§eItemMods §f» §aSuccessfully created the block {0}!"
       },
       "block": {
         "material": "GRASS_BLOCK",
@@ -527,7 +527,7 @@
             "",
             "§7Yes, delete §3{0} §3#{1}§7!"
           ],
-          "success": "§7[§eItemMods§7] §aYou successfully delete the block §3{0} §3#{1}§a!"
+          "success": "§eItemMods §f» §aYou successfully delete the block §3{0} §3#{1}§a!"
         },
         "no": {
           "material": "RED_BANNER",
@@ -554,9 +554,9 @@
           "",
           "§7Click to set the name of the item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the name to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter the name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the name!"
+        "success": "§eItemMods §f» §aSuccessfully set the name to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the name!"
       },
       "displayname": {
         "material": "BOOK",
@@ -566,9 +566,9 @@
           "",
           "§7Click to set the display name of the item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the display name to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter the display name! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the display name!"
+        "success": "§eItemMods §f» §aSuccessfully set the display name to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the display name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the display name!"
       },
       "tag": {
         "material": "ANVIL",
@@ -578,9 +578,9 @@
           "",
           "§7Click to set the tag of the item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully set the tag to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter the tag! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the tag!"
+        "success": "§eItemMods §f» §aSuccessfully set the tag to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the tag! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the tag!"
       },
       "helmet": {
         "view": {
@@ -803,10 +803,10 @@
             "§7Drop » Remove block"
           ]
         },
-        "success": "§7[§eItemMods§7] §aSuccessfully set the block§a!",
-        "remove": "§7[§eItemMods§7] §aSuccessfully removed the block!",
-        "message": "§7[§eItemMods§7] §ePlease break the block! Cancel with a punch in the air!",
-        "cancel": "§7[§eItemMods§7] §cYou successfully cancel the block input!"
+        "success": "§eItemMods §f» §aSuccessfully set the block§a!",
+        "remove": "§eItemMods §f» §aSuccessfully removed the block!",
+        "message": "§eItemMods §f» §ePlease break the block! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the block input!"
       },
       "get": {
         "material": "GOLD_NUGGET",
@@ -815,8 +815,8 @@
           "§7Open give gui",
           "§7Middle click » Give item"
         ],
-        "success": "§7[§eItemMods§7] §aSuccessfully gave you the item!",
-        "null": "§7[§eItemMods§7] §cThere is no item!"
+        "success": "§eItemMods §f» §aSuccessfully gave you the item!",
+        "null": "§eItemMods §f» §cThere is no item!"
       },
       "marker": {
         "yes": {
@@ -927,12 +927,44 @@
             "§7Drop » Toggle visibility"
           ]
         },
-        "success": "§7[§eItemMods§7] §aSuccessfully set the custom name to §3{0}§a!",
-        "message": "§7[§eItemMods§7] §ePlease enter a custom name for the armor stand!",
-        "cancel": "§7[§eItemMods§7] §aYou successfully cancel it!",
-        "remove": "§7[§eItemMods§7] §aYou successfully removed the custom name!",
-        "on": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility on!",
-        "off": "§7[§eItemMods§7] §aYou successfully turned the custom name visibility off!"
+        "success": "§eItemMods §f» §aSuccessfully set the custom name to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter a custom name for the armor stand!",
+        "cancel": "§eItemMods §f» §aYou successfully cancel it!",
+        "remove": "§eItemMods §f» §aYou successfully removed the custom name!",
+        "on": "§eItemMods §f» §aYou successfully turned the custom name visibility on!",
+        "off": "§eItemMods §f» §aYou successfully turned the custom name visibility off!"
+      },
+      "type": {
+        "spawner": {
+          "name": "§eCustom block type",
+          "material": "BEACON",
+          "lore": [
+            "§7Head",
+            "§7Armor Stand",
+            "§6> Spawner"
+          ],
+          "set": "§eItemMods §f» §aSuccessfully set the custom block type to spawner!"
+        },
+        "armor_stand": {
+          "name": "§eCustom block type",
+          "material": "BEACON",
+          "lore": [
+            "§7Head",
+            "§6> Armor Stand",
+            "§7Spawner"
+          ],
+          "set": "§eItemMods §f» §aSuccessfully set the custom block type to armor stand!"
+        },
+        "head": {
+          "name": "§eCustom block type",
+          "material": "BEACON",
+          "lore": [
+            "§6> Head",
+            "§7Armor Stand",
+            "§7Spawner"
+          ],
+          "set": "§eItemMods §f» §aSuccessfully set the custom block type to head!"
+        }
       }
     },
     "give": {
@@ -963,10 +995,10 @@
     }
   },
   "event": {
-    "rename": "§7[§eItemMods§7] §cThis item cannot be renamed!"
+    "rename": "§eItemMods §f» §cThis item cannot be renamed!"
   },
   "command": {
-      "usage": "§7[§eItemMods§7] §cUsage: §3/itemmods§c!",
-      "noplayer": "§7[§eItemMods§7] §4This command is only for players!"
+    "usage": "§eItemMods §f» §cUsage: §3/itemmods§c!",
+    "noplayer": "§eItemMods §f» §4This command is only for players!"
   }
 }
