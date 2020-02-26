@@ -1,7 +1,9 @@
 package com.gitlab.codedoctorde.itemmods.api;
 
+import com.gitlab.codedoctorde.api.config.database.BlobConfig;
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.itemmods.main.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -16,6 +18,7 @@ import java.util.Objects;
 
 public class CustomBlockManager {
     private List<BlockConfig> blockConfigs;
+    private BlobConfig blockDataConfig;
 
     public CustomBlockManager(List<BlockConfig> blockConfigs) {
         this.blockConfigs = blockConfigs;
@@ -54,6 +57,18 @@ public class CustomBlockManager {
         return blockConfigs;
     }
 
+    public static Location stringToLocation(final String location) {
+        String[] locationArray = location.split(":");
+        return new Location(Bukkit.getWorld(locationArray[0]), Double.parseDouble(locationArray[1]),
+                Double.parseDouble(locationArray[2]),
+                Double.parseDouble(locationArray[3]));
+    }
+
+    public static String locationToString(final Location location) {
+        if (location == null) return "";
+        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
+    }
+
     /**
      * @param location The location where the custom block will be placed!
      * @param block    The block config for the custom block
@@ -84,6 +99,9 @@ public class CustomBlockManager {
         armorStand.setVisible(!block.isInvisible());
         armorStand.getScoreboardTags().add(block.getTag());
         armorStand.setGravity(false);
+
+
         return true;
     }
+
 }

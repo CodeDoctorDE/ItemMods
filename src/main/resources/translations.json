@@ -546,6 +546,11 @@
         "name": "§eBack",
         "lore": []
       },
+      "placeholder": {
+        "material": "BLACK_STAINED_GLASS_PANE",
+        "name": " ",
+        "lore": []
+      },
       "name": {
         "material": "NAME_TAG",
         "name": "§eName",
