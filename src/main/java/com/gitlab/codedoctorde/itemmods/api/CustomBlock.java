@@ -41,7 +41,7 @@ public class CustomBlock {
 
     public JsonObject save() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add(jsonObject.get("type").getAsString(), blockTemplate.getClass().name);
+        jsonObject.addProperty(jsonObject.get("type").getAsString(), blockTemplate.getClass().getCanonicalName());
         jsonObject.add("blocktemplate", blockTemplate.save(location, this));
         return jsonObject;
     }
