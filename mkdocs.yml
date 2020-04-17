@@ -1,6 +1,6 @@
 site_name: ItemMods
-site_url: https://codedoctorde.gitlab.io/itemmods
-repo_url: https://gitlab.com/codedoctorde/itemmods/
+site_url: https://codedoctorde.github.io/itemmods/index.html
+repo_url: https://github.com/codedoctorde/itemmods/
 theme: material
 markdown_extensions:
   - codehilite

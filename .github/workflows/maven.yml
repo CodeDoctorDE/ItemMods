@@ -21,6 +21,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - uses: actions/upload-artifact@v1
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           name: "ItemMods.jar"
           path: "target/ItemMods.jar"
