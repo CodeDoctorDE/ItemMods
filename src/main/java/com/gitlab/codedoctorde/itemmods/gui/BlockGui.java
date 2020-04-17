@@ -8,10 +8,11 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
+import com.gitlab.codedoctorde.api.ui.template.ItemCreatorGui;
+import com.gitlab.codedoctorde.api.ui.template.events.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.itemmods.config.CustomBlockType;
-import com.gitlab.codedoctorde.itemmods.main.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.itemmods.main.Main;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
@@ -140,14 +141,14 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         if (blockConfig.getItemStack() == null)
                             return;
-                        new ItemCreatorGui(blockConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                        new ItemCreatorGui(Main.getPlugin(), blockConfig.getItemStack(), new ItemCreatorSubmitEvent() {
                             @Override
                             public void onEvent(ItemStack itemStack) {
                                 blockConfig.setItemStack(itemStack);
                                 Main.getPlugin().saveBaseConfig();
                                 createGui(backGui).open((Player) event.getWhoClicked());
                             }
-                        }).createGui(gui).open((Player) event.getWhoClicked());
+                        }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
                 }));
                 if (blockConfig.getCustomBlockType() != CustomBlockType.HEAD) {

@@ -6,9 +6,10 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
+import com.gitlab.codedoctorde.api.ui.template.ItemCreatorGui;
+import com.gitlab.codedoctorde.api.ui.template.events.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.gitlab.codedoctorde.itemmods.config.ItemConfig;
-import com.gitlab.codedoctorde.itemmods.main.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.itemmods.main.Main;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
@@ -112,14 +113,14 @@ public class ItemGui {
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (itemConfig.getItemStack() == null)
                         return;
-                    new ItemCreatorGui(itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                    new ItemCreatorGui(Main.getPlugin(), itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
                         @Override
                         public void onEvent(ItemStack itemStack) {
                             itemConfig.setItemStack(itemStack);
                             Main.getPlugin().saveBaseConfig();
                             createGui(backGui).open((Player) event.getWhoClicked());
-                            }
-                        }).createGui(gui).open((Player) event.getWhoClicked());
+                        }
+                    }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
                 }));
             getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(itemConfig.isCanRename() ? guiTranslation.getAsJsonObject("rename").getAsJsonObject("yes") : guiTranslation.getAsJsonObject("rename").getAsJsonObject("no")).build(), new GuiItemEvent() {
