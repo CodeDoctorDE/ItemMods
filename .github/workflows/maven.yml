@@ -35,9 +35,7 @@ jobs:
           java-version: 1.8
       - name: "Install mkdocs"
         run: |
-          sudo pip install mkdocs
           sudo pip install mkdocs-material
-          sudo pip install pygments
       - name: "Build pages"
         run: |
           mv assets docs
