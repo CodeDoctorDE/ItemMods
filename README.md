@@ -1,4 +1,5 @@
 # ItemMods
+![Java CI with Maven](https://github.com/CodeDoctorDE/ItemMods/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 ![Title Logo](./assets/ItemMods.png)
 
