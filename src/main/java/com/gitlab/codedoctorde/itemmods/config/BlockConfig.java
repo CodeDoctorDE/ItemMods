@@ -1,5 +1,6 @@
 package com.gitlab.codedoctorde.itemmods.config;
 
+import com.gitlab.codedoctorde.itemmods.api.CustomBlockTemplate;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,7 +28,7 @@ public class BlockConfig {
     private int gravity = 5;
     private int stable = 5;
     private CustomBlockType customBlockType = CustomBlockType.SPAWNER;
-    private BlockTemplate blockTemplate;
+    private CustomBlockTemplate blockTemplate;
 
     public BlockConfig() {
 
@@ -217,11 +218,11 @@ public class BlockConfig {
         this.drop = drop;
     }
 
-    public BlockTemplate getBlockTemplate() {
+    public CustomBlockTemplate getBlockTemplate() {
         return blockTemplate;
     }
 
-    public void setBlockTemplate(BlockTemplate blockTemplate) {
+    public void setBlockTemplate(CustomBlockTemplate blockTemplate) {
         this.blockTemplate = blockTemplate;
     }
 
