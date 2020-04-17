@@ -1,8 +1,7 @@
 package com.gitlab.codedoctorde.itemmods.api;
 
 import com.gitlab.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.itemmods.main.BlockTemplate;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -11,7 +10,8 @@ public class CustomBlock {
     private final Location location;
     private final BlockConfig config;
     private final ArmorStand armorStand;
-    private BlockTemplate blockTemplate;
+    private JsonElement jsonElement;
+    private BlockConfig blockConfig;
 
     public CustomBlock(BlockConfig config, Location location, ArmorStand armorStand) {
         this.location = location;
@@ -37,17 +37,5 @@ public class CustomBlock {
 
     public Block getBlock() {
         return location.getBlock();
-    }
-
-    public JsonObject save() {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(jsonObject.get("type").getAsString(), blockTemplate.getClass().getCanonicalName());
-        jsonObject.add("blocktemplate", blockTemplate.save(location, this));
-        return jsonObject;
-    }
-
-    public void load(JsonObject jsonObject) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        blockTemplate = (BlockTemplate) Class.forName(jsonObject.get("type").getAsString()).newInstance();
-        blockTemplate.load(jsonObject.get("blocktemplate"), location, this);
     }
 }

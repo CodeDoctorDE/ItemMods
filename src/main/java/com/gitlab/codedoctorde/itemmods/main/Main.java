@@ -21,7 +21,10 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
@@ -55,11 +58,7 @@ public class Main extends JavaPlugin {
         api = new CodeDoctorAPI(this);
         translationConfig = new ObjectConfig(gson, new File(getDataFolder(), "translations.json"));
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
-        try {
-            translationConfig.save();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
 
         try {
