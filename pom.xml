@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gitlab.codedoctorde</groupId>
+    <groupId>com.github.codedoctorde</groupId>
     <artifactId>ItemMods</artifactId>
     <version>1.1.6-SNAPSHOT</version>
     <properties>
@@ -17,29 +17,6 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
-            <plugin>
-                <groupId>com.speedment.enterprise</groupId>
-                <artifactId>speedment-enterprise-maven-plugin</artifactId>
-                <version>${speedment.version}</version>
-
-                <configuration>
-                    <components>
-                        <component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
-                    </components>
-                    <appName>${project.artifactId}</appName>
-                    <packageName>${project.groupId}</packageName>
-                </configuration>
-
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                        <scope>runtime</scope>
-
-                    </dependency>
-                </dependencies>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -105,11 +82,11 @@
     <distributionManagement>
         <repository>
             <id>itemmods</id>
-            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+            <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
         </repository>
         <snapshotRepository>
             <id>itemmods</id>
-            <url>https://gitlab.com/api/v4/projects/15122206/packages/maven</url>
+            <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
         </snapshotRepository>
     </distributionManagement>
 
