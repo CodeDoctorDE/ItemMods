@@ -6,7 +6,7 @@
 
     <groupId>com.github.codedoctorde</groupId>
     <artifactId>ItemMods</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -81,11 +81,13 @@
     </dependencies>
     <distributionManagement>
         <repository>
-            <id>itemmods</id>
+            <id>github</id>
+            <name>GitHub CodeDoctorDE Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
         </repository>
         <snapshotRepository>
-            <id>itemmods</id>
+            <id>github</id>
+            <name>GitHub CodeDoctorDE Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
         </snapshotRepository>
     </distributionManagement>

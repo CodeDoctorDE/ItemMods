@@ -19,7 +19,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn clean package deploy
+        run: mvn clean package
+      - name: Deploy package
+        run: mvn deploy
       - uses: actions/upload-artifact@v1
         with:
           name: "ItemMods.jar"
