@@ -19,9 +19,13 @@ public interface CustomItemTemplate {
 
     String save(Location location, CustomBlock blockConfig);
 
-    void onBlockBreak(CustomBlock blockConfig, BlockBreakEvent event);
+    void onBlockBreak(CustomBlock block, BlockBreakEvent event);
 
-    void onBlockPlace(CustomBlock blockConfig, BlockPlaceEvent event);
+    void onBlockPlace(CustomBlock block, BlockPlaceEvent event);
 
-    void onBlockInteract(CustomBlock blockConfig, PlayerInteractEvent event);
+    void onBlockInteract(CustomBlock block, PlayerInteractEvent event);
+
+    void onEnable(CustomBlock block);
+
+    void onDisable(CustomBlock block);
 }

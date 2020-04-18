@@ -25,6 +25,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
@@ -38,6 +41,7 @@ public class Main extends JavaPlugin {
     private GameStateManager gameStateManager;
     private CustomBlockManager customBlockManager;
     private ObjectConfig translationConfig;
+    private Connection connection;
 
     public static Main getPlugin() {
         return plugin;
@@ -79,6 +83,11 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CustomItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
         customBlockManager = new CustomBlockManager(mainConfig.getBlocks());
+        try {
+            connect();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
     }
@@ -102,6 +111,19 @@ public class Main extends JavaPlugin {
             ex.printStackTrace();
         }
 
+    }
+
+    public void connect() throws ClassNotFoundException, SQLException {
+        if (connection != null && !connection.isClosed()) {
+            return;
+        }
+
+        synchronized (this) {
+            if (connection != null && !connection.isClosed() || !mainConfig.getDatabaseConfig().isActive()) return;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://" + mainConfig.getDatabaseConfig().getHost() + ":" + mainConfig.getDatabaseConfig().getPort() + "/" + mainConfig.getDatabaseConfig().getDatabase(),
+                    mainConfig.getDatabaseConfig().getUsername(), mainConfig.getDatabaseConfig().getPassword());
+        }
     }
 
     public BaseCommand getBaseCommand() {

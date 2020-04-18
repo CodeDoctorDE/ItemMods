@@ -6,8 +6,83 @@
     "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
   "gui": {
+    "database": {
+      "back": {
+        "material": "REDSTONE",
+        "name": "§eBack",
+        "lore": []
+      },
+      "host": {
+        "material": "END_CRYSTAL",
+        "name": "§eHost",
+        "lore": [
+          "§7{0}",
+          "",
+          "§7Click here to set it!"
+        ]
+      },
+      "port": {
+        "material": "SUNFLOWER",
+        "name": "§ePort",
+        "lore": [
+          "§7{0}",
+          "",
+          "§7Click here to set it!"
+        ]
+      },
+      "database": {
+        "material": "DAYLIGHT_DETECTOR",
+        "name": "§eDatabase",
+        "lore": [
+          "§7{0}",
+          "",
+          "§7Click here to set it!"
+        ]
+      },
+      "username": {
+        "material": "PLAYER_HEAD",
+        "name": "§eUsername",
+        "lore": [
+          "§7{0}",
+          "",
+          "§7Click here to set it!"
+        ]
+      },
+      "password": {
+        "material": "ANVIL",
+        "name": "§ePassword",
+        "lore": [
+          "§7{0}",
+          "",
+          "§7Click here to set it!"
+        ],
+        "placeholder": "*"
+      },
+      "active": {
+        "yes": {
+          "material": "GREEN_BANNER",
+          "name": "§aActive",
+          "lore": [
+            "§7{0}",
+            "",
+            "§7Click here to set it!"
+          ],
+          "placeholder": "*"
+        }
+      }
+    },
     "knowledge": {
-      "title": "§eItemMods §7» §6Knowledge"
+      "title": "§eItemMods §7» §6Knowledge",
+      "comingsoon": {
+        "material": "BARRIER",
+        "name": "§cComing soon",
+        "lore": [
+          "",
+          "§7You need the permission",
+          "§7itemmods.admin",
+          "§7to open the control panel!"
+        ]
+      }
     },
     "main": {
       "title": "§eItemMods §6§l{0}",

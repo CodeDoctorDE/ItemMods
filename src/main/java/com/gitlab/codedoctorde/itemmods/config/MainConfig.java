@@ -6,6 +6,7 @@ import java.util.List;
 public class MainConfig {
     private List<ItemConfig> items = new ArrayList<>();
     private List<BlockConfig> blocks = new ArrayList<>();
+    private DatabaseConfig databaseConfig = new DatabaseConfig();
 
     public MainConfig() {
 
@@ -17,5 +18,9 @@ public class MainConfig {
 
     public List<BlockConfig> getBlocks() {
         return blocks;
+    }
+
+    public DatabaseConfig getDatabaseConfig() {
+        return databaseConfig;
     }
 }

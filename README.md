@@ -13,12 +13,12 @@
 
 ### Item GUI
 
-![New GUI](assets/item_new_page.gif)
+![New GUI](./assets/item_new_page.gif)
 ![Item-Settings GUI](./assets/item_settings_page.gif)
 
 ### Custom Blocks
 
-![Blocks](assets/Blocks.gif)
+![Blocks](./assets/Blocks.gif)
 
 ## Features
 

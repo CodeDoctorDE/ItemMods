@@ -8,12 +8,38 @@
     <artifactId>ItemMods</artifactId>
     <version>1.1.6-SNAPSHOT</version>
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <oracle.version>19.3.0.0</oracle.version>
+        <speedment.version>3.2.9</speedment.version>
     </properties>
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>com.speedment.enterprise</groupId>
+                <artifactId>speedment-enterprise-maven-plugin</artifactId>
+                <version>${speedment.version}</version>
+
+                <configuration>
+                    <components>
+                        <component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
+                    </components>
+                    <appName>${project.artifactId}</appName>
+                    <packageName>${project.groupId}</packageName>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                        <scope>runtime</scope>
+
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -50,7 +76,20 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>https://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>speedment-enterprise</id>
+            <name>Speedment Enterprise Repositories</name>
+            <url>https://repo.speedment.com/nexus/content/repositories/releases/</url>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
