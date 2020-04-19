@@ -91,6 +91,4 @@
             <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
         </snapshotRepository>
     </distributionManagement>
-
-
 </project>

@@ -10,7 +10,7 @@ public class KnowledgeGui {
     public Gui createGui() {
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("knowledge");
         return new Gui(Main.getPlugin(), guiTranslation.get("title").getAsString(), 5) {{
-            getGuiItems().put(4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("comingsoon"))));
+            getGuiItems().put(9 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("comingsoon"))));
         }};
     }
 }
