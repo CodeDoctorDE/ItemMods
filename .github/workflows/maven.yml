@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - name: Deploy package
-        run: mvn deploy
+        run: mvn -B deploy
       - uses: actions/upload-artifact@v1
         with:
           name: "ItemMods.jar"
