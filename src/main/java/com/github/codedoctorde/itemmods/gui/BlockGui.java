@@ -32,7 +32,7 @@ public class BlockGui {
         this.current = current;
     }
 
-    public Gui createGui(Gui backGui) {
+    public Gui createGui() {
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("block");
         BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(current);
         return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), current), 6, new GuiEvent() {
@@ -45,7 +45,7 @@ public class BlockGui {
                 getGuiItems().put(9 * 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        backGui.open((Player) event.getWhoClicked());
+                        new BlocksGui().createGui()[0].open((Player) event.getWhoClicked());
                     }
                 }));
 
@@ -60,7 +60,7 @@ public class BlockGui {
                                 blockConfig.setName(output);
                                 Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("name").get("success").getAsString(), output));
-                                createGui(backGui).open(player);
+                                createGui().open(player);
                             }
 
                             @Override
@@ -82,13 +82,13 @@ public class BlockGui {
                                 blockConfig.setDisplayName(output);
                                 Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("displayname").get("success").getAsString(), output));
-                                createGui(backGui).open(player);
+                                createGui().open(player);
                             }
 
                             @Override
                             public void onCancel(Player player) {
                                 player.sendMessage(guiTranslation.getAsJsonObject("displayname").get("cancel").getAsString());
-                                createGui(backGui).open(player);
+                                createGui().open(player);
                             }
                         });
                     }
@@ -104,7 +104,7 @@ public class BlockGui {
                                 blockConfig.setTag(output);
                                 Main.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
-                                createGui(backGui).open(player);
+                                createGui().open(player);
                             }
 
                             @Override
@@ -126,13 +126,13 @@ public class BlockGui {
                         if (change.getType() == Material.AIR && blockConfig.getItemStack() == null) {
                             blockConfig.setItemStack(new ItemStack(Material.CARROT_ON_A_STICK));
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
 
                         } else {
                             blockConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }
                 }));
@@ -146,7 +146,7 @@ public class BlockGui {
                             public void onEvent(ItemStack itemStack) {
                                 blockConfig.setItemStack(itemStack);
                                 Main.getPlugin().saveBaseConfig();
-                                createGui(backGui).open((Player) event.getWhoClicked());
+                                createGui().open((Player) event.getWhoClicked());
                             }
                         }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
@@ -157,7 +157,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("view")).build(), new GuiItemEvent() {
@@ -165,7 +165,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("view")).build(), new GuiItemEvent() {
@@ -173,7 +173,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
@@ -181,7 +181,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
@@ -189,7 +189,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
@@ -197,7 +197,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("baseplate").getAsJsonObject("" + ((blockConfig.isBasePlate()) ? "yes" : "no"))).build(), new GuiItemEvent() {
@@ -205,7 +205,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setBasePlate(!blockConfig.isBasePlate());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 3 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invisible").getAsJsonObject("" + ((blockConfig.isInvisible()) ? "yes" : "no"))).build(), new GuiItemEvent() {
@@ -213,7 +213,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setInvisible(!blockConfig.isInvisible());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("small").getAsJsonObject("" + ((blockConfig.isSmall()) ? "yes" : "no"))).build(), new GuiItemEvent() {
@@ -221,7 +221,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setSmall(!blockConfig.isSmall());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 2 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("marker").getAsJsonObject(blockConfig.isMarker() ? "yes" : "no")).build(), new GuiItemEvent() {
@@ -229,7 +229,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setMarker(!blockConfig.isMarker());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invulnerable").getAsJsonObject(blockConfig.isInvulnerable() ? "yes" : "no")).build(), new GuiItemEvent() {
@@ -237,7 +237,7 @@ public class BlockGui {
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             blockConfig.setInvulnerable(!blockConfig.isInvulnerable());
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4, new GuiItem((blockConfig.getHelmet() != null) ? blockConfig.getHelmet() : new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -251,7 +251,7 @@ public class BlockGui {
                             blockConfig.setHelmet((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 1, new GuiItem((blockConfig.getChestplate() != null) ? blockConfig.getChestplate() : new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -265,7 +265,7 @@ public class BlockGui {
                             blockConfig.setChestplate((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 2, new GuiItem((blockConfig.getLeggings() != null) ? blockConfig.getLeggings() : new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -279,7 +279,7 @@ public class BlockGui {
                             blockConfig.setLeggings((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 3, new GuiItem((blockConfig.getBoots() != null) ? blockConfig.getBoots() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -293,7 +293,7 @@ public class BlockGui {
                             blockConfig.setBoots((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 4, new GuiItem((blockConfig.getMainHand() != null) ? blockConfig.getMainHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -307,7 +307,7 @@ public class BlockGui {
                             blockConfig.setMainHand((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 5, new GuiItem((blockConfig.getOffHand() != null) ? blockConfig.getOffHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -321,7 +321,7 @@ public class BlockGui {
                             blockConfig.setOffHand((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                     getGuiItems().put(9 * 4 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("customname").getAsJsonObject(blockConfig.isCustomNameVisible() ? "visible" : "invisible")).format(blockConfig.getCustomName()).build(), new GuiItemEvent() {
@@ -338,7 +338,7 @@ public class BlockGui {
                                             blockConfig.setCustomName(output);
                                             Main.getPlugin().saveBaseConfig();
                                             event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("customname").get("success").getAsString(), output));
-                                            createGui(backGui).open(player);
+                                            createGui().open(player);
                                         }
 
                                         @Override
@@ -358,7 +358,7 @@ public class BlockGui {
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get(blockConfig.isCustomNameVisible() ? "on" : "off").getAsString());
                             }
                             if (event.getClick() != ClickType.LEFT)
-                                createGui(backGui).open((Player) event.getWhoClicked());
+                                createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                 }
@@ -375,7 +375,7 @@ public class BlockGui {
                                         blockConfig.setBlock(output.getBlockData());
                                         Main.getPlugin().saveBaseConfig();
                                         player.sendMessage(guiTranslation.getAsJsonObject("block").get("success").getAsString());
-                                        createGui(backGui).open(player);
+                                        createGui().open(player);
                                     }
 
                                     @Override
@@ -413,7 +413,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setDrop(!blockConfig.isDrop());
                         Main.getPlugin().saveBaseConfig();
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        createGui().open((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase())).build(), new GuiItemEvent() {
@@ -421,7 +421,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setCustomBlockType(blockConfig.getCustomBlockType().next());
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase()).get("set").getAsString());
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                        createGui().open((Player) event.getWhoClicked());
                     }
                 }));
                 GuiItem placeholder = new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("placeholder")).build());

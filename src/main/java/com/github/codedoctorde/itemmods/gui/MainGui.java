@@ -35,13 +35,13 @@ public class MainGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
-                    new ItemsGui().createGui(gui)[0].open(player);
+                    new ItemsGui().createGui()[0].open(player);
                 }
             }));
             getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("blocks")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new BlocksGui().createGui(gui)[0].open((Player) event.getWhoClicked());
+                    new BlocksGui().createGui()[0].open((Player) event.getWhoClicked());
                 }
             }));
             getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("knowledge")).build(), new GuiItemEvent() {

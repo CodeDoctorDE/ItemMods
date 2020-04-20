@@ -4,6 +4,9 @@ import com.github.codedoctorde.itemmods.api.CustomBlockTemplate;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BlockConfig {
     private String name;
     private String tag = "";
@@ -29,6 +32,7 @@ public class BlockConfig {
     private int stable = 5;
     private CustomBlockType customBlockType = CustomBlockType.SPAWNER;
     private CustomBlockTemplate blockTemplate;
+    private List<DropConfig> drops = new ArrayList<>();
 
     public BlockConfig() {
 
@@ -232,5 +236,9 @@ public class BlockConfig {
 
     public void setCustomBlockType(CustomBlockType customBlockType) {
         this.customBlockType = customBlockType;
+    }
+
+    public List<DropConfig> getDrops() {
+        return drops;
     }
 }

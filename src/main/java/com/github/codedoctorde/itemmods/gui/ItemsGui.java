@@ -26,11 +26,11 @@ import java.util.stream.Collectors;
 
 public class ItemsGui {
 
-    Gui[] createGui(Gui backGui) {
-        return createGui(backGui, "");
+    Gui[] createGui() {
+        return createGui("");
     }
 
-    private Gui[] createGui(Gui backGui, String searchText) {
+    private Gui[] createGui(String searchText) {
         MainConfig mainConfig = Main.getPlugin().getMainConfig();
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items");
         return new ListGui(Main.getPlugin(), new GuiItemEvent() {
@@ -46,7 +46,7 @@ public class ItemsGui {
                         mainConfig.getItems().add(new ItemConfig(output));
                         Main.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
-                        Objects.requireNonNull(createGui(backGui))[0].open(player);
+                        Objects.requireNonNull(createGui())[0].open(player);
                     }
 
                     @Override
@@ -75,7 +75,7 @@ public class ItemsGui {
                             ClickType clickType = event.getClick();
                             switch (clickType) {
                                 case LEFT:
-                                    new ItemGui(finalI).createGui(gui).open(player);
+                                    new ItemGui(finalI).createGui().open(player);
                                     break;
                                 case DROP:
                                     Objects.requireNonNull(createDeleteGui(player, finalI, gui, searchText)).open(player);
@@ -96,7 +96,7 @@ public class ItemsGui {
             public void onClose(Gui gui, Player player) {
                 Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, backGui, searchText);
+        }).createGui(guiTranslation, new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int itemIndex, Gui backGui, String searchText) {
@@ -129,7 +129,7 @@ public class ItemsGui {
                     itemConfigs.remove(itemConfig);
                     Main.getPlugin().saveBaseConfig();
                     player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), itemConfig.getName(), itemIndex));
-                    createGui(new MainGui().createGui(), searchText)[0].open(player);
+                    createGui(searchText)[0].open(player);
                 }
 
                 @Override

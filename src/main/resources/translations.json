@@ -6,6 +6,78 @@
     "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
   "gui": {
+    "drops": {
+      "title": "§eBlock #{0} §f» §6Drops §f{2}/{3}",
+      "first": {
+        "material": "BLAZE_ROD",
+        "name": "§eFirst page",
+        "lore": [],
+        "already": "§eItemMods §f» §cYou are already on the first page!"
+      },
+      "previous": {
+        "material": "ARROW",
+        "name": "§ePrevious page",
+        "lore": [],
+        "already": "§eItemMods §f» §cYou are already on the first page!"
+      },
+      "next": {
+        "material": "ARROW",
+        "name": "§eNext page",
+        "lore": [],
+        "already": "§eItemMods §f» §cYou are already on the last page!"
+      },
+      "last": {
+        "material": "BLAZE_ROD",
+        "name": "§eLast page",
+        "lore": [],
+        "already": "§eItemMods §f» §cYou are already on the last page!"
+      },
+      "search": {
+        "material": "COMPASS",
+        "name": "§eSearch",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Left click » Search",
+          "§7Right click » Reset search",
+          "§7Drop » Refresh"
+        ],
+        "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+        "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+        "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
+      },
+      "create": {
+        "material": "KNOWLEDGE_BOOK",
+        "name": "§eCreate",
+        "lore": [
+          "",
+          "§7Click to create a new item"
+        ],
+        "message": "§eItemMods §f» §ePlease enter the item name! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
+        "success": "§eItemMods §f» §aSuccessfully created the item {0}!"
+      },
+      "item": {
+        "material": "DIAMOND",
+        "name": "§e{0} §3#{1}",
+        "lore": [
+          "",
+          "§7Left click » Item settings",
+          "§7Drop » Delete"
+        ]
+      },
+      "placeholder": {
+        "material": "BLACK_STAINED_GLASS_PANE",
+        "name": "§7",
+        "lore": []
+      },
+      "back": {
+        "material": "REDSTONE",
+        "name": "§eBack",
+        "lore": []
+      }
+    },
     "database": {
       "back": {
         "material": "REDSTONE",

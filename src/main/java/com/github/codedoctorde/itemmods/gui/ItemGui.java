@@ -28,7 +28,7 @@ public class ItemGui {
         this.index = index;
     }
 
-    public Gui createGui(Gui backGui) {
+    public Gui createGui() {
         ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(index);
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("item");
         return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), index), 5, new GuiEvent() {
@@ -41,7 +41,7 @@ public class ItemGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
-                    backGui.open(player);
+                    new ItemsGui().createGui()[0].open(player);
                 }
             }));
             getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("name")).format(itemConfig.getName()).build(), new GuiItemEvent() {
@@ -55,7 +55,7 @@ public class ItemGui {
                             itemConfig.setName(output);
                             Main.getPlugin().saveBaseConfig();
                             player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("name").get("success").getAsString(), output));
-                            createGui(backGui).open(player);
+                            createGui().open(player);
                             }
 
                             @Override
@@ -77,13 +77,13 @@ public class ItemGui {
                             itemConfig.setDisplayName(output);
                             Main.getPlugin().saveBaseConfig();
                             player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("displayname").get("success").getAsString(), output));
-                            createGui(backGui).open(player);
+                            createGui().open(player);
                         }
 
                             @Override
                             public void onCancel(Player player) {
                                 player.sendMessage(guiTranslation.getAsJsonObject("displayname").get("cancel").getAsString());
-                                createGui(backGui).open(player);
+                                createGui().open(player);
                             }
                         });
                     }
@@ -104,8 +104,8 @@ public class ItemGui {
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                         }
-                        Main.getPlugin().saveBaseConfig();
-                        createGui(backGui).open((Player) event.getWhoClicked());
+                    Main.getPlugin().saveBaseConfig();
+                    createGui().open((Player) event.getWhoClicked());
                     }
                 }));
             getGuiItems().put(5, new GuiItem(new ItemStackBuilder(itemConfig.getItemStack() != null ? guiTranslation.getAsJsonObject("creator").getAsJsonObject("item") : guiTranslation.getAsJsonObject("creator").getAsJsonObject("null")).build(), new GuiItemEvent() {
@@ -118,7 +118,7 @@ public class ItemGui {
                         public void onEvent(ItemStack itemStack) {
                             itemConfig.setItemStack(itemStack);
                             Main.getPlugin().saveBaseConfig();
-                            createGui(backGui).open((Player) event.getWhoClicked());
+                            createGui().open((Player) event.getWhoClicked());
                         }
                     }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
@@ -133,7 +133,7 @@ public class ItemGui {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("rename").getAsJsonObject("yes").get("success").getAsString());
                     else
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("rename").getAsJsonObject("no").get("success").getAsString());
-                    createGui(backGui).open(player);
+                    createGui().open(player);
                     }
                 }));
 
@@ -151,7 +151,7 @@ public class ItemGui {
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("bonemeal.yes.success"));
                         else
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("bonemeal.no.success"));
-                        createGui(backGui).open(player);
+                        createGui().open(player);
                     }
                 }));*/
             getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("events")).build(), new GuiItemEvent() {

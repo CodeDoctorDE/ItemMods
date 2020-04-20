@@ -25,11 +25,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BlocksGui {
-    public Gui[] createGui(Gui backGui) {
-        return createGui("", backGui);
+    public Gui[] createGui() {
+        return createGui("");
     }
 
-    private Gui[] createGui(String searchText, Gui backGui) {
+    private Gui[] createGui(String searchText) {
         MainConfig mainConfig = Main.getPlugin().getMainConfig();
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
         return new ListGui(Main.getPlugin(), new GuiItemEvent() {
@@ -45,7 +45,7 @@ public class BlocksGui {
                         mainConfig.getBlocks().add(new BlockConfig(output));
                         Main.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
-                        Objects.requireNonNull(createGui(backGui))[0].open(player);
+                        Objects.requireNonNull(createGui())[0].open(player);
                     }
 
                     @Override
@@ -74,7 +74,7 @@ public class BlocksGui {
                             ClickType clickType = event.getClick();
                             switch (clickType) {
                                 case LEFT:
-                                    new BlockGui(finalI).createGui(gui).open(player);
+                                    new BlockGui(finalI).createGui().open(player);
                                     break;
                                 case DROP:
                                     Objects.requireNonNull(createDeleteGui(player, finalI, gui, searchText)).open(player);
@@ -95,7 +95,7 @@ public class BlocksGui {
             public void onClose(Gui gui, Player player) {
                 Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, backGui, searchText);
+        }).createGui(guiTranslation, new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {
@@ -128,7 +128,7 @@ public class BlocksGui {
                     blockConfigs.remove(blockConfig);
                     Main.getPlugin().saveBaseConfig();
                     player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
-                    createGui(searchText, new MainGui().createGui())[0].open(player);
+                    createGui(searchText)[0].open(player);
                 }
 
                         @Override
