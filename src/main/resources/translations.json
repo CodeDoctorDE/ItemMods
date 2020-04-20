@@ -7,7 +7,7 @@
   },
   "gui": {
     "drops": {
-      "title": "§eBlock #{0} §f» §6Drops §f{2}/{3}",
+      "title": "§eBlock #{0} §f» §6Drops §f{1}/{2}",
       "first": {
         "material": "BLAZE_ROD",
         "name": "§eFirst page",
@@ -54,18 +54,39 @@
           "",
           "§7Click to create a new item"
         ],
-        "message": "§eItemMods §f» §ePlease enter the item name! Cancel with a punch in the air!",
+        "message": "§eItemMods §f» §ePlease drop the drop! Cancel with a punch in the air!",
         "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
-        "success": "§eItemMods §f» §aSuccessfully created the item {0}!"
+        "success": "§eItemMods §f» §aSuccessfully created a new drop!"
       },
-      "item": {
-        "material": "DIAMOND",
-        "name": "§e{0} §3#{1}",
-        "lore": [
-          "",
-          "§7Left click » Item settings",
-          "§7Drop » Delete"
-        ]
+      "drop": {
+        "rarity": {
+          "lore": [
+            "§7-----",
+            "§7Rarity: {0}%",
+            "",
+            "§7Left click » + 1",
+            "§7Right click » - 1",
+            "§7Shift + Left click » + 5",
+            "§7Shift + Right click » - 5",
+            "§7Drop » = 100",
+            "",
+            "§7Middle click » Change to general editing"
+          ],
+          "success": "§eItemMods §f» §aSuccessfully set the rarity to §3{1}§a!"
+        },
+        "general": {
+          "lore": [
+            "§7-----",
+            "",
+            "§7Left click » Change item",
+            "§7Right click » Get item",
+            "§7Drop » Delete",
+            "",
+            "§7Middle click » Change to general editing"
+          ],
+          "delete": "§eItemMods §f» §aSuccessfully deleted the drop!",
+          "give": "§eItemMods §f» §aSuccessfully give you the drop!"
+        }
       },
       "placeholder": {
         "material": "BLACK_STAINED_GLASS_PANE",
@@ -1029,6 +1050,14 @@
             "§7Click to set it to on!"
           ]
         }
+      },
+      "drops": {
+        "material": "DIAMOND_ORE",
+        "name": "§eDrops",
+        "lore": [
+          "",
+          "§7Click here to see the drops list"
+        ]
       },
       "drop": {
         "yes": {

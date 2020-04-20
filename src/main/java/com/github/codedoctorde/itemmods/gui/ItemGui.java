@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.main.Main;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.Gui;

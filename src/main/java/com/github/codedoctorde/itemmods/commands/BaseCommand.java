@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.commands;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.gui.KnowledgeGui;
 import com.github.codedoctorde.itemmods.gui.MainGui;
-import com.github.codedoctorde.itemmods.main.Main;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

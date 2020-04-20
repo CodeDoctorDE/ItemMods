@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.main;
+package com.github.codedoctorde.itemmods;
 
 import com.github.codedoctorde.itemmods.api.CustomBlockManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
@@ -34,7 +34,7 @@ public class Main extends JavaPlugin {
     private static Main plugin;
     private File baseConfig = new File(getDataFolder(), "config.json");
     private CodeDoctorAPI api;
-    public static final String version = "§bAQUA 1.2.2";
+    public static final String version = "§bAQUA 1.2.1";
     private Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;

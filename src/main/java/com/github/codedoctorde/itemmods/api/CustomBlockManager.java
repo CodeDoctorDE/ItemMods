@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.main.Main;
 import com.gitlab.codedoctorde.api.config.database.BlobConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

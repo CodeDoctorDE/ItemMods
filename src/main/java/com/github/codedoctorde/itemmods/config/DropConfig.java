@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
  * @author CodeDoctorDE
  */
 public class DropConfig {
-    private int rarity = 1;
+    private int rarity = 100;
     private ItemStack itemStack;
 
     public DropConfig(ItemStack itemStack) {

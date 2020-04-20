@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.main.Main;
 import com.gitlab.codedoctorde.api.server.Version;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;

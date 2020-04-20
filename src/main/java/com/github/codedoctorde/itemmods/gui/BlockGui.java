@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.gui;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.CustomBlockType;
-import com.github.codedoctorde.itemmods.main.Main;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
@@ -416,7 +416,7 @@ public class BlockGui {
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase())).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 5 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase())).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setCustomBlockType(blockConfig.getCustomBlockType().next());
@@ -427,8 +427,13 @@ public class BlockGui {
                 GuiItem placeholder = new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("placeholder")).build());
                 getGuiItems().put(9 * 5 + 1, placeholder);
                 getGuiItems().put(9 * 5 + 2, placeholder);
-                getGuiItems().put(9 * 5 + 3, placeholder);
-                getGuiItems().put(9 * 5 + 5, placeholder);
+                getGuiItems().put(9 * 5 + 4, placeholder);
+                getGuiItems().put(9 * 5 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                        new DropsGui(current).createGui()[0].open((Player) event.getWhoClicked());
+                    }
+                }));
                 getGuiItems().put(9 * 5 + 6, placeholder);
                 getGuiItems().put(9 * 5 + 7, placeholder);
             }

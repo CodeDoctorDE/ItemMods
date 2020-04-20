@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.listener;
 
-import com.github.codedoctorde.itemmods.main.Main;
+import com.github.codedoctorde.itemmods.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;

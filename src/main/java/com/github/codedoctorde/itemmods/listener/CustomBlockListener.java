@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.listener;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.CustomBlock;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.main.Main;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.util.Random;
 
 public class CustomBlockListener implements Listener {
 
@@ -65,7 +67,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE && (!customBlock.getConfig().isDrop()) || (customBlock.getConfig().isDrop() && event.isDropItems())) {
             event.getBlock().getDrops().clear();
-            event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), customBlock.getConfig().getItemStack());
+            customBlock.getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), drop.getItemStack()));
         }
         customBlock.getArmorStand().remove();
     }
