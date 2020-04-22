@@ -428,6 +428,8 @@ public class BlockGui {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
+                        blockConfig.setBlock(null);
+                        Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());
                     }
