@@ -87,7 +87,7 @@ public class CustomBlockListener implements Listener {
             CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(block);
             if (customBlock == null)
                 return;
-            if (!customBlock.getConfig().isMove())
+            if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
             else
                 customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));
@@ -101,7 +101,7 @@ public class CustomBlockListener implements Listener {
             CustomBlock customBlock = Main.getPlugin().getCustomBlockManager().getCustomBlock(block);
             if (customBlock == null)
                 return;
-            if (!customBlock.getConfig().isMove())
+            if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
             else
                 customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));

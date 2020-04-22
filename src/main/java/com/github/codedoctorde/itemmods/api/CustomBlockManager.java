@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.config.database.BlobConfig;
 import org.bukkit.Bukkit;
@@ -70,36 +71,44 @@ public class CustomBlockManager {
     }
 
     /**
-     * @param location The location where the custom block will be placed!
-     * @param block    The block config for the custom block
+     * @param location    The location where the custom block will be placed!
+     * @param blockConfig The block config for the custom block
      * @return Returns if it was placed!
      */
-    public boolean setCustomBlock(Location location, BlockConfig block) {
+    public boolean setCustomBlock(Location location, BlockConfig blockConfig) {
         if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.25, 1.1, 0.25).size() > 0)
             return false;
-        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(block.getBlock())) return false;
-        location.getWorld().getBlockAt(location).setBlockData(block.getBlock());
-        ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
-        if (armorStand.getEquipment() == null)
+        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(blockConfig.getBlock()))
             return false;
-        EntityEquipment equipment = armorStand.getEquipment();
-        armorStand.setBasePlate(block.isBasePlate());
-        equipment.setHelmet(block.getHelmet());
-        equipment.setChestplate(block.getChestplate());
-        equipment.setLeggings(block.getLeggings());
-        equipment.setBoots(block.getBoots());
+        Block block = location.getWorld().getBlockAt(location);
+        block.setBlockData(blockConfig.getBlock());
+        ArmorStand armorStand = null;
 
-        equipment.setItemInMainHand(block.getMainHand());
-        equipment.setItemInOffHand(block.getOffHand());
-        armorStand.setSmall(block.isSmall());
-        armorStand.setMarker(block.isMarker());
-        armorStand.setInvulnerable(block.isInvulnerable());
-        armorStand.setCustomNameVisible(block.isCustomNameVisible());
-        armorStand.setCustomName(block.getCustomName());
-        armorStand.setVisible(!block.isInvisible());
-        armorStand.getScoreboardTags().add(block.getTag());
-        armorStand.setGravity(false);
+        ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
+        if (armorStandBlockConfig != null) {
+            armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
+            if (armorStand.getEquipment() == null)
+                return false;
+            EntityEquipment equipment = armorStand.getEquipment();
+            armorStand.setBasePlate(armorStandBlockConfig.isBasePlate());
+            equipment.setHelmet(armorStandBlockConfig.getHelmet());
+            equipment.setChestplate(armorStandBlockConfig.getChestplate());
+            equipment.setLeggings(armorStandBlockConfig.getLeggings());
+            equipment.setBoots(armorStandBlockConfig.getBoots());
 
+            equipment.setItemInMainHand(armorStandBlockConfig.getMainHand());
+            equipment.setItemInOffHand(armorStandBlockConfig.getOffHand());
+            armorStand.setSmall(armorStandBlockConfig.isSmall());
+            armorStand.setMarker(armorStandBlockConfig.isMarker());
+            armorStand.setInvulnerable(armorStandBlockConfig.isInvulnerable());
+            armorStand.setCustomNameVisible(armorStandBlockConfig.isCustomNameVisible());
+            armorStand.setCustomName(armorStandBlockConfig.getCustomName());
+            armorStand.setVisible(!armorStandBlockConfig.isInvisible());
+            armorStand.getScoreboardTags().add(blockConfig.getTag());
+            armorStand.setGravity(false);
+        }
+        CustomBlock customBlock = new CustomBlock(blockConfig, location, armorStand);
+        customBlock.configure();
 
         return true;
     }

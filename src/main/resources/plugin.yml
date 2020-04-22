@@ -1,8 +1,8 @@
 name: ItemMods
 author: CodeDoctorDE
-version: 1.2.1
+version: 1.2.2
 load: STARTUP
-api-version: "1.13"
+api-version: "1.14"
 main: com.github.codedoctorde.itemmods.Main
 commands:
   itemmods:

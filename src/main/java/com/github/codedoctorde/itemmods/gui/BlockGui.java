@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.config.CustomBlockType;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
@@ -151,11 +151,12 @@ public class BlockGui {
                         }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
                 }));
-                if (blockConfig.getCustomBlockType() != CustomBlockType.HEAD) {
+                ArmorStandBlockConfig armorStand = blockConfig.getArmorStand();
+                if (armorStand != null) {
                     getGuiItems().put(9 * 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -163,7 +164,7 @@ public class BlockGui {
                     getGuiItems().put(9 * 3 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -171,7 +172,7 @@ public class BlockGui {
                     getGuiItems().put(9 * 3 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -179,7 +180,7 @@ public class BlockGui {
                     getGuiItems().put(9 * 3 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -187,7 +188,7 @@ public class BlockGui {
                     getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -195,136 +196,136 @@ public class BlockGui {
                     getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
+                            armorStand.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 3 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("baseplate").getAsJsonObject("" + ((blockConfig.isBasePlate()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 3 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("baseplate").getAsJsonObject("" + ((armorStand.isBasePlate()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setBasePlate(!blockConfig.isBasePlate());
+                            armorStand.setBasePlate(!armorStand.isBasePlate());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 3 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invisible").getAsJsonObject("" + ((blockConfig.isInvisible()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 3 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invisible").getAsJsonObject("" + ((armorStand.isInvisible()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setInvisible(!blockConfig.isInvisible());
+                            armorStand.setInvisible(!armorStand.isInvisible());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("small").getAsJsonObject("" + ((blockConfig.isSmall()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("small").getAsJsonObject("" + ((armorStand.isSmall()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setSmall(!blockConfig.isSmall());
+                            armorStand.setSmall(!armorStand.isSmall());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 2 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("marker").getAsJsonObject(blockConfig.isMarker() ? "yes" : "no")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 2 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("marker").getAsJsonObject(armorStand.isMarker() ? "yes" : "no")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setMarker(!blockConfig.isMarker());
+                            armorStand.setMarker(!armorStand.isMarker());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invulnerable").getAsJsonObject(blockConfig.isInvulnerable() ? "yes" : "no")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invulnerable").getAsJsonObject(armorStand.isInvulnerable() ? "yes" : "no")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            blockConfig.setInvulnerable(!blockConfig.isInvulnerable());
+                            armorStand.setInvulnerable(!armorStand.isInvulnerable());
                             Main.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4, new GuiItem((blockConfig.getHelmet() != null) ? blockConfig.getHelmet() : new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4, new GuiItem((armorStand.getHelmet() != null) ? armorStand.getHelmet() : new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getHelmet() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getHelmet());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getHelmet() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getHelmet());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setHelmet((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setHelmet((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 1, new GuiItem((blockConfig.getChestplate() != null) ? blockConfig.getChestplate() : new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 1, new GuiItem((armorStand.getChestplate() != null) ? armorStand.getChestplate() : new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getChestplate() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getChestplate());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getChestplate() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getChestplate());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setChestplate((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setChestplate((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 2, new GuiItem((blockConfig.getLeggings() != null) ? blockConfig.getLeggings() : new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 2, new GuiItem((armorStand.getLeggings() != null) ? armorStand.getLeggings() : new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getLeggings() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getLeggings());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getLeggings() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getLeggings());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setLeggings((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setLeggings((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 3, new GuiItem((blockConfig.getBoots() != null) ? blockConfig.getBoots() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 3, new GuiItem((armorStand.getBoots() != null) ? armorStand.getBoots() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getBoots() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getBoots());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getBoots() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getBoots());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setBoots((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setBoots((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 4, new GuiItem((blockConfig.getMainHand() != null) ? blockConfig.getMainHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 4, new GuiItem((armorStand.getMainHand() != null) ? armorStand.getMainHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getMainHand() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getMainHand());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getMainHand() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getMainHand());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setMainHand((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setMainHand((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 5, new GuiItem((blockConfig.getOffHand() != null) ? blockConfig.getOffHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 5, new GuiItem((armorStand.getOffHand() != null) ? armorStand.getOffHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            if (event.getClick() == ClickType.MIDDLE && blockConfig.getOffHand() != null) {
-                                event.getWhoClicked().getInventory().addItem(blockConfig.getOffHand());
+                            if (event.getClick() == ClickType.MIDDLE && armorStand.getOffHand() != null) {
+                                event.getWhoClicked().getInventory().addItem(armorStand.getOffHand());
                                 return;
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
-                            blockConfig.setOffHand((change.getType() == Material.AIR) ? null : change);
+                            armorStand.setOffHand((change.getType() == Material.AIR) ? null : change);
                             Main.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
-                    getGuiItems().put(9 * 4 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("customname").getAsJsonObject(blockConfig.isCustomNameVisible() ? "visible" : "invisible")).format(blockConfig.getCustomName()).build(), new GuiItemEvent() {
+                    getGuiItems().put(9 * 4 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("customname").getAsJsonObject(armorStand.isCustomNameVisible() ? "visible" : "invisible")).format(armorStand.getCustomName()).build(), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             switch (event.getClick()) {
@@ -335,7 +336,7 @@ public class BlockGui {
                                         @Override
                                         public void onEvent(Player player, String output) {
                                             output = ChatColor.translateAlternateColorCodes('&', output);
-                                            blockConfig.setCustomName(output);
+                                            armorStand.setCustomName(output);
                                             Main.getPlugin().saveBaseConfig();
                                             event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("customname").get("success").getAsString(), output));
                                             createGui().open(player);
@@ -348,21 +349,22 @@ public class BlockGui {
                                     });
                                     break;
                                 case RIGHT:
-                                    blockConfig.setCustomName("");
+                                    armorStand.setCustomName("");
                                     Main.getPlugin().saveBaseConfig();
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get("remove").getAsString());
                                     break;
                                 case DROP:
-                                    blockConfig.setCustomNameVisible(!blockConfig.isCustomNameVisible());
+                                    armorStand.setCustomNameVisible(!armorStand.isCustomNameVisible());
                                     Main.getPlugin().saveBaseConfig();
-                                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get(blockConfig.isCustomNameVisible() ? "on" : "off").getAsString());
+                                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get(armorStand.isCustomNameVisible() ? "on" : "off").getAsString());
                             }
                             if (event.getClick() != ClickType.LEFT)
                                 createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                 }
-                getGuiItems().put(1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("block").getAsJsonObject(blockConfig.getBlock() == null ? "null" : "set")).build(), new GuiItemEvent() {
+                getGuiItems().put(1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("block").getAsJsonObject(blockConfig.getBlock() == null ? "null" : "set")).format(
+                        (blockConfig.getBlock() != null) ? blockConfig.getBlock().getMaterial().name() : "").build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {
@@ -372,9 +374,14 @@ public class BlockGui {
                                 new BlockBreakRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new BlockBreakRequestEvent() {
                                     @Override
                                     public void onEvent(Player player, Block output) {
-                                        blockConfig.setBlock(output.getBlockData());
+                                        if (blockConfig.checkBlock(output.getState())) {
+                                            blockConfig.setBlock(output.getBlockData());
+                                            player.sendMessage(guiTranslation.getAsJsonObject("block").get("success").getAsString());
+                                        } else {
+                                            blockConfig.setBlock(null);
+                                            player.sendMessage(guiTranslation.getAsJsonObject("block").get("error").getAsString());
+                                        }
                                         Main.getPlugin().saveBaseConfig();
-                                        player.sendMessage(guiTranslation.getAsJsonObject("block").get("success").getAsString());
                                         createGui().open(player);
                                     }
 
@@ -387,6 +394,7 @@ public class BlockGui {
                             case DROP:
                                 blockConfig.setBlock(null);
                                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("block").get("remove").getAsString());
+                                createGui().open((Player) event.getWhoClicked());
                                 break;
                         }
                         Main.getPlugin().saveBaseConfig();
@@ -416,25 +424,25 @@ public class BlockGui {
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(9 * 5 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase())).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 5 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        blockConfig.setCustomBlockType(blockConfig.getCustomBlockType().next());
-                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject(blockConfig.getCustomBlockType().name().toLowerCase()).get("set").getAsString());
+                        blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
+                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
                 GuiItem placeholder = new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("placeholder")).build());
                 getGuiItems().put(9 * 5 + 1, placeholder);
-                getGuiItems().put(9 * 5 + 2, placeholder);
-                getGuiItems().put(9 * 5 + 4, placeholder);
-                getGuiItems().put(9 * 5 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
+                getGuiItems().put(9 * 5 + 3, placeholder);
+                getGuiItems().put(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         new DropsGui(current).createGui()[0].open((Player) event.getWhoClicked());
                     }
                 }));
-                getGuiItems().put(9 * 5 + 6, placeholder);
+                getGuiItems().put(9 * 5 + 5, placeholder);
+                getGuiItems().put(9 * 5 + 6, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("correct").getAsJsonObject(blockConfig.correct().name()))));
                 getGuiItems().put(9 * 5 + 7, placeholder);
             }
         };

@@ -34,7 +34,7 @@ public class Main extends JavaPlugin {
     private static Main plugin;
     private File baseConfig = new File(getDataFolder(), "config.json");
     private CodeDoctorAPI api;
-    public static final String version = "§bAQUA 1.2.1";
+    public static final String version = "§bAQUA 1.2.2";
     private Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;

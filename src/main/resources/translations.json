@@ -961,8 +961,10 @@
           "name": "§eBlock",
           "lore": [
             "§aSET",
+            "§7Material: {0}",
             "",
             "§7Left click » Set the block",
+            "§7Shift + Left click » Choose a template",
             "§7Drop » Remove block"
           ]
         },
@@ -973,12 +975,14 @@
             "§cNOT SET",
             "",
             "§7Left click » Set the block",
+            "§7Shift + Left click » Choose a template",
             "§7Drop » Remove block"
           ]
         },
         "success": "§eItemMods §f» §aSuccessfully set the block§a!",
         "remove": "§eItemMods §f» §aSuccessfully removed the block!",
         "message": "§eItemMods §f» §ePlease break the block! Cancel with a punch in the air!",
+        "error": "§eItemMods §f» §cYou need to set a block entity or an armor stand as block!",
         "cancel": "§eItemMods §f» §cYou successfully cancel the block input!"
       },
       "get": {
@@ -1116,35 +1120,44 @@
         "off": "§eItemMods §f» §aYou successfully turned the custom name visibility off!"
       },
       "type": {
-        "spawner": {
-          "name": "§eCustom block type",
-          "material": "BEACON",
+        "yes": {
+          "name": "§aArmor stand",
+          "material": "ARMOR_STAND",
           "lore": [
-            "§7Head",
-            "§7Armor Stand",
-            "§6> Spawner"
+            "§7Click here to turn it off!"
           ],
-          "set": "§eItemMods §f» §aSuccessfully set the custom block type to spawner!"
+          "set": "§eItemMods §f» §aSuccessfully turn armorstand on!"
         },
-        "armor_stand": {
-          "name": "§eCustom block type",
-          "material": "BEACON",
+        "no": {
+          "name": "§cArmor stand",
+          "material": "ARMOR_STAND",
           "lore": [
-            "§7Head",
-            "§6> Armor Stand",
-            "§7Spawner"
+            "§7Click here to turn it on!"
           ],
-          "set": "§eItemMods §f» §aSuccessfully set the custom block type to armor stand!"
+          "set": "§eItemMods §f» §aSuccessfully turn armorstand off!"
+        }
+      },
+      "correct": {
+        "YES": {
+          "name": "§aSetup",
+          "material": "GREEN_DYE",
+          "lore": [
+            "§aEverything is correct!"
+          ]
         },
-        "head": {
-          "name": "§eCustom block type",
-          "material": "BEACON",
+        "ENTITY": {
+          "name": "§cSetup",
+          "material": "BARRIER",
           "lore": [
-            "§6> Head",
-            "§7Armor Stand",
-            "§7Spawner"
-          ],
-          "set": "§eItemMods §f» §aSuccessfully set the custom block type to head!"
+            "§cYou need to have an armor stand or a entity block!"
+          ]
+        },
+        "NO_BLOCK": {
+          "name": "§cSetup",
+          "material": "BARRIER",
+          "lore": [
+            "§cYou have no block configured!"
+          ]
         }
       }
     },
