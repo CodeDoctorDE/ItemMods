@@ -18,6 +18,7 @@ public class BlockConfig {
     private boolean drop = true;
     private boolean moving = false;
     private ItemStack itemStack;
+    private String data = null;
     private ArmorStandBlockConfig armorStand = null;
     private CustomBlockTemplate blockTemplate;
     private List<DropConfig> drops = new ArrayList<>();
@@ -127,5 +128,13 @@ public class BlockConfig {
         YES,
         ENTITY,
         NO_BLOCK
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

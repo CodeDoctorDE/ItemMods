@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.gui;
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.api.nbt.BlockNBT;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
@@ -18,6 +19,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -375,10 +377,13 @@ public class BlockGui {
                                     @Override
                                     public void onEvent(Player player, Block output) {
                                         if (blockConfig.checkBlock(output.getState())) {
-                                            blockConfig.setBlock(output.getBlockData());
+                                            blockConfig.setBlock(output.getState().getBlockData());
+                                            if (output.getState() instanceof TileState)
+                                                blockConfig.setData(BlockNBT.getNbt(output));
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("success").getAsString());
                                         } else {
                                             blockConfig.setBlock(null);
+                                            blockConfig.setData(null);
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("error").getAsString());
                                         }
                                         Main.getPlugin().saveBaseConfig();
@@ -393,6 +398,7 @@ public class BlockGui {
                                 break;
                             case DROP:
                                 blockConfig.setBlock(null);
+                                blockConfig.setData(null);
                                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("block").get("remove").getAsString());
                                 createGui().open((Player) event.getWhoClicked());
                                 break;
@@ -429,6 +435,7 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
                         blockConfig.setBlock(null);
+                        blockConfig.setData(null);
                         Main.getPlugin().saveBaseConfig();
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());

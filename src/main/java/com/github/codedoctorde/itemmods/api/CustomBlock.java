@@ -1,15 +1,12 @@
 package com.github.codedoctorde.itemmods.api;
 
-import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.google.gson.JsonElement;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomBlock {
@@ -63,7 +60,9 @@ public class CustomBlock {
      * Configure the PersistantTagContainer to the default values
      */
     public void configure() {
+        /*getBlock().getState().update();
         getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, blockConfig.getTag());
         getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "data"), PersistentDataType.STRING, "");
+        getBlock().getState().update();*/
     }
 }

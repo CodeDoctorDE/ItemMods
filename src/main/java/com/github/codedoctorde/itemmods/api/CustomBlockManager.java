@@ -4,6 +4,7 @@ import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.config.database.BlobConfig;
+import com.gitlab.codedoctorde.api.nbt.BlockNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -82,6 +83,8 @@ public class CustomBlockManager {
             return false;
         Block block = location.getWorld().getBlockAt(location);
         block.setBlockData(blockConfig.getBlock());
+        if (blockConfig.getData() != null)
+            BlockNBT.setNbt(block, blockConfig.getData());
         ArmorStand armorStand = null;
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
@@ -89,25 +92,28 @@ public class CustomBlockManager {
             armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
             if (armorStand.getEquipment() == null)
                 return false;
+            armorStand.setVisible(!armorStandBlockConfig.isInvisible());
+            armorStand.setSmall(armorStandBlockConfig.isSmall());
+            armorStand.setMarker(armorStandBlockConfig.isMarker());
+            armorStand.setInvulnerable(armorStandBlockConfig.isInvulnerable());
+            armorStand.setCustomNameVisible(armorStandBlockConfig.isCustomNameVisible());
+            armorStand.setCustomName(armorStandBlockConfig.getCustomName());
+            armorStand.getScoreboardTags().add(blockConfig.getTag());
+            armorStand.setGravity(false);
+            armorStand.setSilent(true);
+
             EntityEquipment equipment = armorStand.getEquipment();
             armorStand.setBasePlate(armorStandBlockConfig.isBasePlate());
             equipment.setHelmet(armorStandBlockConfig.getHelmet());
             equipment.setChestplate(armorStandBlockConfig.getChestplate());
             equipment.setLeggings(armorStandBlockConfig.getLeggings());
             equipment.setBoots(armorStandBlockConfig.getBoots());
-
             equipment.setItemInMainHand(armorStandBlockConfig.getMainHand());
             equipment.setItemInOffHand(armorStandBlockConfig.getOffHand());
-            armorStand.setSmall(armorStandBlockConfig.isSmall());
-            armorStand.setMarker(armorStandBlockConfig.isMarker());
-            armorStand.setInvulnerable(armorStandBlockConfig.isInvulnerable());
-            armorStand.setCustomNameVisible(armorStandBlockConfig.isCustomNameVisible());
-            armorStand.setCustomName(armorStandBlockConfig.getCustomName());
-            armorStand.setVisible(!armorStandBlockConfig.isInvisible());
-            armorStand.getScoreboardTags().add(blockConfig.getTag());
-            armorStand.setGravity(false);
         }
         CustomBlock customBlock = new CustomBlock(blockConfig, location, armorStand);
+        if (blockConfig.getData() != null)
+            BlockNBT.setNbt(block, blockConfig.getData());
         customBlock.configure();
 
         return true;
