@@ -3,15 +3,18 @@ package com.github.codedoctorde.itemmods.api;
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.api.config.database.BlobConfig;
 import com.gitlab.codedoctorde.api.nbt.BlockNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -19,11 +22,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class CustomBlockManager {
-    private List<BlockConfig> blockConfigs;
-    private BlobConfig blockDataConfig;
-
-    public CustomBlockManager(List<BlockConfig> blockConfigs) {
-        this.blockConfigs = blockConfigs;
+    public static String locationToString(final Location location) {
+        if (location == null) return "";
+        return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }
 
     /**
@@ -34,14 +35,27 @@ public class CustomBlockManager {
      */
     @Nullable
     public CustomBlock getCustomBlock(final Location location) {
-        Location entityLocation = location.clone().add(0.5, 0, 0.5);
-        List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.01, 0.001, 0.01));
-        for (BlockConfig block : Main.getPlugin().getMainConfig().getBlocks())
-            for (Entity entity : entities)
-                if (entity.getType() == EntityType.ARMOR_STAND) if (entity.getScoreboardTags().contains(block.getTag()))
-                    if (entityLocation.distance(entity.getLocation()) <= 0.5)
-                        return new CustomBlock(block, location, (ArmorStand) entity);
+        Block block = location.getBlock();
+        for (BlockConfig blockConfig : Main.getPlugin().getMainConfig().getBlocks())
+            if (blockConfig.getArmorStand() != null) {
+                Location entityLocation = location.clone().add(0.5, 0, 0.5);
+                List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
+                for (Entity entity : entities)
+                    if (entity instanceof ArmorStand && entity.getLocation().getY() == location.getY())
+                        return getCustomBlock((ArmorStand) entity, blockConfig);
+            } else if (block.getState() instanceof TileState)
+                return getCustomBlock((TileState) block.getState(), blockConfig);
         return null;
+    }
+
+    @Nullable
+    public CustomBlock getCustomBlock(final ArmorStand entity, BlockConfig blockConfig) {
+        return getCustomBlock(entity.getPersistentDataContainer(), entity, blockConfig, entity.getLocation());
+    }
+
+    @Nullable
+    public CustomBlock getCustomBlock(final TileState tileState, BlockConfig blockConfig) {
+        return getCustomBlock(tileState.getPersistentDataContainer(), null, blockConfig, tileState.getLocation());
     }
 
     /**
@@ -55,8 +69,11 @@ public class CustomBlockManager {
         return getCustomBlock(block.getLocation());
     }
 
-    public List<BlockConfig> getBlockConfigs() {
-        return blockConfigs;
+    @Nullable
+    public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
+        if (Objects.equals(container.get(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
+            return new CustomBlock(location, entity);
+        return null;
     }
 
     public static Location stringToLocation(final String location) {
@@ -66,9 +83,8 @@ public class CustomBlockManager {
                 Double.parseDouble(locationArray[3]));
     }
 
-    public static String locationToString(final Location location) {
-        if (location == null) return "";
-        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
+    public List<BlockConfig> getBlocks() {
+        return Main.getPlugin().getMainConfig().getBlocks();
     }
 
     /**
@@ -77,11 +93,11 @@ public class CustomBlockManager {
      * @return Returns if it was placed!
      */
     public boolean setCustomBlock(Location location, BlockConfig blockConfig) {
-        if (Objects.requireNonNull(location.getWorld()).getNearbyEntities(location, 0.25, 1.1, 0.25).size() > 0)
+        if (getCustomBlock(location) != null)
             return false;
-        if (!location.getBlock().isEmpty() || location.getBlock().getState().equals(blockConfig.getBlock()))
+        if (!location.getBlock().isEmpty())
             return false;
-        Block block = location.getWorld().getBlockAt(location);
+        Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setBlockData(blockConfig.getBlock());
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());
@@ -111,7 +127,7 @@ public class CustomBlockManager {
             equipment.setItemInMainHand(armorStandBlockConfig.getMainHand());
             equipment.setItemInOffHand(armorStandBlockConfig.getOffHand());
         }
-        CustomBlock customBlock = new CustomBlock(blockConfig, location, armorStand);
+        CustomBlock customBlock = new CustomBlock(location, armorStand);
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());
         customBlock.configure();

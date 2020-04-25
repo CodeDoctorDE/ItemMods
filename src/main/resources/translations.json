@@ -209,22 +209,12 @@
           "§7Click to open the knowledge gui"
         ]
       },
-      "itemtemplates": {
-        "material": "PAPER",
-        "name": "§eItem templates",
+      "addon": {
+        "material": "BEACON",
+        "name": "§eAddons",
         "lore": [
           "",
-          "§7Click to see all item templates",
-          "§7Coming soon"
-        ]
-      },
-      "blocktemplates": {
-        "material": "FURNACE",
-        "name": "§eBlock templates",
-        "lore": [
-          "",
-          "§7Click to see all item templates",
-          "§7Coming soon"
+          "§7Click to see all addons"
         ]
       }
     },
@@ -665,7 +655,8 @@
         ],
         "message": "§eItemMods §f» §ePlease enter the block name! Cancel with a punch in the air!",
         "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
-        "success": "§eItemMods §f» §aSuccessfully created the block {0}!"
+        "success": "§eItemMods §f» §aSuccessfully created the block {0}!",
+        "already": "§eItemMods §f» §cThere is already a block with this tag!"
       },
       "block": {
         "material": "GRASS_BLOCK",

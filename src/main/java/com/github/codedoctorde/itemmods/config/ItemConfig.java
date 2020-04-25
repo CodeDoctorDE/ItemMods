@@ -1,6 +1,9 @@
 package com.github.codedoctorde.itemmods.config;
 
+import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ public class ItemConfig {
     private List<String> onDrop = new ArrayList<>();
     private List<String> onPickup = new ArrayList<>();
     private List<String> onRightClick = new ArrayList<>();
+    private String templateName;
 
 
     public ItemConfig(String name) {
@@ -131,5 +135,32 @@ public class ItemConfig {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+
+    @Nullable
+    public CustomItemTemplate getTemplate() {
+        if (templateName == null)
+            return null;
+        try {
+            return Main.getPlugin().getApi().getItemTemplate(templateName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        templateName = null;
+        return null;
+    }
+
+    public void setTemplate(CustomItemTemplate itemTemplate) {
+        this.templateName = itemTemplate.getClass().getName();
+    }
+
+    @Nullable
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 }

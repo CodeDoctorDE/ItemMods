@@ -1,12 +1,11 @@
 package com.github.codedoctorde.itemmods;
 
-import com.github.codedoctorde.itemmods.api.CustomBlockManager;
+import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
 import com.gitlab.codedoctorde.api.config.ObjectConfig;
-import com.gitlab.codedoctorde.api.game.GameStateManager;
 import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
 import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
@@ -33,13 +32,12 @@ import java.util.Objects;
 public class Main extends JavaPlugin {
     private static Main plugin;
     private File baseConfig = new File(getDataFolder(), "config.json");
-    private CodeDoctorAPI api;
-    public static final String version = "§bAQUA 1.2.2";
+    public static final String version = "§bAQUA 1.2.3";
+    private CodeDoctorAPI codeDoctorAPI;
     private Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
-    private GameStateManager gameStateManager;
-    private CustomBlockManager customBlockManager;
+    private ItemModsApi api;
     private ObjectConfig translationConfig;
     private Connection connection;
 
@@ -59,7 +57,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        api = new CodeDoctorAPI(this);
+        codeDoctorAPI = new CodeDoctorAPI(this);
         translationConfig = new ObjectConfig(gson, new File(getDataFolder(), "translations.json"));
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
@@ -82,7 +80,7 @@ public class Main extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new CustomItemListener(), Main.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
-        customBlockManager = new CustomBlockManager(mainConfig.getBlocks());
+        api = new ItemModsApi();
         try {
             connect();
         } catch (ClassNotFoundException | SQLException e) {
@@ -138,27 +136,15 @@ public class Main extends JavaPlugin {
         return gson;
     }
 
-    public GameStateManager getGameStateManager() {
-        return gameStateManager;
-    }
-
     public MainConfig getMainConfig() {
         return mainConfig;
     }
 
-    public CodeDoctorAPI getApi() {
+    public CodeDoctorAPI getCodeDoctorAPI() {
+        return codeDoctorAPI;
+    }
+
+    public ItemModsApi getApi() {
         return api;
-    }
-
-    /***
-     * Update the custom block manager with the values in the configs!
-     */
-    public void updateCustomBlockManager() {
-        customBlockManager.getBlockConfigs().clear();
-        customBlockManager.getBlockConfigs().addAll(mainConfig.getBlocks());
-    }
-
-    public CustomBlockManager getCustomBlockManager() {
-        return customBlockManager;
     }
 }

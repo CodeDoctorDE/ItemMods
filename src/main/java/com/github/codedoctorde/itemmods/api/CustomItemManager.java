@@ -1,5 +1,6 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -7,10 +8,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CustomItemManager {
-    private List<ItemConfig> itemConfigs;
 
-    CustomItemManager(List<ItemConfig> itemConfigs) {
-        this.itemConfigs = itemConfigs;
+    CustomItemManager() {
+    }
+
+    public List<ItemConfig> getItems() {
+        return Main.getPlugin().getMainConfig().getItems();
     }
 
     /**
@@ -21,11 +24,7 @@ public class CustomItemManager {
      */
     @Nullable
     public ItemConfig getItemConfig(ItemStack itemStack) {
-        return itemConfigs.stream().filter(itemConfig -> itemConfig.getItemStack().isSimilar(itemStack)).findFirst().orElse(null);
+        return getItems().stream().filter(itemConfig -> itemConfig.getItemStack().isSimilar(itemStack)).findFirst().orElse(null);
     }
 
-
-    public List<ItemConfig> getItemConfigs() {
-        return itemConfigs;
-    }
 }

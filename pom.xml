@@ -6,7 +6,7 @@
 
     <groupId>com.github.codedoctorde</groupId>
     <artifactId>ItemMods</artifactId>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>1.2.3-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -31,11 +31,14 @@
                 </executions>
                 <configuration>
                 <minimizeJar>true</minimizeJar>
-                <artifactSet>
-                    <includes>
-                        <include>com.gitlab.codedoctorde.api:*</include>
-                    </includes>
-                </artifactSet>
+                    <artifactSet>
+                        <excludes>
+                            <exclude>org.spigotmc:*</exclude>
+                        </excludes>
+                        <includes>
+                            <include>com.gitlab.codedoctorde.api:*</include>
+                        </includes>
+                    </artifactSet>
                 </configuration>
             </plugin>
         </plugins>

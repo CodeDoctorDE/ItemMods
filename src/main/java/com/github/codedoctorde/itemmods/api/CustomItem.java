@@ -12,18 +12,36 @@ import java.util.Objects;
 
 public class CustomItem {
     private ItemStack itemStack;
-    private ItemConfig config;
+    private ItemConfig config = null;
 
-    public CustomItem(ItemConfig config) {
-        this.config = config;
+    public CustomItem(ItemStack itemStack) {
+        this.itemStack = itemStack;
+        Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getItemStack().isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
+    }
+
+    public ItemConfig getConfig() {
+        return config;
     }
 
     public String getData() {
         NamespacedKey key = new NamespacedKey(Main.getPlugin(), "data");
-        if (Version.getVersion().isLowerThan(Version.v1_15))
-            return Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().getCustomTag(key, ItemTagType.STRING);
-        return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(key, PersistentDataType.STRING);
+        if (Version.getVersion().isLowerThan(Version.v1_15)) {
+            String data = Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().getCustomTag(key, ItemTagType.STRING);
+            if (data == null)
+                data = "";
+            return data;
+        }
+        return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().getOrDefault(key, PersistentDataType.STRING, "");
     }
+
+    public void setData(String data) {
+        NamespacedKey key = new NamespacedKey(Main.getPlugin(), "data");
+        if (Version.getVersion().isLowerThan(Version.v1_15)) {
+            Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().setCustomTag(key, ItemTagType.STRING, data);
+        } else
+            Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().set(key, PersistentDataType.STRING, "");
+    }
+
 
     public ItemStack getItemStack() {
         return itemStack;

@@ -1,10 +1,10 @@
 package com.github.codedoctorde.itemmods.config;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.CustomBlockTemplate;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -17,10 +17,9 @@ public class BlockConfig {
     private BlockData block;
     private boolean drop = true;
     private boolean moving = false;
-    private ItemStack itemStack;
     private String data = null;
     private ArmorStandBlockConfig armorStand = null;
-    private CustomBlockTemplate blockTemplate;
+    private String templateName;
     private List<DropConfig> drops = new ArrayList<>();
 
     public boolean checkBlock(BlockState block) {
@@ -73,20 +72,29 @@ public class BlockConfig {
         this.tag = tag;
     }
 
-    public ItemStack getItemStack() {
-        return itemStack;
+    @Nullable
+    public CustomBlockTemplate getTemplate() {
+        if (templateName == null)
+            return null;
+        try {
+            return Main.getPlugin().getApi().getBlockTemplate(templateName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        templateName = null;
+        return null;
     }
 
-    public void setItemStack(ItemStack itemStack) {
-        this.itemStack = itemStack;
+    public void setTemplate(CustomBlockTemplate blockTemplate) {
+        this.templateName = blockTemplate.getClass().getName();
     }
 
-    public CustomBlockTemplate getBlockTemplate() {
-        return blockTemplate;
+    public String getTemplateName() {
+        return templateName;
     }
 
-    public void setBlockTemplate(CustomBlockTemplate blockTemplate) {
-        this.blockTemplate = blockTemplate;
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 
     @Nullable

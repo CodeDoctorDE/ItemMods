@@ -12,8 +12,6 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
-import com.gitlab.codedoctorde.api.ui.template.ItemCreatorGui;
-import com.gitlab.codedoctorde.api.ui.template.events.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
@@ -114,43 +112,6 @@ public class BlockGui {
                                 player.sendMessage(guiTranslation.getAsJsonObject("tag").get("cancel").getAsString());
                             }
                         });
-                    }
-                }));
-                getGuiItems().put(4, new GuiItem((blockConfig.getItemStack() != null) ? blockConfig.getItemStack() : new ItemStackBuilder(guiTranslation.getAsJsonObject("item").getAsJsonObject("null")).build(), new GuiItemEvent() {
-
-                    @Override
-                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        if (event.getClick() == ClickType.MIDDLE && blockConfig.getItemStack() != null) {
-                            event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack());
-                            return;
-                        }
-                        ItemStack change = event.getWhoClicked().getItemOnCursor();
-                        if (change.getType() == Material.AIR && blockConfig.getItemStack() == null) {
-                            blockConfig.setItemStack(new ItemStack(Material.CARROT_ON_A_STICK));
-                            Main.getPlugin().saveBaseConfig();
-                            createGui().open((Player) event.getWhoClicked());
-
-                        } else {
-                            blockConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
-                            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                            createGui().open((Player) event.getWhoClicked());
-                        }
-                    }
-                }));
-                getGuiItems().put(9 + 4, new GuiItem(new ItemStackBuilder(blockConfig.getItemStack() != null ? guiTranslation.getAsJsonObject("creator").getAsJsonObject("item") : guiTranslation.getAsJsonObject("creator").getAsJsonObject("null")).build(), new GuiItemEvent() {
-                    @Override
-                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        if (blockConfig.getItemStack() == null)
-                            return;
-                        new ItemCreatorGui(Main.getPlugin(), blockConfig.getItemStack(), new ItemCreatorSubmitEvent() {
-                            @Override
-                            public void onEvent(ItemStack itemStack) {
-                                blockConfig.setItemStack(itemStack);
-                                Main.getPlugin().saveBaseConfig();
-                                createGui().open((Player) event.getWhoClicked());
-                            }
-                        }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
                 }));
                 ArmorStandBlockConfig armorStand = blockConfig.getArmorStand();
@@ -404,22 +365,6 @@ public class BlockGui {
                                 break;
                         }
                         Main.getPlugin().saveBaseConfig();
-                    }
-                }));
-                getGuiItems().put(9 * 5 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("get")).build(), new GuiItemEvent() {
-                    @Override
-                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Player player = (Player) event.getWhoClicked();
-                        if (blockConfig.getItemStack() == null) {
-                            player.sendMessage(guiTranslation.getAsJsonObject("get").get("null").getAsString());
-                            return;
-                        }
-                        if (event.getClick() != ClickType.MIDDLE) {
-                            new ItemGiveGui(blockConfig.getItemStack().clone()).createGui(gui).open(player);
-                        } else {
-                            event.getWhoClicked().getInventory().addItem(blockConfig.getItemStack().clone());
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("get").get("success").getAsString());
-                        }
                     }
                 }));
                 getGuiItems().put(5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {

@@ -42,9 +42,10 @@ public class BlocksGui {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
-                        mainConfig.getBlocks().add(new BlockConfig(output));
-                        Main.getPlugin().saveBaseConfig();
-                        player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
+                        if (mainConfig.newBlock(output))
+                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
+                        else
+                            player.sendMessage(guiTranslation.getAsJsonObject("create").get("already").getAsString());
                         Objects.requireNonNull(createGui())[0].open(player);
                     }
 

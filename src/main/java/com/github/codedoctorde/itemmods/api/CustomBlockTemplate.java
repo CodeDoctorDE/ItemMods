@@ -1,27 +1,26 @@
 package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.api.ui.GuiItem;
+import com.gitlab.codedoctorde.api.ui.Gui;
 import com.google.gson.JsonElement;
-import org.bukkit.Location;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * @author CodeDoctorDE
  */
 public interface CustomBlockTemplate {
 
-    GuiItem getGuiItem(BlockConfig blockConfig);
+    ItemStack getIcon();
 
-    void load(JsonElement data, Location location, CustomBlock blockConfig);
+    void load(JsonElement data, CustomBlock blockConfig);
 
-    JsonElement save(Location location, CustomBlock blockConfig);
+    JsonElement save(CustomBlock blockConfig);
 
-    void onBlockBreak(CustomBlock blockConfig, BlockBreakEvent event);
+    void loadConfig(JsonElement data, BlockConfig config);
 
-    void onBlockPlace(CustomBlock blockConfig, BlockPlaceEvent event);
+    Gui openConfig(BlockConfig blockConfig);
 
-    void onBlockInteract(CustomBlock blockConfig, PlayerInteractEvent event);
+    JsonElement saveConfig(BlockConfig config);
+
+    String getName();
 }
