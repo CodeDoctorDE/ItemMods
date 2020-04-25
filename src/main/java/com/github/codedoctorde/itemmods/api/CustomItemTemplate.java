@@ -13,6 +13,8 @@ public interface CustomItemTemplate {
 
     ItemStack getIcon(ItemConfig itemConfig);
 
+    ItemStack getMainIcon(ItemConfig itemConfig);
+
     void load(String data, Player player, CustomItem customItem);
 
     String save(CustomItem customItem);

@@ -25,6 +25,11 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Override
+    public ItemStack getMainIcon(ItemConfig itemConfig) {
+        return new ItemStackBuilder(guiTranslation.getAsJsonObject("main-icon")).format().build();
+    }
+
+    @Override
     public void load(String data, Player player, CustomItem customItem) {
     }
 

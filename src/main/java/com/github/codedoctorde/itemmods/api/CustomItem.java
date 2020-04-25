@@ -36,9 +36,9 @@ public class CustomItem {
 
     public void setData(String data) {
         NamespacedKey key = new NamespacedKey(Main.getPlugin(), "data");
-        if (Version.getVersion().isLowerThan(Version.v1_15)) {
+        if (Version.getVersion().isLowerThan(Version.v1_15))
             Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().setCustomTag(key, ItemTagType.STRING, data);
-        } else
+        else
             Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().set(key, PersistentDataType.STRING, "");
     }
 

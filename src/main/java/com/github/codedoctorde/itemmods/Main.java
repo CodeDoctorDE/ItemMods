@@ -13,6 +13,7 @@ import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
@@ -62,6 +63,8 @@ public class Main extends JavaPlugin {
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
+        Metrics metrics = new Metrics(this, 5996);
+
 
         try {
             if (!baseConfig.exists())

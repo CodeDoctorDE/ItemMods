@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
+import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,6 +27,7 @@ public class ItemConfig {
     private List<String> onPickup = new ArrayList<>();
     private List<String> onRightClick = new ArrayList<>();
     private String templateName;
+    private JsonObject templateConfig = new JsonObject();
 
 
     public ItemConfig(String name) {
@@ -153,6 +155,7 @@ public class ItemConfig {
 
     public void setTemplate(CustomItemTemplate itemTemplate) {
         this.templateName = itemTemplate.getClass().getName();
+        templateConfig = new JsonObject();
     }
 
     @Nullable
@@ -162,5 +165,14 @@ public class ItemConfig {
 
     public void setTemplateName(String templateName) {
         this.templateName = templateName;
+        templateConfig = new JsonObject();
+    }
+
+    public JsonObject getTemplateConfig() {
+        return templateConfig;
+    }
+
+    public void setTemplateConfig(JsonObject templateConfig) {
+        this.templateConfig = templateConfig;
     }
 }

@@ -20,7 +20,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.2.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -30,13 +30,16 @@
                     </execution>
                 </executions>
                 <configuration>
-                <minimizeJar>true</minimizeJar>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>com.github.codedoctorde.itemmods</shadedPattern>
+                        </relocation>
+                    </relocations>
                     <artifactSet>
-                        <excludes>
-                            <exclude>org.spigotmc:*</exclude>
-                        </excludes>
                         <includes>
-                            <include>com.gitlab.codedoctorde.api:*</include>
+                            <include>com.gitlab.codedoctorde:CodeDoctorAPI</include>
+                            <include>org.bstats:bstats-bukkit</include>
                         </includes>
                     </artifactSet>
                 </configuration>
@@ -45,6 +48,10 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>CodeMC</id>
+            <url>https://repo.codemc.org/repository/maven-public</url>
+        </repository>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
@@ -58,6 +65,12 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>1.7</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
