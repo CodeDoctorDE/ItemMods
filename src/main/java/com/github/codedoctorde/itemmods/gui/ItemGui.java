@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
+import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemAddonGui;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.Gui;
@@ -154,11 +155,11 @@ public class ItemGui {
                         createGui().open(player);
                     }
                 }));*/
-            getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("events")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 3 + 4, new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+                    new ItemStackBuilder(itemConfig.getTemplate().getMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-//                        Player player = (Player) event.getWhoClicked();
-//                        createEventsGui(gui).open(player);
+                    new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
                 }
             }));
             getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("get")).build(), new GuiItemEvent() {

@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.templates.item;
+package com.github.codedoctorde.itemmods.addon.templates.item;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.CustomBlock;
@@ -27,6 +27,11 @@ public class BlockSetTemplate implements CustomItemTemplate {
     @Override
     public ItemStack getMainIcon(ItemConfig itemConfig) {
         return new ItemStackBuilder(guiTranslation.getAsJsonObject("main-icon")).format().build();
+    }
+
+    @Override
+    public boolean isCompactible(ItemConfig itemConfig) {
+        return false;
     }
 
     @Override
