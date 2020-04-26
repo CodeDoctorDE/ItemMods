@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.listener;
 
 import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.CustomBlock;
 import com.github.codedoctorde.itemmods.api.CustomItem;
-import com.github.codedoctorde.itemmods.templates.item.BlockSetTemplate;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,7 +29,6 @@ public class CustomBlockListener implements Listener {
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
-        event.setCancelled(true);
         if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
@@ -58,6 +57,7 @@ public class CustomBlockListener implements Listener {
         }
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
+        event.setCancelled(true);
         if (!Main.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem)))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)

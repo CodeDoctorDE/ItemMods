@@ -15,6 +15,8 @@ public interface CustomItemTemplate {
 
     ItemStack getMainIcon(ItemConfig itemConfig);
 
+    boolean isCompactible(ItemConfig itemConfig);
+
     void load(String data, Player player, CustomItem customItem);
 
     String save(CustomItem customItem);

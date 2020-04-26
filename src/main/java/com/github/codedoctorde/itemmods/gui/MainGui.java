@@ -50,14 +50,10 @@ public class MainGui {
                     new KnowledgeGui().createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            getGuiItems().put(9 * 3 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("itemtemplates")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("addons")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                }
-            }));
-            getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("blocktemplates")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    new AddonsGui().createGui()[0].open((Player) event.getWhoClicked());
                 }
             }));
         }};

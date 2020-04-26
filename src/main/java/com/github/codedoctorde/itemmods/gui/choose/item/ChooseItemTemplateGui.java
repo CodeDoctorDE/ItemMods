@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.gui.choose.item.block;
+package com.github.codedoctorde.itemmods.gui.choose.item;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
@@ -29,7 +29,7 @@ public class ChooseItemTemplateGui {
     }
 
     public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("blocktemplate");
+        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("template");
         BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override

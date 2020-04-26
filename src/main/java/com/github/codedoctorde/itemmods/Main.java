@@ -1,5 +1,6 @@
 package com.github.codedoctorde.itemmods;
 
+import com.github.codedoctorde.itemmods.addon.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
@@ -89,6 +90,7 @@ public class Main extends JavaPlugin {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        api.registerAddon(new ItemMods());
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
     }

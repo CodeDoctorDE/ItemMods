@@ -1,5 +1,7 @@
 package com.github.codedoctorde.itemmods.api;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,5 +59,10 @@ public class ItemModsApi {
 
     public CustomItemTemplate getItemTemplate(String templateClass) throws ClassNotFoundException {
         return getItemTemplate((Class<? extends CustomItemTemplate>) Class.forName(templateClass));
+    }
+
+    @Nullable
+    public ItemModsAddon getAddon(String name) {
+        return addons.stream().findFirst().filter(addon -> addon.getName().equals(name)).orElse(null);
     }
 }
