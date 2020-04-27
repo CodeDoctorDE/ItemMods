@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.api.ui.Gui;
 import com.google.gson.JsonElement;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -28,9 +28,14 @@ public interface CustomBlockTemplate {
 
     void loadConfig(JsonElement data, BlockConfig config);
 
-    Gui openConfig(BlockConfig blockConfig);
+    void openConfig(BlockConfig blockConfig, Player player);
 
     JsonElement saveConfig(BlockConfig config);
 
     String getName();
+
+    /**
+     * Runs every tick when block is loaded.
+     */
+    void tick();
 }

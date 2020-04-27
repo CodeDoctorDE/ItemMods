@@ -1,7 +1,6 @@
 package com.github.codedoctorde.itemmods.addon.templates.item;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.api.CustomBlock;
 import com.github.codedoctorde.itemmods.api.CustomItem;
 import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
@@ -47,15 +46,6 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Override
-    public void load(String data, Player player, CustomItem customItem) {
-    }
-
-    @Override
-    public String save(CustomItem customItem) {
-        return null;
-    }
-
-    @Override
     public void openConfig(ItemConfig itemConfig, Player player) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
         int itemIndex = Main.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
@@ -69,16 +59,6 @@ public class BlockSetTemplate implements CustomItemTemplate {
     @Override
     public String getName() {
         return "Block set template";
-    }
-
-    @Override
-    public void onEnable(CustomBlock block) {
-
-    }
-
-    @Override
-    public void onDisable(CustomBlock block) {
-
     }
 
     @Nullable

@@ -15,25 +15,7 @@ public interface CustomItemTemplate {
 
     boolean isCompatible(ItemConfig itemConfig);
 
-    void load(String data, Player player, CustomItem customItem);
-
-    String save(CustomItem customItem);
-
     void openConfig(ItemConfig itemConfig, Player player);
 
     String getName();
-
-    /**
-     * not used yet
-     *
-     * @param block
-     */
-    void onEnable(CustomBlock block);
-
-    /**
-     * not used yet
-     *
-     * @param block
-     */
-    void onDisable(CustomBlock block);
 }

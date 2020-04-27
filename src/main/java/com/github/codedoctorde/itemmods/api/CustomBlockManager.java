@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class CustomBlockManager {
+    private List<CustomBlock> loadedBlocks = new ArrayList<>();
+
     public static String locationToString(final Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
@@ -129,8 +131,16 @@ public class CustomBlockManager {
         }
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());
-        CustomBlock customBlock = new CustomBlock(location, armorStand, blockConfig);
+        if (location.getChunk().isLoaded())
+            loadedBlocks.add(new CustomBlock(location, armorStand, blockConfig));
         return true;
     }
 
+    public void onTick() {
+        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> customBlock.getConfig().getTemplate().tick());
+    }
+
+    public List<CustomBlock> getLoadedBlocks() {
+        return loadedBlocks;
+    }
 }
