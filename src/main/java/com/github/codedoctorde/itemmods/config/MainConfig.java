@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainConfig {
-    private List<ItemConfig> items = new ArrayList<>();
-    private List<BlockConfig> blocks = new ArrayList<>();
-    private DatabaseConfig databaseConfig = new DatabaseConfig();
+    private final List<ItemConfig> items = new ArrayList<>();
+    private final List<BlockConfig> blocks = new ArrayList<>();
+    private final DatabaseConfig databaseConfig = new DatabaseConfig();
 
     public MainConfig() {
 
@@ -39,5 +39,10 @@ public class MainConfig {
         getBlocks().add(blockConfig);
         Main.getPlugin().saveBaseConfig();
         return true;
+    }
+
+    @Nullable
+    public ItemConfig getItem(String tag) {
+        return items.stream().filter(itemConfig -> itemConfig.getTag().equals(tag)).findFirst().orElse(null);
     }
 }

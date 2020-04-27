@@ -20,7 +20,8 @@ public class BlockConfig {
     private String data = null;
     private ArmorStandBlockConfig armorStand = null;
     private String templateName;
-    private List<DropConfig> drops = new ArrayList<>();
+    private final List<DropConfig> drops = new ArrayList<>();
+    private String referenceItem;
 
     public boolean checkBlock(BlockState block) {
         return armorStand != null || block instanceof TileState;
@@ -144,5 +145,13 @@ public class BlockConfig {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getReferenceItem() {
+        return referenceItem;
+    }
+
+    public ItemConfig getReferenceItemConfig() {
+        return Main.getPlugin().getMainConfig().getItem(referenceItem);
     }
 }
