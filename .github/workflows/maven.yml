@@ -19,7 +19,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean install package
       - name: Deploy package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,7 +29,7 @@ jobs:
           mvn deploy
       - uses: actions/upload-artifact@v1
         with:
-          name: "ItemMods.jar"
+          name: "ItemMods"
           path: "target"
       - name: Send file to discord channel
         env:
