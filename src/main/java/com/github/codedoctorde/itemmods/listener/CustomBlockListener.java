@@ -17,6 +17,8 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class CustomBlockListener implements Listener {
@@ -32,6 +34,8 @@ public class CustomBlockListener implements Listener {
         if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        if (template.getBlock(customItem) == null)
+            return;
         if (event.getItem().getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
         Player player = event.getPlayer();
         Location location = event.getClickedBlock().getLocation();
@@ -55,9 +59,9 @@ public class CustomBlockListener implements Listener {
                 location.add(0, 0, 1);
                 break;
         }
+        event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
-        event.setCancelled(true);
         if (!Main.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem)))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
@@ -70,6 +74,7 @@ public class CustomBlockListener implements Listener {
         if (customBlock == null)
             return;
         event.getBlock().setType(Material.AIR);
+        event.setExpToDrop(0);
         event.setCancelled(true);
         customBlock.breakBlock(event.getPlayer().getGameMode() != GameMode.CREATIVE);
     }
@@ -118,6 +123,15 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
+    public void onChunkLoad(ChunkLoadEvent event) {
+    }
+
+    @EventHandler
+    public void onChunkUnload(ChunkUnloadEvent event) {
+
+    }
+
+    @EventHandler
     public void onCustomBlockEntityClick(PlayerInteractAtEntityEvent event) {
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
@@ -127,10 +141,12 @@ public class CustomBlockListener implements Listener {
         if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        if (template.getBlock(customItem) == null)
+            return;
         if (item.getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
-        event.setCancelled(true);
         if (Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
             return;
+        event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
         if (event.getPlayer().getLocation().distance(location.clone().add(0, 1, 0)) < 1)

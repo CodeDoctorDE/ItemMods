@@ -6,6 +6,38 @@
     "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
   "addon": {
+    "templates": {
+      "item": {
+        "block_set": {
+          "icon": {
+            "material": "GRASS_BLOCK",
+            "name": "§eBlock set template",
+            "lore": [
+              "",
+              "§7Set blocks by right clicking with items"
+            ]
+          },
+          "main-icon": {
+            "has": {
+              "material": "GRASS_BLOCK",
+              "name": "§eBlock set template",
+              "lore": [
+                "§7Current block: §3{0}",
+                ""
+              ]
+            },
+            "null": {
+              "material": "GRASS_BLOCK",
+              "name": "§eBlock set template",
+              "lore": [
+                "§cNo block given!",
+                ""
+              ]
+            }
+          }
+        }
+      }
+    },
     "icon": {
       "material": "BEACON",
       "name": "§6§lItemMods",
@@ -17,7 +49,126 @@
   },
   "gui": {
     "choose": {
+      "block": {
+        "config": {
+          "title": "§eItemMods §f» §6Choose blockconfig §f{0}/{1}",
+          "first": {
+            "material": "BLAZE_ROD",
+            "name": "§eFirst page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "previous": {
+            "material": "ARROW",
+            "name": "§ePrevious page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "next": {
+            "material": "ARROW",
+            "name": "§eNext page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "last": {
+            "material": "BLAZE_ROD",
+            "name": "§eLast page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "search": {
+            "material": "COMPASS",
+            "name": "§eSearch",
+            "lore": [
+              "§3{0}",
+              "",
+              "§7Left click » Search",
+              "§7Right click » Reset search",
+              "§7Drop » Refresh"
+            ],
+            "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+            "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+            "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+            "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
+          },
+          "addon": {
+            "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
+          },
+          "placeholder": {
+            "material": "BLACK_STAINED_GLASS_PANE",
+            "name": "§7",
+            "lore": []
+          },
+          "back": {
+            "material": "REDSTONE",
+            "name": "§eBack",
+            "lore": []
+          },
+          "config": {
+            "material": "GRASS_BLOCK",
+            "name": "§3{1}",
+            "lore": [
+              "§7{2}"
+            ]
+          }
+        }
+      },
       "item": {
+        "config": {
+          "title": "§eItemMods §f» §6Choose itemconfig §f{0}/{1}",
+          "first": {
+            "material": "BLAZE_ROD",
+            "name": "§eFirst page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "previous": {
+            "material": "ARROW",
+            "name": "§ePrevious page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "next": {
+            "material": "ARROW",
+            "name": "§eNext page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "last": {
+            "material": "BLAZE_ROD",
+            "name": "§eLast page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "search": {
+            "material": "COMPASS",
+            "name": "§eSearch",
+            "lore": [
+              "§3{0}",
+              "",
+              "§7Left click » Search",
+              "§7Right click » Reset search",
+              "§7Drop » Refresh"
+            ],
+            "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+            "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+            "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+            "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
+          },
+          "addon": {
+            "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
+          },
+          "placeholder": {
+            "material": "BLACK_STAINED_GLASS_PANE",
+            "name": "§7",
+            "lore": []
+          },
+          "back": {
+            "material": "REDSTONE",
+            "name": "§eBack",
+            "lore": []
+          }
+        },
         "addon": {
           "title": "§eBlock #{0} §f» §6Addons §f{1}/{2}",
           "first": {
@@ -71,119 +222,116 @@
             "material": "REDSTONE",
             "name": "§eBack",
             "lore": []
+          }
+        },
+        "addon": {
+          "title": "§eBlock #{0} §f» §6Addons §f{1}/{2}",
+          "first": {
+            "material": "BLAZE_ROD",
+            "name": "§eFirst page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "previous": {
+            "material": "ARROW",
+            "name": "§ePrevious page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "next": {
+            "material": "ARROW",
+            "name": "§eNext page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "last": {
+            "material": "BLAZE_ROD",
+            "name": "§eLast page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "search": {
+            "material": "COMPASS",
+            "name": "§eSearch",
+            "lore": [
+              "§3{0}",
+              "",
+              "§7Left click » Search",
+              "§7Right click » Reset search",
+              "§7Drop » Refresh"
+            ],
+            "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+            "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+            "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+            "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
           },
           "addon": {
-            "title": "§eBlock #{0} §f» §6Addons §f{1}/{2}",
-            "first": {
-              "material": "BLAZE_ROD",
-              "name": "§eFirst page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the first page!"
-            },
-            "previous": {
-              "material": "ARROW",
-              "name": "§ePrevious page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the first page!"
-            },
-            "next": {
-              "material": "ARROW",
-              "name": "§eNext page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the last page!"
-            },
-            "last": {
-              "material": "BLAZE_ROD",
-              "name": "§eLast page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the last page!"
-            },
-            "search": {
-              "material": "COMPASS",
-              "name": "§eSearch",
-              "lore": [
-                "§3{0}",
-                "",
-                "§7Left click » Search",
-                "§7Right click » Reset search",
-                "§7Drop » Refresh"
-              ],
-              "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
-              "cancel": "§eItemMods §f» §cYou successfully cancel the search",
-              "reset": "§eItemMods §f» §aYou successfully reset the filter!",
-              "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
-            },
-            "addon": {
-              "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
-            },
-            "placeholder": {
-              "material": "BLACK_STAINED_GLASS_PANE",
-              "name": "§7",
-              "lore": []
-            },
-            "back": {
-              "material": "REDSTONE",
-              "name": "§eBack",
-              "lore": []
-            }
+            "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
+          },
+          "placeholder": {
+            "material": "BLACK_STAINED_GLASS_PANE",
+            "name": "§7",
+            "lore": []
+          },
+          "back": {
+            "material": "REDSTONE",
+            "name": "§eBack",
+            "lore": []
+          }
+        },
+        "template": {
+          "title": "§eAddon #{1} §f» §6Templates §f{3}/{4}",
+          "first": {
+            "material": "BLAZE_ROD",
+            "name": "§eFirst page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "previous": {
+            "material": "ARROW",
+            "name": "§ePrevious page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the first page!"
+          },
+          "next": {
+            "material": "ARROW",
+            "name": "§eNext page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "last": {
+            "material": "BLAZE_ROD",
+            "name": "§eLast page",
+            "lore": [],
+            "already": "§eItemMods §f» §cYou are already on the last page!"
+          },
+          "search": {
+            "material": "COMPASS",
+            "name": "§eSearch",
+            "lore": [
+              "§3{0}",
+              "",
+              "§7Left click » Search",
+              "§7Right click » Reset search",
+              "§7Drop » Refresh"
+            ],
+            "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
+            "cancel": "§eItemMods §f» §cYou successfully cancel the search",
+            "reset": "§eItemMods §f» §aYou successfully reset the filter!",
+            "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
+          },
+          "placeholder": {
+            "material": "BLACK_STAINED_GLASS_PANE",
+            "name": "§7",
+            "lore": []
+          },
+          "back": {
+            "material": "REDSTONE",
+            "name": "§eBack",
+            "lore": []
           },
           "template": {
-            "title": "§eAddon #{0} §f» §6Templates §f{1}/{2}",
-            "first": {
-              "material": "BLAZE_ROD",
-              "name": "§eFirst page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the first page!"
-            },
-            "previous": {
-              "material": "ARROW",
-              "name": "§ePrevious page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the first page!"
-            },
-            "next": {
-              "material": "ARROW",
-              "name": "§eNext page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the last page!"
-            },
-            "last": {
-              "material": "BLAZE_ROD",
-              "name": "§eLast page",
-              "lore": [],
-              "already": "§eItemMods §f» §cYou are already on the last page!"
-            },
-            "search": {
-              "material": "COMPASS",
-              "name": "§eSearch",
-              "lore": [
-                "§3{0}",
-                "",
-                "§7Left click » Search",
-                "§7Right click » Reset search",
-                "§7Drop » Refresh"
-              ],
-              "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
-              "cancel": "§eItemMods §f» §cYou successfully cancel the search",
-              "reset": "§eItemMods §f» §aYou successfully reset the filter!",
-              "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
-            },
-            "addon": {
-              "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
-            },
-            "placeholder": {
-              "material": "BLACK_STAINED_GLASS_PANE",
-              "name": "§7",
-              "lore": []
-            },
-            "back": {
-              "material": "REDSTONE",
-              "name": "§eBack",
-              "lore": []
-            },
-            "template": {
-              "notcompactible": "§eItemMods §f» §cThis template is not compactible with your item!"
-            }
+            "not_compatible": "§eItemMods §f» §cThis template is not compactible with your item!"
           }
         }
       }
@@ -644,6 +792,18 @@
         "success": "§eItemMods §f» §aSuccessfully set the display name to §3{0}§a!",
         "message": "§eItemMods §f» §ePlease enter the display name! Cancel with a punch in the air!",
         "cancel": "§eItemMods §f» §cYou successfully cancel the display name!"
+      },
+      "tag": {
+        "material": "ANVIL",
+        "name": "§eTag",
+        "lore": [
+          "§3{0}",
+          "",
+          "§7Click to set the tag of the item"
+        ],
+        "success": "§eItemMods §f» §aSuccessfully set the tag to §3{0}§a!",
+        "message": "§eItemMods §f» §ePlease enter the tag! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §f» §cYou successfully cancel the tag!"
       },
       "back": {
         "material": "REDSTONE",

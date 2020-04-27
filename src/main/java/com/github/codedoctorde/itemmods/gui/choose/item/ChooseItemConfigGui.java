@@ -1,6 +1,7 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.choose.item;
 
 import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
@@ -8,7 +9,6 @@ import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.template.ListGui;
 import com.gitlab.codedoctorde.api.ui.template.events.GuiListEvent;
 import com.google.gson.JsonObject;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.text.MessageFormat;
@@ -16,9 +16,15 @@ import java.text.MessageFormat;
 /**
  * @author CodeDoctorDE
  */
-public class AddonsGui {
-    public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
+public class ChooseItemConfigGui {
+    private final ChooseItemConfigEvent itemConfigEvent;
+
+    public ChooseItemConfigGui(ChooseItemConfigEvent itemConfigEvent) {
+        this.itemConfigEvent = itemConfigEvent;
+    }
+
+    public Gui[] createGui(Gui backGui) {
+        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("config");
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
@@ -27,22 +33,18 @@ public class AddonsGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Main.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
+                return Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getTag().contains(s)).map(itemConfig -> new GuiItem(itemConfig.getItemStack(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Gui configGui = addon.openConfig();
-                        if (configGui == null)
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("addon").get("noconfig").getAsString());
-                        else
-                            configGui.open((Player) event.getWhoClicked());
+                        itemConfigEvent.onEvent(itemConfig);
                     }
                 })).toArray(GuiItem[]::new);
             }
         }, new GuiEvent() {
-            @Override
-            public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
-            }
-        }).createGui(guiTranslation, new MainGui().createGui());
+        }).createGui(guiTranslation, backGui);
+    }
+
+    public interface ChooseItemConfigEvent {
+        void onEvent(ItemConfig itemConfig);
     }
 }

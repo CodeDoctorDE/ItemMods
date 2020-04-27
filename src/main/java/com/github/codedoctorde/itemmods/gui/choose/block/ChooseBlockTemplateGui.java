@@ -34,7 +34,7 @@ public class ChooseBlockTemplateGui {
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex, addon.getName(), index, size);
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex, addon.getName(), index + 1, size);
             }
 
             @Override

@@ -2,8 +2,8 @@ package com.github.codedoctorde.itemmods.gui.choose.item;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.gui.BlockGui;
+import com.github.codedoctorde.itemmods.config.ItemConfig;
+import com.github.codedoctorde.itemmods.gui.ItemGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
@@ -20,31 +20,36 @@ import java.text.MessageFormat;
  * @author CodeDoctorDE
  */
 public class ChooseItemTemplateGui {
-    private final int blockIndex;
+    private final int itemIndex;
     private final ItemModsAddon addon;
 
-    public ChooseItemTemplateGui(int blockIndex, ItemModsAddon addon) {
-        this.blockIndex = blockIndex;
+    public ChooseItemTemplateGui(int itemIndex, ItemModsAddon addon) {
+        this.itemIndex = itemIndex;
         this.addon = addon;
     }
 
     public Gui[] createGui() {
         JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("template");
-        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(itemIndex);
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex, addon.getName(), index, size);
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex, addon.getName(), index + 1, size);
             }
 
             @Override
             public GuiItem[] pages(String s) {
-                return addon.getBlockTemplates().stream().filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.getIcon(), new GuiItemEvent() {
+                ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(itemIndex);
+                return addon.getItemTemplates().stream().filter(itemTemplate -> itemTemplate.getName().contains(s)).map(itemTemplate -> new GuiItem(itemTemplate.getIcon(itemConfig), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Main.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(blockTemplate);
+                        if (!itemTemplate.isCompatible(itemConfig)) {
+                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").get("not_compatible").getAsString());
+                            return;
+                        }
+                        Main.getPlugin().getMainConfig().getItems().get(itemIndex).setTemplate(itemTemplate);
                         Main.getPlugin().saveBaseConfig();
-                        new BlockGui(blockIndex).createGui().open((Player) event.getWhoClicked());
+                        new ItemGui(itemIndex).createGui().open((Player) event.getWhoClicked());
                     }
                 })).toArray(GuiItem[]::new);
             }
@@ -53,6 +58,6 @@ public class ChooseItemTemplateGui {
             public void onClose(Gui gui, Player player) {
                 Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
+        }).createGui(guiTranslation, new ItemGui(itemIndex).createGui());
     }
 }

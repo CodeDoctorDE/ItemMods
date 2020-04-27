@@ -155,11 +155,44 @@ public class ItemGui {
                         createGui().open(player);
                     }
                 }));*/
-            getGuiItems().put(9 * 3 + 4, new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+            getGuiItems().put(9 * 3 + 3, new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
                     new ItemStackBuilder(itemConfig.getTemplate().getMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
+                    if (itemConfig.getTemplate() != null)
+                        switch (event.getClick()) {
+                            case LEFT:
+                                itemConfig.getTemplate().openConfig(itemConfig, (Player) event.getWhoClicked());
+                                break;
+                            case DROP:
+                                itemConfig.setTemplate(null);
+
+                        }
+                    else
+                        new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
+                }
+            }));
+            getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(itemConfig.getTag()).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    gui.close((Player) event.getWhoClicked());
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
+                    new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        @Override
+                        public void onEvent(Player player, String output) {
+                            output = ChatColor.translateAlternateColorCodes('&', output);
+                            itemConfig.setTag(output);
+                            Main.getPlugin().saveBaseConfig();
+                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
+                            createGui().open(player);
+                        }
+
+                        @Override
+                        public void onCancel(Player player) {
+                            player.sendMessage(guiTranslation.getAsJsonObject("tag").get("cancel").getAsString());
+                            createGui().open(player);
+                        }
+                    });
                 }
             }));
             getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("get")).build(), new GuiItemEvent() {

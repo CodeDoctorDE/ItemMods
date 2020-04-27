@@ -7,9 +7,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,6 +21,18 @@ public class CustomBlock {
     private ArmorStand armorStand;
     private JsonElement jsonElement;
 
+    public CustomBlock(Location location, BlockConfig config) {
+        this(location, null, config);
+    }
+
+    public CustomBlock(Location location, ArmorStand armorStand, BlockConfig config) {
+        this.config = config;
+        this.location = location;
+        this.armorStand = armorStand;
+        if (getType() == null)
+            configure();
+    }
+
     public CustomBlock(Location location, ArmorStand armorStand) {
         this(location);
         this.armorStand = armorStand;
@@ -30,7 +42,7 @@ public class CustomBlock {
         this.location = location;
         this.armorStand = null;
         Main.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig ->
-                blockConfig.getTag().equals(getPersistentDataContainer().get(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING))).forEach(itemConfig -> config = itemConfig);
+                blockConfig.getTag().equals(getType())).forEach(itemConfig -> config = itemConfig);
     }
 
     public BlockConfig getConfig() {
@@ -46,6 +58,14 @@ public class CustomBlock {
         return armorStand;
     }
 
+    public String getType() {
+        return getString(new NamespacedKey(Main.getPlugin(), "type"));
+    }
+
+    public void setType(String type) {
+        setString(new NamespacedKey(Main.getPlugin(), "type"), type);
+    }
+
     public void breakBlock(boolean drops) {
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
@@ -59,11 +79,26 @@ public class CustomBlock {
         return location.getBlock();
     }
 
-    public PersistentDataContainer getPersistentDataContainer() {
-        if (getBlock().getState() instanceof TileState)
-            return ((TileState) getBlock().getState()).getPersistentDataContainer();
-        if (armorStand != null) return armorStand.getPersistentDataContainer();
+    public String getString(NamespacedKey key) {
+        BlockState blockState = getBlock().getState();
+        if (blockState instanceof TileState) {
+            TileState tileState = (TileState) blockState;
+            return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
+        }
+        if (armorStand != null) return armorStand.getPersistentDataContainer().get(key, PersistentDataType.STRING);
         return null;
+    }
+
+    public void setString(NamespacedKey key, String value) {
+        BlockState blockState = getBlock().getState();
+        if (blockState instanceof TileState) {
+            TileState tileState = (TileState) blockState;
+            tileState.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
+            tileState.update();
+        }
+        if (armorStand != null) {
+            armorStand.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
+        }
     }
 
     /**
@@ -71,8 +106,7 @@ public class CustomBlock {
      */
     public void configure() {
         System.out.println(config.getTag());
-        getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, config.getTag());
-        getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "data"), PersistentDataType.STRING, "");
-        getBlock().getState().update();
+        setString(new NamespacedKey(Main.getPlugin(), "type"), config.getTag());
+        setString(new NamespacedKey(Main.getPlugin(), "data"), "");
     }
 }

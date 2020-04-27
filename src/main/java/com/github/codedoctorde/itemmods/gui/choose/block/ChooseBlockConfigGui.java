@@ -1,15 +1,15 @@
 package com.github.codedoctorde.itemmods.gui.choose.block;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.gui.BlockGui;
+import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.template.ListGui;
 import com.gitlab.codedoctorde.api.ui.template.events.GuiListEvent;
+import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.text.MessageFormat;
@@ -17,15 +17,15 @@ import java.text.MessageFormat;
 /**
  * @author CodeDoctorDE
  */
-public class ChooseBlockAddonGui {
-    private final int blockIndex;
+public class ChooseBlockConfigGui {
+    private final ChooseBlockConfigEvent blockConfigEvent;
 
-    public ChooseBlockAddonGui(int blockIndex) {
-        this.blockIndex = blockIndex;
+    public ChooseBlockConfigGui(ChooseBlockConfigEvent blockConfigEvent) {
+        this.blockConfigEvent = blockConfigEvent;
     }
 
-    public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocktemplates");
+    public Gui[] createGui(Gui backGui) {
+        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("block").getAsJsonObject("config");
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
@@ -34,18 +34,19 @@ public class ChooseBlockAddonGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Main.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
+                return Main.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig -> blockConfig.getTag().contains(s)).map(blockConfig -> new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("config")).format(
+                        blockConfig.getName(), blockConfig.getDisplayName(), blockConfig.getTag()), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        new ChooseBlockTemplateGui(blockIndex, addon).createGui()[0].open((Player) event.getWhoClicked());
+                        blockConfigEvent.onEvent(blockConfig);
                     }
                 })).toArray(GuiItem[]::new);
             }
         }, new GuiEvent() {
-            @Override
-            public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
-            }
-        }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
+        }).createGui(guiTranslation, backGui);
+    }
+
+    public interface ChooseBlockConfigEvent {
+        void onEvent(BlockConfig itemConfig);
     }
 }

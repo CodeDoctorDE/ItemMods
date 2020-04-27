@@ -127,11 +127,9 @@ public class CustomBlockManager {
             equipment.setItemInMainHand(armorStandBlockConfig.getMainHand());
             equipment.setItemInOffHand(armorStandBlockConfig.getOffHand());
         }
-        CustomBlock customBlock = new CustomBlock(location, armorStand);
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());
-        customBlock.configure();
-
+        CustomBlock customBlock = new CustomBlock(location, armorStand, blockConfig);
         return true;
     }
 

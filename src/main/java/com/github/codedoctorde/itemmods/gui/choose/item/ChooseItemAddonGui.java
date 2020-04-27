@@ -25,11 +25,11 @@ public class ChooseItemAddonGui {
     }
 
     public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("item").getAsJsonObject("addon");
+        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("addon");
         return new ListGui(Main.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemIndex, index, size);
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemIndex, index + 1, size);
             }
 
             @Override

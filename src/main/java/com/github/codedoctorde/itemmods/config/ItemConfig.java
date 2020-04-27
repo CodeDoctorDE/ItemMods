@@ -4,6 +4,7 @@ import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
 import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class ItemConfig {
     private String name;
+    private String tag = "";
     private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
@@ -26,13 +28,15 @@ public class ItemConfig {
     private List<String> onDrop = new ArrayList<>();
     private List<String> onPickup = new ArrayList<>();
     private List<String> onRightClick = new ArrayList<>();
-    private String templateName;
+    @Nullable
+    private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
 
 
     public ItemConfig(String name) {
-        this.name = name;
         this.displayName = name;
+        this.name = name;
+        this.tag = "itemmods:" + name;
     }
 
     public String getName() {
@@ -153,8 +157,11 @@ public class ItemConfig {
         return null;
     }
 
-    public void setTemplate(CustomItemTemplate itemTemplate) {
-        this.templateName = itemTemplate.getClass().getName();
+    public void setTemplate(@Nullable CustomItemTemplate itemTemplate) {
+        if (itemTemplate == null)
+            templateName = null;
+        else
+            this.templateName = itemTemplate.getClass().getName();
         templateConfig = new JsonObject();
     }
 
@@ -163,16 +170,27 @@ public class ItemConfig {
         return templateName;
     }
 
-    public void setTemplateName(String templateName) {
+    public void setTemplateName(@Nullable String templateName) {
         this.templateName = templateName;
         templateConfig = new JsonObject();
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    @NotNull
     public JsonObject getTemplateConfig() {
+        if (templateConfig == null)
+            templateConfig = new JsonObject();
         return templateConfig;
     }
 
-    public void setTemplateConfig(JsonObject templateConfig) {
+    public void setTemplateConfig(@NotNull JsonObject templateConfig) {
         this.templateConfig = templateConfig;
     }
 }

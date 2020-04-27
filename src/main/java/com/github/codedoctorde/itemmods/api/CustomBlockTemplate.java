@@ -12,9 +12,19 @@ public interface CustomBlockTemplate {
 
     ItemStack getIcon();
 
-    void load(JsonElement data, CustomBlock blockConfig);
+    /**
+     * If the server loads a chunk with this block
+     *
+     * @param customBlock
+     */
+    void load(CustomBlock customBlock);
 
-    JsonElement save(CustomBlock blockConfig);
+    /**
+     * If the server unloads a chunk with this block
+     *
+     * @param customBlock
+     */
+    void unload(CustomBlock customBlock);
 
     void loadConfig(JsonElement data, BlockConfig config);
 
