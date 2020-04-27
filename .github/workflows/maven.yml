@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: "ItemMods.jar"
-          path: "target/ItemMods*.jar"
+          path: "target"
       - name: Send file to discord channel
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
