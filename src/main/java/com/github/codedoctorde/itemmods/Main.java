@@ -1,6 +1,8 @@
 package com.github.codedoctorde.itemmods;
 
 import com.github.codedoctorde.itemmods.addon.ItemMods;
+import com.github.codedoctorde.itemmods.api.CustomBlockManager;
+import com.github.codedoctorde.itemmods.api.CustomItemManager;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
@@ -33,10 +35,10 @@ import java.util.Objects;
 
 public class Main extends JavaPlugin {
     private static Main plugin;
-    private File baseConfig = new File(getDataFolder(), "config.json");
+    private final File baseConfig = new File(getDataFolder(), "config.json");
     public static final String version = "§bAQUA 1.2.3";
     private CodeDoctorAPI codeDoctorAPI;
-    private Gson gson;
+    private final Gson gson;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
     private ItemModsApi api;
@@ -93,6 +95,14 @@ public class Main extends JavaPlugin {
         api.registerAddon(new ItemMods());
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
+    }
+
+    public CustomBlockManager getCustomBlockManager() {
+        return getApi().getCustomBlockManager();
+    }
+
+    public CustomItemManager getCustomItemManager() {
+        return getApi().getCustomItemManager();
     }
 
     @Override
