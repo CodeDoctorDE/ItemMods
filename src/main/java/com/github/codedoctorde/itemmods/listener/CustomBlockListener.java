@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -70,17 +71,18 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
-    public void onCustomBlockGet(PlayerInteractEvent event) {
-        if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+    public void onCustomBlockGet(InventoryCreativeEvent event) {
+        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE)
             return;
-        if (event.getClickedBlock() == null)
+        Block block = event.getWhoClicked().getTargetBlock(null, 10);
+        if (block.getType() == Material.AIR)
             return;
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getClickedBlock());
+        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
         if (customBlock == null)
             return;
         if (customBlock.getConfig().getReferenceItemConfig() == null)
             return;
-        event.getPlayer().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
+        event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
     }
 
     @EventHandler
