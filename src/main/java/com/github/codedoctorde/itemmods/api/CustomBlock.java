@@ -69,7 +69,6 @@ public class CustomBlock {
     public void breakBlock(BlockDropType dropType) {
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
-        System.out.println(dropType);
         Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
         if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
             getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().getItemStack());
@@ -113,7 +112,6 @@ public class CustomBlock {
      * Configure the PersistantTagContainer to the default values
      */
     public void configure() {
-        System.out.println(config.getTag());
         setString(new NamespacedKey(Main.getPlugin(), "type"), config.getTag());
         setString(new NamespacedKey(Main.getPlugin(), "data"), "");
     }

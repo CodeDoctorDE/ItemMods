@@ -1346,13 +1346,18 @@
           "lore": [
             "",
             "§cNo reference item.",
-            "§7This drops when you break a block with silk touch or middle click in creative mode!",
+            "",
+            "§7This drops when you break a block with ",
+            "§7silk touch or middle click in creative mode!",
             "",
             "§7Click here to set it!"
           ]
         },
         "yes": [
           "§7-----",
+          "",
+          "§7This drops when you break a block with ",
+          "§7silk touch or middle click in creative mode!",
           "",
           "§7Left click » Set",
           "§7Drop » Delete"

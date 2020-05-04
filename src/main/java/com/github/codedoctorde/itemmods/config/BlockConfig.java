@@ -21,6 +21,7 @@ public class BlockConfig {
     private ArmorStandBlockConfig armorStand = null;
     private String templateName;
     private final List<DropConfig> drops = new ArrayList<>();
+    @Nullable
     private String referenceItem;
 
     public boolean checkBlock(BlockState block) {
@@ -147,11 +148,27 @@ public class BlockConfig {
         this.data = data;
     }
 
+    @Nullable
     public String getReferenceItem() {
         return referenceItem;
     }
 
+    public void setReferenceItem(@Nullable String referenceItem) {
+        this.referenceItem = referenceItem;
+    }
+
+    @Nullable
     public ItemConfig getReferenceItemConfig() {
-        return Main.getPlugin().getMainConfig().getItem(referenceItem);
+        if (referenceItem == null)
+            return null;
+        else
+            return Main.getPlugin().getMainConfig().getItem(referenceItem);
+    }
+
+    public void setReferenceItemConfig(@Nullable ItemConfig itemConfig) {
+        if (itemConfig == null)
+            this.referenceItem = null;
+        else
+            this.referenceItem = itemConfig.getTag();
     }
 }

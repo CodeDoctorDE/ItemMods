@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.gui;
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemConfigGui;
 import com.gitlab.codedoctorde.api.nbt.BlockNBT;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
@@ -373,6 +374,24 @@ public class BlockGui {
                         blockConfig.setDrop(!blockConfig.isDrop());
                         Main.getPlugin().saveBaseConfig();
                         createGui().open((Player) event.getWhoClicked());
+                    }
+                }));
+                getGuiItems().put(5, new GuiItem((blockConfig.getReferenceItemConfig() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("item").getAsJsonObject("no")) :
+                        new ItemStackBuilder(blockConfig.getReferenceItemConfig().getItemStack().clone()).addLore(guiTranslation.getAsJsonObject("item").getAsJsonArray("yes")), new GuiItemEvent() {
+                    @Override
+                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                        if (blockConfig.getReferenceItemConfig() == null || event.getClick() == ClickType.LEFT)
+                            setItem(gui, (Player) event.getWhoClicked());
+                        else if (event.getClick() == ClickType.DROP)
+                            setItem(null, (Player) event.getWhoClicked());
+                    }
+
+                    public void setItem(Gui gui, Player player) {
+                        new ChooseItemConfigGui(itemConfig -> {
+                            blockConfig.setReferenceItemConfig(itemConfig);
+                            Main.getPlugin().saveBaseConfig();
+                            createGui().open(player);
+                        }).createGui(gui)[0].open(player);
                     }
                 }));
                 getGuiItems().put(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no")).build(), new GuiItemEvent() {
