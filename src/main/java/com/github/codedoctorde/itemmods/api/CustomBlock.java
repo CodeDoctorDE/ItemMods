@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class CustomBlock {
-    private Location location;
+    private final Location location;
     private BlockConfig config = null;
     private ArmorStand armorStand;
     private JsonElement jsonElement;
@@ -66,13 +66,21 @@ public class CustomBlock {
         setString(new NamespacedKey(Main.getPlugin(), "type"), type);
     }
 
-    public void breakBlock(boolean drops) {
+    public void breakBlock(BlockDropType dropType) {
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
-        if (!getConfig().isDrop() || getConfig().isDrop() && drops)
-            getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItem(getBlock().getLocation(), drop.getItemStack()));
+        System.out.println(dropType);
+        Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
+        if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
+            getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().getItemStack());
+        else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
+            getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
         if (getArmorStand() != null)
             getArmorStand().remove();
+    }
+
+    public enum BlockDropType {
+        SILK_TOUCH, DROP, NOTHING
     }
 
     public Block getBlock() {

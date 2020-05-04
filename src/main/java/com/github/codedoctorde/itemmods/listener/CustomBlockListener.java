@@ -8,6 +8,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -69,20 +70,40 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
+    public void onCustomBlockGet(PlayerInteractEvent event) {
+        if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
+            return;
+        if (event.getClickedBlock() == null)
+            return;
+        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getClickedBlock());
+        if (customBlock == null)
+            return;
+        if (customBlock.getConfig().getReferenceItemConfig() == null)
+            return;
+        event.getPlayer().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
+    }
+
+    @EventHandler
     public void onCustomBlockBreak(BlockBreakEvent event) {
         CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
-        event.getBlock().setType(Material.AIR);
-        event.setExpToDrop(0);
         event.setCancelled(true);
-        customBlock.breakBlock(event.getPlayer().getGameMode() != GameMode.CREATIVE);
+        event.getBlock().setType(Material.AIR);
+        if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
+            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
+        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
+            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+        else
+            customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
     }
 
     @EventHandler
     public void onCustomBlockMove(BlockFromToEvent event) {
         CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
+            return;
+        if (customBlock.getArmorStand() == null)
             return;
         customBlock.getArmorStand().teleport(event.getToBlock().getLocation());
     }
@@ -168,7 +189,12 @@ public class CustomBlockListener implements Listener {
         if (customBlock == null)
             return;
         event.setCancelled(true);
-        customBlock.breakBlock(((Player) event.getDamager()).getGameMode() != GameMode.CREATIVE);
+        if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
+            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
+        else if (((Player) event.getEntity()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
+            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+        else
+            customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
     }
 
     @EventHandler

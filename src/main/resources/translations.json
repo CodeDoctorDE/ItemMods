@@ -1340,15 +1340,23 @@
         }
       },
       "item": {
-        "null": {
+        "no": {
           "material": "BARRIER",
           "name": "§cNo item",
           "lore": [
             "",
-            "§7Click to set the item to a carrot on a stick ",
-            "§7or drag an item to here!"
+            "§cNo reference item.",
+            "§7This drops when you break a block with silk touch or middle click in creative mode!",
+            "",
+            "§7Click here to set it!"
           ]
-        }
+        },
+        "yes": [
+          "§7-----",
+          "",
+          "§7Left click » Set",
+          "§7Drop » Delete"
+        ]
       },
       "creator": {
         "item": {
