@@ -2,8 +2,8 @@ package com.github.codedoctorde.itemmods.listener;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
-import com.github.codedoctorde.itemmods.api.CustomBlock;
-import com.github.codedoctorde.itemmods.api.CustomItem;
+import com.github.codedoctorde.itemmods.api.block.CustomBlock;
+import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;

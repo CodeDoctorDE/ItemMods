@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.api;
+package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.entity.Player;

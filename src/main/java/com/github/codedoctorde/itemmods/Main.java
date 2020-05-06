@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods;
 
 import com.github.codedoctorde.itemmods.addon.ItemMods;
-import com.github.codedoctorde.itemmods.api.CustomBlockManager;
-import com.github.codedoctorde.itemmods.api.CustomItemManager;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
+import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;

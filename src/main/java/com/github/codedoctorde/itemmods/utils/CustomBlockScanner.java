@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.utils;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.api.CustomBlock;
+import com.github.codedoctorde.itemmods.api.block.CustomBlock;
 import org.bukkit.Chunk;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.ArmorStand;

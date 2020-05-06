@@ -2,9 +2,9 @@ package com.github.codedoctorde.itemmods.addon;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
-import com.github.codedoctorde.itemmods.api.CustomBlockTemplate;
-import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;

@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.addon.templates.item;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.api.CustomItem;
-import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
+import com.github.codedoctorde.itemmods.api.item.CustomItem;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.ItemGui;
@@ -81,11 +81,11 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     private class BlockSetTemplateData {
-        private ItemConfig itemConfig;
-        private BlockSetTemplate template;
+        private final ItemConfig itemConfig;
+        private final BlockSetTemplate template;
         private String block;
 
-        private Gson gson = new Gson();
+        private final Gson gson = new Gson();
 
         BlockSetTemplateData(BlockSetTemplate template, ItemConfig itemConfig) {
             this.template = template;

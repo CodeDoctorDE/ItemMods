@@ -1,5 +1,9 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -9,9 +13,9 @@ import java.util.List;
  * @author CodeDoctorDE
  */
 public class ItemModsApi {
-    private CustomItemManager customItemManager = new CustomItemManager();
-    private CustomBlockManager customBlockManager = new CustomBlockManager();
-    private List<ItemModsAddon> addons = new ArrayList<>();
+    private final CustomItemManager customItemManager = new CustomItemManager();
+    private final CustomBlockManager customBlockManager = new CustomBlockManager();
+    private final List<ItemModsAddon> addons = new ArrayList<>();
 
     public CustomBlockManager getCustomBlockManager() {
         return customBlockManager;

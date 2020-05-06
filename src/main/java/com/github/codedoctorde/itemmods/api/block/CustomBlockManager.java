@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.api;
+package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CustomBlockManager {
-    private List<CustomBlock> loadedBlocks = new ArrayList<>();
+    private final List<CustomBlock> loadedBlocks = new ArrayList<>();
 
     public static String locationToString(final Location location) {
         if (location == null) return "";

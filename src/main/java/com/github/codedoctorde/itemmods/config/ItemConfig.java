@@ -1,9 +1,12 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.api.CustomItemTemplate;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.google.gson.JsonObject;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,12 +25,12 @@ public class ItemConfig {
     private int hoe = 0;
     private int damage = 0;
     private int speed = 0;
-    private List<String> onWear = new ArrayList<>();
-    private List<String> onOffHand = new ArrayList<>();
-    private List<String> onMainHand = new ArrayList<>();
-    private List<String> onDrop = new ArrayList<>();
-    private List<String> onPickup = new ArrayList<>();
-    private List<String> onRightClick = new ArrayList<>();
+    private final List<String> onWear = new ArrayList<>();
+    private final List<String> onOffHand = new ArrayList<>();
+    private final List<String> onMainHand = new ArrayList<>();
+    private final List<String> onDrop = new ArrayList<>();
+    private final List<String> onPickup = new ArrayList<>();
+    private final List<String> onRightClick = new ArrayList<>();
     @Nullable
     private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
@@ -49,6 +52,12 @@ public class ItemConfig {
 
     public ItemStack getItemStack() {
         return itemStack;
+    }
+
+    public boolean similar(ItemStack other) {
+        ItemMeta itemMeta = other.getItemMeta();
+        assert itemMeta != null;
+        return itemMeta.getPersistentDataContainer().getOrDefault(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, "").equals(tag);
     }
 
     public void setItemStack(ItemStack itemStack) {
@@ -192,5 +201,14 @@ public class ItemConfig {
 
     public void setTemplateConfig(@NotNull JsonObject templateConfig) {
         this.templateConfig = templateConfig;
+    }
+
+    public ItemStack giveItemStack() {
+        ItemStack give = itemStack.clone();
+        ItemMeta itemMeta = give.getItemMeta();
+        assert itemMeta != null;
+        itemMeta.getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, tag);
+        give.setItemMeta(itemMeta);
+        return give;
     }
 }

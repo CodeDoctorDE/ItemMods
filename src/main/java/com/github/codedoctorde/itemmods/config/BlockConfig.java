@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.Main;
-import com.github.codedoctorde.itemmods.api.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
