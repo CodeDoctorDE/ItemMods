@@ -14,6 +14,7 @@ import com.gitlab.codedoctorde.api.ui.template.ListGui;
 import com.gitlab.codedoctorde.api.ui.template.events.GuiListEvent;
 import com.gitlab.codedoctorde.api.ui.template.events.ItemCreatorSubmitEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
@@ -74,8 +75,13 @@ public class DropsGui {
                     DropConfig dropConfig = blockConfig.getDrops().get(i);
                     int finalI = i;
                     List<String> lore = new ArrayList<>();
+                    JsonArray lines;
+                    if (rarityEditing)
+                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonArray("rarity");
+                    else
+                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").getAsJsonArray(dropConfig.isFortune() ? "fortune" : "nofortune");
                     for (JsonElement line :
-                            guiTranslation.getAsJsonObject("drop").getAsJsonObject((rarityEditing) ? "rarity" : "general").getAsJsonArray("lore"))
+                            lines)
                         if (rarityEditing)
                             lore.add(MessageFormat.format(line.getAsString(), dropConfig.getRarity()));
                         else
@@ -130,6 +136,10 @@ public class DropsGui {
                                     blockConfig.getDrops().remove(finalI);
                                     createGui(false)[0].open((Player) event.getWhoClicked());
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("drop").getAsJsonObject("general").get("delete").getAsString());
+                                    break;
+                                case SHIFT_LEFT:
+                                    dropConfig.setFortune(!dropConfig.isFortune());
+                                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("drop").getAsJsonObject("general").getAsJsonObject("fortune").get(dropConfig.isFortune() ? "yes" : "no").getAsString());
                             }
                         }
                     }));
