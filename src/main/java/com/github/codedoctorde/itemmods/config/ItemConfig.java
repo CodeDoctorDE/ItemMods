@@ -2,16 +2,19 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
+import com.gitlab.codedoctorde.api.server.Version;
 import com.google.gson.JsonObject;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.tags.ItemTagType;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemConfig {
     private String name;
@@ -34,12 +37,13 @@ public class ItemConfig {
     @Nullable
     private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
+    private final NamespacedKey typeNamespace = new NamespacedKey(Main.getPlugin(), "type");
 
 
-    public ItemConfig(String name) {
+    ItemConfig(String name) {
         this.displayName = name;
         this.name = name;
-        this.tag = "itemmods:" + name;
+        this.tag = "itemmods:" + name.replaceAll("\\s+", "");
     }
 
     public String getName() {
@@ -54,10 +58,13 @@ public class ItemConfig {
         return itemStack;
     }
 
-    public boolean similar(ItemStack other) {
+    public boolean isSimilar(ItemStack other) {
         ItemMeta itemMeta = other.getItemMeta();
         assert itemMeta != null;
-        return itemMeta.getPersistentDataContainer().getOrDefault(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, "").equals(tag);
+        if (Version.getVersion().isLowerThan(Version.v1_15))
+            return Objects.equals(itemMeta.getCustomTagContainer().getCustomTag(typeNamespace, ItemTagType.STRING), tag);
+        else
+            return itemMeta.getPersistentDataContainer().getOrDefault(typeNamespace, PersistentDataType.STRING, "").equals(tag);
     }
 
     public void setItemStack(ItemStack itemStack) {
@@ -189,7 +196,7 @@ public class ItemConfig {
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
+        this.tag = tag.replaceAll("\\s+", "");
     }
 
     @NotNull
@@ -207,7 +214,10 @@ public class ItemConfig {
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
-        itemMeta.getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING, tag);
+        if (Version.getVersion().isLowerThan(Version.v1_15))
+            itemMeta.getCustomTagContainer().setCustomTag(typeNamespace, ItemTagType.STRING, tag);
+        else
+            itemMeta.getPersistentDataContainer().set(typeNamespace, PersistentDataType.STRING, tag);
         give.setItemMeta(itemMeta);
         return give;
     }

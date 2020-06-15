@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BlockConfig {
     private String name;
-    private String tag = "";
+    private String tag;
     private String displayName;
     private BlockData block;
     private boolean drop = true;
@@ -28,14 +28,13 @@ public class BlockConfig {
         return armorStand != null || block instanceof TileState;
     }
 
-    public BlockConfig() {
-
+    BlockConfig() {
     }
 
     public BlockConfig(String name) {
         this.name = name;
         this.displayName = name;
-        this.tag = "itemmods:" + name;
+        this.tag = "itemmods:" + name.replaceAll("\\s+", "");
     }
 
     public String getName() {
@@ -71,7 +70,7 @@ public class BlockConfig {
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
+        this.tag = tag.replaceAll("\\s+", "");
     }
 
     @Nullable

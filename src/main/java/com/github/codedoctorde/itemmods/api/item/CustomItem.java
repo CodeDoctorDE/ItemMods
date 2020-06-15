@@ -16,7 +16,7 @@ public class CustomItem {
 
     public CustomItem(ItemStack itemStack) {
         this.itemStack = itemStack;
-        Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getItemStack().isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
+        Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
     }
 
     public ItemConfig getConfig() {

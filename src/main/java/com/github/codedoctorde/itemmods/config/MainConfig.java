@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainConfig {
     private final List<ItemConfig> items = new ArrayList<>();
@@ -19,8 +20,16 @@ public class MainConfig {
         return items;
     }
 
+    public List<String> getItemTags() {
+        return items.stream().map(ItemConfig::getTag).collect(Collectors.toList());
+    }
+
     public List<BlockConfig> getBlocks() {
         return blocks;
+    }
+
+    public List<String> getBlockTags() {
+        return blocks.stream().map(BlockConfig::getTag).collect(Collectors.toList());
     }
 
     public DatabaseConfig getDatabaseConfig() {
