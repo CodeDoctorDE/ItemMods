@@ -5,10 +5,15 @@
     "unloading": "§eItemMods §f» §eUnloading plugin...",
     "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
+  "api": {
+    "register": "§eItemMods §f» §aRegistered new addon §3{0}!",
+    "unregister": "§eItemMods §f» §aUnregistered addon §3{0}!"
+  },
   "addon": {
     "templates": {
       "item": {
         "block_set": {
+          "name": "ItemMods",
           "icon": {
             "material": "GRASS_BLOCK",
             "name": "§eBlock set template",

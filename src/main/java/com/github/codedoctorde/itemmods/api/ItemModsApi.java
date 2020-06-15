@@ -1,11 +1,15 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
+import com.google.gson.JsonObject;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +20,7 @@ public class ItemModsApi {
     private final CustomItemManager customItemManager = new CustomItemManager();
     private final CustomBlockManager customBlockManager = new CustomBlockManager();
     private final List<ItemModsAddon> addons = new ArrayList<>();
+    private final JsonObject translation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
 
     public CustomBlockManager getCustomBlockManager() {
         return customBlockManager;
@@ -27,6 +32,7 @@ public class ItemModsApi {
 
     public void registerAddon(ItemModsAddon addon) {
         addons.add(addon);
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));
     }
 
     public List<CustomBlockTemplate> getCustomBlockTemplates() {
@@ -43,6 +49,7 @@ public class ItemModsApi {
 
     public void unregisterAddon(ItemModsAddon addon) {
         addons.remove(addon);
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("unregister").getAsString(), addon.getName()));
     }
 
     public List<ItemModsAddon> getAddons() {

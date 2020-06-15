@@ -20,7 +20,7 @@ import java.util.List;
  * @author CodeDoctorDE
  */
 public class ItemMods implements ItemModsAddon {
-    JsonObject addonTrasnlation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
+    JsonObject addonTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
 
     @NotNull
     @Override
@@ -39,13 +39,13 @@ public class ItemMods implements ItemModsAddon {
     @NotNull
     @Override
     public String getName() {
-        return "ItemMods";
+        return addonTranslation.get("name").getAsString();
     }
 
     @NotNull
     @Override
     public ItemStack getIcon() {
-        return new ItemStackBuilder(addonTrasnlation.getAsJsonObject("icon")).build();
+        return new ItemStackBuilder(addonTranslation.getAsJsonObject("icon")).build();
     }
 
     @Override
