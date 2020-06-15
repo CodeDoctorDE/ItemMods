@@ -36,7 +36,7 @@ import java.util.Objects;
 public class Main extends JavaPlugin {
     private static Main plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
-    public static final String version = "§bAQUA 1.2.3";
+    public static final String version = "§bNUTS 1.3";
     private CodeDoctorAPI codeDoctorAPI;
     private final Gson gson;
     private MainConfig mainConfig;
