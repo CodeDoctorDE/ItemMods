@@ -74,12 +74,14 @@ public class CustomBlock {
             getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().getItemStack());
         else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
+        else if (dropType == BlockDropType.FORTUNE)
+            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
         if (getArmorStand() != null)
             getArmorStand().remove();
     }
 
     public enum BlockDropType {
-        SILK_TOUCH, DROP, NOTHING
+        SILK_TOUCH, DROP, NOTHING, FORTUNE
     }
 
     public Block getBlock() {

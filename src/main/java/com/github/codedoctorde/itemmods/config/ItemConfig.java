@@ -40,7 +40,7 @@ public class ItemConfig {
     private final NamespacedKey typeNamespace = new NamespacedKey(Main.getPlugin(), "type");
 
 
-    ItemConfig(String name) {
+    public ItemConfig(String name) {
         this.displayName = name;
         this.name = name;
         this.tag = "itemmods:" + name.replaceAll("\\s+", "");

@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BlockConfig {
     private String name;
@@ -113,6 +114,10 @@ public class BlockConfig {
 
     public List<DropConfig> getDrops() {
         return drops;
+    }
+
+    public List<DropConfig> getFortuneDrops() {
+        return drops.stream().filter(DropConfig::isFortune).collect(Collectors.toList());
     }
 
     public void setDrop(boolean drop) {

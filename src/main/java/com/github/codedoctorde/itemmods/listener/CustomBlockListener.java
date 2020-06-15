@@ -96,6 +96,8 @@ public class CustomBlockListener implements Listener {
             customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
         else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
             customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
+            customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
     }

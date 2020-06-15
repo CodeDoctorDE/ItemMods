@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class DropConfig {
     private int rarity = 100;
     private ItemStack itemStack;
+    private boolean fortune = false;
 
     public DropConfig(ItemStack itemStack) {
         this.itemStack = itemStack;
@@ -27,5 +28,13 @@ public class DropConfig {
 
     public void setItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
+    }
+
+    public boolean isFortune() {
+        return fortune;
+    }
+
+    public void setFortune(boolean fortune) {
+        this.fortune = fortune;
     }
 }
