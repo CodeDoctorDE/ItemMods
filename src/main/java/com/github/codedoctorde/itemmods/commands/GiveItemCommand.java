@@ -14,33 +14,36 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * @author CodeDoctorDE
  */
-public class GiveCommand implements TabCompleter, CommandExecutor {
+public class GiveItemCommand implements TabCompleter, CommandExecutor {
     private final JsonObject commandTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("give");
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (!(commandSender instanceof Player)) {
-            commandSender.sendMessage(commandTranslation.get("noplayer").getAsString());
-        } else if (args.length < 1 || args.length > 2) {
+        if (args.length < 1 || args.length > 3) {
             commandSender.sendMessage(commandTranslation.get("usage").getAsString());
         } else {
-            Player player = (Player) commandSender;
-            ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItem(args[0]);
+            Player player = Bukkit.getPlayer(args[0]);
+            if (player == null) {
+                commandSender.sendMessage(commandTranslation.get("noplayer").getAsString());
+                return true;
+            }
+            ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItem(args[1]);
+            if (itemConfig == null) {
+                commandSender.sendMessage(commandTranslation.get("noitem").getAsString());
+                return true;
+            }
             int count = 1;
-            if (args.length == 2) {
+            if (args.length == 3) {
                 try {
-                    count = Integer.parseInt(args[1]);
+                    count = Integer.parseInt(args[2]);
                 } catch (Exception e) {
-                    player.sendMessage(commandTranslation.get("notnumber").getAsString());
+                    commandSender.sendMessage(commandTranslation.get("notnumber").getAsString());
                     return true;
                 }
             }
@@ -56,13 +59,14 @@ public class GiveCommand implements TabCompleter, CommandExecutor {
     public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         final List<String> completions = new ArrayList<>();
         List<String> available = new ArrayList<>();
-        if (args.length == 1) {
+        if (args.length <= 0)
+            return new ArrayList<>();
+        if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
-        } else if (args.length == 2) {
-            available.addAll(Main.getPlugin().getMainConfig().getItemTags());
-        }
+        else if (args.length == 2) available.addAll(Main.getPlugin().getMainConfig().getItemTags());
+        else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
-        StringUtil.copyPartialMatches(args[0], available, completions);
+        StringUtil.copyPartialMatches(args[args.length - 1], available, completions);
         //sort the list
         Collections.sort(completions);
         return completions;

@@ -18,20 +18,20 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate implements CustomItemTemplate {
-    JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
+    JsonObject templateTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
 
     @Override
     public ItemStack getIcon(ItemConfig itemConfig) {
-        return new ItemStackBuilder(guiTranslation.getAsJsonObject("icon")).build();
+        return new ItemStackBuilder(templateTranslation.getAsJsonObject("icon")).build();
     }
 
     @Override
     public ItemStack getMainIcon(ItemConfig itemConfig) {
         BlockConfig blockConfig = getBlock(itemConfig);
         if (blockConfig != null)
-            return new ItemStackBuilder(guiTranslation.getAsJsonObject("main-icon").getAsJsonObject("has")).format(blockConfig.getTag()).build();
+            return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("has")).format(blockConfig.getTag()).build();
         else
-            return new ItemStackBuilder(guiTranslation.getAsJsonObject("main-icon").getAsJsonObject("null")).build();
+            return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("null")).build();
     }
 
     /**
@@ -58,7 +58,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
 
     @Override
     public String getName() {
-        return "Block set template";
+        return templateTranslation.get("name").getAsString();
     }
 
     @Nullable

@@ -6,14 +6,15 @@
     "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
   },
   "api": {
-    "register": "§eItemMods §f» §aRegistered new addon §3{0}!",
-    "unregister": "§eItemMods §f» §aUnregistered addon §3{0}!"
+    "register": "§eItemMods §f» §aRegistered new addon §3{0}§a!",
+    "unregister": "§eItemMods §f» §aUnregistered addon §3{0}§a!"
   },
   "addon": {
+    "name": "ItemMods",
     "templates": {
       "item": {
         "block_set": {
-          "name": "ItemMods",
+          "name": "Block set template",
           "icon": {
             "material": "GRASS_BLOCK",
             "name": "§eBlock set template",
@@ -1641,7 +1642,8 @@
       "usage": "§eItemMods §f» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "noplayer": "§eItemMods §f» §4This command is only for players!",
       "noitem": "§eItemMods §f» §4That is not a valid item!",
-      "notnumber": "§eItemMods §f» §4That is not a number!"
+      "notnumber": "§eItemMods §f» §4That is not a number!",
+      "success": "§eItemMods §f» §aSuccessfully gave you the item §3{0}§a!"
     }
   }
 }

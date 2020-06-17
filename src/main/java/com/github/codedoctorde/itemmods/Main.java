@@ -5,6 +5,7 @@ import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
+import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
@@ -43,6 +44,7 @@ public class Main extends JavaPlugin {
     private BaseCommand baseCommand;
     private ItemModsApi api;
     private ObjectConfig translationConfig;
+    private GiveItemCommand giveItemCommand;
     private Connection connection;
 
     public static Main getPlugin() {
@@ -80,8 +82,11 @@ public class Main extends JavaPlugin {
         if (mainConfig == null)
             mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
+        giveItemCommand = new GiveItemCommand();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
+        Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
+        Objects.requireNonNull(getCommand("giveitem")).setTabCompleter(giveItemCommand);
         saveBaseConfig();
 
         Bukkit.getPluginManager().registerEvents(new CustomItemListener(), Main.getPlugin());

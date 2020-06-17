@@ -83,10 +83,10 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <oracle.version>19.3.0.0</oracle.version>
-    <speedment.version>3.2.9</speedment.version>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <oracle.version>19.3.0.0</oracle.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <speedment.version>3.2.9</speedment.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

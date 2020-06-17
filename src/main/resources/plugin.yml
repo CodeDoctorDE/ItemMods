@@ -15,3 +15,14 @@ commands:
       - im
       - ims
     usage: "\u00a74Usage: \u00a73/itemmods\u00a74!"
+  giveitem:
+    aliases:
+      - givecustomitem
+      - giveitemmodsitem
+      - giveitemmoditem
+      - giveimitem
+      - giveitemmitem
+      - giveimoditem
+      - giveimodsitem
+      - givemoditem
+    usage: "\u00a74Usage: \u00a73/givecustomitem <Player> <Item> [<Amount>]\u00a74!"
