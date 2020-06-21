@@ -3,7 +3,7 @@ author: CodeDoctorDE
 version: "1.3"
 load: STARTUP
 api-version: "1.14"
-main: com.github.codedoctorde.itemmods.Main
+main: com.github.codedoctorde.itemmods.ItemMods
 commands:
   itemmods:
     aliases:

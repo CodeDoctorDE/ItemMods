@@ -14,6 +14,7 @@ import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
 import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
+import com.gitlab.codedoctorde.api.utils.UpdateChecker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -40,6 +41,7 @@ public class ItemMods extends JavaPlugin {
     public static final String version = "§bNUTS 1.3";
     private CodeDoctorAPI codeDoctorAPI;
     private final Gson gson;
+    private UpdateChecker updateChecker;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
     private ItemModsApi api;
@@ -63,6 +65,7 @@ public class ItemMods extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        updateChecker = new UpdateChecker(this, 72461);
         codeDoctorAPI = new CodeDoctorAPI(this);
         translationConfig = new ObjectConfig(gson, new File(getDataFolder(), "translations.json"));
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
