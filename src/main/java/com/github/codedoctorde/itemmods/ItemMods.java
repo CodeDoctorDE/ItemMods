@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods;
 
-import com.github.codedoctorde.itemmods.addon.ItemMods;
+import com.github.codedoctorde.itemmods.addon.BaseAddon;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
@@ -34,8 +34,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class Main extends JavaPlugin {
-    private static Main plugin;
+public class ItemMods extends JavaPlugin {
+    private static ItemMods plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
     public static final String version = "§bNUTS 1.3";
     private CodeDoctorAPI codeDoctorAPI;
@@ -47,17 +47,17 @@ public class Main extends JavaPlugin {
     private GiveItemCommand giveItemCommand;
     private Connection connection;
 
-    public static Main getPlugin() {
-        return plugin;
-    }
-
-    public Main() {
+    public ItemMods() {
         gson = new GsonBuilder()
                 .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
                 .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
                 .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
                 .serializeNulls()
                 .setPrettyPrinting().create();
+    }
+
+    public static ItemMods getPlugin() {
+        return plugin;
     }
 
     @Override
@@ -89,15 +89,15 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("giveitem")).setTabCompleter(giveItemCommand);
         saveBaseConfig();
 
-        Bukkit.getPluginManager().registerEvents(new CustomItemListener(), Main.getPlugin());
-        Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), Main.getPlugin());
+        Bukkit.getPluginManager().registerEvents(new CustomItemListener(), ItemMods.getPlugin());
+        Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), ItemMods.getPlugin());
         api = new ItemModsApi();
         try {
             connect();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        api.registerAddon(new ItemMods());
+        api.registerAddon(new BaseAddon());
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
     }

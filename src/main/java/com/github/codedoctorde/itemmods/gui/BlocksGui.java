@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
@@ -30,15 +30,15 @@ public class BlocksGui {
     }
 
     private Gui[] createGui(String searchText) {
-        MainConfig mainConfig = Main.getPlugin().getMainConfig();
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
-        return new ListGui(Main.getPlugin(), new GuiItemEvent() {
+        MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
+        return new ListGui(ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close(player);
-                new ChatRequest(Main.getPlugin(), player, new ChatRequestEvent() {
+                new ChatRequest(ItemMods.getPlugin(), player, new ChatRequestEvent() {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
@@ -94,18 +94,18 @@ public class BlocksGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {
-        List<BlockConfig> blockConfigs = Main.getPlugin().getMainConfig().getBlocks();
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks").getAsJsonObject("delete");
+        List<BlockConfig> blockConfigs = ItemMods.getPlugin().getMainConfig().getBlocks();
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks").getAsJsonObject("delete");
         if (blockIndex < 0 || blockIndex >= blockConfigs.size())
             return null;
-        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
-        return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex), 3, new GuiEvent() {
+        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex), 3, new GuiEvent() {
             @Override
             public void onTick(Gui gui, Player player) {
 
@@ -127,7 +127,7 @@ public class BlocksGui {
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
                     blockConfigs.remove(blockConfig);
-                    Main.getPlugin().saveBaseConfig();
+                    ItemMods.getPlugin().saveBaseConfig();
                     player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
                     createGui(searchText)[0].open(player);
                 }

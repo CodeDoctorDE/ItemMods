@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.commands;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.KnowledgeGui;
 import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BaseCommand implements CommandExecutor, TabCompleter {
-    private HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
+    private final HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length != 0) {
-            sender.sendMessage(Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("usage").getAsString());
+            sender.sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("usage").getAsString());
             return true;
         }
         if (sender instanceof Player)
@@ -32,7 +32,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
                 else
                     new KnowledgeGui().createGui().open((Player) sender);
         else
-            sender.sendMessage(Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("noplayer").getAsString());
+            sender.sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("noplayer").getAsString());
         return true;
     }
 

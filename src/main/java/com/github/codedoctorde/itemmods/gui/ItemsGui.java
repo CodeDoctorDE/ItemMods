@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
@@ -31,20 +31,20 @@ public class ItemsGui {
     }
 
     private Gui[] createGui(String searchText) {
-        MainConfig mainConfig = Main.getPlugin().getMainConfig();
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items");
-        return new ListGui(Main.getPlugin(), new GuiItemEvent() {
+        MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items");
+        return new ListGui(ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close(player);
-                new ChatRequest(Main.getPlugin(), player, new ChatRequestEvent() {
+                new ChatRequest(ItemMods.getPlugin(), player, new ChatRequestEvent() {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
                         mainConfig.getItems().add(new ItemConfig(output));
-                        Main.getPlugin().saveBaseConfig();
+                        ItemMods.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
                         Objects.requireNonNull(createGui())[0].open(player);
                     }
@@ -94,18 +94,18 @@ public class ItemsGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int itemIndex, Gui backGui, String searchText) {
-        List<ItemConfig> itemConfigs = Main.getPlugin().getMainConfig().getItems();
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items").getAsJsonObject("delete");
+        List<ItemConfig> itemConfigs = ItemMods.getPlugin().getMainConfig().getItems();
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items").getAsJsonObject("delete");
         if (itemIndex < 0 || itemIndex >= itemConfigs.size())
             return null;
-        ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItems().get(itemIndex);
-        return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex), 3, new GuiEvent() {
+        ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex), 3, new GuiEvent() {
             @Override
             public void onTick(Gui gui, Player player) {
 
@@ -127,7 +127,7 @@ public class ItemsGui {
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
                     itemConfigs.remove(itemConfig);
-                    Main.getPlugin().saveBaseConfig();
+                    ItemMods.getPlugin().saveBaseConfig();
                     player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), itemConfig.getName(), itemIndex));
                     createGui(searchText)[0].open(player);
                 }

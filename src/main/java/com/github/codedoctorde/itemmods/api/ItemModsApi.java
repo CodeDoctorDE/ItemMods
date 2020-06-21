@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.api;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
@@ -20,7 +20,10 @@ public class ItemModsApi {
     private final CustomItemManager customItemManager = new CustomItemManager();
     private final CustomBlockManager customBlockManager = new CustomBlockManager();
     private final List<ItemModsAddon> addons = new ArrayList<>();
-    private final JsonObject translation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
+    private final JsonObject translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
+
+    public ItemModsApi() {
+    }
 
     public CustomBlockManager getCustomBlockManager() {
         return customBlockManager;
@@ -75,5 +78,9 @@ public class ItemModsApi {
     @Nullable
     public ItemModsAddon getAddon(String name) {
         return addons.stream().findFirst().filter(addon -> addon.getName().equals(name)).orElse(null);
+    }
+
+    public static ItemModsApi getInstance() {
+        return instance;
     }
 }

@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
@@ -18,8 +18,8 @@ import java.text.MessageFormat;
  */
 public class AddonsGui {
     public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
-        return new ListGui(Main.getPlugin(), new GuiListEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
+        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
                 return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
@@ -27,7 +27,7 @@ public class AddonsGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Main.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
+                return ItemMods.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         Gui configGui = addon.openConfig();
@@ -41,7 +41,7 @@ public class AddonsGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new MainGui().createGui());
     }

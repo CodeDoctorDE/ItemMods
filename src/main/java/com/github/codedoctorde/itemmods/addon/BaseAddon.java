@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.addon;
 
-import com.github.codedoctorde.itemmods.Main;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
@@ -19,8 +18,8 @@ import java.util.List;
  *
  * @author CodeDoctorDE
  */
-public class ItemMods implements ItemModsAddon {
-    JsonObject addonTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
+public class BaseAddon implements ItemModsAddon {
+    JsonObject addonTranslation = com.github.codedoctorde.itemmods.ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
 
     @NotNull
     @Override

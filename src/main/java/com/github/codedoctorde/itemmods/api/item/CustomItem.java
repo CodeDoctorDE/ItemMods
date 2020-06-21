@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.api.item;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.gitlab.codedoctorde.api.server.Version;
 import org.bukkit.NamespacedKey;
@@ -16,7 +16,7 @@ public class CustomItem {
 
     public CustomItem(ItemStack itemStack) {
         this.itemStack = itemStack;
-        Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
+        ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
     }
 
     public ItemConfig getConfig() {
@@ -24,7 +24,7 @@ public class CustomItem {
     }
 
     public String getData() {
-        NamespacedKey key = new NamespacedKey(Main.getPlugin(), "data");
+        NamespacedKey key = new NamespacedKey(ItemMods.getPlugin(), "data");
         if (Version.getVersion().isLowerThan(Version.v1_15)) {
             String data = Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().getCustomTag(key, ItemTagType.STRING);
             if (data == null)
@@ -35,7 +35,7 @@ public class CustomItem {
     }
 
     public void setData(String data) {
-        NamespacedKey key = new NamespacedKey(Main.getPlugin(), "data");
+        NamespacedKey key = new NamespacedKey(ItemMods.getPlugin(), "data");
         if (Version.getVersion().isLowerThan(Version.v1_15))
             Objects.requireNonNull(itemStack.getItemMeta()).getCustomTagContainer().setCustomTag(key, ItemTagType.STRING, data);
         else

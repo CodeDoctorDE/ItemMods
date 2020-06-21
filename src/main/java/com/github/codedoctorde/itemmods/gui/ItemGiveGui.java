@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemGiveGui {
-    private ItemStackBuilder itemStackBuilder;
+    private final ItemStackBuilder itemStackBuilder;
 
     public ItemGiveGui(ItemStack itemStack) {
         this.itemStackBuilder = new ItemStackBuilder(itemStack);
@@ -22,8 +22,8 @@ public class ItemGiveGui {
     }
 
     public Gui createGui(Gui backGui) {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("give");
-        return new Gui(Main.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("give");
+        return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
             getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

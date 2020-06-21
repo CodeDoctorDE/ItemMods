@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.gitlab.codedoctorde.api.server.Version;
 import com.google.gson.JsonObject;
@@ -37,7 +37,7 @@ public class ItemConfig {
     @Nullable
     private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
-    private final NamespacedKey typeNamespace = new NamespacedKey(Main.getPlugin(), "type");
+    private final NamespacedKey typeNamespace = new NamespacedKey(ItemMods.getPlugin(), "type");
 
 
     public ItemConfig(String name) {
@@ -165,7 +165,7 @@ public class ItemConfig {
         if (templateName == null)
             return null;
         try {
-            return Main.getPlugin().getApi().getItemTemplate(templateName);
+            return ItemMods.getPlugin().getApi().getItemTemplate(templateName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

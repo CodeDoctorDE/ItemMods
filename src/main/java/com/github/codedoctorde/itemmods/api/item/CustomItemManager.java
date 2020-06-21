@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.api.item;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -13,7 +13,7 @@ public class CustomItemManager {
     }
 
     public List<ItemConfig> getItems() {
-        return Main.getPlugin().getMainConfig().getItems();
+        return ItemMods.getPlugin().getMainConfig().getItems();
     }
 
     /**

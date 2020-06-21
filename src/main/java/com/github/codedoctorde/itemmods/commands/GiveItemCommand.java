@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.commands;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * @author CodeDoctorDE
  */
 public class GiveItemCommand implements TabCompleter, CommandExecutor {
-    private final JsonObject commandTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("give");
+    private final JsonObject commandTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("give");
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
@@ -33,7 +33,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 commandSender.sendMessage(commandTranslation.get("noplayer").getAsString());
                 return true;
             }
-            ItemConfig itemConfig = Main.getPlugin().getMainConfig().getItem(args[1]);
+            ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItem(args[1]);
             if (itemConfig == null) {
                 commandSender.sendMessage(commandTranslation.get("noitem").getAsString());
                 return true;
@@ -63,7 +63,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
             return new ArrayList<>();
         if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
-        else if (args.length == 2) available.addAll(Main.getPlugin().getMainConfig().getItemTags());
+        else if (args.length == 2) available.addAll(ItemMods.getPlugin().getMainConfig().getItemTags());
         else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
         StringUtil.copyPartialMatches(args[args.length - 1], available, completions);

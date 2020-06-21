@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.api.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.google.gson.JsonElement;
 import org.bukkit.Location;
@@ -41,7 +41,7 @@ public class CustomBlock {
     public CustomBlock(Location location) {
         this.location = location;
         this.armorStand = null;
-        Main.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig ->
+        ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig ->
                 blockConfig.getTag().equals(getType())).forEach(itemConfig -> config = itemConfig);
     }
 
@@ -59,11 +59,11 @@ public class CustomBlock {
     }
 
     public String getType() {
-        return getString(new NamespacedKey(Main.getPlugin(), "type"));
+        return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
     }
 
     public void setType(String type) {
-        setString(new NamespacedKey(Main.getPlugin(), "type"), type);
+        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), type);
     }
 
     public void breakBlock(BlockDropType dropType) {
@@ -114,7 +114,7 @@ public class CustomBlock {
      * Configure the PersistantTagContainer to the default values
      */
     public void configure() {
-        setString(new NamespacedKey(Main.getPlugin(), "type"), config.getTag());
-        setString(new NamespacedKey(Main.getPlugin(), "data"), "");
+        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), config.getTag());
+        setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 }

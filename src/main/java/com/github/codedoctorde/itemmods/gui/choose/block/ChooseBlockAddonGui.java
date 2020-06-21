@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui.choose.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.BlockGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
@@ -25,8 +25,8 @@ public class ChooseBlockAddonGui {
     }
 
     public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocktemplates");
-        return new ListGui(Main.getPlugin(), new GuiListEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocktemplates");
+        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
                 return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
@@ -34,7 +34,7 @@ public class ChooseBlockAddonGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Main.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
+                return ItemMods.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         new ChooseBlockTemplateGui(blockIndex, addon).createGui()[0].open((Player) event.getWhoClicked());
@@ -44,7 +44,7 @@ public class ChooseBlockAddonGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
     }

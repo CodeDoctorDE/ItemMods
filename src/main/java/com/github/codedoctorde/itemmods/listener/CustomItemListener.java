@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.listener;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -17,9 +17,9 @@ public class CustomItemListener implements Listener {
         AnvilInventory anvilInventory = ((AnvilInventory) event.getClickedInventory());
         if (event.getSlot() < 2) return;
         if (anvilInventory.getItem(0) == null || anvilInventory.getRenameText() == null) return;
-        Main.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> Objects.requireNonNull(anvilInventory.getItem(0)).isSimilar(itemConfig.getItemStack()) && !itemConfig.isCanRename()).forEach(itemConfig -> {
+        ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> Objects.requireNonNull(anvilInventory.getItem(0)).isSimilar(itemConfig.getItemStack()) && !itemConfig.isCanRename()).forEach(itemConfig -> {
             event.setCancelled(true);
-            event.getWhoClicked().sendMessage(Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("event").getAsJsonObject("rename").getAsString());
+            event.getWhoClicked().sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("event").getAsJsonObject("rename").getAsString());
         });
     }
 }

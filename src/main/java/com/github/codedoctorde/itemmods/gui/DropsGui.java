@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.DropConfig;
 import com.gitlab.codedoctorde.api.request.ItemRequest;
@@ -41,14 +41,14 @@ public class DropsGui {
     }
 
     public Gui[] createGui(boolean rarityEditing) {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
-        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
-        return new ListGui(Main.getPlugin(), new GuiItemEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
+        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        return new ListGui(ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close((Player) event.getWhoClicked());
-                new ItemRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ItemRequestEvent() {
+                new ItemRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ItemRequestEvent() {
                     @Override
                     public void onEvent(Player player, ItemStack itemStack) {
                         blockConfig.getDrops().add(new DropConfig(itemStack));
@@ -114,19 +114,19 @@ public class DropsGui {
                                 if (rarity < 0 || rarity > 100)
                                     return;
                                 dropConfig.setRarity(rarity);
-                                Main.getPlugin().saveBaseConfig();
+                                ItemMods.getPlugin().saveBaseConfig();
                                 event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").get("success").getAsString(), blockIndex, rarity));
                                 createGui(true)[0].open((Player) event.getWhoClicked());
                             } else switch (event.getClick()) {
                                 case LEFT:
-                                    new ItemCreatorGui(Main.getPlugin(), dropConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                                    new ItemCreatorGui(ItemMods.getPlugin(), dropConfig.getItemStack(), new ItemCreatorSubmitEvent() {
                                         @Override
                                         public void onEvent(ItemStack itemStack) {
                                             dropConfig.setItemStack(itemStack);
                                             createGui(false)[0].open((Player) event.getWhoClicked());
-                                            Main.getPlugin().saveBaseConfig();
+                                            ItemMods.getPlugin().saveBaseConfig();
                                         }
-                                    }).createGui(gui, Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
+                                    }).createGui(gui, ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                                     break;
                                 case RIGHT:
                                     event.getWhoClicked().getInventory().addItem(dropConfig.getItemStack());
@@ -149,7 +149,7 @@ public class DropsGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
     }

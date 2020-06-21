@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemConfigGui;
@@ -34,12 +34,12 @@ public class BlockGui {
     }
 
     public Gui createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("block");
-        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(current);
-        return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), current), 5, new GuiEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("block");
+        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(current);
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), current), 5, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }) {
             {
@@ -55,11 +55,11 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("name").get("message").getAsString());
                         gui.close((Player) event.getWhoClicked());
-                        new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setName(output);
-                                Main.getPlugin().saveBaseConfig();
+                                ItemMods.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("name").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -76,12 +76,12 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         gui.close((Player) event.getWhoClicked());
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("displayname").get("message").getAsString());
-                        new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 blockConfig.setDisplayName(output);
-                                Main.getPlugin().saveBaseConfig();
+                                ItemMods.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("displayname").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -99,11 +99,11 @@ public class BlockGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
                         gui.close((Player) event.getWhoClicked());
-                        new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setTag(output);
-                                Main.getPlugin().saveBaseConfig();
+                                ItemMods.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -121,7 +121,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -129,7 +129,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -137,7 +137,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -145,7 +145,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -153,7 +153,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -161,7 +161,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -169,7 +169,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setBasePlate(!armorStand.isBasePlate());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -177,7 +177,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setInvisible(!armorStand.isInvisible());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -185,7 +185,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setSmall(!armorStand.isSmall());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -193,7 +193,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setMarker(!armorStand.isMarker());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -201,7 +201,7 @@ public class BlockGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             armorStand.setInvulnerable(!armorStand.isInvulnerable());
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
                     }));
@@ -214,7 +214,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setHelmet((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -228,7 +228,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setChestplate((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -242,7 +242,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setLeggings((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -256,7 +256,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setBoots((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -270,7 +270,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setMainHand((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -284,7 +284,7 @@ public class BlockGui {
                             }
                             ItemStack change = event.getWhoClicked().getItemOnCursor();
                             armorStand.setOffHand((change.getType() == Material.AIR) ? null : change);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
                             createGui().open((Player) event.getWhoClicked());
                         }
@@ -296,12 +296,12 @@ public class BlockGui {
                                 case LEFT:
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get("message").getAsString());
                                     gui.close((Player) event.getWhoClicked());
-                                    new ChatRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                                    new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
                                         @Override
                                         public void onEvent(Player player, String output) {
                                             output = ChatColor.translateAlternateColorCodes('&', output);
                                             armorStand.setCustomName(output);
-                                            Main.getPlugin().saveBaseConfig();
+                                            ItemMods.getPlugin().saveBaseConfig();
                                             event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("customname").get("success").getAsString(), output));
                                             createGui().open(player);
                                         }
@@ -314,12 +314,12 @@ public class BlockGui {
                                     break;
                                 case RIGHT:
                                     armorStand.setCustomName("");
-                                    Main.getPlugin().saveBaseConfig();
+                                    ItemMods.getPlugin().saveBaseConfig();
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get("remove").getAsString());
                                     break;
                                 case DROP:
                                     armorStand.setCustomNameVisible(!armorStand.isCustomNameVisible());
-                                    Main.getPlugin().saveBaseConfig();
+                                    ItemMods.getPlugin().saveBaseConfig();
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get(armorStand.isCustomNameVisible() ? "on" : "off").getAsString());
                             }
                             if (event.getClick() != ClickType.LEFT)
@@ -335,7 +335,7 @@ public class BlockGui {
                             case LEFT:
                                 gui.close((Player) event.getWhoClicked());
                                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("block").get("message").getAsString());
-                                new BlockBreakRequest(Main.getPlugin(), (Player) event.getWhoClicked(), new BlockBreakRequestEvent() {
+                                new BlockBreakRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new BlockBreakRequestEvent() {
                                     @Override
                                     public void onEvent(Player player, Block output) {
                                         if (blockConfig.checkBlock(output.getState())) {
@@ -348,7 +348,7 @@ public class BlockGui {
                                             blockConfig.setData(null);
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("error").getAsString());
                                         }
-                                        Main.getPlugin().saveBaseConfig();
+                                        ItemMods.getPlugin().saveBaseConfig();
                                         createGui().open(player);
                                     }
 
@@ -365,14 +365,14 @@ public class BlockGui {
                                 createGui().open((Player) event.getWhoClicked());
                                 break;
                         }
-                        Main.getPlugin().saveBaseConfig();
+                        ItemMods.getPlugin().saveBaseConfig();
                     }
                 }));
                 getGuiItems().put(4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setDrop(!blockConfig.isDrop());
-                        Main.getPlugin().saveBaseConfig();
+                        ItemMods.getPlugin().saveBaseConfig();
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
@@ -389,7 +389,7 @@ public class BlockGui {
                     public void setItem(Gui gui, Player player) {
                         new ChooseItemConfigGui(itemConfig -> {
                             blockConfig.setReferenceItemConfig(itemConfig);
-                            Main.getPlugin().saveBaseConfig();
+                            ItemMods.getPlugin().saveBaseConfig();
                             createGui().open(player);
                         }).createGui(gui)[0].open(player);
                     }
@@ -400,7 +400,7 @@ public class BlockGui {
                         blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
                         blockConfig.setBlock(null);
                         blockConfig.setData(null);
-                        Main.getPlugin().saveBaseConfig();
+                        ItemMods.getPlugin().saveBaseConfig();
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());
                     }

@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui.choose.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
@@ -24,10 +24,10 @@ public class AskCreateBlockItemGui {
     }
 
     public Gui createGui() {
-        MainConfig mainConfig = Main.getPlugin().getMainConfig();
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("block").getAsJsonObject("askitem");
+        MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("block").getAsJsonObject("askitem");
         ItemConfig itemConfig = new ItemConfig(name);
-        return new Gui(Main.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
+        return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
             getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

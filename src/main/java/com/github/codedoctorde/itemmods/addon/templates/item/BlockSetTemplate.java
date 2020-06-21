@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.addon.templates.item;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate implements CustomItemTemplate {
-    JsonObject templateTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
+    JsonObject templateTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
 
     @Override
     public ItemStack getIcon(ItemConfig itemConfig) {
@@ -48,7 +48,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
     @Override
     public void openConfig(ItemConfig itemConfig, Player player) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
-        int itemIndex = Main.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
+        int itemIndex = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
         new ChooseBlockConfigGui(blockConfig -> {
             setBlock(itemConfig, blockConfig);
             data.save();
@@ -69,7 +69,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
     @Nullable
     public BlockConfig getBlock(ItemConfig customItem) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, customItem);
-        return Main.getPlugin().getMainConfig().getBlock(data.getBlock());
+        return ItemMods.getPlugin().getMainConfig().getBlock(data.getBlock());
     }
 
     public void setBlock(ItemConfig customItem, @Nullable BlockConfig blockConfig) {
@@ -107,7 +107,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("block", block);
             itemConfig.setTemplateConfig(jsonObject);
-            Main.getPlugin().saveBaseConfig();
+            ItemMods.getPlugin().saveBaseConfig();
         }
     }
 }

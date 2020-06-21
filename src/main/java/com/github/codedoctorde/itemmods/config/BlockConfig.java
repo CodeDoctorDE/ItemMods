@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
@@ -79,7 +79,7 @@ public class BlockConfig {
         if (templateName == null)
             return null;
         try {
-            return Main.getPlugin().getApi().getBlockTemplate(templateName);
+            return ItemMods.getPlugin().getApi().getBlockTemplate(templateName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -166,7 +166,7 @@ public class BlockConfig {
         if (referenceItem == null)
             return null;
         else
-            return Main.getPlugin().getMainConfig().getItem(referenceItem);
+            return ItemMods.getPlugin().getMainConfig().getItem(referenceItem);
     }
 
     public void setReferenceItemConfig(@Nullable ItemConfig itemConfig) {

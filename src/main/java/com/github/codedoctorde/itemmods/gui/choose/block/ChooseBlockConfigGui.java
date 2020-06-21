@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui.choose.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
@@ -25,8 +25,8 @@ public class ChooseBlockConfigGui {
     }
 
     public Gui[] createGui(Gui backGui) {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("block").getAsJsonObject("config");
-        return new ListGui(Main.getPlugin(), new GuiListEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("block").getAsJsonObject("config");
+        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
                 return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
@@ -34,7 +34,7 @@ public class ChooseBlockConfigGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Main.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig -> blockConfig.getTag().contains(s)).map(blockConfig -> new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("config")).format(
+                return ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig -> blockConfig.getTag().contains(s)).map(blockConfig -> new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("config")).format(
                         blockConfig.getName(), blockConfig.getDisplayName(), blockConfig.getTag()), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

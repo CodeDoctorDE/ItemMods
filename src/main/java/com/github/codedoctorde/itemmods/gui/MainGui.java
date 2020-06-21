@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
@@ -15,19 +15,19 @@ import java.text.MessageFormat;
 
 public class MainGui {
     public Gui createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("main");
-        return new Gui(Main.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), Main.version), 5, new GuiEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("main");
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), ItemMods.version), 5, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player);
             }
         }) {{
             getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("reload")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
-                    Bukkit.getPluginManager().disablePlugin(Main.getPlugin());
-                    Bukkit.getPluginManager().enablePlugin(Main.getPlugin());
+                    Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());
+                    Bukkit.getPluginManager().enablePlugin(ItemMods.getPlugin());
                     player.sendMessage(guiTranslation.getAsJsonObject("reload").get("success").getAsString());
                 }
             }));

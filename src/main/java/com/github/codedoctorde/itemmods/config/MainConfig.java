@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class MainConfig {
         if (getBlock(blockConfig.getTag()) != null)
             return false;
         getBlocks().add(blockConfig);
-        Main.getPlugin().saveBaseConfig();
+        ItemMods.getPlugin().saveBaseConfig();
         return true;
     }
 

@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.listener;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.block.CustomBlock;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
@@ -64,7 +64,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
-        if (!Main.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem)))
+        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem)))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             event.getItem().setAmount(event.getItem().getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -77,7 +77,7 @@ public class CustomBlockListener implements Listener {
         Block block = event.getWhoClicked().getTargetBlock(null, 10);
         if (block.getType() == Material.AIR)
             return;
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
         if (customBlock == null)
             return;
         if (customBlock.getConfig().getReferenceItemConfig() == null)
@@ -87,7 +87,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockBreak(BlockBreakEvent event) {
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
         event.setCancelled(true);
@@ -104,7 +104,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockMove(BlockFromToEvent event) {
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
         if (customBlock.getArmorStand() == null)
@@ -116,7 +116,7 @@ public class CustomBlockListener implements Listener {
     public void onCustomBlockPistonRetract(BlockPistonRetractEvent event) {
         for (Block block :
                 event.getBlocks()) {
-            CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
+            CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
             if (customBlock == null)
                 return;
             if (!customBlock.getConfig().isMoving())
@@ -130,7 +130,7 @@ public class CustomBlockListener implements Listener {
     public void onCustomBlockPistonExtend(BlockPistonExtendEvent event) {
         for (Block block :
                 event.getBlocks()) {
-            CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
+            CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
             if (customBlock == null)
                 return;
             if (!customBlock.getConfig().isMoving())
@@ -142,7 +142,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockFall(EntityChangeBlockEvent event) {
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock != null)
             event.setCancelled(true);
     }
@@ -169,14 +169,14 @@ public class CustomBlockListener implements Listener {
         if (template.getBlock(customItem) == null)
             return;
         if (item.getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
-        if (Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
+        if (ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
             return;
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
         if (event.getPlayer().getLocation().distance(location.clone().add(0, 1, 0)) < 1)
             return;
-        if (!Main.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem)))
+        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem)))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             item.setAmount(item.getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -189,7 +189,7 @@ public class CustomBlockListener implements Listener {
         if (!(event.getEntity() instanceof ArmorStand))
             return;
         Location location = event.getEntity().getLocation().clone().add(-0.5, 0, -0.5);
-        CustomBlock customBlock = Main.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
         if (customBlock == null)
             return;
         event.setCancelled(true);

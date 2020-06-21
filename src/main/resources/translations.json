@@ -1636,8 +1636,10 @@
     "rename": "§eItemMods §f» §cThis item cannot be renamed!"
   },
   "command": {
-    "usage": "§eItemMods §f» §cUsage: §3/itemmods§c!",
-    "noplayer": "§eItemMods §f» §4This command is only for players!",
+    "base": {
+      "usage": "§eItemMods §f» §cUsage: §3/itemmods§c!",
+      "noplayer": "§eItemMods §f» §4This command is only for players!"
+    },
     "give": {
       "usage": "§eItemMods §f» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "noplayer": "§eItemMods §f» §4This command is only for players!",

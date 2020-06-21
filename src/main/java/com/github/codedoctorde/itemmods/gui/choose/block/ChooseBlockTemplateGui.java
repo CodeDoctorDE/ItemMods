@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.gui.choose.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.gui.BlockGui;
@@ -29,9 +29,9 @@ public class ChooseBlockTemplateGui {
     }
 
     public Gui[] createGui() {
-        JsonObject guiTranslation = Main.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("blocktemplate");
-        BlockConfig blockConfig = Main.getPlugin().getMainConfig().getBlocks().get(blockIndex);
-        return new ListGui(Main.getPlugin(), new GuiListEvent() {
+        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("blocktemplate");
+        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
                 return MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex, addon.getName(), index + 1, size);
@@ -42,8 +42,8 @@ public class ChooseBlockTemplateGui {
                 return addon.getBlockTemplates().stream().filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Main.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(blockTemplate);
-                        Main.getPlugin().saveBaseConfig();
+                        ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(blockTemplate);
+                        ItemMods.getPlugin().saveBaseConfig();
                         new BlockGui(blockIndex).createGui().open((Player) event.getWhoClicked());
                     }
                 })).toArray(GuiItem[]::new);
@@ -51,7 +51,7 @@ public class ChooseBlockTemplateGui {
         }, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
-                Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
+                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
     }

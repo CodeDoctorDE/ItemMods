@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.api.block;
 
-import com.github.codedoctorde.itemmods.Main;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.nbt.BlockNBT;
@@ -38,7 +38,7 @@ public class CustomBlockManager {
     @Nullable
     public CustomBlock getCustomBlock(final Location location) {
         Block block = location.getBlock();
-        for (BlockConfig blockConfig : Main.getPlugin().getMainConfig().getBlocks())
+        for (BlockConfig blockConfig : ItemMods.getPlugin().getMainConfig().getBlocks())
             if (blockConfig.getArmorStand() != null) {
                 Location entityLocation = location.clone().add(0.5, 0, 0.5);
                 List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
@@ -73,7 +73,7 @@ public class CustomBlockManager {
 
     @Nullable
     public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
-        if (Objects.equals(container.get(new NamespacedKey(Main.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
+        if (Objects.equals(container.get(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
             return new CustomBlock(location, entity);
         return null;
     }
@@ -86,7 +86,7 @@ public class CustomBlockManager {
     }
 
     public List<BlockConfig> getBlocks() {
-        return Main.getPlugin().getMainConfig().getBlocks();
+        return ItemMods.getPlugin().getMainConfig().getBlocks();
     }
 
     /**
