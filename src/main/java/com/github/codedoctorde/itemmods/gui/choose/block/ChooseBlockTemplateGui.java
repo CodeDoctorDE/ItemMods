@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 
 /**
  * @author CodeDoctorDE
@@ -39,7 +40,7 @@ public class ChooseBlockTemplateGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return addon.getBlockTemplates().stream().filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.getIcon(), new GuiItemEvent() {
+                return Arrays.stream(addon.getBlockTemplates()).filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(blockTemplate);

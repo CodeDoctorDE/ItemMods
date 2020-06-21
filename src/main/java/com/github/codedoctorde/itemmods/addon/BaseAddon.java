@@ -2,37 +2,22 @@ package com.github.codedoctorde.itemmods.addon;
 
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Default addon for elemental features
  *
  * @author CodeDoctorDE
  */
-public class BaseAddon implements ItemModsAddon {
+public class BaseAddon extends ItemModsAddon {
     JsonObject addonTranslation = com.github.codedoctorde.itemmods.ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
 
-    @NotNull
-    @Override
-    public List<CustomItemTemplate> getItemTemplates() {
-        return new ArrayList<CustomItemTemplate>() {{
-            add(new BlockSetTemplate());
-        }};
-    }
-
-    @NotNull
-    @Override
-    public List<CustomBlockTemplate> getBlockTemplates() {
-        return new ArrayList<>();
+    public BaseAddon() {
+        registerItemTemplate(new BlockSetTemplate());
     }
 
     @NotNull

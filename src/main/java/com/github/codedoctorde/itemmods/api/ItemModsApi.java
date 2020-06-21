@@ -11,7 +11,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author CodeDoctorDE
@@ -38,15 +40,15 @@ public class ItemModsApi {
         Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));
     }
 
-    public List<CustomBlockTemplate> getCustomBlockTemplates() {
-        List<CustomBlockTemplate> customBlockTemplates = new ArrayList<>();
-        addons.stream().map(ItemModsAddon::getBlockTemplates).forEach(customBlockTemplates::addAll);
+    public Set<CustomBlockTemplate> getCustomBlockTemplates() {
+        Set<CustomBlockTemplate> customBlockTemplates = new HashSet<>();
+        addons.stream().map(addon -> addon.blockTemplates).forEach(customBlockTemplates::addAll);
         return customBlockTemplates;
     }
 
-    public List<CustomItemTemplate> getCustomItemTemplates() {
-        List<CustomItemTemplate> customItemTemplates = new ArrayList<>();
-        addons.stream().map(ItemModsAddon::getItemTemplates).forEach(customItemTemplates::addAll);
+    public Set<CustomItemTemplate> getCustomItemTemplates() {
+        Set<CustomItemTemplate> customItemTemplates = new HashSet<>();
+        addons.stream().map(addon -> addon.itemTemplates).forEach(customItemTemplates::addAll);
         return customItemTemplates;
     }
 

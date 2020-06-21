@@ -9,7 +9,6 @@ public class BlockListener implements Listener {
     @EventHandler
     public void onBlockFall(EntityBlockFormEvent event) {
         if (event.getEntity().getType() == EntityType.FALLING_BLOCK) {
-
         }
     }
 }

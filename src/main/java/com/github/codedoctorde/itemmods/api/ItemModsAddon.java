@@ -7,24 +7,46 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author CodeDoctorDE
  */
-public interface ItemModsAddon {
-    @NotNull
-    List<CustomItemTemplate> getItemTemplates();
+public abstract class ItemModsAddon {
+    protected Set<CustomBlockTemplate> blockTemplates = new HashSet<>();
+    protected Set<CustomItemTemplate> itemTemplates = new HashSet<>();
 
     @NotNull
-    List<CustomBlockTemplate> getBlockTemplates();
+    public abstract String getName();
 
     @NotNull
-    String getName();
-
-    @NotNull
-    ItemStack getIcon();
+    public abstract ItemStack getIcon();
 
     @Nullable
-    Gui openConfig();
+    public abstract Gui openConfig();
+
+    public CustomBlockTemplate[] getBlockTemplates() {
+        return blockTemplates.toArray(new CustomBlockTemplate[0]);
+    }
+
+    public CustomItemTemplate[] getItemTemplates() {
+        return itemTemplates.toArray(new CustomItemTemplate[0]);
+    }
+
+    protected void registerBlockTemplate(CustomBlockTemplate template) {
+        blockTemplates.add(template);
+    }
+
+    protected void unregisterBlockTemplate(CustomBlockTemplate template) {
+        blockTemplates.remove(template);
+    }
+
+    protected void registerItemTemplate(CustomItemTemplate template) {
+        itemTemplates.add(template);
+    }
+
+    protected void unregisterItemTemplate(CustomItemTemplate template) {
+        itemTemplates.remove(template);
+    }
 }
