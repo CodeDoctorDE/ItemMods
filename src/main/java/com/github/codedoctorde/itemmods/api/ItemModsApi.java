@@ -79,8 +79,4 @@ public class ItemModsApi {
     public ItemModsAddon getAddon(String name) {
         return addons.stream().findFirst().filter(addon -> addon.getName().equals(name)).orElse(null);
     }
-
-    public static ItemModsApi getInstance() {
-        return instance;
-    }
 }
