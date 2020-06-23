@@ -1,9 +1,11 @@
 package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.gitlab.codedoctorde.api.ui.Gui;
 import com.google.gson.JsonElement;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CodeDoctorDE
@@ -28,7 +30,8 @@ public interface CustomBlockTemplate {
 
     void loadConfig(JsonElement data, BlockConfig config);
 
-    void openConfig(BlockConfig blockConfig, Player player);
+    @Nullable
+    Gui getConfigGui(BlockConfig blockConfig, Player player);
 
     JsonElement saveConfig(BlockConfig config);
 

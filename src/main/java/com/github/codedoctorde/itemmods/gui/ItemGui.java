@@ -159,15 +159,19 @@ public class ItemGui {
                     new ItemStackBuilder(itemConfig.getTemplate().getMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    if (itemConfig.getTemplate() != null)
-                        switch (event.getClick()) {
-                            case LEFT:
-                                itemConfig.getTemplate().openConfig(itemConfig, (Player) event.getWhoClicked());
-                                break;
-                            case DROP:
-                                itemConfig.setTemplate(null);
-
-                        }
+                    if (itemConfig.getTemplate() != null) {
+                        Gui templateGui = itemConfig.getTemplate().getConfigGui(itemConfig, (Player) event.getWhoClicked());
+                        if (templateGui != null)
+                            switch (event.getClick()) {
+                                case LEFT:
+                                    templateGui.open((Player) event.getWhoClicked());
+                                    break;
+                                case DROP:
+                                    itemConfig.setTemplate(null);
+                            }
+                        else
+                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
+                    }
                     else
                         new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
                 }

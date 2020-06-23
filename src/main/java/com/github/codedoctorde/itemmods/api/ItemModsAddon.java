@@ -24,7 +24,7 @@ public abstract class ItemModsAddon {
     public abstract ItemStack getIcon();
 
     @Nullable
-    public abstract Gui openConfig();
+    public abstract Gui getConfigGui();
 
     public CustomBlockTemplate[] getBlockTemplates() {
         return blockTemplates.toArray(new CustomBlockTemplate[0]);

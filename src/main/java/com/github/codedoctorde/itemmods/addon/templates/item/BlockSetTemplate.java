@@ -7,6 +7,7 @@ import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.ItemGui;
 import com.github.codedoctorde.itemmods.gui.choose.block.ChooseBlockConfigGui;
+import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -46,14 +47,14 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Override
-    public void openConfig(ItemConfig itemConfig, Player player) {
+    public Gui getConfigGui(ItemConfig itemConfig, Player player) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
         int itemIndex = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
-        new ChooseBlockConfigGui(blockConfig -> {
+        return new ChooseBlockConfigGui(blockConfig -> {
             setBlock(itemConfig, blockConfig);
             data.save();
             new ItemGui(itemIndex).createGui().open(player);
-        }).createGui(new ItemGui(itemIndex).createGui())[0].open(player);
+        }).createGui(new ItemGui(itemIndex).createGui())[0];
     }
 
     @Override
