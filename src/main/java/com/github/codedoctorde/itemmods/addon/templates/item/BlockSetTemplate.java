@@ -51,7 +51,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
         int itemIndex = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
         return new ChooseBlockConfigGui(blockConfig -> {
-            setBlock(itemConfig, blockConfig);
+            data.setBlock(blockConfig.getTag());
             data.save();
             new ItemGui(itemIndex).createGui().open(player);
         }).createGui(new ItemGui(itemIndex).createGui())[0];
@@ -79,6 +79,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             data.setBlock(blockConfig.getTag());
         else
             data.setBlock(null);
+        data.save();
     }
 
     private class BlockSetTemplateData {
@@ -92,7 +93,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             this.template = template;
             this.itemConfig = itemConfig;
             JsonObject jsonObject = itemConfig.getTemplateConfig();
-            if (jsonObject.has("block"))
+            if (jsonObject.get("block").isJsonPrimitive())
                 this.block = jsonObject.get("block").getAsString();
         }
 

@@ -203,14 +203,15 @@ public class ItemGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
+                    ItemStack itemStack = itemConfig.giveItemStack().clone();
                     if (itemConfig.getItemStack() == null) {
                         player.sendMessage(guiTranslation.getAsJsonObject("get").getAsJsonObject("null").getAsString());
                         return;
                     }
                     if (event.getClick() != ClickType.MIDDLE) {
-                        new ItemGiveGui(itemConfig.getItemStack().clone()).createGui(gui).open(player);
+                        new ItemGiveGui(itemStack).createGui(gui).open(player);
                     } else {
-                        event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack().clone());
+                        event.getWhoClicked().getInventory().addItem(itemStack);
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("get").get("success").getAsString());
                     }
                 }
