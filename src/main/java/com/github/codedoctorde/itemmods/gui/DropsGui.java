@@ -79,7 +79,7 @@ public class DropsGui {
                     if (rarityEditing)
                         lines = guiTranslation.getAsJsonObject("drop").getAsJsonArray("rarity");
                     else
-                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").getAsJsonArray(dropConfig.isFortune() ? "fortune" : "nofortune");
+                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonObject("general").getAsJsonArray(dropConfig.isFortune() ? "fortune" : "nofortune");
                     for (JsonElement line :
                             lines)
                         if (rarityEditing)

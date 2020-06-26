@@ -71,7 +71,7 @@ public class CustomBlock {
         getBlock().getDrops().clear();
         Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
         if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
-            getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().getItemStack());
+            getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().giveItemStack());
         else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
@@ -114,7 +114,9 @@ public class CustomBlock {
      * Configure the PersistantTagContainer to the default values
      */
     public void configure() {
+        setType(config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
+        System.out.println(getType());
     }
 }

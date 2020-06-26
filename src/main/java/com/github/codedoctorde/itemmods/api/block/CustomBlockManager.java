@@ -43,20 +43,28 @@ public class CustomBlockManager {
                 Location entityLocation = location.clone().add(0.5, 0, 0.5);
                 List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
                 for (Entity entity : entities)
-                    if (entity instanceof ArmorStand && entity.getLocation().getY() == location.getY())
-                        return getCustomBlock((ArmorStand) entity, blockConfig);
-            } else if (block.getState() instanceof TileState)
-                return getCustomBlock((TileState) block.getState(), blockConfig);
+                    if (entity instanceof ArmorStand && entity.getLocation().getY() == location.getY()) {
+                        CustomBlock customBlock = getCustomBlock((ArmorStand) entity, blockConfig);
+                        if (customBlock != null)
+                            return customBlock;
+                    }
+            } else if (block.getState() instanceof TileState) {
+                CustomBlock customBlock = getCustomBlock((TileState) block.getState(), blockConfig);
+                if (customBlock != null)
+                    return customBlock;
+            }
         return null;
     }
 
     @Nullable
     public CustomBlock getCustomBlock(final ArmorStand entity, BlockConfig blockConfig) {
+        System.out.println("123");
         return getCustomBlock(entity.getPersistentDataContainer(), entity, blockConfig, entity.getLocation());
     }
 
     @Nullable
     public CustomBlock getCustomBlock(final TileState tileState, BlockConfig blockConfig) {
+        System.out.println("TEST");
         return getCustomBlock(tileState.getPersistentDataContainer(), null, blockConfig, tileState.getLocation());
     }
 
@@ -68,11 +76,14 @@ public class CustomBlockManager {
      */
     @Nullable
     public CustomBlock getCustomBlock(final Block block) {
+        System.out.println("feirf");
         return getCustomBlock(block.getLocation());
     }
 
     @Nullable
     public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
+        System.out.println("123: " + container.getOrDefault(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, ""));
+        System.out.println("123: " + blockConfig.getTag());
         if (Objects.equals(container.get(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
             return new CustomBlock(location, entity);
         return null;

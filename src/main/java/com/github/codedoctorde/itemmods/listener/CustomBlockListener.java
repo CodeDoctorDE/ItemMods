@@ -88,8 +88,10 @@ public class CustomBlockListener implements Listener {
     @EventHandler
     public void onCustomBlockBreak(BlockBreakEvent event) {
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
+        System.out.println("fe");
         if (customBlock == null)
             return;
+        System.out.println("test");
         event.setCancelled(true);
         event.getBlock().setType(Material.AIR);
         if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
@@ -100,6 +102,7 @@ public class CustomBlockListener implements Listener {
             customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+        System.out.println("123");
     }
 
     @EventHandler
