@@ -2,19 +2,16 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
-import com.gitlab.codedoctorde.api.server.Version;
 import com.google.gson.JsonObject;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.tags.ItemTagType;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ItemConfig {
     private String name;
@@ -22,12 +19,7 @@ public class ItemConfig {
     private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
-    private int pickaxe = 0;
-    private int shovel = 0;
-    private int axe = 0;
-    private int hoe = 0;
-    private int damage = 0;
-    private int speed = 0;
+    private Integer hardness = null;
     private final List<String> onWear = new ArrayList<>();
     private final List<String> onOffHand = new ArrayList<>();
     private final List<String> onMainHand = new ArrayList<>();
@@ -61,10 +53,7 @@ public class ItemConfig {
     public boolean isSimilar(ItemStack other) {
         ItemMeta itemMeta = other.getItemMeta();
         assert itemMeta != null;
-        if (Version.getVersion().isLowerThan(Version.v1_15))
-            return Objects.equals(itemMeta.getCustomTagContainer().getCustomTag(typeNamespace, ItemTagType.STRING), tag);
-        else
-            return itemMeta.getPersistentDataContainer().getOrDefault(typeNamespace, PersistentDataType.STRING, "").equals(tag);
+        return itemMeta.getPersistentDataContainer().getOrDefault(typeNamespace, PersistentDataType.STRING, "").equals(tag);
     }
 
     public void setItemStack(ItemStack itemStack) {
@@ -77,54 +66,6 @@ public class ItemConfig {
 
     public void setCanRename(boolean canRename) {
         this.canRename = canRename;
-    }
-
-    public int getAxe() {
-        return axe;
-    }
-
-    public void setAxe(int axe) {
-        this.axe = axe;
-    }
-
-    public int getHoe() {
-        return hoe;
-    }
-
-    public void setHoe(int hoe) {
-        this.hoe = hoe;
-    }
-
-    public int getPickaxe() {
-        return pickaxe;
-    }
-
-    public void setPickaxe(int pickaxe) {
-        this.pickaxe = pickaxe;
-    }
-
-    public int getShovel() {
-        return shovel;
-    }
-
-    public void setShovel(int shovel) {
-        this.shovel = shovel;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
     }
 
     public List<String> getOnDrop() {
@@ -214,11 +155,16 @@ public class ItemConfig {
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
-        if (Version.getVersion().isLowerThan(Version.v1_15))
-            itemMeta.getCustomTagContainer().setCustomTag(typeNamespace, ItemTagType.STRING, tag);
-        else
-            itemMeta.getPersistentDataContainer().set(typeNamespace, PersistentDataType.STRING, tag);
+        itemMeta.getPersistentDataContainer().set(typeNamespace, PersistentDataType.STRING, tag);
         give.setItemMeta(itemMeta);
         return give;
+    }
+
+    public Integer getHardness() {
+        return hardness;
+    }
+
+    public void setHardness(Integer hardness) {
+        this.hardness = hardness;
     }
 }

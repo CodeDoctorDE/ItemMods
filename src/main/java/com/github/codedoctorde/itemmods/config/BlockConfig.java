@@ -24,6 +24,12 @@ public class BlockConfig {
     private final List<DropConfig> drops = new ArrayList<>();
     @Nullable
     private String referenceItem;
+    private int shovelHardness = 0;
+    private int pickaxeHardness = 0;
+    private int axeHardness = 0;
+    private int hoeHardness = 0;
+    private int swordHardness = 0;
+    private int shearHardness = 0;
 
     public boolean checkBlock(BlockState block) {
         return armorStand != null || block instanceof TileState;
@@ -174,5 +180,53 @@ public class BlockConfig {
             this.referenceItem = null;
         else
             this.referenceItem = itemConfig.getTag();
+    }
+
+    public int getAxeHardness() {
+        return axeHardness;
+    }
+
+    public void setAxeHardness(int axeHardness) {
+        this.axeHardness = axeHardness;
+    }
+
+    public int getHoeHardness() {
+        return hoeHardness;
+    }
+
+    public void setHoeHardness(int hoeHardness) {
+        this.hoeHardness = hoeHardness;
+    }
+
+    public int getPickaxeHardness() {
+        return pickaxeHardness;
+    }
+
+    public void setPickaxeHardness(int pickaxeHardness) {
+        this.pickaxeHardness = pickaxeHardness;
+    }
+
+    public int getShearHardness() {
+        return shearHardness;
+    }
+
+    public void setShearHardness(int shearHardness) {
+        this.shearHardness = shearHardness;
+    }
+
+    public int getShovelHardness() {
+        return shovelHardness;
+    }
+
+    public void setShovelHardness(int shovelHardness) {
+        this.shovelHardness = shovelHardness;
+    }
+
+    public int getSwordHardness() {
+        return swordHardness;
+    }
+
+    public void setSwordHardness(int swordHardness) {
+        this.swordHardness = swordHardness;
     }
 }
