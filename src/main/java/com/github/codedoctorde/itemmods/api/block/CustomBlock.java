@@ -117,6 +117,5 @@ public class CustomBlock {
         setType(config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
-        System.out.println(getType());
     }
 }

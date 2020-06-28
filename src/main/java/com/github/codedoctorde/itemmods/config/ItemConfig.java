@@ -15,7 +15,6 @@ import java.util.List;
 
 public class ItemConfig {
     private String name;
-    private final transient NamespacedKey typeNamespace = new NamespacedKey(ItemMods.getPlugin(), "type");
     private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
@@ -38,6 +37,10 @@ public class ItemConfig {
         this.tag = "itemmods:" + name.replaceAll("\\s+", "");
     }
 
+    NamespacedKey getTypeNamespace() {
+        return new NamespacedKey(ItemMods.getPlugin(), "type");
+    }
+
     public String getName() {
         return name;
     }
@@ -53,7 +56,7 @@ public class ItemConfig {
     public boolean isSimilar(ItemStack other) {
         ItemMeta itemMeta = other.getItemMeta();
         assert itemMeta != null;
-        return itemMeta.getPersistentDataContainer().getOrDefault(typeNamespace, PersistentDataType.STRING, "").equals(tag);
+        return itemMeta.getPersistentDataContainer().getOrDefault(getTypeNamespace(), PersistentDataType.STRING, "").equals(tag);
     }
 
     public void setItemStack(ItemStack itemStack) {
@@ -155,7 +158,7 @@ public class ItemConfig {
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
-        itemMeta.getPersistentDataContainer().set(typeNamespace, PersistentDataType.STRING, tag);
+        itemMeta.getPersistentDataContainer().set(getTypeNamespace(), PersistentDataType.STRING, tag);
         give.setItemMeta(itemMeta);
         return give;
     }

@@ -58,13 +58,11 @@ public class CustomBlockManager {
 
     @Nullable
     public CustomBlock getCustomBlock(final ArmorStand entity, BlockConfig blockConfig) {
-        System.out.println("123");
         return getCustomBlock(entity.getPersistentDataContainer(), entity, blockConfig, entity.getLocation());
     }
 
     @Nullable
     public CustomBlock getCustomBlock(final TileState tileState, BlockConfig blockConfig) {
-        System.out.println("TEST");
         return getCustomBlock(tileState.getPersistentDataContainer(), null, blockConfig, tileState.getLocation());
     }
 

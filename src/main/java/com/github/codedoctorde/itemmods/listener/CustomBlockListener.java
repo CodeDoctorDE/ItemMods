@@ -22,6 +22,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class CustomBlockListener implements Listener {
 
@@ -90,7 +92,6 @@ public class CustomBlockListener implements Listener {
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
-        System.out.println("test");
         event.setCancelled(true);
         event.getBlock().setType(Material.AIR);
         if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
@@ -101,6 +102,9 @@ public class CustomBlockListener implements Listener {
             customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+        ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
+        if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
+            ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
         System.out.println("123");
     }
 
