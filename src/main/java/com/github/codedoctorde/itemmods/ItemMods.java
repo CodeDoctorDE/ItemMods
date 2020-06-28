@@ -14,6 +14,7 @@ import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
 import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.gitlab.codedoctorde.api.serializer.LocationTypeAdapter;
+import com.gitlab.codedoctorde.api.server.Version;
 import com.gitlab.codedoctorde.api.utils.UpdateChecker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,6 +73,8 @@ public class ItemMods extends JavaPlugin {
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
         Metrics metrics = new Metrics(this, 5996);
+        if (Version.getVersion() == Version.UNKNOWN)
+            Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
 
 
         try {

@@ -88,7 +88,6 @@ public class CustomBlockListener implements Listener {
     @EventHandler
     public void onCustomBlockBreak(BlockBreakEvent event) {
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
-        System.out.println("fe");
         if (customBlock == null)
             return;
         System.out.println("test");

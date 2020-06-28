@@ -3,7 +3,8 @@
     "loading": "§eItemMods §f» §eLoading plugin...",
     "loaded": "§eItemMods §f» §aSuccessfully loaded plugin!",
     "unloading": "§eItemMods §f» §eUnloading plugin...",
-    "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!"
+    "unloaded": "§eItemMods §f» §aSuccessfully unloaded plugin!",
+    "compatible": "§eItemMods §f» §6This plugin isn't compactible with your version!"
   },
   "api": {
     "register": "§eItemMods §f» §aRegistered new addon §3{0}§a!",
@@ -538,30 +539,28 @@
           "success": "§eItemMods §f» §aSuccessfully set the rarity to §3{1}§a!"
         },
         "general": {
-          "lore": {
-            "fortune": [
-              "§7-----",
-              "§7Fortune: §aYes",
-              "",
-              "§7Left click » Change item",
-              "§7Right click » Get item",
-              "§7Drop » Delete",
-              "§7Middle click » Toggle fortune",
-              "",
-              "§7Middle click » Change to general editing"
-            ],
-            "nofortune": [
-              "§7-----",
-              "§7Fortune: §cNo",
-              "",
-              "§7Left click » Change item",
-              "§7Right click » Get item",
-              "§7Drop » Delete",
-              "§7Shift + Left click » Toggle fortune",
-              "",
-              "§7Middle click » Change to general editing"
-            ]
-          },
+          "fortune": [
+            "§7-----",
+            "§7Fortune: §aYes",
+            "",
+            "§7Left click » Change item",
+            "§7Right click » Get item",
+            "§7Drop » Delete",
+            "§7Middle click » Toggle fortune",
+            "",
+            "§7Middle click » Change to general editing"
+          ],
+          "nofortune": [
+            "§7-----",
+            "§7Fortune: §cNo",
+            "",
+            "§7Left click » Change item",
+            "§7Right click » Get item",
+            "§7Drop » Delete",
+            "§7Shift + Left click » Toggle fortune",
+            "",
+            "§7Middle click » Change to general editing"
+          ],
           "delete": "§eItemMods §f» §aSuccessfully deleted the drop!",
           "give": "§eItemMods §f» §aSuccessfully give you the drop!"
         }

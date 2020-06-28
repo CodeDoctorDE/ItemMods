@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemConfig {
     private String name;
-    private String tag = "";
+    private final transient NamespacedKey typeNamespace = new NamespacedKey(ItemMods.getPlugin(), "type");
     private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
@@ -29,7 +29,7 @@ public class ItemConfig {
     @Nullable
     private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
-    private final NamespacedKey typeNamespace = new NamespacedKey(ItemMods.getPlugin(), "type");
+    private String tag;
 
 
     public ItemConfig(String name) {
