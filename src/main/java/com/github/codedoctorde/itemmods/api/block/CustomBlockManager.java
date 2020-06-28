@@ -74,14 +74,11 @@ public class CustomBlockManager {
      */
     @Nullable
     public CustomBlock getCustomBlock(final Block block) {
-        System.out.println("feirf");
         return getCustomBlock(block.getLocation());
     }
 
     @Nullable
     public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
-        System.out.println("123: " + container.getOrDefault(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, ""));
-        System.out.println("123: " + blockConfig.getTag());
         if (Objects.equals(container.get(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
             return new CustomBlock(location, entity);
         return null;

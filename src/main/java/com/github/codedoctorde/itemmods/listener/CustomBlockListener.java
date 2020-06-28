@@ -105,7 +105,6 @@ public class CustomBlockListener implements Listener {
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
         if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
             ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
-        System.out.println("123");
     }
 
     @EventHandler
