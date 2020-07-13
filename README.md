@@ -34,7 +34,7 @@
 * Keep names, lores, attributes on this item (available 1.0)​
 * A developer who are there for the community (eg. discord)​
 * Developer API​
-* Wiki: https://gitlab.com/codedoctorde/ItemMods/wiki (coming soon...)​
+* Wiki: https://github.com/codedoctorde/ItemMods/wiki (coming soon...)​
 * Custom command support (available 1.2)​
 * Open source​
 
