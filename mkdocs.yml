@@ -1,7 +1,10 @@
 site_name: ItemMods
 site_url: https://codedoctorde.github.io/itemmods/index.html
 repo_url: https://github.com/codedoctorde/itemmods/
-theme: material
+theme:
+  name: 'material'
+  palette:
+    scheme: 'slate' # Add this
 markdown_extensions:
   - codehilite
 nav:
