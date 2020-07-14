@@ -77,7 +77,7 @@ public class DropsGui {
                     List<String> lore = new ArrayList<>();
                     JsonArray lines;
                     if (rarityEditing)
-                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonArray("rarity");
+                        lines = guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").getAsJsonArray("lore");
                     else
                         lines = guiTranslation.getAsJsonObject("drop").getAsJsonObject("general").getAsJsonArray(dropConfig.isFortune() ? "fortune" : "nofortune");
                     for (JsonElement line :
