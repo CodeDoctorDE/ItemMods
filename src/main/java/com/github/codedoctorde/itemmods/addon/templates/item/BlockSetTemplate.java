@@ -95,7 +95,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             this.template = template;
             this.itemConfig = itemConfig;
             JsonObject jsonObject = itemConfig.getTemplateConfig();
-            if (jsonObject.get("block").isJsonPrimitive())
+            if (jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
                 this.block = jsonObject.get("block").getAsString();
         }
 
