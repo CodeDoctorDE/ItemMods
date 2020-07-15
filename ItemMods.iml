@@ -21,5 +21,6 @@
     <orderEntry type="library" name="Maven: org.jetbrains:annotations-java5:18.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.gitlab.codedoctorde:CodeDoctorAPI:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: me.HSGamer:BetterGUI:3.1" level="project" />
   </component>
 </module>

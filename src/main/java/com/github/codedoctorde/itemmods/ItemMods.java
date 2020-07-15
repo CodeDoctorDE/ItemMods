@@ -9,6 +9,7 @@ import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
+import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
 import com.gitlab.codedoctorde.api.config.ObjectConfig;
 import com.gitlab.codedoctorde.api.main.CodeDoctorAPI;
 import com.gitlab.codedoctorde.api.serializer.BlockDataTypeAdapter;
@@ -19,6 +20,7 @@ import com.gitlab.codedoctorde.api.utils.UpdateChecker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import me.hsgamer.bettergui.builder.PropertyBuilder;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -104,6 +106,8 @@ public class ItemMods extends JavaPlugin {
             e.printStackTrace();
         }
         api.registerAddon(new BaseAddon());
+        PropertyBuilder.registerItemProperty("customitem", CustomItemBetterGuiProperty.class);
+        PropertyBuilder.registerItemProperty("custom-item", CustomItemBetterGuiProperty.class);
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
     }
