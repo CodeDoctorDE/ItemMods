@@ -19,6 +19,7 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
     public CustomBlockPlaceEvent(Location location, BlockConfig blockConfig) {
         this.blockConfig = blockConfig;
         this.location = location;
+        this.isCancelled = false;
     }
 
     public static HandlerList getHandlerList() {
