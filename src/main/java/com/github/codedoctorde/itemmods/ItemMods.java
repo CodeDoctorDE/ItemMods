@@ -41,7 +41,7 @@ import java.util.Objects;
 public class ItemMods extends JavaPlugin {
     private static ItemMods plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
-    public static final String version = "§bNUTS 1.3.1";
+    public static final String version = "§bNUTS 1.3.2";
     private CodeDoctorAPI codeDoctorAPI;
     private final Gson gson;
     private UpdateChecker updateChecker;
@@ -106,8 +106,10 @@ public class ItemMods extends JavaPlugin {
             e.printStackTrace();
         }
         api.registerAddon(new BaseAddon());
-        PropertyBuilder.registerItemProperty("customitem", CustomItemBetterGuiProperty.class);
-        PropertyBuilder.registerItemProperty("custom-item", CustomItemBetterGuiProperty.class);
+        if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
+            PropertyBuilder.registerItemProperty("customitem", CustomItemBetterGuiProperty.class);
+            PropertyBuilder.registerItemProperty("custom-item", CustomItemBetterGuiProperty.class);
+        }
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
     }
