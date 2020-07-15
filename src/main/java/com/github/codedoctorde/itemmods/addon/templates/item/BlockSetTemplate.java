@@ -43,6 +43,8 @@ public class BlockSetTemplate implements CustomItemTemplate {
      */
     @Override
     public boolean isCompatible(ItemConfig itemConfig) {
+        if (itemConfig.getItemStack() == null)
+            return false;
         return itemConfig.getItemStack().getType().isBlock();
     }
 

@@ -166,14 +166,11 @@ public class CustomBlockListener implements Listener {
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomItem customItem = new CustomItem(item);
-        if (customItem.getConfig() == null)
-            return;
-        if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
+        if (customItem.getConfig() == null || customItem.getConfig().getTemplate() == null || !(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
-        if (template.getBlock(customItem) == null)
+        if (template.getBlock(customItem) == null || item.getAmount() < customItem.getConfig().getItemStack().getAmount())
             return;
-        if (item.getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
         if (ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
             return;
         event.setCancelled(true);

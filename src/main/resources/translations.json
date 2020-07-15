@@ -940,7 +940,15 @@
           "§7-----",
           "§7Left click » Configure",
           "§7Drop » Clear"
-        ]
+        ],
+        "no-item": {
+          "material": "ENDER_CHEST",
+          "name": "§eTemplates",
+          "lore": [
+            "",
+            "§cYou need to set an item before choosing a template!"
+          ]
+        }
       }
     },
     "itemcreator": {
