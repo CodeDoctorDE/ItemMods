@@ -55,7 +55,7 @@ public class ItemConfig {
 
     public boolean isSimilar(ItemStack other) {
         ItemMeta itemMeta = other.getItemMeta();
-        if (itemMeta == null || itemMeta.getPersistentDataContainer().has(getTypeNamespace(), PersistentDataType.STRING))
+        if (itemMeta == null || !itemMeta.getPersistentDataContainer().has(getTypeNamespace(), PersistentDataType.STRING))
             return false;
         return itemMeta.getPersistentDataContainer().getOrDefault(getTypeNamespace(), PersistentDataType.STRING, "").equals(tag);
     }
