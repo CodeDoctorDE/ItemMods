@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.api.events.CustomBlockPlaceEvent;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.nbt.BlockNBT;
@@ -104,6 +105,10 @@ public class CustomBlockManager {
         if (getCustomBlock(location) != null)
             return false;
         if (!location.getBlock().isEmpty())
+            return false;
+        CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled())
             return false;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setBlockData(blockConfig.getBlock());

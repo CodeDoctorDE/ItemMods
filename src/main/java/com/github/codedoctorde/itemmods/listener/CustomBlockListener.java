@@ -94,14 +94,17 @@ public class CustomBlockListener implements Listener {
             return;
         event.setCancelled(true);
         event.getBlock().setType(Material.AIR);
+        boolean finished;
         if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
-            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
         else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
         else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
-            customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
         else
-            customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+        if (!finished)
+            return;
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
         if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
             ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
@@ -126,7 +129,7 @@ public class CustomBlockListener implements Listener {
                 return;
             if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
-            else
+            else if (customBlock.getArmorStand() != null)
                 customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));
         }
     }
@@ -140,7 +143,7 @@ public class CustomBlockListener implements Listener {
                 return;
             if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
-            else
+            else if (customBlock.getArmorStand() != null)
                 customBlock.getArmorStand().teleport(block.getLocation().add(event.getDirection().getDirection()));
         }
     }

@@ -1,8 +1,10 @@
 package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.google.gson.JsonElement;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -10,9 +12,13 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class CustomBlock {
@@ -66,19 +72,26 @@ public class CustomBlock {
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), type);
     }
 
-    public void breakBlock(BlockDropType dropType) {
+    public boolean breakBlock(BlockDropType dropType) {
+        if (config == null || dropType == null) return false;
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
-        if (config == null || dropType == null) return;
-        Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
+        List<ItemStack> drops = new ArrayList<>();
         if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
-            getBlock().getWorld().dropItemNaturally(dropLocation, config.getReferenceItemConfig().giveItemStack());
+            drops.add(config.getReferenceItemConfig().giveItemStack());
         else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
-            getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
+            getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
-            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> getBlock().getWorld().dropItemNaturally(dropLocation, drop.getItemStack()));
+            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
+        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, drops, dropType);
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled())
+            return false;
+        Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
+        drops.forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
         if (getArmorStand() != null)
             getArmorStand().remove();
+        return true;
     }
 
     public enum BlockDropType {
