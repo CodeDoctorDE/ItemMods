@@ -73,7 +73,10 @@ public class CustomBlock {
     }
 
     public boolean breakBlock(BlockDropType dropType) {
+        System.out.println("break");
         if (config == null || dropType == null) return false;
+        else
+            System.out.println("test");
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
         List<ItemStack> drops = new ArrayList<>();

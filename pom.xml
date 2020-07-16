@@ -107,14 +107,12 @@
     </dependencies>
     <distributionManagement>
         <repository>
-            <id>github</id>
-            <name>GitHub CodeDoctorDE Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
+            <id>codemc-releases</id>
+            <url>https://repo.codemc.io/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>github</id>
-            <name>GitHub CodeDoctorDE Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/CodeDoctorDE/ItemMods</url>
+            <id>codemc-snapshots</id>
+            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

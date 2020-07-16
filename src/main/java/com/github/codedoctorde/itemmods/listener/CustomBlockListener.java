@@ -93,7 +93,6 @@ public class CustomBlockListener implements Listener {
         if (customBlock == null)
             return;
         event.setCancelled(true);
-        event.getBlock().setType(Material.AIR);
         boolean finished;
         if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
             finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
@@ -105,6 +104,7 @@ public class CustomBlockListener implements Listener {
             finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
         if (!finished)
             return;
+        event.getBlock().setType(Material.AIR);
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
         if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
             ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
