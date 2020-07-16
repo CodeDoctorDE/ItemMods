@@ -88,7 +88,7 @@ public class CustomBlock {
         if (event.isCancelled())
             return false;
         Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
-        drops.forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
+        event.getDrops().forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
         if (getArmorStand() != null)
             getArmorStand().remove();
         return true;
