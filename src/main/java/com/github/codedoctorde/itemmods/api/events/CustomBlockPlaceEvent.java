@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.api.events;
 
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -14,11 +15,13 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final BlockConfig blockConfig;
     private final Location location;
+    private Player player;
     private boolean isCancelled;
 
-    public CustomBlockPlaceEvent(Location location, BlockConfig blockConfig) {
+    public CustomBlockPlaceEvent(Location location, BlockConfig blockConfig, Player player) {
         this.blockConfig = blockConfig;
         this.location = location;
+        this.player = player;
         this.isCancelled = false;
     }
 
