@@ -42,11 +42,18 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
         return HANDLERS_LIST;
     }
 
+    @NotNull
     public Location getLocation() {
         return location;
     }
-
+    
+    @NotNull
     public BlockConfig getBlockConfig() {
         return blockConfig;
+    }
+    
+    @NotNull
+    public Player getPlayer() {
+        return player;
     }
 }

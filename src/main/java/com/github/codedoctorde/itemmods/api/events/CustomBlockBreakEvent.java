@@ -21,6 +21,8 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
 
     public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType) {
         this.customBlock = customBlock;
+        this.drops = drops;
+        this.dropType = dropType;
         this.isCancelled = false;
     }
 
@@ -43,16 +45,23 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     public HandlerList getHandlers() {
         return HANDLERS_LIST;
     }
-
-    public CustomBlock.BlockDropType getDropType() {
-        return dropType;
-    }
-
+    
+    @NotNull
     public CustomBlock getCustomBlock() {
         return customBlock;
     }
-
+    
+    @NotNull
     public List<ItemStack> getDrops() {
         return drops;
+    }
+    
+    public void setDrops(@NotNull List<ItemStack> drops) {
+        this.drops = drops;
+    }
+    
+    @NotNull
+    public CustomBlock.BlockDropType getDropType() {
+        return dropType;
     }
 }
