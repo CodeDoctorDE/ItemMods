@@ -1,11 +1,13 @@
 package com.github.codedoctorde.itemmods.api.events;
 
 import com.github.codedoctorde.itemmods.api.block.CustomBlock;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -17,10 +19,14 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     private final CustomBlock customBlock;
     private List<ItemStack> drops;
     private CustomBlock.BlockDropType dropType;
+    private Player player;
     private boolean isCancelled;
 
-    public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType) {
+    public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType, Player player) {
         this.customBlock = customBlock;
+        this.drops = drops;
+        this.dropType = dropType;
+        this.player = player;
         this.isCancelled = false;
     }
 
@@ -43,16 +49,28 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     public HandlerList getHandlers() {
         return HANDLERS_LIST;
     }
-
-    public CustomBlock.BlockDropType getDropType() {
-        return dropType;
-    }
-
+    
+    @NotNull
     public CustomBlock getCustomBlock() {
         return customBlock;
     }
-
+    
+    @NotNull
     public List<ItemStack> getDrops() {
         return drops;
+    }
+    
+    public void setDrops(@NotNull List<ItemStack> drops) {
+        this.drops = drops;
+    }
+    
+    @NotNull
+    public CustomBlock.BlockDropType getDropType() {
+        return dropType;
+    }
+    
+    @Nullable
+    public Player getPlayer() {
+        return player;
     }
 }

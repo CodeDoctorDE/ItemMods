@@ -12,6 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
@@ -72,11 +73,8 @@ public class CustomBlock {
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), type);
     }
 
-    public boolean breakBlock(BlockDropType dropType) {
-        System.out.println("break");
+    public boolean breakBlock(BlockDropType dropType, Player player) {
         if (config == null || dropType == null) return false;
-        else
-            System.out.println("test");
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
         List<ItemStack> drops = new ArrayList<>();
@@ -86,12 +84,12 @@ public class CustomBlock {
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
             getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
-        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, drops, dropType);
+        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, drops, dropType, player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
         Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
-        drops.forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
+        event.getDrops().forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
         if (getArmorStand() != null)
             getArmorStand().remove();
         return true;

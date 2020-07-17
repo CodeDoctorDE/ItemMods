@@ -66,7 +66,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem)))
+        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem), player))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             event.getItem().setAmount(event.getItem().getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -95,13 +95,13 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         boolean finished;
         if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, event.getPlayer());
         else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, event.getPlayer());
         else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE, event.getPlayer());
         else
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+            finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP, event.getPlayer());
         if (!finished)
             return;
         event.getBlock().setType(Material.AIR);
@@ -181,7 +181,7 @@ public class CustomBlockListener implements Listener {
             return;
         if (event.getPlayer().getLocation().distance(location.clone().add(0, 1, 0)) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem)))
+        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem), event.getPlayer()))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             item.setAmount(item.getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -199,11 +199,11 @@ public class CustomBlockListener implements Listener {
             return;
         event.setCancelled(true);
         if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
-            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING);
+            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, (Player) event.getDamager());
         else if (((Player) event.getEntity()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH);
+            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, (Player) event.getDamager());
         else
-            customBlock.breakBlock(CustomBlock.BlockDropType.DROP);
+            customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());
     }
 
     @EventHandler

@@ -13,6 +13,7 @@ import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -99,14 +100,15 @@ public class CustomBlockManager {
     /**
      * @param location    The location where the custom block will be placed!
      * @param blockConfig The block config for the custom block
+     * @param player      The player who is placing the block
      * @return Returns if it was placed!
      */
-    public boolean setCustomBlock(Location location, BlockConfig blockConfig) {
+    public boolean setCustomBlock(Location location, BlockConfig blockConfig, Player player) {
         if (getCustomBlock(location) != null)
             return false;
         if (!location.getBlock().isEmpty())
             return false;
-        CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig);
+        CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig, player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
