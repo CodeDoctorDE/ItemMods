@@ -7,6 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
         return dropType;
     }
     
-    @NotNull
+    @Nullable
     public Player getPlayer() {
         return player;
     }

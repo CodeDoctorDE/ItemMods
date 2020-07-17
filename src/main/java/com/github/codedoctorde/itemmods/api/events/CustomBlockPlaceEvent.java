@@ -7,6 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CodeDoctorDE
@@ -55,7 +56,7 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
         return blockConfig;
     }
     
-    @NotNull
+    @Nullable
     public Player getPlayer() {
         return player;
     }
