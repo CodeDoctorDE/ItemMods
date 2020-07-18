@@ -24,6 +24,13 @@ jobs:
         with:
           name: "ItemMods"
           path: "target"
+      - name: Deploy package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir ~/.m2 -p
+          echo "<settings><servers><server><id>github</id><username>CodeDoctorDE</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+          mvn deploy
   pages:
     runs-on: ubuntu-latest
     steps:
