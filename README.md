@@ -38,6 +38,10 @@
 * Custom command support (available 1.2)
 * Open source
 
+## API/Latest Build
+
+more information here: <https://github.com/CodeDoctorDE/ItemMods/wiki/api>
+
 ## Additional information
 
 ![Additional information Logo](./assets/Additional-information.png)
