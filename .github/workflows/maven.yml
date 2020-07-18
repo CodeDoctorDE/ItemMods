@@ -24,12 +24,6 @@ jobs:
         with:
           name: "ItemMods"
           path: "target"
-      - name: Send file to discord channel
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: sinshutu/upload-to-discord@master
-        with:
-          args: "target/ItemMods.jar"
   pages:
     runs-on: ubuntu-latest
     steps:
@@ -63,8 +57,9 @@ jobs:
           mv site/* public
           mvn javadoc:javadoc
           mv target/site/* public
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.8
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
