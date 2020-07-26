@@ -18,8 +18,8 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final CustomBlock customBlock;
     private List<ItemStack> drops;
-    private CustomBlock.BlockDropType dropType;
-    private Player player;
+    private final CustomBlock.BlockDropType dropType;
+    private final Player player;
     private boolean isCancelled;
 
     public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType, Player player) {

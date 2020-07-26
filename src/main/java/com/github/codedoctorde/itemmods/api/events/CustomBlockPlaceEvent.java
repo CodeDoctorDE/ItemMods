@@ -16,7 +16,7 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final BlockConfig blockConfig;
     private final Location location;
-    private Player player;
+    private final Player player;
     private boolean isCancelled;
 
     public CustomBlockPlaceEvent(Location location, BlockConfig blockConfig, Player player) {

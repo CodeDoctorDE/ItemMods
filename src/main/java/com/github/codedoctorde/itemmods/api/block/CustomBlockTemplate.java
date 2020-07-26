@@ -39,5 +39,5 @@ public interface CustomBlockTemplate {
     /**
      * Runs every tick when block is loaded.
      */
-    void tick();
+    void tick(CustomBlock customBlock);
 }
