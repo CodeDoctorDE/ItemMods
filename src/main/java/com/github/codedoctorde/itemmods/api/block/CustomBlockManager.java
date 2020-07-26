@@ -4,7 +4,7 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockPlaceEvent;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.gitlab.codedoctorde.api.nbt.BlockNBT;
+import com.gitlab.codedoctorde.api.nbt.block.BlockNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;

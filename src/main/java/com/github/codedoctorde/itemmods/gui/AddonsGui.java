@@ -30,11 +30,8 @@ public class AddonsGui {
                 return ItemMods.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Gui configGui = addon.getConfigGui();
-                        if (configGui == null)
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("addon").get("noconfig").getAsString());
-                        else
-                            configGui.open((Player) event.getWhoClicked());
+                        if (!addon.openConfigGui())
+                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("addon").get("noconfig").getAsString());;
                     }
                 })).toArray(GuiItem[]::new);
             }

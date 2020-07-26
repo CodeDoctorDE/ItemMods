@@ -33,7 +33,7 @@ public class BaseAddon extends ItemModsAddon {
     }
 
     @Override
-    public Gui getConfigGui() {
-        return null;
+    public boolean openConfigGui() {
+        return false;
     }
 }

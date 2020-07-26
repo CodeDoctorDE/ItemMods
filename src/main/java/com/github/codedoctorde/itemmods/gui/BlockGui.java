@@ -4,7 +4,7 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemConfigGui;
-import com.gitlab.codedoctorde.api.nbt.BlockNBT;
+import com.gitlab.codedoctorde.api.nbt.block.BlockNBT;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
