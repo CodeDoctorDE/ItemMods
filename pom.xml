@@ -61,6 +61,10 @@
             <url>https://repo.codemc.io/repository/maven-releases/</url>
         </repository>
         <repository>
+            <id>codemc-snapshots</id>
+            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
+        </repository>
+        <repository>
             <id>codedoctorapi</id>
             <url>https://gitlab.com/api/v4/projects/14810643/packages/maven</url>
             <snapshots>
