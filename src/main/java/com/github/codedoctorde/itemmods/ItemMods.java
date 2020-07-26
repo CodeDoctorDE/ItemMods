@@ -41,7 +41,7 @@ import java.util.Objects;
 public class ItemMods extends JavaPlugin {
     private static ItemMods plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
-    public static final String version = "§bNUTS 1.3.2";
+    public static final String version = "§bFOOD 1.4";
     private CodeDoctorAPI codeDoctorAPI;
     private final Gson gson;
     private UpdateChecker updateChecker;

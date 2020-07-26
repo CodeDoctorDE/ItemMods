@@ -1050,6 +1050,22 @@
           ]
         },
         "success": "§eItemMods §f» §aSuccessfully set the custom model data to §3{0}§a!"
+      },
+      "unbreakable": {
+        "unbreakable": {
+          "material": "BEDROCK",
+          "name": "§aUnbreakable",
+          "lore": [
+            "§7Click to toggle"
+          ]
+        },
+        "breakable": {
+          "material": "BEDROCK",
+          "name": "§cUnbreakable",
+          "lore": [
+            "§7Click to toggle"
+          ]
+        }
       }
     },
     "blocks": {
