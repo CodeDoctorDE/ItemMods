@@ -49,14 +49,15 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Override
-    public Gui getConfigGui(ItemConfig itemConfig, Player player) {
+    public boolean openConfigGui(ItemConfig itemConfig, Player player) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
         int itemIndex = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
-        return new ChooseBlockConfigGui(blockConfig -> {
+        new ChooseBlockConfigGui(blockConfig -> {
             data.setBlock(blockConfig.getTag());
             data.save();
             new ItemGui(itemIndex).createGui().open(player);
-        }).createGui(new ItemGui(itemIndex).createGui())[0];
+        }).createGui(new ItemGui(itemIndex).createGui())[0].open(player);
+        return true;
     }
 
     @Override

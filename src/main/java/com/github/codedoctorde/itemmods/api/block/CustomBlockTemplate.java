@@ -30,8 +30,7 @@ public interface CustomBlockTemplate {
 
     void loadConfig(JsonElement data, BlockConfig config);
 
-    @Nullable
-    Gui getConfigGui(BlockConfig blockConfig, Player player);
+    boolean openConfigGui(BlockConfig blockConfig, Player player);
 
     JsonElement saveConfig(BlockConfig config);
 

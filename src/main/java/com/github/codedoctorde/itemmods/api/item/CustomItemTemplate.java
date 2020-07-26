@@ -17,8 +17,7 @@ public interface CustomItemTemplate {
 
     boolean isCompatible(ItemConfig itemConfig);
 
-    @Nullable
-    Gui getConfigGui(ItemConfig itemConfig, Player player);
+    boolean openConfigGui(ItemConfig itemConfig, Player player);
 
     String getName();
 }

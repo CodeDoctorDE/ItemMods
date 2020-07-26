@@ -28,6 +28,9 @@ public class ItemGui {
     public ItemGui(int index) {
         this.index = index;
     }
+    public ItemGui(ItemConfig itemConfig){
+        index = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
+    }
 
     public Gui createGui() {
         ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(index);
@@ -164,17 +167,14 @@ public class ItemGui {
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").get("no-item").getAsString());
                         }
                         if (itemConfig.getTemplate() != null) {
-                            Gui templateGui = itemConfig.getTemplate().getConfigGui(itemConfig, (Player) event.getWhoClicked());
-                            if (templateGui != null)
-                                switch (event.getClick()) {
+                            switch (event.getClick()) {
                                     case LEFT:
-                                        templateGui.open((Player) event.getWhoClicked());
+                                        if(!itemConfig.getTemplate().openConfigGui(itemConfig, (Player) event.getWhoClicked()))
+                                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
                                         break;
                                     case DROP:
                                         itemConfig.setTemplate(null);
                                 }
-                            else
-                                event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
                         } else
                             new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
                     }
