@@ -841,6 +841,7 @@
         "material": "BOOK",
         "name": "§eLore",
         "lore": [
+          "{0}",
           "",
           "§7Left click » Add line",
           "§7Shift + Left click » Add empty line",
@@ -856,6 +857,14 @@
         "get": "§eItemMods §f» §eThe lore: \n§5{0}",
         "delimiter": "§7 \r\n§5",
         "null": "§eItemMods §f» §cThere is no lore!"
+      },
+      "nbt": {
+        "material": "PAPER",
+        "name": "§eNBT",
+        "lore": [
+          "",
+          "§7Click here to set the nbt of the item"
+        ]
       },
       "amount": {
         "material": "DIRT",

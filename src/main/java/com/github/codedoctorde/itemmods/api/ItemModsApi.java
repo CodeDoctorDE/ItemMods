@@ -21,7 +21,7 @@ import java.util.Set;
 public class ItemModsApi {
     private final CustomItemManager customItemManager = new CustomItemManager();
     private final CustomBlockManager customBlockManager = new CustomBlockManager();
-    private final List<ItemModsAddon> addons = new ArrayList<>();
+    private final Set<ItemModsAddon> addons = new HashSet<>();
     private final JsonObject translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
 
     public ItemModsApi() {
@@ -36,6 +36,8 @@ public class ItemModsApi {
     }
 
     public void registerAddon(ItemModsAddon addon) {
+        if(getAddon(addon.getName()) != null)
+            return;
         addons.add(addon);
         Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));
     }
@@ -57,7 +59,7 @@ public class ItemModsApi {
         Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("unregister").getAsString(), addon.getName()));
     }
 
-    public List<ItemModsAddon> getAddons() {
+    public Set<ItemModsAddon> getAddons() {
         return addons;
     }
 
