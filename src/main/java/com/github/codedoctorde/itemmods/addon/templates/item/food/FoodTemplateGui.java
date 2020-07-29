@@ -7,8 +7,7 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
-import com.gitlab.codedoctorde.api.ui.template.ValueItem;
-import com.gitlab.codedoctorde.api.ui.template.events.ValueItemEvent;
+import com.gitlab.codedoctorde.api.ui.template.item.ValueItem;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
@@ -40,14 +39,14 @@ public class FoodTemplateGui {
                     new ItemGui(itemConfig).createGui();
                 }
             }));
-            getGuiItems().put(9 + 2, new ValueItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("level")), data.getLevel(), 1, (i, player) -> {
+            getGuiItems().put(9 + 2, new ValueItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("level")), data.getLevel(), 1, (i, player, valueItem) -> {
                 data.setExhaustion(i);
                 if(i < 0 || i > 100)
                     return false;
                 data.setLevel((int) i);
                 return true;
             }).build());
-            getGuiItems().put(9 + 4, new ValueItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("exhaustion")), data.getExhaustion(), 1, (i, player) -> {
+            getGuiItems().put(9 + 4, new ValueItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("exhaustion")), data.getExhaustion(), 1, (i, player, valueItem) -> {
                 if(i < 0)
                     return false;
                 data.setExhaustion(i);
