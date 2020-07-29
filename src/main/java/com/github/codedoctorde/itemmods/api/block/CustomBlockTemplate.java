@@ -5,6 +5,7 @@ import com.gitlab.codedoctorde.api.ui.Gui;
 import com.google.gson.JsonElement;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -12,19 +13,23 @@ import org.jetbrains.annotations.Nullable;
  */
 public interface CustomBlockTemplate {
 
-    ItemStack getIcon();
+    @NotNull
+    ItemStack getIcon(BlockConfig blockConfig);
+
+    @NotNull
+    ItemStack getMainIcon(BlockConfig blockConfig);
 
     /**
      * If the server loads a chunk with this block
      *
-     * @param customBlock
+     * @param customBlock The custom block which is loaded
      */
     void load(CustomBlock customBlock);
 
     /**
      * If the server unloads a chunk with this block
      *
-     * @param customBlock
+     * @param customBlock The custom block which is unloaded
      */
     void unload(CustomBlock customBlock);
 
@@ -32,8 +37,10 @@ public interface CustomBlockTemplate {
 
     boolean openConfigGui(BlockConfig blockConfig, Player player);
 
+    @NotNull
     JsonElement saveConfig(BlockConfig config);
 
+    @NotNull
     String getName();
 
     /**

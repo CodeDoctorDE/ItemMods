@@ -231,61 +231,6 @@
             "lore": []
           }
         },
-        "addon": {
-          "title": "§eBlock #{0} §f» §6Addons §f{1}/{2}",
-          "first": {
-            "material": "BLAZE_ROD",
-            "name": "§eFirst page",
-            "lore": [],
-            "already": "§eItemMods §f» §cYou are already on the first page!"
-          },
-          "previous": {
-            "material": "ARROW",
-            "name": "§ePrevious page",
-            "lore": [],
-            "already": "§eItemMods §f» §cYou are already on the first page!"
-          },
-          "next": {
-            "material": "ARROW",
-            "name": "§eNext page",
-            "lore": [],
-            "already": "§eItemMods §f» §cYou are already on the last page!"
-          },
-          "last": {
-            "material": "BLAZE_ROD",
-            "name": "§eLast page",
-            "lore": [],
-            "already": "§eItemMods §f» §cYou are already on the last page!"
-          },
-          "search": {
-            "material": "COMPASS",
-            "name": "§eSearch",
-            "lore": [
-              "§3{0}",
-              "",
-              "§7Left click » Search",
-              "§7Right click » Reset search",
-              "§7Drop » Refresh"
-            ],
-            "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
-            "cancel": "§eItemMods §f» §cYou successfully cancel the search",
-            "reset": "§eItemMods §f» §aYou successfully reset the filter!",
-            "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
-          },
-          "addon": {
-            "noconfig": "§eItemMods §f» §cThere is no config for this addon!"
-          },
-          "placeholder": {
-            "material": "BLACK_STAINED_GLASS_PANE",
-            "name": "§7",
-            "lore": []
-          },
-          "back": {
-            "material": "REDSTONE",
-            "name": "§eBack",
-            "lore": []
-          }
-        },
         "template": {
           "title": "§eAddon #{1} §f» §6Templates §f{3}/{4}",
           "first": {
@@ -695,98 +640,6 @@
         ]
       }
     },
-    "items": {
-      "title": "§eItemMods §f» §6Items §f{0}/{1}",
-      "first": {
-        "material": "BLAZE_ROD",
-        "name": "§eFirst page",
-        "lore": [],
-        "already": "§eItemMods §f» §cYou are already on the first page!"
-      },
-      "previous": {
-        "material": "ARROW",
-        "name": "§ePrevious page",
-        "lore": [],
-        "already": "§eItemMods §f» §cYou are already on the first page!"
-      },
-      "next": {
-        "material": "ARROW",
-        "name": "§eNext page",
-        "lore": [],
-        "already": "§eItemMods §f» §cYou are already on the last page!"
-      },
-      "last": {
-        "material": "BLAZE_ROD",
-        "name": "§eLast page",
-        "lore": [],
-        "already": "§eItemMods §f» §cYou are already on the last page!"
-      },
-      "search": {
-        "material": "COMPASS",
-        "name": "§eSearch",
-        "lore": [
-          "§3{0}",
-          "",
-          "§7Left click » Search",
-          "§7Right click » Reset search",
-          "§7Drop » Refresh"
-        ],
-        "message": "§eItemMods §f» §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §f» §cYou successfully cancel the search",
-        "reset": "§eItemMods §f» §aYou successfully reset the filter!",
-        "refresh": "§eItemMods §f» §aYou successfully refresh the list!"
-      },
-      "create": {
-        "material": "KNOWLEDGE_BOOK",
-        "name": "§eCreate",
-        "lore": [
-          "",
-          "§7Click to create a new item"
-        ],
-        "message": "§eItemMods §f» §ePlease enter the item name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §f» §cYou successfully cancel the creation!",
-        "success": "§eItemMods §f» §aSuccessfully created the item {0}!"
-      },
-      "item": {
-        "material": "DIAMOND",
-        "name": "§e{0} §3#{1}",
-        "lore": [
-          "",
-          "§7Left click » Item settings",
-          "§7Drop » Delete"
-        ]
-      },
-      "placeholder": {
-        "material": "BLACK_STAINED_GLASS_PANE",
-        "name": "§7",
-        "lore": []
-      },
-      "back": {
-        "material": "REDSTONE",
-        "name": "§eBack",
-        "lore": []
-      },
-      "delete": {
-        "title": "§eItemMods §7» §6Delete #{1}",
-        "yes": {
-          "material": "GREEN_BANNER",
-          "name": "§aYes",
-          "lore": [
-            "",
-            "§7Yes, delete §3{0} §3#{1}§7!"
-          ],
-          "success": "§eItemMods §f» §aYou successfully delete the item §3{0} §3#{1}§a!"
-        },
-        "no": {
-          "material": "RED_BANNER",
-          "name": "§cNo",
-          "lore": [
-            "",
-            "§7No, cancel delete §3{0} §3#{1}§7!"
-          ]
-        }
-      }
-    },
     "item": {
       "title": "§eItemMods §7» §6Item #{1}",
       "name": {
@@ -946,7 +799,8 @@
           "name": "§eTemplates",
           "lore": [
             "",
-            "§cYou need to set an item before choosing a template!"
+            "§cYou need to set an item ",
+            "§cbefore choosing a template!"
           ]
         }
       }
@@ -1422,6 +1276,30 @@
           ]
         }
       },
+      "template": {
+        "null": {
+          "material": "ENDER_CHEST",
+          "name": "§eTemplates",
+          "lore": [
+            "",
+            "§7Click here to set a block template"
+          ]
+        },
+        "has": [
+          "§7-----",
+          "§7Left click » Configure",
+          "§7Drop » Clear"
+        ],
+        "no-block": {
+          "material": "ENDER_CHEST",
+          "name": "§eTemplates",
+          "lore": [
+            "",
+            "§cYou need to set a block or an armor stand ",
+            "§cbefore choosing a template!"
+          ]
+        }
+      },
       "block": {
         "set": {
           "material": "GRASS_BLOCK",
@@ -1623,7 +1501,7 @@
           "name": "§cSetup",
           "material": "BARRIER",
           "lore": [
-            "§cYou have no block configured!"
+            "§cYou have no block or armor stand configured!"
           ]
         }
       }

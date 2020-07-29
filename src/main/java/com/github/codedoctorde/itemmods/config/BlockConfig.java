@@ -22,7 +22,6 @@ public class BlockConfig {
     private ArmorStandBlockConfig armorStand = null;
     private String templateName;
     private final List<DropConfig> drops = new ArrayList<>();
-    @Nullable
     private String referenceItem;
     private int shovelHardness = 0;
     private int pickaxeHardness = 0;
@@ -52,6 +51,7 @@ public class BlockConfig {
         this.name = name;
     }
 
+    @Nullable
     public BlockData getBlock() {
         return block;
     }
@@ -93,8 +93,11 @@ public class BlockConfig {
         return null;
     }
 
-    public void setTemplate(CustomBlockTemplate blockTemplate) {
-        this.templateName = blockTemplate.getClass().getName();
+    public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
+        if(blockTemplate == null)
+            templateName = null;
+        else
+            templateName = blockTemplate.getClass().getName();
     }
 
     public String getTemplateName() {
@@ -139,7 +142,7 @@ public class BlockConfig {
     }
 
     public CorrectResult correct() {
-        if (block == null)
+        if (block == null || armorStand == null)
             return CorrectResult.NO_BLOCK;
         return CorrectResult.YES;
     }

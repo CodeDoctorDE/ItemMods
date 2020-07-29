@@ -7,6 +7,7 @@ import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.gitlab.codedoctorde.api.nbt.block.BlockNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
@@ -113,6 +114,8 @@ public class CustomBlockManager {
         if (event.isCancelled())
             return false;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
+        block.setType(Material.AIR);
+        if(blockConfig.getBlock() != null)
         block.setBlockData(blockConfig.getBlock());
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());

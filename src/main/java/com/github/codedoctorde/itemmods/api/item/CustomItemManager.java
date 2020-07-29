@@ -23,7 +23,7 @@ public class CustomItemManager {
      * @return the ItemConfig from the item stack. If this value is null, the item isn't a custom item.
      */
     @NotNull
-    public CustomItem getCustomItem(ItemStack itemStack) {
+    public CustomItem getCustomItem(@NotNull ItemStack itemStack) {
         return new CustomItem(itemStack);
     }
 }

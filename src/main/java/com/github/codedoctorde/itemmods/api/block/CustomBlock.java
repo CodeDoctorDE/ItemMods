@@ -26,7 +26,6 @@ public class CustomBlock {
     private final Location location;
     private BlockConfig config = null;
     private ArmorStand armorStand;
-    private JsonElement jsonElement;
 
     public CustomBlock(Location location, BlockConfig config) {
         this(location, null, config);
@@ -126,7 +125,7 @@ public class CustomBlock {
     }
 
     /**
-     * Configure the PersistantTagContainer to the default values
+     * Configure the PersistentTagContainer to the default values
      */
     public void configure() {
         setType(config.getTag());

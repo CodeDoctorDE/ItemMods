@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -21,11 +22,13 @@ import org.jetbrains.annotations.Nullable;
 public class BlockSetTemplate implements CustomItemTemplate {
     JsonObject templateTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
 
+    @NotNull
     @Override
     public ItemStack getIcon(ItemConfig itemConfig) {
         return new ItemStackBuilder(templateTranslation.getAsJsonObject("icon")).build();
     }
 
+    @NotNull
     @Override
     public ItemStack getMainIcon(ItemConfig itemConfig) {
         BlockConfig blockConfig = getBlock(itemConfig);
@@ -34,13 +37,6 @@ public class BlockSetTemplate implements CustomItemTemplate {
         else
             return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("null")).build();
     }
-
-    /**
-     * Only compactible on block itemstacks
-     *
-     * @param itemConfig
-     * @return
-     */
     @Override
     public boolean isCompatible(ItemConfig itemConfig) {
         if (itemConfig.getItemStack() == null)
@@ -60,6 +56,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
         return true;
     }
 
+    @NotNull
     @Override
     public String getName() {
         return templateTranslation.get("name").getAsString();

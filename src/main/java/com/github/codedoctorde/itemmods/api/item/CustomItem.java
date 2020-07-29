@@ -5,6 +5,7 @@ import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ public class CustomItem {
     private ItemConfig config = null;
     private static final NamespacedKey dataKey = new NamespacedKey(ItemMods.getPlugin(), "data");
 
-    public CustomItem(ItemStack itemStack) {
+    public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
         ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
     }

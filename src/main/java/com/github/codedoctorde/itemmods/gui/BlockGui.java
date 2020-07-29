@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.gui;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemAddonGui;
 import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemConfigGui;
 import com.gitlab.codedoctorde.api.nbt.block.BlockNBT;
 import com.gitlab.codedoctorde.api.request.BlockBreakRequest;
@@ -27,16 +28,16 @@ import org.bukkit.inventory.ItemStack;
 import java.text.MessageFormat;
 
 public class BlockGui {
-    private final int current;
+    private final int index;
 
-    public BlockGui(int current) {
-        this.current = current;
+    public BlockGui(int index) {
+        this.index = index;
     }
 
     public Gui createGui() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("block");
-        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(current);
-        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), current), 5, new GuiEvent() {
+        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(index);
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), index), 5, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
@@ -394,6 +395,27 @@ public class BlockGui {
                         }).createGui(gui)[0].open(player);
                     }
                 }));
+                if (blockConfig.getBlock() != null || blockConfig.getArmorStand() != null)
+                    getGuiItems().put(6, new GuiItem((blockConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+                            new ItemStackBuilder(blockConfig.getTemplate().getMainIcon(blockConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
+                        @Override
+                        public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                            if (blockConfig.getTemplate() != null) {
+                                switch (event.getClick()) {
+                                    case LEFT:
+                                        if(!blockConfig.getTemplate().openConfigGui(blockConfig, (Player) event.getWhoClicked()))
+                                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
+                                        break;
+                                    case DROP:
+                                        blockConfig.setTemplate(null);
+                                        gui.changeGui(createGui(), (Player) event.getWhoClicked());
+                                }
+                            } else
+                                new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
+                        }
+                    }));
+                else
+                    getGuiItems().put(6, new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-block")));
                 getGuiItems().put(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -412,7 +434,7 @@ public class BlockGui {
                 getGuiItems().put(9 * 4 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        new DropsGui(current).createGui()[0].open((Player) event.getWhoClicked());
+                        new DropsGui(index).createGui()[0].open((Player) event.getWhoClicked());
                     }
                 }));
                 getGuiItems().put(9 * 4 + 6, placeholder);

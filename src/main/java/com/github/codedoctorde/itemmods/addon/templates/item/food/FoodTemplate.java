@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -20,11 +21,13 @@ import java.util.List;
 public class FoodTemplate implements CustomItemTemplate {
     JsonObject templateTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon")
             .getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("food");
+    @NotNull
     @Override
     public ItemStack getIcon(ItemConfig itemConfig) {
         return new ItemStackBuilder(templateTranslation.getAsJsonObject("icon")).build();
     }
 
+    @NotNull
     @Override
     public ItemStack getMainIcon(ItemConfig itemConfig) {
         return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon")).format().build();
@@ -41,9 +44,10 @@ public class FoodTemplate implements CustomItemTemplate {
         return true;
     }
 
+    @NotNull
     @Override
     public String getName() {
-        return null;
+        return templateTranslation.get("name").getAsString();
     }
 
     static class FoodTemplateData {
