@@ -31,7 +31,7 @@ public class CustomBlock {
         this(location, null, config);
     }
 
-    public CustomBlock(Location location, ArmorStand armorStand, BlockConfig config) {
+    public CustomBlock(Location location, @Nullable ArmorStand armorStand, BlockConfig config) {
         this.config = config;
         this.location = location;
         this.armorStand = armorStand;
@@ -74,6 +74,7 @@ public class CustomBlock {
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
         if (config == null || dropType == null) return false;
+        if(config.getBlock() != null)
         getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
         List<ItemStack> drops = new ArrayList<>();

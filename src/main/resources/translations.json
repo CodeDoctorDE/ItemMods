@@ -1072,6 +1072,305 @@
         "message": "§eItemMods §7» §ePlease enter the tag! Cancel with a punch in the air!",
         "cancel": "§eItemMods §7» §cYou successfully cancel the tag!"
       },
+      "item": {
+        "no": {
+          "material": "BARRIER",
+          "name": "§cNo item",
+          "lore": [
+            "",
+            "§cNo reference item.",
+            "",
+            "§7This drops when you break a block with ",
+            "§7silk touch or middle click in creative mode!",
+            "",
+            "§7Click here to set it!"
+          ]
+        },
+        "yes": [
+          "§7-----",
+          "",
+          "§7This drops when you break a block with ",
+          "§7silk touch or middle click in creative mode!",
+          "",
+          "§7Left click » Set",
+          "§7Drop » Delete"
+        ]
+      },
+      "creator": {
+        "item": {
+          "material": "CHEST",
+          "name": "§eOpen item creator",
+          "lore": []
+        },
+        "null": {
+          "material": "CHEST",
+          "name": "§cNo item for the item creator",
+          "lore": [
+            "",
+            "§7Set the item before trying to open the item creator!"
+          ]
+        }
+      },
+      "template": {
+        "null": {
+          "material": "ENDER_CHEST",
+          "name": "§eTemplates",
+          "lore": [
+            "",
+            "§7Click here to set a block template"
+          ]
+        },
+        "has": [
+          "§7-----",
+          "§7Left click » Configure",
+          "§7Drop » Clear"
+        ],
+        "no-block": {
+          "material": "ENDER_CHEST",
+          "name": "§eTemplates",
+          "lore": [
+            "",
+            "§cYou need to set a block or an armor stand ",
+            "§cbefore choosing a template!"
+          ]
+        }
+      },
+      "block": {
+        "set": {
+          "material": "GRASS_BLOCK",
+          "name": "§eBlock",
+          "lore": [
+            "§aSET",
+            "§7Material: {0}",
+            "",
+            "§7Left click » Set the block",
+            "§7Shift + Left click » Choose a template",
+            "§7Drop » Remove block"
+          ]
+        },
+        "null": {
+          "material": "GRASS_BLOCK",
+          "name": "§eBlock",
+          "lore": [
+            "§cNOT SET",
+            "",
+            "§7Left click » Set the block",
+            "§7Shift + Left click » Choose a template",
+            "§7Drop » Remove block"
+          ]
+        },
+        "success": "§eItemMods §7» §aSuccessfully set the block§a!",
+        "remove": "§eItemMods §7» §aSuccessfully removed the block!",
+        "message": "§eItemMods §7» §ePlease break the block! Cancel with a punch in the air!",
+        "error": "§eItemMods §7» §cYou need to set a block entity or an armor stand as block!",
+        "cancel": "§eItemMods §7» §cYou successfully cancel the block input!"
+      },
+      "get": {
+        "material": "GOLD_NUGGET",
+        "name": "§eGet",
+        "lore": [
+          "§7Open give gui",
+          "§7Middle click » Give item"
+        ],
+        "success": "§eItemMods §7» §aSuccessfully gave you the item!",
+        "null": "§eItemMods §7» §cThere is no item!"
+      },
+      "move": {
+        "yes": {
+          "material": "PISTON",
+          "name": "§eMove",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "PISTON",
+          "name": "§eMove",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
+      "drops": {
+        "material": "DIAMOND_ORE",
+        "name": "§eDrops",
+        "lore": [
+          "",
+          "§7Click here to see the drops list"
+        ]
+      },
+      "drop": {
+        "yes": {
+          "material": "EMERALD",
+          "name": "§eNeed drop",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!",
+            "",
+            "§7Configure if the drop only ",
+            "§7drop when the basic block drops something"
+          ]
+        },
+        "no": {
+          "material": "EMERALD",
+          "name": "§eNeed drop",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!",
+            "",
+            "§7Configure if the drop only ",
+            "§7drop when the basic block drops something"
+          ]
+        }
+      },
+      "default": {
+        "material": "OAK_PLANKS",
+        "name": "§eDefault Armor stand config",
+        "lore": [
+          "",
+          "§7Click here to open the configuration"
+        ]
+      },
+      "type": {
+        "yes": {
+          "name": "§aArmor stand",
+          "material": "ARMOR_STAND",
+          "lore": [
+            "§7Click here to turn it off!"
+          ],
+          "set": "§eItemMods §7» §aSuccessfully turn armorstand on!"
+        },
+        "no": {
+          "name": "§cArmor stand",
+          "material": "ARMOR_STAND",
+          "lore": [
+            "§7Click here to turn it on!"
+          ],
+          "set": "§eItemMods §7» §aSuccessfully turn armorstand off!"
+        }
+      },
+      "correct": {
+        "YES": {
+          "name": "§aSetup",
+          "material": "GREEN_DYE",
+          "lore": [
+            "§aEverything is correct!"
+          ]
+        },
+        "ENTITY": {
+          "name": "§cSetup",
+          "material": "BARRIER",
+          "lore": [
+            "§cYou need to have an armor stand or a entity block!"
+          ]
+        },
+        "NO_BLOCK": {
+          "name": "§cSetup",
+          "material": "BARRIER",
+          "lore": [
+            "§cYou have no block or armor stand configured!"
+          ]
+        }
+      }
+    },
+    "armorstand": {
+      "title": "§eItemMods §7» Armor stand config",
+      "cancel": {
+        "material": "BARRIER",
+        "name": "§eCancel",
+        "lore": [
+          "",
+          "§7Click here to discard the changes"
+        ],
+        "output": "§eItemMods » §aSuccessfully discard the changes!"
+      },
+      "save": {
+        "material": "GREEN_DYE",
+        "name": "§eSave",
+        "lore": [
+          "",
+          "§7Click here to save the changes"
+        ],
+        "output": "§eItemMods » §aSuccessfully saved the changes!"
+      },
+      "customname": {
+        "visible": {
+          "material": "ARMOR_STAND",
+          "name": "§eCustom name",
+          "lore": [
+            "§3{0}",
+            "§aVISIBLE",
+            "",
+            "§7Left click » Set custom name",
+            "§7Right click » Remove custom name",
+            "§7Drop » Toggle visibility"
+          ]
+        },
+        "invisible": {
+          "material": "ARMOR_STAND",
+          "name": "§eCustom name",
+          "lore": [
+            "§3{0}",
+            "§cINVISIBLE",
+            "",
+            "§7Left click » Set custom name",
+            "§7Right click » Remove custom name",
+            "§7Drop » Toggle visibility"
+          ]
+        },
+        "success": "§eItemMods §7» §aSuccessfully set the custom name to §3{0}§a!",
+        "message": "§eItemMods §7» §ePlease enter a custom name for the armor stand!",
+        "cancel": "§eItemMods §7» §aYou successfully cancel it!",
+        "remove": "§eItemMods §7» §aYou successfully removed the custom name!",
+        "on": "§eItemMods §7» §aYou successfully turned the custom name visibility on!",
+        "off": "§eItemMods §7» §aYou successfully turned the custom name visibility off!"
+      },
+      "marker": {
+        "yes": {
+          "material": "MAP",
+          "name": "§eMarker",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "MAP",
+          "name": "§eMarker",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
+      "invulnerable": {
+        "yes": {
+          "material": "TOTEM_OF_UNDYING",
+          "name": "§eInvulnerable",
+          "lore": [
+            "§aYES",
+            "",
+            "§7Click to set it to off!"
+          ]
+        },
+        "no": {
+          "material": "TOTEM_OF_UNDYING",
+          "name": "§eInvulnerable",
+          "lore": [
+            "§cNO",
+            "",
+            "§7Click to set it to on!"
+          ]
+        }
+      },
       "helmet": {
         "view": {
           "material": "DIAMOND_HELMET",
@@ -1243,276 +1542,6 @@
             "§cNO",
             "",
             "§7Click to turn it on"
-          ]
-        }
-      },
-      "item": {
-        "no": {
-          "material": "BARRIER",
-          "name": "§cNo item",
-          "lore": [
-            "",
-            "§cNo reference item.",
-            "",
-            "§7This drops when you break a block with ",
-            "§7silk touch or middle click in creative mode!",
-            "",
-            "§7Click here to set it!"
-          ]
-        },
-        "yes": [
-          "§7-----",
-          "",
-          "§7This drops when you break a block with ",
-          "§7silk touch or middle click in creative mode!",
-          "",
-          "§7Left click » Set",
-          "§7Drop » Delete"
-        ]
-      },
-      "creator": {
-        "item": {
-          "material": "CHEST",
-          "name": "§eOpen item creator",
-          "lore": []
-        },
-        "null": {
-          "material": "CHEST",
-          "name": "§cNo item for the item creator",
-          "lore": [
-            "",
-            "§7Set the item before trying to open the item creator!"
-          ]
-        }
-      },
-      "template": {
-        "null": {
-          "material": "ENDER_CHEST",
-          "name": "§eTemplates",
-          "lore": [
-            "",
-            "§7Click here to set a block template"
-          ]
-        },
-        "has": [
-          "§7-----",
-          "§7Left click » Configure",
-          "§7Drop » Clear"
-        ],
-        "no-block": {
-          "material": "ENDER_CHEST",
-          "name": "§eTemplates",
-          "lore": [
-            "",
-            "§cYou need to set a block or an armor stand ",
-            "§cbefore choosing a template!"
-          ]
-        }
-      },
-      "block": {
-        "set": {
-          "material": "GRASS_BLOCK",
-          "name": "§eBlock",
-          "lore": [
-            "§aSET",
-            "§7Material: {0}",
-            "",
-            "§7Left click » Set the block",
-            "§7Shift + Left click » Choose a template",
-            "§7Drop » Remove block"
-          ]
-        },
-        "null": {
-          "material": "GRASS_BLOCK",
-          "name": "§eBlock",
-          "lore": [
-            "§cNOT SET",
-            "",
-            "§7Left click » Set the block",
-            "§7Shift + Left click » Choose a template",
-            "§7Drop » Remove block"
-          ]
-        },
-        "success": "§eItemMods §7» §aSuccessfully set the block§a!",
-        "remove": "§eItemMods §7» §aSuccessfully removed the block!",
-        "message": "§eItemMods §7» §ePlease break the block! Cancel with a punch in the air!",
-        "error": "§eItemMods §7» §cYou need to set a block entity or an armor stand as block!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the block input!"
-      },
-      "get": {
-        "material": "GOLD_NUGGET",
-        "name": "§eGet",
-        "lore": [
-          "§7Open give gui",
-          "§7Middle click » Give item"
-        ],
-        "success": "§eItemMods §7» §aSuccessfully gave you the item!",
-        "null": "§eItemMods §7» §cThere is no item!"
-      },
-      "marker": {
-        "yes": {
-          "material": "MAP",
-          "name": "§eMarker",
-          "lore": [
-            "§aYES",
-            "",
-            "§7Click to set it to off!"
-          ]
-        },
-        "no": {
-          "material": "MAP",
-          "name": "§eMarker",
-          "lore": [
-            "§cNO",
-            "",
-            "§7Click to set it to on!"
-          ]
-        }
-      },
-      "invulnerable": {
-        "yes": {
-          "material": "TOTEM_OF_UNDYING",
-          "name": "§eInvulnerable",
-          "lore": [
-            "§aYES",
-            "",
-            "§7Click to set it to off!"
-          ]
-        },
-        "no": {
-          "material": "TOTEM_OF_UNDYING",
-          "name": "§eInvulnerable",
-          "lore": [
-            "§cNO",
-            "",
-            "§7Click to set it to on!"
-          ]
-        }
-      },
-      "move": {
-        "yes": {
-          "material": "PISTON",
-          "name": "§eMove",
-          "lore": [
-            "§aYES",
-            "",
-            "§7Click to set it to off!"
-          ]
-        },
-        "no": {
-          "material": "PISTON",
-          "name": "§eMove",
-          "lore": [
-            "§cNO",
-            "",
-            "§7Click to set it to on!"
-          ]
-        }
-      },
-      "drops": {
-        "material": "DIAMOND_ORE",
-        "name": "§eDrops",
-        "lore": [
-          "",
-          "§7Click here to see the drops list"
-        ]
-      },
-      "drop": {
-        "yes": {
-          "material": "EMERALD",
-          "name": "§eNeed drop",
-          "lore": [
-            "§aYES",
-            "",
-            "§7Click to set it to off!",
-            "",
-            "§7Configure if the drop only ",
-            "§7drop when the basic block drops something"
-          ]
-        },
-        "no": {
-          "material": "EMERALD",
-          "name": "§eNeed drop",
-          "lore": [
-            "§cNO",
-            "",
-            "§7Click to set it to on!",
-            "",
-            "§7Configure if the drop only ",
-            "§7drop when the basic block drops something"
-          ]
-        }
-      },
-      "customname": {
-        "visible": {
-          "material": "ARMOR_STAND",
-          "name": "§eCustom name",
-          "lore": [
-            "§3{0}",
-            "§aVISIBLE",
-            "",
-            "§7Left click » Set custom name",
-            "§7Right click » Remove custom name",
-            "§7Drop » Toggle visibility"
-          ]
-        },
-        "invisible": {
-          "material": "ARMOR_STAND",
-          "name": "§eCustom name",
-          "lore": [
-            "§3{0}",
-            "§cINVISIBLE",
-            "",
-            "§7Left click » Set custom name",
-            "§7Right click » Remove custom name",
-            "§7Drop » Toggle visibility"
-          ]
-        },
-        "success": "§eItemMods §7» §aSuccessfully set the custom name to §3{0}§a!",
-        "message": "§eItemMods §7» §ePlease enter a custom name for the armor stand!",
-        "cancel": "§eItemMods §7» §aYou successfully cancel it!",
-        "remove": "§eItemMods §7» §aYou successfully removed the custom name!",
-        "on": "§eItemMods §7» §aYou successfully turned the custom name visibility on!",
-        "off": "§eItemMods §7» §aYou successfully turned the custom name visibility off!"
-      },
-      "type": {
-        "yes": {
-          "name": "§aArmor stand",
-          "material": "ARMOR_STAND",
-          "lore": [
-            "§7Click here to turn it off!"
-          ],
-          "set": "§eItemMods §7» §aSuccessfully turn armorstand on!"
-        },
-        "no": {
-          "name": "§cArmor stand",
-          "material": "ARMOR_STAND",
-          "lore": [
-            "§7Click here to turn it on!"
-          ],
-          "set": "§eItemMods §7» §aSuccessfully turn armorstand off!"
-        }
-      },
-      "correct": {
-        "YES": {
-          "name": "§aSetup",
-          "material": "GREEN_DYE",
-          "lore": [
-            "§aEverything is correct!"
-          ]
-        },
-        "ENTITY": {
-          "name": "§cSetup",
-          "material": "BARRIER",
-          "lore": [
-            "§cYou need to have an armor stand or a entity block!"
-          ]
-        },
-        "NO_BLOCK": {
-          "name": "§cSetup",
-          "material": "BARRIER",
-          "lore": [
-            "§cYou have no block or armor stand configured!"
           ]
         }
       }

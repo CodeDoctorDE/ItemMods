@@ -1,5 +1,9 @@
 package com.github.codedoctorde.itemmods.config;
 
+import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -18,6 +22,7 @@ public class ArmorStandBlockConfig {
     private boolean marker = false;
     private boolean invulnerable = true;
     private boolean customNameVisible = false;
+    private boolean showingArms = true;
     private String customName;
     private int gravity = 5;
     private int stable = 5;
@@ -140,5 +145,29 @@ public class ArmorStandBlockConfig {
 
     public void setStable(int stable) {
         this.stable = stable;
+    }
+
+    public ArmorStand spawn(Location location) {
+        ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.clone().add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
+        if (armorStand.getEquipment() == null)
+            return null;
+        armorStand.setVisible(!isInvisible());
+        armorStand.setSmall(isSmall());
+        armorStand.setMarker(isMarker());
+        armorStand.setInvulnerable(isInvulnerable());
+        armorStand.setCustomNameVisible(isCustomNameVisible());
+        armorStand.setCustomName(getCustomName());
+        armorStand.setGravity(false);
+        armorStand.setSilent(true);
+        armorStand.setBasePlate(isBasePlate());
+
+        EntityEquipment equipment = armorStand.getEquipment();
+        equipment.setHelmet(getHelmet());
+        equipment.setChestplate(getChestplate());
+        equipment.setLeggings(getLeggings());
+        equipment.setBoots(getBoots());
+        equipment.setItemInMainHand(getMainHand());
+        equipment.setItemInOffHand(getOffHand());
+        return armorStand;
     }
 }

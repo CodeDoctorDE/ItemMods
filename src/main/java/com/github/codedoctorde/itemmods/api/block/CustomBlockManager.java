@@ -107,44 +107,19 @@ public class CustomBlockManager {
     public boolean setCustomBlock(Location location, BlockConfig blockConfig, Player player) {
         if (getCustomBlock(location) != null)
             return false;
-        if (!location.getBlock().getType().isSolid())
+        if (location.getBlock().getType().isSolid())
             return false;
         CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig, player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
-        block.setType(Material.AIR);
         if(blockConfig.getBlock() != null)
         block.setBlockData(blockConfig.getBlock());
-        if (blockConfig.getData() != null)
-            BlockNBT.setNbt(block, blockConfig.getData());
         ArmorStand armorStand = null;
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
-        if (armorStandBlockConfig != null) {
-            armorStand = (ArmorStand) location.getWorld().spawnEntity(location.add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
-            if (armorStand.getEquipment() == null)
-                return false;
-            armorStand.setVisible(!armorStandBlockConfig.isInvisible());
-            armorStand.setSmall(armorStandBlockConfig.isSmall());
-            armorStand.setMarker(armorStandBlockConfig.isMarker());
-            armorStand.setInvulnerable(armorStandBlockConfig.isInvulnerable());
-            armorStand.setCustomNameVisible(armorStandBlockConfig.isCustomNameVisible());
-            armorStand.setCustomName(armorStandBlockConfig.getCustomName());
-            armorStand.getScoreboardTags().add(blockConfig.getTag());
-            armorStand.setGravity(false);
-            armorStand.setSilent(true);
-
-            EntityEquipment equipment = armorStand.getEquipment();
-            armorStand.setBasePlate(armorStandBlockConfig.isBasePlate());
-            equipment.setHelmet(armorStandBlockConfig.getHelmet());
-            equipment.setChestplate(armorStandBlockConfig.getChestplate());
-            equipment.setLeggings(armorStandBlockConfig.getLeggings());
-            equipment.setBoots(armorStandBlockConfig.getBoots());
-            equipment.setItemInMainHand(armorStandBlockConfig.getMainHand());
-            equipment.setItemInOffHand(armorStandBlockConfig.getOffHand());
-        }
+        if (armorStandBlockConfig != null) armorStand = armorStandBlockConfig.spawn(location);
         if (blockConfig.getData() != null)
             BlockNBT.setNbt(block, blockConfig.getData());
         if (location.getChunk().isLoaded())

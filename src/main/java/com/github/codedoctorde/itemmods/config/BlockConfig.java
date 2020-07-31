@@ -143,7 +143,7 @@ public class BlockConfig {
     }
 
     public CorrectResult correct() {
-        if (block == null || armorStand == null)
+        if (block == null && armorStand == null)
             return CorrectResult.NO_BLOCK;
         return CorrectResult.YES;
     }
