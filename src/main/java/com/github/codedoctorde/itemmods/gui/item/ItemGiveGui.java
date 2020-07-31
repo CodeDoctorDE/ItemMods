@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.gitlab.codedoctorde.api.ui.Gui;

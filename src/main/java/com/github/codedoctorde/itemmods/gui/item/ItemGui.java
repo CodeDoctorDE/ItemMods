@@ -1,8 +1,8 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.gui.choose.item.ChooseItemAddonGui;
+import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemAddonGui;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.Gui;
@@ -10,11 +10,12 @@ import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.template.gui.ItemCreatorGui;
-import com.gitlab.codedoctorde.api.ui.template.gui.events.ItemCreatorSubmitEvent;
+import com.gitlab.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.conversations.ConversationCanceller;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -117,14 +118,19 @@ public class ItemGui {
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (itemConfig.getItemStack() == null)
                         return;
-                    new ItemCreatorGui(ItemMods.getPlugin(), itemConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                    new ItemCreatorGui(ItemMods.getPlugin(), itemConfig.getItemStack(), new ItemCreatorEvent() {
                         @Override
-                        public void onEvent(ItemStack itemStack) {
+                        public void onEvent(Player player, ItemStack itemStack) {
                             itemConfig.setItemStack(itemStack);
                             ItemMods.getPlugin().saveBaseConfig();
                             createGui().open((Player) event.getWhoClicked());
                         }
-                    }).createGui(gui, ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
+
+                        @Override
+                        public void onCancel(Player player) {
+                            gui.open(player);
+                        }
+                    }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                     }
                 }));
             getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(itemConfig.isCanRename() ? guiTranslation.getAsJsonObject("rename").getAsJsonObject("yes") : guiTranslation.getAsJsonObject("rename").getAsJsonObject("no")).build(), new GuiItemEvent() {

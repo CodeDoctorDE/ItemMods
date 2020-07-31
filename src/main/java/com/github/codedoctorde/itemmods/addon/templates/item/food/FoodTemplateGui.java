@@ -2,7 +2,7 @@ package com.github.codedoctorde.itemmods.addon.templates.item.food;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.gui.ItemGui;
+import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;

@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;

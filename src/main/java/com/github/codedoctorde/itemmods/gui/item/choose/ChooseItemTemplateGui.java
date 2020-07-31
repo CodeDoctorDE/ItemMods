@@ -1,9 +1,9 @@
-package com.github.codedoctorde.itemmods.gui.choose.item;
+package com.github.codedoctorde.itemmods.gui.item.choose;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.gui.ItemGui;
+import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;

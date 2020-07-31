@@ -200,7 +200,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
             customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, (Player) event.getDamager());
-        else if (((Player) event.getEntity()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
+        else if (((Player) event.getDamager()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
             customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, (Player) event.getDamager());
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());

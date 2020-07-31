@@ -29,6 +29,7 @@ public class BlockConfig {
     private int hoeHardness = 0;
     private int swordHardness = 0;
     private int shearHardness = 0;
+    private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
     public boolean checkBlock(BlockState block) {
         return armorStand != null || block instanceof TileState;
@@ -231,5 +232,13 @@ public class BlockConfig {
 
     public void setSwordHardness(int swordHardness) {
         this.swordHardness = swordHardness;
+    }
+
+    public BlockDirectionType getBlockDirectionType() {
+        return blockDirectionType;
+    }
+
+    public void setBlockDirectionType(BlockDirectionType blockDirectionType) {
+        this.blockDirectionType = blockDirectionType;
     }
 }

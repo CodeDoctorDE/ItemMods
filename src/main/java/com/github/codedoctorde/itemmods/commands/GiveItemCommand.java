@@ -25,7 +25,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length < 1 || args.length > 3) {
+        if (args.length < 2 || args.length > 3) {
             commandSender.sendMessage(commandTranslation.get("usage").getAsString());
         } else {
             Player player = Bukkit.getPlayer(args[0]);

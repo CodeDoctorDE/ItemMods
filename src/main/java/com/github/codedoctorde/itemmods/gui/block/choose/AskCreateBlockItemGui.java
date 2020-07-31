@@ -1,10 +1,10 @@
-package com.github.codedoctorde.itemmods.gui.choose.block;
+package com.github.codedoctorde.itemmods.gui.block.choose;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
-import com.github.codedoctorde.itemmods.gui.BlocksGui;
+import com.github.codedoctorde.itemmods.gui.block.BlocksGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiItem;
 import com.gitlab.codedoctorde.api.ui.GuiItemEvent;

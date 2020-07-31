@@ -1,8 +1,9 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
+import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.Gui;

@@ -1426,7 +1426,8 @@
             "",
             "§7Click to set it to off!",
             "",
-            "§7Configure if the drop only drop when the basic block drops something"
+            "§7Configure if the drop only ",
+            "§7drop when the basic block drops something"
           ]
         },
         "no": {
@@ -1437,7 +1438,8 @@
             "",
             "§7Click to set it to on!",
             "",
-            "§7Configure if the drop only drop when the basic block drops something"
+            "§7Configure if the drop only ",
+            "§7drop when the basic block drops something"
           ]
         }
       },

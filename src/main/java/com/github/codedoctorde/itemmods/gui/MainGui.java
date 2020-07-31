@@ -1,6 +1,8 @@
 package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.gui.block.BlocksGui;
+import com.github.codedoctorde.itemmods.gui.item.ItemsGui;
 import com.gitlab.codedoctorde.api.ui.Gui;
 import com.gitlab.codedoctorde.api.ui.GuiEvent;
 import com.gitlab.codedoctorde.api.ui.GuiItem;

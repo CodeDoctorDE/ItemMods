@@ -107,7 +107,7 @@ public class CustomBlockManager {
     public boolean setCustomBlock(Location location, BlockConfig blockConfig, Player player) {
         if (getCustomBlock(location) != null)
             return false;
-        if (!location.getBlock().isEmpty())
+        if (!location.getBlock().getType().isSolid())
             return false;
         CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig, player);
         Bukkit.getPluginManager().callEvent(event);

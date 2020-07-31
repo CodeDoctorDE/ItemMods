@@ -1,8 +1,9 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.config.MainConfig;
+import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.gitlab.codedoctorde.api.request.ChatRequest;
 import com.gitlab.codedoctorde.api.request.ChatRequestEvent;
 import com.gitlab.codedoctorde.api.ui.Gui;
@@ -26,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class ItemsGui {
 
-    Gui[] createGui() {
+    public Gui[] createGui() {
         return createGui("");
     }
 

@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.gui;
+package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
@@ -12,7 +12,7 @@ import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
 import com.gitlab.codedoctorde.api.ui.template.gui.ItemCreatorGui;
 import com.gitlab.codedoctorde.api.ui.template.gui.ListGui;
 import com.gitlab.codedoctorde.api.ui.template.gui.events.GuiListEvent;
-import com.gitlab.codedoctorde.api.ui.template.gui.events.ItemCreatorSubmitEvent;
+import com.gitlab.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
 import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -119,14 +119,19 @@ public class DropsGui {
                                 createGui(true)[0].open((Player) event.getWhoClicked());
                             } else switch (event.getClick()) {
                                 case LEFT:
-                                    new ItemCreatorGui(ItemMods.getPlugin(), dropConfig.getItemStack(), new ItemCreatorSubmitEvent() {
+                                    new ItemCreatorGui(ItemMods.getPlugin(), dropConfig.getItemStack(), new ItemCreatorEvent() {
                                         @Override
-                                        public void onEvent(ItemStack itemStack) {
+                                        public void onEvent(Player player, ItemStack itemStack) {
                                             dropConfig.setItemStack(itemStack);
                                             createGui(false)[0].open((Player) event.getWhoClicked());
                                             ItemMods.getPlugin().saveBaseConfig();
                                         }
-                                    }).createGui(gui, ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
+
+                                        @Override
+                                        public void onCancel(Player player) {
+                                            gui.open(player);
+                                        }
+                                    }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                                     break;
                                 case RIGHT:
                                     event.getWhoClicked().getInventory().addItem(dropConfig.getItemStack());
