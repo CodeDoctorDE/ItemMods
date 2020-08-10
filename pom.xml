@@ -38,7 +38,7 @@
                     </relocations>
                     <artifactSet>
                         <includes>
-                            <include>com.github.codedoctorde:CodeDoctorAPI</include>
+                            <include>com.github.codedoctorde:API</include>
                             <include>org.bstats:bstats-bukkit</include>
                         </includes>
                     </artifactSet>
