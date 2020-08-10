@@ -38,7 +38,7 @@
                     </relocations>
                     <artifactSet>
                         <includes>
-                            <include>com.gitlab.codedoctorde:CodeDoctorAPI</include>
+                            <include>com.github.codedoctorde:CodeDoctorAPI</include>
                             <include>org.bstats:bstats-bukkit</include>
                         </includes>
                     </artifactSet>
@@ -64,13 +64,6 @@
             <id>codemc-snapshots</id>
             <url>https://repo.codemc.io/repository/maven-snapshots/</url>
         </repository>
-        <repository>
-            <id>codedoctorapi</id>
-            <url>https://gitlab.com/api/v4/projects/14810643/packages/maven</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -92,9 +85,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.gitlab.codedoctorde</groupId>
-            <artifactId>CodeDoctorAPI</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <groupId>com.github.codedoctorde</groupId>
+            <artifactId>API</artifactId>
+            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

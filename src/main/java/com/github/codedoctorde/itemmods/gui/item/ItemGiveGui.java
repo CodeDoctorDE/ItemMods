@@ -1,10 +1,10 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.gitlab.codedoctorde.api.ui.Gui;
-import com.gitlab.codedoctorde.api.ui.GuiItem;
-import com.gitlab.codedoctorde.api.ui.GuiItemEvent;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

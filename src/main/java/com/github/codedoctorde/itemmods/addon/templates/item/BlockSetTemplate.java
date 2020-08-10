@@ -7,7 +7,7 @@ import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.github.codedoctorde.itemmods.gui.block.choose.ChooseBlockConfigGui;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;

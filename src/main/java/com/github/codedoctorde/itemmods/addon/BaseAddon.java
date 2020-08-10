@@ -2,8 +2,8 @@ package com.github.codedoctorde.itemmods.addon;
 
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.gitlab.codedoctorde.api.ui.Gui;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;

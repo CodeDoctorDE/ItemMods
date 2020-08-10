@@ -3,7 +3,7 @@ package com.github.codedoctorde.itemmods.commands;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.KnowledgeGui;
 import com.github.codedoctorde.itemmods.gui.MainGui;
-import com.gitlab.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.ui.Gui;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

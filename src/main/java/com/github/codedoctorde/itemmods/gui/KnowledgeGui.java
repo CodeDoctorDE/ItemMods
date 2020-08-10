@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.gitlab.codedoctorde.api.ui.Gui;
-import com.gitlab.codedoctorde.api.ui.GuiItem;
-import com.gitlab.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 
 public class KnowledgeGui {

@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.gitlab.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.ui.Gui;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
