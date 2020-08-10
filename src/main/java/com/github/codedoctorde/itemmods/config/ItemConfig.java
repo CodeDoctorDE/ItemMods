@@ -158,6 +158,8 @@ public class ItemConfig {
     }
 
     public ItemStack giveItemStack() {
+        if(itemStack == null)
+            return null;
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
