@@ -17,6 +17,7 @@ import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryCreativeEvent;
+import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -189,8 +190,6 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockEntityHit(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player))
-            return;
         if (!(event.getEntity() instanceof ArmorStand))
             return;
         Location location = event.getEntity().getLocation().clone().add(-0.5, 0, -0.5);
@@ -198,12 +197,21 @@ public class CustomBlockListener implements Listener {
         if (customBlock == null)
             return;
         event.setCancelled(true);
+        if (!(event.getDamager() instanceof Player))
+            return;
         if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
             customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, (Player) event.getDamager());
         else if (((Player) event.getDamager()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
             customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, (Player) event.getDamager());
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());
+    }
+    public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event){
+        Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
+        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
+        if (customBlock == null)
+            return;
+        event.setCancelled(true);
     }
 
     @EventHandler
