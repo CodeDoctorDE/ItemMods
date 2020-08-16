@@ -6,6 +6,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
+
 /**
  * @author CodeDoctorDE
  */
@@ -148,7 +150,7 @@ public class ArmorStandBlockConfig {
     }
 
     public ArmorStand spawn(Location location) {
-        ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location.clone().add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
+        ArmorStand armorStand = (ArmorStand) Objects.requireNonNull(location.getWorld()).spawnEntity(location.clone().add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
         if (armorStand.getEquipment() == null)
             return null;
         armorStand.setVisible(!isInvisible());
@@ -159,6 +161,7 @@ public class ArmorStandBlockConfig {
         armorStand.setCustomName(getCustomName());
         armorStand.setGravity(false);
         armorStand.setSilent(true);
+        armorStand.setCollidable(false);
         armorStand.setBasePlate(isBasePlate());
 
         EntityEquipment equipment = armorStand.getEquipment();
