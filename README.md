@@ -14,3 +14,5 @@
 [![Wiki](./assets/wiki.png)](https://github.com/CodeDoctorDE/ItemMods/wiki)
 [![Last build](./assets/build.png)](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastSuccessfullBuild/)
 [![API](./assets/api.png)](https://github.com/CodeDoctorDE/ItemMods/wiki/api)
+
+[![BStats](https://bstats.org/signatures/bukkit/ItemMods.svg)](https://bstats.org/plugin/bukkit/ItemMods)
