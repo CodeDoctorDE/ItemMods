@@ -107,8 +107,7 @@ public class ItemMods extends JavaPlugin {
         }
         api.registerAddon(new BaseAddon());
         if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
-            PropertyBuilder.registerItemProperty("customitem", CustomItemBetterGuiProperty.class);
-            PropertyBuilder.registerItemProperty("custom-item", CustomItemBetterGuiProperty.class);
+            PropertyBuilder.registerItemProperty(CustomItemBetterGuiProperty::new, "customitem", "custom-item");
         }
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
