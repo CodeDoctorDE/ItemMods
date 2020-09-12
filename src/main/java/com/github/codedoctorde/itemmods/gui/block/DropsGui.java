@@ -43,7 +43,7 @@ public class DropsGui {
     public Gui[] createGui(boolean rarityEditing) {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
         BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
-        return new ListGui(ItemMods.getPlugin(), new GuiItemEvent() {
+        return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
@@ -64,8 +64,8 @@ public class DropsGui {
             }
         }, new GuiListEvent() {
             @Override
-            public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockIndex, index + 1, size);
+            public String title(int index) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockIndex, index + 1);
             }
 
             @Override
@@ -156,6 +156,6 @@ public class DropsGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, new BlockGui(blockIndex).createGui());
+        }).createGui(new BlockGui(blockIndex).createGui());
     }
 }

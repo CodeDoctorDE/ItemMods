@@ -26,10 +26,10 @@ public class ChooseItemAddonGui {
 
     public Gui[] createGui() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("addon");
-        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
+        return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemIndex, index + 1, size);
+            public String title(int index) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemIndex, index + 1);
             }
 
             @Override
@@ -46,6 +46,6 @@ public class ChooseItemAddonGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, new ItemGui(itemIndex).createGui());
+        }).createGui(new ItemGui(itemIndex).createGui());
     }
 }

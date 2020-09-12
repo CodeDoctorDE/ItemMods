@@ -33,7 +33,7 @@ public class BlocksGui {
     private Gui[] createGui(String searchText) {
         MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
-        return new ListGui(ItemMods.getPlugin(), new GuiItemEvent() {
+        return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 Player player = (Player) event.getWhoClicked();
@@ -58,8 +58,8 @@ public class BlocksGui {
             }
         }, new GuiListEvent() {
             @Override
-            public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
+            public String title(int index) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class BlocksGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, new MainGui().createGui(), searchText);
+        }).createGui(new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {
@@ -122,7 +122,7 @@ public class BlocksGui {
 
             }
                 }) {{
-            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+            putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -138,7 +138,7 @@ public class BlocksGui {
 
                         }
                     }));
-            getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+            putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

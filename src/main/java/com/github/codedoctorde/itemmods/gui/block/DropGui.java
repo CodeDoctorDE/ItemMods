@@ -31,7 +31,7 @@ public class DropGui {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }) {{
-            getGuiItems().put(0, new GuiItem(guiTranslation.getAsJsonObject("back"), new GuiItemEvent() {
+            putGuiItem(0, new GuiItem(guiTranslation.getAsJsonObject("back"), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     new DropsGui(blockIndex).createGui()[0].open((Player) event.getWhoClicked());

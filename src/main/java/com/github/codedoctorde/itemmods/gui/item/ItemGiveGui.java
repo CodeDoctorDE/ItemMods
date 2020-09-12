@@ -24,13 +24,13 @@ public class ItemGiveGui {
     public Gui createGui(Gui backGui) {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("give");
         return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
-            getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
+            putGuiItem(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     backGui.open((Player) event.getWhoClicked());
                 }
             }));
-            getGuiItems().put(9 + 4, new GuiItem(itemStackBuilder.build(), new GuiItemEvent() {
+            putGuiItem(9 + 4, new GuiItem(itemStackBuilder.build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     switch (event.getClick()) {
@@ -50,7 +50,7 @@ public class ItemGiveGui {
                     gui.reload();
                     }
                 }));
-            getGuiItems().put(9 * 2 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("info")).build(), new GuiItemEvent() {
+            putGuiItem(9 * 2 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("info")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     switch (event.getClick()) {
@@ -70,7 +70,7 @@ public class ItemGiveGui {
                         gui.reload();
                     }
                 }));
-            getGuiItems().put(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("give")).build(), new GuiItemEvent() {
+            putGuiItem(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("give")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     event.getWhoClicked().getInventory().addItem(itemStackBuilder.build());

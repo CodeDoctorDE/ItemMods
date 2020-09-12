@@ -19,10 +19,10 @@ import java.text.MessageFormat;
 public class AddonsGui {
     public Gui[] createGui() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
-        return new ListGui(ItemMods.getPlugin(), new GuiListEvent() {
+        return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
+            public String title(int index) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
             }
 
             @Override
@@ -40,6 +40,6 @@ public class AddonsGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(guiTranslation, new MainGui().createGui());
+        }).createGui(new MainGui().createGui());
     }
 }
