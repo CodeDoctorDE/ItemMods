@@ -15,7 +15,9 @@ import java.util.Set;
  */
 public abstract class ItemModsAddon {
     protected Set<CustomBlockTemplate> blockTemplates = new HashSet<>();
+    protected Set<CustomBlockTemplate> blockModifiers = new HashSet<>();
     protected Set<CustomItemTemplate> itemTemplates = new HashSet<>();
+    protected Set<CustomItemTemplate> itemModifiers = new HashSet<>();
 
     @NotNull
     public abstract String getName();
@@ -23,7 +25,6 @@ public abstract class ItemModsAddon {
     @NotNull
     public abstract ItemStack getIcon();
 
-    @Nullable
     public abstract boolean openConfigGui();
 
     public CustomBlockTemplate[] getBlockTemplates() {
@@ -48,5 +49,21 @@ public abstract class ItemModsAddon {
 
     protected void unregisterItemTemplate(CustomItemTemplate template) {
         itemTemplates.remove(template);
+    }
+
+    protected void registerBlockModifier(CustomBlockTemplate template) {
+        blockModifiers.add(template);
+    }
+
+    protected void unregisterBlockModifier(CustomBlockTemplate template) {
+        blockModifiers.remove(template);
+    }
+
+    protected void registerItemModifier(CustomItemTemplate template) {
+        itemModifiers.add(template);
+    }
+
+    protected void unregisterItemModifier(CustomItemTemplate template) {
+        itemModifiers.remove(template);
     }
 }
