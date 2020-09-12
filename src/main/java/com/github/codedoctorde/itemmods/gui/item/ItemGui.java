@@ -164,27 +164,30 @@ public class ItemGui {
                         createGui().open(player);
                     }
                 }));*/
-            if (itemConfig.getItemStack() != null)
-                getGuiItems().put(9 * 3 + 3, new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
-                        new ItemStackBuilder(itemConfig.getTemplate().getMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
-                    @Override
-                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        if (itemConfig.getTemplate() != null) {
-                            switch (event.getClick()) {
-                                    case LEFT:
-                                        if(!itemConfig.getTemplate().openConfigGui(itemConfig, (Player) event.getWhoClicked()))
-                                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
-                                        break;
-                                    case DROP:
-                                        itemConfig.setTemplate(null);
-                                        gui.changeGui(createGui(), (Player) event.getWhoClicked());
-                                }
-                        } else
-                            new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
-                    }
-                }));
-            else
-                getGuiItems().put(9 * 3 + 3, new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
+            getGuiItems().put(9 * 3 + 3,itemConfig.getItemStack() != null?new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+                    new ItemStackBuilder(itemConfig.getTemplate().getMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    if (itemConfig.getTemplate() != null) {
+                        switch (event.getClick()) {
+                            case LEFT:
+                                if(!itemConfig.getTemplate().openConfigGui(itemConfig, (Player) event.getWhoClicked()))
+                                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").getAsJsonObject("null").get("message").getAsString());
+                                break;
+                            case DROP:
+                                itemConfig.setTemplate(null);
+                                gui.changeGui(createGui(), (Player) event.getWhoClicked());
+                        }
+                    } else
+                        new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
+                }
+            }):new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
+            getGuiItems().put(9 * 3 + 7,itemConfig.getItemStack() != null?new GuiItem(guiTranslation.getAsJsonObject("modifiers"), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+
+                }
+            }):new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
             getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(itemConfig.getTag()).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

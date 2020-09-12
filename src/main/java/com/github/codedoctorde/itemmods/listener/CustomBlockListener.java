@@ -11,7 +11,9 @@ import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
@@ -28,11 +30,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CustomBlockListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(PlayerInteractEvent event) {
-        if (event.getItem() == null) return;
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (event.getClickedBlock() == null) return;
+        if (event.getItem() == null || event.useItemInHand() != Event.Result.DENY ||
+                event.getAction() != Action.RIGHT_CLICK_BLOCK ||
+                event.getClickedBlock() == null)
+            return;
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
@@ -88,8 +91,10 @@ public class CustomBlockListener implements Listener {
         event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockBreak(BlockBreakEvent event) {
+        if(event.isCancelled())
+            return;
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
             return;
@@ -165,8 +170,10 @@ public class CustomBlockListener implements Listener {
 
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockEntityClick(PlayerInteractAtEntityEvent event) {
+        if(event.isCancelled())
+            return;
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomItem customItem = new CustomItem(item);
@@ -188,9 +195,9 @@ public class CustomBlockListener implements Listener {
             item.setAmount(item.getAmount() - customItem.getConfig().getItemStack().getAmount());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockEntityHit(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof ArmorStand))
+        if (!(event.getEntity() instanceof ArmorStand) || event.isCancelled())
             return;
         Location location = event.getEntity().getLocation().clone().add(-0.5, 0, -0.5);
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
