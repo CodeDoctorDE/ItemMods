@@ -25,6 +25,7 @@ commands:
       - giveimoditem
       - giveimodsitem
       - givemoditem
+    permission: itemmods.admin
     usage: "\u00a74Usage: \u00a73/givecustomitem <Player> <Item> [<Amount>]\u00a74!"
 softdepend:
   - BetterGUI
