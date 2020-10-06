@@ -1,5 +1,5 @@
 site_name: ItemMods
-site_url: https://codedoctorde.github.io/itemmods/index.html
+site_url: https://codedoctorde.github.io/itemmods
 repo_url: https://github.com/codedoctorde/itemmods/
 theme:
   name: 'material'
