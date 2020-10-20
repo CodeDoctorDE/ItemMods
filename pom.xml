@@ -79,12 +79,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations-java5</artifactId>
-            <version>18.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.github.codedoctorde</groupId>
             <artifactId>API</artifactId>
             <version>1.1-SNAPSHOT</version>
