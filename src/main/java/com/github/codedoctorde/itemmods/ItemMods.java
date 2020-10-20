@@ -17,6 +17,7 @@ import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
 import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
+import com.github.codedoctorde.itemmods.utils.PluginMetrics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -74,7 +75,7 @@ public class ItemMods extends JavaPlugin {
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
-        Metrics metrics = new Metrics(this, 5996);
+        PluginMetrics.runMetrics();
         if (Version.getVersion() == Version.UNKNOWN)
             Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
 
