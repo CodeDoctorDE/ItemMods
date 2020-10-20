@@ -15,7 +15,7 @@
         <speedment.version>3.2.9</speedment.version>
     </properties>
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
