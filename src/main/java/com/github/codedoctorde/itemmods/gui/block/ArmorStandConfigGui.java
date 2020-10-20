@@ -1,14 +1,14 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
-import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.ChatRequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
+import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,15 +22,17 @@ import java.text.MessageFormat;
 
 public class ArmorStandConfigGui {
     private final ArmorStandBlockConfig config;
-    private ArmorStandConfigGuiEvent guiEvent;
-    public ArmorStandConfigGui(ArmorStandBlockConfig config, ArmorStandConfigGuiEvent guiEvent){
+    private final ArmorStandConfigGuiEvent guiEvent;
+
+    public ArmorStandConfigGui(ArmorStandBlockConfig config, ArmorStandConfigGuiEvent guiEvent) {
         this.guiEvent = guiEvent;
         this.config = config;
     }
-    public Gui createGui(){
+
+    public Gui createGui() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject("gui", "armorstand");
         ArmorStand preview;
-        return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 5){{
+        return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 5) {{
             putGuiItem(0, new GuiItem(guiTranslation.getAsJsonObject("cancel"), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -75,7 +77,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9  + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            putGuiItem(9 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());

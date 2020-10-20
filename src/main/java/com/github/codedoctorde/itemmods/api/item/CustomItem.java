@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class CustomItem {
+    private static final NamespacedKey dataKey = new NamespacedKey(ItemMods.getPlugin(), "data");
     private ItemStack itemStack;
     private ItemConfig config = null;
-    private static final NamespacedKey dataKey = new NamespacedKey(ItemMods.getPlugin(), "data");
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;

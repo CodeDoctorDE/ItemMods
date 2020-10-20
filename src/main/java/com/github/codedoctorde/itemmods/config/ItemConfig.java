@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemConfig {
-    private String name;
-    private String displayName;
-    private ItemStack itemStack;
-    private boolean canRename = true;
-    private Integer hardness = null;
     private final List<String> onWear = new ArrayList<>();
     private final List<String> onOffHand = new ArrayList<>();
     private final List<String> onMainHand = new ArrayList<>();
     private final List<String> onDrop = new ArrayList<>();
     private final List<String> onPickup = new ArrayList<>();
     private final List<String> onRightClick = new ArrayList<>();
+    private String name;
+    private String displayName;
+    private ItemStack itemStack;
+    private boolean canRename = true;
+    private Integer hardness = null;
     @Nullable
     private String templateName = null;
     private JsonObject templateConfig = new JsonObject();
@@ -53,17 +53,17 @@ public class ItemConfig {
         return itemStack;
     }
 
+    public void setItemStack(ItemStack itemStack) {
+        this.itemStack = itemStack;
+    }
+
     public boolean isSimilar(ItemStack other) {
-        if(other == null || other.getItemMeta() == null)
+        if (other == null || other.getItemMeta() == null)
             return false;
         ItemMeta itemMeta = other.getItemMeta();
         if (itemMeta == null || !itemMeta.getPersistentDataContainer().has(getTypeNamespace(), PersistentDataType.STRING))
             return false;
         return itemMeta.getPersistentDataContainer().getOrDefault(getTypeNamespace(), PersistentDataType.STRING, "").equals(tag);
-    }
-
-    public void setItemStack(ItemStack itemStack) {
-        this.itemStack = itemStack;
     }
 
     public boolean isCanRename() {
@@ -158,7 +158,7 @@ public class ItemConfig {
     }
 
     public ItemStack giveItemStack() {
-        if(itemStack == null)
+        if (itemStack == null)
             return null;
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();

@@ -1,5 +1,12 @@
 package com.github.codedoctorde.itemmods;
 
+import com.github.codedoctorde.api.CodeDoctorAPI;
+import com.github.codedoctorde.api.config.ObjectConfig;
+import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
+import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
+import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
+import com.github.codedoctorde.api.server.Version;
+import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.addon.BaseAddon;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
@@ -10,13 +17,6 @@ import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
 import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
-import com.github.codedoctorde.api.config.ObjectConfig;
-import com.github.codedoctorde.api.CodeDoctorAPI;
-import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
-import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
-import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
-import com.github.codedoctorde.api.server.Version;
-import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -39,11 +39,11 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
+    public static final String version = "§bFOOD 1.4";
     private static ItemMods plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
-    public static final String version = "§bFOOD 1.4";
-    private CodeDoctorAPI codeDoctorAPI;
     private final Gson gson;
+    private CodeDoctorAPI codeDoctorAPI;
     private UpdateChecker updateChecker;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;

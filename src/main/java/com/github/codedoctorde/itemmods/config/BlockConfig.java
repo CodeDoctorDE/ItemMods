@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BlockConfig {
+    private final List<DropConfig> drops = new ArrayList<>();
     private String name;
     private String tag;
     private String displayName;
@@ -21,7 +22,6 @@ public class BlockConfig {
     private String data = null;
     private ArmorStandBlockConfig armorStand = null;
     private String templateName;
-    private final List<DropConfig> drops = new ArrayList<>();
     private String referenceItem;
     private int shovelHardness = 0;
     private int pickaxeHardness = 0;
@@ -31,10 +31,6 @@ public class BlockConfig {
     private int shearHardness = 0;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
-    public boolean checkBlock(BlockState block) {
-        return armorStand != null || block instanceof TileState;
-    }
-
     BlockConfig() {
     }
 
@@ -42,6 +38,10 @@ public class BlockConfig {
         this.name = name;
         this.displayName = name;
         this.tag = "itemmods:" + name.replaceAll("\\s+", "");
+    }
+
+    public boolean checkBlock(BlockState block) {
+        return armorStand != null || block instanceof TileState;
     }
 
     public String getName() {
@@ -95,7 +95,7 @@ public class BlockConfig {
     }
 
     public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
-        if(blockTemplate == null)
+        if (blockTemplate == null)
             templateName = null;
         else
             templateName = blockTemplate.getClass().getName();
@@ -122,16 +122,16 @@ public class BlockConfig {
         return drop;
     }
 
+    public void setDrop(boolean drop) {
+        this.drop = drop;
+    }
+
     public List<DropConfig> getDrops() {
         return drops;
     }
 
     public List<DropConfig> getFortuneDrops() {
         return drops.stream().filter(DropConfig::isFortune).collect(Collectors.toList());
-    }
-
-    public void setDrop(boolean drop) {
-        this.drop = drop;
     }
 
     public boolean isMoving() {
@@ -146,12 +146,6 @@ public class BlockConfig {
         if (block == null && armorStand == null)
             return CorrectResult.NO_BLOCK;
         return CorrectResult.YES;
-    }
-
-    public enum CorrectResult {
-        YES,
-        ENTITY,
-        NO_BLOCK
     }
 
     public String getData() {
@@ -240,5 +234,11 @@ public class BlockConfig {
 
     public void setBlockDirectionType(BlockDirectionType blockDirectionType) {
         this.blockDirectionType = blockDirectionType;
+    }
+
+    public enum CorrectResult {
+        YES,
+        ENTITY,
+        NO_BLOCK
     }
 }

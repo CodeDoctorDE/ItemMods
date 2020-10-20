@@ -1,11 +1,5 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
-import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemAddonGui;
-import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemConfigGui;
 import com.github.codedoctorde.api.nms.block.BlockNBT;
 import com.github.codedoctorde.api.request.BlockBreakRequest;
 import com.github.codedoctorde.api.request.BlockBreakRequestEvent;
@@ -16,15 +10,18 @@ import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
+import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
+import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemConfigGui;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.text.MessageFormat;
 

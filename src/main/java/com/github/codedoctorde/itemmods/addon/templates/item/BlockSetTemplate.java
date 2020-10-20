@@ -1,13 +1,13 @@
 package com.github.codedoctorde.itemmods.addon.templates.item;
 
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.github.codedoctorde.itemmods.gui.block.choose.ChooseBlockConfigGui;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
@@ -36,6 +36,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
         else
             return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("null")).build();
     }
+
     @Override
     public boolean isCompatible(ItemConfig itemConfig) {
         if (itemConfig.getItemStack() == null)
@@ -84,9 +85,8 @@ public class BlockSetTemplate implements CustomItemTemplate {
     private class BlockSetTemplateData {
         private final ItemConfig itemConfig;
         private final BlockSetTemplate template;
-        private String block;
-
         private final Gson gson = new Gson();
+        private String block;
 
         BlockSetTemplateData(BlockSetTemplate template, ItemConfig itemConfig) {
             this.template = template;

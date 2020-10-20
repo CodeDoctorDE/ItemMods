@@ -50,12 +50,12 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
     public Location getLocation() {
         return location;
     }
-    
+
     @NotNull
     public BlockConfig getBlockConfig() {
         return blockConfig;
     }
-    
+
     @Nullable
     public Player getPlayer() {
         return player;

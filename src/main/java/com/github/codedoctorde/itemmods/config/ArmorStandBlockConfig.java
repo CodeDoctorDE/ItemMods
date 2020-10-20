@@ -24,7 +24,7 @@ public class ArmorStandBlockConfig {
     private boolean marker = false;
     private boolean invulnerable = true;
     private boolean customNameVisible = false;
-    private boolean showingArms = true;
+    private final boolean showingArms = true;
     private String customName;
     private int gravity = 5;
     private int stable = 5;
