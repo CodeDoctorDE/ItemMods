@@ -6,6 +6,11 @@
 ![Spiget Stars](https://img.shields.io/spiget/stars/72461?style=for-the-badge)
 ![Spiget tested server versions](https://img.shields.io/spiget/tested-versions/72461?style=for-the-badge)
 ![Discord](https://img.shields.io/discord/586558998749118467?style=for-the-badge)
+![Helpers needed!](https://img.shields.io/badge/Helpers-needed-orange?style=for-the-badge)
+
+# Contribute
+
+It will be cool if anybody can help me to maintain this plugin. If you have any question feel free to visit my discord and open a ticket.
 
 
 [![Custom Ore Generator Support](./assets/custom-ore-generator.png)](https://www.spigotmc.org/resources/custom-ore-generator-%E3%80%8E1-8-1-16-1%E3%80%8F.64339/)
