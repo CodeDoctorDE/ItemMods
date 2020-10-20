@@ -17,9 +17,9 @@ import java.util.List;
 public class CustomBlockBreakEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final CustomBlock customBlock;
-    private List<ItemStack> drops;
     private final CustomBlock.BlockDropType dropType;
     private final Player player;
+    private List<ItemStack> drops;
     private boolean isCancelled;
 
     public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType, Player player) {
@@ -49,26 +49,26 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
     public HandlerList getHandlers() {
         return HANDLERS_LIST;
     }
-    
+
     @NotNull
     public CustomBlock getCustomBlock() {
         return customBlock;
     }
-    
+
     @NotNull
     public List<ItemStack> getDrops() {
         return drops;
     }
-    
+
     public void setDrops(@NotNull List<ItemStack> drops) {
         this.drops = drops;
     }
-    
+
     @NotNull
     public CustomBlock.BlockDropType getDropType() {
         return dropType;
     }
-    
+
     @Nullable
     public Player getPlayer() {
         return player;

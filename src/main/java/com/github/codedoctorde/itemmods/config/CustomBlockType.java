@@ -1,4 +1,5 @@
 package com.github.codedoctorde.itemmods.config;
+
 @Deprecated
 public enum CustomBlockType {
     ARMOR_STAND,

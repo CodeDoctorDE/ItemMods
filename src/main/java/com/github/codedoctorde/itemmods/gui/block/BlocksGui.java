@@ -1,9 +1,5 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.config.MainConfig;
-import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.ChatRequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
@@ -13,6 +9,10 @@ import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.github.codedoctorde.itemmods.config.MainConfig;
+import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -121,36 +121,37 @@ public class BlocksGui {
             public void onClose(Gui gui, Player player) {
 
             }
-                }) {{
-            putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+        }) {
+            {
+                putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    blockConfigs.remove(blockConfig);
-                    ItemMods.getPlugin().saveBaseConfig();
-                    player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
-                    createGui(searchText)[0].open(player);
-                }
+                    @Override
+                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        blockConfigs.remove(blockConfig);
+                        ItemMods.getPlugin().saveBaseConfig();
+                        player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
+                        createGui(searchText)[0].open(player);
+                    }
 
-                        @Override
-                        public void onTick(Gui gui, GuiItem guiItem, Player player) {
+                    @Override
+                    public void onTick(Gui gui, GuiItem guiItem, Player player) {
 
-                        }
-                    }));
-            putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+                    }
+                }));
+                putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    backGui.open(player);
-                }
+                    @Override
+                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                        Player player = (Player) event.getWhoClicked();
+                        backGui.open(player);
+                    }
 
-                @Override
-                public void onTick(Gui gui, GuiItem guiItem, Player player) {
+                    @Override
+                    public void onTick(Gui gui, GuiItem guiItem, Player player) {
 
-                        }
-                    }));
+                    }
+                }));
             }
         };
     }

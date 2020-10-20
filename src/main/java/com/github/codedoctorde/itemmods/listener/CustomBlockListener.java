@@ -93,7 +93,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockBreak(BlockBreakEvent event) {
-        if(event.isCancelled())
+        if (event.isCancelled())
             return;
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
         if (customBlock == null)
@@ -172,7 +172,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockEntityClick(PlayerInteractAtEntityEvent event) {
-        if(event.isCancelled())
+        if (event.isCancelled())
             return;
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
@@ -213,7 +213,8 @@ public class CustomBlockListener implements Listener {
         else
             customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());
     }
-    public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event){
+
+    public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event) {
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
         if (customBlock == null)

@@ -1,8 +1,5 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.itemmods.config.DropConfig;
 import com.github.codedoctorde.api.request.ItemRequest;
 import com.github.codedoctorde.api.request.ItemRequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
@@ -14,6 +11,9 @@ import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
 import com.github.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.config.BlockConfig;
+import com.github.codedoctorde.itemmods.config.DropConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

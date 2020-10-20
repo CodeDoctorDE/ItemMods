@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.addon;
 
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @author CodeDoctorDE
  */
 public class BaseAddon extends ItemModsAddon {
-    JsonObject addonTranslation = com.github.codedoctorde.itemmods.ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
+    JsonObject addonTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
 
     public BaseAddon() {
         registerItemTemplate(new BlockSetTemplate());

@@ -3,7 +3,6 @@ package com.github.codedoctorde.itemmods.api.block;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.google.gson.JsonElement;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -74,8 +73,8 @@ public class CustomBlock {
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
         if (config == null || dropType == null) return false;
-        if(config.getBlock() != null)
-        getBlock().setType(Material.AIR);
+        if (config.getBlock() != null)
+            getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
         List<ItemStack> drops = new ArrayList<>();
         if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
@@ -93,10 +92,6 @@ public class CustomBlock {
         if (getArmorStand() != null)
             getArmorStand().remove();
         return true;
-    }
-
-    public enum BlockDropType {
-        SILK_TOUCH, DROP, NOTHING, FORTUNE
     }
 
     public Block getBlock() {
@@ -132,5 +127,9 @@ public class CustomBlock {
         setType(config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), config.getTag());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
+    }
+
+    public enum BlockDropType {
+        SILK_TOUCH, DROP, NOTHING, FORTUNE
     }
 }

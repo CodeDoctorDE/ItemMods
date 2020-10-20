@@ -1,21 +1,18 @@
 package com.github.codedoctorde.itemmods.api.block;
 
+import com.github.codedoctorde.api.nms.block.BlockNBT;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockPlaceEvent;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import com.github.codedoctorde.api.nms.block.BlockNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +27,13 @@ public class CustomBlockManager {
     public static String locationToString(final Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
+    }
+
+    public static Location stringToLocation(final String location) {
+        String[] locationArray = location.split(":");
+        return new Location(Bukkit.getWorld(locationArray[0]), Double.parseDouble(locationArray[1]),
+                Double.parseDouble(locationArray[2]),
+                Double.parseDouble(locationArray[3]));
     }
 
     /**
@@ -87,13 +91,6 @@ public class CustomBlockManager {
         return null;
     }
 
-    public static Location stringToLocation(final String location) {
-        String[] locationArray = location.split(":");
-        return new Location(Bukkit.getWorld(locationArray[0]), Double.parseDouble(locationArray[1]),
-                Double.parseDouble(locationArray[2]),
-                Double.parseDouble(locationArray[3]));
-    }
-
     public List<BlockConfig> getBlocks() {
         return ItemMods.getPlugin().getMainConfig().getBlocks();
     }
@@ -114,8 +111,8 @@ public class CustomBlockManager {
         if (event.isCancelled())
             return false;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
-        if(blockConfig.getBlock() != null)
-        block.setBlockData(blockConfig.getBlock());
+        if (blockConfig.getBlock() != null)
+            block.setBlockData(blockConfig.getBlock());
         ArmorStand armorStand = null;
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();

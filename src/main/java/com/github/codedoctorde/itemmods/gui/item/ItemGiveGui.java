@@ -1,10 +1,10 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
-import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -43,13 +43,13 @@ public class ItemGiveGui {
                         case RIGHT:
                             itemStackBuilder.amount(itemStackBuilder.getAmount() - 1);
                             break;
-                            case SHIFT_RIGHT:
-                                itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
-                                break;
-                        }
-                    gui.reload();
+                        case SHIFT_RIGHT:
+                            itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
+                            break;
                     }
-                }));
+                    gui.reload();
+                }
+            }));
             putGuiItem(9 * 2 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("info")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -61,15 +61,15 @@ public class ItemGiveGui {
                             itemStackBuilder.amount(itemStackBuilder.getAmount() + 5);
                             break;
                         case RIGHT:
-                                itemStackBuilder.amount(itemStackBuilder.getAmount() - 1);
-                                break;
-                            case SHIFT_RIGHT:
-                                itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
-                                break;
-                        }
-                        gui.reload();
+                            itemStackBuilder.amount(itemStackBuilder.getAmount() - 1);
+                            break;
+                        case SHIFT_RIGHT:
+                            itemStackBuilder.amount(itemStackBuilder.getAmount() - 5);
+                            break;
                     }
-                }));
+                    gui.reload();
+                }
+            }));
             putGuiItem(9 * 2 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("give")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

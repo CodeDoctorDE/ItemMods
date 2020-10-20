@@ -1,12 +1,12 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
+import com.github.codedoctorde.itemmods.ItemMods;
 import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -31,7 +31,7 @@ public class AddonsGui {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         if (!addon.openConfigGui())
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("addon").get("noconfig").getAsString());;
+                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("addon").get("noconfig").getAsString());
                     }
                 })).toArray(GuiItem[]::new);
             }

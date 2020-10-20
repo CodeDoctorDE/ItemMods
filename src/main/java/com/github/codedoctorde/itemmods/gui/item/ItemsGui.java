@@ -1,9 +1,5 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.config.MainConfig;
-import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.ChatRequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
@@ -13,6 +9,10 @@ import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.config.ItemConfig;
+import com.github.codedoctorde.itemmods.config.MainConfig;
+import com.github.codedoctorde.itemmods.gui.MainGui;
 import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

@@ -10,9 +10,7 @@ import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,7 +34,7 @@ public class ItemModsApi {
     }
 
     public void registerAddon(ItemModsAddon addon) {
-        if(getAddon(addon.getName()) != null)
+        if (getAddon(addon.getName()) != null)
             return;
         addons.add(addon);
         Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));

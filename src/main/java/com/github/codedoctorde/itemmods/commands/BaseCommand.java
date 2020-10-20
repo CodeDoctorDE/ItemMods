@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.commands;
 
+import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.KnowledgeGui;
 import com.github.codedoctorde.itemmods.gui.MainGui;
-import com.github.codedoctorde.api.ui.Gui;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,11 +26,10 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
         if (sender instanceof Player)
             if (playerGuiHashMap.containsKey(sender))
                 playerGuiHashMap.get(sender).open((Player) sender);
+            else if (sender.hasPermission("itemmods.admin"))
+                new MainGui().createGui().open((Player) sender);
             else
-                if(sender.hasPermission("itemmods.admin"))
-                    new MainGui().createGui().open((Player) sender);
-                else
-                    new KnowledgeGui().createGui().open((Player) sender);
+                new KnowledgeGui().createGui().open((Player) sender);
         else
             sender.sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("noplayer").getAsString());
         return true;
