@@ -40,7 +40,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
-    public static final String version = "§bFOOD 1.4";
+    public static final String version = "§bFOOD 1.5";
     private static ItemMods plugin;
     private final File baseConfig = new File(getDataFolder(), "config.json");
     private final Gson gson;
