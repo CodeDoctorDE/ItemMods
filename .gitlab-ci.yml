@@ -8,24 +8,24 @@ build:
   script: "mvn clean package"
   artifacts:
     name: "ItemMods"
-    paths: 
-    - "target/*.jar"
+    paths:
+      - "target/*.jar"
 pages:
   image: "openkbs/jdk-mvn-py3"
   before_script:
-  - 'sudo pip install mkdocs'
-  - 'sudo pip install mkdocs-material'
-  - 'sudo pip install pygments'
+    - 'sudo pip install mkdocs'
+    - 'sudo pip install mkdocs-material'
+    - 'sudo pip install pygments'
   script:
-  - 'mv assets docs'
-  - 'mv ./*.md docs'
-  - 'mkdocs build'
-  - 'mkdir public'
-  - 'mv site/* public'
-  - 'mvn javadoc:javadoc'
-  - 'mv target/site/* public'
+    - 'mv assets docs'
+    - 'mv ./*.md docs'
+    - 'mkdocs build'
+    - 'mkdir public'
+    - 'mv site/* public'
+    - 'mvn javadoc:javadoc'
+    - 'mv target/site/* public'
   only:
     - master
   artifacts:
     paths:
-        - public
+      - public

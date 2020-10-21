@@ -7,7 +7,7 @@ import com.github.codedoctorde.api.ui.template.gui.ListGui;
  * @author CodeDoctorDE
  */
 public class ItemModifiersGui {
-    public Gui[] createGuis(){
+    public Gui[] createGuis() {
         return new ListGui().createGui();
     }
 }

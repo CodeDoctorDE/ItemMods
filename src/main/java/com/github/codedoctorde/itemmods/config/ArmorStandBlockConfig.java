@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author CodeDoctorDE
  */
 public class ArmorStandBlockConfig {
+    private final boolean showingArms = true;
     private ItemStack helmet;
     private ItemStack chestplate;
     private ItemStack leggings;
@@ -24,7 +25,6 @@ public class ArmorStandBlockConfig {
     private boolean marker = false;
     private boolean invulnerable = true;
     private boolean customNameVisible = false;
-    private final boolean showingArms = true;
     private String customName;
     private int gravity = 5;
     private int stable = 5;
@@ -147,6 +147,10 @@ public class ArmorStandBlockConfig {
 
     public void setStable(int stable) {
         this.stable = stable;
+    }
+
+    public boolean isShowingArms() {
+        return showingArms;
     }
 
     public ArmorStand spawn(Location location) {

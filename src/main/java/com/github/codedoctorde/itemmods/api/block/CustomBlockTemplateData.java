@@ -10,8 +10,8 @@ public class CustomBlockTemplateData {
     private String name;
     private String data;
 
-    public CustomBlockTemplateData(String templateClass){
-
+    public CustomBlockTemplateData(String name) {
+        this.name = name;
     }
 
     public String getData() {

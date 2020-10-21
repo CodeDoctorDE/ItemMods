@@ -50,6 +50,7 @@ public class BlockConfig {
     public void setTemplateData(CustomBlockTemplateData templateData) {
         this.templateData = templateData;
     }
+
     @Nullable
     public BlockData getBlock() {
         return block;
