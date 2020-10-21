@@ -125,7 +125,11 @@ public class CustomBlockManager {
     }
 
     public void onTick() {
-        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> customBlock.getConfig().getTemplate().tick(customBlock));
+        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplateData() != null).forEach(customBlock -> {
+            var template = customBlock.getConfig().getTemplateData().getTemplate();
+            if (template != null)
+                template.tick(customBlock);
+        });
     }
 
     public List<CustomBlock> getLoadedBlocks() {

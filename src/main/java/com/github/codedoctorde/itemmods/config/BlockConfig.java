@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
@@ -19,20 +20,10 @@ public class BlockConfig {
     private BlockData block;
     private boolean drop = true;
     private boolean moving = false;
-    private String data = null;
     private ArmorStandBlockConfig armorStand = null;
-    private String templateName;
+    private CustomBlockTemplateData templateData;
     private String referenceItem;
-    private int shovelHardness = 0;
-    private int pickaxeHardness = 0;
-    private int axeHardness = 0;
-    private int hoeHardness = 0;
-    private int swordHardness = 0;
-    private int shearHardness = 0;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
-
-    BlockConfig() {
-    }
 
     public BlockConfig(String name) {
         this.name = name;
@@ -52,6 +43,13 @@ public class BlockConfig {
         this.name = name;
     }
 
+    public CustomBlockTemplateData getTemplateData() {
+        return templateData;
+    }
+
+    public void setTemplateData(CustomBlockTemplateData templateData) {
+        this.templateData = templateData;
+    }
     @Nullable
     public BlockData getBlock() {
         return block;
@@ -82,31 +80,22 @@ public class BlockConfig {
     }
 
     @Nullable
+    @Deprecated(since = "1.5")
     public CustomBlockTemplate getTemplate() {
-        if (templateName == null)
-            return null;
-        try {
-            return ItemMods.getPlugin().getApi().getBlockTemplate(templateName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        templateName = null;
-        return null;
+        return templateData.getTemplate();
     }
 
+    @Deprecated(since = "1.5")
     public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
-        if (blockTemplate == null)
-            templateName = null;
-        else
-            templateName = blockTemplate.getClass().getName();
+        templateData.setTemplate(blockTemplate);
     }
 
     public String getTemplateName() {
-        return templateName;
+        return templateData.getName();
     }
 
     public void setTemplateName(String templateName) {
-        this.templateName = templateName;
+        templateData.setName(templateName);
     }
 
     @Nullable
@@ -148,12 +137,14 @@ public class BlockConfig {
         return CorrectResult.YES;
     }
 
+    @Deprecated(since = "1.5")
     public String getData() {
-        return data;
+        return templateData.getData();
     }
 
+    @Deprecated(since = "1.5")
     public void setData(String data) {
-        this.data = data;
+        templateData.setData(data);
     }
 
     @Nullable
@@ -178,54 +169,6 @@ public class BlockConfig {
             this.referenceItem = null;
         else
             this.referenceItem = itemConfig.getTag();
-    }
-
-    public int getAxeHardness() {
-        return axeHardness;
-    }
-
-    public void setAxeHardness(int axeHardness) {
-        this.axeHardness = axeHardness;
-    }
-
-    public int getHoeHardness() {
-        return hoeHardness;
-    }
-
-    public void setHoeHardness(int hoeHardness) {
-        this.hoeHardness = hoeHardness;
-    }
-
-    public int getPickaxeHardness() {
-        return pickaxeHardness;
-    }
-
-    public void setPickaxeHardness(int pickaxeHardness) {
-        this.pickaxeHardness = pickaxeHardness;
-    }
-
-    public int getShearHardness() {
-        return shearHardness;
-    }
-
-    public void setShearHardness(int shearHardness) {
-        this.shearHardness = shearHardness;
-    }
-
-    public int getShovelHardness() {
-        return shovelHardness;
-    }
-
-    public void setShovelHardness(int shovelHardness) {
-        this.shovelHardness = shovelHardness;
-    }
-
-    public int getSwordHardness() {
-        return swordHardness;
-    }
-
-    public void setSwordHardness(int swordHardness) {
-        this.swordHardness = swordHardness;
     }
 
     public BlockDirectionType getBlockDirectionType() {
