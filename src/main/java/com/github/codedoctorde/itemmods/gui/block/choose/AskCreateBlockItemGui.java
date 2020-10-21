@@ -55,7 +55,7 @@ public class AskCreateBlockItemGui {
             putGuiItem(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new BlocksGui().createGui()[0].open((Player) event.getWhoClicked());
+                    new BlocksGui().createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }));
         }};

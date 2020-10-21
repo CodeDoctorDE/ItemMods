@@ -26,11 +26,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BlocksGui {
-    public Gui[] createGui() {
-        return createGui("");
+    public Gui[] createGuis() {
+        return createGuis("");
     }
 
-    private Gui[] createGui(String searchText) {
+    private Gui[] createGuis(String searchText) {
         MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
@@ -47,7 +47,7 @@ public class BlocksGui {
                             player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
                         else
                             player.sendMessage(guiTranslation.getAsJsonObject("create").get("already").getAsString());
-                        Objects.requireNonNull(createGui())[0].open(player);
+                        Objects.requireNonNull(createGuis())[0].open(player);
                     }
 
                     @Override
@@ -131,7 +131,7 @@ public class BlocksGui {
                         blockConfigs.remove(blockConfig);
                         ItemMods.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
-                        createGui(searchText)[0].open(player);
+                        BlocksGui.this.createGuis(searchText)[0].open(player);
                     }
 
                     @Override

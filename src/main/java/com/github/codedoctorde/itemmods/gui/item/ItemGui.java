@@ -46,7 +46,7 @@ public class ItemGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
-                    new ItemsGui().createGui()[0].open(player);
+                    new ItemsGui().createGuis()[0].open(player);
                 }
             }));
             putGuiItem(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("name")).format(itemConfig.getName()).build(), new GuiItemEvent() {
@@ -179,7 +179,7 @@ public class ItemGui {
                                 gui.changeGui(createGui(), (Player) event.getWhoClicked());
                         }
                     } else
-                        new ChooseItemAddonGui(index).createGui()[0].open((Player) event.getWhoClicked());
+                        new ChooseItemAddonGui(index).createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }) : new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
             putGuiItem(9 * 3 + 7, itemConfig.getItemStack() != null ? new GuiItem(guiTranslation.getAsJsonObject("modifiers"), new GuiItemEvent() {

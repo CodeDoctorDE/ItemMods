@@ -36,11 +36,11 @@ public class DropsGui {
         this.blockIndex = blockIndex;
     }
 
-    public Gui[] createGui() {
-        return createGui(false);
+    public Gui[] createGuis() {
+        return createGuis(false);
     }
 
-    public Gui[] createGui(boolean rarityEditing) {
+    public Gui[] createGuis(boolean rarityEditing) {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
         BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
@@ -52,7 +52,7 @@ public class DropsGui {
                     @Override
                     public void onEvent(Player player, ItemStack itemStack) {
                         blockConfig.getDrops().add(new DropConfig(itemStack));
-                        createGui(rarityEditing)[0].open(player);
+                        createGuis(rarityEditing)[0].open(player);
                         player.sendMessage(guiTranslation.getAsJsonObject("create").get("success").getAsString());
                     }
 
@@ -90,7 +90,7 @@ public class DropsGui {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             if (event.getClick() == ClickType.MIDDLE) {
-                                createGui(!rarityEditing)[0].open((Player) event.getWhoClicked());
+                                createGuis(!rarityEditing)[0].open((Player) event.getWhoClicked());
                                 return;
                             }
                             if (rarityEditing) {
@@ -116,14 +116,14 @@ public class DropsGui {
                                 dropConfig.setRarity(rarity);
                                 ItemMods.getPlugin().saveBaseConfig();
                                 event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").get("success").getAsString(), blockIndex, rarity));
-                                createGui(true)[0].open((Player) event.getWhoClicked());
+                                createGuis(true)[0].open((Player) event.getWhoClicked());
                             } else switch (event.getClick()) {
                                 case LEFT:
                                     new ItemCreatorGui(ItemMods.getPlugin(), dropConfig.getItemStack(), new ItemCreatorEvent() {
                                         @Override
                                         public void onEvent(Player player, ItemStack itemStack) {
                                             dropConfig.setItemStack(itemStack);
-                                            createGui(false)[0].open((Player) event.getWhoClicked());
+                                            createGuis(false)[0].open((Player) event.getWhoClicked());
                                             ItemMods.getPlugin().saveBaseConfig();
                                         }
 
@@ -139,7 +139,7 @@ public class DropsGui {
                                     break;
                                 case DROP:
                                     blockConfig.getDrops().remove(finalI);
-                                    createGui(false)[0].open((Player) event.getWhoClicked());
+                                    createGuis(false)[0].open((Player) event.getWhoClicked());
                                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("drop").getAsJsonObject("general").get("delete").getAsString());
                                     break;
                                 case SHIFT_LEFT:

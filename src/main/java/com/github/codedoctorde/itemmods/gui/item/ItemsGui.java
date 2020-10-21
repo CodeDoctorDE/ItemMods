@@ -27,11 +27,11 @@ import java.util.stream.Collectors;
 
 public class ItemsGui {
 
-    public Gui[] createGui() {
-        return createGui("");
+    public Gui[] createGuis() {
+        return createGuis("");
     }
 
-    private Gui[] createGui(String searchText) {
+    private Gui[] createGuis(String searchText) {
         MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
@@ -47,7 +47,7 @@ public class ItemsGui {
                         mainConfig.getItems().add(new ItemConfig(output));
                         ItemMods.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
-                        Objects.requireNonNull(createGui())[0].open(player);
+                        Objects.requireNonNull(createGuis())[0].open(player);
                     }
 
                     @Override
@@ -130,7 +130,7 @@ public class ItemsGui {
                     itemConfigs.remove(itemConfig);
                     ItemMods.getPlugin().saveBaseConfig();
                     player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), itemConfig.getName(), itemIndex));
-                    createGui(searchText)[0].open(player);
+                    createGuis(searchText)[0].open(player);
                 }
 
                 @Override

@@ -29,7 +29,7 @@ public class ChooseBlockTemplateGui {
         this.addon = addon;
     }
 
-    public Gui[] createGui() {
+    public Gui[] createGuis() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("blocktemplate");
         BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {

@@ -37,13 +37,13 @@ public class MainGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
-                    new ItemsGui().createGui()[0].open(player);
+                    new ItemsGui().createGuis()[0].open(player);
                 }
             }));
             putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("blocks")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new BlocksGui().createGui()[0].open((Player) event.getWhoClicked());
+                    new BlocksGui().createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }));
             putGuiItem(9 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("knowledge")).build(), new GuiItemEvent() {
@@ -55,7 +55,7 @@ public class MainGui {
             putGuiItem(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("addons")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new AddonsGui().createGui()[0].open((Player) event.getWhoClicked());
+                    new AddonsGui().createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }));
         }};

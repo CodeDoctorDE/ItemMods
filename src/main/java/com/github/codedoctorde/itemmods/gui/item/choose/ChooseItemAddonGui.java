@@ -24,7 +24,7 @@ public class ChooseItemAddonGui {
         this.itemIndex = itemIndex;
     }
 
-    public Gui[] createGui() {
+    public Gui[] createGuis() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("addon");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
@@ -37,7 +37,7 @@ public class ChooseItemAddonGui {
                 return ItemMods.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        new ChooseItemTemplateGui(itemIndex, addon).createGui()[0].open((Player) event.getWhoClicked());
+                        new ChooseItemTemplateGui(itemIndex, addon).createGuis()[0].open((Player) event.getWhoClicked());
                     }
                 })).toArray(GuiItem[]::new);
             }

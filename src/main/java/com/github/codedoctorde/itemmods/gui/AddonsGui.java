@@ -17,7 +17,7 @@ import java.text.MessageFormat;
  * @author CodeDoctorDE
  */
 public class AddonsGui {
-    public Gui[] createGui() {
+    public Gui[] createGuis() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
