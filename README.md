@@ -1,4 +1,7 @@
 # ItemMods
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/CodeDoctorDE/ItemMods?style=for-the-badge)](https://github.com/CodeDoctorDE/ItemMods/commits/master)
+[![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/CodeDoctorDE/ItemMods/latest?style=for-the-badge)](https://github.com/CodeDoctorDE/ItemMods/releases/latest)
+[![GitHub](https://img.shields.io/github/license/CodeDoctorDE/ItemMods?style=for-the-badge)](LICENSE)
 ![Jenkins](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.codemc.io%2Fjob%2FCodeDoctorDE%2Fjob%2FItemMods%2F&style=for-the-badge)
 ![Spiget Downloads](https://img.shields.io/spiget/downloads/72461?style=for-the-badge)
 ![Spiget Version](https://img.shields.io/spiget/version/72461?style=for-the-badge)
