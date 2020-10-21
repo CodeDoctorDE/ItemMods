@@ -117,8 +117,8 @@ public class CustomBlockManager {
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
         if (armorStandBlockConfig != null) armorStand = armorStandBlockConfig.spawn(location);
-        if (blockConfig.getData() != null)
-            BlockNBT.setNbt(block, blockConfig.getData());
+        if (blockConfig.getTemplateData().getData() != null)
+            BlockNBT.setNbt(block, blockConfig.getTemplateData().getName());
         if (location.getChunk().isLoaded())
             loadedBlocks.add(new CustomBlock(location, armorStand, blockConfig));
         return true;

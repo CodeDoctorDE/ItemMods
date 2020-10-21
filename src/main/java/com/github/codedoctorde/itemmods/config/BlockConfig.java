@@ -91,10 +91,12 @@ public class BlockConfig {
         templateData.setTemplate(blockTemplate);
     }
 
+    @Deprecated(since = "1.5")
     public String getTemplateName() {
         return templateData.getName();
     }
 
+    @Deprecated(since = "1.5")
     public void setTemplateName(String templateName) {
         templateData.setName(templateName);
     }
