@@ -80,23 +80,35 @@ public class BlockConfig {
         this.tag = tag.replaceAll("\\s+", "");
     }
 
+    /**
+     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#getTemplate()} (since 1.5)
+     */
     @Nullable
-    @Deprecated(since = "1.5")
+    @Deprecated
     public CustomBlockTemplate getTemplate() {
         return templateData.getTemplate();
     }
 
-    @Deprecated(since = "1.5")
+    /**
+     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#setTemplate(CustomBlockTemplate)} (since 1.5)
+     */
+    @Deprecated
     public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
         templateData.setTemplate(blockTemplate);
     }
 
-    @Deprecated(since = "1.5")
+    /**
+     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#getName()} (since 1.5)
+     */
+    @Deprecated
     public String getTemplateName() {
         return templateData.getName();
     }
 
-    @Deprecated(since = "1.5")
+    /**
+     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#setName(String)} (since 1.5)
+     */
+    @Deprecated
     public void setTemplateName(String templateName) {
         templateData.setName(templateName);
     }
