@@ -34,8 +34,8 @@ public class ChooseItemTemplateGui {
         ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex, addon.getName(), index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex, addon.getName(), index + 1, size);
             }
 
             @Override
@@ -59,6 +59,6 @@ public class ChooseItemTemplateGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new ItemGui(itemIndex).createGui());
+        }).createGuis(new ItemGui(itemIndex).createGui());
     }
 }

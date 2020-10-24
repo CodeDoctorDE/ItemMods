@@ -198,7 +198,7 @@ public class BlockGui {
                                 public void onCancel(Player player) {
                                     gui.open(player);
                                 }
-                            }).createGui().open((Player) event.getWhoClicked());
+        }).createGui().open((Player) event.getWhoClicked());
                         }
                     });
                 }

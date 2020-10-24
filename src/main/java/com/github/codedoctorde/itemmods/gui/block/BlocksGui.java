@@ -58,8 +58,8 @@ public class BlocksGui {
             }
         }, new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class BlocksGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new MainGui().createGui(), searchText);
+        }).createGuis(new MainGui().createGui(), searchText);
     }
 
     private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {

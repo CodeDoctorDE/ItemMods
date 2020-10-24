@@ -28,8 +28,8 @@ public class ChooseBlockAddonGui {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocktemplates");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
             }
 
             @Override
@@ -46,6 +46,6 @@ public class ChooseBlockAddonGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new BlockGui(blockIndex).createGui());
+        }).createGuis(new BlockGui(blockIndex).createGui());
     }
 }

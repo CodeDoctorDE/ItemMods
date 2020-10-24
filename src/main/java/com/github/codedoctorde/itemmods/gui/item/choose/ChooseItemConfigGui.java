@@ -27,8 +27,8 @@ public class ChooseItemConfigGui {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("config");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
             }
 
             @Override
@@ -41,7 +41,7 @@ public class ChooseItemConfigGui {
                 })).toArray(GuiItem[]::new);
             }
         }, new GuiEvent() {
-        }).createGui(backGui);
+        }).createGuis(backGui);
     }
 
     public interface ChooseItemConfigEvent {

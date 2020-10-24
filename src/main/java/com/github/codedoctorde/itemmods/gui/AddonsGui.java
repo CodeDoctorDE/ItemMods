@@ -21,8 +21,8 @@ public class AddonsGui {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("addons");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
             }
 
             @Override
@@ -40,6 +40,6 @@ public class AddonsGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new MainGui().createGui());
+        }).createGuis(new MainGui().createGui());
     }
 }

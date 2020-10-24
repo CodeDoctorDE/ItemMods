@@ -34,7 +34,7 @@ public class ChooseBlockTemplateGui {
         BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int index) {
+            public String title(int index, int size) {
                 return MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex, addon.getName(), index + 1);
             }
 
@@ -54,6 +54,6 @@ public class ChooseBlockTemplateGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new BlockGui(blockIndex).createGui());
+        }).createGuis(new BlockGui(blockIndex).createGui());
     }
 }

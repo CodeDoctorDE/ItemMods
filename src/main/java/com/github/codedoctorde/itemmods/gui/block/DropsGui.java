@@ -64,8 +64,8 @@ public class DropsGui {
             }
         }, new GuiListEvent() {
             @Override
-            public String title(int index) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockIndex, index + 1);
+            public String title(int index, int size) {
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), blockIndex, index + 1, size);
             }
 
             @Override
@@ -131,7 +131,7 @@ public class DropsGui {
                                         public void onCancel(Player player) {
                                             gui.open(player);
                                         }
-                                    }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
+        }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                                     break;
                                 case RIGHT:
                                     event.getWhoClicked().getInventory().addItem(dropConfig.getItemStack());
@@ -156,6 +156,6 @@ public class DropsGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGui(new BlockGui(blockIndex).createGui());
+        }).createGuis(new BlockGui(blockIndex).createGui());
     }
 }

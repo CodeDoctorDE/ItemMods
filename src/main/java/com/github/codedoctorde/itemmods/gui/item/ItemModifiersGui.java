@@ -16,7 +16,7 @@ public class ItemModifiersGui {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject("gui","itemmodifiers");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
-            public String title(int i) {
+            public String title(int i, int size) {
                 return null;
             }
 
@@ -25,6 +25,6 @@ public class ItemModifiersGui {
                 return new GuiItem[0];
             }
         }, new GuiEvent() {
-        }).createGui();
+        }).createGuis();
     }
 }
