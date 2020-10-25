@@ -117,16 +117,16 @@ public class CustomBlockManager {
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
         if (armorStandBlockConfig != null) armorStand = armorStandBlockConfig.spawn(location);
-        if (blockConfig.getTemplateData().getData() != null)
-            BlockNBT.setNbt(block, blockConfig.getTemplateData().getName());
+        if (blockConfig.getTemplate().getData() != null)
+            BlockNBT.setNbt(block, blockConfig.getTemplate().getName());
         if (location.getChunk().isLoaded())
             loadedBlocks.add(new CustomBlock(location, armorStand, blockConfig));
         return true;
     }
 
     public void onTick() {
-        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplateData() != null).forEach(customBlock -> {
-            CustomBlockTemplate template = customBlock.getConfig().getTemplateData().getTemplate();
+        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> {
+            CustomBlockTemplate template = customBlock.getConfig().getTemplate().getInstance();
             if (template != null)
                 template.tick(customBlock);
         });

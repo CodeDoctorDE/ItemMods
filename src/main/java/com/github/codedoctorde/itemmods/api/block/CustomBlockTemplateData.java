@@ -23,7 +23,7 @@ public class CustomBlockTemplateData {
     }
 
     @Nullable
-    public CustomBlockTemplate getTemplate() {
+    public CustomBlockTemplate getInstance() {
         if (name == null)
             return null;
         try {
@@ -35,7 +35,7 @@ public class CustomBlockTemplateData {
         return null;
     }
 
-    public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
+    public void setInstance(@Nullable CustomBlockTemplate blockTemplate) {
         if (blockTemplate == null)
             name = null;
         else

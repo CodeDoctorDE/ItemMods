@@ -21,7 +21,8 @@ public class BlockConfig {
     private boolean drop = true;
     private boolean moving = false;
     private ArmorStandBlockConfig armorStand = null;
-    private CustomBlockTemplateData templateData;
+    private CustomBlockTemplateData template;
+    private List<CustomBlockTemplateData> modifiers = new ArrayList<>();
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
@@ -43,12 +44,8 @@ public class BlockConfig {
         this.name = name;
     }
 
-    public CustomBlockTemplateData getTemplateData() {
-        return templateData;
-    }
-
-    public void setTemplateData(CustomBlockTemplateData templateData) {
-        this.templateData = templateData;
+    public List<CustomBlockTemplateData> getModifiers() {
+        return modifiers;
     }
 
     @Nullable
@@ -80,37 +77,28 @@ public class BlockConfig {
         this.tag = tag.replaceAll("\\s+", "");
     }
 
-    /**
-     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#getTemplate()} (since 1.5)
-     */
-    @Nullable
-    @Deprecated
-    public CustomBlockTemplate getTemplate() {
-        return templateData.getTemplate();
+    public CustomBlockTemplateData getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(CustomBlockTemplateData template) {
+        this.template = template;
     }
 
     /**
-     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#setTemplate(CustomBlockTemplate)} (since 1.5)
-     */
-    @Deprecated
-    public void setTemplate(@Nullable CustomBlockTemplate blockTemplate) {
-        templateData.setTemplate(blockTemplate);
-    }
-
-    /**
-     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#getName()} (since 1.5)
+     * @deprecated Use {@link #getTemplate()} ()} and {@link CustomBlockTemplateData#getName()} (since 1.5)
      */
     @Deprecated
     public String getTemplateName() {
-        return templateData.getName();
+        return template.getName();
     }
 
     /**
-     * @deprecated Use {@link #getTemplateData()} and {@link CustomBlockTemplateData#setName(String)} (since 1.5)
+     * @deprecated Use {@link #getTemplate()} and {@link CustomBlockTemplateData#setName(String)} (since 1.5)
      */
     @Deprecated
     public void setTemplateName(String templateName) {
-        templateData.setName(templateName);
+        template.setName(templateName);
     }
 
     @Nullable
@@ -150,16 +138,6 @@ public class BlockConfig {
         if (block == null && armorStand == null)
             return CorrectResult.NO_BLOCK;
         return CorrectResult.YES;
-    }
-
-    @Deprecated(since = "1.5")
-    public String getData() {
-        return templateData.getData();
-    }
-
-    @Deprecated(since = "1.5")
-    public void setData(String data) {
-        templateData.setData(data);
     }
 
     @Nullable
