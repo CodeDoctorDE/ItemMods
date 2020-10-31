@@ -2,12 +2,11 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
-import com.google.gson.JsonObject;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public class ItemConfig {
     private boolean canRename = true;
     private Integer hardness = null;
     @Nullable
-    private String templateName = null;
-    private JsonObject templateConfig = new JsonObject();
+    private CustomItemTemplateData template;
+    private final List<CustomItemTemplateData> modifiers = new ArrayList<>();
     private String tag;
 
 
@@ -106,36 +105,16 @@ public class ItemConfig {
         this.displayName = displayName;
     }
 
-
-    @Nullable
-    public CustomItemTemplate getTemplate() {
-        if (templateName == null)
-            return null;
-        try {
-            return ItemMods.getPlugin().getApi().getItemTemplate(templateName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        templateName = null;
-        return null;
+    public @Nullable CustomItemTemplateData getTemplate() {
+        return template;
     }
 
-    public void setTemplate(@Nullable CustomItemTemplate itemTemplate) {
-        if (itemTemplate == null)
-            templateName = null;
-        else
-            this.templateName = itemTemplate.getClass().getName();
-        templateConfig = new JsonObject();
+    public void setTemplate(@Nullable CustomItemTemplateData template) {
+        this.template = template;
     }
 
-    @Nullable
-    public String getTemplateName() {
-        return templateName;
-    }
-
-    public void setTemplateName(@Nullable String templateName) {
-        this.templateName = templateName;
-        templateConfig = new JsonObject();
+    public List<CustomItemTemplateData> getModifiers() {
+        return modifiers;
     }
 
     public String getTag() {
@@ -144,17 +123,6 @@ public class ItemConfig {
 
     public void setTag(String tag) {
         this.tag = tag.replaceAll("\\s+", "");
-    }
-
-    @NotNull
-    public JsonObject getTemplateConfig() {
-        if (templateConfig == null)
-            templateConfig = new JsonObject();
-        return templateConfig;
-    }
-
-    public void setTemplateConfig(@NotNull JsonObject templateConfig) {
-        this.templateConfig = templateConfig;
     }
 
     public ItemStack giveItemStack() {

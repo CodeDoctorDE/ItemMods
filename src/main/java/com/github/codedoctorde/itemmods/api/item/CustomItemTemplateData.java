@@ -1,16 +1,17 @@
-package com.github.codedoctorde.itemmods.api.block;
+package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CodeDoctorDE
  */
-public class CustomBlockTemplateData {
+public class CustomItemTemplateData {
     private String name;
     private String data = "";
 
-    public CustomBlockTemplateData(String name) {
+    public CustomItemTemplateData(String name) {
         this.name = name;
     }
 
@@ -22,11 +23,11 @@ public class CustomBlockTemplateData {
         this.data = data;
     }
 
-    public CustomBlockTemplate getInstance() {
+    public CustomItemTemplate getInstance() {
         if (name == null)
             return null;
         try {
-            return ItemMods.getPlugin().getApi().getBlockTemplate(name);
+            return ItemMods.getPlugin().getApi().getItemTemplate(name);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -34,11 +35,8 @@ public class CustomBlockTemplateData {
         return null;
     }
 
-    public void setInstance(@Nullable CustomBlockTemplate blockTemplate) {
-        if (blockTemplate == null)
-            name = null;
-        else
-            name = blockTemplate.getClass().getName();
+    public void setInstance(@Nullable CustomItemTemplate blockTemplate) {
+        name = blockTemplate == null ? null : blockTemplate.getClass().getName();
     }
 
     public String getName() {

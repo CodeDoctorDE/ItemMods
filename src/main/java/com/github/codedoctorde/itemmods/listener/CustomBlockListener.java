@@ -3,7 +3,9 @@ package com.github.codedoctorde.itemmods.listener;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.block.CustomBlock;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -39,9 +41,9 @@ public class CustomBlockListener implements Listener {
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
-        if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
+        if (!(customItem.getConfig().getTemplate().getInstance() instanceof BlockSetTemplate))
             return;
-        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate().getInstance();
         if (template.getBlock(customItem) == null)
             return;
         if (event.getItem().getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
@@ -177,9 +179,12 @@ public class CustomBlockListener implements Listener {
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomItem customItem = new CustomItem(item);
-        if (customItem.getConfig() == null || customItem.getConfig().getTemplate() == null || !(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
+        if(customItem.getConfig() == null)
             return;
-        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        CustomItemTemplateData data = customItem.getConfig().getTemplate();
+        if (data == null || !(data.getInstance() instanceof BlockSetTemplate))
+            return;
+        BlockSetTemplate template = (BlockSetTemplate) data.getInstance();
         if (template.getBlock(customItem) == null || item.getAmount() < customItem.getConfig().getItemStack().getAmount())
             return;
         if (ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
