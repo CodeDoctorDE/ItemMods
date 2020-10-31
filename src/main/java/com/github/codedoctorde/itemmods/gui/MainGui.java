@@ -18,7 +18,7 @@ import java.text.MessageFormat;
 public class MainGui {
     public Gui createGui() {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("main");
-        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), ItemMods.version), 5, new GuiEvent() {
+        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), ItemMods.version), 6, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player);
@@ -56,6 +56,24 @@ public class MainGui {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     new AddonsGui().createGuis()[0].open((Player) event.getWhoClicked());
+                }
+            }));
+            putGuiItem(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("spigot")).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("spigot").get("message").getAsString());
+                }
+            }));
+            putGuiItem(9 * 4 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("support")).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("support").get("message").getAsString());
+                }
+            }));
+            putGuiItem(9 * 4 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("wiki")).build(), new GuiItemEvent() {
+                @Override
+                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("wiki").get("message").getAsString());
                 }
             }));
         }};

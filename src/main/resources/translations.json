@@ -638,6 +638,33 @@
           "",
           "§7Click to see all addons"
         ]
+      },
+      "wiki": {
+        "message": "§eItemMods §7» §fClick here: https://github.com/CodeDoctorDE/ItemMods/wiki",
+        "material": "BOOK",
+        "name": "§eWiki",
+        "lore": [
+          "",
+          "§7Click here to get the link"
+        ]
+      },
+      "support": {
+        "message": "§eItemMods §7» §fClick here: https://discord.gg/",
+        "material": "EMERALD",
+        "name": "§eSupport",
+        "lore": [
+          "",
+          "§7Click here to get the link"
+        ]
+      },
+      "spigot": {
+        "message": "§eItemMods §7» §fClick here: https://www.spigotmc.org/resources/72461",
+        "material": "PAPER",
+        "name": "§eSpigot page",
+        "lore": [
+          "",
+          "§7Click here to get the link"
+        ]
       }
     },
     "item": {
@@ -1134,6 +1161,15 @@
             "§cbefore choosing a template!"
           ]
         }
+      },
+      "modifiers": {
+        "material": "IRON_AXE",
+        "name": "§eModifiers",
+        "lore": [
+          "",
+          "§cClick here to get to ",
+          "§cthe modifiers list"
+        ]
       },
       "block": {
         "set": {
