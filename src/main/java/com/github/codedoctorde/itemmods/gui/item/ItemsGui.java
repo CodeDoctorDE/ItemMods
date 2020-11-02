@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.ChatRequestEvent;
+import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
@@ -40,7 +40,7 @@ public class ItemsGui {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close(player);
-                new ChatRequest(ItemMods.getPlugin(), player, new ChatRequestEvent() {
+                new ChatRequest(ItemMods.getPlugin(), player, new RequestEvent<String>() {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
@@ -122,7 +122,7 @@ public class ItemsGui {
 
             }
         }) {{
-            putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
 
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -138,7 +138,7 @@ public class ItemsGui {
 
                 }
             }));
-            putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
 
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {

@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.ChatRequestEvent;
+import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
@@ -33,27 +33,27 @@ public class ArmorStandConfigGui {
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject("gui", "armorstand");
         ArmorStand preview;
         return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 5) {{
-            putGuiItem(0, new GuiItem(guiTranslation.getAsJsonObject("cancel"), new GuiItemEvent() {
+            getGuiItems().put(0, new GuiItem(guiTranslation.getAsJsonObject("cancel"), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     guiEvent.onCancel((Player) event.getWhoClicked());
                 }
             }));
             GuiItem placeholder = new GuiItem(guiTranslation.getAsJsonObject("placeholder"));
-            putGuiItem(1, placeholder);
-            putGuiItem(2, placeholder);
-            putGuiItem(3, placeholder);
-            putGuiItem(4, placeholder);
-            putGuiItem(5, placeholder);
-            putGuiItem(6, placeholder);
-            putGuiItem(7, placeholder);
-            putGuiItem(8, guiTranslation.getAsJsonObject("save"), new GuiItemEvent() {
+            getGuiItems().put(1, placeholder);
+            getGuiItems().put(2, placeholder);
+            getGuiItems().put(3, placeholder);
+            getGuiItems().put(4, placeholder);
+            getGuiItems().put(5, placeholder);
+            getGuiItems().put(6, placeholder);
+            getGuiItems().put(7, placeholder);
+            getGuiItems().put(8, new GuiItem(guiTranslation.getAsJsonObject("save"), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     guiEvent.onEvent((Player) event.getWhoClicked(), config);
                 }
-            });
-            putGuiItem(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            }));
+            getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setHelmet((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -61,7 +61,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setChestplate((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -69,7 +69,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setLeggings((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -77,7 +77,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setBoots((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -85,7 +85,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setMainHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -93,7 +93,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 + 6, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 + 6, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand").getAsJsonObject("view")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setOffHand((event.getWhoClicked().getInventory().getItemInMainHand().getType() == Material.AIR) ? null : event.getWhoClicked().getInventory().getItemInMainHand());
@@ -101,7 +101,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("baseplate").getAsJsonObject("" + ((config.isBasePlate()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("baseplate").getAsJsonObject("" + ((config.isBasePlate()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setBasePlate(!config.isBasePlate());
@@ -109,7 +109,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invisible").getAsJsonObject("" + ((config.isInvisible()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invisible").getAsJsonObject("" + ((config.isInvisible()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setInvisible(!config.isInvisible());
@@ -117,7 +117,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("small").getAsJsonObject("" + ((config.isSmall()) ? "yes" : "no"))).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("small").getAsJsonObject("" + ((config.isSmall()) ? "yes" : "no"))).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setSmall(!config.isSmall());
@@ -125,7 +125,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("marker").getAsJsonObject(config.isMarker() ? "yes" : "no")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("marker").getAsJsonObject(config.isMarker() ? "yes" : "no")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setMarker(!config.isMarker());
@@ -133,14 +133,14 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("customname").getAsJsonObject(config.isCustomNameVisible() ? "visible" : "invisible")).format(config.getCustomName()).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("customname").getAsJsonObject(config.isCustomNameVisible() ? "visible" : "invisible")).format(config.getCustomName()).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     switch (event.getClick()) {
                         case LEFT:
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("customname").get("message").getAsString());
                             gui.close((Player) event.getWhoClicked());
-                            new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                            new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                                 @Override
                                 public void onEvent(Player player, String output) {
                                     output = ChatColor.translateAlternateColorCodes('&', output);
@@ -170,7 +170,7 @@ public class ArmorStandConfigGui {
                         createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 4 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invulnerable").getAsJsonObject(config.isInvulnerable() ? "yes" : "no")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 4 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("invulnerable").getAsJsonObject(config.isInvulnerable() ? "yes" : "no")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     config.setInvulnerable(!config.isInvulnerable());
@@ -178,7 +178,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 1, new GuiItem((config.getHelmet() != null) ? config.getHelmet() : new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 1, new GuiItem((config.getHelmet() != null) ? config.getHelmet() : new ItemStackBuilder(guiTranslation.getAsJsonObject("helmet").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getHelmet() != null) {
@@ -192,7 +192,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 2, new GuiItem((config.getChestplate() != null) ? config.getChestplate() : new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 2, new GuiItem((config.getChestplate() != null) ? config.getChestplate() : new ItemStackBuilder(guiTranslation.getAsJsonObject("chestplate").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getChestplate() != null) {
@@ -206,7 +206,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 3, new GuiItem((config.getLeggings() != null) ? config.getLeggings() : new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 3, new GuiItem((config.getLeggings() != null) ? config.getLeggings() : new ItemStackBuilder(guiTranslation.getAsJsonObject("leggings").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getLeggings() != null) {
@@ -220,7 +220,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 4, new GuiItem((config.getBoots() != null) ? config.getBoots() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 4, new GuiItem((config.getBoots() != null) ? config.getBoots() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getBoots() != null) {
@@ -234,7 +234,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 5, new GuiItem((config.getMainHand() != null) ? config.getMainHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 5, new GuiItem((config.getMainHand() != null) ? config.getMainHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getMainHand() != null) {
@@ -248,7 +248,7 @@ public class ArmorStandConfigGui {
                     createGui().open((Player) event.getWhoClicked());
                 }
             }));
-            putGuiItem(9 * 2 + 6, new GuiItem((config.getOffHand() != null) ? config.getOffHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 2 + 6, new GuiItem((config.getOffHand() != null) ? config.getOffHand() : new ItemStackBuilder(guiTranslation.getAsJsonObject("boots").getAsJsonObject("null")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     if (event.getClick() == ClickType.MIDDLE && config.getOffHand() != null) {

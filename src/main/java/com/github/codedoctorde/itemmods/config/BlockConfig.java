@@ -1,7 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
@@ -20,9 +19,10 @@ public class BlockConfig {
     private BlockData block;
     private boolean drop = true;
     private boolean moving = false;
+    private String nbt;
     private ArmorStandBlockConfig armorStand = null;
     private CustomBlockTemplateData template;
-    private List<CustomBlockTemplateData> modifiers = new ArrayList<>();
+    private final List<CustomBlockTemplateData> modifiers = new ArrayList<>();
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
@@ -170,6 +170,14 @@ public class BlockConfig {
 
     public void setBlockDirectionType(BlockDirectionType blockDirectionType) {
         this.blockDirectionType = blockDirectionType;
+    }
+
+    public String getNbt() {
+        return nbt;
+    }
+
+    public void setNbt(String nbt) {
+        this.nbt = nbt;
     }
 
     public enum CorrectResult {

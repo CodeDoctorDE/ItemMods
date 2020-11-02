@@ -2,9 +2,8 @@ package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.nms.block.BlockNBT;
 import com.github.codedoctorde.api.request.BlockBreakRequest;
-import com.github.codedoctorde.api.request.BlockBreakRequestEvent;
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.ChatRequestEvent;
+import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
@@ -42,19 +41,19 @@ public class BlockGui {
             }
         }) {
             {
-                putGuiItem(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
+                getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         new BlocksGui().createGuis()[0].open((Player) event.getWhoClicked());
                     }
                 }));
 
-                putGuiItem(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("name")).format(blockConfig.getName()).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("name")).format(blockConfig.getName()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("name").get("message").getAsString());
                         gui.close((Player) event.getWhoClicked());
-                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setName(output);
@@ -70,12 +69,12 @@ public class BlockGui {
                         });
                     }
                 }));
-                putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("displayname")).format(blockConfig.getDisplayName()).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("displayname")).format(blockConfig.getDisplayName()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         gui.close((Player) event.getWhoClicked());
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("displayname").get("message").getAsString());
-                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
@@ -93,12 +92,12 @@ public class BlockGui {
                         });
                     }
                 }));
-                putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(blockConfig.getTag()).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(blockConfig.getTag()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
                         gui.close((Player) event.getWhoClicked());
-                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ChatRequestEvent() {
+                        new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setTag(output);
@@ -114,7 +113,7 @@ public class BlockGui {
                         });
                     }
                 }));
-                putGuiItem(9 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("block").getAsJsonObject(blockConfig.getBlock() == null ? "null" : "set")).format(
+                getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("block").getAsJsonObject(blockConfig.getBlock() == null ? "null" : "set")).format(
                         (blockConfig.getBlock() != null) ? blockConfig.getBlock().getMaterial().name() : "").build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -122,17 +121,17 @@ public class BlockGui {
                             case LEFT:
                                 gui.close((Player) event.getWhoClicked());
                                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("block").get("message").getAsString());
-                                new BlockBreakRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new BlockBreakRequestEvent() {
+                                new BlockBreakRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<Block>() {
                                     @Override
                                     public void onEvent(Player player, Block output) {
                                         if (blockConfig.checkBlock(output.getState())) {
                                             blockConfig.setBlock(output.getState().getBlockData());
                                             if (output.getState() instanceof TileState)
-                                                blockConfig.setData(BlockNBT.getNbt(output));
+                                                blockConfig.setNbt(BlockNBT.getNbt(output));
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("success").getAsString());
                                         } else {
                                             blockConfig.setBlock(null);
-                                            blockConfig.setData(null);
+                                            blockConfig.setNbt(null);
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("error").getAsString());
                                         }
                                         ItemMods.getPlugin().saveBaseConfig();
@@ -147,7 +146,7 @@ public class BlockGui {
                                 break;
                             case DROP:
                                 blockConfig.setBlock(null);
-                                blockConfig.setData(null);
+                                blockConfig.setNbt(null);
                                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("block").get("remove").getAsString());
                                 createGui().open((Player) event.getWhoClicked());
                                 break;
@@ -155,7 +154,7 @@ public class BlockGui {
                         ItemMods.getPlugin().saveBaseConfig();
                     }
                 }));
-                putGuiItem(9 * 3 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 3 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setDrop(!blockConfig.isDrop());
@@ -163,7 +162,7 @@ public class BlockGui {
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
-                putGuiItem(9 * 5 + 6, new GuiItem((blockConfig.getReferenceItemConfig() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("item").getAsJsonObject("no")) :
+                getGuiItems().put(9 * 5 + 6, new GuiItem((blockConfig.getReferenceItemConfig() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("item").getAsJsonObject("no")) :
                         new ItemStackBuilder(blockConfig.getReferenceItemConfig().getItemStack().clone()).addLore(guiTranslation.getAsJsonObject("item").getAsJsonArray("yes")), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -183,7 +182,7 @@ public class BlockGui {
                 }));
                 ArmorStandBlockConfig armorStand = blockConfig.getArmorStand();
                 if (armorStand != null) {
-                    putGuiItem(9 * 3 + 3, guiTranslation.getAsJsonObject("default"), new GuiItemEvent() {
+                    getGuiItems().put(9 * 3 + 3, new GuiItem(guiTranslation.getAsJsonObject("default"), new GuiItemEvent() {
                         @Override
                         public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                             new ArmorStandConfigGui(armorStand, new ArmorStandConfigGuiEvent() {
@@ -200,32 +199,32 @@ public class BlockGui {
                                 }
         }).createGui().open((Player) event.getWhoClicked());
                         }
-                    });
+                    }));
                 }
-                putGuiItem(9 * 5 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no")).build(), new GuiItemEvent() {
+                getGuiItems().put(9 * 5 + 2, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
                         blockConfig.setBlock(null);
-                        blockConfig.setData(null);
+                        blockConfig.setNbt(null);
                         ItemMods.getPlugin().saveBaseConfig();
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
                 GuiItem placeholder = new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("placeholder")).build());
-                putGuiItem(9 * 5 + 1, placeholder);
-                putGuiItem(9 * 5, placeholder);
-                putGuiItem(9 * 5 + 3, placeholder);
-                putGuiItem(9 * 5 + 5, placeholder);
-                putGuiItem(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
+                getGuiItems().put(9 * 5 + 1, placeholder);
+                getGuiItems().put(9 * 5, placeholder);
+                getGuiItems().put(9 * 5 + 3, placeholder);
+                getGuiItems().put(9 * 5 + 5, placeholder);
+                getGuiItems().put(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drops")), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         new DropsGui(index).createGuis()[0].open((Player) event.getWhoClicked());
                     }
                 }));
-                putGuiItem(9 * 5 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("correct").getAsJsonObject(blockConfig.correct().name()))));
-                putGuiItem(9 * 5 + 7, placeholder);
+                getGuiItems().put(9 * 5 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("correct").getAsJsonObject(blockConfig.correct().name()))));
+                getGuiItems().put(9 * 5 + 7, placeholder);
             }
         };
     }

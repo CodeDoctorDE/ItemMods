@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.ChatRequestEvent;
+import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
@@ -39,7 +39,7 @@ public class BlocksGui {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close(player);
-                new ChatRequest(ItemMods.getPlugin(), player, new ChatRequestEvent() {
+                new ChatRequest(ItemMods.getPlugin(), player, new RequestEvent<String>() {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
@@ -123,7 +123,7 @@ public class BlocksGui {
             }
         }) {
             {
-                putGuiItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -139,7 +139,7 @@ public class BlocksGui {
 
                     }
                 }));
-                putGuiItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(blockConfig.getName(), blockIndex).build(), new GuiItemEvent() {
 
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
