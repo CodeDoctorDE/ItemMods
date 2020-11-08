@@ -11,6 +11,7 @@ public class MainConfig {
     private final List<ItemConfig> items = new ArrayList<>();
     private final List<BlockConfig> blocks = new ArrayList<>();
     private final DatabaseConfig databaseConfig = new DatabaseConfig();
+    private final ResourcePackConfig resourcePackConfig = new ResourcePackConfig();
 
     public MainConfig() {
 
@@ -53,5 +54,9 @@ public class MainConfig {
     @Nullable
     public ItemConfig getItem(String tag) {
         return items.stream().filter(itemConfig -> itemConfig.getTag().equals(tag)).findFirst().orElse(null);
+    }
+
+    public ResourcePackConfig getResourcePackConfig() {
+        return resourcePackConfig;
     }
 }

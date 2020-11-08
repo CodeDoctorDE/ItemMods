@@ -10,6 +10,11 @@
     "register": "§eItemMods §7» §aRegistered new addon §3{0}§a!",
     "unregister": "§eItemMods §7» §aUnregistered addon §3{0}§a!"
   },
+  "pack": {
+    "created": "§eItemMods $7» §6Pack folder was created!",
+    "exporting": "§eItemMods $7» §eExporting resource pack...",
+    "exported": "§eItemMods $7» §6Resource pack was exported!"
+  },
   "addon": {
     "name": "ItemMods",
     "templates": {
