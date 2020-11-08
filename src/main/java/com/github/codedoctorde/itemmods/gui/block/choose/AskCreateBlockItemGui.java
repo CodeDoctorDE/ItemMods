@@ -18,8 +18,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
  */
 public class AskCreateBlockItemGui {
     private final String name;
+    private final String namespace;
 
-    public AskCreateBlockItemGui(String name) {
+    public AskCreateBlockItemGui(String namespace, String name) {
+        this.namespace = namespace;
         this.name = name;
     }
 
@@ -31,8 +33,8 @@ public class AskCreateBlockItemGui {
             getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    BlockConfig blockConfig = new BlockConfig(name);
-                    if (mainConfig.getItem(name) == null && mainConfig.getBlock(name) == null) {
+                    BlockConfig blockConfig = new BlockConfig(namespace, name);
+                    if (mainConfig.getItem(name) == null && mainConfig.getBlock(namespace, name) == null) {
                         mainConfig.getItems().add(itemConfig);
                         mainConfig.getBlocks().add(blockConfig);
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("yes").get("success").getAsString());

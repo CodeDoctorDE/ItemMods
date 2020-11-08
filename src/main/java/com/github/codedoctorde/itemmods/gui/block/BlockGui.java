@@ -92,7 +92,7 @@ public class BlockGui {
                         });
                     }
                 }));
-                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(blockConfig.getTag()).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(blockConfig.getNamespace()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
@@ -100,7 +100,7 @@ public class BlockGui {
                         new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                             @Override
                             public void onEvent(Player player, String output) {
-                                blockConfig.setTag(output);
+                                blockConfig.setNamespace(output);
                                 ItemMods.getPlugin().saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
                                 createGui().open(player);

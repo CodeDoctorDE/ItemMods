@@ -16,6 +16,7 @@ import java.util.Set;
  */
 public abstract class ItemModsAddon {
     protected final JavaPlugin plugin;
+    private final String name;
     protected Set<CustomBlockTemplate> blockTemplates = new HashSet<>();
     protected Set<CustomBlockTemplate> blockModifiers = new HashSet<>();
     protected Set<CustomItemTemplate> itemTemplates = new HashSet<>();
@@ -23,12 +24,14 @@ public abstract class ItemModsAddon {
     protected Set<StaticCustomBlock> staticCustomBlocks = new HashSet<>();
     protected Set<StaticCustomItem> staticCustomItems = new HashSet<>();
 
-    public ItemModsAddon(final JavaPlugin plugin){
+    public ItemModsAddon(final JavaPlugin plugin, final String name){
         this.plugin = plugin;
+        this.name = name;
     }
 
-    @NotNull
-    public abstract String getName();
+    public String getName() {
+        return name;
+    }
 
     @NotNull
     public abstract ItemStack getIcon();

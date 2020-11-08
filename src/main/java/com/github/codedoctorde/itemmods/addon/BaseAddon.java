@@ -17,14 +17,10 @@ public class BaseAddon extends ItemModsAddon {
     JsonObject addonTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
 
     public BaseAddon() {
+        super(ItemMods.getPlugin(), "itemmods");
         registerItemTemplate(new BlockSetTemplate());
     }
 
-    @NotNull
-    @Override
-    public String getName() {
-        return addonTranslation.get("name").getAsString();
-    }
 
     @NotNull
     @Override

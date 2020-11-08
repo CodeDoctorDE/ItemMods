@@ -43,7 +43,7 @@ public class BlocksGui {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
-                        if (mainConfig.newBlock(output))
+                        if (mainConfig.createBlock("itemmods", output))
                             player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
                         else
                             player.sendMessage(guiTranslation.getAsJsonObject("create").get("already").getAsString());

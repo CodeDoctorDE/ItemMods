@@ -14,6 +14,9 @@ public class CustomItemTemplateData {
     public CustomItemTemplateData(String name) {
         this.name = name;
     }
+    public CustomItemTemplateData(CustomItemTemplate template){
+        this(template.getClass().getName());
+    }
 
     public String getData() {
         return data;

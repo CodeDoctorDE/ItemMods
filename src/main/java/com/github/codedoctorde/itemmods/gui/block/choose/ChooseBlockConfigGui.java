@@ -34,8 +34,8 @@ public class ChooseBlockConfigGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig -> blockConfig.getTag().contains(s)).map(blockConfig -> new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("config")).format(
-                        blockConfig.getName(), blockConfig.getDisplayName(), blockConfig.getTag()), new GuiItemEvent() {
+                return ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig -> blockConfig.getNamespace().contains(s) || blockConfig.getName().contains(s)).map(blockConfig -> new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("config")).format(
+                        blockConfig.getDisplayName(), blockConfig.getName(), blockConfig.getNamespace()), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfigEvent.onEvent(blockConfig);

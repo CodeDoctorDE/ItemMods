@@ -86,9 +86,8 @@ public class CustomBlockManager {
 
     @Nullable
     public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
-        if (Objects.equals(container.get(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING), blockConfig.getTag()))
-            return new CustomBlock(location, entity, blockConfig);
-        return null;
+        CustomBlock customBlock = new CustomBlock(location, entity, blockConfig);
+        return customBlock.getConfig() != null ? customBlock:null;
     }
 
     public List<BlockConfig> getBlocks() {

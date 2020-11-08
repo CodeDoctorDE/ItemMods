@@ -13,6 +13,9 @@ public class CustomBlockTemplateData {
     public CustomBlockTemplateData(String name) {
         this.name = name;
     }
+    public CustomBlockTemplateData(CustomBlockTemplate template) {
+        this(template.getClass().getName());
+    }
 
     public String getData() {
         return data;

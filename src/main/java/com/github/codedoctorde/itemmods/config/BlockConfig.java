@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class BlockConfig {
     private final List<DropConfig> drops = new ArrayList<>();
     private String name;
-    private NamespacedKey key;
+    private String namespace;
     private String displayName;
     private BlockData block;
     private boolean drop = true;
@@ -28,8 +28,8 @@ public class BlockConfig {
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
-    public BlockConfig(NamespacedKey key, String name) {
-        this.key = key;
+    public BlockConfig(String namespace, String name) {
+        this.namespace = namespace;
         this.name = name;
         this.displayName = name;
     }
@@ -50,12 +50,12 @@ public class BlockConfig {
         return modifiers;
     }
 
-    public NamespacedKey getKey() {
-        return key;
+    public String getNamespace() {
+        return namespace;
     }
 
-    public void setKey(NamespacedKey key) {
-        this.key = key;
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
     }
 
     @Nullable

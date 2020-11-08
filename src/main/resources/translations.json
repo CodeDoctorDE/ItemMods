@@ -34,7 +34,7 @@
               "material": "GRASS_BLOCK",
               "name": "§eBlock set template",
               "lore": [
-                "§7Current block: §3{0}",
+                "§7Current block: §3{0}§f:§6{1}",
                 ""
               ]
             },
@@ -63,7 +63,7 @@
     "choose": {
       "block": {
         "config": {
-          "title": "§eItemMods §7» §6Choose blockconfig §f{0}",
+          "title": "§eItemMods §7» §6Choose block config §f{0}",
           "first": {
             "material": "BLAZE_ROD",
             "name": "§eFirst page",
@@ -118,9 +118,9 @@
           },
           "config": {
             "material": "GRASS_BLOCK",
-            "name": "§3{1}",
+            "name": "§f{0}",
             "lore": [
-              "§7{2}"
+              "§3{1}§f:§6{2}"
             ]
           }
         }

@@ -8,6 +8,7 @@ import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.google.gson.JsonObject;
@@ -48,7 +49,7 @@ public class ChooseItemTemplateGui {
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").get("not_compatible").getAsString());
                             return;
                         }
-                        ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex).setTemplate(itemTemplate);
+                        ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex).setTemplate(new CustomItemTemplateData(itemTemplate));
                         ItemMods.getPlugin().saveBaseConfig();
                         new ItemGui(itemIndex).createGui().open((Player) event.getWhoClicked());
                     }

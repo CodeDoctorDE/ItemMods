@@ -34,7 +34,7 @@ public class CustomBlock {
         this.config = config;
         this.location = location;
         this.armorStand = armorStand;
-        if (getType() == null)
+        if (getName() == null)
             configure();
     }
 
@@ -47,7 +47,7 @@ public class CustomBlock {
         this.location = location;
         this.armorStand = null;
         ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig ->
-                blockConfig.getTag().equals(getType())).forEach(itemConfig -> config = itemConfig);
+                blockConfig.getName().equals(getName()) && blockConfig.getNamespace().equals(getNamespace())).forEach(itemConfig -> config = itemConfig);
     }
 
     public BlockConfig getConfig() {
@@ -63,12 +63,22 @@ public class CustomBlock {
         return armorStand;
     }
 
-    public String getType() {
-        return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
+    public String getNamespace(){
+        return getString(new NamespacedKey(ItemMods.getPlugin(), "key"));
+    }
+    public void setNamespace(String key){
+        setString(new NamespacedKey(ItemMods.getPlugin(), "key"), key);
+    }
+    public String getName() {
+        return getString(new NamespacedKey(ItemMods.getPlugin(), "name"));
     }
 
-    public void setType(String type) {
-        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), type);
+    public void setName(String type) {
+        setString(new NamespacedKey(ItemMods.getPlugin(), "name"), type);
+    }
+
+    public String getType(){
+        return getNamespace() + ":"  + getName();
     }
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
@@ -124,8 +134,9 @@ public class CustomBlock {
      * Configure the PersistentTagContainer to the default values
      */
     public void configure() {
-        setType(config.getTag());
-        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), config.getTag());
+        setName(config.getName());
+        setString(new NamespacedKey(ItemMods.getPlugin(), "name"), config.getName());
+        setString(new NamespacedKey(ItemMods.getPlugin(), "namespace"), config.getNamespace());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 

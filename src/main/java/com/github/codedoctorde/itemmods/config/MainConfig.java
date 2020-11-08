@@ -29,8 +29,8 @@ public class MainConfig {
         return blocks;
     }
 
-    public List<String> getBlockTags() {
-        return blocks.stream().map(BlockConfig::getTag).collect(Collectors.toList());
+    public List<String> getBlockNames(String namespace) {
+        return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace)).map(BlockConfig::getName).collect(Collectors.toList());
     }
 
     public DatabaseConfig getDatabaseConfig() {
@@ -38,13 +38,13 @@ public class MainConfig {
     }
 
     @Nullable
-    public BlockConfig getBlock(String tag) {
-        return blocks.stream().filter(blockConfig -> blockConfig.getTag().equals(tag)).findFirst().orElse(null);
+    public BlockConfig getBlock(String namespace, String name) {
+        return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace) && blockConfig.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public boolean newBlock(String name) {
-        BlockConfig blockConfig = new BlockConfig(name);
-        if (getBlock(blockConfig.getTag()) != null)
+    public boolean createBlock(String namespace, String name) {
+        BlockConfig blockConfig = new BlockConfig(namespace, name);
+        if (getBlock(namespace, name) != null)
             return false;
         getBlocks().add(blockConfig);
         ItemMods.getPlugin().saveBaseConfig();
