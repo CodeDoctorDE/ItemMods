@@ -5,6 +5,7 @@ import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class BlockConfig {
         return armorStand != null || block instanceof TileState;
     }
 
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 
