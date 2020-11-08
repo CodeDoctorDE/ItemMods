@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
  * @author CodeDoctorDE
  */
 public interface CustomItemTemplate {
+    void onLoad();
+    void onUnload();
 
     @NotNull
     ItemStack getIcon(ItemConfig itemConfig);

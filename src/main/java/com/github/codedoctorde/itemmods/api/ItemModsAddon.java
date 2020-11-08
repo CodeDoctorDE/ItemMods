@@ -1,8 +1,11 @@
 package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.block.StaticCustomBlock;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
+import com.github.codedoctorde.itemmods.api.item.StaticCustomItem;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -12,10 +15,17 @@ import java.util.Set;
  * @author CodeDoctorDE
  */
 public abstract class ItemModsAddon {
+    protected final JavaPlugin plugin;
     protected Set<CustomBlockTemplate> blockTemplates = new HashSet<>();
     protected Set<CustomBlockTemplate> blockModifiers = new HashSet<>();
     protected Set<CustomItemTemplate> itemTemplates = new HashSet<>();
     protected Set<CustomItemTemplate> itemModifiers = new HashSet<>();
+    protected Set<StaticCustomBlock> staticCustomBlocks = new HashSet<>();
+    protected Set<StaticCustomItem> staticCustomItems = new HashSet<>();
+
+    public ItemModsAddon(final JavaPlugin plugin){
+        this.plugin = plugin;
+    }
 
     @NotNull
     public abstract String getName();
@@ -31,6 +41,12 @@ public abstract class ItemModsAddon {
 
     public CustomItemTemplate[] getItemTemplates() {
         return itemTemplates.toArray(new CustomItemTemplate[0]);
+    }
+    public StaticCustomBlock[] getStaticCustomBlocks() {
+        return staticCustomBlocks.toArray(new StaticCustomBlock[0]);
+    }
+    public StaticCustomItem[] getStaticCustomItems() {
+        return staticCustomItems.toArray(new StaticCustomItem[0]);
     }
 
     protected void registerBlockTemplate(CustomBlockTemplate template) {
@@ -63,5 +79,25 @@ public abstract class ItemModsAddon {
 
     protected void unregisterItemModifier(CustomItemTemplate template) {
         itemModifiers.remove(template);
+    }
+
+    protected void registerStaticCustomBlock(StaticCustomBlock block) {
+        staticCustomBlocks.add(block);
+    }
+
+    protected void unregisterStaticCustomBlock(StaticCustomBlock block) {
+        staticCustomBlocks.remove(block);
+    }
+
+    protected void registerStaticCustomItem(StaticCustomItem item) {
+        staticCustomItems.add(item);
+    }
+
+    protected void unregisterStaticCustomItem(StaticCustomItem item) {
+        staticCustomItems.remove(item);
+    }
+
+    public JavaPlugin getPlugin() {
+        return plugin;
     }
 }

@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
  * @author CodeDoctorDE
  */
 public interface CustomBlockTemplate {
+    void onLoad();
+    void onUnload();
 
     @NotNull
     ItemStack getIcon(BlockConfig blockConfig);

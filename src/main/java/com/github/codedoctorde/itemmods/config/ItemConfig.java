@@ -7,6 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class ItemConfig {
         return new NamespacedKey(ItemMods.getPlugin(), "type");
     }
 
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 

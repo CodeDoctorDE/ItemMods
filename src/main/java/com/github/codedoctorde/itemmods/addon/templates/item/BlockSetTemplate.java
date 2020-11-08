@@ -21,6 +21,16 @@ import org.jetbrains.annotations.Nullable;
 public class BlockSetTemplate implements CustomItemTemplate {
     JsonObject templateTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
 
+    @Override
+    public void onLoad() {
+
+    }
+
+    @Override
+    public void onUnload() {
+
+    }
+
     @NotNull
     @Override
     public ItemStack getIcon(ItemConfig itemConfig) {
@@ -91,7 +101,8 @@ public class BlockSetTemplate implements CustomItemTemplate {
         BlockSetTemplateData(BlockSetTemplate template, ItemConfig itemConfig) {
             this.template = template;
             this.itemConfig = itemConfig;
-            JsonObject jsonObject = itemConfig.getTemplateConfig();
+            assert itemConfig.getTemplate() != null;
+            JsonObject jsonObject = gson.fromJson(itemConfig.getTemplate().getData(), JsonObject.class);
             if (jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
                 this.block = jsonObject.get("block").getAsString();
         }
@@ -107,7 +118,8 @@ public class BlockSetTemplate implements CustomItemTemplate {
         public void save() {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("block", block);
-            itemConfig.setTemplateConfig(jsonObject);
+            assert itemConfig.getTemplate() != null;
+            itemConfig.getTemplate().setData(gson.toJson(jsonObject));
             ItemMods.getPlugin().saveBaseConfig();
         }
     }
