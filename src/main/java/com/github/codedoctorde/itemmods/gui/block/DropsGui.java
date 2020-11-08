@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.request.ItemRequest;
-import com.github.codedoctorde.api.request.ItemRequestEvent;
+import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
@@ -48,7 +48,7 @@ public class DropsGui {
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                 event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
                 gui.close((Player) event.getWhoClicked());
-                new ItemRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new ItemRequestEvent() {
+                new ItemRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<ItemStack>() {
                     @Override
                     public void onEvent(Player player, ItemStack itemStack) {
                         blockConfig.getDrops().add(new DropConfig(itemStack));

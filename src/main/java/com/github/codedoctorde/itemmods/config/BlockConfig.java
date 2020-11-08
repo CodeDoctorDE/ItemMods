@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class BlockConfig {
     private final List<DropConfig> drops = new ArrayList<>();
     private String name;
-    private String tag;
+    private NamespacedKey key;
     private String displayName;
     private BlockData block;
     private boolean drop = true;
@@ -27,10 +28,10 @@ public class BlockConfig {
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
-    public BlockConfig(String name) {
+    public BlockConfig(NamespacedKey key, String name) {
+        this.key = key;
         this.name = name;
         this.displayName = name;
-        this.tag = "itemmods:" + name.replaceAll("\\s+", "");
     }
 
     public boolean checkBlock(BlockState block) {
@@ -47,6 +48,14 @@ public class BlockConfig {
 
     public List<CustomBlockTemplateData> getModifiers() {
         return modifiers;
+    }
+
+    public NamespacedKey getKey() {
+        return key;
+    }
+
+    public void setKey(NamespacedKey key) {
+        this.key = key;
     }
 
     @Nullable
@@ -68,14 +77,6 @@ public class BlockConfig {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag.replaceAll("\\s+", "");
     }
 
     public CustomBlockTemplateData getTemplate() {

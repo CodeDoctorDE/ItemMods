@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.resourcepack;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.config.ResourcePackConfig;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -24,6 +25,12 @@ public class ResourcePackGenerator {
         if(!packDir.mkdirs())
             Bukkit.getConsoleSender().sendMessage(translation.get("created").getAsString());
     }
+    public JsonObject createReferenceItemConfig(File referenceItemFile) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemFile), StandardCharsets.UTF_8));
+        JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(br, JsonObject.class);
+        JsonArray array = jsonObject.getAsJsonArray("overrides");
+        return jsonObject;
+    }
     public boolean exportDirectory() throws IOException {
         ConsoleCommandSender sender = Bukkit.getConsoleSender();
         File outputDir = new File(ItemMods.getPlugin().getDataFolder(), "pack");
@@ -35,9 +42,8 @@ public class ResourcePackGenerator {
         File referenceItemFile = new File(outputDir, "assets/minecraft/models/" + ItemMods.getPlugin().getMainConfig().getResourcePackConfig().getReferenceItem() + ".json");
         if (!referenceItemFile.exists() && (referenceItemFile.getParentFile().mkdirs() || !referenceItemFile.createNewFile()))
             return false;
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemFile), StandardCharsets.UTF_8));
 
-        JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(br, JsonObject.class);
+
         return true;
     }
 }
