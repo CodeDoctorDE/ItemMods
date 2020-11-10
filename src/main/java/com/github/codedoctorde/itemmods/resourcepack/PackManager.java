@@ -17,11 +17,11 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author CodeDoctorDE
  */
-public class ResourcePackGenerator {
+public class PackManager {
     private final File packDir;
     private final JsonObject translation;
     private final File configFile = new File(ItemMods.getPlugin().getDataFolder(), "config.json");
-    public ResourcePackGenerator() {
+    public PackManager() {
         packDir = new File(ItemMods.getPlugin().getDataFolder().getAbsolutePath(), "pack");
         translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject("pack");
         if(!packDir.mkdirs())
