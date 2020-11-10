@@ -6,14 +6,10 @@ import java.util.Set;
  * @author CodeDoctorDE
  */
 public class ResourcePackConfig {
-    private String referenceItem;
-    private Set<String> customTextures;
+    private String referenceItem = "assets/minecraft/models/item/coal.json";
+
     public ResourcePackConfig(){
 
-    }
-
-    public Set<String> getCustomTextures() {
-        return customTextures;
     }
 
     public String getReferenceItem() {
