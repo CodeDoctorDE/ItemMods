@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: default
+trigger:
+  branch:
+    - master
+platform:
+  os: linux
+  arch: arm
+steps:
