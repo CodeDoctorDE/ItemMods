@@ -7,4 +7,3 @@ trigger:
 platform:
   os: linux
   arch: arm
-steps:
