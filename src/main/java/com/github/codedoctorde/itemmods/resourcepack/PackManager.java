@@ -13,6 +13,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author CodeDoctorDE

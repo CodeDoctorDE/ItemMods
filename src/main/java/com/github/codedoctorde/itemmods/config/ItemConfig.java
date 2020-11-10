@@ -21,6 +21,7 @@ public class ItemConfig {
     private final List<String> onPickup = new ArrayList<>();
     private final List<String> onRightClick = new ArrayList<>();
     private String name;
+    private String namespace;
     private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
@@ -37,8 +38,8 @@ public class ItemConfig {
         this.tag = "itemmods:" + name.replaceAll("\\s+", "");
     }
 
-    NamespacedKey getTypeNamespace() {
-        return new NamespacedKey(ItemMods.getPlugin(), "type");
+    public String getNamespace() {
+        return namespace;
     }
 
     public @NotNull String getName() {
@@ -61,9 +62,9 @@ public class ItemConfig {
         if (other == null || other.getItemMeta() == null)
             return false;
         ItemMeta itemMeta = other.getItemMeta();
-        if (itemMeta == null || !itemMeta.getPersistentDataContainer().has(getTypeNamespace(), PersistentDataType.STRING))
+        if (itemMeta == null || !itemMeta.getPersistentDataContainer().has(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING))
             return false;
-        return itemMeta.getPersistentDataContainer().getOrDefault(getTypeNamespace(), PersistentDataType.STRING, "").equals(tag);
+        return itemMeta.getPersistentDataContainer().getOrDefault(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, "").equals(tag);
     }
 
     public boolean isCanRename() {
@@ -132,7 +133,7 @@ public class ItemConfig {
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
-        itemMeta.getPersistentDataContainer().set(getTypeNamespace(), PersistentDataType.STRING, tag);
+        itemMeta.getPersistentDataContainer().set(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, tag);
         give.setItemMeta(itemMeta);
         return give;
     }
