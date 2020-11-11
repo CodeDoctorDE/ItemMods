@@ -18,6 +18,7 @@
 
 ![Page](./assets/page.png)
 
+
 ## Contribute
 
 It will be cool if anybody can help me to maintain this plugin. If you have any question feel free to visit my discord and open a ticket.
