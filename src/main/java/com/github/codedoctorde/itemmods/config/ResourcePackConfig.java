@@ -47,9 +47,12 @@ public class ResourcePackConfig {
     }
 
     public void addResource(String namespace, String name){
+        String identifier = namespace.replace("[^a-zA-Z0-9.\\-_]", "_") + name;
+        if(resourceIdentifier.containsKey(identifier))
+            return;
         int index = 0;
         while(!resourceIdentifier.containsValue(index))
             index++;
-        resourceIdentifier.put(namespace.replace("[^a-zA-Z0-9.\\-_]", "_") + name, index);
+        resourceIdentifier.put(identifier, index);
     }
 }
