@@ -7,3 +7,13 @@ trigger:
 platform:
   os: linux
   arch: arm
+steps:
+  - name: push commit
+    image: appleboy/drone-git-push
+    settings:
+      branch: master
+      remote: git@github.com:CodeDoctorDE/ItemMods.git
+      force: false
+      commit: true
+      ssh_key:
+        from_secret: ssh_key
