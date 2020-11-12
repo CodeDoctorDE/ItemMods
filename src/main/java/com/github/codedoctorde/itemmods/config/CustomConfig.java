@@ -23,7 +23,7 @@ public abstract class CustomConfig {
     }
 
     public String getNamespace() {
-        return namespace;
+        return namespace.replace("[^a-zA-Z0-9.\\-_]", "_");
     }
 
     public void setNamespace(String namespace) {
@@ -39,6 +39,6 @@ public abstract class CustomConfig {
     }
 
     public String getIdentifier(){
-        return namespace.replace("[^a-zA-Z0-9.\\-_]", "_") + name;
+        return getNamespace() + ":" + getName();
     }
 }

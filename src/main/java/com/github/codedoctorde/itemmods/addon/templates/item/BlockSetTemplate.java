@@ -59,8 +59,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
         BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
         int itemIndex = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
         new ChooseBlockConfigGui(blockConfig -> {
-            data.setNamespace(blockConfig.getNamespace());
-            data.setName(blockConfig.getName());
+            data.setBlock(blockConfig.getIdentifier());
             data.save();
             new ItemGui(itemIndex).createGui().open(player);
         }).createGui(new ItemGui(itemIndex).createGui())[0].open(player);
@@ -81,17 +80,16 @@ public class BlockSetTemplate implements CustomItemTemplate {
     @Nullable
     public BlockConfig getBlock(ItemConfig customItem) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, customItem);
-        return ItemMods.getPlugin().getMainConfig().getBlock(data.getNamespace(), data.getName());
+        return ItemMods.getPlugin().getMainConfig().getBlock(data.getBlock());
     }
 
     public void setBlock(ItemConfig customItem, @Nullable BlockConfig blockConfig) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, customItem);
         if (blockConfig != null) {
-            data.setNamespace(blockConfig.getNamespace());
-            data.setName(blockConfig.getName());
+            data.setBlock(blockConfig.getIdentifier());
         }
         else
-            data.setNamespace(null);
+            data.setBlock(null);
         data.save();
     }
 
@@ -99,39 +97,32 @@ public class BlockSetTemplate implements CustomItemTemplate {
         private final ItemConfig itemConfig;
         private final BlockSetTemplate template;
         private final Gson gson = new Gson();
-        private String namespace;
-        private String name;
+        private String block;
 
         BlockSetTemplateData(BlockSetTemplate template, ItemConfig itemConfig) {
             this.template = template;
             this.itemConfig = itemConfig;
             assert itemConfig.getTemplate() != null;
             JsonObject jsonObject = gson.fromJson(itemConfig.getTemplate().getData(), JsonObject.class);
-            if (jsonObject.has("namespace") && jsonObject.get("namespace").isJsonPrimitive())
-                this.namespace = jsonObject.get("namespace").getAsString();
-            if (jsonObject.has("name") && jsonObject.get("name").isJsonPrimitive())
-                this.namespace = jsonObject.get("name").getAsString();
+            if (jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
+                block = jsonObject.get("block").getAsString();
         }
 
-        public String getNamespace() {
-            return namespace;
+        public BlockSetTemplate getTemplate() {
+            return template;
         }
 
-        public void setNamespace(String namespace) {
-            this.namespace = namespace;
+        public String getBlock() {
+            return block;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
+        public void setBlock(String block) {
+            this.block = block;
         }
 
         public void save() {
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("block", namespace);
+            jsonObject.addProperty("block", block);
             assert itemConfig.getTemplate() != null;
             itemConfig.getTemplate().setData(gson.toJson(jsonObject));
             ItemMods.getPlugin().saveBaseConfig();

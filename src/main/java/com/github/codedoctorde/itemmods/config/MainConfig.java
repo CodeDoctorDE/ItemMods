@@ -47,12 +47,12 @@ public class MainConfig {
 
     @Nullable
     public BlockConfig getBlock(String identifier) {
-        return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace) && blockConfig.getName().equals(name)).findFirst().orElse(null);
+        return blocks.stream().filter(blockConfig -> blockConfig.getIdentifier().equals(identifier)).findFirst().orElse(null);
     }
 
     public boolean createBlock(String namespace, String name) {
         BlockConfig blockConfig = new BlockConfig(namespace, name);
-        if (getBlock(namespace, name) != null)
+        if (getBlock(blockConfig.getIdentifier()) != null)
             return false;
         getBlocks().add(blockConfig);
         ItemMods.getPlugin().saveBaseConfig();

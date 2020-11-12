@@ -38,56 +38,27 @@ public class CustomBlockManager {
 
     /**
      * Get the custom block by the location
-     *
+     * @deprecated Use the {@link CustomBlock} constructor
      * @param location the location of the custom block
      * @return The custom block
      */
     @Nullable
+    @Deprecated
     public CustomBlock getCustomBlock(final Location location) {
-        Block block = location.getBlock();
-        for (BlockConfig blockConfig : ItemMods.getPlugin().getMainConfig().getBlocks())
-            if (blockConfig.getArmorStand() != null) {
-                Location entityLocation = location.clone().add(0.5, 0, 0.5);
-                List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
-                for (Entity entity : entities)
-                    if (entity instanceof ArmorStand && entity.getLocation().getY() == location.getY()) {
-                        CustomBlock customBlock = getCustomBlock((ArmorStand) entity, blockConfig);
-                        if (customBlock != null)
-                            return customBlock;
-                    }
-            } else if (block.getState() instanceof TileState) {
-                CustomBlock customBlock = getCustomBlock((TileState) block.getState(), blockConfig);
-                if (customBlock != null)
-                    return customBlock;
-            }
-        return null;
-    }
-
-    @Nullable
-    public CustomBlock getCustomBlock(final ArmorStand entity, BlockConfig blockConfig) {
-        return getCustomBlock(entity.getPersistentDataContainer(), entity, blockConfig, entity.getLocation());
-    }
-
-    @Nullable
-    public CustomBlock getCustomBlock(final TileState tileState, BlockConfig blockConfig) {
-        return getCustomBlock(tileState.getPersistentDataContainer(), null, blockConfig, tileState.getLocation());
+        return new CustomBlock(location);
     }
 
     /**
      * Get the custom block by the block
      *
+     * @deprecated Use the {@link CustomBlock} constructor
      * @param block the "real" block of the custom block
      * @return The custom block
      */
+    @Deprecated
     @Nullable
     public CustomBlock getCustomBlock(final Block block) {
         return getCustomBlock(block.getLocation());
-    }
-
-    @Nullable
-    public CustomBlock getCustomBlock(final ArmorStand entity, final Location location) {
-        CustomBlock customBlock = new CustomBlock(entity);
-        return customBlock.getConfig() != null ? customBlock:null;
     }
 
     public List<BlockConfig> getBlocks() {
@@ -115,11 +86,11 @@ public class CustomBlockManager {
         ArmorStand armorStand = null;
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
-        if (armorStandBlockConfig != null) armorStand = armorStandBlockConfig.spawn(location);
+        if (armorStandBlockConfig != null) armorStandBlockConfig.spawn(location);
         if (blockConfig.getNbt() != null)
             BlockNBT.setNbt(block, blockConfig.getNbt());
         if (location.getChunk().isLoaded())
-            loadedBlocks.add(new CustomBlock(location, armorStand));
+            loadedBlocks.add(new CustomBlock(location));
         return true;
     }
 

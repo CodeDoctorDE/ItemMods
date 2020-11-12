@@ -39,15 +39,14 @@ public class ResourcePackConfig {
         resourceIdentifier.clear();
         resourceIdentifier.putAll(defaultResourceIdentifier);
         ItemMods.getPlugin().getApi().getAddons().forEach(addons -> {
-            Arrays.stream(addons.getStaticCustomItems()).forEach(customItem -> addResource(customItem.getNamespace(), customItem.getName()));
-            Arrays.stream(addons.getStaticCustomBlocks()).forEach(customBlock -> addResource(customBlock.getNamespace(), customBlock.getName()));
+            Arrays.stream(addons.getStaticCustomItems()).forEach(customItem -> addResource(customItem.getIdentifier()));
+            Arrays.stream(addons.getStaticCustomBlocks()).forEach(customBlock -> addResource(customBlock.getIdentifier()));
         });
-        ItemMods.getPlugin().getMainConfig().getItems().forEach(itemConfig -> addResource(itemConfig.getNamespace(), itemConfig.getName()));
-        ItemMods.getPlugin().getMainConfig().getBlocks().forEach(blockConfig -> addResource(blockConfig.getNamespace(), blockConfig.getName()));
+        ItemMods.getPlugin().getMainConfig().getItems().forEach(itemConfig -> addResource(itemConfig.getIdentifier()));
+        ItemMods.getPlugin().getMainConfig().getBlocks().forEach(blockConfig -> addResource(blockConfig.getIdentifier()));
     }
 
-    public void addResource(String namespace, String name){
-
+    public void addResource(String identifier){
         if(resourceIdentifier.containsKey(identifier))
             return;
         int index = 0;

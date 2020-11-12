@@ -11,6 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
@@ -23,20 +24,13 @@ import java.util.Random;
 
 public class CustomBlock {
     private final Location location;
-    private ArmorStand armorStand;
-
-    public CustomBlock(ArmorStand armorStand) {
-        this(armorStand.getLocation());
-        this.armorStand = armorStand;
-    }
 
     public CustomBlock(Location location) {
         this.location = location;
-        this.armorStand = null;
     }
 
     public BlockConfig getConfig() {
-        return ItemMods.getPlugin().getMainConfig().getBlock(getIdentifier());;
+        return ItemMods.getPlugin().getMainConfig().getBlock(getIdentifier());
     }
 
     public Location getLocation() {
@@ -45,7 +39,9 @@ public class CustomBlock {
 
     @Nullable
     public ArmorStand getArmorStand() {
-        return armorStand;
+        Location entityLocation = location.clone().add(0.5, 0, 0.5);
+        List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
+        return (ArmorStand) entities.stream().filter(entity -> entity instanceof ArmorStand && entity.getLocation().getY() == location.getY()).findFirst().orElse(null);
     }
 
     public String getIdentifier(){
@@ -89,6 +85,7 @@ public class CustomBlock {
             TileState tileState = (TileState) blockState;
             return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
         }
+        ArmorStand armorStand = getArmorStand();
         if (armorStand != null) return armorStand.getPersistentDataContainer().get(key, PersistentDataType.STRING);
         return null;
     }
@@ -100,6 +97,7 @@ public class CustomBlock {
             tileState.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
             tileState.update();
         }
+        ArmorStand armorStand = getArmorStand();
         if (armorStand != null) {
             armorStand.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
         }
