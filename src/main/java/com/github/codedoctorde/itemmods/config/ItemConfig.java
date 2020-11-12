@@ -1,19 +1,20 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class ItemConfig {
+public class ItemConfig extends CustomConfig {
     private final List<String> onWear = new ArrayList<>();
     private final List<String> onOffHand = new ArrayList<>();
     private final List<String> onMainHand = new ArrayList<>();
@@ -29,13 +30,9 @@ public class ItemConfig {
     @Nullable
     private CustomItemTemplateData template;
     private final List<CustomItemTemplateData> modifiers = new ArrayList<>();
-    private String tag;
 
-
-    public ItemConfig(String name) {
-        this.displayName = name;
-        this.name = name;
-        this.tag = "itemmods:" + name.replaceAll("\\s+", "");
+    public ItemConfig(String namespace, String name) {
+        super(namespace, name);
     }
 
     public String getNamespace() {
@@ -58,13 +55,14 @@ public class ItemConfig {
         this.itemStack = itemStack;
     }
 
-    public boolean isSimilar(ItemStack other) {
-        if (other == null || other.getItemMeta() == null)
-            return false;
+    public boolean isSimilar(@NotNull ItemStack other) {
         ItemMeta itemMeta = other.getItemMeta();
-        if (itemMeta == null || !itemMeta.getPersistentDataContainer().has(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING))
+        if (itemMeta == null)
             return false;
-        return itemMeta.getPersistentDataContainer().getOrDefault(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, "").equals(tag);
+        PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+        String otherNamespace = container.get(new NamespacedKey(ItemMods.getPlugin(), "namespace"), PersistentDataType.STRING);
+        String otherName = container.get(new NamespacedKey(ItemMods.getPlugin(), "name"), PersistentDataType.STRING);
+        return Objects.equals(otherName, name) && Objects.equals(otherNamespace, namespace);
     }
 
     public boolean isCanRename() {
@@ -119,12 +117,8 @@ public class ItemConfig {
         return modifiers;
     }
 
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag.replaceAll("\\s+", "");
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
     }
 
     public ItemStack giveItemStack() {
@@ -133,7 +127,7 @@ public class ItemConfig {
         ItemStack give = itemStack.clone();
         ItemMeta itemMeta = give.getItemMeta();
         assert itemMeta != null;
-        itemMeta.getPersistentDataContainer().set(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, tag);
+        itemMeta.getPersistentDataContainer().set(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, getIdentifier());
         give.setItemMeta(itemMeta);
         return give;
     }

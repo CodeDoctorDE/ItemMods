@@ -4,7 +4,9 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MainConfig {
@@ -21,16 +23,22 @@ public class MainConfig {
         return items;
     }
 
-    public List<String> getItemTags() {
-        return items.stream().map(ItemConfig::getTag).collect(Collectors.toList());
+    public Set<String> getItemNames(String namespace) {
+        return items.stream().filter(itemConfig -> itemConfig.getNamespace().equals(namespace)).map(ItemConfig::getName).collect(Collectors.toSet());
     }
 
     public List<BlockConfig> getBlocks() {
         return blocks;
     }
 
-    public List<String> getBlockNames(String namespace) {
-        return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace)).map(BlockConfig::getName).collect(Collectors.toList());
+    public Set<String> getBlockNames(String namespace) {
+        return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace)).map(BlockConfig::getName).collect(Collectors.toSet());
+    }
+
+    public Set<String> getNamespaces(){
+        Set<String> namespaces = blocks.stream().map(BlockConfig::getNamespace).collect(Collectors.toSet());
+        items.stream().map(ItemConfig::getNamespace).forEach(namespaces::add);
+        return namespaces;
     }
 
     public DatabaseConfig getDatabaseConfig() {
@@ -38,7 +46,7 @@ public class MainConfig {
     }
 
     @Nullable
-    public BlockConfig getBlock(String namespace, String name) {
+    public BlockConfig getBlock(String identifier) {
         return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace) && blockConfig.getName().equals(name)).findFirst().orElse(null);
     }
 
@@ -52,8 +60,8 @@ public class MainConfig {
     }
 
     @Nullable
-    public ItemConfig getItem(String tag) {
-        return items.stream().filter(itemConfig -> itemConfig.getTag().equals(tag)).findFirst().orElse(null);
+    public ItemConfig getItem(String identifier) {
+        return items.stream().filter(itemConfig -> itemConfig.getIdentifier().equals(identifier)).findFirst().orElse(null);
     }
 
     public ResourcePackConfig getResourcePackConfig() {

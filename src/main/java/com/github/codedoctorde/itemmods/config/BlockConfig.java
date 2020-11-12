@@ -13,11 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BlockConfig {
+public class BlockConfig extends CustomConfig {
     private final List<DropConfig> drops = new ArrayList<>();
-    private String name;
-    private String namespace;
-    private String displayName;
     private BlockData block;
     private boolean drop = true;
     private boolean moving = false;
@@ -29,33 +26,15 @@ public class BlockConfig {
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
     public BlockConfig(String namespace, String name) {
-        this.namespace = namespace;
-        this.name = name;
-        this.displayName = name;
+        super(namespace, name);
     }
 
     public boolean checkBlock(BlockState block) {
         return armorStand != null || block instanceof TileState;
     }
 
-    public @NotNull String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<CustomBlockTemplateData> getModifiers() {
         return modifiers;
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
     }
 
     @Nullable
@@ -69,14 +48,6 @@ public class BlockConfig {
 
     public boolean isArmorStand() {
         return armorStand != null;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public CustomBlockTemplateData getTemplate() {
@@ -153,17 +124,14 @@ public class BlockConfig {
 
     @Nullable
     public ItemConfig getReferenceItemConfig() {
-        if (referenceItem == null)
-            return null;
-        else
-            return ItemMods.getPlugin().getMainConfig().getItem(referenceItem);
+        return referenceItem == null ? null : ItemMods.getPlugin().getMainConfig().getItem(referenceItem);
     }
 
     public void setReferenceItemConfig(@Nullable ItemConfig itemConfig) {
         if (itemConfig == null)
             this.referenceItem = null;
         else
-            this.referenceItem = itemConfig.getTag();
+            this.referenceItem = itemConfig.getIdentifier();
     }
 
     public BlockDirectionType getBlockDirectionType() {

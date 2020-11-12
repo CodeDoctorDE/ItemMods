@@ -85,8 +85,8 @@ public class CustomBlockManager {
     }
 
     @Nullable
-    public CustomBlock getCustomBlock(final PersistentDataContainer container, final ArmorStand entity, BlockConfig blockConfig, final Location location) {
-        CustomBlock customBlock = new CustomBlock(location, entity, blockConfig);
+    public CustomBlock getCustomBlock(final ArmorStand entity, final Location location) {
+        CustomBlock customBlock = new CustomBlock(entity);
         return customBlock.getConfig() != null ? customBlock:null;
     }
 
@@ -119,7 +119,7 @@ public class CustomBlockManager {
         if (blockConfig.getNbt() != null)
             BlockNBT.setNbt(block, blockConfig.getNbt());
         if (location.getChunk().isLoaded())
-            loadedBlocks.add(new CustomBlock(location, armorStand, blockConfig));
+            loadedBlocks.add(new CustomBlock(location, armorStand));
         return true;
     }
 

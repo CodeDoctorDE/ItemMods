@@ -23,35 +23,20 @@ import java.util.Random;
 
 public class CustomBlock {
     private final Location location;
-    private BlockConfig config = null;
     private ArmorStand armorStand;
 
-    public CustomBlock(Location location, BlockConfig config) {
-        this(location, null, config);
-    }
-
-    public CustomBlock(Location location, @Nullable ArmorStand armorStand, BlockConfig config) {
-        this.config = config;
-        this.location = location;
-        this.armorStand = armorStand;
-        if (getName() == null)
-            configure();
-    }
-
-    public CustomBlock(Location location, ArmorStand armorStand) {
-        this(location);
+    public CustomBlock(ArmorStand armorStand) {
+        this(armorStand.getLocation());
         this.armorStand = armorStand;
     }
 
     public CustomBlock(Location location) {
         this.location = location;
         this.armorStand = null;
-        ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(blockConfig ->
-                blockConfig.getName().equals(getName()) && blockConfig.getNamespace().equals(getNamespace())).forEach(itemConfig -> config = itemConfig);
     }
 
     public BlockConfig getConfig() {
-        return config;
+        return ItemMods.getPlugin().getMainConfig().getBlock(getIdentifier());;
     }
 
     public Location getLocation() {
@@ -63,25 +48,15 @@ public class CustomBlock {
         return armorStand;
     }
 
-    public String getNamespace(){
-        return getString(new NamespacedKey(ItemMods.getPlugin(), "key"));
+    public String getIdentifier(){
+        return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
     }
-    public void setNamespace(String key){
-        setString(new NamespacedKey(ItemMods.getPlugin(), "key"), key);
-    }
-    public String getName() {
-        return getString(new NamespacedKey(ItemMods.getPlugin(), "name"));
-    }
-
-    public void setName(String type) {
-        setString(new NamespacedKey(ItemMods.getPlugin(), "name"), type);
-    }
-
-    public String getType(){
-        return getNamespace() + ":"  + getName();
+    public void setIdentifier(String identifier){
+        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), identifier);
     }
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
+        BlockConfig config = getConfig();
         if (config == null || dropType == null) return false;
         if (config.getBlock() != null)
             getBlock().setType(Material.AIR);
@@ -134,9 +109,7 @@ public class CustomBlock {
      * Configure the PersistentTagContainer to the default values
      */
     public void configure() {
-        setName(config.getName());
-        setString(new NamespacedKey(ItemMods.getPlugin(), "name"), config.getName());
-        setString(new NamespacedKey(ItemMods.getPlugin(), "namespace"), config.getNamespace());
+        setIdentifier(getConfig().getIdentifier());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 
