@@ -2,9 +2,9 @@ package com.github.codedoctorde.itemmods.resourcepack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.config.MainConfig;
-import com.github.codedoctorde.itemmods.config.ResourcePackConfig;
+import com.github.codedoctorde.itemmods.config.*;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
@@ -13,6 +13,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +34,35 @@ public class PackManager {
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemFile), StandardCharsets.UTF_8));
         JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(br, JsonObject.class);
         JsonArray array = jsonObject.getAsJsonArray("overrides");
+        ItemMods.getPlugin().getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemConfig -> array.add(createItem(getNextIndex(array), itemConfig.getIdentifier())));
+        ItemMods.getPlugin().getMainConfig().getBlocks().stream().filter(CustomConfig::isPack).forEach(blockConfig -> array.add(createItem(getNextIndex(array), blockConfig.getIdentifier())));
+        ItemMods.getPlugin().getApi().getAddons().forEach(addon -> {
+            Arrays.stream(addon.getStaticCustomItems()).forEach(item -> array.add(createItem(getNextIndex(array), item.getIdentifier())));
+            Arrays.stream(addon.getStaticCustomBlocks()).forEach(block -> array.add(createItem(getNextIndex(array), block.getIdentifier())));
+        });
+
+        jsonObject.add("overrides", array);
         return jsonObject;
     }
-    public boolean exportDirectory() throws IOException {
+    private JsonObject createItem(int index, String tag){
+        JsonObject object = new JsonObject();
+        JsonObject predicate = new JsonObject();
+        predicate.addProperty("custom_model_data", index);
+        object.add("predicate", predicate);
+        object.addProperty("model", tag);
+        return object;
+    }
+    private int getNextIndex(JsonArray array){
+        int index = 1;
+        boolean exist = false;
+        while(!exist) for (JsonElement object :
+                array)
+            if (object.getAsJsonObject().get("predicate").isJsonObject() &&
+                    object.getAsJsonObject().getAsJsonObject("predicate").get("custom_model_data").getAsInt() == index)
+                exist = true;
+        return index;
+    }
+    public boolean exportDirectory(String name) throws IOException {
         ConsoleCommandSender sender = Bukkit.getConsoleSender();
         File outputDir = new File(ItemMods.getPlugin().getDataFolder(), "pack");
         if(outputDir.exists()) if (outputDir.delete())

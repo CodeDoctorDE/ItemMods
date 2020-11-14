@@ -9,6 +9,7 @@ public abstract class CustomConfig {
     private String name;
     private String namespace;
     private String displayName;
+    private boolean pack = false;
     public CustomConfig(String namespace, String name){
         this.name = name;
         this.namespace = namespace;
@@ -40,5 +41,13 @@ public abstract class CustomConfig {
 
     public String getIdentifier(){
         return getNamespace() + ":" + getName();
+    }
+
+    public boolean isPack() {
+        return pack;
+    }
+
+    public void setPack(boolean pack) {
+        this.pack = pack;
     }
 }
