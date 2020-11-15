@@ -2,36 +2,38 @@ package com.github.codedoctorde.itemmods.resourcepack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.config.*;
+import com.github.codedoctorde.itemmods.config.CustomConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author CodeDoctorDE
  */
 public class PackManager {
-    private final File packDir;
-    private final JsonObject translation;
-    private final File configFile = new File(ItemMods.getPlugin().getDataFolder(), "config.json");
-    public PackManager() {
-        packDir = new File(ItemMods.getPlugin().getDataFolder().getAbsolutePath(), "pack");
-        translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject("pack");
-        if(!packDir.mkdirs())
-            Bukkit.getConsoleSender().sendMessage(translation.get("created").getAsString());
+    private final Path packDir;
+    private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
+    public PackManager() throws IOException {
+        packDir = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
+        try {
+            Files.createDirectory(packDir);
+        }catch(FileAlreadyExistsException ignored){
+
+        }
     }
-    public JsonObject createReferenceItemConfig(File referenceItemFile) throws FileNotFoundException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemFile), StandardCharsets.UTF_8));
+    public JsonObject createReferenceItemConfig(Path referenceItemPath) throws FileNotFoundException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemPath.toString()), StandardCharsets.UTF_8));
         JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(br, JsonObject.class);
         JsonArray array = jsonObject.getAsJsonArray("overrides");
         ItemMods.getPlugin().getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemConfig -> array.add(createItem(getNextIndex(array), itemConfig.getIdentifier())));
@@ -43,6 +45,10 @@ public class PackManager {
 
         jsonObject.add("overrides", array);
         return jsonObject;
+    }
+    private String[] getPacks() throws IOException {
+        return Files.walk(packDir)
+                .filter(Files::isDirectory).map(path -> path.getFileName().toString()).toArray(String[]::new);
     }
     private JsonObject createItem(int index, String tag){
         JsonObject object = new JsonObject();
@@ -62,26 +68,32 @@ public class PackManager {
                 exist = true;
         return index;
     }
-    public boolean exportDirectory(String name) throws IOException {
-        ConsoleCommandSender sender = Bukkit.getConsoleSender();
-        File outputDir = new File(ItemMods.getPlugin().getDataFolder(), "pack");
-        if(outputDir.exists()) if (outputDir.delete())
-            sender.sendMessage(translation.get("delete").getAsString());
-        if(outputDir.mkdirs())
-            sender.sendMessage(translation.get("create").getAsString());
+
+    /**
+     *
+     * @param name The name of the resource pack
+     * @throws IOException When there are problems while creating the resource pack
+     * @throws IllegalArgumentException If the name is invalid
+     */
+    public void exportDirectory(String name) throws IOException, IllegalArgumentException {
+        Path outputDir = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "export/" + name);
+        Path currentDir = Paths.get(packDir.toString(), name);
+        if (NAME_PATTERN.matcher(name).matches() || name.startsWith(".") || name.startsWith("/") || !Files.exists(currentDir))
+            throw new IllegalArgumentException();
+        Files.createDirectories(outputDir);
         for (ItemModsAddon addon:
              ItemMods.getPlugin().getApi().getAddons()) {
-            URL url = addon.getClass().getResource("assets");
-            if(url != null)
-                FileUtils.copyURLToFile(url, packDir);
+            InputStream stream = addon.getClass().getResourceAsStream("assets");
+            if(stream != null)
+                Files.copy(stream, outputDir);
         }
-        FileUtils.copyDirectory(packDir, outputDir);
-        File referenceItemFile = new File(outputDir, ItemMods.getPlugin().getMainConfig().getResourcePackConfig().getReferenceItem());
-        if (!referenceItemFile.exists() && (referenceItemFile.getParentFile().mkdirs() || !referenceItemFile.createNewFile()))
-            return false;
-        createReferenceItemConfig(referenceItemFile);
-
-
-        return true;
+        if(!name.equals("default"))
+            Files.copy(Paths.get(packDir.toString(), "default"), outputDir);
+        Files.copy(currentDir, outputDir);
+        Path referenceItemPath = Paths.get(outputDir.toString(), ItemMods.getPlugin().getMainConfig().getResourcePackConfig().getReferenceItem());
+        Files.createFile(referenceItemPath);
+        if (!Files.exists(referenceItemPath))
+            throw new IllegalArgumentException();
+        createReferenceItemConfig(referenceItemPath);
     }
 }

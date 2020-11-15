@@ -16,6 +16,7 @@ import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
+import com.github.codedoctorde.itemmods.resourcepack.PackManager;
 import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
 import com.github.codedoctorde.itemmods.utils.PluginMetrics;
 import com.google.gson.Gson;
@@ -29,10 +30,10 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -41,7 +42,7 @@ import java.util.Objects;
 public class ItemMods extends JavaPlugin {
     public static final String version = "§6CONDUIT 1.5";
     private static ItemMods plugin;
-    private final File baseConfig = new File(getDataFolder(), "config.json");
+    private final Path baseConfig = Paths.get(getDataFolder().getPath(), "config.json");
     private final Gson gson;
     private CodeDoctorAPI codeDoctorAPI;
     private UpdateChecker updateChecker;
@@ -50,6 +51,7 @@ public class ItemMods extends JavaPlugin {
     private ItemModsApi api;
     private ObjectConfig translationConfig;
     private GiveItemCommand giveItemCommand;
+    private PackManager packManager;
     private Connection connection;
 
     public ItemMods() {
@@ -77,12 +79,17 @@ public class ItemMods extends JavaPlugin {
         PluginMetrics.runMetrics();
         if (Version.getVersion() == Version.UNKNOWN)
             Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
+        try {
+            packManager = new PackManager();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         try {
-            if (!baseConfig.exists())
-                baseConfig.createNewFile();
-            mainConfig = gson.fromJson(new FileReader(baseConfig), MainConfig.class);
+            if (!Files.exists(baseConfig))
+                Files.createFile(baseConfig);
+            mainConfig = gson.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
         } catch (Exception ex) {
             ex.printStackTrace();
             mainConfig = new MainConfig();
@@ -132,7 +139,7 @@ public class ItemMods extends JavaPlugin {
 
     public void saveBaseConfig() {
         try {
-            FileWriter writer = new FileWriter(baseConfig);
+            FileWriter writer = new FileWriter(baseConfig.toString());
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(gson.toJson(mainConfig));
             bw.close();
@@ -177,5 +184,9 @@ public class ItemMods extends JavaPlugin {
 
     public ItemModsApi getApi() {
         return api;
+    }
+
+    public PackManager getPackManager() {
+        return packManager;
     }
 }
