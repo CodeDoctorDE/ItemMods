@@ -3,13 +3,11 @@ package com.github.codedoctorde.itemmods.api.block;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -52,6 +50,17 @@ public class CustomBlock {
     }
     public void setIdentifier(String identifier){
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), identifier);
+    }
+
+    public boolean breakBlock(Player player){
+        if (player.getGameMode() == GameMode.CREATIVE)
+            return breakBlock(CustomBlock.BlockDropType.NOTHING, player);
+        else if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
+            return breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, player);
+        else if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
+            return breakBlock(CustomBlock.BlockDropType.FORTUNE, player);
+        else
+            return breakBlock(CustomBlock.BlockDropType.DROP, player);
     }
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
@@ -110,7 +119,6 @@ public class CustomBlock {
      * Configure the PersistentTagContainer to the default values
      */
     public void configure() {
-        setIdentifier(getConfig().getIdentifier());
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 

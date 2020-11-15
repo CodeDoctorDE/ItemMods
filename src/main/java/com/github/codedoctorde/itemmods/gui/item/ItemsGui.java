@@ -59,7 +59,7 @@ public class ItemsGui {
         }, new GuiListEvent() {
             @Override
             public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index + 1, size);
+                return MessageFormat.format(guiTranslation.get("title").getAsString(), index, size);
             }
 
             @Override

@@ -11,6 +11,9 @@ public class CustomItemTemplateData {
     private String name;
     private String data = "";
 
+    public CustomItemTemplateData(){
+
+    }
     public CustomItemTemplateData(String name) {
         this.name = name;
     }

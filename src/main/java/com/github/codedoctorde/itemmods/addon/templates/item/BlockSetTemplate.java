@@ -42,7 +42,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
     public ItemStack getMainIcon(ItemConfig itemConfig) {
         BlockConfig blockConfig = getBlock(itemConfig);
         if (blockConfig != null)
-            return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("has")).format(blockConfig.getNamespace(), blockConfig.getName()).build();
+            return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("has")).format(blockConfig.getIdentifier()).build();
         else
             return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("null")).build();
     }
@@ -104,7 +104,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             this.itemConfig = itemConfig;
             assert itemConfig.getTemplate() != null;
             JsonObject jsonObject = gson.fromJson(itemConfig.getTemplate().getData(), JsonObject.class);
-            if (jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
+            if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
                 block = jsonObject.get("block").getAsString();
         }
 

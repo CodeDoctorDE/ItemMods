@@ -34,7 +34,7 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(PlayerInteractEvent event) {
-        if (event.getItem() == null || event.useItemInHand() != Event.Result.DENY ||
+        if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
                 event.getAction() != Action.RIGHT_CLICK_BLOCK ||
                 event.getClickedBlock() == null)
             return;
@@ -99,16 +99,7 @@ public class CustomBlockListener implements Listener {
         if (customBlock.getConfig() == null)
             return;
         event.setCancelled(true);
-        boolean finished;
-        if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, event.getPlayer());
-        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, event.getPlayer());
-        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE, event.getPlayer());
-        else
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP, event.getPlayer());
-        if (!finished)
+        if (!customBlock.breakBlock(event.getPlayer()))
             return;
         event.getBlock().setType(Material.AIR);
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
@@ -180,7 +171,7 @@ public class CustomBlockListener implements Listener {
         if(customItem.getConfig() == null)
             return;
         CustomItemTemplateData data = customItem.getConfig().getTemplate();
-        if (data == null || data.getInstance() == null || !(data.getInstance() instanceof BlockSetTemplate))
+        if (data.getInstance() == null || !(data.getInstance() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) data.getInstance();
         if (template.getBlock(customItem) == null || item.getAmount() < customItem.getConfig().getItemStack().getAmount())
@@ -209,12 +200,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (!(event.getDamager() instanceof Player))
             return;
-        if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
-            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, (Player) event.getDamager());
-        else if (((Player) event.getDamager()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, (Player) event.getDamager());
-        else
-            customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());
+        customBlock.breakBlock((Player) event.getDamager());
     }
 
     public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event) {

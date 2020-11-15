@@ -72,7 +72,7 @@ public class CustomBlockManager {
      * @return Returns if it was placed!
      */
     public boolean setCustomBlock(Location location, BlockConfig blockConfig, Player player) {
-        if (getCustomBlock(location) != null)
+        if (new CustomBlock(location).getConfig() != null)
             return false;
         if (location.getBlock().getType().isSolid())
             return false;
@@ -90,7 +90,10 @@ public class CustomBlockManager {
         if (blockConfig.getNbt() != null)
             BlockNBT.setNbt(block, blockConfig.getNbt());
         if (location.getChunk().isLoaded())
-            loadedBlocks.add(new CustomBlock(location));
+            loadedBlocks.add(new CustomBlock(location){{
+                setIdentifier(blockConfig.getIdentifier());
+                configure();
+            }});
         return true;
     }
 
