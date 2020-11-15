@@ -28,6 +28,9 @@ public class CustomBlock {
     public CustomBlock(Location location) {
         this.location = location;
     }
+    public CustomBlock(Block block){
+        this(block.getLocation());
+    }
 
     public BlockConfig getConfig() {
         return ItemMods.getPlugin().getMainConfig().getBlock(getIdentifier());

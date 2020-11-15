@@ -15,36 +15,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class ItemConfig extends CustomConfig {
-    private final List<String> onWear = new ArrayList<>();
-    private final List<String> onOffHand = new ArrayList<>();
-    private final List<String> onMainHand = new ArrayList<>();
-    private final List<String> onDrop = new ArrayList<>();
-    private final List<String> onPickup = new ArrayList<>();
-    private final List<String> onRightClick = new ArrayList<>();
-    private String name;
-    private String namespace;
-    private String displayName;
     private ItemStack itemStack;
     private boolean canRename = true;
-    private Integer hardness = null;
     @Nullable
     private CustomItemTemplateData template;
     private final List<CustomItemTemplateData> modifiers = new ArrayList<>();
 
     public ItemConfig(String namespace, String name) {
         super(namespace, name);
-    }
-
-    public String getNamespace() {
-        return namespace;
-    }
-
-    public @NotNull String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ItemStack getItemStack() {
@@ -60,9 +38,8 @@ public class ItemConfig extends CustomConfig {
         if (itemMeta == null)
             return false;
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
-        String otherNamespace = container.get(new NamespacedKey(ItemMods.getPlugin(), "namespace"), PersistentDataType.STRING);
-        String otherName = container.get(new NamespacedKey(ItemMods.getPlugin(), "name"), PersistentDataType.STRING);
-        return Objects.equals(otherName, name) && Objects.equals(otherNamespace, namespace);
+        String otherIdentifier = container.get(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING);
+        return Objects.equals(otherIdentifier, getIdentifier());
     }
 
     public boolean isCanRename() {
@@ -71,38 +48,6 @@ public class ItemConfig extends CustomConfig {
 
     public void setCanRename(boolean canRename) {
         this.canRename = canRename;
-    }
-
-    public List<String> getOnDrop() {
-        return onDrop;
-    }
-
-    public List<String> getOnWear() {
-        return onWear;
-    }
-
-    public List<String> getOnMainHand() {
-        return onMainHand;
-    }
-
-    public List<String> getOnOffHand() {
-        return onOffHand;
-    }
-
-    public List<String> getOnPickup() {
-        return onPickup;
-    }
-
-    public List<String> getOnRightClick() {
-        return onRightClick;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public @Nullable CustomItemTemplateData getTemplate() {
@@ -117,10 +62,6 @@ public class ItemConfig extends CustomConfig {
         return modifiers;
     }
 
-    public void setNamespace(String namespace) {
-        this.namespace = namespace;
-    }
-
     public ItemStack giveItemStack() {
         if (itemStack == null)
             return null;
@@ -130,13 +71,5 @@ public class ItemConfig extends CustomConfig {
         itemMeta.getPersistentDataContainer().set(new NamespacedKey(ItemMods.getPlugin(), "type"), PersistentDataType.STRING, getIdentifier());
         give.setItemMeta(itemMeta);
         return give;
-    }
-
-    public Integer getHardness() {
-        return hardness;
-    }
-
-    public void setHardness(Integer hardness) {
-        this.hardness = hardness;
     }
 }

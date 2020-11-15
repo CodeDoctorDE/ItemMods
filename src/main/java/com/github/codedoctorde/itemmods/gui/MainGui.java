@@ -58,19 +58,19 @@ public class MainGui {
                     new AddonsGui().createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }));
-            getGuiItems().put(9 * 4 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("spigot")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 5 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("spigot")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("spigot").get("message").getAsString());
                 }
             }));
-            getGuiItems().put(9 * 4 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("support")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 5 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("support")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("support").get("message").getAsString());
                 }
             }));
-            getGuiItems().put(9 * 4 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("wiki")).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 5 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("wiki")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("wiki").get("message").getAsString());
