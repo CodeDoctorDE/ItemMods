@@ -8,6 +8,6 @@ import com.github.codedoctorde.itemmods.config.ItemConfig;
  */
 public abstract class StaticCustomItem extends ItemConfig implements CustomItemTemplate {
     public StaticCustomItem(ItemModsAddon addon, String name) {
-        super(name);
+        super(addon.getName(), name);
     }
 }

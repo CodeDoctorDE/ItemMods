@@ -188,24 +188,24 @@ public class ItemGui {
 
                 }
             }) : new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
-            getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(itemConfig.getTag()).build(), new GuiItemEvent() {
+            getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("namespace")).format(itemConfig.getNamespace()).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     gui.close((Player) event.getWhoClicked());
-                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
+                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("namespace").get("message").getAsString());
                     new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                         @Override
                         public void onEvent(Player player, String output) {
                             output = ChatColor.translateAlternateColorCodes('&', output);
-                            itemConfig.setTag(output);
+                            itemConfig.setNamespace(output);
                             ItemMods.getPlugin().saveBaseConfig();
-                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
+                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("namespace").get("success").getAsString(), output));
                             createGui().open(player);
                         }
 
                         @Override
                         public void onCancel(Player player) {
-                            player.sendMessage(guiTranslation.getAsJsonObject("tag").get("cancel").getAsString());
+                            player.sendMessage(guiTranslation.getAsJsonObject("namespace").get("cancel").getAsString());
                             createGui().open(player);
                         }
                     });

@@ -50,12 +50,12 @@ public class PackManager {
         return Files.walk(packDir)
                 .filter(Files::isDirectory).map(path -> path.getFileName().toString()).toArray(String[]::new);
     }
-    private JsonObject createItem(int index, String tag){
+    private JsonObject createItem(int index, String identifier){
         JsonObject object = new JsonObject();
         JsonObject predicate = new JsonObject();
         predicate.addProperty("custom_model_data", index);
         object.add("predicate", predicate);
-        object.addProperty("model", tag);
+        object.addProperty("model", identifier);
         return object;
     }
     private int getNextIndex(JsonArray array){

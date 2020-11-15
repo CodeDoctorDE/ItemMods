@@ -44,7 +44,7 @@ public class ItemsGui {
                     @Override
                     public void onEvent(Player player, String output) {
                         output = ChatColor.translateAlternateColorCodes('&', output);
-                        mainConfig.getItems().add(new ItemConfig(output));
+                        mainConfig.getItems().add(new ItemConfig("itemmods", output));
                         ItemMods.getPlugin().saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
                         Objects.requireNonNull(createGuis())[0].open(player);

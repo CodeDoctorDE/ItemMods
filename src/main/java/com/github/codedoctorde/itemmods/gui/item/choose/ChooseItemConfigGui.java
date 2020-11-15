@@ -33,7 +33,7 @@ public class ChooseItemConfigGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getTag().contains(s)).map(itemConfig -> new GuiItem(itemConfig.getItemStack(), new GuiItemEvent() {
+                return ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getNamespace().contains(s) || itemConfig.getName().contains(s)).map(itemConfig -> new GuiItem(itemConfig.getItemStack(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         itemConfigEvent.onEvent(itemConfig);

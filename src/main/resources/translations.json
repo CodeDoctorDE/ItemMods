@@ -99,9 +99,9 @@
               "§7Drop » Refresh"
             ],
             "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-            "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-            "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-            "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+            "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+            "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+            "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
           },
           "addon": {
             "noconfig": "§eItemMods §7» §cThere is no config for this addon!"
@@ -163,9 +163,9 @@
               "§7Drop » Refresh"
             ],
             "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-            "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-            "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-            "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+            "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+            "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+            "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
           },
           "addon": {
             "noconfig": "§eItemMods §7» §cThere is no config for this addon!"
@@ -218,9 +218,9 @@
               "§7Drop » Refresh"
             ],
             "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-            "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-            "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-            "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+            "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+            "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+            "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
           },
           "addon": {
             "noconfig": "§eItemMods §7» §cThere is no config for this addon!"
@@ -273,9 +273,9 @@
               "§7Drop » Refresh"
             ],
             "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-            "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-            "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-            "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+            "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+            "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+            "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
           },
           "placeholder": {
             "material": "BLACK_STAINED_GLASS_PANE",
@@ -330,9 +330,9 @@
           "§7Drop » Refresh"
         ],
         "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-        "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-        "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+        "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+        "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
       },
       "addon": {
         "noconfig": "§eItemMods §7» §cThere is no config for this addon!"
@@ -385,9 +385,9 @@
           "§7Drop » Refresh"
         ],
         "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-        "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-        "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+        "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+        "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
       },
       "create": {
         "material": "KNOWLEDGE_BOOK",
@@ -397,7 +397,7 @@
           "§7Click to create a new item"
         ],
         "message": "§eItemMods §7» §ePlease enter the item name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the creation!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the creation!",
         "success": "§eItemMods §7» §aSuccessfully created the item {0}!"
       },
       "item": {
@@ -457,9 +457,9 @@
           "§7Drop » Refresh"
         ],
         "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-        "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-        "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+        "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+        "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
       },
       "create": {
         "material": "KNOWLEDGE_BOOK",
@@ -469,7 +469,7 @@
           "§7Click to create a new item"
         ],
         "message": "§eItemMods §7» §ePlease drop the drop! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the creation!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the creation!",
         "success": "§eItemMods §7» §aSuccessfully created a new drop!"
       },
       "drop": {
@@ -684,7 +684,7 @@
         ],
         "success": "§eItemMods §7» §aSuccessfully set the name to §3{0}§a!",
         "message": "§eItemMods §7» §ePlease enter the name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the name!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the name!"
       },
       "displayname": {
         "material": "BOOK",
@@ -696,19 +696,19 @@
         ],
         "success": "§eItemMods §7» §aSuccessfully set the display name to §3{0}§a!",
         "message": "§eItemMods §7» §ePlease enter the display name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the display name!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the input!"
       },
-      "tag": {
+      "namespace": {
         "material": "ANVIL",
-        "name": "§eTag",
+        "name": "§eNamespace",
         "lore": [
           "§3{0}",
           "",
-          "§7Click to set the tag of the item"
+          "§7Click to set the namespace of the item"
         ],
-        "success": "§eItemMods §7» §aSuccessfully set the tag to §3{0}§a!",
-        "message": "§eItemMods §7» §ePlease enter the tag! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the tag!"
+        "success": "§eItemMods §7» §aSuccessfully set the namespace to §3{0}§a!",
+        "message": "§eItemMods §7» §ePlease enter the namespace! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the input!"
       },
       "back": {
         "material": "REDSTONE",
@@ -867,7 +867,7 @@
         "success": "§eItemMods §7» §aSuccessfully set the display name to §3{0}§a!",
         "remove": "§eItemMods §7» §aSuccessfully removed the display name!",
         "message": "§eItemMods §7» §ePlease enter the displayname! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the displayname!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the displayname!"
       },
       "lore": {
         "material": "BOOK",
@@ -885,7 +885,7 @@
         "remove": "§eItemMods §7» §aSuccessfully removed latest lore line!",
         "empty": "§eItemMods §7» §aSuccessfully add a empty lore line!",
         "message": "§eItemMods §7» §ePlease enter a new lore line! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel it!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel it!",
         "get": "§eItemMods §7» §eThe lore: \n§5{0}",
         "delimiter": "§7 \r\n§5",
         "null": "§eItemMods §7» §cThere is no lore!"
@@ -1000,9 +1000,9 @@
           "§7Drop » Refresh"
         ],
         "message": "§eItemMods §7» §ePlease enter the search input! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the search",
-        "reset": "§eItemMods §7» §aYou successfully reset the filter!",
-        "refresh": "§eItemMods §7» §aYou successfully refresh the list!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the search",
+        "reset": "§eItemMods §7» §aSuccessfully reset the filter!",
+        "refresh": "§eItemMods §7» §aSuccessfully refresh the list!"
       },
       "create": {
         "material": "KNOWLEDGE_BOOK",
@@ -1012,9 +1012,9 @@
           "§7Click to create a new block"
         ],
         "message": "§eItemMods §7» §ePlease enter the block name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the creation!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the creation!",
         "success": "§eItemMods §7» §aSuccessfully created the block {0}!",
-        "already": "§eItemMods §7» §cThere is already a block with this tag!"
+        "already": "§eItemMods §7» §cThere is already a block with this identifier!"
       },
       "block": {
         "material": "GRASS_BLOCK",
@@ -1044,7 +1044,7 @@
             "",
             "§7Yes, delete §3{0} §3#{1}§7!"
           ],
-          "success": "§eItemMods §7» §aYou successfully delete the block §3{0} §3#{1}§a!"
+          "success": "§eItemMods §7» §aSuccessfully delete the block §3{0} §3#{1}§a!"
         },
         "no": {
           "material": "RED_BANNER",
@@ -1078,7 +1078,7 @@
         ],
         "success": "§eItemMods §7» §aSuccessfully set the name to §3{0}§a!",
         "message": "§eItemMods §7» §ePlease enter the name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the name!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the name!"
       },
       "displayname": {
         "material": "BOOK",
@@ -1090,19 +1090,19 @@
         ],
         "success": "§eItemMods §7» §aSuccessfully set the display name to §3{0}§a!",
         "message": "§eItemMods §7» §ePlease enter the display name! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the display name!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the display name!"
       },
-      "tag": {
+      "namespace": {
         "material": "ANVIL",
-        "name": "§eTag",
+        "name": "§eNamespace",
         "lore": [
           "§3{0}",
           "",
-          "§7Click to set the tag of the item"
+          "§7Click to set the namespace of the item"
         ],
-        "success": "§eItemMods §7» §aSuccessfully set the tag to §3{0}§a!",
-        "message": "§eItemMods §7» §ePlease enter the tag! Cancel with a punch in the air!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the tag!"
+        "success": "§eItemMods §7» §aSuccessfully set the namespace to §3{0}§a!",
+        "message": "§eItemMods §7» §ePlease enter the namespace! Cancel with a punch in the air!",
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the namespace!"
       },
       "item": {
         "no": {
@@ -1204,7 +1204,7 @@
         "remove": "§eItemMods §7» §aSuccessfully removed the block!",
         "message": "§eItemMods §7» §ePlease break the block! Cancel with a punch in the air!",
         "error": "§eItemMods §7» §cYou need to set a block entity or an armor stand as block!",
-        "cancel": "§eItemMods §7» §cYou successfully cancel the block input!"
+        "cancel": "§eItemMods §7» §cSuccessfully cancel the block input!"
       },
       "get": {
         "material": "GOLD_NUGGET",
@@ -1367,10 +1367,10 @@
         },
         "success": "§eItemMods §7» §aSuccessfully set the custom name to §3{0}§a!",
         "message": "§eItemMods §7» §ePlease enter a custom name for the armor stand!",
-        "cancel": "§eItemMods §7» §aYou successfully cancel it!",
-        "remove": "§eItemMods §7» §aYou successfully removed the custom name!",
-        "on": "§eItemMods §7» §aYou successfully turned the custom name visibility on!",
-        "off": "§eItemMods §7» §aYou successfully turned the custom name visibility off!"
+        "cancel": "§eItemMods §7» §aSuccessfully cancel it!",
+        "remove": "§eItemMods §7» §aSuccessfully removed the custom name!",
+        "on": "§eItemMods §7» §aSuccessfully turned the custom name visibility on!",
+        "off": "§eItemMods §7» §aSuccessfully turned the custom name visibility off!"
       },
       "marker": {
         "yes": {

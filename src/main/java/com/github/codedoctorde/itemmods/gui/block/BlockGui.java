@@ -92,23 +92,23 @@ public class BlockGui {
                         });
                     }
                 }));
-                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("tag")).format(blockConfig.getNamespace()).build(), new GuiItemEvent() {
+                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("namespace")).format(blockConfig.getNamespace()).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("tag").get("message").getAsString());
+                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("namespace").get("message").getAsString());
                         gui.close((Player) event.getWhoClicked());
                         new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setNamespace(output);
                                 ItemMods.getPlugin().saveBaseConfig();
-                                player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("tag").get("success").getAsString(), output));
+                                player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("namespace").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
 
                             @Override
                             public void onCancel(Player player) {
-                                player.sendMessage(guiTranslation.getAsJsonObject("tag").get("cancel").getAsString());
+                                player.sendMessage(guiTranslation.getAsJsonObject("namespace").get("cancel").getAsString());
                             }
                         });
                     }

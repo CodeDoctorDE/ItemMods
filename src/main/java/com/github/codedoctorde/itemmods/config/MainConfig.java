@@ -3,10 +3,7 @@ package com.github.codedoctorde.itemmods.config;
 import com.github.codedoctorde.itemmods.ItemMods;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MainConfig {
