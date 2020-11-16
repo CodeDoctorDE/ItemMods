@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -29,27 +30,12 @@ public class CustomItemTemplateData {
         this.data = data;
     }
 
-    public CustomItemTemplate getInstance() {
-        if (name == null)
-            return null;
-        try {
-            return ItemMods.getPlugin().getApi().getItemTemplate(name);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        name = null;
-        return null;
-    }
-
-    public void setInstance(@Nullable CustomItemTemplate blockTemplate) {
-        name = blockTemplate == null ? null : blockTemplate.getClass().getName();
+    @NotNull
+    public CustomItemTemplate getInstance() throws ClassNotFoundException {
+        return ItemMods.getPlugin().getApi().getItemTemplate(name);
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
