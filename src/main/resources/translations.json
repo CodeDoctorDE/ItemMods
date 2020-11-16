@@ -654,7 +654,7 @@
         ]
       },
       "support": {
-        "message": "§eItemMods §7» §fClick here: https://discord.gg/",
+        "message": "§eItemMods §7» §fClick here: https://discord.gg/WzcRNGF",
         "material": "EMERALD",
         "name": "§eSupport",
         "lore": [
@@ -748,6 +748,26 @@
         ],
         "success": "§eItemMods §7» §aSuccessfully gave you the item!",
         "null": "§eItemMods §7» §cThere is no item!"
+      },
+      "modifiers": {
+        "has": {
+          "material": "IRON_AXE",
+          "name": "§eModifiers",
+          "lore": [
+            "",
+            "§7Click here to get to ",
+            "§7the modifiers list"
+          ]
+        },
+        "no-item": {
+          "material": "IRON_AXE",
+          "name": "§eModifiers",
+          "lore": [
+            "",
+            "§cYou need to set an item ",
+            "§cbefore choosing the modifiers!"
+          ]
+        }
       },
       "rename": {
         "yes": {
