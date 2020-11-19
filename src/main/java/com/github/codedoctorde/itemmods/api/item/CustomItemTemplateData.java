@@ -16,7 +16,7 @@ public class CustomItemTemplateData extends CustomTemplateData<CustomItemTemplat
     }
 
     @Override
-    public CustomItemTemplate getInstance() throws ClassNotFoundException {
+    public CustomItemTemplate getInstance() {
         return ItemMods.getPlugin().getApi().getItemTemplate(getName());
     }
 }

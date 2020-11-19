@@ -17,11 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ItemConfig extends CustomConfig {
+public class ItemConfig extends CustomConfig<CustomItemTemplateData> {
     private ItemStack itemStack;
     private boolean canRename = true;
-    private CustomTemplateData<CustomItemTemplate> template = null;
-    private final List<CustomTemplateData<CustomItemTemplate>> modifiers = new ArrayList<>();
 
     public ItemConfig(String namespace, String name) {
         super(namespace, name);
@@ -50,18 +48,6 @@ public class ItemConfig extends CustomConfig {
 
     public void setCanRename(boolean canRename) {
         this.canRename = canRename;
-    }
-
-    public @Nullable CustomTemplateData<CustomItemTemplate> getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(@Nullable CustomTemplateData<CustomItemTemplate> template) {
-        this.template = template;
-    }
-
-    public List<CustomTemplateData<CustomItemTemplate>> getModifiers() {
-        return modifiers;
     }
 
     public ItemStack giveItemStack() {

@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.CustomTemplateData;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
@@ -11,15 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BlockConfig extends CustomConfig {
+public class BlockConfig extends CustomConfig<CustomBlockTemplateData> {
     private final List<DropConfig> drops = new ArrayList<>();
     private BlockData block;
     private boolean drop = true;
     private boolean moving = false;
     private String nbt;
     private ArmorStandBlockConfig armorStand = null;
-    private CustomTemplateData template;
-    private final List<CustomTemplateData> modifiers = new ArrayList<>();
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
@@ -31,9 +30,6 @@ public class BlockConfig extends CustomConfig {
         return armorStand != null || block instanceof TileState;
     }
 
-    public List<CustomTemplateData> getModifiers() {
-        return modifiers;
-    }
 
     @Nullable
     public BlockData getBlock() {
@@ -46,30 +42,6 @@ public class BlockConfig extends CustomConfig {
 
     public boolean isArmorStand() {
         return armorStand != null;
-    }
-
-    public CustomTemplateData getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(CustomTemplateData template) {
-        this.template = template;
-    }
-
-    /**
-     * @deprecated Use {@link #getTemplate()} ()} and {@link CustomTemplateData#getName()} (since 1.5)
-     */
-    @Deprecated
-    public String getTemplateName() {
-        return template.getName();
-    }
-
-    /**
-     * @deprecated Use {@link #getTemplate()} and {@link CustomTemplateData#setName(String)} (since 1.5)
-     */
-    @Deprecated
-    public void setTemplateName(String templateName) {
-        template.setName(templateName);
     }
 
     @Nullable

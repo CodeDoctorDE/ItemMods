@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.api;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.google.gson.JsonObject;
@@ -66,15 +67,27 @@ public class ItemModsApi {
     }
 
     public CustomBlockTemplate getBlockTemplate(String templateClass) throws ClassNotFoundException {
-        return getBlockTemplate((Class<? extends CustomBlockTemplate>) Class.forName(templateClass));
+        Class<?> current = null;
+        try {
+            current = Class.forName(templateClass);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return current != null && current.isInstance(CustomBlockTemplate.class) ? getBlockTemplate(current.asSubclass(CustomBlockTemplate.class)) : null;
     }
 
     public CustomItemTemplate getItemTemplate(Class<? extends CustomItemTemplate> templateClass) {
         return getCustomItemTemplates().stream().filter(template -> template.getClass().equals(templateClass)).findFirst().orElse(null);
     }
 
-    public CustomItemTemplate getItemTemplate(String templateClass) throws ClassNotFoundException {
-        return getItemTemplate((Class<? extends CustomItemTemplate>) Class.forName(templateClass));
+    public CustomItemTemplate getItemTemplate(String templateClass) {
+        Class<?> current = null;
+        try {
+             current = Class.forName(templateClass);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return current != null && current.isInstance(CustomItemTemplate.class) ? getItemTemplate(current.asSubclass(CustomItemTemplate.class)) : null;
     }
 
     @Nullable
