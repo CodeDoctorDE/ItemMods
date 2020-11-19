@@ -19,12 +19,12 @@ public abstract class InteractiveStaticCustomBlock extends StaticCustomBlock imp
     }
 
     @Override
-    public void onLoad() {
+    public void onLoad(CustomBlock customBlock) {
         Bukkit.getPluginManager().registerEvents(this, addon.getPlugin());
     }
 
     @Override
-    public void onUnload() {
+    public void onUnload(CustomBlock customBlock) {
         HandlerList.unregisterAll(this);
     }
 }

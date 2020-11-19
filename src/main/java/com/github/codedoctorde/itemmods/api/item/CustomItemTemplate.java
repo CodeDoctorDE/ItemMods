@@ -9,8 +9,5 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author CodeDoctorDE
  */
-public abstract class CustomItemTemplate extends CustomTemplate<ItemConfig> {
-    public CustomItemTemplate(String name) {
-        super(name);
-    }
+public interface CustomItemTemplate extends CustomTemplate<ItemConfig, Player> {
 }

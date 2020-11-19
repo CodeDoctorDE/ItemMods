@@ -41,7 +41,7 @@ public class ChooseBlockTemplateGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return Arrays.stream(addon.getBlockTemplates()).filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.getIcon(blockConfig), new GuiItemEvent() {
+                return Arrays.stream(addon.getBlockTemplates()).filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.createIcon(blockConfig), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(new CustomTemplateData(blockTemplate));

@@ -39,7 +39,7 @@ public class ItemModifiersGui {
                 List<GuiItem> guiItems = new ArrayList<>();
                 config.getModifiers().forEach(data -> {
                     try {
-                        guiItems.add(new GuiItem(data.getInstance().getMainIcon(config)));
+                        guiItems.add(new GuiItem(data.getInstance().createMainIcon(config)));
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }

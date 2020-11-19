@@ -1,6 +1,9 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.api.CustomTemplate;
+import com.github.codedoctorde.itemmods.api.CustomTemplateData;
+import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -17,9 +20,8 @@ import java.util.Objects;
 public class ItemConfig extends CustomConfig {
     private ItemStack itemStack;
     private boolean canRename = true;
-    @NotNull
-    private CustomItemTemplateData template = new CustomItemTemplateData();
-    private final List<CustomItemTemplateData> modifiers = new ArrayList<>();
+    private CustomTemplateData<CustomItemTemplate> template = null;
+    private final List<CustomTemplateData<CustomItemTemplate>> modifiers = new ArrayList<>();
 
     public ItemConfig(String namespace, String name) {
         super(namespace, name);
@@ -50,15 +52,15 @@ public class ItemConfig extends CustomConfig {
         this.canRename = canRename;
     }
 
-    public @NotNull CustomItemTemplateData getTemplate() {
+    public @Nullable CustomTemplateData<CustomItemTemplate> getTemplate() {
         return template;
     }
 
-    public void setTemplate(@NotNull CustomItemTemplateData template) {
+    public void setTemplate(@Nullable CustomTemplateData<CustomItemTemplate> template) {
         this.template = template;
     }
 
-    public List<CustomItemTemplateData> getModifiers() {
+    public List<CustomTemplateData<CustomItemTemplate>> getModifiers() {
         return modifiers;
     }
 

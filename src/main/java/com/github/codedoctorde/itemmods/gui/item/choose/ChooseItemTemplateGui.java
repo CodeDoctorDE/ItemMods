@@ -42,7 +42,7 @@ public class ChooseItemTemplateGui {
             @Override
             public GuiItem[] pages(String s) {
                 ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
-                return Arrays.stream(addon.getItemTemplates()).filter(itemTemplate -> itemTemplate.getName().contains(s)).map(itemTemplate -> new GuiItem(itemTemplate.getIcon(itemConfig), new GuiItemEvent() {
+                return Arrays.stream(addon.getItemTemplates()).filter(itemTemplate -> itemTemplate.getName().contains(s)).map(itemTemplate -> new GuiItem(itemTemplate.createIcon(itemConfig), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         if (!itemTemplate.isCompatible(itemConfig)) {

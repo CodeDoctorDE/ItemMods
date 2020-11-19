@@ -22,24 +22,24 @@ public class BlockSetTemplate implements CustomItemTemplate {
     JsonObject templateTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon").getAsJsonObject("templates").getAsJsonObject("item").getAsJsonObject("block_set");
 
     @Override
-    public void onLoad() {
+    public void onLoad(Player player) {
 
     }
 
     @Override
-    public void onUnload() {
+    public void onUnload(Player player) {
 
     }
 
     @NotNull
     @Override
-    public ItemStack getIcon(ItemConfig itemConfig) {
+    public ItemStack createIcon(ItemConfig itemConfig) {
         return new ItemStackBuilder(templateTranslation.getAsJsonObject("icon")).build();
     }
 
     @NotNull
     @Override
-    public ItemStack getMainIcon(ItemConfig itemConfig) {
+    public ItemStack createMainIcon(ItemConfig itemConfig) {
         BlockConfig blockConfig = getBlock(itemConfig);
         if (blockConfig != null)
             return new ItemStackBuilder(templateTranslation.getAsJsonObject("main-icon").getAsJsonObject("has")).format(blockConfig.getIdentifier()).build();

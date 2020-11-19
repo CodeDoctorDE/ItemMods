@@ -11,18 +11,13 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @author CodeDoctorDE
  */
-public abstract class CustomBlockTemplate extends CustomTemplate<BlockConfig, CustomBlock> {
-    public CustomBlockTemplate(String name) {
-        super(name);
-    }
+public interface CustomBlockTemplate extends CustomTemplate<BlockConfig, CustomBlock> {
+    void loadConfig(JsonElement data, BlockConfig config);
 
-    public abstract void loadConfig(JsonElement data, BlockConfig config);
-
-    @NotNull
-    public abstract JsonElement saveConfig(BlockConfig config);
+    @NotNull JsonElement saveConfig(BlockConfig config);
 
     /**
      * Runs every tick when block is loaded.
      */
-    public abstract void tick(CustomBlock customBlock);
+    void tick(CustomBlock customBlock);
 }

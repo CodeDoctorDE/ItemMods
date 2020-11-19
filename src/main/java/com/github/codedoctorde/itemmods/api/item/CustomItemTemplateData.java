@@ -1,41 +1,22 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.github.codedoctorde.itemmods.api.CustomTemplateData;
 
 /**
  * @author CodeDoctorDE
  */
-public class CustomData<T extends > {
-    private String name;
-    private String data = "";
-
-    public CustomItemTemplateData(){
-
-    }
+public class CustomItemTemplateData extends CustomTemplateData<CustomItemTemplate> {
     public CustomItemTemplateData(String name) {
-        this.name = name;
-    }
-    public CustomItemTemplateData(CustomItemTemplate template){
-        this(template.getClass().getName());
+        super(name);
     }
 
-    public String getData() {
-        return data;
+    public CustomItemTemplateData(CustomItemTemplate template) {
+        super(template);
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    @NotNull
+    @Override
     public CustomItemTemplate getInstance() throws ClassNotFoundException {
-        return ItemMods.getPlugin().getApi().getItemTemplate(name);
-    }
-
-    public String getName() {
-        return name;
+        return ItemMods.getPlugin().getApi().getItemTemplate(getName());
     }
 }

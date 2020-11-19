@@ -6,26 +6,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class CustomTemplate<C extends CustomConfig, T> {
-    private final String name;
+public interface CustomTemplate<C extends CustomConfig, T> {
+    void onLoad(T target);
+    void onUnload(T target);
 
-    public CustomTemplate(String name){
-        this.name = name;
-    }
-    public abstract void onLoad(T target);
-    public abstract void onUnload(T target);
+    @NotNull ItemStack createIcon(C config);
 
-    @NotNull
-    public abstract ItemStack getIcon(C config);
+    @NotNull ItemStack createMainIcon(C config);
 
-    @NotNull
-    public abstract ItemStack getMainIcon(C config);
+    boolean isCompatible(C config);
 
-    public abstract boolean isCompatible(C config);
-
-    public abstract boolean openConfigGui(C config, Player player);
-
-    public String getName() {
-        return name;
-    }
+    boolean openConfigGui(C config, Player player);
 }

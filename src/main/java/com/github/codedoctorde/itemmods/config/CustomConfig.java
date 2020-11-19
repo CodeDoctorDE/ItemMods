@@ -1,11 +1,12 @@
 package com.github.codedoctorde.itemmods.config;
 
+import com.github.codedoctorde.itemmods.api.CustomTemplate;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author CodeDoctorDE
  */
-public abstract class CustomConfig {
+public abstract class CustomConfig<T extends CustomTemplate> {
     private String name;
     private String namespace;
     private String displayName;
