@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * @author CodeDoctorDE
  */
-public class CustomItemTemplateData {
+public class CustomData<T extends > {
     private String name;
     private String data = "";
 

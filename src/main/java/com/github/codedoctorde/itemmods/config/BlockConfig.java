@@ -1,12 +1,10 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
-import org.bukkit.NamespacedKey;
+import com.github.codedoctorde.itemmods.api.CustomTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -20,8 +18,8 @@ public class BlockConfig extends CustomConfig {
     private boolean moving = false;
     private String nbt;
     private ArmorStandBlockConfig armorStand = null;
-    private CustomBlockTemplateData template;
-    private final List<CustomBlockTemplateData> modifiers = new ArrayList<>();
+    private CustomTemplateData template;
+    private final List<CustomTemplateData> modifiers = new ArrayList<>();
     private String referenceItem;
     private BlockDirectionType blockDirectionType = BlockDirectionType.NO;
 
@@ -33,7 +31,7 @@ public class BlockConfig extends CustomConfig {
         return armorStand != null || block instanceof TileState;
     }
 
-    public List<CustomBlockTemplateData> getModifiers() {
+    public List<CustomTemplateData> getModifiers() {
         return modifiers;
     }
 
@@ -50,16 +48,16 @@ public class BlockConfig extends CustomConfig {
         return armorStand != null;
     }
 
-    public CustomBlockTemplateData getTemplate() {
+    public CustomTemplateData getTemplate() {
         return template;
     }
 
-    public void setTemplate(CustomBlockTemplateData template) {
+    public void setTemplate(CustomTemplateData template) {
         this.template = template;
     }
 
     /**
-     * @deprecated Use {@link #getTemplate()} ()} and {@link CustomBlockTemplateData#getName()} (since 1.5)
+     * @deprecated Use {@link #getTemplate()} ()} and {@link CustomTemplateData#getName()} (since 1.5)
      */
     @Deprecated
     public String getTemplateName() {
@@ -67,7 +65,7 @@ public class BlockConfig extends CustomConfig {
     }
 
     /**
-     * @deprecated Use {@link #getTemplate()} and {@link CustomBlockTemplateData#setName(String)} (since 1.5)
+     * @deprecated Use {@link #getTemplate()} and {@link CustomTemplateData#setName(String)} (since 1.5)
      */
     @Deprecated
     public void setTemplateName(String templateName) {

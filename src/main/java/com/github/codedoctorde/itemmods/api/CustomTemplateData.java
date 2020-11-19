@@ -1,19 +1,20 @@
-package com.github.codedoctorde.itemmods.api.block;
+package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * @author CodeDoctorDE
  */
-public class CustomBlockTemplateData {
+public abstract class CustomTemplateData<T extends CustomTemplate> {
     private String name;
     private String data = "";
 
-    public CustomBlockTemplateData(String name) {
+    public CustomTemplateData(String name) {
         this.name = name;
     }
-    public CustomBlockTemplateData(CustomBlockTemplate template) {
+    public CustomTemplateData(CustomBlockTemplate template) {
         this(template.getClass().getName());
     }
 
