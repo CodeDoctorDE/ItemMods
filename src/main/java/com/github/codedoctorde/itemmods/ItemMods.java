@@ -17,12 +17,12 @@ import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
 import com.github.codedoctorde.itemmods.resourcepack.PackManager;
-import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
+import com.github.codedoctorde.itemmods.utils.BetterGuiCustomModifier;
 import com.github.codedoctorde.itemmods.utils.PluginMetrics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import me.hsgamer.bettergui.builder.PropertyBuilder;
+import me.hsgamer.bettergui.builder.ItemModifierBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
@@ -114,7 +114,7 @@ public class ItemMods extends JavaPlugin {
         }
         api.registerAddon(new BaseAddon());
         if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
-            PropertyBuilder.registerItemProperty(CustomItemBetterGuiProperty::new, "customitem", "custom-item");
+            ItemModifierBuilder.INSTANCE.register(BetterGuiCustomModifier::new, "customitem", "custom-item");
         }
 
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
