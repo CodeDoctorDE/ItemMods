@@ -66,7 +66,7 @@ public class ItemModsApi {
         return getCustomBlockTemplates().stream().filter(template -> template.getClass().equals(templateClass)).findFirst().orElse(null);
     }
 
-    public CustomBlockTemplate getBlockTemplate(String templateClass) throws ClassNotFoundException {
+    public CustomBlockTemplate getBlockTemplate(String templateClass) {
         Class<?> current = null;
         try {
             current = Class.forName(templateClass);

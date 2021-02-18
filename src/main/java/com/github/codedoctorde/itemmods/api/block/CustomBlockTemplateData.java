@@ -17,7 +17,7 @@ public class CustomBlockTemplateData extends CustomTemplateData<CustomBlockTempl
     }
 
     @Override
-    public CustomBlockTemplate getInstance() throws ClassNotFoundException {
+    public CustomBlockTemplate getInstance() {
         return ItemMods.getPlugin().getApi().getBlockTemplate(getName());
     }
 }

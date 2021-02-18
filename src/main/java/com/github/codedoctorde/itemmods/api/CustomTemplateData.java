@@ -28,7 +28,7 @@ public abstract class CustomTemplateData<T extends CustomTemplate<?,?>> {
         this.data = data;
     }
 
-    public abstract T getInstance();
+    public abstract T getInstance() throws ClassNotFoundException;
 
     public String getName() {
         return name;
