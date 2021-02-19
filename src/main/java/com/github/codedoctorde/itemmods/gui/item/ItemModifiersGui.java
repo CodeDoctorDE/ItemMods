@@ -37,13 +37,7 @@ public class ItemModifiersGui {
             public GuiItem[] pages(String s) {
                 ItemConfig config = Objects.requireNonNull(ItemMods.getPlugin().getMainConfig().getItem(itemIdentifier));
                 List<GuiItem> guiItems = new ArrayList<>();
-                config.getModifiers().forEach(data -> {
-                    try {
-                        guiItems.add(new GuiItem(data.getInstance().createMainIcon(config)));
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                });
+                config.getModifiers().forEach(data -> guiItems.add(new GuiItem(data.getInstance().createMainIcon(config))));
                 return guiItems.toArray(new GuiItem[0]);
             }
         }, new GuiEvent() {

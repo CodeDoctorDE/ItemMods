@@ -9,6 +9,7 @@ import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
 import com.github.codedoctorde.itemmods.api.CustomTemplateData;
+import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.gui.block.BlockGui;
 import com.google.gson.JsonObject;
@@ -44,7 +45,7 @@ public class ChooseBlockTemplateGui {
                 return Arrays.stream(addon.getBlockTemplates()).filter(blockTemplate -> blockTemplate.getName().contains(s)).map(blockTemplate -> new GuiItem(blockTemplate.createIcon(blockConfig), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(new CustomTemplateData(blockTemplate));
+                        ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex).setTemplate(new CustomBlockTemplateData(blockTemplate));
                         ItemMods.getPlugin().saveBaseConfig();
                         new BlockGui(blockIndex).createGui().open((Player) event.getWhoClicked());
                     }

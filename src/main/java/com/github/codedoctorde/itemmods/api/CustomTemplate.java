@@ -1,12 +1,13 @@
 package com.github.codedoctorde.itemmods.api;
 
 import com.github.codedoctorde.itemmods.config.CustomConfig;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public interface CustomTemplate<C extends CustomConfig, T> {
+    String getName();
+
     void onLoad(T target);
     void onUnload(T target);
 
