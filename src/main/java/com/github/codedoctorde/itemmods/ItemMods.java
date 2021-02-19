@@ -76,7 +76,11 @@ public class ItemMods extends JavaPlugin {
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
-        PluginMetrics.runMetrics();
+        try {
+            PluginMetrics.runMetrics();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         if (Version.getVersion() == Version.UNKNOWN)
             Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
         try {

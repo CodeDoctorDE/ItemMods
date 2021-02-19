@@ -4,9 +4,14 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import org.bstats.bukkit.Metrics;
 
 public class PluginMetrics {
-    public static Metrics metrics = new Metrics(ItemMods.getPlugin(), 5996);
+    public static Metrics metrics;
 
     public static void runMetrics() {
-        metrics.getPluginData();
+        try {
+            metrics = new Metrics(ItemMods.getPlugin(), 5996);
+            metrics.getPluginData();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

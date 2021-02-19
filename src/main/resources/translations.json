@@ -1192,8 +1192,8 @@
         "name": "§eModifiers",
         "lore": [
           "",
-          "§cClick here to get to ",
-          "§cthe modifiers list"
+          "§7Click here to get to ",
+          "§7the modifiers list"
         ]
       },
       "block": {

@@ -169,7 +169,7 @@ public class CustomBlockListener implements Listener {
         if(customItem.getConfig() == null)
             return;
         CustomItemTemplateData data = customItem.getConfig().getTemplate();
-        if (data.getInstance() == null || !(data.getInstance() instanceof BlockSetTemplate))
+        if (data == null || !(data.getInstance() instanceof BlockSetTemplate))
             return;
         BlockSetTemplate template = (BlockSetTemplate) data.getInstance();
         if (template.getBlock(customItem) == null || item.getAmount() < customItem.getConfig().getItemStack().getAmount())

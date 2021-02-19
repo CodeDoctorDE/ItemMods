@@ -164,11 +164,11 @@ public class ItemGui {
                         createGui().open(player);
                     }
                 }));*/
-            getGuiItems().put(9 * 3 + 3, itemConfig.getItemStack() != null ? new GuiItem((itemConfig.getTemplate().getInstance() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+            getGuiItems().put(9 * 3 + 3, itemConfig.getItemStack() != null ? new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
                     new ItemStackBuilder(itemConfig.getTemplate().getInstance().createMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    if (itemConfig.getTemplate().getInstance() != null) {
+                    if (itemConfig.getTemplate() != null) {
                         switch (event.getClick()) {
                             case LEFT:
                                 if (!itemConfig.getTemplate().getInstance().openConfigGui(itemConfig, (Player) event.getWhoClicked()))
