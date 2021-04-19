@@ -1,0 +1,17 @@
+com.github.codedoctorde.api.animation
+com.github.codedoctorde.api.command
+com.github.codedoctorde.api.config
+com.github.codedoctorde.api.game
+com.github.codedoctorde.api.game.teams
+com.github.codedoctorde.api.game.template
+com.github.codedoctorde.api.region
+com.github.codedoctorde.api.request
+com.github.codedoctorde.api.scoreboard
+com.github.codedoctorde.api.serializer
+com.github.codedoctorde.api.server
+com.github.codedoctorde.api.translations
+com.github.codedoctorde.api.ui
+com.github.codedoctorde.api.ui.inventory
+com.github.codedoctorde.api.ui.template.gui
+com.github.codedoctorde.api.ui.template.item
+com.github.codedoctorde.api.utils
