@@ -13,5 +13,6 @@ com.github.codedoctorde.api.translations
 com.github.codedoctorde.api.ui
 com.github.codedoctorde.api.ui.inventory
 com.github.codedoctorde.api.ui.template.gui
+com.github.codedoctorde.api.ui.template.gui.pane.list
 com.github.codedoctorde.api.ui.template.item
 com.github.codedoctorde.api.utils
