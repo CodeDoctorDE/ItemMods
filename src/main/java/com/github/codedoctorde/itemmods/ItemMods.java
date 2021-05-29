@@ -1,11 +1,10 @@
 package com.github.codedoctorde.itemmods;
 
-import com.github.codedoctorde.api.CodeDoctorAPI;
-import com.github.codedoctorde.api.config.ObjectConfig;
 import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.github.codedoctorde.api.server.Version;
+import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.addon.BaseAddon;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
@@ -40,16 +39,14 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
-    public static final String version = "§6CONDUIT 1.5";
     private static ItemMods plugin;
     private final Path baseConfig = Paths.get(getDataFolder().getPath(), "config.json");
     private final Gson gson;
-    private CodeDoctorAPI codeDoctorAPI;
     private UpdateChecker updateChecker;
     private MainConfig mainConfig;
     private BaseCommand baseCommand;
     private ItemModsApi api;
-    private ObjectConfig translationConfig;
+    private TranslationConfig translationConfig;
     private GiveItemCommand giveItemCommand;
     private PackManager packManager;
     private Connection connection;
@@ -71,18 +68,17 @@ public class ItemMods extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         updateChecker = new UpdateChecker(this, 72461);
-        codeDoctorAPI = new CodeDoctorAPI(this);
-        translationConfig = new ObjectConfig(gson, new File(getDataFolder(), "translations.json"));
+        translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations.json"));
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
             PluginMetrics.runMetrics();
         }catch(Exception e){
             e.printStackTrace();
         }
         if (Version.getVersion() == Version.UNKNOWN)
-            Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
+            Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
         try {
             packManager = new PackManager();
         } catch (IOException e) {
@@ -121,7 +117,7 @@ public class ItemMods extends JavaPlugin {
             ItemModifierBuilder.INSTANCE.register(BetterGuiCustomModifier::new, "customitem", "custom-item");
         }
 
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
     public CustomBlockManager getCustomBlockManager() {
@@ -134,11 +130,11 @@ public class ItemMods extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("unloading").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
         Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
         saveBaseConfig();
         super.onDisable();
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("unloaded").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
     }
 
     public void saveBaseConfig() {
@@ -170,7 +166,7 @@ public class ItemMods extends JavaPlugin {
         return baseCommand;
     }
 
-    public ObjectConfig getTranslationConfig() {
+    public TranslationConfig getTranslationConfig() {
         return translationConfig;
     }
 
@@ -180,10 +176,6 @@ public class ItemMods extends JavaPlugin {
 
     public MainConfig getMainConfig() {
         return mainConfig;
-    }
-
-    public CodeDoctorAPI getCodeDoctorAPI() {
-        return codeDoctorAPI;
     }
 
     public ItemModsApi getApi() {

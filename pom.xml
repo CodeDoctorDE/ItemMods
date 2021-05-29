@@ -42,12 +42,15 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.github.codedoctorde.itemmods</shadedPattern>
+                            <shadedPattern>com.github.codedoctorde.itemmods.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.github.codedoctorde.api</pattern>
+                            <shadedPattern>com.github.codedoctorde.itemmods.codedoctorapi</shadedPattern>
                         </relocation>
                     </relocations>
                     <artifactSet>
                         <includes>
-                            <include>com.github.codedoctorde:API</include>
                             <include>org.bstats:bstats-bukkit</include>
                         </includes>
                     </artifactSet>
@@ -59,7 +62,11 @@
     <repositories>
         <repository>
             <id>CodeMC</id>
-            <url>https://repo.codemc.org/repository/maven-public</url>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>codemc-snapshots</id>
+            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -76,14 +83,18 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.14.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.codedoctorde</groupId>
-            <artifactId>API</artifactId>
-            <version>1.2-SNAPSHOT</version>
-            <scope>compile</scope>
+            <artifactId>ui-templates</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>serializer</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

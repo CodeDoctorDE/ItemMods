@@ -19,7 +19,7 @@ public class CustomItemListener implements Listener {
         if (anvilInventory.getItem(0) == null || anvilInventory.getRenameText() == null) return;
         ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> Objects.requireNonNull(anvilInventory.getItem(0)).isSimilar(itemConfig.getItemStack()) && !itemConfig.isCanRename()).forEach(itemConfig -> {
             event.setCancelled(true);
-            event.getWhoClicked().sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("event").get("rename").getAsString());
+            event.getWhoClicked().sendMessage(ItemMods.getPlugin().getTranslationConfig().getTranslation("event.rename"));
         });
     }
 }

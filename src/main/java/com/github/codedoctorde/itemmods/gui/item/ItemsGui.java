@@ -2,12 +2,13 @@ package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.RequestEvent;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.ui.GuiEvent;
-import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.translations.Translation;
+import com.github.codedoctorde.api.ui.*;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
+import com.github.codedoctorde.api.ui.template.gui.pane.list.HorizontalListControls;
+import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
@@ -23,17 +24,20 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ItemsGui {
 
-    public Gui[] createGuis() {
+    public ListGui createGuis() {
         return createGuis("");
     }
 
-    private Gui[] createGuis(String searchText) {
+    private ListGui createGuis(String searchText) {
         MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items");
+        Translation translation = ItemMods.getPlugin().getTranslationConfig().subTranslation("gui.items");
+        return new ListGui(translation, 3, new VerticalListControls(3).offset(7, 0), string -> mainConfig.getItems().stream().filter(config -> config.getName().contains(string)).map(config -> new StaticItem(new ItemStackBuilder(config.getItemStack())
+                .addLore(translation.getTranslation("item")).build())).toArray(GuiItem[]::new))};
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
