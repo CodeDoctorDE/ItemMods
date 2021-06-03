@@ -26,11 +26,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class BlocksGui {
-    public Gui[] createGuis() {
+    public ListGui createGuis() {
         return createGuis("");
     }
 
-    private Gui[] createGuis(String searchText) {
+    private ListGui createGuis(String searchText) {
         MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
         JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {

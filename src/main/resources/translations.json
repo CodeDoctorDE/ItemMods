@@ -4,7 +4,8 @@
     "loaded": "§eItemMods §7» §aSuccessfully loaded plugin!",
     "unloading": "§eItemMods §7» §eUnloading plugin...",
     "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
-    "compatible": "§eItemMods §7» §6This plugin isn't compactible with your version!"
+    "compatible": "§eItemMods §7» §6This plugin isn't compactible with your version!",
+    "version":  "$eItemMods $7» §6There is a new version available: §3%s",
   },
   "api": {
     "register": "§eItemMods §7» §aRegistered new addon §3{0}§a!",

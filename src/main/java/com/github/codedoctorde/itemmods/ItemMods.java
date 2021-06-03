@@ -43,12 +43,12 @@ public class ItemMods extends JavaPlugin {
     private final Path baseConfig = Paths.get(getDataFolder().getPath(), "config.json");
     private final Gson gson;
     private UpdateChecker updateChecker;
-    private MainConfig mainConfig;
+    private static MainConfig mainConfig;
     private BaseCommand baseCommand;
-    private ItemModsApi api;
-    private TranslationConfig translationConfig;
+    private static ItemModsApi api;
+    private static TranslationConfig translationConfig;
     private GiveItemCommand giveItemCommand;
-    private PackManager packManager;
+    private static PackManager packManager;
     private Connection connection;
 
     public ItemMods() {
@@ -68,6 +68,7 @@ public class ItemMods extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         updateChecker = new UpdateChecker(this, 72461);
+        updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
         translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations.json"));
         translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
         translationConfig.save();
@@ -166,7 +167,7 @@ public class ItemMods extends JavaPlugin {
         return baseCommand;
     }
 
-    public TranslationConfig getTranslationConfig() {
+    public static TranslationConfig getTranslationConfig() {
         return translationConfig;
     }
 
@@ -174,15 +175,15 @@ public class ItemMods extends JavaPlugin {
         return gson;
     }
 
-    public MainConfig getMainConfig() {
+    public static MainConfig getMainConfig() {
         return mainConfig;
     }
 
-    public ItemModsApi getApi() {
+    public static ItemModsApi getApi() {
         return api;
     }
 
-    public PackManager getPackManager() {
+    public static PackManager getPackManager() {
         return packManager;
     }
 }
