@@ -9,6 +9,7 @@ public interface CustomTemplate<C extends CustomConfig, T> {
     String getName();
 
     void onLoad(T target);
+
     void onUnload(T target);
 
     @NotNull ItemStack createIcon(C config);

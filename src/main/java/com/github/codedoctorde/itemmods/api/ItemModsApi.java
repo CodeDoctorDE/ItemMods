@@ -1,12 +1,11 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
-import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
-import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +20,7 @@ public class ItemModsApi {
     private final CustomItemManager customItemManager = new CustomItemManager();
     private final CustomBlockManager customBlockManager = new CustomBlockManager();
     private final Set<ItemModsAddon> addons = new HashSet<>();
-    private final JsonObject translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
+    private final Translation t = ItemMods.getTranslationConfig().subTranslation("api");
 
     public ItemModsApi() {
     }
@@ -38,7 +37,7 @@ public class ItemModsApi {
         if (getAddon(addon.getName()) != null)
             return;
         addons.add(addon);
-        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(t.getTranslation("register"), addon.getName()));
     }
 
     public Set<CustomBlockTemplate> getCustomBlockTemplates() {
@@ -55,7 +54,7 @@ public class ItemModsApi {
 
     public void unregisterAddon(ItemModsAddon addon) {
         addons.remove(addon);
-        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("unregister").getAsString(), addon.getName()));
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(t.getTranslation("unregister"), addon.getName()));
     }
 
     public Set<ItemModsAddon> getAddons() {
@@ -83,7 +82,7 @@ public class ItemModsApi {
     public CustomItemTemplate getItemTemplate(String templateClass) {
         Class<?> current = null;
         try {
-             current = Class.forName(templateClass);
+            current = Class.forName(templateClass);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

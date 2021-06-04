@@ -17,6 +17,6 @@ public class CustomItemTemplateData extends CustomTemplateData<CustomItemTemplat
 
     @Override
     public CustomItemTemplate getInstance() {
-        return ItemMods.getPlugin().getApi().getItemTemplate(getName());
+        return ItemMods.getApi().getItemTemplate(getName());
     }
 }

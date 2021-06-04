@@ -31,8 +31,8 @@ public class ChooseItemTemplateGui {
     }
 
     public Gui[] createGuis() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("template");
-        ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("template");
+        ItemConfig itemConfig = ItemMods.getMainConfig().getItems().get(itemIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
@@ -41,7 +41,7 @@ public class ChooseItemTemplateGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
+                ItemConfig itemConfig = ItemMods.getMainConfig().getItems().get(itemIndex);
                 return Arrays.stream(addon.getItemTemplates()).filter(itemTemplate -> itemTemplate.getName().contains(s)).map(itemTemplate -> new GuiItem(itemTemplate.createIcon(itemConfig), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -49,8 +49,8 @@ public class ChooseItemTemplateGui {
                             event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("template").get("not_compatible").getAsString());
                             return;
                         }
-                        ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex).setTemplate(new CustomItemTemplateData(itemTemplate));
-                        ItemMods.getPlugin().saveBaseConfig();
+                        ItemMods.getMainConfig().getItems().get(itemIndex).setTemplate(new CustomItemTemplateData(itemTemplate));
+                        ItemMods.saveBaseConfig();
                         new ItemGui(itemIndex).createGui().open((Player) event.getWhoClicked());
                     }
                 })).toArray(GuiItem[]::new);

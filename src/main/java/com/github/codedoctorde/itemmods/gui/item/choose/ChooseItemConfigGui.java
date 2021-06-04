@@ -24,7 +24,7 @@ public class ChooseItemConfigGui {
     }
 
     public Gui[] createGui(Gui backGui) {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("config");
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("config");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
@@ -33,7 +33,7 @@ public class ChooseItemConfigGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getNamespace().contains(s) || itemConfig.getName().contains(s)).map(itemConfig -> new GuiItem(itemConfig.getItemStack(), new GuiItemEvent() {
+                return ItemMods.getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.getNamespace().contains(s) || itemConfig.getName().contains(s)).map(itemConfig -> new GuiItem(itemConfig.getItemStack(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         itemConfigEvent.onEvent(itemConfig);

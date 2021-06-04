@@ -16,7 +16,7 @@ public class CustomItem {
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
-        ItemMods.getPlugin().getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
+        ItemMods.getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
     }
 
     public ItemConfig getConfig() {

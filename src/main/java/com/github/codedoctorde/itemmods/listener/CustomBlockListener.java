@@ -70,7 +70,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem), player))
+        if (!ItemMods.getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem), player))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             event.getItem().setAmount(event.getItem().getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -166,7 +166,7 @@ public class CustomBlockListener implements Listener {
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomItem customItem = new CustomItem(item);
-        if(customItem.getConfig() == null)
+        if (customItem.getConfig() == null)
             return;
         CustomItemTemplateData data = customItem.getConfig().getTemplate();
         if (data == null || !(data.getInstance() instanceof BlockSetTemplate))
@@ -181,7 +181,7 @@ public class CustomBlockListener implements Listener {
             return;
         if (event.getPlayer().getLocation().distance(location.clone().add(0, 1, 0)) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem), event.getPlayer()))
+        if (!ItemMods.getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem), event.getPlayer()))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             item.setAmount(item.getAmount() - customItem.getConfig().getItemStack().getAmount());

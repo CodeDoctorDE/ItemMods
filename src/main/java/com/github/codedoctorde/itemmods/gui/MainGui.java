@@ -28,22 +28,22 @@ public class MainGui extends TranslatedChestGui {
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").addLore("items.description").build()) {{
             setClickAction(event -> new ItemsGui().show((Player) event.getWhoClicked()));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").addLore("blocks.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").addLore("blocks.description").build()) {{
             setClickAction(event -> new BlocksGui().createGuis().show(((Player) event.getWhoClicked())));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).setDisplayName("knowledge.title").addLore("knowledge.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).setDisplayName("knowledge.title").addLore("knowledge.description").build()) {{
             setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).setDisplayName("addons.title").addLore("addons.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).setDisplayName("addons.title").addLore("addons.description").build()) {{
             setClickAction(event -> new AddonsGui().show((Player) event.getWhoClicked()));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("source.title").addLore("source.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("source.title").addLore("source.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("source.link")));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).setDisplayName("support.title").addLore("support.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).setDisplayName("support.title").addLore("support.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("support.link")));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("wiki.title").setLore("wiki.description").build()){{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("wiki.title").setLore("wiki.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("wiki.link")));
         }});
     }

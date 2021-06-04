@@ -1,9 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
-import com.github.codedoctorde.itemmods.api.CustomTemplate;
 import com.github.codedoctorde.itemmods.api.CustomTemplateData;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,18 +11,19 @@ import java.util.List;
  * @author CodeDoctorDE
  */
 public abstract class CustomConfig<T extends CustomTemplateData<?>> {
+    private final List<T> modifiers = new ArrayList<>();
     private String name;
     private String namespace;
     private String displayName;
     private boolean pack = false;
     private T template = null;
-    private final List<T> modifiers = new ArrayList<>();
 
-    public CustomConfig(String namespace, String name){
+    public CustomConfig(String namespace, String name) {
         this.name = name;
         this.namespace = namespace;
         displayName = name;
     }
+
     public @NotNull String getName() {
         return name;
     }
@@ -50,7 +48,7 @@ public abstract class CustomConfig<T extends CustomTemplateData<?>> {
         this.displayName = displayName;
     }
 
-    public String getIdentifier(){
+    public String getIdentifier() {
         return getNamespace() + ":" + getName();
     }
 

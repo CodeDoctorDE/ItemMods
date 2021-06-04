@@ -1,11 +1,9 @@
 package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.api.item.StaticCustomItem;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author CodeDoctorDE

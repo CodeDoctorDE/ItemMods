@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.CustomTemplateData;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
 
 /**
  * @author CodeDoctorDE
@@ -18,6 +17,6 @@ public class CustomBlockTemplateData extends CustomTemplateData<CustomBlockTempl
 
     @Override
     public CustomBlockTemplate getInstance() {
-        return ItemMods.getPlugin().getApi().getBlockTemplate(getName());
+        return ItemMods.getApi().getBlockTemplate(getName());
     }
 }

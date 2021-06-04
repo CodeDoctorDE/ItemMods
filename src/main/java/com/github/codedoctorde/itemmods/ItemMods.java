@@ -39,25 +39,61 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
-    private static ItemMods plugin;
-    private static Path baseConfig;
     private static final Gson gson = new GsonBuilder()
             .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
             .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
             .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
             .serializeNulls()
-            .setPrettyPrinting().create();;
-    private UpdateChecker updateChecker;
+            .setPrettyPrinting().create();
+    private static ItemMods plugin;
+    private static Path baseConfig;
     private static MainConfig mainConfig;
-    private BaseCommand baseCommand;
     private static ItemModsApi api;
     private static TranslationConfig translationConfig;
-    private GiveItemCommand giveItemCommand;
     private static PackManager packManager;
+    private UpdateChecker updateChecker;
+    private BaseCommand baseCommand;
+    private GiveItemCommand giveItemCommand;
     private Connection connection;
 
     public static ItemMods getPlugin() {
         return plugin;
+    }
+
+    public static CustomBlockManager getCustomBlockManager() {
+        return getApi().getCustomBlockManager();
+    }
+
+    public static CustomItemManager getCustomItemManager() {
+        return getApi().getCustomItemManager();
+    }
+
+    public static void saveBaseConfig() {
+        try {
+            FileWriter writer = new FileWriter(baseConfig.toString());
+            BufferedWriter bw = new BufferedWriter(writer);
+            bw.write(gson.toJson(mainConfig));
+            bw.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public static TranslationConfig getTranslationConfig() {
+        return translationConfig;
+    }
+
+    public static MainConfig getMainConfig() {
+        return mainConfig;
+    }
+
+    public static ItemModsApi getApi() {
+        return api;
+    }
+
+    public static PackManager getPackManager() {
+        return packManager;
     }
 
     @Override
@@ -71,7 +107,7 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
             PluginMetrics.runMetrics();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         if (Version.getVersion() == Version.UNKNOWN)
@@ -117,14 +153,6 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
-    public static CustomBlockManager getCustomBlockManager() {
-        return getApi().getCustomBlockManager();
-    }
-
-    public static CustomItemManager getCustomItemManager() {
-        return getApi().getCustomItemManager();
-    }
-
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
@@ -132,18 +160,6 @@ public class ItemMods extends JavaPlugin {
         saveBaseConfig();
         super.onDisable();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
-    }
-
-    public static void saveBaseConfig() {
-        try {
-            FileWriter writer = new FileWriter(baseConfig.toString());
-            BufferedWriter bw = new BufferedWriter(writer);
-            bw.write(gson.toJson(mainConfig));
-            bw.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
     }
 
     private void connect() throws ClassNotFoundException, SQLException {
@@ -163,23 +179,7 @@ public class ItemMods extends JavaPlugin {
         return baseCommand;
     }
 
-    public static TranslationConfig getTranslationConfig() {
-        return translationConfig;
-    }
-
     public Gson getGson() {
         return gson;
-    }
-
-    public static MainConfig getMainConfig() {
-        return mainConfig;
-    }
-
-    public static ItemModsApi getApi() {
-        return api;
-    }
-
-    public static PackManager getPackManager() {
-        return packManager;
     }
 }

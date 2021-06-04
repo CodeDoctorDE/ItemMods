@@ -41,8 +41,8 @@ public class DropsGui {
     }
 
     public Gui[] createGuis(boolean rarityEditing) {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
-        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
+        BlockConfig blockConfig = ItemMods.getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -114,7 +114,7 @@ public class DropsGui {
                                 if (rarity < 0 || rarity > 100)
                                     return;
                                 dropConfig.setRarity(rarity);
-                                ItemMods.getPlugin().saveBaseConfig();
+                                ItemMods.saveBaseConfig();
                                 event.getWhoClicked().sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("drop").getAsJsonObject("rarity").get("success").getAsString(), blockIndex, rarity));
                                 createGuis(true)[0].open((Player) event.getWhoClicked());
                             } else switch (event.getClick()) {
@@ -124,14 +124,14 @@ public class DropsGui {
                                         public void onEvent(Player player, ItemStack itemStack) {
                                             dropConfig.setItemStack(itemStack);
                                             createGuis(false)[0].open((Player) event.getWhoClicked());
-                                            ItemMods.getPlugin().saveBaseConfig();
+                                            ItemMods.saveBaseConfig();
                                         }
 
                                         @Override
                                         public void onCancel(Player player) {
                                             gui.open(player);
                                         }
-        }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
+                                    }).createGui(ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
                                     break;
                                 case RIGHT:
                                     event.getWhoClicked().getInventory().addItem(dropConfig.getItemStack());

@@ -21,7 +21,7 @@ import java.util.List;
 public class ItemsGui extends ListGui {
 
     public ItemsGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), (s, translation) -> ItemMods.getMainConfig().getItems().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(itemConfig.getItemStack()).build()){{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), (s, translation) -> ItemMods.getMainConfig().getItems().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(itemConfig.getItemStack()).build()) {{
             setClickAction(event -> {
                 Player player = (Player) event.getWhoClicked();
                 ClickType clickType = event.getClick();
@@ -32,11 +32,11 @@ public class ItemsGui extends ListGui {
                     case DROP:
                         List<ItemConfig> itemConfigs = ItemMods.getMainConfig().getItems();
                         Translation t = ItemMods.getTranslationConfig().subTranslation("gui.items.delete");
-                        new MessageGui(t){{
-                            addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).setDisplayName("yes").build()){{
+                        new MessageGui(t) {{
+                            addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).setDisplayName("yes").build()) {{
                                 setClickAction(event -> {
                                     itemConfigs.remove(itemConfig);
-                                    ItemMods.getPlugin().saveBaseConfig();
+                                    ItemMods.saveBaseConfig();
                                 });
                             }});
                             addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).setDisplayName("no").build()) {{
@@ -48,8 +48,8 @@ public class ItemsGui extends ListGui {
             });
         }}).toArray(GuiItem[]::new));
         Translation t = getTranslation();
-        setListControls(new VerticalListControls(3){{
-            setCreateAction((event) ->{
+        setListControls(new VerticalListControls(3) {{
+            setCreateAction((event) -> {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(t.getTranslation("create.message"));
                 hide(player);
@@ -57,7 +57,7 @@ public class ItemsGui extends ListGui {
                 request.setSubmitAction(s -> {
                     String output = ChatColor.translateAlternateColorCodes('&', s);
                     ItemMods.getMainConfig().getItems().add(new ItemConfig("itemmods", output));
-                    ItemMods.getPlugin().saveBaseConfig();
+                    ItemMods.saveBaseConfig();
                     player.sendMessage(t.getTranslation("create.success", output));
                     rebuild();
                     show(player);

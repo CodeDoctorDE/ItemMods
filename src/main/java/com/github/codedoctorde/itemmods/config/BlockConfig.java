@@ -1,7 +1,6 @@
 package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.CustomTemplateData;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
@@ -94,7 +93,7 @@ public class BlockConfig extends CustomConfig<CustomBlockTemplateData> {
 
     @Nullable
     public ItemConfig getReferenceItemConfig() {
-        return referenceItem == null ? null : ItemMods.getPlugin().getMainConfig().getItem(referenceItem);
+        return referenceItem == null ? null : ItemMods.getMainConfig().getItem(referenceItem);
     }
 
     public void setReferenceItemConfig(@Nullable ItemConfig itemConfig) {

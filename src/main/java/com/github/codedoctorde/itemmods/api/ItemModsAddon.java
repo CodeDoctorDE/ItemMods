@@ -24,7 +24,7 @@ public abstract class ItemModsAddon {
     protected Set<StaticCustomBlock> staticCustomBlocks = new HashSet<>();
     protected Set<StaticCustomItem> staticCustomItems = new HashSet<>();
 
-    public ItemModsAddon(final JavaPlugin plugin, final String name){
+    public ItemModsAddon(final JavaPlugin plugin, final String name) {
         this.plugin = plugin;
         this.name = name;
     }
@@ -45,9 +45,11 @@ public abstract class ItemModsAddon {
     public CustomItemTemplate[] getItemTemplates() {
         return itemTemplates.toArray(new CustomItemTemplate[0]);
     }
+
     public StaticCustomBlock[] getStaticCustomBlocks() {
         return staticCustomBlocks.toArray(new StaticCustomBlock[0]);
     }
+
     public StaticCustomItem[] getStaticCustomItems() {
         return staticCustomItems.toArray(new StaticCustomItem[0]);
     }

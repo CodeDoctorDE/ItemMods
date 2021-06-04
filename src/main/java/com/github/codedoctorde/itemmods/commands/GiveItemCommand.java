@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.commands;
 
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.CustomConfig;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,21 +22,21 @@ import java.util.stream.Collectors;
  * @author CodeDoctorDE
  */
 public class GiveItemCommand implements TabCompleter, CommandExecutor {
-    private final JsonObject commandTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("give");
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        Translation t = ItemMods.getTranslationConfig().subTranslation("command.give");
         if (args.length < 2 || args.length > 3) {
-            commandSender.sendMessage(commandTranslation.get("usage").getAsString());
+            commandSender.sendMessage(t.getTranslation("usage"));
         } else {
             Player player = Bukkit.getPlayer(args[0]);
             if (player == null) {
-                commandSender.sendMessage(commandTranslation.get("noplayer").getAsString());
+                commandSender.sendMessage(t.getTranslation("noplayer"));
                 return true;
             }
-            ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItem(args[1]);
+            ItemConfig itemConfig = ItemMods.getMainConfig().getItem(args[1]);
             if (itemConfig == null) {
-                commandSender.sendMessage(commandTranslation.get("noitem").getAsString());
+                commandSender.sendMessage(t.getTranslation("noitem"));
                 return true;
             }
             int count = 1;
@@ -44,7 +44,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 try {
                     count = Integer.parseInt(args[2]);
                 } catch (Exception e) {
-                    commandSender.sendMessage(commandTranslation.get("notnumber").getAsString());
+                    commandSender.sendMessage(t.getTranslation("notnumber"));
                     return true;
                 }
             }
@@ -64,7 +64,8 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
             return new ArrayList<>();
         if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
-        else if (args.length == 2) available.addAll(ItemMods.getPlugin().getMainConfig().getItems().stream().map(CustomConfig::getIdentifier).collect(Collectors.toList()));
+        else if (args.length == 2)
+            available.addAll(ItemMods.getMainConfig().getItems().stream().map(CustomConfig::getIdentifier).collect(Collectors.toList()));
         else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
         StringUtil.copyPartialMatches(args[args.length - 1], available, completions);

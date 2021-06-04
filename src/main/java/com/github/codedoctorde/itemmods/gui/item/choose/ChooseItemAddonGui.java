@@ -25,7 +25,7 @@ public class ChooseItemAddonGui {
     }
 
     public Gui[] createGuis() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("addon");
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("choose").getAsJsonObject("item").getAsJsonObject("addon");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiListEvent() {
             @Override
             public String title(int index, int size) {
@@ -34,7 +34,7 @@ public class ChooseItemAddonGui {
 
             @Override
             public GuiItem[] pages(String s) {
-                return ItemMods.getPlugin().getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
+                return ItemMods.getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new GuiItem(addon.getIcon(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         new ChooseItemTemplateGui(itemIndex, addon).createGuis()[0].open((Player) event.getWhoClicked());

@@ -22,7 +22,7 @@ public class ItemGiveGui {
     }
 
     public Gui createGui(Gui backGui) {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("give");
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("give");
         return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 3) {{
             getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                 @Override

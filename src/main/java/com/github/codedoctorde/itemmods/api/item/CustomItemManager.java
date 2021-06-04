@@ -13,7 +13,7 @@ public class CustomItemManager {
     }
 
     public List<ItemConfig> getItems() {
-        return ItemMods.getPlugin().getMainConfig().getItems();
+        return ItemMods.getMainConfig().getItems();
     }
 
     /**

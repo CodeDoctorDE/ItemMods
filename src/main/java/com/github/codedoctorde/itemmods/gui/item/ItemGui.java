@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiPane;
 import com.github.codedoctorde.api.ui.TabGui;
 import com.github.codedoctorde.api.ui.item.StaticItem;
@@ -12,15 +11,11 @@ import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemAddonGui;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -126,14 +121,14 @@ public class ItemGui extends TabGui {
                                 itemConfig.setItemStack(itemStack);
                                 ItemMods.saveBaseConfig();
                                 setItemStack(itemStack);
-                                show((Player)event.getWhoClicked());
+                                show((Player) event.getWhoClicked());
                             });
                             gui.setCancelAction(() -> show((Player) event.getWhoClicked()));
                             gui.show((Player) event.getWhoClicked());
                         });
                     }});
                     String renameNS = "rename." + (itemConfig.isCanRename() ? "yes" : "no");
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName(renameNS + ".title").setLore(renameNS + ".description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName(renameNS + ".title").setLore(renameNS + ".description").build()) {{
                         setRenderAction((gui) -> setPlaceholders(tabT.getTranslation(renameNS)));
                         setClickAction((event) -> {
                             itemConfig.setCanRename(!itemConfig.isCanRename());

@@ -23,8 +23,8 @@ public class DropGui {
     }
 
     public Gui createGui() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drop");
-        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drop");
+        BlockConfig blockConfig = ItemMods.getMainConfig().getBlocks().get(blockIndex);
         return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 3, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {

@@ -8,13 +8,13 @@ import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
 import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemConfigGui;
-import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.block.TileState;
@@ -24,16 +24,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.text.MessageFormat;
 
-public class BlockGui {
-    private final int index;
+public class BlockGui extends TranslatedChestGui {
 
-    public BlockGui(int index) {
-        this.index = index;
-    }
-
-    public Gui createGui() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("block");
-        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(index);
+    public BlockGui(BlockConfig blockConfig) {
+        super(ItemMods.getTranslationConfig().subTranslation("gui.block");
         return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), index), 6, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
@@ -57,7 +51,7 @@ public class BlockGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setName(output);
-                                ItemMods.getPlugin().saveBaseConfig();
+                                ItemMods.saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("name").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -79,7 +73,7 @@ public class BlockGui {
                             public void onEvent(Player player, String output) {
                                 output = ChatColor.translateAlternateColorCodes('&', output);
                                 blockConfig.setDisplayName(output);
-                                ItemMods.getPlugin().saveBaseConfig();
+                                ItemMods.saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("displayname").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -101,7 +95,7 @@ public class BlockGui {
                             @Override
                             public void onEvent(Player player, String output) {
                                 blockConfig.setNamespace(output);
-                                ItemMods.getPlugin().saveBaseConfig();
+                                ItemMods.saveBaseConfig();
                                 player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("namespace").get("success").getAsString(), output));
                                 createGui().open(player);
                             }
@@ -134,7 +128,7 @@ public class BlockGui {
                                             blockConfig.setNbt(null);
                                             player.sendMessage(guiTranslation.getAsJsonObject("block").get("error").getAsString());
                                         }
-                                        ItemMods.getPlugin().saveBaseConfig();
+                                        ItemMods.saveBaseConfig();
                                         createGui().open(player);
                                     }
 
@@ -151,14 +145,14 @@ public class BlockGui {
                                 createGui().open((Player) event.getWhoClicked());
                                 break;
                         }
-                        ItemMods.getPlugin().saveBaseConfig();
+                        ItemMods.saveBaseConfig();
                     }
                 }));
                 getGuiItems().put(9 * 3 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("drop").getAsJsonObject(blockConfig.isDrop() ? "yes" : "no")).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         blockConfig.setDrop(!blockConfig.isDrop());
-                        ItemMods.getPlugin().saveBaseConfig();
+                        ItemMods.saveBaseConfig();
                         createGui().open((Player) event.getWhoClicked());
                     }
                 }));
@@ -175,7 +169,7 @@ public class BlockGui {
                     public void setItem(Gui gui, Player player) {
                         new ChooseItemConfigGui(itemConfig -> {
                             blockConfig.setReferenceItemConfig(itemConfig);
-                            ItemMods.getPlugin().saveBaseConfig();
+                            ItemMods.saveBaseConfig();
                             createGui().open(player);
                         }).createGui(gui)[0].open(player);
                     }
@@ -189,7 +183,7 @@ public class BlockGui {
                                 @Override
                                 public void onEvent(Player player, ArmorStandBlockConfig config) {
                                     blockConfig.setArmorStand(config);
-                                    ItemMods.getPlugin().saveBaseConfig();
+                                    ItemMods.saveBaseConfig();
                                     gui.open(player);
                                 }
 
@@ -197,7 +191,7 @@ public class BlockGui {
                                 public void onCancel(Player player) {
                                     gui.open(player);
                                 }
-        }).createGui().open((Player) event.getWhoClicked());
+                            }).createGui().open((Player) event.getWhoClicked());
                         }
                     }));
                 }
@@ -207,7 +201,7 @@ public class BlockGui {
                         blockConfig.setArmorStand((armorStand != null) ? null : new ArmorStandBlockConfig());
                         blockConfig.setBlock(null);
                         blockConfig.setNbt(null);
-                        ItemMods.getPlugin().saveBaseConfig();
+                        ItemMods.saveBaseConfig();
                         event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("type").getAsJsonObject((armorStand != null) ? "yes" : "no").get("set").getAsString());
                         createGui().open((Player) event.getWhoClicked());
                     }

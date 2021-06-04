@@ -1,10 +1,10 @@
 package com.github.codedoctorde.itemmods.addon;
 
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @author CodeDoctorDE
  */
 public class BaseAddon extends ItemModsAddon {
-    JsonObject addonTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("addon");
+    Translation addonTranslation = ItemMods.getTranslationConfig().subTranslation("addon.main");
 
     public BaseAddon() {
         super(ItemMods.getPlugin(), "itemmods");
@@ -25,7 +25,7 @@ public class BaseAddon extends ItemModsAddon {
     @NotNull
     @Override
     public ItemStack getIcon() {
-        return new ItemStackBuilder(addonTranslation.getAsJsonObject("icon")).build();
+        return new ItemStackBuilder(addonTranslation.getTranslation("icon")).build();
     }
 
     @Override

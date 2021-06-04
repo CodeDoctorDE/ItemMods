@@ -3,7 +3,9 @@ package com.github.codedoctorde.itemmods.config;
 import com.github.codedoctorde.itemmods.ItemMods;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MainConfig {
@@ -32,7 +34,7 @@ public class MainConfig {
         return blocks.stream().filter(blockConfig -> blockConfig.getNamespace().equals(namespace)).map(BlockConfig::getName).collect(Collectors.toSet());
     }
 
-    public Set<String> getNamespaces(){
+    public Set<String> getNamespaces() {
         Set<String> namespaces = blocks.stream().map(BlockConfig::getNamespace).collect(Collectors.toSet());
         items.stream().map(ItemConfig::getNamespace).forEach(namespaces::add);
         return namespaces;
@@ -52,7 +54,7 @@ public class MainConfig {
         if (getBlock(blockConfig.getIdentifier()) != null)
             return false;
         getBlocks().add(blockConfig);
-        ItemMods.getPlugin().saveBaseConfig();
+        ItemMods.saveBaseConfig();
         return true;
     }
 

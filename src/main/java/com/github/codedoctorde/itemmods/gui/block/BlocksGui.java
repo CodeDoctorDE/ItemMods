@@ -31,8 +31,8 @@ public class BlocksGui {
     }
 
     private ListGui createGuis(String searchText) {
-        MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
+        MainConfig mainConfig = ItemMods.getMainConfig();
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks");
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -101,11 +101,11 @@ public class BlocksGui {
     }
 
     private Gui createDeleteGui(Player player, int blockIndex, Gui backGui, String searchText) {
-        List<BlockConfig> blockConfigs = ItemMods.getPlugin().getMainConfig().getBlocks();
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks").getAsJsonObject("delete");
+        List<BlockConfig> blockConfigs = ItemMods.getMainConfig().getBlocks();
+        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("blocks").getAsJsonObject("delete");
         if (blockIndex < 0 || blockIndex >= blockConfigs.size())
             return null;
-        BlockConfig blockConfig = ItemMods.getPlugin().getMainConfig().getBlocks().get(blockIndex);
+        BlockConfig blockConfig = ItemMods.getMainConfig().getBlocks().get(blockIndex);
         return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), blockIndex), 3, new GuiEvent() {
             @Override
             public void onTick(Gui gui, Player player) {
@@ -129,7 +129,7 @@ public class BlocksGui {
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         Player player = (Player) event.getWhoClicked();
                         blockConfigs.remove(blockConfig);
-                        ItemMods.getPlugin().saveBaseConfig();
+                        ItemMods.saveBaseConfig();
                         player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), blockConfig.getName(), blockIndex));
                         BlocksGui.this.createGuis(searchText)[0].open(player);
                     }

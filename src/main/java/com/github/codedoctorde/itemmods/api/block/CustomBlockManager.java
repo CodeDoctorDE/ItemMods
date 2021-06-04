@@ -1,20 +1,14 @@
 package com.github.codedoctorde.itemmods.api.block;
 
-import com.github.codedoctorde.api.nms.block.BlockNBT;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockPlaceEvent;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
-import org.bukkit.block.TileState;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataContainer;
-import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -38,9 +32,10 @@ public class CustomBlockManager {
 
     /**
      * Get the custom block by the location
-     * @deprecated Use the {@link CustomBlock} constructor
+     *
      * @param location the location of the custom block
      * @return The custom block
+     * @deprecated Use the {@link CustomBlock} constructor
      */
     @Nullable
     @Deprecated
@@ -51,9 +46,9 @@ public class CustomBlockManager {
     /**
      * Get the custom block by the block
      *
-     * @deprecated Use the {@link CustomBlock} constructor
      * @param block the "real" block of the custom block
      * @return The custom block
+     * @deprecated Use the {@link CustomBlock} constructor
      */
     @Deprecated
     @Nullable
@@ -62,7 +57,7 @@ public class CustomBlockManager {
     }
 
     public List<BlockConfig> getBlocks() {
-        return ItemMods.getPlugin().getMainConfig().getBlocks();
+        return ItemMods.getMainConfig().getBlocks();
     }
 
     /**
@@ -87,10 +82,10 @@ public class CustomBlockManager {
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
         if (armorStandBlockConfig != null) armorStandBlockConfig.spawn(location);
-        if (blockConfig.getNbt() != null)
-            BlockNBT.setNbt(block, blockConfig.getNbt());
+        /*if (blockConfig.getNbt() != null)
+            BlockNBT.setNbt(block, blockConfig.getNbt());*/
         if (location.getChunk().isLoaded())
-            loadedBlocks.add(new CustomBlock(location){{
+            loadedBlocks.add(new CustomBlock(location) {{
                 setIdentifier(blockConfig.getIdentifier());
                 configure();
             }});

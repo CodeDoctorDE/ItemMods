@@ -1,6 +1,6 @@
 package com.github.codedoctorde.itemmods.commands;
 
-import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.KnowledgeGui;
 import com.github.codedoctorde.itemmods.gui.MainGui;
@@ -11,36 +11,29 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class BaseCommand implements CommandExecutor, TabCompleter {
-    private final HashMap<Player, Gui> playerGuiHashMap = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        TranslationConfig t = ItemMods.getTranslationConfig();
         if (args.length != 0) {
-            sender.sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("usage").getAsString());
+            sender.sendMessage(t.getTranslation("command.base.usage"));
             return true;
         }
         if (sender instanceof Player)
-            if (playerGuiHashMap.containsKey(sender))
-                playerGuiHashMap.get(sender).open((Player) sender);
-            else if (sender.hasPermission("itemmods.admin"))
-                new MainGui().createGui().open((Player) sender);
+            if (sender.hasPermission("itemmods.admin"))
+                new MainGui().show((Player) sender);
             else
-                new KnowledgeGui().createGui().open((Player) sender);
+                new KnowledgeGui().show((Player) sender);
         else
-            sender.sendMessage(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("command").getAsJsonObject("base").get("noplayer").getAsString());
+            sender.sendMessage(t.getTranslation("command.base.noplayer"));
         return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         return new ArrayList<>();
-    }
-
-    public HashMap<Player, Gui> getPlayerGuiHashMap() {
-        return playerGuiHashMap;
     }
 }

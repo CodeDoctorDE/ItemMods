@@ -26,12 +26,13 @@ public class CustomBlock {
     public CustomBlock(Location location) {
         this.location = location;
     }
-    public CustomBlock(Block block){
+
+    public CustomBlock(Block block) {
         this(block.getLocation());
     }
 
     public BlockConfig getConfig() {
-        return ItemMods.getPlugin().getMainConfig().getBlock(getIdentifier());
+        return ItemMods.getMainConfig().getBlock(getIdentifier());
     }
 
     public Location getLocation() {
@@ -45,14 +46,15 @@ public class CustomBlock {
         return (ArmorStand) entities.stream().filter(entity -> entity instanceof ArmorStand && entity.getLocation().getY() == location.getY()).findFirst().orElse(null);
     }
 
-    public String getIdentifier(){
+    public String getIdentifier() {
         return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
     }
-    public void setIdentifier(String identifier){
+
+    public void setIdentifier(String identifier) {
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), identifier);
     }
 
-    public boolean breakBlock(Player player){
+    public boolean breakBlock(Player player) {
         if (player.getGameMode() == GameMode.CREATIVE)
             return breakBlock(CustomBlock.BlockDropType.NOTHING, player);
         else if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
