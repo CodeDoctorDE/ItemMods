@@ -40,8 +40,13 @@ import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
     private static ItemMods plugin;
-    private final Path baseConfig = Paths.get(getDataFolder().getPath(), "config.json");
-    private final Gson gson;
+    private static Path baseConfig;
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
+            .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
+            .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
+            .serializeNulls()
+            .setPrettyPrinting().create();;
     private UpdateChecker updateChecker;
     private static MainConfig mainConfig;
     private BaseCommand baseCommand;
@@ -50,15 +55,6 @@ public class ItemMods extends JavaPlugin {
     private GiveItemCommand giveItemCommand;
     private static PackManager packManager;
     private Connection connection;
-
-    public ItemMods() {
-        gson = new GsonBuilder()
-                .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
-                .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
-                .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
-                .serializeNulls()
-                .setPrettyPrinting().create();
-    }
 
     public static ItemMods getPlugin() {
         return plugin;
@@ -86,7 +82,7 @@ public class ItemMods extends JavaPlugin {
             e.printStackTrace();
         }
 
-
+        baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
         try {
             if (!Files.exists(baseConfig))
                 Files.createFile(baseConfig);
@@ -138,7 +134,7 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
     }
 
-    public void saveBaseConfig() {
+    public static void saveBaseConfig() {
         try {
             FileWriter writer = new FileWriter(baseConfig.toString());
             BufferedWriter bw = new BufferedWriter(writer);

@@ -1,21 +1,18 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.*;
-import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.ui.GuiPane;
+import com.github.codedoctorde.api.ui.TabGui;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ItemCreatorGui;
-import com.github.codedoctorde.api.ui.template.gui.ListGui;
-import com.github.codedoctorde.api.ui.template.gui.TabGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
-import com.github.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.item.choose.ChooseItemAddonGui;
-import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,12 +22,13 @@ import org.bukkit.inventory.ItemStack;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.function.BiFunction;
+import java.util.Objects;
 
 enum ItemGuiTab {
     general, apperance, action;
+
     public Material getMaterial() {
-        switch(this){
+        switch (this) {
             case general:
                 return Material.NAME_TAG;
             case apperance:
@@ -41,6 +39,7 @@ enum ItemGuiTab {
         return null;
     }
 }
+
 public class ItemGui extends TabGui {
 
     public ItemGui(String name) {
@@ -51,15 +50,20 @@ public class ItemGui extends TabGui {
         setTabsBuilder(integer -> {
             GuiPane guiPane = new GuiPane(9, 1);
             guiPane.fillItems(0, 0, 8, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
-            Arrays.stream(ItemGuiTab.values()).forEach(tab -> guiPane.addItem(new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).setDisplayName(tab.name() + ".name").build())));
+            Arrays.stream(ItemGuiTab.values()).forEach(tab -> guiPane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Objects.requireNonNull(tab.getMaterial())).setDisplayName(tab.name() + ".name").build()) {{
+                setClickAction(event -> {
+
+                });
+            }}));
             return guiPane;
         });
         for (ItemGuiTab tab : ItemGuiTab.values()) {
             Translation tabT = t.subTranslation(tab.name());
             TranslatedChestGui gui = new TranslatedChestGui(tabT);
-            switch(tab){
+            switch (tab) {
                 case general:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("namespace.title").setLore("namespace.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("namespace.title").setLore("namespace.description").build()) {{
+                        setRenderAction((gui) -> setPlaceholders(itemConfig.getNamespace()));
                         setClickAction(event -> {
                             hide((Player) event.getWhoClicked());
                             ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
@@ -70,7 +74,8 @@ public class ItemGui extends TabGui {
                             request.setCancelAction(() -> show((Player) event.getWhoClicked()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName("name.title").setLore("name.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName("name.title").setLore("name.description").build()) {{
+                        setRenderAction((gui) -> setPlaceholders(itemConfig.getName()));
                         setClickAction(event -> {
                             hide((Player) event.getWhoClicked());
                             ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
@@ -81,7 +86,8 @@ public class ItemGui extends TabGui {
                             request.setCancelAction(() -> show((Player) event.getWhoClicked()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("displayname.title").setLore("displayname.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("displayname.title").setLore("displayname.description").build()) {{
+                        setRenderAction((gui) -> setPlaceholders(itemConfig.getDisplayName()));
                         setClickAction(event -> {
                             hide((Player) event.getWhoClicked());
                             ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
@@ -94,140 +100,59 @@ public class ItemGui extends TabGui {
                     }});
                     break;
                 case apperance:
+                    gui.addItem(new StaticItem() {{
+                        setRenderAction((gui) -> setItemStack(itemConfig.getItemStack() != null ? itemConfig.getItemStack() : new ItemStackBuilder(Material.BARRIER).setDisplayName(tabT.getTranslation("item.null.title")).setLore(tabT.getTranslation("item.null.description")).build()));
+                        setClickAction(event -> {
+                            if (event.getClick() == ClickType.MIDDLE && itemConfig.getItemStack() != null) {
+                                event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack());
+                                return;
+                            }
+                            ItemStack change = event.getWhoClicked().getItemOnCursor();
+                            if (change.getType() == Material.AIR && itemConfig.getItemStack() == null)
+                                itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
+                            else {
+                                itemConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
+                                ItemMods.saveBaseConfig();
+                                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                            }
+                            ItemMods.saveBaseConfig();
+                            gui.reloadAll();
+                        });
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("itemcreator.title").setLore("itemcreator.description").build()) {{
+                        setClickAction(event -> {
+                            ItemCreatorGui gui = new ItemCreatorGui(itemConfig.getItemStack(), ItemMods.getTranslationConfig().subTranslation("itemcreator"));
+                            gui.setSubmitAction(itemStack -> {
+                                itemConfig.setItemStack(itemStack);
+                                ItemMods.saveBaseConfig();
+                                setItemStack(itemStack);
+                                show((Player)event.getWhoClicked());
+                            });
+                            gui.setCancelAction(() -> show((Player) event.getWhoClicked()));
+                            gui.show((Player) event.getWhoClicked());
+                        });
+                    }});
+                    String renameNS = "rename." + (itemConfig.isCanRename() ? "yes" : "no");
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName(renameNS + ".title").setLore(renameNS + ".description").build()){{
+                        setRenderAction((gui) -> setPlaceholders(tabT.getTranslation(renameNS)));
+                        setClickAction((event) -> {
+                            itemConfig.setCanRename(!itemConfig.isCanRename());
+                            ItemMods.saveBaseConfig();
+                            gui.reloadAll();
+                        });
+                    }});
                     break;
                 case action:
                     break;
             }
             registerGui(gui);
         }
-        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), index), 5, new GuiEvent() {
+        /*return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), index), 5, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }) {{
-            getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    new ItemsGui().createGuis()[0].open(player);
-                }
-            }));
-            getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("name")).format(itemConfig.getName()).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("name").get("message").getAsString());
-                    gui.close((Player) event.getWhoClicked());
-                    new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
-                        @Override
-                        public void onEvent(Player player, String output) {
-                            itemConfig.setName(output);
-                            ItemMods.getPlugin().saveBaseConfig();
-                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("name").get("success").getAsString(), output));
-                            createGui().open(player);
-                        }
-
-                        @Override
-                        public void onCancel(Player player) {
-                            player.sendMessage(guiTranslation.getAsJsonObject("name").get("cancel").getAsString());
-                        }
-                    });
-                }
-            }));
-            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("displayname")).format(itemConfig.getDisplayName()).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    gui.close((Player) event.getWhoClicked());
-                    event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("displayname").get("message").getAsString());
-                    new ChatRequest(ItemMods.getPlugin(), (Player) event.getWhoClicked(), new RequestEvent<String>() {
-                        @Override
-                        public void onEvent(Player player, String output) {
-                            output = ChatColor.translateAlternateColorCodes('&', output);
-                            itemConfig.setDisplayName(output);
-                            ItemMods.getPlugin().saveBaseConfig();
-                            player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("displayname").get("success").getAsString(), output));
-                            createGui().open(player);
-                        }
-
-                        @Override
-                        public void onCancel(Player player) {
-                            player.sendMessage(guiTranslation.getAsJsonObject("displayname").get("cancel").getAsString());
-                            createGui().open(player);
-                        }
-                    });
-                }
-            }));
-            getGuiItems().put(9 + 5, new GuiItem((itemConfig.getItemStack() != null) ? itemConfig.getItemStack() : new ItemStackBuilder(guiTranslation.getAsJsonObject("item").getAsJsonObject("null")).build(), new GuiItemEvent() {
-
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    if (event.getClick() == ClickType.MIDDLE && itemConfig.getItemStack() != null) {
-                        event.getWhoClicked().getInventory().addItem(itemConfig.getItemStack());
-                        return;
-                    }
-                    ItemStack change = event.getWhoClicked().getItemOnCursor();
-                    if (change.getType() == Material.AIR && itemConfig.getItemStack() == null)
-                        itemConfig.setItemStack(new ItemStack(Material.PLAYER_HEAD));
-                    else {
-                        itemConfig.setItemStack((change.getType() == Material.AIR) ? null : change);
-                        ItemMods.getPlugin().saveBaseConfig();
-                        event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-                    }
-                    ItemMods.getPlugin().saveBaseConfig();
-                    createGui().open((Player) event.getWhoClicked());
-                }
-            }));
-            getGuiItems().put(4, new GuiItem(new ItemStackBuilder(itemConfig.getItemStack() != null ? guiTranslation.getAsJsonObject("creator").getAsJsonObject("item") : guiTranslation.getAsJsonObject("creator").getAsJsonObject("null")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    if (itemConfig.getItemStack() == null)
-                        return;
-                    new ItemCreatorGui(ItemMods.getPlugin(), itemConfig.getItemStack(), new ItemCreatorEvent() {
-                        @Override
-                        public void onEvent(Player player, ItemStack itemStack) {
-                            itemConfig.setItemStack(itemStack);
-                            ItemMods.getPlugin().saveBaseConfig();
-                            createGui().open((Player) event.getWhoClicked());
-                        }
-
-                        @Override
-                        public void onCancel(Player player) {
-                            gui.open(player);
-                        }
-        }).createGui(ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("itemcreator")).open((Player) event.getWhoClicked());
-                }
-            }));
-            getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(itemConfig.isCanRename() ? guiTranslation.getAsJsonObject("rename").getAsJsonObject("yes") : guiTranslation.getAsJsonObject("rename").getAsJsonObject("no")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    itemConfig.setCanRename(!itemConfig.isCanRename());
-                    ItemMods.getPlugin().saveBaseConfig();
-                    if (itemConfig.isCanRename())
-                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("rename").getAsJsonObject("yes").get("success").getAsString());
-                    else
-                        event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("rename").getAsJsonObject("no").get("success").getAsString());
-                    createGui().open(player);
-                }
-            }));
-
-                /*getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(itemConfig.isBoneMeal() ? guiTranslation.getAsJsonObject("bonemeal.yes") : guiTranslation.getAsJsonObject("bonemeal.no")).build(), new GuiItemEvent() {
-                    @Override
-                    public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                        Player player = (Player) event.getWhoClicked();
-                        itemConfig.setBoneMeal(!itemConfig.isBoneMeal());
-                        try {
-                            Main.getPlugin().saveBaseConfig();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        if(itemConfig.isBoneMeal())
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("bonemeal.yes.success"));
-                        else
-                            event.getWhoClicked().sendMessage(guiTranslation.getAsJsonObject("bonemeal.no.success"));
-                        createGui().open(player);
-                    }
-                }));*/
             getGuiItems().put(9 * 3 + 3, itemConfig.getItemStack() != null ? new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
                     new ItemStackBuilder(itemConfig.getTemplate().getInstance().createMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
@@ -262,7 +187,7 @@ public class ItemGui extends TabGui {
                         public void onEvent(Player player, String output) {
                             output = ChatColor.translateAlternateColorCodes('&', output);
                             itemConfig.setNamespace(output);
-                            ItemMods.getPlugin().saveBaseConfig();
+                            ItemMods.saveBaseConfig();
                             player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("namespace").get("success").getAsString(), output));
                             createGui().open(player);
                         }
@@ -292,7 +217,7 @@ public class ItemGui extends TabGui {
                     }
                 }
             }));
-        }};
+        }};*/
     }
 
     /*private Gui createEventsGui(Gui backGui) {
