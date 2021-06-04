@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class MainGui extends TranslatedChestGui {
     public MainGui() {
-        super(ItemMods.getTranslationConfig().getTranslation().subTranslation("gui.main"));
+        super(ItemMods.getTranslationConfig().subTranslation("gui.main"));
         Translation translation = getTranslation();
         setCloseAction(player -> ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player));
         fillItems(0, 0, 8, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));

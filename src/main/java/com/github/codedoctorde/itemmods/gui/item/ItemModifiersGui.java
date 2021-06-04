@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class ItemModifiersGui extends ListGui {
     public ItemModifiersGui(String name) {
-        super(ItemMods.getTranslationConfig().getTranslation().subTranslation("gui.item.modifiers"), 3, (s, t) -> Objects.requireNonNull(ItemMods.getMainConfig().getItem(name)).getModifiers().stream().map(data -> new StaticItem(data.getInstance().createMainIcon(ItemMods.getMainConfig().getItem(name)))).toArray(GuiItem[]::new));
+        super(ItemMods.getTranslationConfig().subTranslation("gui.item.modifiers"), 3, (s, t) -> Objects.requireNonNull(ItemMods.getMainConfig().getItem(name)).getModifiers().stream().map(data -> new StaticItem(data.getInstance().createMainIcon(ItemMods.getMainConfig().getItem(name)))).toArray(GuiItem[]::new));
         setPlaceholders(name);
     }
 }

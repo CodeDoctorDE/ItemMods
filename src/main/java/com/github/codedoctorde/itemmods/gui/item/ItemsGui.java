@@ -27,11 +27,11 @@ public class ItemsGui extends ListGui {
                 ClickType clickType = event.getClick();
                 switch (clickType) {
                     case LEFT:
-                        new ItemGui(itemConfig).createGui().show(player);
+                        new ItemGui(itemConfig.getIdentifier()).show(player);
                         break;
                     case DROP:
                         List<ItemConfig> itemConfigs = ItemMods.getMainConfig().getItems();
-                        Translation t = ItemMods.getTranslationConfig().getTranslation().subTranslation("gui.items.delete");
+                        Translation t = ItemMods.getTranslationConfig().subTranslation("gui.items.delete");
                         new MessageGui(t){{
                             addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).setDisplayName("yes").build()){{
                                 setClickAction(event -> {

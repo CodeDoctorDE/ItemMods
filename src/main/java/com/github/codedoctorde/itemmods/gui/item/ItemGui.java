@@ -3,14 +3,14 @@ package com.github.codedoctorde.itemmods.gui.item;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.ui.GuiEvent;
-import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.ui.*;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ItemCreatorGui;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
+import com.github.codedoctorde.api.ui.template.gui.TabGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
+import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
@@ -24,17 +24,82 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.function.BiFunction;
 
-public class ItemGui extends TranslatedChestGui {
-
-    public ItemGui(Translation translation) {
-        super(translation);
+enum ItemGuiTab {
+    general, apperance, action;
+    public Material getMaterial() {
+        switch(this){
+            case general:
+                return Material.NAME_TAG;
+            case apperance:
+                return Material.ITEM_FRAME;
+            case action:
+                return Material.COMMAND_BLOCK;
+        }
+        return null;
     }
+}
+public class ItemGui extends TabGui {
 
-    public Gui createGui() {
-        ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(index);
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("item");
+    public ItemGui(String name) {
+        ItemConfig itemConfig = ItemMods.getMainConfig().getItem(name);
+        assert itemConfig != null;
+        Translation t = ItemMods.getTranslationConfig().subTranslation("gui.item");
+
+        setTabsBuilder(integer -> {
+            GuiPane guiPane = new GuiPane(9, 1);
+            guiPane.fillItems(0, 0, 8, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            Arrays.stream(ItemGuiTab.values()).forEach(tab -> guiPane.addItem(new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).setDisplayName(tab.name() + ".name").build())));
+            return guiPane;
+        });
+        for (ItemGuiTab tab : ItemGuiTab.values()) {
+            Translation tabT = t.subTranslation(tab.name());
+            TranslatedChestGui gui = new TranslatedChestGui(tabT);
+            switch(tab){
+                case general:
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("namespace.title").setLore("namespace.description").build()){{
+                        setClickAction(event -> {
+                            hide((Player) event.getWhoClicked());
+                            ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
+                            request.setSubmitAction(s -> {
+                                itemConfig.setNamespace(s);
+                                show((Player) event.getWhoClicked());
+                            });
+                            request.setCancelAction(() -> show((Player) event.getWhoClicked()));
+                        });
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ANVIL).setDisplayName("name.title").setLore("name.description").build()){{
+                        setClickAction(event -> {
+                            hide((Player) event.getWhoClicked());
+                            ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
+                            request.setSubmitAction(s -> {
+                                itemConfig.setName(s);
+                                show((Player) event.getWhoClicked());
+                            });
+                            request.setCancelAction(() -> show((Player) event.getWhoClicked()));
+                        });
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("displayname.title").setLore("displayname.description").build()){{
+                        setClickAction(event -> {
+                            hide((Player) event.getWhoClicked());
+                            ChatRequest request = new ChatRequest((Player) event.getWhoClicked());
+                            request.setSubmitAction(s -> {
+                                itemConfig.setDisplayName(s);
+                                show((Player) event.getWhoClicked());
+                            });
+                            request.setCancelAction(() -> show((Player) event.getWhoClicked()));
+                        });
+                    }});
+                    break;
+                case apperance:
+                    break;
+                case action:
+                    break;
+            }
+            registerGui(gui);
+        }
         return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), index), 5, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {
