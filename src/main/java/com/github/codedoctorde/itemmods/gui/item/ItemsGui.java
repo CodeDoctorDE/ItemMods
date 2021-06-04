@@ -1,160 +1,69 @@
 package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.*;
-import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.ui.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
-import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
-import com.github.codedoctorde.api.ui.template.gui.pane.list.HorizontalListControls;
+import com.github.codedoctorde.api.ui.template.gui.MessageGui;
 import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
+import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
-import com.github.codedoctorde.itemmods.config.MainConfig;
-import com.github.codedoctorde.itemmods.gui.MainGui;
-import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-public class ItemsGui {
+public class ItemsGui extends ListGui {
 
-    public ListGui createGuis() {
-        return createGuis("");
-    }
-
-    private ListGui createGuis(String searchText) {
-        MainConfig mainConfig = ItemMods.getPlugin().getMainConfig();
-        Translation translation = ItemMods.getPlugin().getTranslationConfig().subTranslation("gui.items");
-        return new ListGui(translation, 3, new VerticalListControls(3).offset(7, 0), string -> mainConfig.getItems().stream().filter(config -> config.getName().contains(string)).map(config -> new StaticItem(new ItemStackBuilder(config.getItemStack())
-                .addLore(translation.getTranslation("item")).build())).toArray(GuiItem[]::new))};
-        return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
-            @Override
-            public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
+    public ItemsGui() {
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), (s, translation) -> ItemMods.getMainConfig().getItems().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(itemConfig.getItemStack()).build()){{
+            setClickAction(event -> {
                 Player player = (Player) event.getWhoClicked();
-                player.sendMessage(guiTranslation.getAsJsonObject("create").get("message").getAsString());
-                gui.close(player);
-                new ChatRequest(ItemMods.getPlugin(), player, new RequestEvent<String>() {
-                    @Override
-                    public void onEvent(Player player, String output) {
-                        output = ChatColor.translateAlternateColorCodes('&', output);
-                        mainConfig.getItems().add(new ItemConfig("itemmods", output));
-                        ItemMods.getPlugin().saveBaseConfig();
-                        player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("create").get("success").getAsString(), output));
-                        Objects.requireNonNull(createGuis())[0].open(player);
-                    }
-
-                    @Override
-                    public void onCancel(Player player) {
-                        player.sendMessage(guiTranslation.getAsJsonObject("create").get("cancel").getAsString());
-                    }
-                });
-            }
-        }, new GuiListEvent() {
-            @Override
-            public String title(int index, int size) {
-                return MessageFormat.format(guiTranslation.get("title").getAsString(), index, size);
-            }
-
-            @Override
-            public GuiItem[] pages(String s) {
-                List<GuiItem> guiItems = new ArrayList<>();
-                List<ItemConfig> itemConfigs = mainConfig.getItems().stream().filter(itemConfig -> itemConfig.getName().contains(s)).collect(Collectors.toList());
-                for (int i = 0; i < itemConfigs.size(); i++) {
-                    ItemConfig itemConfig = itemConfigs.get(i);
-                    int finalI = i;
-                    guiItems.add(new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("item")).format(itemConfig.getName(), i).build(), new GuiItemEvent() {
-                        @Override
-                        public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                            Player player = (Player) event.getWhoClicked();
-                            ClickType clickType = event.getClick();
-                            switch (clickType) {
-                                case LEFT:
-                                    new ItemGui(finalI).createGui().open(player);
-                                    break;
-                                case DROP:
-                                    Objects.requireNonNull(createDeleteGui(player, finalI, gui, searchText)).open(player);
-                                    break;
-                            }
-                        }
-
-                        @Override
-                        public void onTick(Gui gui, GuiItem guiItem, Player player) {
-
-                        }
-                    }));
+                ClickType clickType = event.getClick();
+                switch (clickType) {
+                    case LEFT:
+                        new ItemGui(itemConfig).createGui().show(player);
+                        break;
+                    case DROP:
+                        List<ItemConfig> itemConfigs = ItemMods.getMainConfig().getItems();
+                        Translation t = ItemMods.getTranslationConfig().getTranslation().subTranslation("gui.items.delete");
+                        new MessageGui(t){{
+                            addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).setDisplayName("yes").build()){{
+                                setClickAction(event -> {
+                                    itemConfigs.remove(itemConfig);
+                                    ItemMods.getPlugin().saveBaseConfig();
+                                });
+                            }});
+                            addActions(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).setDisplayName("no").build()) {{
+                                setClickAction(event -> show(player));
+                            }});
+                        }}.show(player);
+                        break;
                 }
-                return guiItems.toArray(new GuiItem[0]);
-            }
-        }, new GuiEvent() {
-            @Override
-            public void onClose(Gui gui, Player player) {
-                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
-            }
-        }).createGuis(new MainGui().createGui(), searchText);
-    }
-
-    private Gui createDeleteGui(Player player, int itemIndex, Gui backGui, String searchText) {
-        List<ItemConfig> itemConfigs = ItemMods.getPlugin().getMainConfig().getItems();
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("items").getAsJsonObject("delete");
-        if (itemIndex < 0 || itemIndex >= itemConfigs.size())
-            return null;
-        ItemConfig itemConfig = ItemMods.getPlugin().getMainConfig().getItems().get(itemIndex);
-        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), itemConfig.getName(), itemIndex), 3, new GuiEvent() {
-            @Override
-            public void onTick(Gui gui, Player player) {
-
-            }
-
-            @Override
-            public void onOpen(Gui gui, Player player) {
-
-            }
-
-            @Override
-            public void onClose(Gui gui, Player player) {
-
-            }
-        }) {{
-            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("yes")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
-
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    itemConfigs.remove(itemConfig);
+            });
+        }}).toArray(GuiItem[]::new));
+        Translation t = getTranslation();
+        setListControls(new VerticalListControls(3){{
+            setCreateAction((event) ->{
+                Player player = (Player) event.getWhoClicked();
+                player.sendMessage(t.getTranslation("create.message"));
+                hide(player);
+                ChatRequest request = new ChatRequest(player);
+                request.setSubmitAction(s -> {
+                    String output = ChatColor.translateAlternateColorCodes('&', s);
+                    ItemMods.getMainConfig().getItems().add(new ItemConfig("itemmods", output));
                     ItemMods.getPlugin().saveBaseConfig();
-                    player.sendMessage(MessageFormat.format(guiTranslation.getAsJsonObject("yes").get("success").getAsString(), itemConfig.getName(), itemIndex));
-                    createGuis(searchText)[0].open(player);
-                }
-
-                @Override
-                public void onTick(Gui gui, GuiItem guiItem, Player player) {
-
-                }
-            }));
-            getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("no")).format(itemConfig.getName(), itemIndex).build(), new GuiItemEvent() {
-
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    backGui.open(player);
-                }
-
-                @Override
-                public void onTick(Gui gui, GuiItem guiItem, Player player) {
-
-                }
-            }));
-        }};
+                    player.sendMessage(t.getTranslation("create.success", output));
+                    rebuild();
+                    show(player);
+                });
+                request.setCancelAction(() -> player.sendMessage(t.getTranslation("create.cancel")));
+            });
+        }});
     }
 }

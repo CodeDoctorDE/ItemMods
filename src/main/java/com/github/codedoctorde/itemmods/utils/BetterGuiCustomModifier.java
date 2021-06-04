@@ -22,7 +22,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
 
     @Override
     public ItemStack modify(ItemStack itemStack, UUID uuid, Map<String, StringReplacer> map) {
-        return Objects.requireNonNull(ItemMods.getPlugin().getMainConfig().getItem(StringReplacer.replace(value, uuid, map.values()))).giveItemStack();
+        return Objects.requireNonNull(ItemMods.getMainConfig().getItem(StringReplacer.replace(value, uuid, map.values()))).giveItemStack();
     }
 
     @Override

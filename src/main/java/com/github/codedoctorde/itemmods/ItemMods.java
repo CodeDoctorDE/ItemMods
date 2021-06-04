@@ -15,7 +15,7 @@ import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
-import com.github.codedoctorde.itemmods.resourcepack.PackManager;
+import com.github.codedoctorde.itemmods.pack.PackManager;
 import com.github.codedoctorde.itemmods.utils.BetterGuiCustomModifier;
 import com.github.codedoctorde.itemmods.utils.PluginMetrics;
 import com.google.gson.Gson;
@@ -69,8 +69,8 @@ public class ItemMods extends JavaPlugin {
         plugin = this;
         updateChecker = new UpdateChecker(this, 72461);
         updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
-        translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations.json"));
-        translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
+        translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations/en.json"));
+        translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class));
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
@@ -121,11 +121,11 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
-    public CustomBlockManager getCustomBlockManager() {
+    public static CustomBlockManager getCustomBlockManager() {
         return getApi().getCustomBlockManager();
     }
 
-    public CustomItemManager getCustomItemManager() {
+    public static CustomItemManager getCustomItemManager() {
         return getApi().getCustomItemManager();
     }
 
@@ -150,7 +150,7 @@ public class ItemMods extends JavaPlugin {
 
     }
 
-    public void connect() throws ClassNotFoundException, SQLException {
+    private void connect() throws ClassNotFoundException, SQLException {
         if (connection != null && !connection.isClosed()) {
             return;
         }

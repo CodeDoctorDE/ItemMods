@@ -2,11 +2,14 @@ package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.RequestEvent;
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
 import com.github.codedoctorde.api.ui.GuiItem;
 import com.github.codedoctorde.api.ui.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.ItemCreatorGui;
+import com.github.codedoctorde.api.ui.template.gui.ListGui;
+import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
@@ -21,16 +24,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.text.MessageFormat;
+import java.util.function.BiFunction;
 
-public class ItemGui {
-    private final int index;
+public class ItemGui extends TranslatedChestGui {
 
-    public ItemGui(int index) {
-        this.index = index;
-    }
-
-    public ItemGui(ItemConfig itemConfig) {
-        index = ItemMods.getPlugin().getMainConfig().getItems().indexOf(itemConfig);
+    public ItemGui(Translation translation) {
+        super(translation);
     }
 
     public Gui createGui() {

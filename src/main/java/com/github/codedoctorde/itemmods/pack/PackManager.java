@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.resourcepack;
+package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
