@@ -6,8 +6,8 @@ import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.request.RequestEvent;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
-import com.github.codedoctorde.api.ui.GuiItem;
-import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.ui.item.GuiItem;
+import com.github.codedoctorde.api.ui.item.GuiItemEvent;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
@@ -27,7 +27,7 @@ import java.text.MessageFormat;
 public class BlockGui extends TranslatedChestGui {
 
     public BlockGui(BlockConfig blockConfig) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.block");
+        super(ItemMods.getTranslationConfig().subTranslation("gui.block"));
         return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), blockConfig.getName(), index), 6, new GuiEvent() {
             @Override
             public void onClose(Gui gui, Player player) {

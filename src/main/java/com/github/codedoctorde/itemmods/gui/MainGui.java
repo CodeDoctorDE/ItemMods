@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.StaticItem;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
@@ -16,7 +16,6 @@ public class MainGui extends TranslatedChestGui {
     public MainGui() {
         super(ItemMods.getTranslationConfig().subTranslation("gui.main"));
         Translation translation = getTranslation();
-        setCloseAction(player -> ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player));
         fillItems(0, 0, 8, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).setDisplayName("reload.title").addLore("reload.description").build()) {{
             setClickAction(event -> {

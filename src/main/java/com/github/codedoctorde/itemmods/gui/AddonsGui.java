@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.api.ui.GuiItem;
-import com.github.codedoctorde.api.ui.StaticItem;
+import com.github.codedoctorde.api.ui.item.GuiItem;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.itemmods.ItemMods;
 

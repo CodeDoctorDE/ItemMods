@@ -20,13 +20,13 @@ import java.util.Arrays;
 import java.util.Objects;
 
 enum ItemGuiTab {
-    general, apperance, action;
+    general, appearance, action;
 
     public Material getMaterial() {
         switch (this) {
             case general:
                 return Material.NAME_TAG;
-            case apperance:
+            case appearance:
                 return Material.ITEM_FRAME;
             case action:
                 return Material.COMMAND_BLOCK;
@@ -37,8 +37,7 @@ enum ItemGuiTab {
 
 public class ItemGui extends TabGui {
 
-    public ItemGui(String name) {
-        ItemConfig itemConfig = ItemMods.getMainConfig().getItem(name);
+    public ItemGui(ItemConfig itemConfig) {
         assert itemConfig != null;
         Translation t = ItemMods.getTranslationConfig().subTranslation("gui.item");
 
@@ -94,7 +93,7 @@ public class ItemGui extends TabGui {
                         });
                     }});
                     break;
-                case apperance:
+                case appearance:
                     gui.addItem(new StaticItem() {{
                         setRenderAction((gui) -> setItemStack(itemConfig.getItemStack() != null ? itemConfig.getItemStack() : new ItemStackBuilder(Material.BARRIER).setDisplayName(tabT.getTranslation("item.null.title")).setLore(tabT.getTranslation("item.null.description")).build()));
                         setClickAction(event -> {

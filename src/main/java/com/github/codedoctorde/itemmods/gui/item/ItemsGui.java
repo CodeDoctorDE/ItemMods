@@ -2,8 +2,8 @@ package com.github.codedoctorde.itemmods.gui.item;
 
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.GuiItem;
-import com.github.codedoctorde.api.ui.StaticItem;
+import com.github.codedoctorde.api.ui.item.GuiItem;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.MessageGui;
 import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
@@ -27,7 +27,7 @@ public class ItemsGui extends ListGui {
                 ClickType clickType = event.getClick();
                 switch (clickType) {
                     case LEFT:
-                        new ItemGui(itemConfig.getIdentifier()).show(player);
+                        new ItemGui(itemConfig).show(player);
                         break;
                     case DROP:
                         List<ItemConfig> itemConfigs = ItemMods.getMainConfig().getItems();

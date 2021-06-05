@@ -2,8 +2,8 @@ package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.ui.GuiEvent;
-import com.github.codedoctorde.api.ui.GuiItem;
-import com.github.codedoctorde.api.ui.GuiItemEvent;
+import com.github.codedoctorde.api.ui.item.GuiItem;
+import com.github.codedoctorde.api.ui.item.GuiItemEvent;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.google.gson.JsonObject;
