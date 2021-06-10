@@ -11,8 +11,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <oracle.version>19.3.0.0</oracle.version>
-        <speedment.version>3.2.9</speedment.version>
     </properties>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
