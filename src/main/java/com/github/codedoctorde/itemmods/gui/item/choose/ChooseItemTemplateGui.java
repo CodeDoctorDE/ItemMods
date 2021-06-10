@@ -26,7 +26,7 @@ public class ChooseItemTemplateGui extends ListGui {
                 }
                 itemConfig.setTemplate(new CustomItemTemplateData(itemTemplate));
                 ItemMods.saveBaseConfig();
-                new ItemGui(itemConfig).show((Player) event.getWhoClicked());
+                new ItemGui(itemConfig.getIdentifier()).show((Player) event.getWhoClicked());
             });
         }}).toArray(GuiItem[]::new));
     }

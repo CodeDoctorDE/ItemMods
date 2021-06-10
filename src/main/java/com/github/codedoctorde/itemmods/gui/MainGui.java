@@ -28,7 +28,7 @@ public class MainGui extends TranslatedChestGui {
             setClickAction(event -> new ItemsGui().show((Player) event.getWhoClicked()));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").addLore("blocks.description").build()) {{
-            setClickAction(event -> new BlocksGui().createGuis().show(((Player) event.getWhoClicked())));
+            setClickAction(event -> new BlocksGui().show(((Player) event.getWhoClicked())));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).setDisplayName("knowledge.title").addLore("knowledge.description").build()) {{
             setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));

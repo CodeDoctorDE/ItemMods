@@ -10,7 +10,6 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -37,9 +36,9 @@ enum ItemGuiTab {
 
 public class ItemGui extends TabGui {
 
-    public ItemGui(ItemConfig itemConfig) {
-        assert itemConfig != null;
+    public ItemGui(String itemIdentifier) {
         Translation t = ItemMods.getTranslationConfig().subTranslation("gui.item");
+        var itemConfig = ItemMods.getMainConfig().getItem(itemIdentifier);
 
         setTabsBuilder(integer -> {
             GuiPane guiPane = new GuiPane(9, 1);
@@ -147,7 +146,7 @@ public class ItemGui extends TabGui {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }) {{
-            getGuiItems().put(9 * 3 + 3, itemConfig.getItemStack() != null ? new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
+            registerItem(9 * 3 + 3, itemConfig.getItemStack() != null ? new GuiItem((itemConfig.getTemplate() == null) ? new ItemStackBuilder(guiTranslation.getAsJsonObject("template").getAsJsonObject("null")).build() :
                     new ItemStackBuilder(itemConfig.getTemplate().getInstance().createMainIcon(itemConfig).clone()).addLore(guiTranslation.getAsJsonObject("template").getAsJsonArray("has")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -165,13 +164,13 @@ public class ItemGui extends TabGui {
                         new ChooseItemAddonGui(index).createGuis()[0].open((Player) event.getWhoClicked());
                 }
             }) : new GuiItem(guiTranslation.getAsJsonObject("template").getAsJsonObject("no-item")));
-            getGuiItems().put(9 * 3 + 1, itemConfig.getItemStack() != null ? new GuiItem(guiTranslation.getAsJsonObject("modifiers").getAsJsonObject("has"), new GuiItemEvent() {
+            registerItem(9 * 3 + 1, itemConfig.getItemStack() != null ? new GuiItem(guiTranslation.getAsJsonObject("modifiers").getAsJsonObject("has"), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
 
                 }
             }) : new GuiItem(guiTranslation.getAsJsonObject("modifiers").getAsJsonObject("no-item")));
-            getGuiItems().put(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("namespace")).format(itemConfig.getNamespace()).build(), new GuiItemEvent() {
+            registerItem(9 * 3 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("namespace")).format(itemConfig.getNamespace()).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     gui.close((Player) event.getWhoClicked());
@@ -194,7 +193,7 @@ public class ItemGui extends TabGui {
                     });
                 }
             }));
-            getGuiItems().put(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("get")).build(), new GuiItemEvent() {
+            registerItem(9 * 4 + 8, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("get")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     Player player = (Player) event.getWhoClicked();
@@ -223,14 +222,14 @@ public class ItemGui extends TabGui {
                 Main.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
         }) {{
-            getGuiItems().put(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
+            registerItem(0, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("back")).build(), new GuiItemEvent() {
                 @Override
                 public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                     backGui.open((Player) event.getWhoClicked());
 
                 }
                 }));
-                getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("wear")).format(itemConfig.getOnWear().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getAsJsonObject("wear.delimiter")))).build(), new GuiItemEvent() {
+                registerItem(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("wear")).format(itemConfig.getOnWear().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getAsJsonObject("wear.delimiter")))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {
@@ -265,7 +264,7 @@ public class ItemGui extends TabGui {
                         }
                     }
                 }));
-                getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("rightclick")).format(itemConfig.getOnRightClick().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getAsJsonObject("rightclick.delimiter")))).build(), new GuiItemEvent() {
+                registerItem(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("rightclick")).format(itemConfig.getOnRightClick().stream().map(n -> n).collect(Collectors.joining(guiTranslation.getAsJsonObject("rightclick.delimiter")))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {
@@ -300,7 +299,7 @@ public class ItemGui extends TabGui {
                         }
                     }
                 }));
-                getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand")).format(itemConfig.getOnMainHand().stream().collect(Collectors.joining(guiTranslation.getAsJsonObject("mainhand.delimiter")))).build(), new GuiItemEvent() {
+                registerItem(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("mainhand")).format(itemConfig.getOnMainHand().stream().collect(Collectors.joining(guiTranslation.getAsJsonObject("mainhand.delimiter")))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {
@@ -335,7 +334,7 @@ public class ItemGui extends TabGui {
                         }
                     }
                 }));
-                getGuiItems().put(9 * 3 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand")).format(itemConfig.getOnOffHand().stream().collect(Collectors.joining(guiTranslation.getAsJsonObject("offhand.delimiter")))).build(), new GuiItemEvent() {
+                registerItem(9 * 3 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("offhand")).format(itemConfig.getOnOffHand().stream().collect(Collectors.joining(guiTranslation.getAsJsonObject("offhand.delimiter")))).build(), new GuiItemEvent() {
                     @Override
                     public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
                         switch (event.getClick()) {

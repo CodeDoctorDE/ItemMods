@@ -1,48 +1,38 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
 import com.github.codedoctorde.api.request.ItemRequest;
-import com.github.codedoctorde.api.request.RequestEvent;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.ui.GuiEvent;
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.ui.item.GuiItem;
-import com.github.codedoctorde.api.ui.item.GuiItemEvent;
-import com.github.codedoctorde.api.ui.template.gui.ItemCreatorGui;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
-import com.github.codedoctorde.api.ui.template.gui.events.GuiListEvent;
-import com.github.codedoctorde.api.ui.template.gui.events.ItemCreatorEvent;
+import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
 import com.github.codedoctorde.itemmods.config.DropConfig;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * @author CodeDoctorDE
  */
-public class DropsGui {
-    private final int blockIndex;
-
-    public DropsGui(int blockIndex) {
-        this.blockIndex = blockIndex;
-    }
-
-    public Gui[] createGuis() {
-        return createGuis(false);
-    }
-
-    public Gui[] createGuis(boolean rarityEditing) {
-        JsonObject guiTranslation = ItemMods.getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("drops");
-        BlockConfig blockConfig = ItemMods.getMainConfig().getBlocks().get(blockIndex);
+public class DropsGui extends ListGui {
+    public DropsGui(String blockIdentifier) {
+        super(ItemMods.getTranslationConfig().subTranslation("gui.drops"), (s, translation) -> Objects.requireNonNull(ItemMods.getMainConfig().getBlock(blockIdentifier)).getDrops().stream().map(dropConfig -> new StaticItem(new ItemStackBuilder(dropConfig.getItemStack()).build())).toArray(GuiItem[]::new));
+        setListControls(new VerticalListControls() {{
+            setCreateAction((event) -> {
+                Translation t = getTranslation();
+                event.getWhoClicked().sendMessage(t.getTranslation("create.message"));
+                hide((Player) event.getWhoClicked());
+                ItemRequest request = new ItemRequest((Player) event.getWhoClicked());
+                request.setSubmitAction(itemStack -> {
+                    Objects.requireNonNull(ItemMods.getMainConfig().getBlock(blockIdentifier)).getDrops().add(new DropConfig(itemStack));
+                    show((Player) event.getWhoClicked());
+                });
+                request.setCancelAction(() -> show((Player) event.getWhoClicked()));
+            });
+        }});
+        /*BlockConfig blockConfig = ItemMods.getMainConfig().getBlocks().get(blockIndex);
         return new ListGui(guiTranslation, ItemMods.getPlugin(), new GuiItemEvent() {
             @Override
             public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
@@ -156,6 +146,6 @@ public class DropsGui {
             public void onClose(Gui gui, Player player) {
                 ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().put(player, gui);
             }
-        }).createGuis(new BlockGui(blockIndex).createGui());
+        }).createGuis(new BlockGui(blockIndex).createGui());*/
     }
 }

@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.gui.block;
 
-import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
@@ -9,14 +8,11 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ArmorStandBlockConfig;
 import com.github.codedoctorde.itemmods.gui.block.events.ArmorStandConfigGuiEvent;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-
-import java.text.MessageFormat;
 
 public class ArmorStandConfigGui extends TranslatedChestGui {
 
@@ -27,8 +23,7 @@ public class ArmorStandConfigGui extends TranslatedChestGui {
         registerItem(0, 0, new StaticItem(new ItemStackBuilder(Material.RED_DYE).setDisplayName("cancel").build()) {{
             setClickAction((event) -> guiEvent.onCancel((Player) event.getWhoClicked()));
         }});
-        StaticItem placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()))
-        ;
+        StaticItem placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build());
         registerItem(1, 0, placeholder);
         registerItem(2, 0, placeholder);
         registerItem(3, 0, placeholder);
@@ -111,7 +106,7 @@ public class ArmorStandConfigGui extends TranslatedChestGui {
                 reloadAll();
             });
         }});
-        registerItem(4, 4, new TranslatedGuiItem(new ItemStackBuilder(Material.AIR).setDisplayName("customname").getAsJsonObject(config.isCustomNameVisible() ? "visible" : "invisible")).format(config.getCustomName().build())
+        /*registerItem(4, 4, new TranslatedGuiItem(new ItemStackBuilder(Material.AIR).setDisplayName("customname").getAsJsonObject(config.isCustomNameVisible() ? "visible" : "invisible")).format(config.getCustomName().build())
         {
             {
                 setClickAction((event) ->
@@ -149,84 +144,98 @@ public class ArmorStandConfigGui extends TranslatedChestGui {
                 if (event.getClick() != ClickType.LEFT)
                     reloadAll();
             }
-        });
-        registerItem(9 * 4 + 5, new TranslatedGuiItem(new ItemStackBuilder(Material.AIR).setDisplayName("invulnerable").getAsJsonObject(config.isInvulnerable() ? "yes" : "no").build()) {{
-            setClickAction((event) ->
-                    config.setInvulnerable(!config.isInvulnerable()));
-            ItemMods.saveBaseConfig();
-            reloadAll();
+        });*/
+        registerItem(3, 4, new TranslatedGuiItem(new ItemStackBuilder(Material.AIR).setDisplayName("invulnerable.title").setLore("invulnerable.description").build()) {{
+            setRenderAction(event -> setPlaceholders(t.getTranslation(config.isInvulnerable() ? "invulnerable.yes" : "invulnerable.no")));
+            setClickAction((event) -> {
+                config.setInvulnerable(!config.isInvulnerable());
+                ItemMods.saveBaseConfig();
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 1, new TranslatedGuiItem((config.getHelmet() != null) ? config.getHelmet() : new ItemStackBuilder(Material.AIR).setDisplayName("helmet.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getHelmet() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getHelmet()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setHelmet((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(1, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getHelmet() != null ? config.getHelmet() : new ItemStackBuilder(Material.AIR).setDisplayName("helmet.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getHelmet() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getHelmet());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setHelmet((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 2, new TranslatedGuiItem((config.getChestplate() != null) ? config.getChestplate() : new ItemStackBuilder(Material.AIR).setDisplayName("chestplate.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getChestplate() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getChestplate()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setChestplate((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(2, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getChestplate() != null ? config.getChestplate() : new ItemStackBuilder(Material.AIR).setDisplayName("chestplate.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getChestplate() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getChestplate());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setChestplate((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 3, new TranslatedGuiItem((config.getLeggings() != null) ? config.getLeggings() : new ItemStackBuilder(Material.AIR).setDisplayName("leggings.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getLeggings() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getLeggings()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setLeggings((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(3, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getLeggings() != null ? config.getLeggings() : new ItemStackBuilder(Material.AIR).setDisplayName("leggings.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getLeggings() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getLeggings());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setLeggings((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 4, new TranslatedGuiItem((config.getBoots() != null) ? config.getBoots() : new ItemStackBuilder(Material.AIR).setDisplayName("boots.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getBoots() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getBoots()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setBoots((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(4, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getBoots() != null ? config.getBoots() : new ItemStackBuilder(Material.AIR).setDisplayName("boots.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getBoots() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getBoots());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setBoots((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 5, new TranslatedGuiItem((config.getMainHand() != null) ? config.getMainHand() : new ItemStackBuilder(Material.AIR).setDisplayName("mainhand.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getMainHand() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getMainHand()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setMainHand((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(5, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getMainHand() != null ? config.getMainHand() : new ItemStackBuilder(Material.AIR).setDisplayName("mainhand.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getMainHand() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getMainHand());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setMainHand((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
-        registerItem(9 * 2 + 6, new TranslatedGuiItem((config.getOffHand() != null) ? config.getOffHand() : new ItemStackBuilder(Material.AIR).setDisplayName("boots.null").build()) {{
-            setClickAction((event) ->
-            if (event.getClick() == ClickType.MIDDLE && config.getOffHand() != null) {
-                event.getWhoClicked().getInventory().addItem(config.getOffHand()));
-                return;
-            }
-            ItemStack change = event.getWhoClicked().getItemOnCursor();
-            config.setOffHand((change.getType() == Material.AIR) ? null : change);
-            ItemMods.saveBaseConfig();
-            event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
-            reloadAll();
+        registerItem(6, 2, new TranslatedGuiItem() {{
+            setRenderAction((gui) -> setItemStack(config.getOffHand() != null ? config.getOffHand() : new ItemStackBuilder(Material.AIR).setDisplayName("offhand.null").build()));
+            setClickAction((event) -> {
+                if (event.getClick() == ClickType.MIDDLE && config.getOffHand() != null) {
+                    event.getWhoClicked().getInventory().addItem(config.getOffHand());
+                    return;
+                }
+                ItemStack change = event.getWhoClicked().getItemOnCursor();
+                config.setOffHand((change.getType() == Material.AIR) ? null : change);
+                ItemMods.saveBaseConfig();
+                event.getWhoClicked().setItemOnCursor(new ItemStack(Material.AIR));
+                reloadAll();
+            });
         }});
     }
 }

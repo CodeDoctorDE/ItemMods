@@ -27,7 +27,7 @@ public class ItemsGui extends ListGui {
                 ClickType clickType = event.getClick();
                 switch (clickType) {
                     case LEFT:
-                        new ItemGui(itemConfig).show(player);
+                        new ItemGui(itemConfig.getIdentifier()).show(player);
                         break;
                     case DROP:
                         List<ItemConfig> itemConfigs = ItemMods.getMainConfig().getItems();

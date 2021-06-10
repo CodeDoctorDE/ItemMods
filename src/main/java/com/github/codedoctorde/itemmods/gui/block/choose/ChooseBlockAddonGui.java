@@ -14,7 +14,7 @@ public class ChooseBlockAddonGui extends ListGui {
     public ChooseBlockAddonGui(String blockIdentifier) {
         super(ItemMods.getTranslationConfig().subTranslation("gui.blocktemplates"), (s, translation) -> ItemMods.getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new StaticItem(addon.getIcon()) {{
             setClickAction(event ->
-                    new ChooseBlockTemplateGui(blockIdentifier, addon).createGuis()[0].show((Player) event.getWhoClicked()));
+                    new ChooseBlockTemplateGui(blockIdentifier, addon).show((Player) event.getWhoClicked()));
         }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls(3));
     }
