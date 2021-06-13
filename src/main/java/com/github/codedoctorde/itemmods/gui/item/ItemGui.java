@@ -3,9 +3,9 @@ package com.github.codedoctorde.itemmods.gui.item;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.ui.GuiPane;
-import com.github.codedoctorde.api.ui.TabGui;
 import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ItemCreatorGui;
+import com.github.codedoctorde.api.ui.template.gui.TabGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
@@ -39,6 +39,7 @@ public class ItemGui extends TabGui {
     public ItemGui(String itemIdentifier) {
         Translation t = ItemMods.getTranslationConfig().subTranslation("gui.item");
         var itemConfig = ItemMods.getMainConfig().getItem(itemIdentifier);
+        assert itemConfig != null;
 
         setTabsBuilder(integer -> {
             GuiPane guiPane = new GuiPane(9, 1);

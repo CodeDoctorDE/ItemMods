@@ -9,8 +9,8 @@
     <version>1.5-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
@@ -50,6 +50,7 @@
                     <artifactSet>
                         <includes>
                             <include>org.bstats:bstats-bukkit</include>
+                            <include>com.github.codedoctorde.api</include>
                         </includes>
                     </artifactSet>
                 </configuration>
@@ -87,12 +88,42 @@
         <dependency>
             <artifactId>ui-templates</artifactId>
             <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0-SNAPSHOT</version>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <artifactId>serializer</artifactId>
             <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0-SNAPSHOT</version>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>ui</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>config</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>server</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>translations</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>request</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>utils</artifactId>
+            <groupId>com.github.codedoctorde.api</groupId>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
