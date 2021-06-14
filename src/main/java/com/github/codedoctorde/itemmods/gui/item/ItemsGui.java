@@ -11,6 +11,7 @@ import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.config.ItemConfig;
+import com.github.codedoctorde.itemmods.gui.MainGui;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -48,7 +49,9 @@ public class ItemsGui extends ListGui {
             });
         }}).toArray(GuiItem[]::new));
         Translation t = getTranslation();
+        controlsOffset(7, 0);
         setListControls(new VerticalListControls(3) {{
+            setBackAction((event) -> new MainGui());
             setCreateAction((event) -> {
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage(t.getTranslation("create.message"));
