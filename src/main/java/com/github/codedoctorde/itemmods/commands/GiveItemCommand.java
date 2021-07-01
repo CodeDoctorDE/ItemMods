@@ -44,7 +44,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 try {
                     count = Integer.parseInt(args[2]);
                 } catch (Exception e) {
-                    commandSender.sendMessage(t.getTranslation("notnumber"));
+                    commandSender.sendMessage(t.getTranslation("nonumber"));
                     return true;
                 }
             }

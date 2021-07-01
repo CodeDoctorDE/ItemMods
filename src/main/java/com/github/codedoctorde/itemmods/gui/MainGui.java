@@ -45,5 +45,8 @@ public class MainGui extends TranslatedChestGui {
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("wiki.title").setLore("wiki.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("wiki.link")));
         }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("crowdin.title").setLore("crowdin.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("crowdin.link")));
+        }});
     }
 }
