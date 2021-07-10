@@ -19,7 +19,7 @@ import java.util.Objects;
 public class DropsGui extends ListGui {
     public DropsGui(String blockIdentifier) {
         super(ItemMods.getTranslationConfig().subTranslation("gui.drops"), (s, translation) -> Objects.requireNonNull(ItemMods.getMainConfig().getBlock(blockIdentifier)).getDrops().stream().map(dropConfig -> new StaticItem(new ItemStackBuilder(dropConfig.getItemStack()).build())).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls() {{
+        setListControls(new VerticalListControls(true) {{
             setCreateAction((event) -> {
                 Translation t = getTranslation();
                 event.getWhoClicked().sendMessage(t.getTranslation("create.message"));

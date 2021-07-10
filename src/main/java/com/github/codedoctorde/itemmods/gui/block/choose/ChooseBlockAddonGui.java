@@ -16,6 +16,6 @@ public class ChooseBlockAddonGui extends ListGui {
             setClickAction(event ->
                     new ChooseBlockTemplateGui(blockIdentifier, addon).show((Player) event.getWhoClicked()));
         }}).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls(3));
+        setListControls(new VerticalListControls(true));
     }
 }

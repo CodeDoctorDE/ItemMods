@@ -21,6 +21,6 @@ public class ChooseItemAddonGui extends ListGui {
             }
         }).toArray(GuiItem[]::new));
         Translation t = getTranslation();
-        setListControls(new VerticalListControls());
+        setListControls(new VerticalListControls(true));
     }
 }

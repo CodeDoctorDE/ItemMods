@@ -102,7 +102,11 @@ public class ItemMods extends JavaPlugin {
         updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
         translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations/en.json"));
-        translationConfig.setDefault(gson.fromJson(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("translations/en.json"))), JsonObject.class));
+        try {
+            translationConfig.setDefault(gson.fromJson(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("translations/en.json"))), JsonObject.class));
+        } catch (Exception ignored) {
+
+        }
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
