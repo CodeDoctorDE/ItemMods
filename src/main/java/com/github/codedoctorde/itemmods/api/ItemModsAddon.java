@@ -1,9 +1,9 @@
 package com.github.codedoctorde.itemmods.api;
 
-import com.github.codedoctorde.itemmods.pack.template.block.CustomBlockTemplate;
 import com.github.codedoctorde.itemmods.api.block.StaticCustomBlock;
-import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.api.item.StaticCustomItem;
+import com.github.codedoctorde.itemmods.pack.template.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;

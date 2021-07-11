@@ -17,14 +17,14 @@ public class PackTexture extends NamedPackObject {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-        try (InputStream stream = url.openStream())
-        {
+        try (InputStream stream = url.openStream()) {
             byte[] buffer = new byte[4096];
 
-            while (true)
-            {
+            while (true) {
                 int bytesRead = stream.read(buffer);
-                if (bytesRead < 0) { break; }
+                if (bytesRead < 0) {
+                    break;
+                }
                 output.write(buffer, 0, bytesRead);
             }
         }
@@ -47,8 +47,8 @@ public class PackTexture extends NamedPackObject {
     @Override
     void save(ItemModsPack pack, Path path) throws IOException {
         var filePath = Path.of(path.toString(), getName());
-        if(!Files.exists(filePath))
-        Files.createFile(filePath);
+        if (!Files.exists(filePath))
+            Files.createFile(filePath);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("data", new String(data, StandardCharsets.UTF_8));
         Files.writeString(path, GSON.toJson(jsonObject));

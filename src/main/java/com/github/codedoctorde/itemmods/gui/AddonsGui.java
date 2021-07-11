@@ -14,7 +14,7 @@ public class AddonsGui extends ListGui {
                 (s, translation) -> ItemMods.getApi().getAddons().stream().filter(addon -> addon.getName().contains(s)).map(addon -> new StaticItem(addon.getIcon()) {{
                     setClickAction(event -> {
                         if (!addon.openConfigGui())
-                            event.getWhoClicked().sendMessage(translation.getTranslation("noconfig"));
+                            event.getWhoClicked().sendMessage(translation.getTranslation("no-config"));
                     });
                 }}).toArray(GuiItem[]::new));
     }

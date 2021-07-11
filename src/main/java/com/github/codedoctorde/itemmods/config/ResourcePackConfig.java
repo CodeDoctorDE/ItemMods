@@ -1,8 +1,5 @@
 package com.github.codedoctorde.itemmods.config;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

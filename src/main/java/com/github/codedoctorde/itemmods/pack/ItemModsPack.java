@@ -1,26 +1,37 @@
 package com.github.codedoctorde.itemmods.pack;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.bukkit.inventory.ItemStack;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class ItemModsPack extends NamedPackObject {
-    private final List<StaticItem> staticItems = new ArrayList<>();
+    private final boolean temporary;
+    private final List<CustomItem> customItems = new ArrayList<>();
     private final List<StaticBlock> staticBlocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<PackTexture> textures = new ArrayList<>();
+    private ItemStack icon;
+
+    public ItemModsPack(boolean temporary) {
+        this.temporary = temporary;
+    }
+
+    public ItemModsPack() {
+        temporary = false;
+    }
 
     public List<String> getDependencies() {
         return dependencies;
     }
 
-    public List<StaticItem> getStaticItems() {
-        return staticItems;
+    public List<CustomItem> getStaticItems() {
+        return customItems;
+    }
+
+    public boolean isTemporary() {
+        return temporary;
     }
 
     void save(ItemModsPack pack, Path path) {
@@ -35,5 +46,13 @@ public class ItemModsPack extends NamedPackObject {
     @Override
     void export(ItemModsPack pack, Path path) {
 
+    }
+
+    public ItemStack getIcon() {
+        return icon;
+    }
+
+    public void setIcon(ItemStack icon) {
+        this.icon = icon;
     }
 }
