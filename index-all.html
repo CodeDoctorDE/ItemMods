@@ -302,7 +302,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config"><span class="typeNameLink">FileConfig</span></a> - Class in <a href="com/github/codedoctorde/api/config/package-summary.html">com.github.codedoctorde.api.config</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/FileConfig.html#%3Cinit%3E(java.io.File)">FileConfig(File)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></dt>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/FileConfig.html#%3Cinit%3E(java.lang.String)">FileConfig(String)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/ui/GuiPane.html#fillItems(int,int,int,int,com.github.codedoctorde.api.ui.item.GuiItem)">fillItems(int, int, int, int, GuiItem)</a></span> - Method in class com.github.codedoctorde.api.ui.<a href="com/github/codedoctorde/api/ui/GuiPane.html" title="class in com.github.codedoctorde.api.ui">GuiPane</a></dt>
 <dd>&nbsp;</dd>
@@ -371,6 +371,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/request/ValueRequest.html#getFastSteps()">getFastSteps()</a></span> - Method in class com.github.codedoctorde.api.request.<a href="com/github/codedoctorde/api/request/ValueRequest.html" title="class in com.github.codedoctorde.api.request">ValueRequest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/utils/NumberManager.html#getFastSteps()">getFastSteps()</a></span> - Method in class com.github.codedoctorde.api.utils.<a href="com/github/codedoctorde/api/utils/NumberManager.html" title="class in com.github.codedoctorde.api.utils">NumberManager</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/FileConfig.html#getFilePath()">getFilePath()</a></span> - Method in class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/ui/template/gui/pane/list/ListControls.html#getFirstItem(com.github.codedoctorde.api.ui.template.gui.ListGui)">getFirstItem(ListGui)</a></span> - Method in class com.github.codedoctorde.api.ui.template.gui.pane.list.<a href="com/github/codedoctorde/api/ui/template/gui/pane/list/ListControls.html" title="class in com.github.codedoctorde.api.ui.template.gui.pane.list">ListControls</a></dt>
 <dd>&nbsp;</dd>
@@ -441,6 +443,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/utils/ItemStackBuilder.html#getOwner()">getOwner()</a></span> - Method in class com.github.codedoctorde.api.utils.<a href="com/github/codedoctorde/api/utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/utils/ItemStackBuilder.html#getOwningPlayer()">getOwningPlayer()</a></span> - Method in class com.github.codedoctorde.api.utils.<a href="com/github/codedoctorde/api/utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/FileConfig.html#getParentDirectory()">getParentDirectory()</a></span> - Method in class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/FileConfig.html#getPath()">getPath()</a></span> - Method in class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/ui/template/gui/pane/list/ListControls.html#getPlaceholderItem()">getPlaceholderItem()</a></span> - Method in class com.github.codedoctorde.api.ui.template.gui.pane.list.<a href="com/github/codedoctorde/api/ui/template/gui/pane/list/ListControls.html" title="class in com.github.codedoctorde.api.ui.template.gui.pane.list">ListControls</a></dt>
 <dd>&nbsp;</dd>
@@ -696,9 +702,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config"><span class="typeNameLink">JsonConfig</span></a> - Class in <a href="com/github/codedoctorde/api/config/package-summary.html">com.github.codedoctorde.api.config</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/JsonConfig.html#%3Cinit%3E(com.google.gson.Gson,java.io.File)">JsonConfig(Gson, File)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></dt>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/JsonConfig.html#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">JsonConfig(Gson, String)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/JsonConfig.html#%3Cinit%3E(java.io.File)">JsonConfig(File)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></dt>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/JsonConfig.html#%3Cinit%3E(java.lang.String)">JsonConfig(String)</a></span> - Constructor for class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/config/JsonConfig.html#jsonObject">jsonObject</a></span> - Variable in class com.github.codedoctorde.api.config.<a href="com/github/codedoctorde/api/config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></dt>
 <dd>&nbsp;</dd>
@@ -1235,9 +1241,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><a href="com/github/codedoctorde/api/translations/TranslationConfig.html" title="class in com.github.codedoctorde.api.translations"><span class="typeNameLink">TranslationConfig</span></a> - Class in <a href="com/github/codedoctorde/api/translations/package-summary.html">com.github.codedoctorde.api.translations</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/translations/TranslationConfig.html#%3Cinit%3E(com.google.gson.Gson,java.io.File)">TranslationConfig(Gson, File)</a></span> - Constructor for class com.github.codedoctorde.api.translations.<a href="com/github/codedoctorde/api/translations/TranslationConfig.html" title="class in com.github.codedoctorde.api.translations">TranslationConfig</a></dt>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/translations/TranslationConfig.html#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">TranslationConfig(Gson, String)</a></span> - Constructor for class com.github.codedoctorde.api.translations.<a href="com/github/codedoctorde/api/translations/TranslationConfig.html" title="class in com.github.codedoctorde.api.translations">TranslationConfig</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/translations/TranslationConfig.html#%3Cinit%3E(java.io.File)">TranslationConfig(File)</a></span> - Constructor for class com.github.codedoctorde.api.translations.<a href="com/github/codedoctorde/api/translations/TranslationConfig.html" title="class in com.github.codedoctorde.api.translations">TranslationConfig</a></dt>
+<dt><span class="memberNameLink"><a href="com/github/codedoctorde/api/translations/TranslationConfig.html#%3Cinit%3E(java.lang.String)">TranslationConfig(String)</a></span> - Constructor for class com.github.codedoctorde.api.translations.<a href="com/github/codedoctorde/api/translations/TranslationConfig.html" title="class in com.github.codedoctorde.api.translations">TranslationConfig</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:U">

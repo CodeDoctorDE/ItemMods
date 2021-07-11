@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":10,"i3":10};
+var data = {"i0":6,"i1":10,"i2":10,"i3":10,"i4":6,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -156,7 +156,7 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.io.File)">FileConfig</a></span>&#8203;(java.io.File&nbsp;file)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String)">FileConfig</a></span>&#8203;(java.lang.String&nbsp;filePath)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -183,16 +183,31 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFilePath()">getFilePath</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.nio.file.Path</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getParentDirectory()">getParentDirectory</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.nio.file.Path</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPath()">getPath</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(java.io.BufferedReader&nbsp;reader)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload()">reload</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#save()">save</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -221,13 +236,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.io.File)">
+<a id="&lt;init&gt;(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>FileConfig</h4>
-<pre>public&nbsp;FileConfig&#8203;(java.io.File&nbsp;file)</pre>
+<pre>public&nbsp;FileConfig&#8203;(java.lang.String&nbsp;filePath)</pre>
 </li>
 </ul>
 </li>
@@ -256,6 +271,33 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>read</h4>
 <pre class="methodSignature">protected abstract&nbsp;void&nbsp;read&#8203;(java.io.BufferedReader&nbsp;reader)</pre>
+</li>
+</ul>
+<a id="getParentDirectory()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getParentDirectory</h4>
+<pre class="methodSignature">public&nbsp;java.nio.file.Path&nbsp;getParentDirectory()</pre>
+</li>
+</ul>
+<a id="getPath()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPath</h4>
+<pre class="methodSignature">public&nbsp;java.nio.file.Path&nbsp;getPath()</pre>
+</li>
+</ul>
+<a id="getFilePath()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFilePath</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getFilePath()</pre>
 </li>
 </ul>
 <a id="save()">
