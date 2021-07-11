@@ -4,6 +4,7 @@ import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
 import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.github.codedoctorde.api.server.Version;
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.addon.BaseAddon;
@@ -71,6 +72,7 @@ public class ItemMods extends JavaPlugin {
 
     public static void saveBaseConfig() {
         try {
+            var baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
             FileWriter writer = new FileWriter(baseConfig.toString());
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(gson.toJson(mainConfig));
@@ -102,9 +104,14 @@ public class ItemMods extends JavaPlugin {
         plugin = this;
         updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
-        translationConfig = new TranslationConfig(gson, new File(getDataFolder(), "translations/en.json"));
-        translationConfig.setDefault(gson.fromJson(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("translations/en.json"))), JsonObject.class));
+        translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations/en.json").toString());
+        try {
+            translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         translationConfig.save();
+        System.out.println(translationConfig.getInstance().getTranslationKeys());
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
             PluginMetrics.runMetrics();

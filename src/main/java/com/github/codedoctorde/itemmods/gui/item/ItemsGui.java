@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemsGui extends ListGui {
 
     public ItemsGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), (s, translation) -> ItemMods.getMainConfig().getItems().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(itemConfig.getItemStack()).build()) {{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (s, translation) -> ItemMods.getMainConfig().getItems().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(itemConfig.getItemStack()).build()) {{
             setClickAction(event -> {
                 Player player = (Player) event.getWhoClicked();
                 ClickType clickType = event.getClick();
@@ -50,7 +50,7 @@ public class ItemsGui extends ListGui {
         }}).toArray(GuiItem[]::new));
         Translation t = getTranslation();
         controlsOffset(7, 0);
-        setListControls(new VerticalListControls(3) {{
+        setListControls(new VerticalListControls(true) {{
             setBackAction((event) -> new MainGui());
             setCreateAction((event) -> {
                 Player player = (Player) event.getWhoClicked();

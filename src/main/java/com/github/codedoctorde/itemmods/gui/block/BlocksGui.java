@@ -22,7 +22,7 @@ import java.util.List;
 public class BlocksGui extends ListGui {
 
     public BlocksGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), (s, translation) -> ItemMods.getMainConfig().getBlocks().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(Material.GRASS_BLOCK).build()) {{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (s, translation) -> ItemMods.getMainConfig().getBlocks().stream().map(itemConfig -> new StaticItem(new ItemStackBuilder(Material.GRASS_BLOCK).build()) {{
             setClickAction(event -> {
                 Player player = (Player) event.getWhoClicked();
                 ClickType clickType = event.getClick();
@@ -50,7 +50,7 @@ public class BlocksGui extends ListGui {
         }}).toArray(GuiItem[]::new));
         Translation t = getTranslation();
         controlsOffset(7, 0);
-        setListControls(new VerticalListControls() {{
+        setListControls(new VerticalListControls(true) {{
             setBackAction((event) -> new MainGui());
             setCreateAction((event) -> {
                 Player player = (Player) event.getWhoClicked();

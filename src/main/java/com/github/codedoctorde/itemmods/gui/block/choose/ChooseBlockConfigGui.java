@@ -20,6 +20,6 @@ public class ChooseBlockConfigGui extends ListGui {
                 blockConfig.getDisplayName(), blockConfig.getName(), blockConfig.getNamespace()).build()) {{
             setClickAction((event) -> blockConfigEvent.accept(blockConfig));
         }}).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls());
+        setListControls(new VerticalListControls(true));
     }
 }
