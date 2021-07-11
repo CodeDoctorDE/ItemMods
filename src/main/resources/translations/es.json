@@ -16,6 +16,7 @@
     "exporting": "§eItemMods $7» §eExporting resource pack...",
     "exported": "§eItemMods $7» §6Resource pack was exported!"
   },
+  "coming-soon": "§cComing soon...",
   "addon": {},
   "gui": {
     "main": {
