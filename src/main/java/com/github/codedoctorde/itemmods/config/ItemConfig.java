@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.config;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,6 +18,7 @@ public class ItemConfig extends CustomConfig<CustomItemTemplateData> {
 
     public ItemConfig(String namespace, String name) {
         super(namespace, name);
+        itemStack = new ItemStack(Material.STONE);
     }
 
     public ItemStack getItemStack() {
