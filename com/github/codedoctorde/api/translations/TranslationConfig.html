@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -211,32 +211,37 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>com.google.gson.JsonObject</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getJsonObject()">getJsonObject</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTranslation(java.lang.String,java.lang.Object...)">getTranslation</a></span>&#8203;(java.lang.String&nbsp;key,
               java.lang.Object...&nbsp;placeholder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasTranslation(java.lang.String)">hasTranslation</a></span>&#8203;(java.lang.String&nbsp;key)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload()">reload</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefault(com.github.codedoctorde.api.translations.Translation)">setDefault</a></span>&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</code></th>
+<td class="colFirst"><code>protected void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(java.io.BufferedReader&nbsp;reader)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInstance(com.github.codedoctorde.api.translations.Translation)">setInstance</a></span>&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;instance)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefault(com.github.codedoctorde.api.translations.Translation)">setDefault</a></span>&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInstance(com.github.codedoctorde.api.translations.Translation)">setInstance</a></span>&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;instance)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subTranslation(java.lang.String)">subTranslation</a></span>&#8203;(java.lang.String&nbsp;namespace)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -247,14 +252,14 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.github.codedoctorde.api.config.<a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></h3>
-<code><a href="../config/JsonConfig.html#getData()">getData</a>, <a href="../config/JsonConfig.html#getGson()">getGson</a>, <a href="../config/JsonConfig.html#getJsonObject()">getJsonObject</a>, <a href="../config/JsonConfig.html#read(java.io.BufferedReader)">read</a>, <a href="../config/JsonConfig.html#setGson(com.google.gson.Gson)">setGson</a>, <a href="../config/JsonConfig.html#setJsonObject(com.google.gson.JsonObject)">setJsonObject</a></code></li>
+<code><a href="../config/JsonConfig.html#getData()">getData</a>, <a href="../config/JsonConfig.html#getGson()">getGson</a>, <a href="../config/JsonConfig.html#setGson(com.google.gson.Gson)">setGson</a>, <a href="../config/JsonConfig.html#setJsonObject(com.google.gson.JsonObject)">setJsonObject</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.github.codedoctorde.api.config.FileConfig">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.github.codedoctorde.api.config.<a href="../config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></h3>
-<code><a href="../config/FileConfig.html#getFilePath()">getFilePath</a>, <a href="../config/FileConfig.html#getParentDirectory()">getParentDirectory</a>, <a href="../config/FileConfig.html#getPath()">getPath</a>, <a href="../config/FileConfig.html#save()">save</a></code></li>
+<code><a href="../config/FileConfig.html#getFilePath()">getFilePath</a>, <a href="../config/FileConfig.html#getParentDirectory()">getParentDirectory</a>, <a href="../config/FileConfig.html#getPath()">getPath</a>, <a href="../config/FileConfig.html#reload()">reload</a>, <a href="../config/FileConfig.html#save()">save</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -363,16 +368,29 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <pre class="methodSignature">public&nbsp;void&nbsp;setDefault&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</pre>
 </li>
 </ul>
-<a id="reload()">
+<a id="read(java.io.BufferedReader)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>read</h4>
+<pre class="methodSignature">protected&nbsp;void&nbsp;read&#8203;(java.io.BufferedReader&nbsp;reader)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../config/JsonConfig.html#read(java.io.BufferedReader)">read</a></code>&nbsp;in class&nbsp;<code><a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getJsonObject()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>reload</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;reload()</pre>
+<h4>getJsonObject</h4>
+<pre class="methodSignature">public&nbsp;com.google.gson.JsonObject&nbsp;getJsonObject()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../config/FileConfig.html#reload()">reload</a></code>&nbsp;in class&nbsp;<code><a href="../config/FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></code></dd>
+<dd><code><a href="../config/JsonConfig.html#getJsonObject()">getJsonObject</a></code>&nbsp;in class&nbsp;<code><a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></code></dd>
 </dl>
 </li>
 </ul>
