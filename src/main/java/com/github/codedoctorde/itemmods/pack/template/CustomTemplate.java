@@ -1,10 +1,11 @@
-package com.github.codedoctorde.itemmods.api;
+package com.github.codedoctorde.itemmods.pack.template;
 
+import com.github.codedoctorde.itemmods.pack.NamedPackObject;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public interface CustomTemplate<C extends CustomConfig, T> {
+public interface CustomTemplate<C extends NamedPackObject, T> {
     String getName();
 
     void onLoad(T target);

@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 
 /**
  * @author CodeDoctorDE

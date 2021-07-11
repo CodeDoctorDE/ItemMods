@@ -4,7 +4,7 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.block.CustomBlock;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplateData;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;

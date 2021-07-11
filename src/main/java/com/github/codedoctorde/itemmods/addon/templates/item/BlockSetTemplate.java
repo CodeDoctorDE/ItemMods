@@ -4,7 +4,7 @@ import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import com.github.codedoctorde.itemmods.gui.block.choose.ChooseBlockConfigGui;
 import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import com.google.gson.Gson;
@@ -117,7 +117,7 @@ public class BlockSetTemplate implements CustomItemTemplate {
             this.block = block;
         }
 
-        public void save() {
+        void save() {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("block", block);
             assert itemConfig.getTemplate() != null;

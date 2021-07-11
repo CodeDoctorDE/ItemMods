@@ -5,7 +5,7 @@ import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplateData;
+import com.github.codedoctorde.itemmods.pack.template.block.CustomBlockTemplateData;
 import com.github.codedoctorde.itemmods.gui.block.BlockGui;
 import org.bukkit.entity.Player;
 

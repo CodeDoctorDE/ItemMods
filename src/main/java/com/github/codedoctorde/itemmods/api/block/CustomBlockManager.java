@@ -54,9 +54,9 @@ public class CustomBlockManager {
         return getCustomBlock(block.getLocation());
     }
 
-    public List<BlockConfig> getBlocks() {
+    /*public List<BlockConfig> getBlocks() {
         return ItemMods.getMainConfig().getBlocks();
-    }
+    }*/
 
     /**
      * @param location    The location where the custom block will be placed!
@@ -64,8 +64,8 @@ public class CustomBlockManager {
      * @param player      The player who is placing the block
      * @return Returns if it was placed!
      */
-    public boolean setCustomBlock(Location location, BlockConfig blockConfig, Player player) {
-        if (new CustomBlock(location).getConfig() != null)
+    public boolean setCustomBlock(Location location, String identifier, Player player) {
+        /*if (new CustomBlock(location).getConfig() != null)
             return false;
         if (location.getBlock().getType().isSolid())
             return false;
@@ -80,22 +80,23 @@ public class CustomBlockManager {
 
         ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
         if (armorStandBlockConfig != null) armorStandBlockConfig.spawn(location);
-        /*if (blockConfig.getNbt() != null)
-            BlockNBT.setNbt(block, blockConfig.getNbt());*/
+        if (blockConfig.getNbt() != null)
+            BlockNBT.setNbt(block, blockConfig.getNbt());
         if (location.getChunk().isLoaded())
             loadedBlocks.add(new CustomBlock(location) {{
                 setIdentifier(blockConfig.getIdentifier());
                 configure();
             }});
+        */
         return true;
     }
 
     public void onTick() {
-        loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> {
+        /*loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> {
             CustomBlockTemplate template = customBlock.getConfig().getTemplate().getInstance();
             if (template != null)
                 template.tick(customBlock);
-        });
+        });*/
     }
 
     public List<CustomBlock> getLoadedBlocks() {

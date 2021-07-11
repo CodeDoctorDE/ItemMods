@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.api;
+package com.github.codedoctorde.itemmods.pack.template;
 
 /**
  * @author CodeDoctorDE

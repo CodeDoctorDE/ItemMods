@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * @author CodeDoctorDE
  */
-public class PackManager extends NamedPackObject {
+public class PackManager {
     private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
     private final Path packDir;
 
@@ -35,12 +35,12 @@ public class PackManager extends NamedPackObject {
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(referenceItemPath.toString()), StandardCharsets.UTF_8));
         JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(br, JsonObject.class);
         JsonArray array = jsonObject.getAsJsonArray("overrides");
-        ItemMods.getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemConfig -> array.add(createItem(getNextIndex(array), itemConfig.getIdentifier())));
-        ItemMods.getMainConfig().getBlocks().stream().filter(CustomConfig::isPack).forEach(blockConfig -> array.add(createItem(getNextIndex(array), blockConfig.getIdentifier())));
-        ItemMods.getApi().getAddons().forEach(addon -> {
+        //ItemMods.getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemConfig -> array.add(createItem(getNextIndex(array), itemConfig.getIdentifier())));
+        //ItemMods.getMainConfig().getBlocks().stream().filter(CustomConfig::isPack).forEach(blockConfig -> array.add(createItem(getNextIndex(array), blockConfig.getIdentifier())));
+        /*ItemMods.getApi().getAddons().forEach(addon -> {
             Arrays.stream(addon.getStaticCustomItems()).forEach(item -> array.add(createItem(getNextIndex(array), item.getIdentifier())));
             Arrays.stream(addon.getStaticCustomBlocks()).forEach(block -> array.add(createItem(getNextIndex(array), block.getIdentifier())));
-        });
+        });*/
 
         jsonObject.add("overrides", array);
         return jsonObject;
@@ -76,7 +76,7 @@ public class PackManager extends NamedPackObject {
      * @throws IOException              When there are problems while creating the resource pack
      * @throws IllegalArgumentException If the name is invalid
      */
-    public void exportDirectory(String name) throws IOException, IllegalArgumentException {
+    void exportDirectory(String name) throws IOException, IllegalArgumentException {
         Path outputDir = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "export/" + name);
         Path currentDir = Paths.get(packDir.toString(), name);
         if (NAME_PATTERN.matcher(name).matches() || name.startsWith(".") || name.startsWith("/") || !Files.exists(currentDir))

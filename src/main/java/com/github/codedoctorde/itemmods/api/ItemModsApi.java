@@ -3,9 +3,8 @@ package com.github.codedoctorde.itemmods.api;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
-import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
+import com.github.codedoctorde.itemmods.pack.template.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
 

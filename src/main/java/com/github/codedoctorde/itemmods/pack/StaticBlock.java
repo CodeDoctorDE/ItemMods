@@ -1,5 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 
 public class StaticBlock extends NamedPackObject {
@@ -16,5 +18,20 @@ public class StaticBlock extends NamedPackObject {
 
     public HashMap<String, String> getTextures() {
         return textures;
+    }
+
+    @Override
+    void export(ItemModsPack pack, Path path) throws IOException {
+
+    }
+
+    @Override
+    void save(ItemModsPack pack, Path path) throws IOException {
+
+    }
+
+    @Override
+    void load(ItemModsPack pack, Path path) throws IOException {
+
     }
 }

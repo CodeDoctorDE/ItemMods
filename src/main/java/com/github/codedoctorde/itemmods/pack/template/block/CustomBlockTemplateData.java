@@ -1,7 +1,7 @@
-package com.github.codedoctorde.itemmods.api.block;
+package com.github.codedoctorde.itemmods.pack.template.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.CustomTemplateData;
+import com.github.codedoctorde.itemmods.pack.template.CustomTemplateData;
 
 /**
  * @author CodeDoctorDE
