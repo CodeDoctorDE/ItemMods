@@ -1,7 +1,6 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
@@ -12,16 +11,16 @@ import java.util.Objects;
 public class CustomItem {
     private static final NamespacedKey dataKey = new NamespacedKey(ItemMods.getPlugin(), "data");
     private ItemStack itemStack;
-    private ItemConfig config = null;
+    //private ItemConfig config = null;
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
         ItemMods.getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
     }
 
-    public ItemConfig getConfig() {
+    /*public ItemConfig getConfig() {
         return config;
-    }
+    }*/
 
 
     public String getData() {

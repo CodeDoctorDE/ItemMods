@@ -99,6 +99,10 @@ public class ItemMods extends JavaPlugin {
         return packManager;
     }
 
+    public static String getVersion() {
+        return getPlugin().getDescription().getVersion();
+    }
+
     @Override
     public void onEnable() {
         plugin = this;

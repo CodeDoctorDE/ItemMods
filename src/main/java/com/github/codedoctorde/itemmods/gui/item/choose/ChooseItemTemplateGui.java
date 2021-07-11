@@ -6,7 +6,6 @@ import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
 import com.github.codedoctorde.itemmods.api.item.CustomItemTemplateData;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 import com.github.codedoctorde.itemmods.gui.item.ItemGui;
 import org.bukkit.entity.Player;
 

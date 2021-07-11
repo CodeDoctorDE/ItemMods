@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.api.events;
 
-import com.github.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;

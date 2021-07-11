@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.config.CustomConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * @author CodeDoctorDE
  */
-public class PackManager {
+public class PackManager extends NamedPackObject {
     private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
     private final Path packDir;
 

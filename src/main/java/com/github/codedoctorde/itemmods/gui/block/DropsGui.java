@@ -8,7 +8,6 @@ import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.DropConfig;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;

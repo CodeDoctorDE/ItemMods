@@ -1,7 +1,6 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.api.ItemModsAddon;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 
 /**
  * @author CodeDoctorDE

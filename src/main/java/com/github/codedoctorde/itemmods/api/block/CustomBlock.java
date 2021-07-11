@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
-import com.github.codedoctorde.itemmods.config.BlockConfig;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -31,9 +30,9 @@ public class CustomBlock {
         this(block.getLocation());
     }
 
-    public BlockConfig getConfig() {
+    /*public BlockConfig getConfig() {
         return ItemMods.getMainConfig().getBlock(getIdentifier());
-    }
+    }*/
 
     public Location getLocation() {
         return location;
@@ -66,8 +65,8 @@ public class CustomBlock {
     }
 
     public boolean breakBlock(BlockDropType dropType, Player player) {
-        BlockConfig config = getConfig();
-        if (config == null || dropType == null) return false;
+        //BlockConfig config = getConfig();
+        /*if (config == null || dropType == null) return false;
         if (config.getBlock() != null)
             getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
@@ -77,8 +76,8 @@ public class CustomBlock {
         else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
-            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
-        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, drops, dropType, player);
+            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));*/
+        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, new ArrayList<>(), dropType, player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;

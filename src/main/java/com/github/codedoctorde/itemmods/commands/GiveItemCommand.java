@@ -2,8 +2,6 @@ package com.github.codedoctorde.itemmods.commands;
 
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.CustomConfig;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

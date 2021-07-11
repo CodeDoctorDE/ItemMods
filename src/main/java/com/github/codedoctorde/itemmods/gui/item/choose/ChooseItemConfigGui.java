@@ -4,7 +4,6 @@ import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.ListGui;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.config.ItemConfig;
 
 import java.util.function.Consumer;
 

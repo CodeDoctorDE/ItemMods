@@ -37,12 +37,12 @@ public class ResourcePackConfig {
     public void redefineResourceIdentifier() {
         resourceIdentifier.clear();
         resourceIdentifier.putAll(defaultResourceIdentifier);
-        ItemMods.getApi().getAddons().forEach(addons -> {
+        /*ItemMods.getApi().getAddons().forEach(addons -> {
             Arrays.stream(addons.getStaticCustomItems()).forEach(customItem -> addResource(customItem.getIdentifier()));
             Arrays.stream(addons.getStaticCustomBlocks()).forEach(customBlock -> addResource(customBlock.getIdentifier()));
         });
         ItemMods.getMainConfig().getItems().forEach(itemConfig -> addResource(itemConfig.getIdentifier()));
-        ItemMods.getMainConfig().getBlocks().forEach(blockConfig -> addResource(blockConfig.getIdentifier()));
+        ItemMods.getMainConfig().getBlocks().forEach(blockConfig -> addResource(blockConfig.getIdentifier()));*/
     }
 
     public void addResource(String identifier) {

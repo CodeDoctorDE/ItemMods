@@ -16,6 +16,7 @@ public class MainGui extends TranslatedChestGui {
     public MainGui() {
         super(ItemMods.getTranslationConfig().subTranslation("gui.main"));
         Translation translation = getTranslation();
+        setPlaceholders(ItemMods.getVersion());
         fillItems(0, 0, 27, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).setDisplayName("reload.title").addLore("reload.description").build()) {{
             setClickAction(event -> {

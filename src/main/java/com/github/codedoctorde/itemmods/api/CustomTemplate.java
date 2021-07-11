@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.api;
 
-import com.github.codedoctorde.itemmods.config.CustomConfig;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;

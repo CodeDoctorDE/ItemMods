@@ -8,8 +8,8 @@
     "version": "$eItemMods $7» §6There is a new version available: §3%s"
   },
   "api": {
-    "register": "§eItemMods §7» §aRegistered new addon §3{0}§a!",
-    "unregister": "§eItemMods §7» §aUnregistered addon §3{0}§a!"
+    "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
+    "unregister": "§eItemMods §7» §aUnregistered addon §3%s§a!"
   },
   "pack": {
     "created": "§eItemMods $7» §6Pack folder was created!",
@@ -20,45 +20,46 @@
   },
   "gui": {
     "main": {
+      "title": "§6§6§lItemMods §7(%s)",
       "reload": {
-        "title": "Reload",
-        "description": "Reload the whole plugin"
+        "title": "§6Reload",
+        "description": "§7Reload the whole plugin"
       },
       "items": {
-        "title": "Items",
-        "description": "Go to the items list"
+        "title": "§6Items",
+        "description": "§7Go to the items list"
       },
       "blocks": {
-        "title": "Blocks",
-        "description": "Go to the blocks list"
+        "title": "§6Blocks",
+        "description": "§7Go to the blocks list"
       },
       "knowledge": {
-        "title": "Knowledge Book",
-        "description": "Gp tp the mod information for the users"
+        "title": "§6Knowledge Book",
+        "description": "§7Gp tp the mod information for the users"
       },
       "addons": {
-        "title": "Addons",
-        "description": "Active, configure, deactivate addons"
+        "title": "§6Addons",
+        "description": "§7Active, configure, deactivate addons"
       },
       "source": {
-        "title": "Source",
-        "description": "Get the github link",
-        "link": "§eItemMods §7» §1§lhttps://github.com/CodeDoctorDE/ItemMods.git"
+        "title": "§6Source",
+        "description": "§7Get the github link",
+        "link": "§eItemMods §7» §b§lhttps://github.com/CodeDoctorDE/ItemMods.git"
       },
       "support": {
-        "title": "Support",
-        "description": "Get the discord link",
-        "link": "§eItemMods §7 §1§lhttps://discord.gg/WzcRNGF"
+        "title": "§6Support",
+        "description": "§7Get the discord link",
+        "link": "§eItemMods §7» §b§lhttps://discord.gg/WzcRNGF"
       },
       "crowdin": {
-        "title": "Crowdin",
-        "description": "Get the crowdin link",
-        "link": "§eItemMods §7 §1§lhttps://linwood.crowdin.com/ItemMods"
+        "title": "§6§6Crowdin",
+        "description": "§7Get the crowdin link",
+        "link": "§eItemMods §7» §b§lhttps://linwood.crowdin.com/ItemMods"
       },
       "wiki": {
-        "title": "Wiki",
-        "description": "Get the wiki link",
-        "link": "§eItemMods §7 §1§lhttps://itemmods.codedoctor.tk"
+        "title": "§6Wiki",
+        "description": "§7Get the wiki link",
+        "link": "§eItemMods §7» §b§lhttps://itemmods.codedoctor.tk"
       }
     }
   },
@@ -75,7 +76,7 @@
       "noplayer": "§eItemMods §7» §4This command is only for players!",
       "noitem": "§eItemMods §7» §4That is not a valid item!",
       "nonumber": "§eItemMods §7» §4That is not a number!",
-      "success": "§eItemMods §7» §aSuccessfully gave you the item §3{0}§a!"
+      "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
     }
   }
 }
