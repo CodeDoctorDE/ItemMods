@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-public class StaticBlock extends NamedPackObject {
+public class PackBlock extends TexturedPackObject {
     private HashMap<String, String> textures;
     private String model;
 

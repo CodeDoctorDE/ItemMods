@@ -14,7 +14,8 @@ public class PackGui extends TabGui {
         var translation = ItemMods.getTranslationConfig().subTranslation("gui.pack");
         setTabsBuilder(integer -> {
             GuiPane pane = new GuiPane(9, 1);
-            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name() + ".name").build())).forEach(pane::addItem);
+            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name() + ".name")
+                    .setEnchanted(PackTab.values()[integer].equals(packTab)).build())).forEach(pane::addItem);
             return pane;
         });
         var pack = ItemMods.getPackManager().getPack(name);

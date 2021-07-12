@@ -67,10 +67,6 @@ public class ItemMods extends JavaPlugin {
         return getApi().getCustomBlockManager();
     }
 
-    public static CustomItemManager getCustomItemManager() {
-        return getApi().getCustomItemManager();
-    }
-
     public static void saveBaseConfig() {
         try {
             var baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");

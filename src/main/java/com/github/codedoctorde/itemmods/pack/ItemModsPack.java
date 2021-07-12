@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class ItemModsPack extends NamedPackObject {
     private final boolean temporary;
-    private final List<CustomItem> customItems = new ArrayList<>();
-    private final List<StaticBlock> staticBlocks = new ArrayList<>();
+    private final List<PackItem> items = new ArrayList<>();
+    private final List<PackBlock> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<PackTexture> textures = new ArrayList<>();
     private ItemStack icon;
@@ -26,8 +27,8 @@ public class ItemModsPack extends NamedPackObject {
         return dependencies;
     }
 
-    public List<CustomItem> getStaticItems() {
-        return customItems;
+    public List<PackItem> getStaticItems() {
+        return items;
     }
 
     public boolean isTemporary() {
@@ -54,5 +55,15 @@ public class ItemModsPack extends NamedPackObject {
 
     public void setIcon(ItemStack icon) {
         this.icon = icon;
+    }
+
+    @Nullable
+    public PackBlock getBlock(String name) {
+        return blocks.stream().filter(packBlock -> packBlock.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public PackItem getItem(String name) {
+        return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 }

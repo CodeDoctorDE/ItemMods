@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -81,6 +82,7 @@ public class PackManager {
         return packPath;
     }
 
+    @Nullable
     public ItemModsPack getPack(String name) {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
     }
