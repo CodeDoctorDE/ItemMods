@@ -1,63 +1,53 @@
 package com.github.codedoctorde.itemmods.gui;
 
+import com.github.codedoctorde.api.translations.Translation;
+import com.github.codedoctorde.api.ui.item.StaticItem;
+import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
+import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.block.BlocksGui;
 import com.github.codedoctorde.itemmods.gui.item.ItemsGui;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.ui.GuiEvent;
-import com.github.codedoctorde.api.ui.GuiItem;
-import com.github.codedoctorde.api.ui.GuiItemEvent;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
-import com.google.gson.JsonObject;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 
-import java.text.MessageFormat;
-
-public class MainGui {
-    public Gui createGui() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("main");
-        return new Gui(ItemMods.getPlugin(), MessageFormat.format(guiTranslation.get("title").getAsString(), ItemMods.version), 5, new GuiEvent() {
-            @Override
-            public void onClose(Gui gui, Player player) {
-                ItemMods.getPlugin().getBaseCommand().getPlayerGuiHashMap().remove(player);
-            }
-        }) {{
-            getGuiItems().put(9 + 1, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("reload")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());
-                    Bukkit.getPluginManager().enablePlugin(ItemMods.getPlugin());
-                    player.sendMessage(guiTranslation.getAsJsonObject("reload").get("success").getAsString());
-                }
-            }));
-            getGuiItems().put(9 + 3, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("items")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    Player player = (Player) event.getWhoClicked();
-                    new ItemsGui().createGui()[0].open(player);
-                }
-            }));
-            getGuiItems().put(9 + 5, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("blocks")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new BlocksGui().createGui()[0].open((Player) event.getWhoClicked());
-                }
-            }));
-            getGuiItems().put(9 + 7, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("knowledge")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new KnowledgeGui().createGui().open((Player) event.getWhoClicked());
-                }
-            }));
-            getGuiItems().put(9 * 3 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("addons")).build(), new GuiItemEvent() {
-                @Override
-                public void onEvent(Gui gui, GuiItem guiItem, InventoryClickEvent event) {
-                    new AddonsGui().createGui()[0].open((Player) event.getWhoClicked());
-                }
-            }));
-        }};
+public class MainGui extends TranslatedChestGui {
+    public MainGui() {
+        super(ItemMods.getTranslationConfig().subTranslation("gui.main"));
+        Translation translation = getTranslation();
+        setPlaceholders(ItemMods.getVersion());
+        fillItems(0, 0, 27, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).setDisplayName("reload.title").addLore("reload.description").build()) {{
+            setClickAction(event -> {
+                Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());
+                Bukkit.getPluginManager().enablePlugin(ItemMods.getPlugin());
+                event.getWhoClicked().sendMessage(translation.getTranslation("reload.success"));
+            });
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").addLore("items.description").build()) {{
+            setClickAction(event -> new ItemsGui().show((Player) event.getWhoClicked()));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").addLore("blocks.description").build()) {{
+            setClickAction(event -> new BlocksGui().show(((Player) event.getWhoClicked())));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).setDisplayName("knowledge.title").addLore("knowledge.description").build()) {{
+            setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).setDisplayName("addons.title").addLore("addons.description").build()) {{
+            setClickAction(event -> new AddonsGui().show((Player) event.getWhoClicked()));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("source.title").addLore("source.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("source.link")));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).setDisplayName("support.title").addLore("support.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("support.link")));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("wiki.title").setLore("wiki.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("wiki.link")));
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("crowdin.title").setLore("crowdin.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("crowdin.link")));
+        }});
     }
 }

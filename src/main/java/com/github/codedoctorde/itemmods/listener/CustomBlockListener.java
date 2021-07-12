@@ -4,14 +4,16 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.addon.templates.item.BlockSetTemplate;
 import com.github.codedoctorde.itemmods.api.block.CustomBlock;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplateData;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
@@ -28,17 +30,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CustomBlockListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(PlayerInteractEvent event) {
-        if (event.getItem() == null) return;
-        if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (event.getClickedBlock() == null) return;
+        if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
+                event.getAction() != Action.RIGHT_CLICK_BLOCK ||
+                event.getClickedBlock() == null)
+            return;
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
-        if (!(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
+        if (!(customItem.getConfig().getTemplate().getInstance() instanceof BlockSetTemplate))
             return;
-        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate().getInstance();
         if (template.getBlock(customItem) == null)
             return;
         if (event.getItem().getAmount() < customItem.getConfig().getItemStack().getAmount()) return;
@@ -67,7 +70,7 @@ public class CustomBlockListener implements Listener {
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem), player))
+        if (!ItemMods.getApi().getCustomBlockManager().setCustomBlock(location, template.getBlock(customItem), player))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             event.getItem().setAmount(event.getItem().getAmount() - customItem.getConfig().getItemStack().getAmount());
@@ -80,30 +83,21 @@ public class CustomBlockListener implements Listener {
         Block block = event.getWhoClicked().getTargetBlock(null, 10);
         if (block.getType() == Material.AIR)
             return;
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
-        if (customBlock == null)
-            return;
-        if (customBlock.getConfig().getReferenceItemConfig() == null)
+        CustomBlock customBlock = new CustomBlock(block);
+        if (customBlock.getConfig() == null || customBlock.getConfig().getReferenceItemConfig() == null)
             return;
         event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockBreak(BlockBreakEvent event) {
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
-        if (customBlock == null)
+        if (event.isCancelled())
+            return;
+        CustomBlock customBlock = new CustomBlock(event.getBlock());
+        if (customBlock.getConfig() == null)
             return;
         event.setCancelled(true);
-        boolean finished;
-        if (event.getPlayer().getGameMode() == GameMode.CREATIVE)
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, event.getPlayer());
-        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, event.getPlayer());
-        else if (event.getPlayer().getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.FORTUNE, event.getPlayer());
-        else
-            finished = customBlock.breakBlock(CustomBlock.BlockDropType.DROP, event.getPlayer());
-        if (!finished)
+        if (!customBlock.breakBlock(event.getPlayer()))
             return;
         event.getBlock().setType(Material.AIR);
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
@@ -113,8 +107,8 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockMove(BlockFromToEvent event) {
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
-        if (customBlock == null)
+        CustomBlock customBlock = new CustomBlock(event.getBlock());
+        if (customBlock.getConfig() == null)
             return;
         if (customBlock.getArmorStand() == null)
             return;
@@ -125,8 +119,8 @@ public class CustomBlockListener implements Listener {
     public void onCustomBlockPistonRetract(BlockPistonRetractEvent event) {
         for (Block block :
                 event.getBlocks()) {
-            CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
-            if (customBlock == null)
+            CustomBlock customBlock = new CustomBlock(block);
+            if (customBlock.getConfig() == null)
                 return;
             if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
@@ -139,8 +133,8 @@ public class CustomBlockListener implements Listener {
     public void onCustomBlockPistonExtend(BlockPistonExtendEvent event) {
         for (Block block :
                 event.getBlocks()) {
-            CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(block);
-            if (customBlock == null)
+            CustomBlock customBlock = new CustomBlock(block);
+            if (customBlock.getConfig() == null)
                 return;
             if (!customBlock.getConfig().isMoving())
                 event.setCancelled(true);
@@ -151,8 +145,8 @@ public class CustomBlockListener implements Listener {
 
     @EventHandler
     public void onCustomBlockFall(EntityChangeBlockEvent event) {
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(event.getBlock());
-        if (customBlock != null)
+        CustomBlock customBlock = new CustomBlock(event.getBlock());
+        if (customBlock.getConfig() != null)
             event.setCancelled(true);
     }
 
@@ -165,51 +159,52 @@ public class CustomBlockListener implements Listener {
 
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockEntityClick(PlayerInteractAtEntityEvent event) {
+        if (event.isCancelled())
+            return;
         ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
         CustomItem customItem = new CustomItem(item);
-        if (customItem.getConfig() == null || customItem.getConfig().getTemplate() == null || !(customItem.getConfig().getTemplate() instanceof BlockSetTemplate))
+        if (customItem.getConfig() == null)
             return;
-        BlockSetTemplate template = (BlockSetTemplate) customItem.getConfig().getTemplate();
+        CustomItemTemplateData data = customItem.getConfig().getTemplate();
+        if (data == null || !(data.getInstance() instanceof BlockSetTemplate))
+            return;
+        BlockSetTemplate template = (BlockSetTemplate) data.getInstance();
         if (template.getBlock(customItem) == null || item.getAmount() < customItem.getConfig().getItemStack().getAmount())
             return;
-        if (ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location) == null)
+        if (new CustomBlock(location).getConfig() == null)
             return;
         event.setCancelled(true);
         if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
             return;
         if (event.getPlayer().getLocation().distance(location.clone().add(0, 1, 0)) < 1)
             return;
-        if (!ItemMods.getPlugin().getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem), event.getPlayer()))
+        if (!ItemMods.getApi().getCustomBlockManager().setCustomBlock(location.clone().add(0, 1, 0), template.getBlock(customItem), event.getPlayer()))
             return;
         if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
             item.setAmount(item.getAmount() - customItem.getConfig().getItemStack().getAmount());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockEntityHit(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof ArmorStand))
+        if (!(event.getEntity() instanceof ArmorStand) || event.isCancelled())
             return;
         Location location = event.getEntity().getLocation().clone().add(-0.5, 0, -0.5);
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
-        if (customBlock == null)
+        CustomBlock customBlock = new CustomBlock(location);
+        if (customBlock.getConfig() == null)
             return;
         event.setCancelled(true);
         if (!(event.getDamager() instanceof Player))
             return;
-        if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE)
-            customBlock.breakBlock(CustomBlock.BlockDropType.NOTHING, (Player) event.getDamager());
-        else if (((Player) event.getDamager()).getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            customBlock.breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, (Player) event.getDamager());
-        else
-            customBlock.breakBlock(CustomBlock.BlockDropType.DROP, (Player) event.getDamager());
+        customBlock.breakBlock((Player) event.getDamager());
     }
-    public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event){
+
+    public void onCustomBlockManipulation(PlayerArmorStandManipulateEvent event) {
         Location location = event.getRightClicked().getLocation().clone().add(-0.5, 0, -0.5);
-        CustomBlock customBlock = ItemMods.getPlugin().getApi().getCustomBlockManager().getCustomBlock(location);
-        if (customBlock == null)
+        CustomBlock customBlock = new CustomBlock(location);
+        if (customBlock.getConfig() == null)
             return;
         event.setCancelled(true);
     }

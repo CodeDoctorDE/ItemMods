@@ -1,27 +1,27 @@
 package com.github.codedoctorde.itemmods;
 
+import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
+import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
+import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
+import com.github.codedoctorde.api.server.Version;
+import com.github.codedoctorde.api.translations.Translation;
+import com.github.codedoctorde.api.translations.TranslationConfig;
+import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.addon.BaseAddon;
 import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
-import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
 import com.github.codedoctorde.itemmods.listener.CustomBlockListener;
 import com.github.codedoctorde.itemmods.listener.CustomItemListener;
-import com.github.codedoctorde.itemmods.utils.CustomItemBetterGuiProperty;
-import com.github.codedoctorde.api.config.ObjectConfig;
-import com.github.codedoctorde.api.CodeDoctorAPI;
-import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
-import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
-import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
-import com.github.codedoctorde.api.server.Version;
-import com.github.codedoctorde.api.utils.UpdateChecker;
+import com.github.codedoctorde.itemmods.pack.PackManager;
+import com.github.codedoctorde.itemmods.utils.BetterGuiCustomModifier;
+import com.github.codedoctorde.itemmods.utils.PluginMetrics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import me.hsgamer.bettergui.builder.PropertyBuilder;
-import org.bstats.bukkit.Metrics;
+import me.hsgamer.bettergui.builder.ItemModifierBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
@@ -30,59 +30,108 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
+            .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
+            .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
+            .serializeNulls()
+            .setPrettyPrinting().create();
     private static ItemMods plugin;
-    private final File baseConfig = new File(getDataFolder(), "config.json");
-    public static final String version = "§bFOOD 1.4";
-    private CodeDoctorAPI codeDoctorAPI;
-    private final Gson gson;
+    private static Path baseConfig;
+    private static MainConfig mainConfig;
+    private static ItemModsApi api;
+    private static TranslationConfig translationConfig;
+    private static PackManager packManager;
     private UpdateChecker updateChecker;
-    private MainConfig mainConfig;
     private BaseCommand baseCommand;
-    private ItemModsApi api;
-    private ObjectConfig translationConfig;
     private GiveItemCommand giveItemCommand;
     private Connection connection;
 
-    public ItemMods() {
-        gson = new GsonBuilder()
-                .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
-                .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
-                .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
-                .serializeNulls()
-                .setPrettyPrinting().create();
-    }
-
     public static ItemMods getPlugin() {
         return plugin;
+    }
+
+    public static CustomBlockManager getCustomBlockManager() {
+        return getApi().getCustomBlockManager();
+    }
+
+    public static void saveBaseConfig() {
+        try {
+            var baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
+            FileWriter writer = new FileWriter(baseConfig.toString());
+            BufferedWriter bw = new BufferedWriter(writer);
+            bw.write(gson.toJson(mainConfig));
+            bw.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    public static TranslationConfig getTranslationConfig() {
+        return translationConfig;
+    }
+
+    public static MainConfig getMainConfig() {
+        return mainConfig;
+    }
+
+    public static ItemModsApi getApi() {
+        return api;
+    }
+
+    public static PackManager getPackManager() {
+        return packManager;
+    }
+
+    public static String getVersion() {
+        return getPlugin().getDescription().getVersion();
     }
 
     @Override
     public void onEnable() {
         plugin = this;
         updateChecker = new UpdateChecker(this, 72461);
-        codeDoctorAPI = new CodeDoctorAPI(this);
-        translationConfig = new ObjectConfig(gson, new File(getDataFolder(), "translations.json"));
-        translationConfig.setDefault(gson.fromJson(Objects.requireNonNull(getTextResource("translations.json")), JsonObject.class));
-        translationConfig.save();
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loading").getAsString());
-        Metrics metrics = new Metrics(this, 5996);
-        if (Version.getVersion() == Version.UNKNOWN)
-            Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("compatible").getAsString());
-
-
+        //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
+        translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations/en.json").toString());
         try {
-            if (!baseConfig.exists())
-                baseConfig.createNewFile();
-            mainConfig = gson.fromJson(new FileReader(baseConfig), MainConfig.class);
+            translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        translationConfig.save();
+        System.out.println(translationConfig.getInstance().getTranslationKeys());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
+        try {
+            PluginMetrics.runMetrics();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (Version.getVersion() == Version.UNKNOWN)
+            Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
+        try {
+            packManager = new PackManager();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
+        try {
+            if (!Files.exists(baseConfig))
+                Files.createFile(baseConfig);
+            mainConfig = gson.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
         } catch (Exception ex) {
             ex.printStackTrace();
             mainConfig = new MainConfig();
@@ -107,42 +156,22 @@ public class ItemMods extends JavaPlugin {
         }
         api.registerAddon(new BaseAddon());
         if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
-            PropertyBuilder.registerItemProperty(CustomItemBetterGuiProperty::new, "customitem", "custom-item");
+            ItemModifierBuilder.INSTANCE.register(BetterGuiCustomModifier::new, "customitem", "custom-item");
         }
 
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("loaded").getAsString());
-    }
-
-    public CustomBlockManager getCustomBlockManager() {
-        return getApi().getCustomBlockManager();
-    }
-
-    public CustomItemManager getCustomItemManager() {
-        return getApi().getCustomItemManager();
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("unloading").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
         Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
         saveBaseConfig();
         super.onDisable();
-        Bukkit.getConsoleSender().sendMessage(translationConfig.getJsonObject().getAsJsonObject("plugin").get("unloaded").getAsString());
+        Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
     }
 
-    public void saveBaseConfig() {
-        try {
-            FileWriter writer = new FileWriter(baseConfig);
-            BufferedWriter bw = new BufferedWriter(writer);
-            bw.write(gson.toJson(mainConfig));
-            bw.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-    }
-
-    public void connect() throws ClassNotFoundException, SQLException {
+    private void connect() throws ClassNotFoundException, SQLException {
         if (connection != null && !connection.isClosed()) {
             return;
         }
@@ -159,23 +188,7 @@ public class ItemMods extends JavaPlugin {
         return baseCommand;
     }
 
-    public ObjectConfig getTranslationConfig() {
-        return translationConfig;
-    }
-
     public Gson getGson() {
         return gson;
-    }
-
-    public MainConfig getMainConfig() {
-        return mainConfig;
-    }
-
-    public CodeDoctorAPI getCodeDoctorAPI() {
-        return codeDoctorAPI;
-    }
-
-    public ItemModsApi getApi() {
-        return api;
     }
 }

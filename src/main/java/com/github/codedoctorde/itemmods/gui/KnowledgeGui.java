@@ -1,16 +1,15 @@
 package com.github.codedoctorde.itemmods.gui;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.ui.GuiItem;
+import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
+import com.github.codedoctorde.api.ui.template.item.TranslatedItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
-import com.google.gson.JsonObject;
+import com.github.codedoctorde.itemmods.ItemMods;
+import org.bukkit.Material;
 
-public class KnowledgeGui {
-    public Gui createGui() {
-        JsonObject guiTranslation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("gui").getAsJsonObject("knowledge");
-        return new Gui(ItemMods.getPlugin(), guiTranslation.get("title").getAsString(), 5) {{
-            getGuiItems().put(9 + 4, new GuiItem(new ItemStackBuilder(guiTranslation.getAsJsonObject("comingsoon"))));
-        }};
+public class KnowledgeGui extends TranslatedChestGui {
+    public KnowledgeGui() {
+        super(ItemMods.getTranslationConfig().subTranslation("gui.knowledge"));
+        //Translation t = getTranslation();
+        registerItem(4, 1, new TranslatedItem(ItemMods.getTranslationConfig().getInstance(), new ItemStackBuilder(Material.BARRIER).setDisplayName("coming-soon").build()));
     }
 }

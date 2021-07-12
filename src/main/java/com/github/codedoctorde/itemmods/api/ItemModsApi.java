@@ -1,18 +1,15 @@
 package com.github.codedoctorde.itemmods.api;
 
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
-import com.github.codedoctorde.itemmods.api.block.CustomBlockTemplate;
-import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
-import com.github.codedoctorde.itemmods.api.item.CustomItemTemplate;
-import com.google.gson.JsonObject;
+import com.github.codedoctorde.itemmods.pack.template.block.CustomBlockTemplate;
+import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +19,7 @@ public class ItemModsApi {
     private final CustomItemManager customItemManager = new CustomItemManager();
     private final CustomBlockManager customBlockManager = new CustomBlockManager();
     private final Set<ItemModsAddon> addons = new HashSet<>();
-    private final JsonObject translation = ItemMods.getPlugin().getTranslationConfig().getJsonObject().getAsJsonObject("api");
+    private final Translation t = ItemMods.getTranslationConfig().subTranslation("api");
 
     public ItemModsApi() {
     }
@@ -36,10 +33,10 @@ public class ItemModsApi {
     }
 
     public void registerAddon(ItemModsAddon addon) {
-        if(getAddon(addon.getName()) != null)
+        if (getAddon(addon.getName()) != null)
             return;
         addons.add(addon);
-        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("register").getAsString(), addon.getName()));
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(t.getTranslation("register"), addon.getName()));
     }
 
     public Set<CustomBlockTemplate> getCustomBlockTemplates() {
@@ -56,7 +53,7 @@ public class ItemModsApi {
 
     public void unregisterAddon(ItemModsAddon addon) {
         addons.remove(addon);
-        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(translation.get("unregister").getAsString(), addon.getName()));
+        Bukkit.getConsoleSender().sendMessage(MessageFormat.format(t.getTranslation("unregister"), addon.getName()));
     }
 
     public Set<ItemModsAddon> getAddons() {
@@ -67,16 +64,28 @@ public class ItemModsApi {
         return getCustomBlockTemplates().stream().filter(template -> template.getClass().equals(templateClass)).findFirst().orElse(null);
     }
 
-    public CustomBlockTemplate getBlockTemplate(String templateClass) throws ClassNotFoundException {
-        return getBlockTemplate((Class<? extends CustomBlockTemplate>) Class.forName(templateClass));
+    public CustomBlockTemplate getBlockTemplate(String templateClass) {
+        Class<?> current = null;
+        try {
+            current = Class.forName(templateClass);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return current != null && current.isInstance(CustomBlockTemplate.class) ? getBlockTemplate(current.asSubclass(CustomBlockTemplate.class)) : null;
     }
 
     public CustomItemTemplate getItemTemplate(Class<? extends CustomItemTemplate> templateClass) {
         return getCustomItemTemplates().stream().filter(template -> template.getClass().equals(templateClass)).findFirst().orElse(null);
     }
 
-    public CustomItemTemplate getItemTemplate(String templateClass) throws ClassNotFoundException {
-        return getItemTemplate((Class<? extends CustomItemTemplate>) Class.forName(templateClass));
+    public CustomItemTemplate getItemTemplate(String templateClass) {
+        Class<?> current = null;
+        try {
+            current = Class.forName(templateClass);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return current != null && current.isInstance(CustomItemTemplate.class) ? getItemTemplate(current.asSubclass(CustomItemTemplate.class)) : null;
     }
 
     @Nullable
