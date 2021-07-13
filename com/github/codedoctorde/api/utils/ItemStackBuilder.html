@@ -614,15 +614,6 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="deserialize(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>deserialize</h4>
-<pre class="methodSignature">public static&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;deserialize&#8203;(java.lang.String&nbsp;value)</pre>
-</li>
-</ul>
 <a id="getOwningPlayer()">
 <!--   -->
 </a>
@@ -630,15 +621,6 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getOwningPlayer</h4>
 <pre class="methodSignature">public&nbsp;org.bukkit.OfflinePlayer&nbsp;getOwningPlayer()</pre>
-</li>
-</ul>
-<a id="setOwningPlayer(org.bukkit.OfflinePlayer)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setOwningPlayer</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwningPlayer&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</pre>
 </li>
 </ul>
 <a id="getOwner()">
@@ -650,6 +632,15 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;java.util.UUID&nbsp;getOwner()</pre>
 </li>
 </ul>
+<a id="setOwningPlayer(org.bukkit.OfflinePlayer)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setOwningPlayer</h4>
+<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwningPlayer&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</pre>
+</li>
+</ul>
 <a id="setOwner(java.util.UUID)">
 <!--   -->
 </a>
@@ -657,6 +648,15 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setOwner</h4>
 <pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwner&#8203;(java.util.UUID&nbsp;uuid)</pre>
+</li>
+</ul>
+<a id="deserialize(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deserialize</h4>
+<pre class="methodSignature">public static&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;deserialize&#8203;(java.lang.String&nbsp;value)</pre>
 </li>
 </ul>
 <a id="getMaterial()">
@@ -998,6 +998,44 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;format&#8203;(java.lang.Object...&nbsp;arguments)</pre>
 </li>
 </ul>
+<a id="serialize()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serialize</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;serialize()</pre>
+</li>
+</ul>
+<a id="build()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>build</h4>
+<pre class="methodSignature">public&nbsp;org.bukkit.inventory.ItemStack&nbsp;build()</pre>
+</li>
+</ul>
+<a id="getItemStack()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getItemStack</h4>
+<pre class="methodSignature">@Deprecated
+public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
+</li>
+</ul>
+<a id="setItemStack(org.bukkit.inventory.ItemStack)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setItemStack</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setItemStack&#8203;(org.bukkit.inventory.ItemStack&nbsp;itemStack)</pre>
+</li>
+</ul>
 <a id="addEnchant(org.bukkit.enchantments.Enchantment,int)">
 <!--   -->
 </a>
@@ -1038,48 +1076,10 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <a id="setEnchanted(boolean)">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>setEnchanted</h4>
 <pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setEnchanted&#8203;(boolean&nbsp;enchanted)</pre>
-</li>
-</ul>
-<a id="serialize()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>serialize</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;serialize()</pre>
-</li>
-</ul>
-<a id="build()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>build</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.inventory.ItemStack&nbsp;build()</pre>
-</li>
-</ul>
-<a id="getItemStack()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getItemStack</h4>
-<pre class="methodSignature">@Deprecated
-public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span></div>
-</li>
-</ul>
-<a id="setItemStack(org.bukkit.inventory.ItemStack)">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>setItemStack</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setItemStack&#8203;(org.bukkit.inventory.ItemStack&nbsp;itemStack)</pre>
 </li>
 </ul>
 </li>
