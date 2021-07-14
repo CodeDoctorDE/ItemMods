@@ -2,25 +2,24 @@ package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
+import com.github.codedoctorde.itemmods.pack.BlockAsset;
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class CustomBlock {
+    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "type");
+    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "data");
     private final Location location;
 
     public CustomBlock(Location location) {
@@ -31,22 +30,21 @@ public class CustomBlock {
         this(block.getLocation());
     }
 
-    /*public BlockConfig getConfig() {
-        return ItemMods.getMainConfig().getBlock(getIdentifier());
-    }*/
+    public @Nullable BlockAsset getConfig() {
+        var type = getType();
+        if (type == null)
+            return null;
+        var packObject = PackObject.fromIdentifier(type);
+        if (packObject == null)
+            return null;
+        return packObject.getBlock();
+    }
 
     public Location getLocation() {
         return location;
     }
 
-    @Nullable
-    public ArmorStand getArmorStand() {
-        Location entityLocation = location.clone().add(0.5, 0, 0.5);
-        List<Entity> entities = new ArrayList<>(Objects.requireNonNull(entityLocation.getWorld()).getNearbyEntities(entityLocation, 0.05, 0.001, 0.05));
-        return (ArmorStand) entities.stream().filter(entity -> entity instanceof ArmorStand && entity.getLocation().getY() == location.getY()).findFirst().orElse(null);
-    }
-
-    public String getIdentifier() {
+    public @Nullable String getType() {
         return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
     }
 
@@ -54,18 +52,8 @@ public class CustomBlock {
         setString(new NamespacedKey(ItemMods.getPlugin(), "type"), identifier);
     }
 
-    public boolean breakBlock(Player player) {
-        if (player.getGameMode() == GameMode.CREATIVE)
-            return breakBlock(CustomBlock.BlockDropType.NOTHING, player);
-        else if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.SILK_TOUCH))
-            return breakBlock(CustomBlock.BlockDropType.SILK_TOUCH, player);
-        else if (player.getInventory().getItemInMainHand().containsEnchantment(Enchantment.LUCK))
-            return breakBlock(CustomBlock.BlockDropType.FORTUNE, player);
-        else
-            return breakBlock(CustomBlock.BlockDropType.DROP, player);
-    }
 
-    public boolean breakBlock(BlockDropType dropType, Player player) {
+    public boolean breakBlock(Player player) {
         //BlockConfig config = getConfig();
         /*if (config == null || dropType == null) return false;
         if (config.getBlock() != null)
@@ -78,14 +66,12 @@ public class CustomBlock {
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
             getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));*/
-        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, new ArrayList<>(), dropType, player);
+        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, new ArrayList<>(), player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
             return false;
         Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
         event.getDrops().forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
-        if (getArmorStand() != null)
-            getArmorStand().remove();
         return true;
     }
 
@@ -93,15 +79,9 @@ public class CustomBlock {
         return location.getBlock();
     }
 
-    public String getString(NamespacedKey key) {
-        BlockState blockState = getBlock().getState();
-        if (blockState instanceof TileState) {
-            TileState tileState = (TileState) blockState;
-            return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
-        }
-        ArmorStand armorStand = getArmorStand();
-        if (armorStand != null) return armorStand.getPersistentDataContainer().get(key, PersistentDataType.STRING);
-        return null;
+    private @Nullable String getString(NamespacedKey key) {
+        var tileState = (TileState) getBlock().getState();
+        return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
     }
 
     public void setString(NamespacedKey key, String value) {
@@ -111,10 +91,6 @@ public class CustomBlock {
             tileState.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
             tileState.update();
         }
-        ArmorStand armorStand = getArmorStand();
-        if (armorStand != null) {
-            armorStand.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
-        }
     }
 
     /**
@@ -122,9 +98,5 @@ public class CustomBlock {
      */
     public void configure() {
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
-    }
-
-    public enum BlockDropType {
-        SILK_TOUCH, DROP, NOTHING, FORTUNE
     }
 }

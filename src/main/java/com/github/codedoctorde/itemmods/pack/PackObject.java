@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Pattern;
@@ -15,9 +16,9 @@ public class PackObject {
     }
 
     @Nullable
-    public static PackObject fromIdentifier(String identifier) {
+    public static PackObject fromIdentifier(@NotNull String identifier) {
         var matcher = IDENTIFIER_PATTERN.matcher(identifier);
-        if(!matcher.matches()) return null;
+        if (!matcher.matches()) return null;
         return new PackObject(matcher.group("namespace"), matcher.group("name"));
     }
 
@@ -37,7 +38,7 @@ public class PackObject {
     @Nullable
     public ItemAsset getItem() {
         var pack = getPack();
-        if(pack == null)
+        if (pack == null)
             return null;
         return pack.getItem(name);
     }
@@ -45,15 +46,15 @@ public class PackObject {
     @Nullable
     public BlockAsset getBlock() {
         var pack = getPack();
-        if(pack == null)
+        if (pack == null)
             return null;
         return pack.getBlock(name);
     }
 
     @Nullable
-    public CustomTemplate getTemplate()  {
+    public CustomTemplate getTemplate() {
         var pack = getPack();
-        if(pack == null)
+        if (pack == null)
             return null;
         return pack.getTemplate(name);
     }

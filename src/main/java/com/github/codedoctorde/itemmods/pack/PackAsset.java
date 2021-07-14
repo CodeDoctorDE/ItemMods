@@ -25,6 +25,7 @@ public abstract class PackAsset extends NamedPackObject {
             }
         });
     }
+
     public JsonObject save(PackObject packObject) {
         var jsonObject = new JsonObject();
         var customTemplatesArray = new JsonArray();
@@ -37,5 +38,6 @@ public abstract class PackAsset extends NamedPackObject {
         jsonObject.add("templates", customTemplatesArray);
         return jsonObject;
     }
+
     public abstract void export(PackObject packObject, int packFormat, Path path) throws IOException;
 }

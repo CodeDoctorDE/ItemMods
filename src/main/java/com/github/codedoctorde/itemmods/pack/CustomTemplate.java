@@ -1,7 +1,5 @@
 package com.github.codedoctorde.itemmods.pack;
 
-import com.github.codedoctorde.itemmods.pack.PackAsset;
-import com.google.gson.JsonObject;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;

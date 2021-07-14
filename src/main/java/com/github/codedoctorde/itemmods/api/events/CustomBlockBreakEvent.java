@@ -17,15 +17,13 @@ import java.util.List;
 public class CustomBlockBreakEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private final CustomBlock customBlock;
-    private final CustomBlock.BlockDropType dropType;
     private final Player player;
     private List<ItemStack> drops;
     private boolean isCancelled;
 
-    public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, CustomBlock.BlockDropType dropType, Player player) {
+    public CustomBlockBreakEvent(CustomBlock customBlock, List<ItemStack> drops, Player player) {
         this.customBlock = customBlock;
         this.drops = drops;
-        this.dropType = dropType;
         this.player = player;
         this.isCancelled = false;
     }
@@ -62,11 +60,6 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
 
     public void setDrops(@NotNull List<ItemStack> drops) {
         this.drops = drops;
-    }
-
-    @NotNull
-    public CustomBlock.BlockDropType getDropType() {
-        return dropType;
     }
 
     @Nullable

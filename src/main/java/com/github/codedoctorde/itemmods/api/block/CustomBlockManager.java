@@ -1,5 +1,6 @@
 package com.github.codedoctorde.itemmods.api.block;
 
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -56,12 +57,12 @@ public class CustomBlockManager {
     }*/
 
     /**
-     * @param location    The location where the custom block will be placed!
-     * @param blockConfig The block config for the custom block
-     * @param player      The player who is placing the block
+     * @param location   The location where the custom block will be placed!
+     * @param packObject The block config for the custom block
+     * @param player     The player who is placing the block
      * @return Returns if it was placed!
      */
-    public boolean setCustomBlock(Location location, String identifier, Player player) {
+    public boolean setCustomBlock(Location location, PackObject packObject, Player player) {
         /*if (new CustomBlock(location).getConfig() != null)
             return false;
         if (location.getBlock().getType().isSolid())

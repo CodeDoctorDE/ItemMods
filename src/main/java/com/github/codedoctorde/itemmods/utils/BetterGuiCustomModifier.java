@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.utils;
 
-import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import me.hsgamer.bettergui.lib.core.bukkit.item.ItemModifier;
 import me.hsgamer.bettergui.lib.core.common.interfaces.StringReplacer;
@@ -23,7 +22,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
 
     @Override
     public ItemStack modify(ItemStack itemStack, UUID uuid, Map<String, StringReplacer> map) {
-        return Objects.requireNonNull(PackObject.fromIdentifier(StringReplacer.replace(value, uuid, map.values())))();
+        return Objects.requireNonNull(Objects.requireNonNull(PackObject.fromIdentifier(StringReplacer.replace(value, uuid, map.values()))).getItem()).create();
     }
 
     @Override

@@ -1,15 +1,60 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.api.translations.Translation;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.google.gson.JsonObject;
+import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class ItemAsset extends PackModel {
+public class ItemAsset extends PackAsset {
+    private String translatedDisplayName = null;
+    private String displayName = null;
+    private List<String> lore = new ArrayList<>();
+    private CustomModel model;
+
+    public String getTranslatedDisplayName() {
+        return translatedDisplayName;
+    }
+
+    public void setTranslatedDisplayName(String translatedDisplayName) {
+        this.translatedDisplayName = translatedDisplayName;
+    }
+
+    public void removeTranslatedDisplayName() {
+        translatedDisplayName = null;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void removeDisplayName() {
+        displayName = null;
+    }
+
+    public List<String> getLore() {
+        return Collections.unmodifiableList(lore);
+    }
+
+    public void setLore(List<String> lore) {
+        this.lore = lore;
+    }
+
+    public CustomModel getModel() {
+        return model;
+    }
 
     public Translation getTranslation() {
         return ItemMods.getTranslationConfig().subTranslation("addon,pack.item");
@@ -29,5 +74,9 @@ public class ItemAsset extends PackModel {
 
         jsonObject.add("overrides", array);
         Files.writeString(path, GSON.toJson(jsonObject));
+    }
+
+    public ItemStack create() {
+        return new ItemStackBuilder(getModel().create()).build();
     }
 }

@@ -26,13 +26,9 @@
         "title": "§6Reload",
         "description": "§7Reload the whole plugin"
       },
-      "items": {
-        "title": "§6Items",
-        "description": "§7Go to the items list"
-      },
-      "blocks": {
-        "title": "§6Blocks",
-        "description": "§7Go to the blocks list"
+      "packs": {
+        "title": "§6Packs",
+        "description": "§7Go to the packs list"
       },
       "knowledge": {
         "title": "§6Knowledge Book",

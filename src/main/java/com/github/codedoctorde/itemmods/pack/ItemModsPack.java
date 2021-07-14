@@ -12,36 +12,62 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ItemModsPack extends NamedPackObject {
-    private final boolean temporary;
+    private final boolean editable;
     private final List<ItemAsset> items = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
     private final List<PackTexture> textures = new ArrayList<>();
     private ItemStack icon;
-    private String description;
+    private String description = "";
 
-    public ItemModsPack(boolean temporary) {
-        this.temporary = temporary;
+    public ItemModsPack(String name, boolean editable) {
+        this.editable = editable;
+        setName(name);
     }
 
-    public ItemModsPack() {
-        temporary = false;
+    public ItemModsPack(String name) {
+        this(name, true);
     }
 
     public List<String> getDependencies() {
-        return dependencies;
+        return Collections.unmodifiableList(dependencies);
     }
 
     public List<ItemAsset> getStaticItems() {
+        return Collections.unmodifiableList(items);
+    }
+
+    public List<BlockAsset> getBlocks() {
+        return blocks;
+    }
+
+    public List<CustomTemplate> getTemplates() {
+        return templates;
+    }
+
+    public List<ItemAsset> getItems() {
         return items;
     }
 
-    public boolean isTemporary() {
-        return temporary;
+    public List<PackTexture> getTextures() {
+        return textures;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isEditable() {
+        return editable;
     }
 
     public ItemStack getIcon() {

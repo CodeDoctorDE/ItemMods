@@ -1,5 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
+import com.google.gson.JsonObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,7 @@ import java.net.URLConnection;
 import java.nio.file.Path;
 
 public class PackModel extends PackAsset {
-    private String model;
+    private JsonObject model;
 
     public PackModel() {
 
@@ -29,14 +31,14 @@ public class PackModel extends PackAsset {
 
         in.close();
 
-        model = response.toString();
+        model = GSON.fromJson(response.toString(), JsonObject.class);
     }
 
-    public String getModel() {
+    public JsonObject getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(JsonObject model) {
         this.model = model;
     }
 

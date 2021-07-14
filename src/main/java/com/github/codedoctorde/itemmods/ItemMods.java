@@ -7,9 +7,8 @@ import com.github.codedoctorde.api.server.Version;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.utils.UpdateChecker;
-import com.github.codedoctorde.itemmods.addon.BaseAddon;
-import com.github.codedoctorde.itemmods.api.ItemModsApi;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
+import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
 import com.github.codedoctorde.itemmods.commands.GiveItemCommand;
 import com.github.codedoctorde.itemmods.config.MainConfig;
@@ -51,7 +50,8 @@ public class ItemMods extends JavaPlugin {
     private static ItemMods plugin;
     private static Path baseConfig;
     private static MainConfig mainConfig;
-    private static ItemModsApi api;
+    private static CustomBlockManager customBlockManager;
+    private static CustomItemManager customItemManager;
     private static TranslationConfig translationConfig;
     private static PackManager packManager;
     private UpdateChecker updateChecker;
@@ -64,7 +64,11 @@ public class ItemMods extends JavaPlugin {
     }
 
     public static CustomBlockManager getCustomBlockManager() {
-        return getApi().getCustomBlockManager();
+        return customBlockManager;
+    }
+
+    public static CustomItemManager getCustomItemManager() {
+        return customItemManager;
     }
 
     public static void saveBaseConfig() {
@@ -86,10 +90,6 @@ public class ItemMods extends JavaPlugin {
 
     public static MainConfig getMainConfig() {
         return mainConfig;
-    }
-
-    public static ItemModsApi getApi() {
-        return api;
     }
 
     public static PackManager getPackManager() {
@@ -140,6 +140,8 @@ public class ItemMods extends JavaPlugin {
             mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
         giveItemCommand = new GiveItemCommand();
+        customBlockManager = new CustomBlockManager();
+        customItemManager = new CustomItemManager();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
         Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
@@ -148,13 +150,11 @@ public class ItemMods extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new CustomItemListener(), ItemMods.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), ItemMods.getPlugin());
-        api = new ItemModsApi();
         try {
             connect();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        api.registerAddon(new BaseAddon());
         if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
             ItemModifierBuilder.INSTANCE.register(BetterGuiCustomModifier::new, "customitem", "custom-item");
         }
