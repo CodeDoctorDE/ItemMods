@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class PackTexture extends NamedPackObject {
+public class PackTexture extends PackAsset {
     private byte[] data;
 
     public PackTexture(URL url) throws IOException {
@@ -40,23 +40,19 @@ public class PackTexture extends NamedPackObject {
     }
 
     @Override
-    void export(ItemModsPack pack, Path path) {
+    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
 
     }
 
     @Override
-    void save(ItemModsPack pack, Path path) throws IOException {
-        var filePath = Path.of(path.toString(), getName());
-        if (!Files.exists(filePath))
-            Files.createFile(filePath);
+    public JsonObject save(PackObject packObject) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("data", new String(data, StandardCharsets.UTF_8));
-        Files.writeString(path, GSON.toJson(jsonObject));
+        return jsonObject;
     }
 
     @Override
-    void load(ItemModsPack pack, Path path) throws IOException {
-        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(path), JsonObject.class);
+    public void load(PackObject packObject, JsonObject jsonObject) {
         data = jsonObject.get("data").getAsString().getBytes(StandardCharsets.UTF_8);
     }
 }

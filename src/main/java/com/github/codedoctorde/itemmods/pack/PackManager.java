@@ -38,7 +38,7 @@ public class PackManager {
             paths
                     .filter(Files::isRegularFile)
                     .forEach(path -> {
-                        var pack = new ItemModsPack();
+                        var pack = new ItemModsPack("");
                         try {
                             pack.load(path);
                             packs.add(pack);
@@ -57,7 +57,7 @@ public class PackManager {
 
     public void save(String name) {
         var pack = getPack(name);
-        if (pack == null || pack.isTemporary() || !NamedPackObject.NAME_PATTERN.matcher(
+        if (pack == null || !pack.isEditable() || !NamedPackObject.NAME_PATTERN.matcher(
                 pack.getName()).matches())
             return;
         var path = Paths.get(packPath.toString(), pack.getName());

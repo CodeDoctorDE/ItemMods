@@ -6,7 +6,6 @@
 
     <groupId>com.github.codedoctorde</groupId>
     <artifactId>ItemMods</artifactId>
-    <packaging>pom</packaging>
     <version>2.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,7 +27,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -38,14 +37,18 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <filters>
+                        <filter>
+                            <artifact>com.github.codedoctorde.api:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>com.github.codedoctorde.itemmods.bstats</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.github.codedoctorde.api</pattern>
-                            <shadedPattern>com.github.codedoctorde.itemmods.codedoctorapi</shadedPattern>
                         </relocation>
                     </relocations>
                     <artifactSet>

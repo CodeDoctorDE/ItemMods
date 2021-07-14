@@ -10,7 +10,7 @@ public class CustomItemManager {
     public CustomItemManager() {
     }
 
-    public ItemStack createItem(PackObject packObject) {
+    public ItemStack create(PackObject packObject) {
         return Objects.requireNonNull(packObject.getItem()).create();
     }
 }

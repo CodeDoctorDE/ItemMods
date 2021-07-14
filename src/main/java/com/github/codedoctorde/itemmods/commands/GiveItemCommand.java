@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.commands;
 
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,8 +33,13 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 commandSender.sendMessage(t.getTranslation("noplayer"));
                 return true;
             }
-            ItemAsset itemAsset = ItemMods.getMainConfig().getItem(args[1]);
-            if (itemAsset == null) {
+            var packObject = PackObject.fromIdentifier(args[1]);
+            if (packObject == null) {
+                commandSender.sendMessage(t.getTranslation("noitem"));
+                return true;
+            }
+            var itemAsset = packObject.getItem();
+            if(itemAsset == null){
                 commandSender.sendMessage(t.getTranslation("noitem"));
                 return true;
             }
@@ -46,7 +52,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                     return true;
                 }
             }
-            ItemStack itemStack = Objects.requireNonNull(itemAsset).giveItemStack();
+            var itemStack = itemAsset.create();
             itemStack.setAmount(count);
             player.getInventory().addItem(itemStack);
         }
@@ -63,7 +69,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
         if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
         else if (args.length == 2)
-            available.addAll(ItemMods.getMainConfig().getItems().stream().map(CustomConfig::getIdentifier).collect(Collectors.toList()));
+            available.addAll(ItemMods.getPackManager().getPacks().stream().flatMap(itemModsPack -> itemModsPack.getItems().stream().map((itemAsset -> new PackObject(itemModsPack.getName(), itemAsset.getName())))).map(PackObject::toString).collect(Collectors.toList()));
         else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
         StringUtil.copyPartialMatches(args[args.length - 1], available, completions);

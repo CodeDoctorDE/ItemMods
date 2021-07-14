@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.gui.pack;
 
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.ui.GuiPane;
+import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.TabGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
@@ -16,6 +17,7 @@ public class PackGui extends TabGui {
         var translation = ItemMods.getTranslationConfig().subTranslation("gui.pack");
         setTabsBuilder(integer -> {
             GuiPane pane = new GuiPane(9, 1);
+            pane.fillItems(0, 0, 8, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name() + ".name")
                     .setEnchanted(PackTab.values()[integer].equals(packTab)).build())).forEach(pane::addItem);
             return pane;
@@ -37,7 +39,6 @@ public class PackGui extends TabGui {
             });
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).setDisplayName("no-item.title").setLore("no-item.description").build()));
-        registerItem(1, 1, new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).setDisplayName("item-creator.title").setLore("item-creator.description").build()));
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("Items").build()));
     }
 

@@ -11,7 +11,7 @@ import java.util.Objects;
 public class CustomItemListener implements Listener {
 
 
-    @EventHandler
+    /*@EventHandler
     public void onAnvilRename(InventoryClickEvent event) {
         if (!(event.getClickedInventory() instanceof AnvilInventory)) return;
         AnvilInventory anvilInventory = ((AnvilInventory) event.getClickedInventory());
@@ -21,5 +21,5 @@ public class CustomItemListener implements Listener {
             event.setCancelled(true);
             event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("event.rename"));
         });
-    }
+    }*/
 }
