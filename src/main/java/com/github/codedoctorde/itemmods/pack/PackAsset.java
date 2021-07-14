@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import java.util.List;
 
 public abstract class PackAsset extends NamedPackObject {
-    private List<CustomTemplate<PackAsset>> customTemplates;
+    private List<CustomTemplateData> customTemplates;
 
-    public List<CustomTemplate<PackAsset>> getCustomTemplates() {
+    public List<CustomTemplateData> getCustomTemplates() {
         return customTemplates;
     }
 
@@ -19,10 +19,7 @@ public abstract class PackAsset extends NamedPackObject {
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
             try {
-                //noinspection unchecked
-                var currentClass = (Class<CustomTemplate<PackAsset>>) Class.forName(current.get("class").getAsString());
-                CustomTemplate<PackAsset> template = currentClass.getDeclaredConstructor(JsonObject.class).newInstance(current.getAsJsonObject("data"));
-                getCustomTemplates().add(template);
+                getCustomTemplates().add(new CustomTemplateData(PackObject.fromIdentifier(current.get("object").getAsString()), current.getAsJsonObject("data")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -31,7 +28,12 @@ public abstract class PackAsset extends NamedPackObject {
     public JsonObject save(PackObject packObject) {
         var jsonObject = new JsonObject();
         var customTemplatesArray = new JsonArray();
-        customTemplates.stream().map(CustomTemplate::saveData).forEach(customTemplatesArray::add);
+        customTemplates.stream().map(customTemplateData -> {
+            JsonObject current = new JsonObject();
+            current.add("data", customTemplateData.getData());
+            current.addProperty("object", customTemplateData.getObject().toString());
+            return current;
+        }).forEach(customTemplatesArray::add);
         jsonObject.add("templates", customTemplatesArray);
         return jsonObject;
     }

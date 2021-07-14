@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-public class BlockAsset extends TexturedPackAsset {
+public class BlockAsset extends PackModel {
     private HashMap<String, String> textures;
     private String model;
 
@@ -18,10 +18,5 @@ public class BlockAsset extends TexturedPackAsset {
 
     public HashMap<String, String> getTextures() {
         return textures;
-    }
-
-    @Override
-    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
-
     }
 }

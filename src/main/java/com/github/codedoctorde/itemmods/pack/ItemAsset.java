@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ItemAsset extends PackAsset {
+public class ItemAsset extends PackModel {
 
     public Translation getTranslation() {
         return ItemMods.getTranslationConfig().subTranslation("addon,pack.item");

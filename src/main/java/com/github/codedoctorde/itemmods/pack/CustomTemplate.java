@@ -6,28 +6,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class CustomTemplate<C extends PackAsset> {
-    public CustomTemplate(JsonObject data){
-
-    }
-
+public abstract class CustomTemplate {
     public abstract String getName();
 
-    public abstract @NotNull ItemStack createIcon(C config);
+    public abstract @NotNull ItemStack createIcon(CustomTemplateData data);
 
-    public abstract @NotNull ItemStack createMainIcon(C config);
+    public abstract @NotNull ItemStack createMainIcon(PackObject object);
 
-    public boolean isCompatible(C config) {
+    public boolean isCompatible(PackObject object) {
         return true;
     }
 
-    public boolean openConfigGui(C config, Player player) {
+    public boolean openConfigGui(CustomTemplateData data, Player player) {
         return false;
-    }
-
-    public JsonObject saveData() {
-        var jsonObject = new JsonObject();
-        jsonObject.addProperty("class", getClass().getName());
-        return jsonObject;
     }
 }

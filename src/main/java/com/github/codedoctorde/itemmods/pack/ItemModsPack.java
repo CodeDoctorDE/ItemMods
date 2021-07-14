@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.pack;
 
-import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
 import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
@@ -20,6 +19,7 @@ public class ItemModsPack extends NamedPackObject {
     private final List<ItemAsset> items = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
+    private final List<CustomTemplate> templates = new ArrayList<>();
     private final List<PackTexture> textures = new ArrayList<>();
     private ItemStack icon;
     private String description;
@@ -79,5 +79,9 @@ public class ItemModsPack extends NamedPackObject {
 
     public void export(int packFormat, Path path) throws IOException {
 
+    }
+
+    public CustomTemplate getTemplate(String name) {
+        return templates.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 }

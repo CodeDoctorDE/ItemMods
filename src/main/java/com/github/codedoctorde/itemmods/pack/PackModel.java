@@ -7,9 +7,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Path;
 
-public class PackModel extends NamedPackObject {
+public class PackModel extends PackAsset {
     private String model;
 
+    public PackModel() {
+
+    }
 
     public PackModel(String url) throws IOException {
         URL website = new URL(url);
@@ -35,5 +38,10 @@ public class PackModel extends NamedPackObject {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Override
+    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
+
     }
 }

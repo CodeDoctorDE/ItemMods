@@ -50,7 +50,20 @@ public class PackObject {
         return pack.getBlock(name);
     }
 
+    @Nullable
+    public CustomTemplate getTemplate()  {
+        var pack = getPack();
+        if(pack == null)
+            return null;
+        return pack.getTemplate(name);
+    }
+
     public void save() {
         ItemMods.getPackManager().save(namespace);
+    }
+
+    @Override
+    public String toString() {
+        return namespace + ":" + name;
     }
 }
