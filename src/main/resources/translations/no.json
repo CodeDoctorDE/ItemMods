@@ -1,82 +1,78 @@
 {
   "plugin": {
-    "loading": "§eItemMods §7» §eLoading plugin...",
-    "loaded": "§eItemMods §7» §aSuccessfully loaded plugin!",
-    "unloading": "§eItemMods §7» §eUnloading plugin...",
-    "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
-    "compatible": "§eItemMods §7» §6This plugin isn't compatible with your version!",
-    "version": "$eItemMods $7» §6There is a new version available: §3%s"
+    "loading": "§eItemMods §7» §eLaster plugin...",
+    "loaded": "§eItemMods §7» §avellykket lastet Plugin!",
+    "unloading": "§eItemMods §7» §eAv-Laster plugin...",
+    "unloaded": "§eItemMods §7» §avellykket Av-lastet Plugin!",
+    "compatible": "§eItemMods §7» §6Denne Plugin er ikke kompatibel med versjonen din!",
+    "version": "$eItemMods $7» §6Det er en ny versjon tilgjengelig: §3%s"
   },
   "api": {
-    "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
-    "unregister": "§eItemMods §7» §aUnregistered addon §3%s§a!"
+    "register": "§eItemMods §7» §aRegistrerte ny addon §3%s§a!",
+    "unregister": "§eItemMods §7» §aUregistrert addon §3%s§a!"
   },
   "pack": {
-    "created": "§eItemMods $7» §6Pack folder was created!",
-    "exporting": "§eItemMods $7» §eExporting resource pack...",
-    "exported": "§eItemMods $7» §6Resource pack was exported!"
+    "created": "§eItemMods $7» §6Pakke-mappen ble opprettet!",
+    "exporting": "§eItemMods $7» §eEksporterer ressurspakke...",
+    "exported": "§eItemMods $7» §6Ressurspakken ble eksportert!"
   },
-  "coming-soon": "§cComing soon...",
+  "coming-soon": "§cKommer snart...",
   "addon": {},
   "gui": {
     "main": {
-      "title": "§6§6§lItemMods §7(%s)",
+      "title": "§6§lItemMods §7(%s)",
       "reload": {
-        "title": "§6Reload",
-        "description": "§7Reload the whole plugin"
+        "title": "§6Oppdater",
+        "description": "§7Oppdater hele utvidelsen"
       },
-      "items": {
-        "title": "§6Items",
-        "description": "§7Go to the items list"
-      },
-      "blocks": {
-        "title": "§6Blocks",
-        "description": "§7Go to the blocks list"
+      "packs": {
+        "title": "§6Packs",
+        "description": "§7Go to the packs list"
       },
       "knowledge": {
-        "title": "§6Knowledge Book",
-        "description": "§7Gp tp the mod information for the users"
+        "title": "§6Kunnskapsbok",
+        "description": "§7Gp tp mod-informasjon for brukerne"
       },
       "addons": {
         "title": "§6Addons",
-        "description": "§7Active, configure, deactivate addons"
+        "description": "§7Active, configure, deaktiver addons"
       },
       "source": {
-        "title": "§6Source",
-        "description": "§7Get the github link",
+        "title": "§6Kilde",
+        "description": "§7Få Github Linken",
         "link": "§eItemMods §7» §b§lhttps://github.com/CodeDoctorDE/ItemMods.git"
       },
       "support": {
-        "title": "§6Support",
-        "description": "§7Get the discord link",
+        "title": "§6Brukerstøtte",
+        "description": "§7Få Discord-Server Linken",
         "link": "§eItemMods §7» §b§lhttps://discord.gg/WzcRNGF"
       },
       "crowdin": {
-        "title": "§6§6Crowdin",
-        "description": "§7Get the crowdin link",
+        "title": "§6Crowdin",
+        "description": "§7Få crowdin linken",
         "link": "§eItemMods §7» §b§lhttps://linwood.crowdin.com/ItemMods"
       },
       "wiki": {
         "title": "§6Wiki",
-        "description": "§7Get the wiki link",
+        "description": "§7Få Wiki Linken",
         "link": "§eItemMods §7» §b§lhttps://itemmods.codedoctor.tk"
       }
     }
   },
   "event": {
-    "rename": "§eItemMods §7» §cThis item cannot be renamed!"
+    "rename": "§eItemMods §7» §cdenne Gjenstanden Kan Ikke Få Ett Nytt Navn!"
   },
   "command": {
     "base": {
-      "usage": "§eItemMods §7» §cUsage: §3/itemmods§c!",
-      "noplayer": "§eItemMods §7» §4This command is only for players!"
+      "usage": "§eItemMods §7» §cBruk: §3/itemmods§c!",
+      "noplayer": "§eItemMods §7» §4Denne kommandoen er bare for spillere!"
     },
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
-      "noplayer": "§eItemMods §7» §4This command is only for players!",
-      "noitem": "§eItemMods §7» §4That is not a valid item!",
-      "nonumber": "§eItemMods §7» §4That is not a number!",
-      "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
+      "noplayer": "§eItemMods §7» §4Denne kommandoen er bare for spillere!",
+      "noitem": "§eItemMods §7» §4Det er ikke en gyldig gjenstand!",
+      "nonumber": "§eItemMods §7» §4Det er ikke et tall!",
+      "success": "§eItemMods §7» §avellykket ga deg gjenstand §3%s§a!"
     }
   }
 }
