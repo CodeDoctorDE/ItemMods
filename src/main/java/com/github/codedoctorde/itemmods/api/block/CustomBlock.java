@@ -72,9 +72,9 @@ public class CustomBlock {
             getBlock().setType(Material.AIR);
         getBlock().getDrops().clear();
         List<ItemStack> drops = new ArrayList<>();
-        if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemConfig() != null)
-            drops.add(config.getReferenceItemConfig().giveItemStack());
-        else if (dropType == BlockDropType.DROP || config.getReferenceItemConfig() == null)
+        if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemAsset() != null)
+            drops.add(config.getReferenceItemAsset().giveItemStack());
+        else if (dropType == BlockDropType.DROP || config.getReferenceItemAsset() == null)
             getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
         else if (dropType == BlockDropType.FORTUNE)
             getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));*/

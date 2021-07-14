@@ -35,7 +35,7 @@ public class PackObject {
     }
 
     @Nullable
-    public PackItem getItem() {
+    public ItemAsset getItem() {
         var pack = getPack();
         if(pack == null)
             return null;
@@ -43,10 +43,14 @@ public class PackObject {
     }
 
     @Nullable
-    public PackBlock getBlock() {
+    public BlockAsset getBlock() {
         var pack = getPack();
         if(pack == null)
             return null;
         return pack.getBlock(name);
+    }
+
+    public void save() {
+        ItemMods.getPackManager().save(namespace);
     }
 }

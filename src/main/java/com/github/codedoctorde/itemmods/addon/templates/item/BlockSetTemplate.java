@@ -6,6 +6,7 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.api.item.CustomItem;
 import com.github.codedoctorde.itemmods.gui.block.choose.ChooseBlockConfigGui;
 import com.github.codedoctorde.itemmods.gui.item.ItemGui;
+import com.github.codedoctorde.itemmods.pack.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -32,14 +33,14 @@ public class BlockSetTemplate implements CustomItemTemplate {
 
     @NotNull
     @Override
-    public ItemStack createIcon(ItemConfig itemConfig) {
+    public ItemStack createIcon(ItemAsset itemAsset) {
         return new ItemStackBuilder(t.getTranslation("icon")).build();
     }
 
     @NotNull
     @Override
-    public ItemStack createMainIcon(ItemConfig itemConfig) {
-        BlockConfig blockConfig = getBlock(itemConfig);
+    public ItemStack createMainIcon(ItemAsset itemAsset) {
+        BlockConfig blockConfig = getBlock(itemAsset);
         if (blockConfig != null)
             return new ItemStackBuilder(t.getTranslation("main-icon.has")).format(blockConfig.getIdentifier()).build();
         else
@@ -47,19 +48,19 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Override
-    public boolean isCompatible(ItemConfig itemConfig) {
-        if (itemConfig.getItemStack() == null)
+    public boolean isCompatible(ItemAsset itemAsset) {
+        if (itemAsset.getItemStack() == null)
             return false;
-        return itemConfig.getItemStack().getType().isBlock();
+        return itemAsset.getItemStack().getType().isBlock();
     }
 
     @Override
-    public boolean openConfigGui(ItemConfig itemConfig, Player player) {
-        BlockSetTemplateData data = new BlockSetTemplateData(this, itemConfig);
+    public boolean openConfigGui(ItemAsset itemAsset, Player player) {
+        BlockSetTemplateData data = new BlockSetTemplateData(this, itemAsset);
         new ChooseBlockConfigGui(blockConfig -> {
             data.setBlock(blockConfig.getIdentifier());
             data.save();
-            new ItemGui(itemConfig.getIdentifier()).show(player);
+            new ItemGui(itemAsset.getIdentifier()).show(player);
         });
         return true;
     }
@@ -76,12 +77,12 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     @Nullable
-    public BlockConfig getBlock(ItemConfig customItem) {
+    public BlockConfig getBlock(ItemAsset customItem) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, customItem);
         return ItemMods.getMainConfig().getBlock(data.getBlock());
     }
 
-    public void setBlock(ItemConfig customItem, @Nullable BlockConfig blockConfig) {
+    public void setBlock(ItemAsset customItem, @Nullable BlockConfig blockConfig) {
         BlockSetTemplateData data = new BlockSetTemplateData(this, customItem);
         if (blockConfig != null) {
             data.setBlock(blockConfig.getIdentifier());
@@ -91,16 +92,16 @@ public class BlockSetTemplate implements CustomItemTemplate {
     }
 
     private class BlockSetTemplateData {
-        private final ItemConfig itemConfig;
+        private final ItemAsset itemAsset;
         private final BlockSetTemplate template;
         private final Gson gson = new Gson();
         private String block;
 
-        BlockSetTemplateData(BlockSetTemplate template, ItemConfig itemConfig) {
+        BlockSetTemplateData(BlockSetTemplate template, ItemAsset itemAsset) {
             this.template = template;
-            this.itemConfig = itemConfig;
-            assert itemConfig.getTemplate() != null;
-            JsonObject jsonObject = gson.fromJson(itemConfig.getTemplate().getData(), JsonObject.class);
+            this.itemAsset = itemAsset;
+            assert itemAsset.getTemplate() != null;
+            JsonObject jsonObject = gson.fromJson(itemAsset.getTemplate().getData(), JsonObject.class);
             if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
                 block = jsonObject.get("block").getAsString();
         }
@@ -120,8 +121,8 @@ public class BlockSetTemplate implements CustomItemTemplate {
         void save() {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("block", block);
-            assert itemConfig.getTemplate() != null;
-            itemConfig.getTemplate().setData(gson.toJson(jsonObject));
+            assert itemAsset.getTemplate() != null;
+            itemAsset.getTemplate().setData(gson.toJson(jsonObject));
             ItemMods.saveBaseConfig();
         }
     }

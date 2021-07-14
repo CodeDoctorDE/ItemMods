@@ -10,6 +10,7 @@ import java.nio.file.Path;
 public class PackModel extends NamedPackObject {
     private String model;
 
+
     public PackModel(String url) throws IOException {
         URL website = new URL(url);
         URLConnection connection = website.openConnection();
@@ -34,20 +35,5 @@ public class PackModel extends NamedPackObject {
 
     public void setModel(String model) {
         this.model = model;
-    }
-
-    @Override
-    void export(ItemModsPack pack, Path path) throws IOException {
-
-    }
-
-    @Override
-    void save(ItemModsPack pack, Path path) throws IOException {
-
-    }
-
-    @Override
-    void load(ItemModsPack pack, Path path) throws IOException {
-
     }
 }

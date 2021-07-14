@@ -2,7 +2,7 @@ package com.github.codedoctorde.itemmods.pack;
 
 import java.util.Map;
 
-public abstract class TexturedPackObject extends NamedPackObject {
+public abstract class TexturedPackAsset extends PackAsset {
     private String model;
     private Map<String, String> textures;
 

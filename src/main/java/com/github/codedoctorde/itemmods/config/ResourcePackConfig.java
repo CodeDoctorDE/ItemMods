@@ -38,7 +38,7 @@ public class ResourcePackConfig {
             Arrays.stream(addons.getStaticCustomItems()).forEach(customItem -> addResource(customItem.getIdentifier()));
             Arrays.stream(addons.getStaticCustomBlocks()).forEach(customBlock -> addResource(customBlock.getIdentifier()));
         });
-        ItemMods.getMainConfig().getItems().forEach(itemConfig -> addResource(itemConfig.getIdentifier()));
+        ItemMods.getMainConfig().getItems().forEach(itemAsset -> addResource(itemAsset.getIdentifier()));
         ItemMods.getMainConfig().getBlocks().forEach(blockConfig -> addResource(blockConfig.getIdentifier()));*/
     }
 

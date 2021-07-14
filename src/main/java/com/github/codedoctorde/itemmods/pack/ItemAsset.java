@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
+import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -9,19 +9,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PackItem extends TexturedPackObject {
-    private ItemModsPack pack;
+public class ItemAsset extends PackAsset {
 
-    public PackItem() {
-
+    public Translation getTranslation() {
+        return ItemMods.getTranslationConfig().subTranslation("addon,pack.item");
     }
 
     @Override
-    void export(ItemModsPack pack, Path path) throws IOException {
-        var filePath = Paths.get(path.toString(), getName());
-        JsonObject jsonObject = ItemMods.getPlugin().getGson().fromJson(Files.newBufferedReader(filePath), JsonObject.class);
-        JsonArray array = jsonObject.getAsJsonArray("overrides");
-        /* ItemMods.getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemConfig -> array.add(createItem(getNextIndex(array), itemConfig.getIdentifier())));
+    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
+        var filePath = Paths.get(path.toString(), packObject.getName());
+        var jsonObject = ItemMods.getPlugin().getGson().fromJson(Files.newBufferedReader(filePath), JsonObject.class);
+        var array = jsonObject.getAsJsonArray("overrides");
+        /* ItemMods.getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemAsset -> array.add(createItem(getNextIndex(array), itemAsset.getIdentifier())));
         ItemMods.getMainConfig().getBlocks().stream().filter(CustomConfig::isPack).forEach(blockConfig -> array.add(createItem(getNextIndex(array), blockConfig.getIdentifier())));
         ItemMods.getApi().getAddons().forEach(addon -> {
             Arrays.stream(addon.getStaticCustomItems()).forEach(item -> array.add(createItem(getNextIndex(array), item.getIdentifier())));
@@ -30,15 +29,5 @@ public class PackItem extends TexturedPackObject {
 
         jsonObject.add("overrides", array);
         Files.writeString(path, GSON.toJson(jsonObject));
-    }
-
-    @Override
-    void save(ItemModsPack pack, Path path) throws IOException {
-
-    }
-
-    @Override
-    void load(ItemModsPack pack, Path path) throws IOException {
-
     }
 }

@@ -10,7 +10,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -37,8 +39,12 @@ public class PackManager {
                     .filter(Files::isRegularFile)
                     .forEach(path -> {
                         var pack = new ItemModsPack();
-                        pack.load(pack, path);
-                        packs.add(pack);
+                        try {
+                            pack.load(path);
+                            packs.add(pack);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     });
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,24 +52,29 @@ public class PackManager {
     }
 
     public void save() {
-        packs.forEach(itemModsPack -> {
-            if (itemModsPack.isTemporary() || !NamedPackObject.NAME_PATTERN.matcher(
-                    itemModsPack.getName()).matches())
-                return;
-            var path = Paths.get(packPath.toString(), itemModsPack.getName());
-            if (!Files.exists(path)) {
-                try {
-                    Files.createDirectories(path);
-                    itemModsPack.save(itemModsPack, path);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        getPackNames().forEach(this::save);
+    }
+
+    public void save(String name) {
+        var pack = getPack(name);
+        if (pack == null || pack.isTemporary() || !NamedPackObject.NAME_PATTERN.matcher(
+                pack.getName()).matches())
+            return;
+        var path = Paths.get(packPath.toString(), pack.getName());
+        if (!Files.exists(path)) try {
+            Files.createDirectories(path);
+            pack.save(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<ItemModsPack> getPacks() {
         return Collections.unmodifiableList(packs);
+    }
+
+    public Set<String> getPackNames() {
+        return packs.stream().map(NamedPackObject::getName).collect(Collectors.toSet());
     }
 
     public void registerPack(ItemModsPack pack) {

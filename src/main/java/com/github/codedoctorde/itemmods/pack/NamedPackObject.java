@@ -3,13 +3,11 @@ package com.github.codedoctorde.itemmods.pack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.regex.Pattern;
 
 public abstract class NamedPackObject {
-    public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
-    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
     private String name;
 
     public String getName() {
@@ -21,10 +19,4 @@ public abstract class NamedPackObject {
             throw new UnsupportedOperationException();
         this.name = name;
     }
-
-    abstract void export(ItemModsPack pack, Path path) throws IOException;
-
-    abstract void save(ItemModsPack pack, Path path) throws IOException;
-
-    abstract void load(ItemModsPack pack, Path path) throws IOException;
 }

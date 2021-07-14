@@ -84,9 +84,9 @@ public class CustomBlockListener implements Listener {
         if (block.getType() == Material.AIR)
             return;
         CustomBlock customBlock = new CustomBlock(block);
-        if (customBlock.getConfig() == null || customBlock.getConfig().getReferenceItemConfig() == null)
+        if (customBlock.getConfig() == null || customBlock.getConfig().getReferenceItemAsset() == null)
             return;
-        event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemConfig().getItemStack());
+        event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemAsset().getItemStack());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

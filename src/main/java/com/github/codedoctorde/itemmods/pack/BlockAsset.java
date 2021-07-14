@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-public class PackBlock extends TexturedPackObject {
+public class BlockAsset extends TexturedPackAsset {
     private HashMap<String, String> textures;
     private String model;
 
@@ -21,17 +21,7 @@ public class PackBlock extends TexturedPackObject {
     }
 
     @Override
-    void export(ItemModsPack pack, Path path) throws IOException {
-
-    }
-
-    @Override
-    void save(ItemModsPack pack, Path path) throws IOException {
-
-    }
-
-    @Override
-    void load(ItemModsPack pack, Path path) throws IOException {
+    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
 
     }
 }

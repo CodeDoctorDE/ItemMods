@@ -11,14 +11,14 @@ import java.util.Objects;
 public class CustomItem {
     private static final NamespacedKey dataKey = new NamespacedKey(ItemMods.getPlugin(), "data");
     private ItemStack itemStack;
-    //private ItemConfig config = null;
+    //private ItemAsset config = null;
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
-        //ItemMods.getMainConfig().getItems().stream().filter(itemConfig -> itemConfig.isSimilar(itemStack)).forEach(itemConfig -> config = itemConfig);
+        //ItemMods.getMainConfig().getItems().stream().filter(itemAsset -> itemAsset.isSimilar(itemStack)).forEach(itemAsset -> config = itemAsset);
     }
 
-    /*public ItemConfig getConfig() {
+    /*public ItemAsset getConfig() {
         return config;
     }*/
 

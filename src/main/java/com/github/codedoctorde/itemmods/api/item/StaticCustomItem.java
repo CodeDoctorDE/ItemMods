@@ -6,7 +6,7 @@ import com.github.codedoctorde.itemmods.pack.template.item.CustomItemTemplate;
 /**
  * @author CodeDoctorDE
  */
-public abstract class StaticCustomItem extends ItemConfig implements CustomItemTemplate {
+public abstract class StaticCustomItem extends ItemAsset implements CustomItemTemplate {
     private final ItemModsAddon addon;
 
     public StaticCustomItem(ItemModsAddon addon, String name) {

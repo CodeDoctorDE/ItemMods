@@ -17,7 +17,7 @@ public class CustomItemListener implements Listener {
         AnvilInventory anvilInventory = ((AnvilInventory) event.getClickedInventory());
         if (event.getSlot() < 2) return;
         if (anvilInventory.getItem(0) == null || anvilInventory.getRenameText() == null) return;
-        ItemMods.getMainConfig().getItems().stream().filter(itemConfig -> Objects.requireNonNull(anvilInventory.getItem(0)).isSimilar(itemConfig.getItemStack()) && !itemConfig.isCanRename()).forEach(itemConfig -> {
+        ItemMods.getMainConfig().getItems().stream().filter(itemAsset -> Objects.requireNonNull(anvilInventory.getItem(0)).isSimilar(itemAsset.getItemStack()) && !itemAsset.isCanRename()).forEach(itemAsset -> {
             event.setCancelled(true);
             event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("event.rename"));
         });

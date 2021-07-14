@@ -32,8 +32,8 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 commandSender.sendMessage(t.getTranslation("noplayer"));
                 return true;
             }
-            ItemConfig itemConfig = ItemMods.getMainConfig().getItem(args[1]);
-            if (itemConfig == null) {
+            ItemAsset itemAsset = ItemMods.getMainConfig().getItem(args[1]);
+            if (itemAsset == null) {
                 commandSender.sendMessage(t.getTranslation("noitem"));
                 return true;
             }
@@ -46,7 +46,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                     return true;
                 }
             }
-            ItemStack itemStack = Objects.requireNonNull(itemConfig).giveItemStack();
+            ItemStack itemStack = Objects.requireNonNull(itemAsset).giveItemStack();
             itemStack.setAmount(count);
             player.getInventory().addItem(itemStack);
         }
