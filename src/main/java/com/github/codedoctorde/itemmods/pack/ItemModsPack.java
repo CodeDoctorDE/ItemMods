@@ -4,6 +4,7 @@ import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,7 +23,7 @@ public class ItemModsPack extends NamedPackObject {
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
     private final List<PackTexture> textures = new ArrayList<>();
-    private ItemStack icon;
+    private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
     public ItemModsPack(String name, boolean editable) {

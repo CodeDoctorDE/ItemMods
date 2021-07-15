@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CustomBlock {
-    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "type");
-    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "data");
+    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "customblock_type");
+    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "customblock_data");
     private final Location location;
 
     public CustomBlock(Location location) {
@@ -45,11 +45,15 @@ public class CustomBlock {
     }
 
     public @Nullable String getType() {
-        return getString(new NamespacedKey(ItemMods.getPlugin(), "type"));
+        return getString(TYPE_KEY);
     }
 
-    public void setIdentifier(String identifier) {
-        setString(new NamespacedKey(ItemMods.getPlugin(), "type"), identifier);
+    public @Nullable String getData() {
+        return getString(DATA_KEY);
+    }
+
+    public void setData(String data) {
+        setString(DATA_KEY, data);
     }
 
 
@@ -80,8 +84,12 @@ public class CustomBlock {
     }
 
     private @Nullable String getString(NamespacedKey key) {
-        var tileState = (TileState) getBlock().getState();
-        return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
+        BlockState blockState = getBlock().getState();
+        if (blockState instanceof TileState) {
+            TileState tileState = (TileState) blockState;
+            return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
+        }
+        return null;
     }
 
     public void setString(NamespacedKey key, String value) {

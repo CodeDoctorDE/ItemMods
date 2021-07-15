@@ -8,6 +8,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ import java.util.stream.Stream;
 public class PackManager {
     private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
     private final Path packPath;
-    private List<ItemModsPack> packs;
+    private final List<ItemModsPack> packs = new ArrayList<>();
 
     public PackManager() throws IOException {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");

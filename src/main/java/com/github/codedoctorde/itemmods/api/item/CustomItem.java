@@ -11,20 +11,23 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class CustomItem {
-    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "type");
-    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "data");
+    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "customitem_type");
+    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "customitem_data");
     private final ItemStack itemStack;
-    private final ItemAsset config = null;
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
     public ItemAsset getConfig() {
-        var packObject = PackObject.fromIdentifier(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
-        if (packObject == null)
+        try {
+            var packObject = PackObject.fromIdentifier(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
+            if (packObject == null)
+                return null;
+            return packObject.getItem();
+        }catch(Exception e) {
             return null;
-        return packObject.getItem();
+        }
     }
 
 
