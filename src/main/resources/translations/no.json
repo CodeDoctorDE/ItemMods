@@ -80,11 +80,50 @@
     },
     "pack": {
       "title": "§6Pack §3%s",
+      "back": {
+        "title": "§6Back",
+        "description": "§7Go to the pack list"
+      },
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
         "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
         "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a."
+      },
+      "general": "§6General",
+      "contents": "§6Contents",
+      "administration": "§6Administration",
+      "items": {
+        "title": "§6Gjenstander",
+        "description": "§7Go to the item list"
+      },
+      "blocks": {
+        "title": "§6Blokker",
+        "description": "§7Go to the block list"
+      },
+      "textures": {
+        "title": "§6Textures",
+        "description": "§7Go to the texture list"
+      },
+      "models": {
+        "title": "§6Models",
+        "description": "§7Go to the model list"
+      },
+      "deactivate": {
+        "title": "§cDeactivate",
+        "description": "§7Deactivate the current pack"
+      },
+      "activate": {
+        "title": "§aActivate",
+        "description": "§7Activate the current pack"
+      },
+      "export": {
+        "title": "§6Export",
+        "description": "§7Export the current pack in a zip file"
+      },
+      "delete": {
+        "title": "§6Delete",
+        "description": "§7Delete the current pack"
       }
     },
     "material": {
