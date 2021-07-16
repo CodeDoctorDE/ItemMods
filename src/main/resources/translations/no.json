@@ -57,6 +57,38 @@
         "description": "§7Få Wiki Linken",
         "link": "§eItemMods §7» §b§lhttps://itemmods.codedoctor.tk"
       }
+    },
+    "packs": {
+      "title": "§6Packs",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new pack",
+        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully created the pack §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid pack name."
+      },
+      "actions": "\n§3%s\n§7Open the pack gui"
+    },
+    "pack": {
+      "title": "§6Pack §3%s",
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Click to change the name",
+        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a."
+      }
+    },
+    "material": {
+      "title": "Materials"
     }
   },
   "event": {
