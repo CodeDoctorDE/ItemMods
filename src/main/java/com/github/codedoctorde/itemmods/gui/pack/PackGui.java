@@ -33,15 +33,15 @@ public class PackGui extends GuiCollection {
                 setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
             }});
             gui.addItem(placeholderItem);
-            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name() + ".name")
+            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name())
                     .setEnchanted(packTab == value).build()) {{
                 setClickAction(event -> setCurrent(packTab.ordinal()));
             }}).forEach(gui::addItem);
             gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             switch (value) {
                 case administration:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).setDisplayName("deactivate.title").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("export.title").build()) {{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).setDisplayName("deactivate.title").setLore("deactivate.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("export.title").setLore("export.description").build()) {{
                         setClickAction(event -> {
                             try {
                                 ItemMods.getPackManager().export(pack.getName());
@@ -51,7 +51,7 @@ public class PackGui extends GuiCollection {
                             event.getWhoClicked().sendMessage(translation.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).setDisplayName("delete.title").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).setDisplayName("delete.title").setLore("delete.description").build()));
                     break;
                 case general:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).setDisplayName("name.title").setLore("name.description").build()) {{
@@ -64,19 +64,20 @@ public class PackGui extends GuiCollection {
                             request.setSubmitAction(s -> {
                                 pack.setName(s);
                                 p.sendMessage(translation.getTranslation("name.success", s));
+                                show(p);
                             });
                         });
                     }});
                     break;
                 case contents:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND_SWORD).setDisplayName("textures.title").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).setDisplayName("model.title").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").setLore("items.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").setLore("blocks.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).setDisplayName("textures.title").setLore("textures.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).setDisplayName("models.title").setLore("models.description").build()));
                     break;
             }
-            gui.fillItems(1, 2, 7, 2, new StaticItem(new ItemStackBuilder(Material.AIR).build()));
-            gui.fillItems(0, 0, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            gui.fillItems(0, 3, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             registerGui(gui);
         }
     }
