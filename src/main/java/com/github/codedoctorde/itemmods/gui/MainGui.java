@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.gui;
 
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.ui.item.StaticItem;
-import com.github.codedoctorde.api.ui.template.gui.MaterialListGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;

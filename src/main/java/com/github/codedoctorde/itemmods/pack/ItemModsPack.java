@@ -26,7 +26,7 @@ public class ItemModsPack extends NamedPackObject {
     private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
-    public ItemModsPack(String name, boolean editable) {
+    public ItemModsPack(String name, boolean editable) throws UnsupportedOperationException {
         this.editable = editable;
         setName(name);
     }
@@ -38,8 +38,9 @@ public class ItemModsPack extends NamedPackObject {
     public List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);
     }
+
     public void registerDependency(String name) {
-        if(NamedPackObject.NAME_PATTERN.matcher(name).matches())
+        if (NamedPackObject.NAME_PATTERN.matcher(name).matches())
             dependencies.add(name);
     }
 
@@ -52,7 +53,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerItem(ItemAsset itemAsset) {
-        if(NamedPackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
+        if (NamedPackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
             items.add(itemAsset);
     }
 
@@ -65,7 +66,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerBlock(BlockAsset blockAsset) {
-        if(NamedPackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
+        if (NamedPackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
             blocks.add(blockAsset);
     }
 
@@ -78,7 +79,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerTexture(TextureAsset textureAsset) {
-        if(NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
+        if (NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
 
@@ -91,7 +92,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerTemplate(CustomTemplate customTemplate) {
-        if(NamedPackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
+        if (NamedPackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
             templates.add(customTemplate);
     }
 

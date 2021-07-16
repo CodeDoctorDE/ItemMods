@@ -9,9 +9,7 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.PackGui;
 import com.github.codedoctorde.itemmods.pack.ItemModsPack;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -20,22 +18,27 @@ public class PacksGui extends ListGui {
         super(ItemMods.getTranslationConfig().subTranslation("gui.packs"), 4, (s, translation) ->
                 ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new StaticItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(translation.getTranslation("actions")).build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(translation.getTranslation("actions", itemModsPack.getName())).build()) {{
                             setClickAction(event -> new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked()));
                         }}).toArray(GuiItem[]::new));
         var t = getTranslation();
-        setCloseAction(event -> new MainGui().show(Objects.requireNonNull(event.getPlayer())));
         setListControls(new VerticalListControls() {{
+            setBackAction(event -> new MainGui().show((Player) event.getWhoClicked()));
             setCreateAction(event -> {
                 var p = (Player) event.getWhoClicked();
                 hide(p);
                 var request = new ChatRequest(p);
                 p.sendMessage(t.getTranslation("create.message"));
                 request.setSubmitAction(s -> {
-                    ItemMods.getPackManager().registerPack(new ItemModsPack(s, true));
-                    p.sendMessage(t.getTranslation("create.success", s));
-                    rebuild();
-                    show(p);
+                    try {
+                        ItemMods.getPackManager().registerPack(new ItemModsPack(s, true));
+                        p.sendMessage(t.getTranslation("create.success", s));
+                        rebuild();
+                    } catch (Exception e) {
+                        p.sendMessage(t.getTranslation("create.failed"));
+                    } finally {
+                        show(p);
+                    }
                 });
             });
         }});

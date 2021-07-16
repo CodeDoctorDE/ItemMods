@@ -1,12 +1,6 @@
 package com.github.codedoctorde.itemmods.listener;
 
-import com.github.codedoctorde.itemmods.ItemMods;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.AnvilInventory;
-
-import java.util.Objects;
 
 public class CustomItemListener implements Listener {
 

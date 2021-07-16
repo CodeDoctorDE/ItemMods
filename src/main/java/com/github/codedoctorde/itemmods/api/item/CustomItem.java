@@ -25,7 +25,7 @@ public class CustomItem {
             if (packObject == null)
                 return null;
             return packObject.getItem();
-        }catch(Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }

@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author CodeDoctorDE
@@ -22,15 +24,54 @@ import java.util.stream.Stream;
 public class PackManager {
     private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
     private final Path packPath;
+    private final Path exportPath;
+    private final Path resourcePacksPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
 
     public PackManager() throws IOException {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
+        exportPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "exports");
+        resourcePacksPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "resourcepacks");
         try {
             Files.createDirectory(packPath);
+            Files.createDirectory(exportPath);
+            Files.createDirectory(resourcePacksPath);
         } catch (FileAlreadyExistsException ignored) {
 
         }
+    }
+
+    private static void zipFile(Path fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
+        if (Files.isHidden(fileToZip)) {
+            return;
+        }
+        if (Files.isDirectory(fileToZip)) {
+            if (fileName.endsWith("/")) {
+                zipOut.putNextEntry(new ZipEntry(fileName));
+            } else {
+                zipOut.putNextEntry(new ZipEntry(fileName + "/"));
+            }
+            zipOut.closeEntry();
+            try (Stream<Path> paths = Files.walk(fileToZip)) {
+                paths.forEach(path -> {
+                    try {
+                        zipFile(path, fileName + "/" + path.getFileName(), zipOut);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+            return;
+        }
+        var fis = Files.newInputStream(fileToZip);
+        var zipEntry = new ZipEntry(fileName);
+        zipOut.putNextEntry(zipEntry);
+        byte[] bytes = new byte[1024];
+        int length;
+        while ((length = fis.read(bytes)) >= 0) {
+            zipOut.write(bytes, 0, length);
+        }
+        fis.close();
     }
 
     public void reload() {
@@ -96,5 +137,16 @@ public class PackManager {
     @Nullable
     public ItemModsPack getPack(String name) {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public void export(String name) throws IOException {
+        var pack = getPack(name);
+        if (pack == null || !pack.isEditable())
+            return;
+        var zipOut = new ZipOutputStream(Files.newOutputStream(Paths.get(exportPath.toString(), name)));
+        var path = Paths.get(packPath.toString(), name);
+        if (!Files.exists(path))
+            return;
+        zipFile(path, name, zipOut);
     }
 }
