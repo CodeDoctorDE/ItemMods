@@ -9,18 +9,23 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.PackGui;
 import com.github.codedoctorde.itemmods.pack.ItemModsPack;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.Objects;
 
 public class PacksGui extends ListGui {
     public PacksGui() {
         super(ItemMods.getTranslationConfig().subTranslation("gui.packs"), 4, (s, translation) ->
-                ItemMods.getPackManager().getPacks().stream().filter(itemModsPack -> itemModsPack.getName().contains(s)).map(itemModsPack ->
+                ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new StaticItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).addLore(translation.getTranslation("actions")).build()) {{
                             setClickAction(event -> new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked()));
                         }}).toArray(GuiItem[]::new));
         var t = getTranslation();
-        setListControls(new VerticalListControls(){{
+        setCloseAction(event -> new MainGui().show(Objects.requireNonNull(event.getPlayer())));
+        setListControls(new VerticalListControls() {{
             setCreateAction(event -> {
                 var p = (Player) event.getWhoClicked();
                 hide(p);
@@ -34,5 +39,6 @@ public class PacksGui extends ListGui {
                 });
             });
         }});
+        rebuild();
     }
 }

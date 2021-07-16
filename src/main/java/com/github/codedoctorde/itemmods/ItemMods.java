@@ -112,7 +112,6 @@ public class ItemMods extends JavaPlugin {
             e.printStackTrace();
         }
         translationConfig.save();
-        System.out.println(translationConfig.getInstance().getTranslationKeys());
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
             PluginMetrics.runMetrics();

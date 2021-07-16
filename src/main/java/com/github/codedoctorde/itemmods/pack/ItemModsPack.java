@@ -22,7 +22,7 @@ public class ItemModsPack extends NamedPackObject {
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<PackTexture> textures = new ArrayList<>();
+    private final List<TextureAsset> textures = new ArrayList<>();
     private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
@@ -38,26 +38,67 @@ public class ItemModsPack extends NamedPackObject {
     public List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);
     }
-
-    public List<ItemAsset> getStaticItems() {
-        return Collections.unmodifiableList(items);
+    public void registerDependency(String name) {
+        if(NamedPackObject.NAME_PATTERN.matcher(name).matches())
+            dependencies.add(name);
     }
 
-    public List<BlockAsset> getBlocks() {
-        return blocks;
-    }
-
-    public List<CustomTemplate> getTemplates() {
-        return templates;
+    public void unregisterDependency(String name) {
+        dependencies.removeIf(dependency -> dependency.equals(name));
     }
 
     public List<ItemAsset> getItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 
-    public List<PackTexture> getTextures() {
-        return textures;
+    public void registerItem(ItemAsset itemAsset) {
+        if(NamedPackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
+            items.add(itemAsset);
     }
+
+    public void unregisterItem(String name) {
+        items.removeIf(itemAsset -> itemAsset.getName().equals(name));
+    }
+
+    public List<BlockAsset> getBlocks() {
+        return Collections.unmodifiableList(blocks);
+    }
+
+    public void registerBlock(BlockAsset blockAsset) {
+        if(NamedPackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
+            blocks.add(blockAsset);
+    }
+
+    public void unregisterBlock(String name) {
+        blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
+    }
+
+    public List<TextureAsset> getTextures() {
+        return Collections.unmodifiableList(textures);
+    }
+
+    public void registerTexture(TextureAsset textureAsset) {
+        if(NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
+            textures.add(textureAsset);
+    }
+
+    public void unregisterTexture(String name) {
+        textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
+    }
+
+    public List<CustomTemplate> getTemplates() {
+        return Collections.unmodifiableList(templates);
+    }
+
+    public void registerTemplate(CustomTemplate customTemplate) {
+        if(NamedPackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
+            templates.add(customTemplate);
+    }
+
+    public void unregisterTemplate(String name) {
+        templates.removeIf(templateAsset -> templateAsset.getName().equals(name));
+    }
+
 
     public String getDescription() {
         return description;

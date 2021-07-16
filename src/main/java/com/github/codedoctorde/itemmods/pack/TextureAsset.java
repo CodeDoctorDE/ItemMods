@@ -10,10 +10,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class PackTexture extends PackAsset {
+public class TextureAsset extends PackAsset {
     private byte[] data;
 
-    public PackTexture(URL url) throws IOException {
+    public TextureAsset(URL url) throws IOException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 

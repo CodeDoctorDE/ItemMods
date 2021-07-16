@@ -79,8 +79,7 @@ public class PackManager {
     }
 
     public void registerPack(ItemModsPack pack) {
-        if (!NamedPackObject.NAME_PATTERN.matcher(pack.getName()).matches())
-            return;
+        if (!NamedPackObject.NAME_PATTERN.matcher(pack.getName()).matches()) return;
         if (packs.stream().anyMatch(current -> current.getName().equals(pack.getName())))
             return;
         packs.add(pack);
