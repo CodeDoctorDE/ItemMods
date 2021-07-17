@@ -11,14 +11,12 @@ import com.github.codedoctorde.itemmods.gui.pack.PackGui;
 import com.github.codedoctorde.itemmods.pack.ItemModsPack;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
-
 public class PacksGui extends ListGui {
     public PacksGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.packs"), 4, (s, translation) ->
+        super(ItemMods.getTranslationConfig().subTranslation("gui.packs"), 4, (s, t) ->
                 ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new StaticItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(translation.getTranslation("actions", itemModsPack.getName())).build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(t.getTranslation("actions", itemModsPack.getName())).build()) {{
                             setClickAction(event -> new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked()));
                         }}).toArray(GuiItem[]::new));
         var t = getTranslation();

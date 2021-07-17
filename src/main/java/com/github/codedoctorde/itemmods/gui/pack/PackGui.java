@@ -9,7 +9,6 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.PacksGui;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -17,73 +16,73 @@ import java.util.Arrays;
 
 public class PackGui extends GuiCollection {
     public PackGui(String name) {
-        var translation = ItemMods.getTranslationConfig().subTranslation("gui.pack");
+        var t = ItemMods.getTranslationConfig().subTranslation("gui.pack");
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
         if (!pack.isEditable()) {
-            registerItem(4, 2, new TranslatedGuiItem(new ItemStackBuilder(Material.STRUCTURE_VOID).setDisplayName("readonly.title").setLore("readonly.description").build()));
+            registerItem(4, 2, new TranslatedGuiItem(new ItemStackBuilder(Material.STRUCTURE_VOID).displayName("readonly.title").lore("readonly.description").build()));
             return;
         }
         var placeholderItem = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
         for (PackTab value : PackTab.values()) {
-            TranslatedChestGui gui = new TranslatedChestGui(translation, 4);
+            TranslatedChestGui gui = new TranslatedChestGui(t, 4);
             gui.setPlaceholders(name);
             gui.fillItems(0, 0, 0, 3, placeholderItem);
             gui.fillItems(8, 0, 8, 3, placeholderItem);
-            gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).setDisplayName("back.title").addLore("back.description").build()){{
+            gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
                 setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
             }});
             gui.addItem(placeholderItem);
-            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).setDisplayName(packTab.name())
+            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).displayName(packTab.name())
                     .setEnchanted(packTab == value).build()) {{
                 setClickAction(event -> setCurrent(packTab.ordinal()));
             }}).forEach(gui::addItem);
             gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             switch (value) {
                 case administration:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).setDisplayName("deactivate.title").setLore("deactivate.description").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).setDisplayName("export.title").setLore("export.description").build()) {{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("deactivate.title").lore("deactivate.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
                         setClickAction(event -> {
                             try {
                                 ItemMods.getPackManager().export(pack.getName());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            event.getWhoClicked().sendMessage(translation.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
+                            event.getWhoClicked().sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).setDisplayName("delete.title").setLore("delete.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()));
                     break;
                 case general:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).setDisplayName("name.title").setLore("name.description").build()) {{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
                         setRenderAction((gui) -> setPlaceholders(pack.getName()));
                         setClickAction((event) -> {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(translation.getTranslation("name.message"));
+                            p.sendMessage(t.getTranslation("name.message"));
                             request.setSubmitAction(s -> {
                                 pack.setName(s);
-                                p.sendMessage(translation.getTranslation("name.success", s));
+                                p.sendMessage(t.getTranslation("name.success", s));
                                 show(p);
                             });
                         });
                     }});
                     break;
                 case contents:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").setLore("items.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("items.title").lore("items.description").build()) {{
                         setClickAction(event -> new ItemsGui(name).show((Player) event.getWhoClicked()));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").setLore("blocks.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("blocks.title").lore("blocks.description").build()) {{
                         setClickAction(event -> new BlocksGui(name).show((Player) event.getWhoClicked()));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).setDisplayName("textures.title").setLore("textures.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("textures.title").lore("textures.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).setDisplayName("models.title").setLore("models.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).displayName("models.title").lore("models.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).setDisplayName("sounds.title").setLore("sounds.description").build()){{
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).displayName("sounds.title").lore("sounds.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
                     break;

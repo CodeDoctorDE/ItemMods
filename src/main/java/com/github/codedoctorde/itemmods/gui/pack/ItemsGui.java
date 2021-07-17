@@ -10,22 +10,21 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
 import com.github.codedoctorde.itemmods.pack.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.PackObject;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
 public class ItemsGui extends ListGui {
     public ItemsGui(String name) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (s, translation) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
-                .filter(itemAsset -> itemAsset.getName().contains(s)).map(itemAsset -> new StaticItem(new ItemStackBuilder(itemAsset.getModel() == null ? Material.DIAMOND_SWORD : itemAsset.getModel().getFallbackTexture()).setDisplayName(itemAsset.getName())
-                        .setLore(translation.getTranslation("actions")).build()){{
-                            setClickAction(event -> new ItemGui(new PackObject(name, itemAsset.getName())).show((Player) event.getWhoClicked()));
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (s, t) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
+                .filter(itemAsset -> itemAsset.getName().contains(s)).map(itemAsset -> new StaticItem(new ItemStackBuilder(itemAsset.getModel().getFallbackTexture()).displayName(itemAsset.getName())
+                        .lore(t.getTranslation("actions")).build()) {{
+                    setClickAction(event -> new ItemGui(new PackObject(name, itemAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
         var t = getTranslation();
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
-        setListControls(new VerticalListControls(){{
+        setListControls(new VerticalListControls() {{
             setBackAction(event -> new PackGui(name).show((Player) event.getWhoClicked()));
             setCreateAction(event -> {
                 var p = (Player) event.getWhoClicked();

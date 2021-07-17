@@ -18,7 +18,7 @@ public class ItemAsset extends PackAsset {
     private String translatedDisplayName = null;
     private String displayName = null;
     private List<String> lore = new ArrayList<>();
-    private CustomModel model;
+    private CustomModel model = new CustomModel();
 
     public ItemAsset(String name) {
         super(name);
@@ -41,7 +41,7 @@ public class ItemAsset extends PackAsset {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
+    public void displayName(String displayName) {
         this.displayName = displayName;
     }
 
@@ -53,7 +53,7 @@ public class ItemAsset extends PackAsset {
         return Collections.unmodifiableList(lore);
     }
 
-    public void setLore(List<String> lore) {
+    public void lore(List<String> lore) {
         this.lore = lore;
     }
 

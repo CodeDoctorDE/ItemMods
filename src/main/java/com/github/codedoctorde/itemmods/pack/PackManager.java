@@ -22,6 +22,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class PackManager {
     private final Path packPath;
+    private final Path importPath;
     private final Path exportPath;
     private final Path resourcePacksPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
@@ -29,24 +30,18 @@ public class PackManager {
 
     public PackManager() throws IOException {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
+        importPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "imports");
         exportPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "exports");
         //noinspection SpellCheckingInspection
         resourcePacksPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "resourcepacks");
         try {
             Files.createDirectory(packPath);
+            Files.createDirectory(importPath);
             Files.createDirectory(exportPath);
             Files.createDirectory(resourcePacksPath);
         } catch (FileAlreadyExistsException ignored) {
 
         }
-    }
-
-    public Path getExportPath() {
-        return exportPath;
-    }
-
-    public Path getResourcePacksPath() {
-        return resourcePacksPath;
     }
 
     private static void zipFile(Path fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
@@ -80,6 +75,18 @@ public class PackManager {
             zipOut.write(bytes, 0, length);
         }
         fis.close();
+    }
+
+    public Path getImportPath() {
+        return importPath;
+    }
+
+    public Path getExportPath() {
+        return exportPath;
+    }
+
+    public Path getResourcePacksPath() {
+        return resourcePacksPath;
     }
 
     public void reload() {
@@ -159,7 +166,7 @@ public class PackManager {
     public void deletePack(String name) {
         packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
             packs.remove(itemModsPack);
-            if(itemModsPack.isEditable()) {
+            if (itemModsPack.isEditable()) {
                 try {
                     Files.deleteIfExists(Paths.get(packPath.toString(), name));
                 } catch (IOException e) {

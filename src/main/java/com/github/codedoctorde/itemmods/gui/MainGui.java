@@ -13,36 +13,36 @@ import org.bukkit.entity.Player;
 public class MainGui extends TranslatedChestGui {
     public MainGui() {
         super(ItemMods.getTranslationConfig().subTranslation("gui.main"), 4);
-        Translation translation = getTranslation();
+        Translation t = getTranslation();
         setPlaceholders(ItemMods.getVersion());
         fillItems(0, 0, 0, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
         fillItems(8, 0, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
-        fillItems(0, 0, getWidth() - 1, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));
-        fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName(" ").build()));
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).setDisplayName("reload.title").addLore("reload.description").build()) {{
+        fillItems(0, 0, getWidth() - 1, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build()));
+        fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build()));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).displayName("reload.title").lore("reload.description").build()) {{
             setClickAction(event -> {
                 Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());
                 Bukkit.getPluginManager().enablePlugin(ItemMods.getPlugin());
-                event.getWhoClicked().sendMessage(translation.getTranslation("reload.success"));
+                event.getWhoClicked().sendMessage(t.getTranslation("reload.success"));
             });
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("packs.title").addLore("packs.description").build()) {{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("packs.title").lore("packs.description").build()) {{
             setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).setDisplayName("knowledge.title").addLore("knowledge.description").build()) {{
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).displayName("knowledge.title").lore("knowledge.description").build()) {{
             setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("source.title").addLore("source.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("source.link")));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("source.title").lore("source.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("source.link")));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).setDisplayName("support.title").addLore("support.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("support.link")));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).displayName("support.title").lore("support.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("support.link")));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).setDisplayName("wiki.title").setLore("wiki.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("wiki.link")));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).displayName("wiki.title").lore("wiki.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("wiki.link")));
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAINTING).setDisplayName("crowdin.title").setLore("crowdin.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(translation.getTranslation("crowdin.link")));
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAINTING).displayName("crowdin.title").lore("crowdin.description").build()) {{
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("crowdin.link")));
         }});
     }
 }

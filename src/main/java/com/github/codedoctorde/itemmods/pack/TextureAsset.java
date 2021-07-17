@@ -11,10 +11,12 @@ import java.nio.file.Path;
 
 public class TextureAsset extends PackAsset {
     private byte[] data;
+
     public TextureAsset(String name) {
         super(name);
         data = new byte[0];
     }
+
     public TextureAsset(String name, URL url) throws IOException {
         super(name);
         ByteArrayOutputStream output = new ByteArrayOutputStream();

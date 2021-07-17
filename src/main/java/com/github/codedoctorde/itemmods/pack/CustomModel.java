@@ -4,19 +4,21 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 public class CustomModel {
-    private final PackObject packObject;
+    private PackObject packObject = null;
     private Material fallbackTexture = Material.STONE;
     private Integer staticModel = null;
 
-    public CustomModel(@NotNull PackObject packObject) {
-        this.packObject = packObject;
+    public CustomModel() {
     }
 
     public boolean isStatic() {
         return staticModel != null;
+    }
+
+    public boolean isCustom() {
+        return packObject == null;
     }
 
     public Integer getStaticModel() {
@@ -39,6 +41,14 @@ public class CustomModel {
         if (staticModel != null)
             return staticModel;
         return ItemMods.getMainConfig().getResourcePackConfig().getResourceIdentifier().get(packObject.toString());
+    }
+
+    public PackObject getPackObject() {
+        return packObject;
+    }
+
+    public void setPackObject(PackObject packObject) {
+        this.packObject = packObject;
     }
 
     public ItemStack create() {

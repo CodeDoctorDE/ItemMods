@@ -11,10 +11,11 @@ import java.nio.file.Path;
 
 public class PackModel extends PackAsset {
     private JsonObject model = new JsonObject();
-    
+
     public PackModel(String name) {
         super(name);
     }
+
     public PackModel(String name, String url) throws IOException {
         super(name);
         URL website = new URL(url);
