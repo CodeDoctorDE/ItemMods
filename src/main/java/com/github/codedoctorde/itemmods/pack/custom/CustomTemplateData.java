@@ -1,5 +1,6 @@
-package com.github.codedoctorde.itemmods.pack;
+package com.github.codedoctorde.itemmods.pack.custom;
 
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.google.gson.JsonElement;
 
 public class CustomTemplateData {

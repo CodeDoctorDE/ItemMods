@@ -114,13 +114,13 @@
         "title": "§6Sounds",
         "description": "§7Go to the sound list"
       },
-      "deactivate": {
-        "title": "§cDeactivate",
-        "description": "§7Deactivate the current pack"
+      "deactivated": {
+        "title": "§cDeactivated",
+        "description": "§7Click to activate the current pack"
       },
-      "activate": {
-        "title": "§aActivate",
-        "description": "§7Activate the current pack"
+      "activated": {
+        "title": "§aActivated",
+        "description": "§7Click to deactivate the current pack"
       },
       "export": {
         "title": "§6Export",

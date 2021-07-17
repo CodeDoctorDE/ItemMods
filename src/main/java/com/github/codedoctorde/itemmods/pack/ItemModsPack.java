@@ -2,6 +2,11 @@ package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
+import com.github.codedoctorde.itemmods.pack.asset.RawAsset;
+import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Material;
@@ -22,7 +27,8 @@ public class ItemModsPack extends NamedPackObject {
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<RawAsset> textures = new ArrayList<>();
+    private final List<RawAsset> models = new ArrayList<>();
     private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
@@ -33,6 +39,23 @@ public class ItemModsPack extends NamedPackObject {
 
     public ItemModsPack(String name) {
         this(name, true);
+    }
+
+
+    public ItemModsPack(Path path) throws IOException {
+        super(path.getFileName().toString());
+        editable = true;
+        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "config.json")), JsonObject.class);
+        icon = new ItemStackBuilder(jsonObject.get("icon")).build();
+        jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
+
+        Files.walk(Paths.get(path.toString(), "items")).filter(Files::isRegularFile).forEach(current -> {
+            try {
+                items.add(new ItemAsset(new PackObject(getName(), getFileName(path)), GSON.fromJson(Files.readString(current), JsonObject.class)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public List<String> getDependencies() {
@@ -74,17 +97,30 @@ public class ItemModsPack extends NamedPackObject {
         blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
     }
 
-    public List<TextureAsset> getTextures() {
+    public List<RawAsset> getTextures() {
         return Collections.unmodifiableList(textures);
     }
 
-    public void registerTexture(TextureAsset textureAsset) {
+    public void registerTexture(RawAsset textureAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
 
     public void unregisterTexture(String name) {
         textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
+    }
+
+    public List<RawAsset> getModels() {
+        return Collections.unmodifiableList(models);
+    }
+
+    public void registerModel(RawAsset modelAsset) {
+        if (NamedPackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
+            models.add(modelAsset);
+    }
+
+    public void unregisterModel(String name) {
+        models.removeIf(modelAsset -> modelAsset.getName().equals(name));
     }
 
     public List<CustomTemplate> getTemplates() {
@@ -135,15 +171,68 @@ public class ItemModsPack extends NamedPackObject {
         return null;
     }
 
-    public void load(Path path) throws IOException {
-        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "config.json")), JsonObject.class);
-        icon = new ItemStackBuilder(jsonObject.get("icon")).build();
+    private String getFileName(Path path) {
+        var pathName = path.getFileName().toString();
+        var pos = pathName.lastIndexOf('.');
+        if (pos > 0) return pathName.substring(0, pos);
+        return null;
     }
 
-    public void save(Path path) throws IOException {
+    void save(Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("icon", new JsonPrimitive((new ItemStackBuilder(icon)).serialize()));
-        Files.writeString(Paths.get(path.toString(), "config.json"), GSON.toJson(jsonObject));
+        var dependenciesArray = new JsonArray();
+        dependencies.forEach(dependenciesArray::add);
+        jsonObject.add("dependencies", dependenciesArray);
+        Files.writeString(Paths.get(path.toString(), "pack.json"), GSON.toJson(jsonObject));
+
+        var itemsDir = Paths.get(path.toString(), "items");
+        if (!Files.exists(itemsDir))
+            Files.createDirectories(itemsDir);
+        items.forEach(itemAsset -> {
+            var current = itemAsset.save(new PackObject(getName(), itemAsset.getName()));
+            try {
+                Files.writeString(Paths.get(itemsDir.toString(), itemAsset.getName() + ".json"), GSON.toJson(current));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        var blocksDir = Paths.get(path.toString(), "blocks");
+        if (!Files.exists(blocksDir))
+            Files.createDirectories(blocksDir);
+        blocks.forEach(blockAsset -> {
+            var current = blockAsset.save(new PackObject(getName(), blockAsset.getName()));
+            try {
+                Files.writeString(Paths.get(blocksDir.toString(), blockAsset.getName() + ".json"), GSON.toJson(current));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        var texturesDir = Paths.get(path.toString(), "textures");
+        if (!Files.exists(texturesDir))
+            Files.createDirectories(texturesDir);
+        textures.forEach(textureAsset -> {
+            var current = textureAsset.save(new PackObject(getName(), textureAsset.getName()));
+            try {
+                Files.writeString(Paths.get(texturesDir.toString(), textureAsset.getName() + ".json"), GSON.toJson(current));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        var modelsDir = Paths.get(path.toString(), "models");
+        if (!Files.exists(modelsDir))
+            Files.createDirectories(modelsDir);
+        models.forEach(modelAsset -> {
+            var current = modelAsset.save(new PackObject(getName(), modelAsset.getName()));
+            try {
+                Files.writeString(Paths.get(modelsDir.toString(), modelAsset.getName() + ".json"), GSON.toJson(current));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void export(int packFormat, Path path) throws IOException {

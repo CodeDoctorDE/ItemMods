@@ -12,8 +12,8 @@ import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.PackGui;
-import com.github.codedoctorde.itemmods.pack.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -56,7 +56,6 @@ public class ItemGui extends GuiCollection {
     protected GuiPane buildAdministrationPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         pane.addItem(new StaticItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()));
-        pane.fillItems(0, 0, 8, 1, buildEmpty());
         return pane;
     }
 
@@ -85,12 +84,12 @@ public class ItemGui extends GuiCollection {
                 var prefix = asset.getModel().isCustom() ? "custom." : "preset.";
                 setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title")
                         .lore(prefix + "description").amount(asset.getModel().isStatic() ? asset.getModel().getStaticModel() : 1).build());
-                if(asset.getModel().isCustom())
+                if (!asset.getModel().isCustom())
                     setPlaceholders(asset.getModel().getPackObject().toString());
             });
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
-                switch(event.getClick()) {
+                switch (event.getClick()) {
                     case LEFT:
                         var request = new ChatRequest(p);
                         hide(p);
@@ -119,12 +118,11 @@ public class ItemGui extends GuiCollection {
                 var prefix = asset.getModel().isStatic() ? "static." : "dynamic.";
                 setItemStack(new ItemStackBuilder(Material.GOLD_NUGGET).displayName(prefix + "title")
                         .lore(prefix + "description").amount(asset.getModel().isStatic() ? asset.getModel().getStaticModel() : 1).build());
-                if(asset.getModel().isStatic())
+                if (asset.getModel().isStatic())
                     setPlaceholders(asset.getModel().getStaticModel());
             });
             setClickAction(event -> asset.getModel().setPackObject(packObject));
         }});
-        pane.fillItems(0, 0, 8, 1, buildEmpty());
         return pane;
     }
 
@@ -132,7 +130,7 @@ public class ItemGui extends GuiCollection {
         var pane = new GuiPane(9, 1);
         pane.addItem(buildPlaceholder());
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-            setClickAction(event -> new PackGui(packObject.getName()).show((Player) event.getWhoClicked()));
+            setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
         Arrays.stream(ItemTab.values()).map(itemTab -> new TranslatedGuiItem(new ItemStackBuilder(itemTab.getMaterial()).displayName(itemTab.name()).setEnchanted(index == itemTab.ordinal()).build()) {{

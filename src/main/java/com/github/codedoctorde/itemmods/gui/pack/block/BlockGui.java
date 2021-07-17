@@ -8,8 +8,8 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.PackGui;
 import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
-import com.github.codedoctorde.itemmods.pack.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
@@ -28,19 +28,20 @@ public class BlockGui extends ItemGui {
             addPane(buildTabs(blockTab.ordinal()));
             var pane = new GuiPane(7, 1);
             switch (blockTab) {
-                case general:
+                case GENERAL:
                     pane = buildGeneralPane(this);
                     break;
-                case item:
+                case ITEM:
                     pane = buildItemPane(this);
                     break;
-                case block:
+                case BLOCK:
                     pane = buildBlockPane(this);
                     break;
-                case administration:
+                case ADMINISTRATION:
                     pane = buildAdministrationPane(this);
                     break;
             }
+            pane.fillItems(0, 0, 8, 1, buildEmpty());
             addPane(1, 2, pane);
             fillItems(0, 0, 8, 3, buildPlaceholder());
         }}).forEach(this::registerGui);
@@ -52,7 +53,7 @@ public class BlockGui extends ItemGui {
 
         pane.addItem(buildPlaceholder());
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-            setClickAction(event -> new PackGui(packObject.getName()).show((Player) event.getWhoClicked()));
+            setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
         Arrays.stream(BlockTab.values()).map(blockTab -> new TranslatedGuiItem(new ItemStackBuilder(blockTab.getMaterial()).displayName(blockTab.name()).setEnchanted(index == blockTab.ordinal()).build()) {{
@@ -65,7 +66,6 @@ public class BlockGui extends ItemGui {
     private GuiPane buildBlockPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         pane.addItem(new StaticItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("delete.title").lore("delete.description").build()));
-        pane.fillItems(0, 0, 8, 1, buildEmpty());
         return pane;
     }
 
@@ -75,17 +75,19 @@ public class BlockGui extends ItemGui {
     }
 
     public enum BlockTab {
-        general, item, block, administration;
+        GENERAL, ITEM, RAW, BLOCK, ADMINISTRATION;
 
         public Material getMaterial() {
             switch (this) {
-                case administration:
+                case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;
-                case general:
+                case GENERAL:
                     return Material.ITEM_FRAME;
-                case item:
+                case ITEM:
                     return Material.DIAMOND_SWORD;
-                case block:
+                case RAW:
+                    return Material.APPLE;
+                case BLOCK:
                     return Material.GRASS_BLOCK;
             }
             return Material.AIR;

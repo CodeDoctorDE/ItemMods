@@ -1,8 +1,8 @@
 package com.github.codedoctorde.itemmods.api.item;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.pack.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;

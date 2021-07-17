@@ -1,5 +1,8 @@
-package com.github.codedoctorde.itemmods.pack;
+package com.github.codedoctorde.itemmods.pack.asset;
 
+import com.github.codedoctorde.itemmods.pack.NamedPackObject;
+import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -14,12 +17,8 @@ public abstract class PackAsset extends NamedPackObject {
         super(name);
     }
 
-    public List<CustomTemplateData> getCustomTemplates() {
-        return customTemplates;
-    }
-
-    public void load(PackObject packObject, JsonObject jsonObject) {
-        setName(jsonObject.get("name").getAsString());
+    public PackAsset(PackObject packObject, JsonObject jsonObject) {
+        super(packObject.getName());
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
             try {
@@ -28,6 +27,10 @@ public abstract class PackAsset extends NamedPackObject {
                 e.printStackTrace();
             }
         });
+    }
+
+    public List<CustomTemplateData> getCustomTemplates() {
+        return customTemplates;
     }
 
     public JsonObject save(PackObject packObject) {

@@ -42,6 +42,7 @@ public class PackManager {
         } catch (FileAlreadyExistsException ignored) {
 
         }
+        reload();
     }
 
     private static void zipFile(Path fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
@@ -95,9 +96,8 @@ public class PackManager {
             paths
                     .filter(Files::isRegularFile)
                     .forEach(path -> {
-                        var pack = new ItemModsPack("");
                         try {
-                            pack.load(path);
+                            var pack = new ItemModsPack(path);
                             packs.add(pack);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -120,6 +120,11 @@ public class PackManager {
         var path = Paths.get(packPath.toString(), pack.getName());
         if (!Files.exists(path)) try {
             Files.createDirectories(path);
+            pack.save(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             pack.save(path);
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,21 +155,21 @@ public class PackManager {
     }
 
     public void activatePack(String name) {
-        inactivePacks.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+        inactivePacks.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).collect(Collectors.toList()).forEach(itemModsPack -> {
             inactivePacks.remove(itemModsPack);
             packs.add(itemModsPack);
         });
     }
 
     public void deactivatePack(String name) {
-        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).collect(Collectors.toList()).forEach(itemModsPack -> {
             packs.remove(itemModsPack);
             inactivePacks.add(itemModsPack);
         });
     }
 
     public void deletePack(String name) {
-        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).collect(Collectors.toList()).forEach(itemModsPack -> {
             packs.remove(itemModsPack);
             if (itemModsPack.isEditable()) {
                 try {
@@ -194,5 +199,9 @@ public class PackManager {
         if (!Files.exists(path))
             return;
         zipFile(path, name, zipOut);
+    }
+
+    public boolean isActivated(String name) {
+        return packs.stream().anyMatch(pack -> pack.getName().equals(name));
     }
 }

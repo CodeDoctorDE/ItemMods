@@ -39,8 +39,21 @@ public class PackGui extends GuiCollection {
             }}).forEach(gui::addItem);
             gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             switch (value) {
-                case administration:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("deactivate.title").lore("deactivate.description").build()));
+                case ADMINISTRATION:
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
+                        setRenderAction(gui -> {
+                            var activated = ItemMods.getPackManager().isActivated(pack.getName());
+                            var prefix = activated ? "activated." : "deactivated.";
+                            setItemStack(new ItemStackBuilder(activated ? Material.GREEN_BANNER : Material.RED_BANNER).displayName(prefix + "title").lore(prefix + "description").build());
+                        });
+                        setClickAction(event -> {
+                            if (ItemMods.getPackManager().isActivated(pack.getName()))
+                                ItemMods.getPackManager().deactivatePack(pack.getName());
+                            else
+                                ItemMods.getPackManager().activatePack(pack.getName());
+                            reloadAll();
+                        });
+                    }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
                         setClickAction(event -> {
                             try {
@@ -51,9 +64,11 @@ public class PackGui extends GuiCollection {
                             event.getWhoClicked().sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+                        setClickAction(event -> ItemMods.getPackManager().deletePack(pack.getName()));
+                    }});
                     break;
-                case general:
+                case GENERAL:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
                         setRenderAction((gui) -> setPlaceholders(pack.getName()));
                         setClickAction((event) -> {
@@ -69,13 +84,15 @@ public class PackGui extends GuiCollection {
                         });
                     }});
                     break;
-                case contents:
+                case CONTENTS:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("items.title").lore("items.description").build()) {{
                         setClickAction(event -> new ItemsGui(name).show((Player) event.getWhoClicked()));
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("blocks.title").lore("blocks.description").build()) {{
                         setClickAction(event -> new BlocksGui(name).show((Player) event.getWhoClicked()));
                     }});
+                    break;
+                case RAW:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("textures.title").lore("textures.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
@@ -94,16 +111,18 @@ public class PackGui extends GuiCollection {
     }
 
     enum PackTab {
-        general, contents, administration;
+        GENERAL, CONTENTS, RAW, ADMINISTRATION;
 
         public Material getMaterial() {
             switch (this) {
-                case administration:
+                case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;
-                case general:
+                case GENERAL:
                     return Material.ITEM_FRAME;
-                case contents:
+                case CONTENTS:
                     return Material.BOOK;
+                case RAW:
+                    return Material.APPLE;
             }
             return Material.AIR;
         }

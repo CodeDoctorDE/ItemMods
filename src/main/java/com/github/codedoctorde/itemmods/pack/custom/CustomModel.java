@@ -1,6 +1,7 @@
-package com.github.codedoctorde.itemmods.pack;
+package com.github.codedoctorde.itemmods.pack.custom;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

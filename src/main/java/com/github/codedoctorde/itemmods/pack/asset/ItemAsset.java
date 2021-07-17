@@ -1,8 +1,11 @@
-package com.github.codedoctorde.itemmods.pack;
+package com.github.codedoctorde.itemmods.pack.asset;
 
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.pack.NamedPackObject;
+import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.custom.CustomModel;
 import com.google.gson.JsonObject;
 import org.bukkit.inventory.ItemStack;
 
@@ -15,14 +18,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class ItemAsset extends PackAsset {
+    private final CustomModel model = new CustomModel();
     private String translatedDisplayName = null;
     private String displayName = null;
     private List<String> lore = new ArrayList<>();
-    private CustomModel model = new CustomModel();
 
     public ItemAsset(String name) {
         super(name);
         displayName = name;
+    }
+
+    public ItemAsset(PackObject packObject, JsonObject jsonObject) {
+        super(packObject, jsonObject);
     }
 
     public String getTranslatedDisplayName() {
@@ -78,7 +85,7 @@ public class ItemAsset extends PackAsset {
         });*/
 
         jsonObject.add("overrides", array);
-        Files.writeString(path, GSON.toJson(jsonObject));
+        Files.writeString(path, NamedPackObject.GSON.toJson(jsonObject));
     }
 
     public ItemStack create() {

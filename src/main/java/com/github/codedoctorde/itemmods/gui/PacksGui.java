@@ -30,6 +30,7 @@ public class PacksGui extends ListGui {
                 request.setSubmitAction(s -> {
                     try {
                         ItemMods.getPackManager().registerPack(new ItemModsPack(s, true));
+                        ItemMods.getPackManager().save(s);
                         p.sendMessage(t.getTranslation("create.success", s));
                         rebuild();
                     } catch (Exception e) {

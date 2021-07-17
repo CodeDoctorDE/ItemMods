@@ -1,6 +1,9 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
+import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

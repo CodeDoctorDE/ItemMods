@@ -1,4 +1,6 @@
-package com.github.codedoctorde.itemmods.pack;
+package com.github.codedoctorde.itemmods.pack.asset;
+
+import com.github.codedoctorde.itemmods.pack.PackObject;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -17,6 +19,6 @@ public class BlockAsset extends ItemAsset {
 
     @Override
     public void export(PackObject packObject, int packFormat, Path path) throws IOException {
-
+        super.export(packObject, packFormat, path);
     }
 }
