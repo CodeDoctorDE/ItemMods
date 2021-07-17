@@ -109,6 +109,10 @@
         "title": "§6Models",
         "description": "§7Go to the model list"
       },
+      "sounds": {
+        "title": "§6Sounds",
+        "description": "§7Go to the sound list"
+      },
       "deactivate": {
         "title": "§cDeactivate",
         "description": "§7Deactivate the current pack"
@@ -126,7 +130,7 @@
         "description": "§7Delete the current pack"
       }
     },
-    "material": {
+    "materials": {
       "title": "Materials"
     }
   },
