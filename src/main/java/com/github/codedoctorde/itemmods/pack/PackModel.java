@@ -10,13 +10,13 @@ import java.net.URLConnection;
 import java.nio.file.Path;
 
 public class PackModel extends PackAsset {
-    private JsonObject model;
-
-    public PackModel() {
-
+    private JsonObject model = new JsonObject();
+    
+    public PackModel(String name) {
+        super(name);
     }
-
-    public PackModel(String url) throws IOException {
+    public PackModel(String name, String url) throws IOException {
+        super(name);
         URL website = new URL(url);
         URLConnection connection = website.openConnection();
         BufferedReader in = new BufferedReader(

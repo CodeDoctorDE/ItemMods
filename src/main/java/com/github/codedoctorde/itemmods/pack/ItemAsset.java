@@ -20,6 +20,11 @@ public class ItemAsset extends PackAsset {
     private List<String> lore = new ArrayList<>();
     private CustomModel model;
 
+    public ItemAsset(String name) {
+        super(name);
+        displayName = name;
+    }
+
     public String getTranslatedDisplayName() {
         return translatedDisplayName;
     }

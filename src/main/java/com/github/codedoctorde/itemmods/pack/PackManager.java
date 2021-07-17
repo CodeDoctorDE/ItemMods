@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
@@ -22,15 +21,16 @@ import java.util.zip.ZipOutputStream;
  * @author CodeDoctorDE
  */
 public class PackManager {
-    private static final Pattern NAME_PATTERN = Pattern.compile("/.*/");
     private final Path packPath;
     private final Path exportPath;
     private final Path resourcePacksPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
+    private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
     public PackManager() throws IOException {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
         exportPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "exports");
+        //noinspection SpellCheckingInspection
         resourcePacksPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "resourcepacks");
         try {
             Files.createDirectory(packPath);
@@ -39,6 +39,14 @@ public class PackManager {
         } catch (FileAlreadyExistsException ignored) {
 
         }
+    }
+
+    public Path getExportPath() {
+        return exportPath;
+    }
+
+    public Path getResourcePacksPath() {
+        return resourcePacksPath;
     }
 
     private static void zipFile(Path fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
@@ -115,6 +123,10 @@ public class PackManager {
         return Collections.unmodifiableList(packs);
     }
 
+    public List<ItemModsPack> getInactivePacks() {
+        return Collections.unmodifiableList(inactivePacks);
+    }
+
     public Set<String> getPackNames() {
         return packs.stream().map(NamedPackObject::getName).collect(Collectors.toSet());
     }
@@ -128,6 +140,33 @@ public class PackManager {
 
     public void unregisterPack(String name) {
         packs.removeIf(itemModsPack -> itemModsPack.getName().equals(name));
+    }
+
+    public void activatePack(String name) {
+        inactivePacks.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+            inactivePacks.remove(itemModsPack);
+            packs.add(itemModsPack);
+        });
+    }
+
+    public void deactivatePack(String name) {
+        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+            packs.remove(itemModsPack);
+            inactivePacks.add(itemModsPack);
+        });
+    }
+
+    public void deletePack(String name) {
+        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).forEach(itemModsPack -> {
+            packs.remove(itemModsPack);
+            if(itemModsPack.isEditable()) {
+                try {
+                    Files.deleteIfExists(Paths.get(packPath.toString(), name));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public Path getPackPath() {

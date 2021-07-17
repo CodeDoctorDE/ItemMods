@@ -9,13 +9,15 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
-public class TextureAsset extends PackAsset {
+public class PackSound extends PackAsset {
     private byte[] data;
-    public TextureAsset(String name) {
+
+    public PackSound(String name) {
         super(name);
         data = new byte[0];
     }
-    public TextureAsset(String name, URL url) throws IOException {
+
+    public PackSound(String name, URL url) throws IOException {
         super(name);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
@@ -46,15 +48,17 @@ public class TextureAsset extends PackAsset {
 
     }
 
+
     @Override
     public JsonObject save(PackObject packObject) {
-        JsonObject jsonObject = new JsonObject();
+        JsonObject jsonObject = super.save(packObject);
         jsonObject.addProperty("data", new String(data, StandardCharsets.UTF_8));
         return jsonObject;
     }
 
     @Override
     public void load(PackObject packObject, JsonObject jsonObject) {
+        super.load(packObject, jsonObject);
         data = jsonObject.get("data").getAsString().getBytes(StandardCharsets.UTF_8);
     }
 }

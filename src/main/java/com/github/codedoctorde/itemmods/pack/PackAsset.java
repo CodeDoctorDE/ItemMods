@@ -10,6 +10,10 @@ import java.util.List;
 public abstract class PackAsset extends NamedPackObject {
     private List<CustomTemplateData> customTemplates;
 
+    public PackAsset(String name) {
+        super(name);
+    }
+
     public List<CustomTemplateData> getCustomTemplates() {
         return customTemplates;
     }

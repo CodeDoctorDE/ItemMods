@@ -27,8 +27,8 @@ public class ItemModsPack extends NamedPackObject {
     private String description = "";
 
     public ItemModsPack(String name, boolean editable) throws UnsupportedOperationException {
+        super(name);
         this.editable = editable;
-        setName(name);
     }
 
     public ItemModsPack(String name) {

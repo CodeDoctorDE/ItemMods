@@ -10,6 +10,10 @@ public abstract class NamedPackObject {
     public static Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
     private String name;
 
+    public NamedPackObject(String name) {
+        setName(name);
+    }
+
     public String getName() {
         return name;
     }

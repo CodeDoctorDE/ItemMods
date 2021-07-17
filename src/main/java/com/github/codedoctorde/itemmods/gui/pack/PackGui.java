@@ -9,6 +9,7 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.PacksGui;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
@@ -70,10 +71,21 @@ public class PackGui extends GuiCollection {
                     }});
                     break;
                 case contents:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").setLore("items.description").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").setLore("blocks.description").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).setDisplayName("textures.title").setLore("textures.description").build()));
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).setDisplayName("models.title").setLore("models.description").build()));
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).setDisplayName("items.title").setLore("items.description").build()){{
+                        setClickAction(event -> new ItemsGui(name).show((Player) event.getWhoClicked()));
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).setDisplayName("blocks.title").setLore("blocks.description").build()){{
+                        setClickAction(event -> new BlocksGui(name).show((Player) event.getWhoClicked()));
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).setDisplayName("textures.title").setLore("textures.description").build()){{
+                        setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).setDisplayName("models.title").setLore("models.description").build()){{
+                        setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
+                    }});
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).setDisplayName("sounds.title").setLore("sounds.description").build()){{
+                        setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
+                    }});
                     break;
             }
             gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
