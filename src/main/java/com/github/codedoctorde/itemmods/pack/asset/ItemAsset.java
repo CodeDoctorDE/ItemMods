@@ -1,24 +1,17 @@
 package com.github.codedoctorde.itemmods.pack.asset;
 
-import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
-import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.pack.NamedPackObject;
 import com.github.codedoctorde.itemmods.pack.PackObject;
-import com.github.codedoctorde.itemmods.pack.custom.CustomModel;
+import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
 import com.google.gson.JsonObject;
-import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ItemAsset extends PackAsset {
-    private final CustomModel model = new CustomModel();
+    @Nullable
+    private PackObject modelObject;
     private String translatedDisplayName = null;
     private String displayName = null;
     private List<String> lore = new ArrayList<>();
@@ -48,7 +41,7 @@ public class ItemAsset extends PackAsset {
         return displayName;
     }
 
-    public void displayName(String displayName) {
+    public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 
@@ -60,35 +53,23 @@ public class ItemAsset extends PackAsset {
         return Collections.unmodifiableList(lore);
     }
 
-    public void lore(List<String> lore) {
+    public void setLore(List<String> lore) {
         this.lore = lore;
     }
 
-    public CustomModel getModel() {
-        return model;
+    public @Nullable PackObject getModelObject() {
+        return modelObject;
     }
 
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("addon,pack.item");
+    public void setModelObject(PackObject modelObject) {
+        assert modelObject.getModel() != null;
+        this.modelObject = modelObject;
     }
 
-    @Override
-    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
-        var filePath = Paths.get(path.toString(), packObject.getName());
-        var jsonObject = ItemMods.getPlugin().getGson().fromJson(Files.newBufferedReader(filePath), JsonObject.class);
-        var array = jsonObject.getAsJsonArray("overrides");
-        /* ItemMods.getMainConfig().getItems().stream().filter(CustomConfig::isPack).forEach(itemAsset -> array.add(createItem(getNextIndex(array), itemAsset.getIdentifier())));
-        ItemMods.getMainConfig().getBlocks().stream().filter(CustomConfig::isPack).forEach(blockConfig -> array.add(createItem(getNextIndex(array), blockConfig.getIdentifier())));
-        ItemMods.getApi().getAddons().forEach(addon -> {
-            Arrays.stream(addon.getStaticCustomItems()).forEach(item -> array.add(createItem(getNextIndex(array), item.getIdentifier())));
-            Arrays.stream(addon.getStaticCustomBlocks()).forEach(block -> array.add(createItem(getNextIndex(array), block.getIdentifier())));
-        });*/
-
-        jsonObject.add("overrides", array);
-        Files.writeString(path, NamedPackObject.GSON.toJson(jsonObject));
-    }
-
-    public ItemStack create() {
-        return new ItemStackBuilder(getModel().create()).build();
+    @Nullable
+    public ModelAsset getModel() {
+        if (modelObject == null)
+            return null;
+        return modelObject.getModel();
     }
 }

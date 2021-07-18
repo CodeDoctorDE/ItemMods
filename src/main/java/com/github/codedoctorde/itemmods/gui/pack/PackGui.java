@@ -33,9 +33,9 @@ public class PackGui extends GuiCollection {
                 setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
             }});
             gui.addItem(placeholderItem);
-            Arrays.stream(PackTab.values()).map(packTab -> new TranslatedGuiItem(new ItemStackBuilder(packTab.getMaterial()).displayName(packTab.name())
-                    .setEnchanted(packTab == value).build()) {{
-                setClickAction(event -> setCurrent(packTab.ordinal()));
+            Arrays.stream(PackTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
+                    .setEnchanted(tab == value).build()) {{
+                setClickAction(event -> setCurrent(tab.ordinal()));
             }}).forEach(gui::addItem);
             gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             switch (value) {

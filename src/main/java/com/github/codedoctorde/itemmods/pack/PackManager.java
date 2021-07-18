@@ -94,9 +94,11 @@ public class PackManager {
         packs.clear();
         try (Stream<Path> paths = Files.walk(packPath)) {
             paths
-                    .filter(Files::isRegularFile)
+                    .filter(Files::isDirectory)
+                    .filter(path -> Files.exists(Paths.get(path.toString(), "pack.json")))
                     .forEach(path -> {
                         try {
+                            System.out.println(path.getFileName().toString());
                             var pack = new ItemModsPack(path);
                             packs.add(pack);
                         } catch (IOException e) {
@@ -112,8 +114,8 @@ public class PackManager {
         getPackNames().forEach(this::save);
     }
 
-    public void save(String name) {
-        var pack = getPack(name);
+    public void save(String namespace) {
+        var pack = getPack(namespace);
         if (pack == null || !pack.isEditable() || !NamedPackObject.NAME_PATTERN.matcher(
                 pack.getName()).matches())
             return;

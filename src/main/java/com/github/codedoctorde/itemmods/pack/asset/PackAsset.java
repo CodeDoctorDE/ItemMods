@@ -6,8 +6,6 @@ import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 public abstract class PackAsset extends NamedPackObject {
@@ -33,7 +31,7 @@ public abstract class PackAsset extends NamedPackObject {
         return customTemplates;
     }
 
-    public JsonObject save(PackObject packObject) {
+    public JsonObject save(String namespace) {
         var jsonObject = new JsonObject();
         var customTemplatesArray = new JsonArray();
         customTemplates.stream().map(customTemplateData -> {
@@ -45,6 +43,4 @@ public abstract class PackAsset extends NamedPackObject {
         jsonObject.add("templates", customTemplatesArray);
         return jsonObject;
     }
-
-    public abstract void export(PackObject packObject, int packFormat, Path path) throws IOException;
 }

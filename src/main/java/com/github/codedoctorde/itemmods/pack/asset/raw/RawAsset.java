@@ -1,4 +1,4 @@
-package com.github.codedoctorde.itemmods.pack.asset;
+package com.github.codedoctorde.itemmods.pack.asset.raw;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.PackAsset;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class RawAsset extends PackAsset {
+public abstract class RawAsset extends PackAsset {
     protected final Map<String, byte[]> data = new HashMap<>();
 
     public RawAsset(String name) {
@@ -78,16 +78,15 @@ public class RawAsset extends PackAsset {
     }
 
     @Override
-    public JsonObject save(PackObject packObject) {
-        var jsonObject = super.save(packObject);
+    public JsonObject save(String namespace) {
+        var jsonObject = super.save(namespace);
         var dataJsonObject = new JsonObject();
         data.forEach((s, bytes) -> dataJsonObject.addProperty(s, new String(bytes, StandardCharsets.UTF_8)));
         jsonObject.add("data", dataJsonObject);
         return jsonObject;
     }
 
-    @Override
-    public void export(PackObject packObject, int packFormat, Path path) throws IOException {
-        
+    public void export(String name, String variation, int packFormat, Path path) throws IOException {
+
     }
 }

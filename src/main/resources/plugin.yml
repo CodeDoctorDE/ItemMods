@@ -1,6 +1,6 @@
 name: ItemMods
 author: CodeDoctorDE
-version: "2.0"
+version: ${project.version}
 load: STARTUP
 api-version: "1.15"
 main: com.github.codedoctorde.itemmods.ItemMods

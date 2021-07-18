@@ -54,9 +54,7 @@ public class ItemMods extends JavaPlugin {
     private static CustomItemManager customItemManager;
     private static TranslationConfig translationConfig;
     private static PackManager packManager;
-    private UpdateChecker updateChecker;
     private BaseCommand baseCommand;
-    private GiveItemCommand giveItemCommand;
     private Connection connection;
 
     public static ItemMods getPlugin() {
@@ -73,7 +71,6 @@ public class ItemMods extends JavaPlugin {
 
     public static void saveBaseConfig() {
         try {
-            var baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
             FileWriter writer = new FileWriter(baseConfig.toString());
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(gson.toJson(mainConfig));
@@ -103,9 +100,9 @@ public class ItemMods extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        updateChecker = new UpdateChecker(this, 72461);
+        UpdateChecker updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
-        translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations/en.json").toString());
+        translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
         try {
             translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
         } catch (Exception e) {
@@ -138,7 +135,7 @@ public class ItemMods extends JavaPlugin {
         if (mainConfig == null)
             mainConfig = new MainConfig();
         baseCommand = new BaseCommand();
-        giveItemCommand = new GiveItemCommand();
+        GiveItemCommand giveItemCommand = new GiveItemCommand();
         customBlockManager = new CustomBlockManager();
         customItemManager = new CustomItemManager();
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);

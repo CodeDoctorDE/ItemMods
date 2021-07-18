@@ -13,8 +13,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 /**
  * @author CodeDoctorDE
  */
@@ -37,7 +35,12 @@ public class BlockSetTemplate extends CustomTemplate {
 
     @Override
     public boolean isCompatible(PackObject packObject) {
-        return Objects.requireNonNull(packObject.getItem()).getModel().getFallbackTexture().isBlock();
+        var item = packObject.getItem();
+        assert item != null;
+        var model = item.getModel();
+        if (model == null)
+            return false;
+        return model.getFallbackTexture().isBlock();
     }
 
     @Override
@@ -61,14 +64,14 @@ public class BlockSetTemplate extends CustomTemplate {
         return PackObject.fromIdentifier(new BlockSetTemplateData(this, data).getBlock());
     }
 
-    private class BlockSetTemplateData {
+    private static class BlockSetTemplateData {
+        private static final Gson GSON = new Gson();
         private final BlockSetTemplate template;
-        private final Gson gson = new Gson();
         private String block;
 
         BlockSetTemplateData(BlockSetTemplate template, CustomTemplateData data) {
             this.template = template;
-            JsonObject jsonObject = gson.fromJson(data.getData(), JsonObject.class);
+            JsonObject jsonObject = GSON.fromJson(data.getData(), JsonObject.class);
             if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
                 block = jsonObject.get("block").getAsString();
         }

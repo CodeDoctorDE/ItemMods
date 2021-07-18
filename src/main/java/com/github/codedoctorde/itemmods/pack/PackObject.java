@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.pack;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
+import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -60,6 +61,22 @@ public class PackObject {
         if (pack == null)
             return null;
         return pack.getTemplate(name);
+    }
+
+    @Nullable
+    public ModelAsset getModel() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getModel(name);
+    }
+
+    public Integer getCustomModel() {
+        var asset = getModel();
+        assert asset != null;
+        if (asset.getStaticModel() != null)
+            return asset.getStaticModel();
+        return ItemMods.getMainConfig().getResourcePackConfig().getResourceIdentifier().get(toString());
     }
 
     public void save() {

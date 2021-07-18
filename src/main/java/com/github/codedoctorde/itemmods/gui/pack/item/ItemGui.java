@@ -6,18 +6,22 @@ import com.github.codedoctorde.api.ui.GuiCollection;
 import com.github.codedoctorde.api.ui.GuiPane;
 import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.ui.item.StaticItem;
-import com.github.codedoctorde.api.ui.template.gui.MaterialListGui;
+import com.github.codedoctorde.api.ui.template.gui.MessageGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
 import com.github.codedoctorde.itemmods.gui.pack.PackGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.model.ChooseModelGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ItemGui extends GuiCollection {
     protected final PackObject packObject;
@@ -29,20 +33,18 @@ public class ItemGui extends GuiCollection {
 
     protected void constructGuis() {
         var t = getTranslation();
-        Arrays.stream(ItemTab.values()).map(itemTab -> new TranslatedChestGui(t, 4) {{
-            addPane(buildTabs(itemTab.ordinal()));
+        Arrays.stream(ItemTab.values()).map(tab -> new TranslatedChestGui(t, 4) {{
+            addPane(buildTabs(tab.ordinal()));
             var pane = new GuiPane(7, 1);
-            switch (itemTab) {
-                case general:
+            switch (tab) {
+                case GENERAL:
                     pane = buildGeneralPane(this);
                     break;
-                case item:
-                    pane = buildItemPane(this);
-                    break;
-                case administration:
+                case ADMINISTRATION:
                     pane = buildAdministrationPane(this);
                     break;
             }
+            pane.fillItems(0, 0, 8, 0, buildEmpty());
             addPane(1, 2, pane);
             fillItems(0, 0, 8, 3, buildPlaceholder());
 
@@ -55,74 +57,74 @@ public class ItemGui extends GuiCollection {
 
     protected GuiPane buildAdministrationPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
-        pane.addItem(new StaticItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()));
+        var t = getTranslation();
+        pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+            setClickAction(event -> {
+                new MessageGui(t) {{
+                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()), new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()));
+                }}.show((Player) event.getWhoClicked());
+                Objects.requireNonNull(packObject.getPack()).unregisterItem(packObject.getName());
+
+            });
+        }});
         return pane;
     }
 
     protected GuiPane buildGeneralPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
-        pane.addItem(new StaticItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()));
-        pane.addItem(new StaticItem(new ItemStackBuilder(Material.PAPER).displayName("display-name.title").lore("display-name.description").build()));
-        pane.addItem(new StaticItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()));
-        return pane;
-    }
-
-    protected GuiPane buildItemPane(TranslatedChestGui gui) {
-        var pane = new GuiPane(7, 1);
-        var asset = getAsset();
         var t = getTranslation();
-        pane.addItem(new TranslatedGuiItem() {{
-            setRenderAction(gui -> setItemStack(new ItemStackBuilder(asset.getModel().getFallbackTexture())
-                    .displayName("material.title").lore("material.description").build()));
-            setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("gui.materials"), material -> {
-                asset.getModel().setFallbackTexture(material);
-                packObject.save();
-            }));
+        var asset = getAsset();
+        pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
+            setClickAction(event -> {
+                var p = (Player) event.getWhoClicked();
+                hide(p);
+                var request = new ChatRequest(p);
+                p.sendMessage(t.getTranslation("name.message"));
+                request.setSubmitAction(s -> {
+                    try {
+                        asset.setName(s);
+                        packObject.save();
+                        show(p);
+                        p.sendMessage(t.getTranslation("name.success", s));
+                    } catch (Exception e) {
+                        p.sendMessage(t.getTranslation("name.failed"));
+                        e.printStackTrace();
+                    }
+                });
+            });
+        }});
+        pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("display-name.title").lore("display-name.description").build()) {{
+            setClickAction(event -> {
+                var p = (Player) event.getWhoClicked();
+                hide(p);
+                var request = new ChatRequest(p);
+                p.sendMessage(t.getTranslation("display-name.message"));
+                request.setSubmitAction(s -> {
+                    try {
+                        var ts = ChatColor.translateAlternateColorCodes('&', s);
+                        asset.setDisplayName(ts);
+                        p.sendMessage(t.getTranslation("display-name.success", ts));
+                    } catch (Exception e) {
+                        p.sendMessage(t.getTranslation("display-name.failed"));
+                        e.printStackTrace();
+                    }
+                });
+            });
         }});
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
             setRenderAction(gui -> {
-                var prefix = asset.getModel().isCustom() ? "custom." : "preset.";
-                setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title")
-                        .lore(prefix + "description").amount(asset.getModel().isStatic() ? asset.getModel().getStaticModel() : 1).build());
-                if (!asset.getModel().isCustom())
-                    setPlaceholders(asset.getModel().getPackObject().toString());
+                var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
+                setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "name").lore(prefix + "description").build());
             });
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
-                switch (event.getClick()) {
-                    case LEFT:
-                        var request = new ChatRequest(p);
-                        hide(p);
-                        p.sendMessage(t.getTranslation("custom.message"));
-                        request.setSubmitAction(s -> {
-                            Integer model = null;
-                            try {
-                                model = Integer.parseInt(s);
-                            } catch (NumberFormatException e) {
-                                e.printStackTrace();
-                            }
-                            p.sendMessage(t.getTranslation("custom.success", model));
-                            asset.getModel().setStaticModel(model);
-                            gui.reloadAll();
-                            show(p);
-                        });
-                        break;
-                    case DROP:
-
-                        break;
-                }
+                if(asset.getModel() == null)
+                    new ChoosePackGui(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
+                        asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
+                    }).show(p)).show(p);
             });
         }});
-        pane.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
-            setRenderAction(gui -> {
-                var prefix = asset.getModel().isStatic() ? "static." : "dynamic.";
-                setItemStack(new ItemStackBuilder(Material.GOLD_NUGGET).displayName(prefix + "title")
-                        .lore(prefix + "description").amount(asset.getModel().isStatic() ? asset.getModel().getStaticModel() : 1).build());
-                if (asset.getModel().isStatic())
-                    setPlaceholders(asset.getModel().getStaticModel());
-            });
-            setClickAction(event -> asset.getModel().setPackObject(packObject));
-        }});
+        pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()));
         return pane;
     }
 
@@ -133,8 +135,8 @@ public class ItemGui extends GuiCollection {
             setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
-        Arrays.stream(ItemTab.values()).map(itemTab -> new TranslatedGuiItem(new ItemStackBuilder(itemTab.getMaterial()).displayName(itemTab.name()).setEnchanted(index == itemTab.ordinal()).build()) {{
-            setClickAction(event -> setCurrent(itemTab.ordinal()));
+        Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase()).setEnchanted(index == tab.ordinal()).build()) {{
+            setClickAction(event -> setCurrent(tab.ordinal()));
         }}).forEach(pane::addItem);
         pane.fillItems(0, 0, 8, 0, buildPlaceholder());
         return pane;
@@ -153,16 +155,14 @@ public class ItemGui extends GuiCollection {
     }
 
     public enum ItemTab {
-        general, item, administration;
+        GENERAL, ADMINISTRATION;
 
         public Material getMaterial() {
             switch (this) {
-                case administration:
+                case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;
-                case general:
+                case GENERAL:
                     return Material.ITEM_FRAME;
-                case item:
-                    return Material.DIAMOND_SWORD;
             }
             return Material.AIR;
         }

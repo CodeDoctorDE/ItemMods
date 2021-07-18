@@ -24,15 +24,12 @@ public class BlockGui extends ItemGui {
     @Override
     protected void constructGuis() {
         var t = ItemMods.getTranslationConfig().subTranslation("gui.block");
-        Arrays.stream(BlockTab.values()).map(blockTab -> new TranslatedChestGui(t, 4) {{
-            addPane(buildTabs(blockTab.ordinal()));
+        Arrays.stream(BlockTab.values()).map(tab -> new TranslatedChestGui(t, 4) {{
+            addPane(buildTabs(tab.ordinal()));
             var pane = new GuiPane(7, 1);
-            switch (blockTab) {
+            switch (tab) {
                 case GENERAL:
                     pane = buildGeneralPane(this);
-                    break;
-                case ITEM:
-                    pane = buildItemPane(this);
                     break;
                 case BLOCK:
                     pane = buildBlockPane(this);
@@ -56,8 +53,8 @@ public class BlockGui extends ItemGui {
             setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
-        Arrays.stream(BlockTab.values()).map(blockTab -> new TranslatedGuiItem(new ItemStackBuilder(blockTab.getMaterial()).displayName(blockTab.name()).setEnchanted(index == blockTab.ordinal()).build()) {{
-            setClickAction(event -> setCurrent(blockTab.ordinal()));
+        Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase()).setEnchanted(index == tab.ordinal()).build()) {{
+            setClickAction(event -> setCurrent(tab.ordinal()));
         }}).forEach(pane::addItem);
         pane.fillItems(0, 0, 8, 0, buildPlaceholder());
         return pane;
@@ -75,7 +72,7 @@ public class BlockGui extends ItemGui {
     }
 
     public enum BlockTab {
-        GENERAL, ITEM, RAW, BLOCK, ADMINISTRATION;
+        GENERAL, BLOCK, ADMINISTRATION;
 
         public Material getMaterial() {
             switch (this) {
@@ -83,10 +80,6 @@ public class BlockGui extends ItemGui {
                     return Material.COMMAND_BLOCK;
                 case GENERAL:
                     return Material.ITEM_FRAME;
-                case ITEM:
-                    return Material.DIAMOND_SWORD;
-                case RAW:
-                    return Material.APPLE;
                 case BLOCK:
                     return Material.GRASS_BLOCK;
             }

@@ -4,7 +4,8 @@ import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
-import com.github.codedoctorde.itemmods.pack.asset.RawAsset;
+import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
+import com.github.codedoctorde.itemmods.pack.asset.raw.TextureAsset;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -27,8 +28,9 @@ public class ItemModsPack extends NamedPackObject {
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<RawAsset> textures = new ArrayList<>();
-    private final List<RawAsset> models = new ArrayList<>();
+    private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<ModelAsset> models = new ArrayList<>();
+    private final List<ModelAsset> modelAssets = new ArrayList<>();
     private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
@@ -45,7 +47,7 @@ public class ItemModsPack extends NamedPackObject {
     public ItemModsPack(Path path) throws IOException {
         super(path.getFileName().toString());
         editable = true;
-        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "config.json")), JsonObject.class);
+        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "pack.json")), JsonObject.class);
         icon = new ItemStackBuilder(jsonObject.get("icon")).build();
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
 
@@ -97,11 +99,11 @@ public class ItemModsPack extends NamedPackObject {
         blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
     }
 
-    public List<RawAsset> getTextures() {
+    public List<TextureAsset> getTextures() {
         return Collections.unmodifiableList(textures);
     }
 
-    public void registerTexture(RawAsset textureAsset) {
+    public void registerTexture(TextureAsset textureAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
@@ -110,11 +112,11 @@ public class ItemModsPack extends NamedPackObject {
         textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
     }
 
-    public List<RawAsset> getModels() {
+    public List<ModelAsset> getModels() {
         return Collections.unmodifiableList(models);
     }
 
-    public void registerModel(RawAsset modelAsset) {
+    public void registerModel(ModelAsset modelAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
             models.add(modelAsset);
     }
@@ -167,6 +169,10 @@ public class ItemModsPack extends NamedPackObject {
         return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 
+    public ModelAsset getModel(String name) {
+        return models.stream().filter(modelAsset -> modelAsset.getName().equals(name)).findFirst().orElse(null);
+    }
+
     public GuiItem getGuiItem(PackObject packObject) {
         return null;
     }
@@ -190,7 +196,7 @@ public class ItemModsPack extends NamedPackObject {
         if (!Files.exists(itemsDir))
             Files.createDirectories(itemsDir);
         items.forEach(itemAsset -> {
-            var current = itemAsset.save(new PackObject(getName(), itemAsset.getName()));
+            var current = itemAsset.save(getName());
             try {
                 Files.writeString(Paths.get(itemsDir.toString(), itemAsset.getName() + ".json"), GSON.toJson(current));
             } catch (IOException e) {
@@ -202,7 +208,7 @@ public class ItemModsPack extends NamedPackObject {
         if (!Files.exists(blocksDir))
             Files.createDirectories(blocksDir);
         blocks.forEach(blockAsset -> {
-            var current = blockAsset.save(new PackObject(getName(), blockAsset.getName()));
+            var current = blockAsset.save(getName());
             try {
                 Files.writeString(Paths.get(blocksDir.toString(), blockAsset.getName() + ".json"), GSON.toJson(current));
             } catch (IOException e) {
@@ -214,7 +220,7 @@ public class ItemModsPack extends NamedPackObject {
         if (!Files.exists(texturesDir))
             Files.createDirectories(texturesDir);
         textures.forEach(textureAsset -> {
-            var current = textureAsset.save(new PackObject(getName(), textureAsset.getName()));
+            var current = textureAsset.save(getName());
             try {
                 Files.writeString(Paths.get(texturesDir.toString(), textureAsset.getName() + ".json"), GSON.toJson(current));
             } catch (IOException e) {
@@ -226,7 +232,7 @@ public class ItemModsPack extends NamedPackObject {
         if (!Files.exists(modelsDir))
             Files.createDirectories(modelsDir);
         models.forEach(modelAsset -> {
-            var current = modelAsset.save(new PackObject(getName(), modelAsset.getName()));
+            var current = modelAsset.save(getName());
             try {
                 Files.writeString(Paths.get(modelsDir.toString(), modelAsset.getName() + ".json"), GSON.toJson(current));
             } catch (IOException e) {
