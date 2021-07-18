@@ -4,16 +4,19 @@ import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.ui.GuiCollection;
 import com.github.codedoctorde.api.ui.item.StaticItem;
 import com.github.codedoctorde.api.ui.template.gui.MaterialListGui;
+import com.github.codedoctorde.api.ui.template.gui.MessageGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.PacksGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ModelGui extends GuiCollection {
     public ModelGui(PackObject packObject) {
@@ -59,7 +62,12 @@ public class ModelGui extends GuiCollection {
                     break;
                 case APPEARANCE:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
-                        setRenderAction(gui -> new ItemStackBuilder(asset.getFallbackTexture()).displayName("fallback.name").lore("fallback.description").build());
+                        setRenderAction(gui -> {
+                            var icon = asset.getFallbackTexture();
+                            if(icon == null)
+                                icon = Material.ARMOR_STAND;
+                            new ItemStackBuilder(icon).displayName("fallback.name").lore("fallback.description").build();
+                        });
                         setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("gui.materials"), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
@@ -68,8 +76,25 @@ public class ModelGui extends GuiCollection {
                     }});
                     break;
                 case ADMINISTRATION:
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+                        setClickAction(event -> {
+                            new MessageGui(t) {{
+                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                                    setClickAction(event -> {
+                                        Objects.requireNonNull(packObject.getPack()).unregisterModel(asset.getName());
+                                        new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    });
+                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                                    setClickAction(event -> show((Player) event.getWhoClicked()));
+                                }});
+                            }}.show((Player) event.getWhoClicked());
+
+                        });
+                    }});
                     break;
             }
+            gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            gui.fillItems(0, 3, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
             registerGui(gui);
         }
     }

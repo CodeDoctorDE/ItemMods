@@ -61,9 +61,11 @@ public class ItemAsset extends PackAsset {
         return modelObject;
     }
 
-    public void setModelObject(PackObject modelObject) {
-        assert modelObject.getModel() != null;
-        this.modelObject = modelObject;
+    public void setModelObject(@Nullable PackObject modelObject) {
+        if (modelObject == null)
+            this.modelObject = null;
+        else if (modelObject.getModel() != null)
+            this.modelObject = modelObject;
     }
 
     @Nullable

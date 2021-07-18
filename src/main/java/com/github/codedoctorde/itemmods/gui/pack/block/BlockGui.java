@@ -6,7 +6,7 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.gui.pack.PackGui;
+import com.github.codedoctorde.itemmods.gui.pack.BlocksGui;
 import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
@@ -50,7 +50,7 @@ public class BlockGui extends ItemGui {
 
         pane.addItem(buildPlaceholder());
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-            setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
+            setClickAction(event -> new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
         Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase()).setEnchanted(index == tab.ordinal()).build()) {{

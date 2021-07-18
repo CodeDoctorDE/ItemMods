@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.pack.asset.raw;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,11 +41,11 @@ public class ModelAsset extends RawAsset {
         this.staticModel = staticModel;
     }
 
-    public Material getFallbackTexture() {
+    public @Nullable Material getFallbackTexture() {
         return fallbackTexture;
     }
 
-    public void setFallbackTexture(Material fallbackTexture) {
+    public void setFallbackTexture(@Nullable Material fallbackTexture) {
         this.fallbackTexture = fallbackTexture;
     }
 }

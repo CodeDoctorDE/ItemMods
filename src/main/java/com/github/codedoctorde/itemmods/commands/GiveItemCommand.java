@@ -54,7 +54,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                     return true;
                 }
             }
-            var itemStack = itemAsset.create();
+            var itemStack = ItemMods.getCustomItemManager().create(packObject);
             itemStack.setAmount(count);
             player.getInventory().addItem(itemStack);
         }

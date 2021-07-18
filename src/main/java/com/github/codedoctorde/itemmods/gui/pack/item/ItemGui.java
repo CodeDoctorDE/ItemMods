@@ -12,13 +12,16 @@ import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
-import com.github.codedoctorde.itemmods.gui.pack.PackGui;
+import com.github.codedoctorde.itemmods.gui.pack.ItemsGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.model.ChooseModelGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.model.ModelGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -58,13 +61,19 @@ public class ItemGui extends GuiCollection {
     protected GuiPane buildAdministrationPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         var t = getTranslation();
+        var asset = getAsset();
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
             setClickAction(event -> {
                 new MessageGui(t) {{
-                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()), new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()));
+                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                        setClickAction(event -> {
+                            Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
+                            new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                        });
+                    }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                        setClickAction(event -> show((Player) event.getWhoClicked()));
+                    }});
                 }}.show((Player) event.getWhoClicked());
-                Objects.requireNonNull(packObject.getPack()).unregisterItem(packObject.getName());
-
             });
         }});
         return pane;
@@ -118,10 +127,24 @@ public class ItemGui extends GuiCollection {
             });
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
-                if(asset.getModel() == null)
+                var modelObject = asset.getModelObject();
+                if (modelObject == null || event.getClick() == ClickType.RIGHT)
                     new ChoosePackGui(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
                         asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
+                        packObject.save();
+                        reloadAll();
+                        show(p);
                     }).show(p)).show(p);
+                else
+                    switch (event.getClick()) {
+                        case LEFT:
+                            new ModelGui(modelObject).show(p);
+                            break;
+                        case DROP:
+                            asset.setModelObject(null);
+                            packObject.save();
+                            reloadAll();
+                    }
             });
         }});
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()));
@@ -132,7 +155,7 @@ public class ItemGui extends GuiCollection {
         var pane = new GuiPane(9, 1);
         pane.addItem(buildPlaceholder());
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-            setClickAction(event -> new PackGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
+            setClickAction(event -> new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
         }});
         pane.addItem(buildPlaceholder());
         Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase()).setEnchanted(index == tab.ordinal()).build()) {{

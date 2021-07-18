@@ -3,16 +3,19 @@ package com.github.codedoctorde.itemmods.gui.pack;
 import com.github.codedoctorde.api.request.ChatRequest;
 import com.github.codedoctorde.api.ui.GuiCollection;
 import com.github.codedoctorde.api.ui.item.StaticItem;
+import com.github.codedoctorde.api.ui.template.gui.MessageGui;
 import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.PacksGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class PackGui extends GuiCollection {
     public PackGui(String name) {
@@ -65,7 +68,18 @@ public class PackGui extends GuiCollection {
                         });
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
-                        setClickAction(event -> ItemMods.getPackManager().deletePack(pack.getName()));
+                        setClickAction(event -> {
+                            new MessageGui(t) {{
+                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                                    setClickAction(event -> {
+                                        ItemMods.getPackManager().deletePack(name);
+                                        new PacksGui().show((Player) event.getWhoClicked());
+                                    });
+                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                                    setClickAction(event -> show((Player) event.getWhoClicked()));
+                                }});
+                            }}.show((Player) event.getWhoClicked());
+                        });
                     }});
                     break;
                 case GENERAL:
@@ -97,7 +111,7 @@ public class PackGui extends GuiCollection {
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).displayName("models.title").lore("models.description").build()) {{
-                        setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
+                        setClickAction(event -> new ModelsGui(name).show((Player) event.getWhoClicked()));
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).displayName("sounds.title").lore("sounds.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
