@@ -12,9 +12,9 @@ import java.util.function.Consumer;
 
 public class ChoosePackGui extends ListGui {
     public ChoosePackGui(Consumer<ItemModsPack> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.pack"), 4, (s, translation) -> ItemMods.getPackManager().getPacks()
-                .stream().filter(pack -> pack.getName().contains(s)).map(pack -> new StaticItem(new ItemStackBuilder(pack.getIcon())
-                        .addLore(translation.getTranslation("actions")).build()) {{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.pack"), 4, (gui) -> ItemMods.getPackManager().getPacks()
+                .stream().filter(pack -> pack.getName().contains(gui.getSearchText())).map(pack -> new StaticItem(new ItemStackBuilder(pack.getIcon())
+                        .addLore(gui.getTranslation().getTranslation("actions")).build()) {{
                     setClickAction(event -> action.accept(pack));
                 }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls());

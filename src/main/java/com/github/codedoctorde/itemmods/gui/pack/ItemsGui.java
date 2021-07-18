@@ -16,11 +16,12 @@ import java.util.Objects;
 
 public class ItemsGui extends ListGui {
     public ItemsGui(String name) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (s, t) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
-                .filter(itemAsset -> itemAsset.getName().contains(s)).map(itemAsset -> new StaticItem(new ItemStackBuilder(itemAsset.getModel().getFallbackTexture()).displayName(itemAsset.getName())
-                        .lore(t.getTranslation("actions")).build()) {{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
+                .filter(itemAsset -> itemAsset.getName().contains(gui.getSearchText())).map(itemAsset -> new StaticItem(new ItemStackBuilder(itemAsset.getIcon()).displayName(itemAsset.getName())
+                        .lore(gui.getTranslation().getTranslation("actions", new PackObject(name, itemAsset.getName()).toString())).build()) {{
                     setClickAction(event -> new ItemGui(new PackObject(name, itemAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
+        setPlaceholders(name);
         var t = getTranslation();
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;

@@ -15,9 +15,9 @@ import java.util.function.Consumer;
 
 public class ChooseBlockGui extends ListGui {
     public ChooseBlockGui(String namespace, Consumer<BlockAsset> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.block"), 4, (s, translation) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
-                .stream().filter(blockAsset -> new PackObject(namespace, blockAsset.getName()).toString().contains(s)).map(blockAsset -> new StaticItem(new ItemStackBuilder(Material.ARMOR_STAND)
-                        .displayName(new PackObject(namespace, blockAsset.getName()).toString()).lore(translation.getTranslation("actions")).build()) {{
+        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.block"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
+                .stream().filter(blockAsset -> new PackObject(namespace, blockAsset.getName()).toString().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(Material.ARMOR_STAND)
+                        .displayName(new PackObject(namespace, blockAsset.getName()).toString()).lore(gui.getTranslation().getTranslation("actions")).build()) {{
                     setClickAction(event -> action.accept(blockAsset));
                 }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls());

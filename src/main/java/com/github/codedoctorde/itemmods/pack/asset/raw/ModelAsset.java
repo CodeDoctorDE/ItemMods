@@ -48,4 +48,10 @@ public class ModelAsset extends RawAsset {
     public void setFallbackTexture(@Nullable Material fallbackTexture) {
         this.fallbackTexture = fallbackTexture;
     }
+
+    public Material getIcon() {
+        if (fallbackTexture != null)
+            return fallbackTexture;
+        return Material.ARMOR_STAND;
+    }
 }

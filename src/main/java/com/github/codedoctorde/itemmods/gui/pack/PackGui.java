@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class PackGui extends GuiCollection {
     public PackGui(String name) {
@@ -70,12 +69,12 @@ public class PackGui extends GuiCollection {
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setClickAction(event -> {
                             new MessageGui(t) {{
-                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
                                     setClickAction(event -> {
                                         ItemMods.getPackManager().deletePack(name);
                                         new PacksGui().show((Player) event.getWhoClicked());
                                     });
-                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
                                     setClickAction(event -> show((Player) event.getWhoClicked()));
                                 }});
                             }}.show((Player) event.getWhoClicked());

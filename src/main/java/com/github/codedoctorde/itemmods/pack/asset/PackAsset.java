@@ -6,10 +6,11 @@ import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PackAsset extends NamedPackObject {
-    private List<CustomTemplateData> customTemplates;
+    private final List<CustomTemplateData> customTemplates = new ArrayList<>();
 
     public PackAsset(String name) {
         super(name);

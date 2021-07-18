@@ -44,6 +44,10 @@ public abstract class RawAsset extends PackAsset {
         setTexture("default", url);
     }
 
+    public void removeVariation(String bytes) {
+        data.remove(bytes);
+    }
+
     public Set<String> getVariations() {
         return data.keySet();
     }
@@ -70,7 +74,7 @@ public abstract class RawAsset extends PackAsset {
                 output.write(buffer, 0, bytesRead);
             }
         }
-        data.put("default", output.toByteArray());
+        data.put(variation, output.toByteArray());
     }
 
     public void setTexture(String variation, byte[] texture) {

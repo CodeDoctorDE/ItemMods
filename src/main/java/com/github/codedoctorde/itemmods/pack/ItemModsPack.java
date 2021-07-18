@@ -51,9 +51,11 @@ public class ItemModsPack extends NamedPackObject {
         icon = new ItemStackBuilder(jsonObject.get("icon")).build();
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
 
-        Files.walk(Paths.get(path.toString(), "items")).filter(Files::isRegularFile).forEach(current -> {
+        var itemsPath = Paths.get(path.toString(), "items");
+        Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(new ItemAsset(new PackObject(getName(), getFileName(path)), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                System.out.println(current.toString());
+                items.add(new ItemAsset(new PackObject(getName(), getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -178,10 +180,13 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     private String getFileName(Path path) {
-        var pathName = path.getFileName().toString();
+        System.out.println(path.toString());
+        var pathName = path.toString();
+        System.out.println(pathName);
         var pos = pathName.lastIndexOf('.');
+        System.out.println(pos);
         if (pos > 0) return pathName.substring(0, pos);
-        return null;
+        return "";
     }
 
     void save(Path path) throws IOException {

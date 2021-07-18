@@ -9,7 +9,6 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.gui.PacksGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Material;
@@ -27,17 +26,18 @@ public class ModelGui extends GuiCollection {
         var empty = new StaticItem(new ItemStackBuilder().build());
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         for (ModelTab value : ModelTab.values()) {
-            var gui = new TranslatedChestGui(t);
+            var gui = new TranslatedChestGui(t, 4);
             gui.fillItems(0, 0, 0, 3, placeholder);
             gui.fillItems(8, 0, 8, 3, placeholder);
             gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
+                setClickAction(event -> new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
             }});
             gui.addItem(placeholder);
             Arrays.stream(ModelTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
                 setClickAction(event -> setCurrent(tab.ordinal()));
             }}).forEach(gui::addItem);
+            gui.fillItems(0, 0, 8, 0, placeholder);
             switch (value) {
                 case GENERAL:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
@@ -64,7 +64,7 @@ public class ModelGui extends GuiCollection {
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
                         setRenderAction(gui -> {
                             var icon = asset.getFallbackTexture();
-                            if(icon == null)
+                            if (icon == null)
                                 icon = Material.ARMOR_STAND;
                             new ItemStackBuilder(icon).displayName("fallback.name").lore("fallback.description").build();
                         });
@@ -79,12 +79,12 @@ public class ModelGui extends GuiCollection {
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setClickAction(event -> {
                             new MessageGui(t) {{
-                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
                                     setClickAction(event -> {
                                         Objects.requireNonNull(packObject.getPack()).unregisterModel(asset.getName());
                                         new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                     });
-                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
                                     setClickAction(event -> show((Player) event.getWhoClicked()));
                                 }});
                             }}.show((Player) event.getWhoClicked());

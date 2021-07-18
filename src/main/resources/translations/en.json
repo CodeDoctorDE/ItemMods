@@ -60,7 +60,7 @@
       }
     },
     "packs": {
-      "title": "§6Packs",
+      "title": "§6Packs §7(%d/%d)",
       "first": "§6First",
       "previous": "§6Previous",
       "next": "§6Next",
@@ -89,10 +89,12 @@
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
         "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a."
+        "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid pack name."
       },
       "general": "§6General",
       "contents": "§6Contents",
+      "raw": "§6Raw",
       "administration": "§6Administration",
       "items": {
         "title": "§6Items",
@@ -133,10 +135,112 @@
     },
     "materials": {
       "title": "Materials"
+    },
+    "items": {
+      "title": "§6Items §3%s §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new item",
+        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid item name."
+      },
+      "actions": "\n§3%s\n§7Open the item gui"
+    },
+    "item": {
+      "back": {
+        "title": "§6Back",
+        "description": "§7Go to the item list"
+      },
+      "general": "§6General",
+      "administration": "§6Administration",
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Click to change the name",
+        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully change the item name to §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid item name."
+      },
+      "display-name": {
+        "title": "§6Display name",
+        "description": "§3%s\n\n§7Click to change the display name",
+        "message": "§6ItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      },
+      "model": {
+        "not-set": {
+          "title": "§6Model",
+          "description": "§cNot set\n\n§7Click to add a model"
+        },
+        "set": {
+          "title": "§6Model",
+          "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        }
+      },
+      "templates": {
+        "title": "§6Templates",
+        "description": "§7Go to the template list"
+      },
+      "delete": {
+        "title": "§6Delete",
+        "description": "§7Delete the current item"
+      }
+    },
+    "blocks": {
+      "title": "§6Blocks §3%s §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new item",
+        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid item name."
+      },
+      "actions": "\n§3%s\n§7Open the item gui"
+    },
+    "models": {
+      "title": "§6Models §3%s §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new model",
+        "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully created the model §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid model name."
+      },
+      "actions": "\n§3%s\n§7Open the model gui"
     }
   },
   "event": {
     "rename": "§eItemMods §7» §cThis item cannot be renamed!"
+  },
+  "reload": {
+    "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
   },
   "command": {
     "base": {

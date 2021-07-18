@@ -3,6 +3,8 @@ package com.github.codedoctorde.itemmods.pack.asset;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
 import com.google.gson.JsonObject;
+import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -73,5 +75,13 @@ public class ItemAsset extends PackAsset {
         if (modelObject == null)
             return null;
         return modelObject.getModel();
+    }
+
+    @NotNull
+    public Material getIcon() {
+        var model = getModel();
+        if (model == null || model.getFallbackTexture() == null)
+            return Material.DIAMOND;
+        return model.getFallbackTexture();
     }
 }

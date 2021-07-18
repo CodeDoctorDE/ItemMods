@@ -65,12 +65,12 @@ public class ItemGui extends GuiCollection {
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
             setClickAction(event -> {
                 new MessageGui(t) {{
-                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()){{
+                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
                         setClickAction(event -> {
                             Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                             new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                         });
-                    }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()){{
+                    }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
                         setClickAction(event -> show((Player) event.getWhoClicked()));
                     }});
                 }}.show((Player) event.getWhoClicked());
@@ -84,6 +84,7 @@ public class ItemGui extends GuiCollection {
         var t = getTranslation();
         var asset = getAsset();
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
+            setRenderAction(gui -> setPlaceholders(asset.getName()));
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
                 hide(p);
@@ -103,6 +104,7 @@ public class ItemGui extends GuiCollection {
             });
         }});
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("display-name.title").lore("display-name.description").build()) {{
+            setRenderAction(gui -> setPlaceholders(asset.getDisplayName()));
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
                 hide(p);
@@ -112,6 +114,7 @@ public class ItemGui extends GuiCollection {
                     try {
                         var ts = ChatColor.translateAlternateColorCodes('&', s);
                         asset.setDisplayName(ts);
+                        show(p);
                         p.sendMessage(t.getTranslation("display-name.success", ts));
                     } catch (Exception e) {
                         p.sendMessage(t.getTranslation("display-name.failed"));
@@ -123,7 +126,7 @@ public class ItemGui extends GuiCollection {
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
             setRenderAction(gui -> {
                 var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
-                setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "name").lore(prefix + "description").build());
+                setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title").lore(prefix + "description").build());
             });
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
