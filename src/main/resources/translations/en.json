@@ -77,7 +77,7 @@
         "success": "§6ItemMods §7» §aSuccessfully created the pack §3%s§a.",
         "failed": "§6ItemMods §7» §cInvalid pack name."
       },
-      "actions": "\n§3%s\n§7Open the pack gui"
+      "actions": "§3%s\n\n§7Open the pack gui"
     },
     "pack": {
       "title": "§6Pack §3%s",
@@ -130,7 +130,14 @@
       },
       "delete": {
         "title": "§6Delete",
-        "description": "§7Delete the current pack"
+        "description": "§7Delete the current pack",
+        "gui": {
+          "title": "§6Delete pack §3%s§6?",
+          "message": "§6Delete pack §3%s§6?",
+          "description": "§7This will delete the pack\n§7folder and the content of it.\n§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
       }
     },
     "materials": {
@@ -154,9 +161,10 @@
         "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
         "failed": "§6ItemMods §7» §cInvalid item name."
       },
-      "actions": "\n§3%s\n§7Open the item gui"
+      "actions": "§3%s\n\n§7Open the item gui"
     },
     "item": {
+      "title": "§6Item §3%s",
       "back": {
         "title": "§6Back",
         "description": "§7Go to the item list"
@@ -192,7 +200,14 @@
       },
       "delete": {
         "title": "§6Delete",
-        "description": "§7Delete the current item"
+        "description": "§7Delete the current item",
+        "gui": {
+          "title": "§6Delete item §3%s§6?",
+          "message": "§6Delete item §3%s§6?",
+          "description": "§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
       }
     },
     "blocks": {
@@ -213,27 +228,113 @@
         "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
         "failed": "§6ItemMods §7» §cInvalid item name."
       },
-      "actions": "\n§3%s\n§7Open the item gui"
+      "actions": "§3%s\n\n§7Open the item gui"
     },
-    "models": {
-      "title": "§6Models §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+    "block": {
+      "title": "§6Block §3%s",
+      "back": {
+        "title": "§6Back",
+        "description": "§7Go to the block list"
       },
-      "create": {
-        "title": "§6Create",
-        "description": "§7Create a new model",
-        "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully created the model §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid model name."
+      "general": "§6General",
+      "block": "§6Block",
+      "administration": "§6Administration",
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Click to change the name",
+        "message": "§6ItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully change the block name to §3%s§a.",
+        "failed": "§6ItemMods §7» §cInvalid block name."
       },
-      "actions": "\n§3%s\n§7Open the model gui"
+      "display-name": {
+        "title": "§6Display name",
+        "description": "§3%s\n\n§7Click to change the display name",
+        "message": "§6ItemMods §7» §ePlease enter the display name of the block. Cancel with a left click.",
+        "success": "§6ItemMods §7» §aSuccessfully change the block display name to §3%s§a."
+      },
+      "model": {
+        "not-set": {
+          "title": "§6Model",
+          "description": "§cNot set\n\n§7Click to add a model"
+        },
+        "set": {
+          "title": "§6Model",
+          "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        }
+      },
+      "templates": {
+        "title": "§6Templates",
+        "description": "§7Go to the template list"
+      },
+      "delete": {
+        "title": "§6Delete",
+        "description": "§7Delete the current block",
+        "gui": {
+          "title": "§6Delete block §3%s§6?",
+          "message": "§6Delete block §3%s§6?",
+          "description": "§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
+      }
+    },
+    "raw": {
+      "models": {
+        "title": "§6Models §3%s §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "search": {
+          "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+          "title": "§6Search",
+          "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        },
+        "create": {
+          "title": "§6Create",
+          "description": "§7Create a new model",
+          "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§6ItemMods §7» §aSuccessfully created the model §3%s§a.",
+          "failed": "§6ItemMods §7» §cInvalid model name."
+        },
+        "actions": "§3%s\n\n§7Open the model gui"
+      },
+      "model": {
+        "title": "§6Model §3%s",
+        "back": {
+          "title": "§6Back",
+          "description": "§7Go to the pack list"
+        },
+        "name": {
+          "title": "§6Name",
+          "description": "§3%s\n\n§7Click to change the name",
+          "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§6ItemMods §7» §aSuccessfully change the model name to §3%s§a.",
+          "failed": "§6ItemMods §7» §cInvalid pack name."
+        },
+        "fallback": {
+          "title": "§6Fallback texture",
+          "description": "§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
+        },
+        "data": {
+          "title": "§6Data",
+          "description": "§7Click to set the variations\n§7of items for the resource pack"
+        },
+        "general": "§6General",
+        "appearance": "§6Appearance",
+        "administration": "§6Administration",
+        "delete": {
+          "title": "§6Delete",
+          "description": "§7Delete the current model",
+          "gui": {
+            "title": "§6Delete model §3%s§6?",
+            "message": "§6Delete model §3%s§6?",
+            "description": "§7This process cannot be undo!",
+            "yes": "§aYes",
+            "no": "§cNo"
+          }
+        }
+      }
     }
   },
   "event": {

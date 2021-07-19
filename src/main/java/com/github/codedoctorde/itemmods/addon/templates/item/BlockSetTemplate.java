@@ -25,7 +25,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack createMainIcon(PackObject object) {
+    public @NotNull ItemStack createMainIcon(@NotNull PackObject object) {
         var asset = object.getItem();
         if (asset != null)
             return new ItemStackBuilder(t.getTranslation("main-icon.has")).format(object.toString()).build();
@@ -34,7 +34,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject) {
+    public boolean isCompatible(@NotNull PackObject packObject) {
         var item = packObject.getItem();
         assert item != null;
         var model = item.getModel();
@@ -60,7 +60,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Nullable
-    public PackObject getBlock(CustomTemplateData data) {
+    public PackObject getBlock(@NotNull CustomTemplateData data) {
         return PackObject.fromIdentifier(new BlockSetTemplateData(this, data).getBlock());
     }
 
@@ -69,7 +69,7 @@ public class BlockSetTemplate extends CustomTemplate {
         private final BlockSetTemplate template;
         private String block;
 
-        BlockSetTemplateData(BlockSetTemplate template, CustomTemplateData data) {
+        BlockSetTemplateData(BlockSetTemplate template, @NotNull CustomTemplateData data) {
             this.template = template;
             JsonObject jsonObject = GSON.fromJson(data.getData(), JsonObject.class);
             if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
@@ -88,7 +88,7 @@ public class BlockSetTemplate extends CustomTemplate {
             this.block = block;
         }
 
-        void save(CustomTemplateData data) {
+        void save(@NotNull CustomTemplateData data) {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("block", block);
             data.setData(jsonObject);

@@ -12,8 +12,10 @@ import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class BlockGui extends ItemGui {
 
@@ -45,7 +47,7 @@ public class BlockGui extends ItemGui {
     }
 
     @Override
-    protected GuiPane buildTabs(int index) {
+    protected @NotNull GuiPane buildTabs(int index) {
         var pane = new GuiPane(9, 1);
 
         pane.addItem(buildPlaceholder());
@@ -60,21 +62,21 @@ public class BlockGui extends ItemGui {
         return pane;
     }
 
-    private GuiPane buildBlockPane(TranslatedChestGui gui) {
+    private @NotNull GuiPane buildBlockPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         pane.addItem(new StaticItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("delete.title").lore("delete.description").build()));
         return pane;
     }
 
     @Override
-    public ItemAsset getAsset() {
-        return packObject.getBlock();
+    public @NotNull ItemAsset getAsset() {
+        return Objects.requireNonNull(packObject.getBlock());
     }
 
     public enum BlockTab {
         GENERAL, BLOCK, ADMINISTRATION;
 
-        public Material getMaterial() {
+        public @NotNull Material getMaterial() {
             switch (this) {
                 case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;

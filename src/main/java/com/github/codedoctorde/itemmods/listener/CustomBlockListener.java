@@ -21,11 +21,12 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 public class CustomBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onCustomBlockPlaced(PlayerInteractEvent event) {
+    public void onCustomBlockPlaced(@NotNull PlayerInteractEvent event) {
         if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
                 event.getAction() != Action.RIGHT_CLICK_BLOCK ||
                 event.getClickedBlock() == null)
@@ -85,7 +86,7 @@ public class CustomBlockListener implements Listener {
     }*/
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void onCustomBlockBreak(BlockBreakEvent event) {
+    public void onCustomBlockBreak(@NotNull BlockBreakEvent event) {
         if (event.isCancelled())
             return;
         CustomBlock customBlock = new CustomBlock(event.getBlock());
@@ -101,7 +102,7 @@ public class CustomBlockListener implements Listener {
     }
 
     @EventHandler
-    public void onCustomBlockFall(EntityChangeBlockEvent event) {
+    public void onCustomBlockFall(@NotNull EntityChangeBlockEvent event) {
         CustomBlock customBlock = new CustomBlock(event.getBlock());
         if (customBlock.getConfig() != null)
             event.setCancelled(true);

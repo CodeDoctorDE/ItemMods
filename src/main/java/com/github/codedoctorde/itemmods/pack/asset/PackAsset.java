@@ -5,6 +5,7 @@ import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.List;
 public abstract class PackAsset extends NamedPackObject {
     private final List<CustomTemplateData> customTemplates = new ArrayList<>();
 
-    public PackAsset(String name) {
+    public PackAsset(@NotNull String name) {
         super(name);
     }
 
-    public PackAsset(PackObject packObject, JsonObject jsonObject) {
+    public PackAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject.getName());
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
@@ -28,7 +29,7 @@ public abstract class PackAsset extends NamedPackObject {
         });
     }
 
-    public List<CustomTemplateData> getCustomTemplates() {
+    public @NotNull List<CustomTemplateData> getCustomTemplates() {
         return customTemplates;
     }
 

@@ -5,6 +5,8 @@ import com.github.codedoctorde.itemmods.pack.PackObject;
 import me.hsgamer.bettergui.lib.core.bukkit.item.ItemModifier;
 import me.hsgamer.bettergui.lib.core.common.interfaces.StringReplacer;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Objects;
@@ -17,12 +19,12 @@ public class BetterGuiCustomModifier implements ItemModifier {
     private String value = "";
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "customitem";
     }
 
     @Override
-    public ItemStack modify(ItemStack itemStack, UUID uuid, Map<String, StringReplacer> map) {
+    public @Nullable ItemStack modify(ItemStack itemStack, UUID uuid, @NotNull Map<String, StringReplacer> map) {
         return ItemMods.getCustomItemManager().create(Objects.requireNonNull(PackObject.fromIdentifier(StringReplacer.replace(value, uuid, map.values()))));
     }
 

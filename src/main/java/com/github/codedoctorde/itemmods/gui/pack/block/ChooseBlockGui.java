@@ -9,12 +9,13 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ChooseBlockGui extends ListGui {
-    public ChooseBlockGui(String namespace, Consumer<BlockAsset> action) {
+    public ChooseBlockGui(String namespace, @NotNull Consumer<BlockAsset> action) {
         super(ItemMods.getTranslationConfig().subTranslation("gui.choose.block"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
                 .stream().filter(blockAsset -> new PackObject(namespace, blockAsset.getName()).toString().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(Material.ARMOR_STAND)
                         .displayName(new PackObject(namespace, blockAsset.getName()).toString()).lore(gui.getTranslation().getTranslation("actions")).build()) {{

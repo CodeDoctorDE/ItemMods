@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.pack.asset;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -14,32 +15,37 @@ import java.util.List;
 public class ItemAsset extends PackAsset {
     @Nullable
     private PackObject modelObject;
-    private String translatedDisplayName = null;
-    private String displayName = null;
+    private @Nullable String translatedName = null;
+    private @Nullable String displayName = null;
     private List<String> lore = new ArrayList<>();
 
-    public ItemAsset(String name) {
+    public ItemAsset(@NotNull String name) {
         super(name);
         displayName = name;
     }
 
-    public ItemAsset(PackObject packObject, JsonObject jsonObject) {
+    public ItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
+        if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
+            modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
+        translatedName = jsonObject.get("translated-name").getAsString();
+        displayName = jsonObject.get("display-name").getAsString();
+        jsonObject.getAsJsonArray("lore").forEach(jsonElement -> lore.add(jsonElement.getAsString()));
     }
 
-    public String getTranslatedDisplayName() {
-        return translatedDisplayName;
+    public @Nullable String getTranslatedName() {
+        return translatedName;
     }
 
-    public void setTranslatedDisplayName(String translatedDisplayName) {
-        this.translatedDisplayName = translatedDisplayName;
+    public void setTranslatedName(@Nullable String translatedName) {
+        this.translatedName = translatedName;
     }
 
     public void removeTranslatedDisplayName() {
-        translatedDisplayName = null;
+        translatedName = null;
     }
 
-    public String getDisplayName() {
+    public @Nullable String getDisplayName() {
         return displayName;
     }
 
@@ -51,7 +57,7 @@ public class ItemAsset extends PackAsset {
         displayName = null;
     }
 
-    public List<String> getLore() {
+    public @NotNull List<String> getLore() {
         return Collections.unmodifiableList(lore);
     }
 
@@ -83,5 +89,17 @@ public class ItemAsset extends PackAsset {
         if (model == null || model.getFallbackTexture() == null)
             return Material.DIAMOND;
         return model.getFallbackTexture();
+    }
+
+    @Override
+    public JsonObject save(String namespace) {
+        var jsonObject = super.save(namespace);
+        jsonObject.addProperty("model-object", modelObject == null ? null : modelObject.toString());
+        jsonObject.addProperty("display-name", displayName);
+        jsonObject.addProperty("translated-name", translatedName);
+        var loreObject = new JsonArray();
+        lore.forEach(loreObject::add);
+        jsonObject.add("lore", loreObject);
+        return jsonObject;
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class CustomTemplate {
-    public abstract String getName();
+    public abstract @NotNull String getName();
 
     public abstract @NotNull ItemStack createIcon(CustomTemplateData data);
 

@@ -17,9 +17,9 @@ import java.util.Objects;
 public class BlocksGui extends ListGui {
     public BlocksGui(String name) {
         super(ItemMods.getTranslationConfig().subTranslation("gui.blocks"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
-                .filter(itemAsset -> itemAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(
+                .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(
                         blockAsset.getIcon()).displayName(blockAsset.getDisplayName())
-                        .lore(gui.getTranslation().getTranslation("actions")).build()) {{
+                        .lore(gui.getTranslation().getTranslation("actions", new PackObject(name, blockAsset.getName()).toString())).build()) {{
                     setClickAction(event -> new BlockGui(new PackObject(name, blockAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
         setPlaceholders(name);
@@ -35,8 +35,8 @@ public class BlocksGui extends ListGui {
                 p.sendMessage(t.getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     p.sendMessage(t.getTranslation("create.success", s));
-                    var itemAsset = new BlockAsset(s);
-                    pack.registerBlock(itemAsset);
+                    var blockAsset = new BlockAsset(s);
+                    pack.registerBlock(blockAsset);
                     rebuild();
                     show(p);
                 });

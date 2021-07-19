@@ -12,6 +12,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class CustomBlock {
         this.location = location;
     }
 
-    public CustomBlock(Block block) {
+    public CustomBlock(@NotNull Block block) {
         this(block.getLocation());
     }
 
@@ -52,7 +53,7 @@ public class CustomBlock {
         return getString(DATA_KEY);
     }
 
-    public void setData(String data) {
+    public void setData(@NotNull String data) {
         setString(DATA_KEY, data);
     }
 
@@ -79,11 +80,11 @@ public class CustomBlock {
         return true;
     }
 
-    public Block getBlock() {
+    public @NotNull Block getBlock() {
         return location.getBlock();
     }
 
-    private @Nullable String getString(NamespacedKey key) {
+    private @Nullable String getString(@NotNull NamespacedKey key) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;
@@ -92,7 +93,7 @@ public class CustomBlock {
         return null;
     }
 
-    public void setString(NamespacedKey key, String value) {
+    public void setString(@NotNull NamespacedKey key, @NotNull String value) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;

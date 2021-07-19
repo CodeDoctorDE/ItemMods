@@ -28,7 +28,7 @@ public class CustomBlockBreakEvent extends Event implements Cancellable {
         this.isCancelled = false;
     }
 
-    public static HandlerList getHandlerList() {
+    public static @NotNull HandlerList getHandlerList() {
         return HANDLERS_LIST;
     }
 

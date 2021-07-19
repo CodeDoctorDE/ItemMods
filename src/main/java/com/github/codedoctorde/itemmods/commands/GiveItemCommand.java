@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class GiveItemCommand implements TabCompleter, CommandExecutor {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
         Translation t = ItemMods.getTranslationConfig().subTranslation("command.give");
         if (args.length < 2 || args.length > 3) {
             commandSender.sendMessage(t.getTranslation("usage"));
@@ -63,7 +63,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
 
     @Nullable
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
         final List<String> completions = new ArrayList<>();
         List<String> available = new ArrayList<>();
         if (args.length <= 0)

@@ -27,6 +27,7 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -93,7 +94,7 @@ public class ItemMods extends JavaPlugin {
         return packManager;
     }
 
-    public static String getVersion() {
+    public static @NotNull String getVersion() {
         return getPlugin().getDescription().getVersion();
     }
 
@@ -148,7 +149,7 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), ItemMods.getPlugin());
         try {
             connect();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (@NotNull ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         if (getServer().getPluginManager().getPlugin("BetterGUI") != null && getServer().getPluginManager().isPluginEnabled("BetterGUI")) {
@@ -184,7 +185,7 @@ public class ItemMods extends JavaPlugin {
         return baseCommand;
     }
 
-    public Gson getGson() {
+    public @NotNull Gson getGson() {
         return gson;
     }
 }

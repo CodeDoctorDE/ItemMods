@@ -4,6 +4,7 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
+import com.github.codedoctorde.itemmods.pack.asset.raw.TextureAsset;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.regex.Pattern;
 
 public class PackObject {
-    public static Pattern IDENTIFIER_PATTERN = Pattern.compile("^(?<namespace>^[a-z\\-]+):(?<name>[a-z_\\-]+(/+[a-z_\\-]+)*)$");
+    public static @NotNull Pattern IDENTIFIER_PATTERN = Pattern.compile("^(?<namespace>^[a-z\\-]+):(?<name>[a-z_\\-]+(/+[a-z_\\-]+)*)$");
     private final String namespace, name;
 
     public PackObject(String namespace, String name) {
@@ -71,7 +72,15 @@ public class PackObject {
         return pack.getModel(name);
     }
 
-    public Integer getCustomModel() {
+    @Nullable
+    public TextureAsset getTexture() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getTexture(name);
+    }
+
+    public @Nullable Integer getCustomModel() {
         var asset = getModel();
         assert asset != null;
         if (asset.getStaticModel() != null)
@@ -84,7 +93,7 @@ public class PackObject {
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return namespace + ":" + name;
     }
 }

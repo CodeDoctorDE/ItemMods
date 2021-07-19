@@ -1,5 +1,7 @@
 package com.github.codedoctorde.itemmods.config;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +15,7 @@ public class ResourcePackConfig {
 
     }
 
-    public Map<String, Integer> getResourceIdentifier() {
+    public @NotNull Map<String, Integer> getResourceIdentifier() {
         return resourceIdentifier;
     }
 

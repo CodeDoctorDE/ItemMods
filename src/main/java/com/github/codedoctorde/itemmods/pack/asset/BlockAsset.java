@@ -2,23 +2,26 @@ package com.github.codedoctorde.itemmods.pack.asset;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
+import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-
 public class BlockAsset extends ItemAsset {
-    private HashMap<String, String> textures;
-    private PackObject blockModelObject;
+    private @Nullable PackObject blockModelObject;
 
     public BlockAsset(String name) {
         super(name);
     }
 
-    public HashMap<String, String> getTextures() {
-        return textures;
+    public BlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+        super(packObject, jsonObject);
+
+        if (jsonObject.has("block-model-object") && jsonObject.get("block-model-object").isJsonPrimitive())
+            blockModelObject = PackObject.fromIdentifier(jsonObject.get("block-model-object").getAsString());
+
     }
+
 
     public @Nullable PackObject getBlockModelObject() {
         return blockModelObject;

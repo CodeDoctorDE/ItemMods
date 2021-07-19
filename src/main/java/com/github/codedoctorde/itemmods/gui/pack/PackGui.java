@@ -10,8 +10,10 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.PacksGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
+import com.github.codedoctorde.itemmods.gui.pack.raw.TexturesGui;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -25,21 +27,21 @@ public class PackGui extends GuiCollection {
             registerItem(4, 2, new TranslatedGuiItem(new ItemStackBuilder(Material.STRUCTURE_VOID).displayName("readonly.title").lore("readonly.description").build()));
             return;
         }
-        var placeholderItem = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build());
+        var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         for (PackTab value : PackTab.values()) {
             TranslatedChestGui gui = new TranslatedChestGui(t, 4);
             gui.setPlaceholders(name);
-            gui.fillItems(0, 0, 0, 3, placeholderItem);
-            gui.fillItems(8, 0, 8, 3, placeholderItem);
+            gui.fillItems(0, 0, 0, 3, placeholder);
+            gui.fillItems(8, 0, 8, 3, placeholder);
             gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
                 setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
             }});
-            gui.addItem(placeholderItem);
+            gui.addItem(placeholder);
             Arrays.stream(PackTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
                 setClickAction(event -> setCurrent(tab.ordinal()));
             }}).forEach(gui::addItem);
-            gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            gui.fillItems(0, 0, 8, 1, placeholder);
             switch (value) {
                 case ADMINISTRATION:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
@@ -68,14 +70,15 @@ public class PackGui extends GuiCollection {
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setClickAction(event -> {
-                            new MessageGui(t) {{
-                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
+                            new MessageGui(t.subTranslation("delete.gui")) {{
+                                setPlaceholders(pack.getName());
+                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                     setClickAction(event -> {
                                         ItemMods.getPackManager().deletePack(name);
                                         new PacksGui().show((Player) event.getWhoClicked());
                                     });
-                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
-                                    setClickAction(event -> show((Player) event.getWhoClicked()));
+                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
+                                    setClickAction(event -> gui.show((Player) event.getWhoClicked()));
                                 }});
                             }}.show((Player) event.getWhoClicked());
                         });
@@ -107,7 +110,7 @@ public class PackGui extends GuiCollection {
                     break;
                 case RAW:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("textures.title").lore("textures.description").build()) {{
-                        setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
+                        setClickAction(event -> new TexturesGui(name).show((Player) event.getWhoClicked()));
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).displayName("models.title").lore("models.description").build()) {{
                         setClickAction(event -> new ModelsGui(name).show((Player) event.getWhoClicked()));
@@ -117,8 +120,8 @@ public class PackGui extends GuiCollection {
                     }});
                     break;
             }
-            gui.fillItems(0, 0, 8, 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
-            gui.fillItems(0, 3, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
+            gui.fillItems(0, 0, 8, 1, placeholder);
+            gui.fillItems(0, 3, 8, 3, placeholder);
             registerGui(gui);
         }
     }
@@ -126,7 +129,7 @@ public class PackGui extends GuiCollection {
     enum PackTab {
         GENERAL, CONTENTS, RAW, ADMINISTRATION;
 
-        public Material getMaterial() {
+        public @NotNull Material getMaterial() {
             switch (this) {
                 case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;

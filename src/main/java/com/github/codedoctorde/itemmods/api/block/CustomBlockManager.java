@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -14,12 +15,12 @@ import java.util.Objects;
 public class CustomBlockManager {
     private final List<CustomBlock> loadedBlocks = new ArrayList<>();
 
-    public static String locationToString(final Location location) {
+    public static @NotNull String locationToString(final @Nullable Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }
 
-    public static Location stringToLocation(final String location) {
+    public static @NotNull Location stringToLocation(final @NotNull String location) {
         String[] locationArray = location.split(":");
         return new Location(Bukkit.getWorld(locationArray[0]), Double.parseDouble(locationArray[1]),
                 Double.parseDouble(locationArray[2]),
@@ -48,7 +49,7 @@ public class CustomBlockManager {
      */
     @Deprecated
     @Nullable
-    public CustomBlock getCustomBlock(final Block block) {
+    public CustomBlock getCustomBlock(final @NotNull Block block) {
         return getCustomBlock(block.getLocation());
     }
 
@@ -97,7 +98,7 @@ public class CustomBlockManager {
         });*/
     }
 
-    public List<CustomBlock> getLoadedBlocks() {
+    public @NotNull List<CustomBlock> getLoadedBlocks() {
         return loadedBlocks;
     }
 }

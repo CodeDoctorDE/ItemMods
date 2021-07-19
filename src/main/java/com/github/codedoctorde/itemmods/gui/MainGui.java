@@ -15,10 +15,11 @@ public class MainGui extends TranslatedChestGui {
         super(ItemMods.getTranslationConfig().subTranslation("gui.main"), 4);
         Translation t = getTranslation();
         setPlaceholders(ItemMods.getVersion());
-        fillItems(0, 0, 0, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
-        fillItems(8, 0, 8, 3, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).build()));
-        fillItems(0, 0, getWidth() - 1, 0, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build()));
-        fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build()));
+        var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
+        fillItems(0, 0, 0, 3, placeholder);
+        fillItems(8, 0, 8, 3, placeholder);
+        fillItems(0, 0, getWidth() - 1, 0, placeholder);
+        fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, placeholder);
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).displayName("reload.title").lore("reload.description").build()) {{
             setClickAction(event -> {
                 Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());

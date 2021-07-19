@@ -2,6 +2,7 @@ package com.github.codedoctorde.itemmods.pack.asset.raw;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.URL;
@@ -13,11 +14,11 @@ public class TextureAsset extends RawAsset {
         super(name);
     }
 
-    public TextureAsset(String name, URL url) throws IOException {
+    public TextureAsset(String name, @NotNull URL url) throws IOException {
         super(name, url);
     }
 
-    public TextureAsset(PackObject packObject, JsonObject jsonObject) {
+    public TextureAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
     }
 

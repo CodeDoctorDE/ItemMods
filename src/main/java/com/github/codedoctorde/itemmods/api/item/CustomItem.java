@@ -7,19 +7,20 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
 public class CustomItem {
     private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "customitem_type");
     private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "customitem_data");
-    private final ItemStack itemStack;
+    private final @NotNull ItemStack itemStack;
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
-    public ItemAsset getConfig() {
+    public @Nullable ItemAsset getConfig() {
         try {
             var packObject = PackObject.fromIdentifier(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
             if (packObject == null)
@@ -31,7 +32,7 @@ public class CustomItem {
     }
 
 
-    public String getData() {
+    public @NotNull String getData() {
         return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().getOrDefault(DATA_KEY, PersistentDataType.STRING, "");
     }
 
@@ -39,12 +40,12 @@ public class CustomItem {
         Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().set(DATA_KEY, PersistentDataType.STRING, "");
     }
 
-    private String getType() {
+    private @Nullable String getType() {
         return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING);
     }
 
 
-    public ItemStack getItemStack() {
+    public @NotNull ItemStack getItemStack() {
         return itemStack;
     }
 }

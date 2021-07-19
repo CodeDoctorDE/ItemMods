@@ -3,24 +3,25 @@ package com.github.codedoctorde.itemmods.pack.asset.raw;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class ModelAsset extends RawAsset {
-    private Material fallbackTexture = Material.STONE;
-    private Integer staticModel = null;
+    private @Nullable Material fallbackTexture = Material.STONE;
+    private @Nullable Integer staticModel = null;
 
     public ModelAsset(String name) {
         super(name);
     }
 
-    public ModelAsset(String name, URL url) throws IOException {
+    public ModelAsset(String name, @NotNull URL url) throws IOException {
         super(name, url);
     }
 
-    public ModelAsset(PackObject packObject, JsonObject jsonObject) {
+    public ModelAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
     }
 
@@ -33,11 +34,11 @@ public class ModelAsset extends RawAsset {
         return fallbackTexture != null;
     }
 
-    public Integer getStaticModel() {
+    public @Nullable Integer getStaticModel() {
         return staticModel;
     }
 
-    public void setStaticModel(Integer staticModel) {
+    public void setStaticModel(@Nullable Integer staticModel) {
         this.staticModel = staticModel;
     }
 
@@ -49,7 +50,7 @@ public class ModelAsset extends RawAsset {
         this.fallbackTexture = fallbackTexture;
     }
 
-    public Material getIcon() {
+    public @NotNull Material getIcon() {
         if (fallbackTexture != null)
             return fallbackTexture;
         return Material.ARMOR_STAND;

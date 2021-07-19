@@ -14,9 +14,9 @@ import org.jetbrains.annotations.Nullable;
  */
 public class CustomBlockPlaceEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
-    private final PackObject packObject;
-    private final Location location;
-    private final Player player;
+    private final @NotNull PackObject packObject;
+    private final @NotNull Location location;
+    private final @Nullable Player player;
     private boolean isCancelled;
 
     public CustomBlockPlaceEvent(@NotNull Location location, @NotNull PackObject packObject, @Nullable Player player) {
@@ -26,7 +26,7 @@ public class CustomBlockPlaceEvent extends Event implements Cancellable {
         this.isCancelled = false;
     }
 
-    public static HandlerList getHandlerList() {
+    public static @NotNull HandlerList getHandlerList() {
         return HANDLERS_LIST;
     }
 

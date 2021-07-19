@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -34,17 +35,17 @@ public class ItemModsPack extends NamedPackObject {
     private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
     private String description = "";
 
-    public ItemModsPack(String name, boolean editable) throws UnsupportedOperationException {
+    public ItemModsPack(@NotNull String name, boolean editable) throws UnsupportedOperationException {
         super(name);
         this.editable = editable;
     }
 
-    public ItemModsPack(String name) {
+    public ItemModsPack(@NotNull String name) {
         this(name, true);
     }
 
 
-    public ItemModsPack(Path path) throws IOException {
+    public ItemModsPack(@NotNull Path path) throws IOException {
         super(path.getFileName().toString());
         editable = true;
         JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "pack.json")), JsonObject.class);
@@ -62,11 +63,11 @@ public class ItemModsPack extends NamedPackObject {
         });
     }
 
-    public List<String> getDependencies() {
+    public @NotNull List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);
     }
 
-    public void registerDependency(String name) {
+    public void registerDependency(@NotNull String name) {
         if (NamedPackObject.NAME_PATTERN.matcher(name).matches())
             dependencies.add(name);
     }
@@ -75,11 +76,11 @@ public class ItemModsPack extends NamedPackObject {
         dependencies.removeIf(dependency -> dependency.equals(name));
     }
 
-    public List<ItemAsset> getItems() {
+    public @NotNull List<ItemAsset> getItems() {
         return Collections.unmodifiableList(items);
     }
 
-    public void registerItem(ItemAsset itemAsset) {
+    public void registerItem(@NotNull ItemAsset itemAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
             items.add(itemAsset);
     }
@@ -88,11 +89,11 @@ public class ItemModsPack extends NamedPackObject {
         items.removeIf(itemAsset -> itemAsset.getName().equals(name));
     }
 
-    public List<BlockAsset> getBlocks() {
+    public @NotNull List<BlockAsset> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
 
-    public void registerBlock(BlockAsset blockAsset) {
+    public void registerBlock(@NotNull BlockAsset blockAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
             blocks.add(blockAsset);
     }
@@ -101,11 +102,11 @@ public class ItemModsPack extends NamedPackObject {
         blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
     }
 
-    public List<TextureAsset> getTextures() {
+    public @NotNull List<TextureAsset> getTextures() {
         return Collections.unmodifiableList(textures);
     }
 
-    public void registerTexture(TextureAsset textureAsset) {
+    public void registerTexture(@NotNull TextureAsset textureAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
@@ -114,11 +115,11 @@ public class ItemModsPack extends NamedPackObject {
         textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
     }
 
-    public List<ModelAsset> getModels() {
+    public @NotNull List<ModelAsset> getModels() {
         return Collections.unmodifiableList(models);
     }
 
-    public void registerModel(ModelAsset modelAsset) {
+    public void registerModel(@NotNull ModelAsset modelAsset) {
         if (NamedPackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
             models.add(modelAsset);
     }
@@ -127,11 +128,11 @@ public class ItemModsPack extends NamedPackObject {
         models.removeIf(modelAsset -> modelAsset.getName().equals(name));
     }
 
-    public List<CustomTemplate> getTemplates() {
+    public @NotNull List<CustomTemplate> getTemplates() {
         return Collections.unmodifiableList(templates);
     }
 
-    public void registerTemplate(CustomTemplate customTemplate) {
+    public void registerTemplate(@NotNull CustomTemplate customTemplate) {
         if (NamedPackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
             templates.add(customTemplate);
     }
@@ -171,16 +172,22 @@ public class ItemModsPack extends NamedPackObject {
         return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 
+    @Nullable
     public ModelAsset getModel(String name) {
         return models.stream().filter(modelAsset -> modelAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public GuiItem getGuiItem(PackObject packObject) {
+    @Nullable
+    public TextureAsset getTexture(String name) {
+        return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public @Nullable GuiItem getGuiItem(PackObject packObject) {
         return null;
     }
 
-    private String getFileName(Path path) {
-        System.out.println(path.toString());
+    private @NotNull String getFileName(@NotNull Path path) {
+        System.out.println(path);
         var pathName = path.toString();
         System.out.println(pathName);
         var pos = pathName.lastIndexOf('.');
@@ -189,7 +196,7 @@ public class ItemModsPack extends NamedPackObject {
         return "";
     }
 
-    void save(Path path) throws IOException {
+    void save(@NotNull Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("icon", new JsonPrimitive((new ItemStackBuilder(icon)).serialize()));
         var dependenciesArray = new JsonArray();

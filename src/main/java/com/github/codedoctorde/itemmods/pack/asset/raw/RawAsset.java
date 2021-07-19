@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.pack.asset.raw;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.PackAsset;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,12 +23,12 @@ public abstract class RawAsset extends PackAsset {
         data.put("default", new byte[0]);
     }
 
-    public RawAsset(String name, URL url) throws IOException {
+    public RawAsset(String name, @NotNull URL url) throws IOException {
         super(name);
         setDefaultTexture(url);
     }
 
-    public RawAsset(PackObject packObject, JsonObject jsonObject) {
+    public RawAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         jsonObject.getAsJsonObject("data").entrySet().forEach(entry -> data.put(entry.getKey(), entry.getValue().getAsString().getBytes(StandardCharsets.UTF_8)));
     }
@@ -40,7 +41,7 @@ public abstract class RawAsset extends PackAsset {
         setTexture("default", texture);
     }
 
-    public void setDefaultTexture(URL url) throws IOException {
+    public void setDefaultTexture(@NotNull URL url) throws IOException {
         setTexture("default", url);
     }
 
@@ -48,7 +49,7 @@ public abstract class RawAsset extends PackAsset {
         data.remove(bytes);
     }
 
-    public Set<String> getVariations() {
+    public @NotNull Set<String> getVariations() {
         return data.keySet();
     }
 
@@ -60,7 +61,7 @@ public abstract class RawAsset extends PackAsset {
         return data.getOrDefault(variation, getDefaultTexture());
     }
 
-    public void setTexture(String variation, URL url) throws IOException {
+    public void setTexture(String variation, @NotNull URL url) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
         try (InputStream stream = url.openStream()) {

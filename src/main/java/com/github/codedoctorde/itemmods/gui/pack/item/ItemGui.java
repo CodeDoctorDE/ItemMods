@@ -22,6 +22,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -50,6 +51,7 @@ public class ItemGui extends GuiCollection {
             pane.fillItems(0, 0, 8, 0, buildEmpty());
             addPane(1, 2, pane);
             fillItems(0, 0, 8, 3, buildPlaceholder());
+            setPlaceholders(packObject.toString());
 
         }}).forEach(this::registerGui);
     }
@@ -58,28 +60,26 @@ public class ItemGui extends GuiCollection {
         return ItemMods.getTranslationConfig().subTranslation("gui.item");
     }
 
-    protected GuiPane buildAdministrationPane(TranslatedChestGui gui) {
+    protected @NotNull GuiPane buildAdministrationPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         var t = getTranslation();
         var asset = getAsset();
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
-            setClickAction(event -> {
-                new MessageGui(t) {{
-                    setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
-                        setClickAction(event -> {
-                            Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
-                            new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
-                        });
-                    }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
-                        setClickAction(event -> show((Player) event.getWhoClicked()));
-                    }});
-                }}.show((Player) event.getWhoClicked());
-            });
+            setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
+                    setClickAction(event -> {
+                        Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
+                        new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                    });
+                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
+                    setClickAction(event -> show((Player) event.getWhoClicked()));
+                }});
+            }}.show((Player) event.getWhoClicked()));
         }});
         return pane;
     }
 
-    protected GuiPane buildGeneralPane(TranslatedChestGui gui) {
+    protected @NotNull GuiPane buildGeneralPane(TranslatedChestGui gui) {
         GuiPane pane = new GuiPane(7, 1);
         var t = getTranslation();
         var asset = getAsset();
@@ -111,15 +111,10 @@ public class ItemGui extends GuiCollection {
                 var request = new ChatRequest(p);
                 p.sendMessage(t.getTranslation("display-name.message"));
                 request.setSubmitAction(s -> {
-                    try {
-                        var ts = ChatColor.translateAlternateColorCodes('&', s);
-                        asset.setDisplayName(ts);
-                        show(p);
-                        p.sendMessage(t.getTranslation("display-name.success", ts));
-                    } catch (Exception e) {
-                        p.sendMessage(t.getTranslation("display-name.failed"));
-                        e.printStackTrace();
-                    }
+                    var ts = ChatColor.translateAlternateColorCodes('&', s);
+                    asset.setDisplayName(ts);
+                    show(p);
+                    p.sendMessage(t.getTranslation("display-name.success", ts));
                 });
             });
         }});
@@ -127,6 +122,7 @@ public class ItemGui extends GuiCollection {
             setRenderAction(gui -> {
                 var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
                 setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title").lore(prefix + "description").build());
+                if (asset.getModelObject() != null) setPlaceholders(asset.getModelObject().toString());
             });
             setClickAction(event -> {
                 var p = (Player) event.getWhoClicked();
@@ -154,7 +150,7 @@ public class ItemGui extends GuiCollection {
         return pane;
     }
 
-    protected GuiPane buildTabs(int index) {
+    protected @NotNull GuiPane buildTabs(int index) {
         var pane = new GuiPane(9, 1);
         pane.addItem(buildPlaceholder());
         pane.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
@@ -168,22 +164,22 @@ public class ItemGui extends GuiCollection {
         return pane;
     }
 
-    protected GuiItem buildPlaceholder() {
+    protected @NotNull GuiItem buildPlaceholder() {
         return new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
     }
 
-    protected GuiItem buildEmpty() {
+    protected @NotNull GuiItem buildEmpty() {
         return new StaticItem(new ItemStackBuilder(Material.AIR).build());
     }
 
-    public ItemAsset getAsset() {
-        return packObject.getItem();
+    public @NotNull ItemAsset getAsset() {
+        return Objects.requireNonNull(packObject.getItem());
     }
 
     public enum ItemTab {
         GENERAL, ADMINISTRATION;
 
-        public Material getMaterial() {
+        public @NotNull Material getMaterial() {
             switch (this) {
                 case ADMINISTRATION:
                     return Material.COMMAND_BLOCK;

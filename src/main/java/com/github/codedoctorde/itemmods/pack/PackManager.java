@@ -1,6 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -8,10 +9,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
@@ -21,10 +19,10 @@ import java.util.zip.ZipOutputStream;
  * @author CodeDoctorDE
  */
 public class PackManager {
-    private final Path packPath;
-    private final Path importPath;
-    private final Path exportPath;
-    private final Path resourcePacksPath;
+    private final @NotNull Path packPath;
+    private final @NotNull Path importPath;
+    private final @NotNull Path exportPath;
+    private final @NotNull Path resourcePacksPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
     private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
@@ -45,7 +43,7 @@ public class PackManager {
         reload();
     }
 
-    private static void zipFile(Path fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
+    private static void zipFile(@NotNull Path fileToZip, @NotNull String fileName, @NotNull ZipOutputStream zipOut) throws IOException {
         if (Files.isHidden(fileToZip)) {
             return;
         }
@@ -78,15 +76,15 @@ public class PackManager {
         fis.close();
     }
 
-    public Path getImportPath() {
+    public @NotNull Path getImportPath() {
         return importPath;
     }
 
-    public Path getExportPath() {
+    public @NotNull Path getExportPath() {
         return exportPath;
     }
 
-    public Path getResourcePacksPath() {
+    public @NotNull Path getResourcePacksPath() {
         return resourcePacksPath;
     }
 
@@ -133,11 +131,11 @@ public class PackManager {
         }
     }
 
-    public List<ItemModsPack> getPacks() {
+    public @NotNull List<ItemModsPack> getPacks() {
         return Collections.unmodifiableList(packs);
     }
 
-    public List<ItemModsPack> getInactivePacks() {
+    public @NotNull List<ItemModsPack> getInactivePacks() {
         return Collections.unmodifiableList(inactivePacks);
     }
 
@@ -145,7 +143,7 @@ public class PackManager {
         return packs.stream().map(NamedPackObject::getName).collect(Collectors.toSet());
     }
 
-    public void registerPack(ItemModsPack pack) {
+    public void registerPack(@NotNull ItemModsPack pack) {
         if (!NamedPackObject.NAME_PATTERN.matcher(pack.getName()).matches()) return;
         if (packs.stream().anyMatch(current -> current.getName().equals(pack.getName())))
             return;
@@ -174,8 +172,16 @@ public class PackManager {
         packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).collect(Collectors.toList()).forEach(itemModsPack -> {
             packs.remove(itemModsPack);
             if (itemModsPack.isEditable()) {
-                try {
-                    Files.deleteIfExists(Paths.get(packPath.toString(), name));
+                var rootPath = Paths.get(packPath.toString(), itemModsPack.getName());
+                try (Stream<Path> walk = Files.walk(rootPath)) {
+                    walk.sorted(Comparator.reverseOrder())
+                            .forEach((path) -> {
+                                try {
+                                    Files.delete(path);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -183,7 +189,7 @@ public class PackManager {
         });
     }
 
-    public Path getPackPath() {
+    public @NotNull Path getPackPath() {
         return packPath;
     }
 
@@ -192,7 +198,7 @@ public class PackManager {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public void export(String name) throws IOException {
+    public void export(@NotNull String name) throws IOException {
         var pack = getPack(name);
         if (pack == null || !pack.isEditable())
             return;

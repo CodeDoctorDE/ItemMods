@@ -1,5 +1,7 @@
 package com.github.codedoctorde.itemmods.config;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainConfig {
     private final DatabaseConfig databaseConfig = new DatabaseConfig();
     private final ResourcePackConfig resourcePackConfig = new ResourcePackConfig();
@@ -8,11 +10,11 @@ public class MainConfig {
 
     }
 
-    public DatabaseConfig getDatabaseConfig() {
+    public @NotNull DatabaseConfig getDatabaseConfig() {
         return databaseConfig;
     }
 
-    public ResourcePackConfig getResourcePackConfig() {
+    public @NotNull ResourcePackConfig getResourcePackConfig() {
         return resourcePackConfig;
     }
 }
