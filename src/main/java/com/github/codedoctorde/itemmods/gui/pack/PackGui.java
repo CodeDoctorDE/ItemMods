@@ -28,23 +28,22 @@ public class PackGui extends GuiCollection {
             return;
         }
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
-        for (PackTab value : PackTab.values()) {
-            TranslatedChestGui gui = new TranslatedChestGui(t, 4);
-            gui.setPlaceholders(name);
-            gui.fillItems(0, 0, 0, 3, placeholder);
-            gui.fillItems(8, 0, 8, 3, placeholder);
-            gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
+        Arrays.stream(PackTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
+            setPlaceholders(name);
+            fillItems(0, 0, 0, 3, placeholder);
+            fillItems(8, 0, 8, 3, placeholder);
+            addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
                 setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
             }});
-            gui.addItem(placeholder);
+            addItem(placeholder);
             Arrays.stream(PackTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
                 setClickAction(event -> setCurrent(tab.ordinal()));
-            }}).forEach(gui::addItem);
-            gui.fillItems(0, 0, 8, 1, placeholder);
+            }}).forEach(this::addItem);
+            fillItems(0, 0, 8, 1, placeholder);
             switch (value) {
                 case ADMINISTRATION:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
+                    addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
                             var activated = ItemMods.getPackManager().isActivated(pack.getName());
                             var prefix = activated ? "activated." : "deactivated.";
@@ -58,7 +57,7 @@ public class PackGui extends GuiCollection {
                             reloadAll();
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
                         setClickAction(event -> {
                             try {
                                 ItemMods.getPackManager().export(pack.getName());
@@ -68,7 +67,7 @@ public class PackGui extends GuiCollection {
                             event.getWhoClicked().sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                         });
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setClickAction(event -> {
                             new MessageGui(t.subTranslation("delete.gui")) {{
                                 setPlaceholders(pack.getName());
@@ -78,14 +77,14 @@ public class PackGui extends GuiCollection {
                                         new PacksGui().show((Player) event.getWhoClicked());
                                     });
                                 }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
-                                    setClickAction(event -> gui.show((Player) event.getWhoClicked()));
+                                    setClickAction(event -> PackGui.this.show((Player) event.getWhoClicked()));
                                 }});
                             }}.show((Player) event.getWhoClicked());
                         });
                     }});
                     break;
                 case GENERAL:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
                         setRenderAction((gui) -> setPlaceholders(pack.getName()));
                         setClickAction((event) -> {
                             var p = (Player) event.getWhoClicked();
@@ -101,29 +100,28 @@ public class PackGui extends GuiCollection {
                     }});
                     break;
                 case CONTENTS:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("items.title").lore("items.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("items.title").lore("items.description").build()) {{
                         setClickAction(event -> new ItemsGui(name).show((Player) event.getWhoClicked()));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("blocks.title").lore("blocks.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.GRASS_BLOCK).displayName("blocks.title").lore("blocks.description").build()) {{
                         setClickAction(event -> new BlocksGui(name).show((Player) event.getWhoClicked()));
                     }});
                     break;
                 case RAW:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("textures.title").lore("textures.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("textures.title").lore("textures.description").build()) {{
                         setClickAction(event -> new TexturesGui(name).show((Player) event.getWhoClicked()));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).displayName("models.title").lore("models.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ARMOR_STAND).displayName("models.title").lore("models.description").build()) {{
                         setClickAction(event -> new ModelsGui(name).show((Player) event.getWhoClicked()));
                     }});
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).displayName("sounds.title").lore("sounds.description").build()) {{
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NOTE_BLOCK).displayName("sounds.title").lore("sounds.description").build()) {{
                         setClickAction(event -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon")));
                     }});
                     break;
             }
-            gui.fillItems(0, 0, 8, 1, placeholder);
-            gui.fillItems(0, 3, 8, 3, placeholder);
-            registerGui(gui);
-        }
+            fillItems(0, 0, 8, 1, placeholder);
+            fillItems(0, 3, 8, 3, placeholder);
+        }}).forEach(this::registerGui);
     }
 
     enum PackTab {

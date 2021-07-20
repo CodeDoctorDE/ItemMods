@@ -26,7 +26,7 @@ public class DataGui extends ListGui {
             remove("default");
             add(0, "default");
         }}.stream().filter(bytes -> bytes.contains(gui.getSearchText()))
-                .map(bytes -> new StaticItem(new ItemStackBuilder().build()) {{
+                .map(bytes -> new StaticItem() {{
                     setRenderAction(gui -> {
                         var hasData = asset.getVariations().contains(bytes);
                         var prefix = (hasData ? "has" : "not-has") + ".";

@@ -96,7 +96,6 @@ public class PackManager {
                     .filter(path -> Files.exists(Paths.get(path.toString(), "pack.json")))
                     .forEach(path -> {
                         try {
-                            System.out.println(path.getFileName().toString());
                             var pack = new ItemModsPack(path);
                             packs.add(pack);
                         } catch (IOException e) {
@@ -207,6 +206,7 @@ public class PackManager {
         if (!Files.exists(path))
             return;
         zipFile(path, name, zipOut);
+        zipOut.close();
     }
 
     public boolean isActivated(String name) {

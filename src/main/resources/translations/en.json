@@ -24,7 +24,8 @@
       "title": "§6§6§lItemMods §7(%s)",
       "reload": {
         "title": "§6Reload",
-        "description": "§7Reload the whole plugin"
+        "description": "§7Reload the whole plugin",
+        "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
       },
       "packs": {
         "title": "§6Packs",
@@ -73,9 +74,9 @@
       "create": {
         "title": "§6Create",
         "description": "§7Create a new pack",
-        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully created the pack §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid pack name."
+        "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid pack name."
       },
       "actions": "§3%s\n\n§7Open the pack gui"
     },
@@ -88,9 +89,9 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid pack name."
+        "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid pack name."
       },
       "general": "§6General",
       "contents": "§6Contents",
@@ -157,9 +158,9 @@
       "create": {
         "title": "§6Create",
         "description": "§7Create a new item",
-        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid item name."
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
       },
       "actions": "§3%s\n\n§7Open the item gui"
     },
@@ -174,15 +175,15 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the item name to §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid item name."
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
       },
       "display-name": {
         "title": "§6Display name",
         "description": "§3%s\n\n§7Click to change the display name",
-        "message": "§6ItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+        "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
       },
       "model": {
         "not-set": {
@@ -224,9 +225,9 @@
       "create": {
         "title": "§6Create",
         "description": "§7Create a new item",
-        "message": "§6ItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully created the item §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid item name."
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
       },
       "actions": "§3%s\n\n§7Open the item gui"
     },
@@ -242,15 +243,15 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§6ItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the block name to §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid block name."
+        "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the block name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid block name."
       },
       "display-name": {
         "title": "§6Display name",
         "description": "§3%s\n\n§7Click to change the display name",
-        "message": "§6ItemMods §7» §ePlease enter the display name of the block. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the block display name to §3%s§a."
+        "message": "§eItemMods §7» §ePlease enter the display name of the block. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the block display name to §3%s§a."
       },
       "model": {
         "not-set": {
@@ -293,9 +294,9 @@
         "create": {
           "title": "§6Create",
           "description": "§7Create a new model",
-          "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
-          "success": "§6ItemMods §7» §aSuccessfully created the model §3%s§a.",
-          "failed": "§6ItemMods §7» §cInvalid model name."
+          "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully created the model §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid model name."
         },
         "actions": "§3%s\n\n§7Open the model gui"
       },
@@ -308,9 +309,9 @@
         "name": {
           "title": "§6Name",
           "description": "§3%s\n\n§7Click to change the name",
-          "message": "§6ItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
-          "success": "§6ItemMods §7» §aSuccessfully change the model name to §3%s§a.",
-          "failed": "§6ItemMods §7» §cInvalid pack name."
+          "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully change the model name to §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid pack name."
         },
         "fallback": {
           "title": "§6Fallback texture",
@@ -339,9 +340,6 @@
   },
   "event": {
     "rename": "§eItemMods §7» §cThis item cannot be renamed!"
-  },
-  "reload": {
-    "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
   },
   "command": {
     "base": {

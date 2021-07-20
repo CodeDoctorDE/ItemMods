@@ -6,6 +6,8 @@ import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
 import com.github.codedoctorde.api.server.Version;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
+import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
@@ -23,6 +25,7 @@ import com.google.gson.JsonObject;
 import me.hsgamer.bettergui.builder.ItemModifierBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
@@ -100,15 +103,18 @@ public class ItemMods extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        plugin = this;
         UpdateChecker updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
-        translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
-        try {
-            translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if(translationConfig == null) {
+            translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
+            try {
+                translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else
+            translationConfig.reload();
+        plugin = this;
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
@@ -125,16 +131,7 @@ public class ItemMods extends JavaPlugin {
         }
 
         baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
-        try {
-            if (!Files.exists(baseConfig))
-                Files.createFile(baseConfig);
-            mainConfig = gson.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            mainConfig = new MainConfig();
-        }
-        if (mainConfig == null)
-            mainConfig = new MainConfig();
+        reloadMainConfig();
         baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();
         customBlockManager = new CustomBlockManager();
@@ -159,10 +156,23 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
+    private void reloadMainConfig() {
+        try {
+            if (!Files.exists(baseConfig))
+                Files.createFile(baseConfig);
+            mainConfig = gson.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mainConfig = new MainConfig();
+        }
+        if (mainConfig == null)
+            mainConfig = new MainConfig();
+    }
+
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
-        Bukkit.getOnlinePlayers().forEach(HumanEntity::closeInventory);
+        Bukkit.getOnlinePlayers().stream().filter(Gui::hasGui).forEach(HumanEntity::closeInventory);
         saveBaseConfig();
         super.onDisable();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
@@ -179,6 +189,12 @@ public class ItemMods extends JavaPlugin {
             connection = DriverManager.getConnection("jdbc:mysql://" + mainConfig.getDatabaseConfig().getHost() + ":" + mainConfig.getDatabaseConfig().getPort() + "/" + mainConfig.getDatabaseConfig().getDatabase(),
                     mainConfig.getDatabaseConfig().getUsername(), mainConfig.getDatabaseConfig().getPassword());
         }
+    }
+
+    public void reload() {
+        translationConfig.reload();
+        packManager.reload();
+        reloadMainConfig();
     }
 
     public BaseCommand getBaseCommand() {

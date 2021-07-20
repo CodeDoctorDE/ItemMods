@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class PackAsset extends NamedPackObject {
@@ -30,7 +31,15 @@ public abstract class PackAsset extends NamedPackObject {
     }
 
     public @NotNull List<CustomTemplateData> getCustomTemplates() {
-        return customTemplates;
+        return Collections.unmodifiableList(customTemplates);
+    }
+
+    public void registerCustomTemplate(CustomTemplateData data) {
+        customTemplates.add(data);
+    }
+
+    public void unregisterCustomTemplate(int index) {
+        customTemplates.remove(index);
     }
 
     public JsonObject save(String namespace) {

@@ -24,7 +24,7 @@ public class TextureGui extends GuiCollection {
         var t = ItemMods.getTranslationConfig().subTranslation("gui.raw.texture");
         var asset = packObject.getTexture();
         assert asset != null;
-        var empty = new StaticItem(new ItemStackBuilder().build());
+        var empty = new StaticItem();
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         for (TextureTab value : TextureTab.values()) {
             var gui = new TranslatedChestGui(t, 4);
@@ -81,7 +81,7 @@ public class TextureGui extends GuiCollection {
                                     new TexturesGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
-                                setClickAction(event -> show((Player) event.getWhoClicked()));
+                                setClickAction(event -> TextureGui.this.show((Player) event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));
                     }});

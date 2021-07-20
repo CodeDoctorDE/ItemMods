@@ -25,7 +25,7 @@ public class ModelGui extends GuiCollection {
         var t = ItemMods.getTranslationConfig().subTranslation("gui.raw.model");
         var asset = packObject.getModel();
         assert asset != null;
-        var empty = new StaticItem(new ItemStackBuilder().build());
+        var empty = new StaticItem();
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         for (ModelTab value : ModelTab.values()) {
             var gui = new TranslatedChestGui(t, 4);
@@ -64,7 +64,7 @@ public class ModelGui extends GuiCollection {
                     }});
                     break;
                 case APPEARANCE:
-                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder().build()) {{
+                    gui.addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
                             var icon = asset.getFallbackTexture();
                             if (icon == null)
@@ -95,7 +95,7 @@ public class ModelGui extends GuiCollection {
                                     new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
-                                setClickAction(event -> show((Player) event.getWhoClicked()));
+                                setClickAction(event -> ModelGui.this.show((Player) event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));
                     }});

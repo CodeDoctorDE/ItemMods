@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemModsPack extends NamedPackObject {
     private final boolean editable;
@@ -48,14 +49,15 @@ public class ItemModsPack extends NamedPackObject {
     public ItemModsPack(@NotNull Path path) throws IOException {
         super(path.getFileName().toString());
         editable = true;
-        JsonObject jsonObject = GSON.fromJson(Files.newBufferedReader(Paths.get(path.toString(), "pack.json")), JsonObject.class);
+        var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
+        JsonObject jsonObject = GSON.fromJson(br, JsonObject.class);
+        br.close();
         icon = new ItemStackBuilder(jsonObject.get("icon")).build();
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
 
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                System.out.println(current.toString());
                 items.add(new ItemAsset(new PackObject(getName(), getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -187,18 +189,15 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     private @NotNull String getFileName(@NotNull Path path) {
-        System.out.println(path);
         var pathName = path.toString();
-        System.out.println(pathName);
         var pos = pathName.lastIndexOf('.');
-        System.out.println(pos);
         if (pos > 0) return pathName.substring(0, pos);
         return "";
     }
 
     void save(@NotNull Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add("icon", new JsonPrimitive((new ItemStackBuilder(icon)).serialize()));
+        jsonObject.add("icon", new JsonPrimitive(Objects.requireNonNull((new ItemStackBuilder(icon)).serialize())));
         var dependenciesArray = new JsonArray();
         dependencies.forEach(dependenciesArray::add);
         jsonObject.add("dependencies", dependenciesArray);

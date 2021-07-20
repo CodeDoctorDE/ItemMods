@@ -22,8 +22,7 @@ public class MainGui extends TranslatedChestGui {
         fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, placeholder);
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).displayName("reload.title").lore("reload.description").build()) {{
             setClickAction(event -> {
-                Bukkit.getPluginManager().disablePlugin(ItemMods.getPlugin());
-                Bukkit.getPluginManager().enablePlugin(ItemMods.getPlugin());
+                ItemMods.getPlugin().reload();
                 event.getWhoClicked().sendMessage(t.getTranslation("reload.success"));
             });
         }});

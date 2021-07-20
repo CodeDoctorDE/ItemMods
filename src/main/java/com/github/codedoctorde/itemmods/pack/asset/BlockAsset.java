@@ -2,13 +2,18 @@ package com.github.codedoctorde.itemmods.pack.asset;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
+import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockAsset extends ItemAsset {
-    private @Nullable PackObject blockModelObject;
+import java.util.ArrayList;
+import java.util.List;
+
+public class BlockAsset extends PackAsset {
+    private @Nullable PackObject modelObject;
+    private PackObject itemObject;
 
     public BlockAsset(String name) {
         super(name);
@@ -17,33 +22,40 @@ public class BlockAsset extends ItemAsset {
     public BlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
 
-        if (jsonObject.has("block-model-object") && jsonObject.get("block-model-object").isJsonPrimitive())
-            blockModelObject = PackObject.fromIdentifier(jsonObject.get("block-model-object").getAsString());
+        if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
+            modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
 
+        jsonObject.getAsJsonArray("block-templates").forEach(o -> {
+            var current = o.getAsJsonObject();
+            try {
+                getCustomTemplates().add(new CustomTemplateData(PackObject.fromIdentifier(current.get("object").getAsString()), current.getAsJsonObject("data")));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 
-    public @Nullable PackObject getBlockModelObject() {
-        return blockModelObject;
+    public @Nullable PackObject getModelObject() {
+        return modelObject;
     }
 
-    public void setBlockModelObject(@Nullable PackObject modelObject) {
+    public void setModelObject(@Nullable PackObject modelObject) {
         if (modelObject == null)
-            this.blockModelObject = null;
+            this.modelObject = null;
         else if (modelObject.getModel() != null)
-            this.blockModelObject = modelObject;
+            this.modelObject = modelObject;
     }
 
     @Nullable
-    public ModelAsset getBlockModel() {
-        if (blockModelObject == null)
+    public ModelAsset getModel() {
+        if (modelObject == null)
             return null;
-        return blockModelObject.getModel();
+        return modelObject.getModel();
     }
 
 
     @NotNull
-    @Override
     public Material getIcon() {
         var model = getModel();
         if (model == null || model.getFallbackTexture() == null)
