@@ -44,6 +44,12 @@
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
                         </filter>
+                        <filter>
+                            <artifact>org.bstats:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
                     </filters>
                     <relocations>
                         <relocation>

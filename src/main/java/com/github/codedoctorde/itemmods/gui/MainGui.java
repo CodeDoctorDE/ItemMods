@@ -33,16 +33,16 @@ public class MainGui extends TranslatedChestGui {
             setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("source.title").lore("source.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("source.link")));
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("source.link", "https://github.com/CodeDoctorDE/ItemMods")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.MAP).displayName("support.title").lore("support.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("support.link")));
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("support.link", "https://discord.gg/WzcRNGF")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).displayName("wiki.title").lore("wiki.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("wiki.link")));
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("wiki.link", "https://itemmods.codedoctor.tk")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAINTING).displayName("crowdin.title").lore("crowdin.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("crowdin.link")));
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("crowdin.link", "https://linwood.crowdin.com/ItemMods")));
         }});
     }
 }

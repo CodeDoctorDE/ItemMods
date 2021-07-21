@@ -89,12 +89,12 @@ public class ModelGui extends GuiCollection {
                 case ADMINISTRATION:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
-                            setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).build()) {{
+                            setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterModel(asset.getName());
                                     new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
-                            }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).build()) {{
+                            }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> ModelGui.this.show((Player) event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));

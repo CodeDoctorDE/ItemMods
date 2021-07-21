@@ -7,7 +7,6 @@ import com.github.codedoctorde.api.server.Version;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
@@ -25,7 +24,6 @@ import com.google.gson.JsonObject;
 import me.hsgamer.bettergui.builder.ItemModifierBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
@@ -45,7 +43,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class ItemMods extends JavaPlugin {
-    private static final Gson gson = new GsonBuilder()
+    public static final Gson GSON = new GsonBuilder()
             .registerTypeHierarchyAdapter(Location.class, new LocationTypeAdapter())
             .registerTypeHierarchyAdapter(ItemStack.class, new ItemStackTypeAdapter())
             .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
@@ -57,6 +55,7 @@ public class ItemMods extends JavaPlugin {
     private static CustomBlockManager customBlockManager;
     private static CustomItemManager customItemManager;
     private static TranslationConfig translationConfig;
+    private static Path tempPath;
     private static PackManager packManager;
     private BaseCommand baseCommand;
     private Connection connection;
@@ -77,7 +76,7 @@ public class ItemMods extends JavaPlugin {
         try {
             FileWriter writer = new FileWriter(baseConfig.toString());
             BufferedWriter bw = new BufferedWriter(writer);
-            bw.write(gson.toJson(mainConfig));
+            bw.write(GSON.toJson(mainConfig));
             bw.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -106,14 +105,20 @@ public class ItemMods extends JavaPlugin {
         UpdateChecker updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
         if(translationConfig == null) {
-            translationConfig = new TranslationConfig(gson, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
+            translationConfig = new TranslationConfig(GSON, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
             try {
-                translationConfig.setDefault(new Translation(gson.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
+                translationConfig.setDefault(new Translation(GSON.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else
             translationConfig.reload();
+        tempPath = Paths.get(getDataFolder().getAbsolutePath(), "temp");
+        try {
+            Files.createDirectories(tempPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         plugin = this;
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
@@ -160,7 +165,7 @@ public class ItemMods extends JavaPlugin {
         try {
             if (!Files.exists(baseConfig))
                 Files.createFile(baseConfig);
-            mainConfig = gson.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
+            mainConfig = GSON.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
         } catch (Exception ex) {
             ex.printStackTrace();
             mainConfig = new MainConfig();
@@ -202,6 +207,10 @@ public class ItemMods extends JavaPlugin {
     }
 
     public @NotNull Gson getGson() {
-        return gson;
+        return GSON;
+    }
+
+    public static Path getTempPath() {
+        return tempPath;
     }
 }
