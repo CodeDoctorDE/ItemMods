@@ -1,14 +1,16 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.google.gson.JsonObject;
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,27 +22,27 @@ import java.util.zip.ZipOutputStream;
  */
 public class PackManager {
     private final @NotNull Path packPath;
-    private final @NotNull Path importPath;
-    private final @NotNull Path exportPath;
-    private final @NotNull Path resourcePacksPath;
+    private final @NotNull Path presetPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
     private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
     public PackManager() throws IOException {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
-        importPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "imports");
-        exportPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "exports");
-        //noinspection SpellCheckingInspection
-        resourcePacksPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "resourcepacks");
+        presetPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "preset");
         try {
-            Files.createDirectory(packPath);
-            Files.createDirectory(importPath);
-            Files.createDirectory(exportPath);
-            Files.createDirectory(resourcePacksPath);
-        } catch (FileAlreadyExistsException ignored) {
-
+            Files.createDirectories(packPath);
+            Files.createDirectories(presetPath);
+            if (!hasPreset())
+                Bukkit.getConsoleSender().sendMessage(ItemMods.getTranslationConfig().getTranslation("plugin.no-preset"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         reload();
+    }
+
+    public boolean hasPreset() throws IOException {
+        return Files.newDirectoryStream(presetPath).iterator().hasNext();
     }
 
     private static void zipFile(@NotNull Path fileToZip, @NotNull String fileName, @NotNull ZipOutputStream zipOut) throws IOException {
@@ -74,18 +76,6 @@ public class PackManager {
             zipOut.write(bytes, 0, length);
         }
         fis.close();
-    }
-
-    public @NotNull Path getImportPath() {
-        return importPath;
-    }
-
-    public @NotNull Path getExportPath() {
-        return exportPath;
-    }
-
-    public @NotNull Path getResourcePacksPath() {
-        return resourcePacksPath;
     }
 
     public void reload() {
@@ -197,16 +187,53 @@ public class PackManager {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public void export(@NotNull String name) throws IOException {
+    public void zip(@NotNull String name) throws IOException {
         var pack = getPack(name);
         if (pack == null || !pack.isEditable())
             return;
-        var zipOut = new ZipOutputStream(Files.newOutputStream(Paths.get(exportPath.toString(), name)));
+        var zipOut = new ZipOutputStream(Files.newOutputStream(Paths.get(ItemMods.getTempPath().toString(), name)));
         var path = Paths.get(packPath.toString(), name);
         if (!Files.exists(path))
             return;
         zipFile(path, name, zipOut);
         zipOut.close();
+    }
+
+    public void export(String variation) throws IOException {
+        if (!hasPreset())
+            return;
+        var output = Paths.get(ItemMods.getTempPath().toString(), "output");
+        if (Files.exists(output))
+            try (Stream<Path> walk = Files.walk(output)) {
+                walk.sorted(Comparator.reverseOrder())
+                        .forEach((path) -> {
+                            try {
+                                Files.delete(path);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        Files.createDirectories(output);
+        try (Stream<Path> walk = Files.walk(presetPath)) {
+            walk.sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
+                    .forEach((path) -> {
+                        try {
+                            var current = Paths.get(output.toString(), presetPath.relativize(path).toString());
+                            Files.createDirectories(current.getParent());
+                            Files.copy(path, current, StandardCopyOption.REPLACE_EXISTING);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        var packMeta = ItemMods.GSON.fromJson(Files.readString(Paths.get(output.toString(), "pack.mcmeta")), JsonObject.class);
+        var packFormat = packMeta.getAsJsonObject("pack").get("pack_format").getAsInt();
+        for (ItemModsPack pack : packs) pack.export(variation, packFormat, output);
     }
 
     public boolean isActivated(String name) {

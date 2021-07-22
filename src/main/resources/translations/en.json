@@ -5,7 +5,8 @@
     "unloading": "§eItemMods §7» §eUnloading plugin...",
     "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
     "compatible": "§eItemMods §7» §6This plugin isn't compatible with your version!",
-    "version": "$eItemMods $7» §6There is a new version available: §3%s"
+    "version": "$eItemMods $7» §6There is a new version available: §3%s",
+    "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
   },
   "api": {
     "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
@@ -335,6 +336,39 @@
             "no": "§cNo"
           }
         }
+      },
+      "data": {
+        "title": "§6Data §3%s §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "search": {
+          "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+          "title": "§6Search",
+          "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        },
+        "create": {
+          "title": "§6Create",
+          "description": "§7Create a new model",
+          "variation": "§eItemMods §7» §ePlease enter the name of the variation. Cancel with a left click.",
+          "gui": {
+            "title": "§6Create data",
+            "back": {
+              "title": "§6Back",
+              "description": "§7Go to the data list"
+            },
+            "internet": {
+              "title": "§6Internet",
+              "description": "§7Get the data from the internet"
+            },
+            "file": {
+              "title": "§6File",
+              "description": "§7Get the data from a file in the temp directory."
+            }
+          }
+        },
+        "actions": "§3%s\n\n§7Open the model gui"
       }
     }
   },

@@ -20,6 +20,7 @@ public abstract class NamedPackObject {
     }
 
     public void setName(@NotNull String name) throws UnsupportedOperationException {
+        System.out.println(name);
         if (!NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
         this.name = name;

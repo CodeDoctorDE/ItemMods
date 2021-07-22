@@ -60,7 +60,7 @@ public class PackGui extends GuiCollection {
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
                         setClickAction(event -> {
                             try {
-                                ItemMods.getPackManager().export(pack.getName());
+                                ItemMods.getPackManager().zip(pack.getName());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

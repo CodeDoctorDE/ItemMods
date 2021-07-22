@@ -100,11 +100,16 @@ public class ItemMods extends JavaPlugin {
         return getPlugin().getDescription().getVersion();
     }
 
+    public static Path getTempPath() {
+        return tempPath;
+    }
+
     @Override
     public void onEnable() {
+        plugin = this;
         UpdateChecker updateChecker = new UpdateChecker(this, 72461);
         //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
-        if(translationConfig == null) {
+        if (translationConfig == null) {
             translationConfig = new TranslationConfig(GSON, Paths.get(getDataFolder().getAbsolutePath(), "translations", "en.json").toString());
             try {
                 translationConfig.setDefault(new Translation(GSON.fromJson(Objects.requireNonNull(getTextResource("translations/en.json")), JsonObject.class)));
@@ -119,7 +124,6 @@ public class ItemMods extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        plugin = this;
         translationConfig.save();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loading"));
         try {
@@ -208,9 +212,5 @@ public class ItemMods extends JavaPlugin {
 
     public @NotNull Gson getGson() {
         return GSON;
-    }
-
-    public static Path getTempPath() {
-        return tempPath;
     }
 }

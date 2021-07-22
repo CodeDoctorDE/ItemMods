@@ -23,9 +23,9 @@ public abstract class RawAsset extends PackAsset {
         data.put("default", new byte[0]);
     }
 
-    public RawAsset(String name, @NotNull URL url) throws IOException {
+    public RawAsset(String name, @NotNull String url) throws IOException {
         super(name);
-        setDefaultTexture(url);
+        setDefaultData(url);
     }
 
     public RawAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
@@ -37,34 +37,34 @@ public abstract class RawAsset extends PackAsset {
         return data.get("default");
     }
 
-    public void setDefaultTexture(byte[] texture) {
-        setTexture("default", texture);
+    public void setDefaultData(byte[] bytes) {
+        setData("default", bytes);
     }
 
-    public void setDefaultTexture(@NotNull URL url) throws IOException {
-        setTexture("default", url);
+    public void setDefaultData(@NotNull String url) throws IOException {
+        setData("default", url);
     }
 
-    public void removeVariation(String bytes) {
-        data.remove(bytes);
+    public void removeVariation(String variation) {
+        data.remove(variation);
     }
 
     public @NotNull Set<String> getVariations() {
         return data.keySet();
     }
 
-    public byte[] getTexture(String variation) {
+    public byte[] getData(String variation) {
         return data.get(variation);
     }
 
-    public byte[] getTextureOrDefault(String variation) {
+    public byte[] getDataOrDefault(String variation) {
         return data.getOrDefault(variation, getDefaultTexture());
     }
 
-    public void setTexture(String variation, @NotNull URL url) throws IOException {
+    public void setData(String variation, @NotNull String url) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-        try (InputStream stream = url.openStream()) {
+        try (InputStream stream = new URL(url).openStream()) {
             byte[] buffer = new byte[4096];
 
             while (true) {
@@ -78,8 +78,8 @@ public abstract class RawAsset extends PackAsset {
         data.put(variation, output.toByteArray());
     }
 
-    public void setTexture(String variation, byte[] texture) {
-        data.put(variation, texture);
+    public void setData(String variation, byte[] bytes) {
+        data.put(variation, bytes);
     }
 
     @Override
@@ -91,7 +91,7 @@ public abstract class RawAsset extends PackAsset {
         return jsonObject;
     }
 
-    public void export(String name, String variation, int packFormat, Path path) throws IOException {
+    public void export(String namespace, String variation, int packFormat, Path path) throws IOException {
 
     }
 }

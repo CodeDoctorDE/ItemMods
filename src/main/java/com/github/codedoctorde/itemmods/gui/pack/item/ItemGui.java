@@ -85,7 +85,7 @@ public class ItemGui extends GuiCollection {
                     }});
                     addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
-                            var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
+                            var prefix = "model." + (asset.getModelObject() == null ? "not-set" : "set") + ".";
                             setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title").lore(prefix + "description").build());
                             if (asset.getModelObject() != null) setPlaceholders(asset.getModelObject().toString());
                         });

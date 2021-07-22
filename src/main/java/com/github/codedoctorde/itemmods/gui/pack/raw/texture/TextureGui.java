@@ -63,7 +63,7 @@ public class TextureGui extends GuiCollection {
                     break;
                 case APPEARANCE:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.IRON_INGOT).displayName("data.title").lore("data.description").build()) {{
-                        setClickAction(event -> new DataGui(asset, () -> {
+                        setClickAction(event -> new DataGui(packObject.getNamespace(), asset, () -> {
                             packObject.save();
                             show((Player) event.getWhoClicked());
                         }).show((Player) event.getWhoClicked()));

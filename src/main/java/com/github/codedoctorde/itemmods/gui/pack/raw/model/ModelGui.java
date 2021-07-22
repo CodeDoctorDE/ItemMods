@@ -69,7 +69,8 @@ public class ModelGui extends GuiCollection {
                             var icon = asset.getFallbackTexture();
                             if (icon == null)
                                 icon = Material.ARMOR_STAND;
-                            setItemStack(new ItemStackBuilder(icon).displayName("fallback.title").lore("fallback.description").build());
+                            var prefix = "fallback." + (asset.isCustom() ? "custom" : "predefined") + ".";
+                            setItemStack(new ItemStackBuilder(icon).displayName(prefix + "title").lore(prefix + "description").build());
                         });
                         setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("gui.materials"), material -> {
                             asset.setFallbackTexture(material);
@@ -79,7 +80,7 @@ public class ModelGui extends GuiCollection {
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.IRON_INGOT).displayName("data.title").lore("data.description").build()) {{
                         setClickAction(event -> {
-                            new DataGui(asset, () -> {
+                            new DataGui(packObject.getNamespace(), asset, () -> {
                                 packObject.save();
                                 show((Player) event.getWhoClicked());
                             }).show((Player) event.getWhoClicked());

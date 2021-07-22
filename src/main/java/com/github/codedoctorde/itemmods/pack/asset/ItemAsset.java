@@ -16,7 +16,7 @@ public class ItemAsset extends PackAsset {
     @Nullable
     private PackObject modelObject;
     private @Nullable String translatedName = null;
-    private @Nullable String displayName = null;
+    private @Nullable String displayName;
     private List<String> lore = new ArrayList<>();
 
     public ItemAsset(@NotNull String name) {
@@ -28,7 +28,8 @@ public class ItemAsset extends PackAsset {
         super(packObject, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
-        translatedName = jsonObject.get("translated-name").getAsString();
+        if (jsonObject.has("translated-name"))
+            translatedName = jsonObject.get("translated-name").getAsString();
         displayName = jsonObject.get("display-name").getAsString();
         jsonObject.getAsJsonArray("lore").forEach(jsonElement -> lore.add(jsonElement.getAsString()));
     }

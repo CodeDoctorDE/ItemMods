@@ -6,9 +6,11 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import org.bukkit.Bukkit;
+import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import java.io.IOException;
 
 public class MainGui extends TranslatedChestGui {
     public MainGui() {
@@ -44,5 +46,18 @@ public class MainGui extends TranslatedChestGui {
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAINTING).displayName("crowdin.title").lore("crowdin.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("crowdin.link", "https://linwood.crowdin.com/ItemMods")));
         }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
+            setClickAction(event -> {
+                event.getWhoClicked().sendMessage("export.message");
+                try {
+                    ItemMods.getPackManager().export("default");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                event.getWhoClicked().sendMessage("export.success");
+            });
+        }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("reset.title").lore("reset.description").build()) {
+        });
     }
 }
