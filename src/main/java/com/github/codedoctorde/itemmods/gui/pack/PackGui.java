@@ -68,19 +68,17 @@ public class PackGui extends GuiCollection {
                         });
                     }});
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
-                        setClickAction(event -> {
-                            new MessageGui(t.subTranslation("delete.gui")) {{
-                                setPlaceholders(pack.getName());
-                                setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
-                                    setClickAction(event -> {
-                                        ItemMods.getPackManager().deletePack(name);
-                                        new PacksGui().show((Player) event.getWhoClicked());
-                                    });
-                                }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
-                                    setClickAction(event -> PackGui.this.show((Player) event.getWhoClicked()));
-                                }});
-                            }}.show((Player) event.getWhoClicked());
-                        });
+                        setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                            setPlaceholders(pack.getName());
+                            setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
+                                setClickAction(event -> {
+                                    ItemMods.getPackManager().deletePack(name);
+                                    new PacksGui().show((Player) event.getWhoClicked());
+                                });
+                            }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
+                                setClickAction(event -> PackGui.this.show((Player) event.getWhoClicked()));
+                            }});
+                        }}.show((Player) event.getWhoClicked()));
                     }});
                     break;
                 case GENERAL:
@@ -94,7 +92,7 @@ public class PackGui extends GuiCollection {
                             request.setSubmitAction(s -> {
                                 pack.setName(s);
                                 p.sendMessage(t.getTranslation("name.success", s));
-                                show(p);
+                                new PackGui(s).show(p);
                             });
                         });
                     }});

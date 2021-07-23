@@ -51,8 +51,8 @@ public class TextureGui extends GuiCollection {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    show(p);
                                     p.sendMessage(t.getTranslation("name.success", s));
+                                    new TextureGui(new PackObject(packObject.getNamespace(), s)).show(p);
                                 } catch (Exception e) {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();

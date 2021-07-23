@@ -18,12 +18,12 @@ import java.util.Set;
 public abstract class RawAsset extends PackAsset {
     protected final Map<String, byte[]> data = new HashMap<>();
 
-    public RawAsset(String name) {
+    public RawAsset(@NotNull String name) {
         super(name);
         data.put("default", new byte[0]);
     }
 
-    public RawAsset(String name, @NotNull String url) throws IOException {
+    public RawAsset(@NotNull String name, @NotNull String url) throws IOException {
         super(name);
         setDefaultData(url);
     }

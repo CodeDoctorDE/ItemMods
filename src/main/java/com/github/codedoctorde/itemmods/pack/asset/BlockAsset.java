@@ -8,12 +8,13 @@ import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockAsset extends PackAsset {
+public class BlockAsset extends CustomNamedAsset {
     private @Nullable PackObject modelObject;
     private PackObject itemObject;
-    private String displayName;
+    private @Nullable String displayName;
+    private @Nullable PackObject referenceItem;
 
-    public BlockAsset(String name) {
+    public BlockAsset(@NotNull String name) {
         super(name);
     }
 
@@ -37,7 +38,7 @@ public class BlockAsset extends PackAsset {
         return displayName;
     }
 
-    public void setDisplayName(String displayName) {
+    public void setDisplayName(@Nullable String displayName) {
         this.displayName = displayName;
     }
 
@@ -70,5 +71,13 @@ public class BlockAsset extends PackAsset {
         if (model == null || model.getFallbackTexture() == null)
             return Material.GRASS_BLOCK;
         return model.getFallbackTexture();
+    }
+
+    public @Nullable PackObject getReferenceItem() {
+        return referenceItem;
+    }
+
+    public void setReferenceItem(@Nullable PackObject referenceItem) {
+        this.referenceItem = referenceItem;
     }
 }

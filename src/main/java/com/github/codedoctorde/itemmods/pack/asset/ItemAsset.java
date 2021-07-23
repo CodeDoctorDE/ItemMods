@@ -12,50 +12,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ItemAsset extends PackAsset {
+public class ItemAsset extends CustomNamedAsset {
     @Nullable
     private PackObject modelObject;
-    private @Nullable String translatedName = null;
-    private @Nullable String displayName;
     private List<String> lore = new ArrayList<>();
 
     public ItemAsset(@NotNull String name) {
         super(name);
-        displayName = name;
     }
 
     public ItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
-        if (jsonObject.has("translated-name"))
-            translatedName = jsonObject.get("translated-name").getAsString();
-        displayName = jsonObject.get("display-name").getAsString();
         jsonObject.getAsJsonArray("lore").forEach(jsonElement -> lore.add(jsonElement.getAsString()));
-    }
-
-    public @Nullable String getTranslatedName() {
-        return translatedName;
-    }
-
-    public void setTranslatedName(@Nullable String translatedName) {
-        this.translatedName = translatedName;
-    }
-
-    public void removeTranslatedDisplayName() {
-        translatedName = null;
-    }
-
-    public @Nullable String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public void removeDisplayName() {
-        displayName = null;
     }
 
     public @NotNull List<String> getLore() {
@@ -96,8 +66,6 @@ public class ItemAsset extends PackAsset {
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
         jsonObject.addProperty("model-object", modelObject == null ? null : modelObject.toString());
-        jsonObject.addProperty("display-name", displayName);
-        jsonObject.addProperty("translated-name", translatedName);
         var loreObject = new JsonArray();
         lore.forEach(loreObject::add);
         jsonObject.add("lore", loreObject);

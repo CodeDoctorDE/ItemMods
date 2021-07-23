@@ -20,11 +20,11 @@ public class ModelAsset extends RawAsset {
     private @Nullable Material fallbackTexture = Material.STONE;
     private @Nullable Integer staticModel = null;
 
-    public ModelAsset(String name) {
+    public ModelAsset(@NotNull String name) {
         super(name);
     }
 
-    public ModelAsset(String name, @NotNull String url) throws IOException {
+    public ModelAsset(@NotNull String name, @NotNull String url) throws IOException {
         super(name, url);
     }
 
@@ -70,7 +70,7 @@ public class ModelAsset extends RawAsset {
         return GSON.fromJson(new String(super.getDefaultTexture(), StandardCharsets.UTF_8), JsonObject.class);
     }
 
-    public void setDefaultJsonObject(@NotNull JsonObject jsonObject) throws IOException {
+    public void setDefaultJsonObject(@NotNull JsonObject jsonObject) {
         super.setDefaultData(GSON.toJson(jsonObject).getBytes(StandardCharsets.UTF_8));
     }
 
@@ -95,7 +95,7 @@ public class ModelAsset extends RawAsset {
     }
 
     @Override
-    public void export(String namespace, String variation, int packFormat, Path path) throws IOException {
+    public void export(String namespace, String variation, int packFormat, @NotNull Path path) throws IOException {
         var packObject = new PackObject(namespace, getName());
         if (fallbackTexture != null) {
             var fallbackPath = Paths.get(path.toString(), "assets", "minecraft", "models", fallbackTexture.isBlock() ? "block" : "item",

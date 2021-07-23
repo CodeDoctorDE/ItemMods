@@ -5,17 +5,16 @@ import com.google.gson.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class SoundAsset extends RawAsset {
-    public SoundAsset(String name) {
+    public SoundAsset(@NotNull String name) {
         super(name);
     }
 
-    public SoundAsset(String name, @NotNull String url) throws IOException {
+    public SoundAsset(@NotNull String name, @NotNull String url) throws IOException {
         super(name, url);
     }
 
@@ -24,8 +23,8 @@ public class SoundAsset extends RawAsset {
     }
 
     @Override
-    public void export(String namespace, String variation, int packFormat, Path path) throws IOException {
-        var currentPath = Paths.get(path.toString(),  "assets", namespace, "sounds", getName() + ".ogg");
+    public void export(String namespace, String variation, int packFormat, @NotNull Path path) throws IOException {
+        var currentPath = Paths.get(path.toString(), "assets", namespace, "sounds", getName() + ".ogg");
         Files.createDirectories(currentPath.getParent());
         Files.write(currentPath, getDataOrDefault(variation));
     }

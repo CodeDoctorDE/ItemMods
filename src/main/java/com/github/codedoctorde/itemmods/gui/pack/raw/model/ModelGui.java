@@ -53,8 +53,8 @@ public class ModelGui extends GuiCollection {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    show(p);
                                     p.sendMessage(t.getTranslation("name.success", s));
+                                    new ModelGui(new PackObject(packObject.getNamespace(), s)).show(p);
                                 } catch (Exception e) {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();
@@ -79,12 +79,10 @@ public class ModelGui extends GuiCollection {
                         }).show((Player) event.getWhoClicked()));
                     }});
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.IRON_INGOT).displayName("data.title").lore("data.description").build()) {{
-                        setClickAction(event -> {
-                            new DataGui(packObject.getNamespace(), asset, () -> {
-                                packObject.save();
-                                show((Player) event.getWhoClicked());
-                            }).show((Player) event.getWhoClicked());
-                        });
+                        setClickAction(event -> new DataGui(packObject.getNamespace(), asset, () -> {
+                            packObject.save();
+                            show((Player) event.getWhoClicked());
+                        }).show((Player) event.getWhoClicked()));
                     }});
                     break;
                 case ADMINISTRATION:

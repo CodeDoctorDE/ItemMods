@@ -24,9 +24,9 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class ItemGui extends GuiCollection {
-    protected final PackObject packObject;
+    protected final @NotNull PackObject packObject;
 
-    public ItemGui(PackObject packObject) {
+    public ItemGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
         var t = ItemMods.getTranslationConfig().subTranslation("gui.item");
         var asset = packObject.getItem();
@@ -59,8 +59,8 @@ public class ItemGui extends GuiCollection {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    show(p);
                                     p.sendMessage(t.getTranslation("name.success", s));
+                                    new ItemGui(new PackObject(packObject.getNamespace(), s)).show(p);
                                 } catch (Exception e) {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();
@@ -68,7 +68,12 @@ public class ItemGui extends GuiCollection {
                             });
                         });
                     }});
-                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("display-name.title").lore("display-name.description").build()) {{
+                    addItem(new TranslatedGuiItem() {{
+                        setRenderAction(gui -> {
+                            var prefix = "display-name." + (asset.getDisplayName() == null ? "not-set" : "set") + ".";
+                            setItemStack(new ItemStackBuilder(Material.PAPER).displayName(prefix + "title").lore(prefix + "description").build());
+                            if (asset.getDisplayName() != null) setPlaceholders(asset.getDisplayName());
+                        });
                         setRenderAction(gui -> setPlaceholders(asset.getDisplayName()));
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
@@ -80,6 +85,25 @@ public class ItemGui extends GuiCollection {
                                 asset.setDisplayName(ts);
                                 show(p);
                                 p.sendMessage(t.getTranslation("display-name.success", ts));
+                            });
+                        });
+                    }});
+                    addItem(new TranslatedGuiItem() {{
+                        setRenderAction(gui -> {
+                            var prefix = "localized-name." + (asset.getLocalizedName() == null ? "not-set" : "set") + ".";
+                            setItemStack(new ItemStackBuilder(Material.BOOK).displayName(prefix + "title").lore(prefix + "description").build());
+                            if (asset.getLocalizedName() != null) setPlaceholders(asset.getLocalizedName());
+                        });
+                        setClickAction(event -> {
+                            var p = (Player) event.getWhoClicked();
+                            hide(p);
+                            var request = new ChatRequest(p);
+                            p.sendMessage(t.getTranslation("localized-name.message"));
+                            request.setSubmitAction(s -> {
+                                var ts = ChatColor.translateAlternateColorCodes('&', s);
+                                asset.setDisplayName(ts);
+                                show(p);
+                                p.sendMessage(t.getTranslation("localized-name.success", ts));
                             });
                         });
                     }});

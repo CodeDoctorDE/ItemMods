@@ -7,6 +7,7 @@ import com.github.codedoctorde.api.server.Version;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.ui.Gui;
+import com.github.codedoctorde.api.utils.FileUtils;
 import com.github.codedoctorde.api.utils.UpdateChecker;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
@@ -29,6 +30,7 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -37,9 +39,10 @@ import java.nio.file.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ItemMods extends JavaPlugin {
     public static final Gson GSON = new GsonBuilder()
@@ -104,6 +107,37 @@ public class ItemMods extends JavaPlugin {
         return tempPath;
     }
 
+    public static void reloadMainConfig() {
+        try {
+            if (!Files.exists(baseConfig))
+                Files.createFile(baseConfig);
+            mainConfig = GSON.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mainConfig = new MainConfig();
+        }
+        if (mainConfig == null)
+            mainConfig = new MainConfig();
+    }
+
+    public static List<String> getLocales() throws IOException {
+        return Files.walk(translationsPath).filter(Files::isRegularFile).map(path -> translationsPath.relativize(path)).map(FileUtils::getFileName).collect(Collectors.toList());
+    }
+
+    public static void reload() {
+        translationConfig = new TranslationConfig(GSON, Paths.get(getPlugin().getDataFolder().getAbsolutePath(), "translations", mainConfig.getLocale() + ".json").toString());
+        var inputStream = getPlugin().getTextResource("translations/" + mainConfig.getLocale() + ".json");
+        assert inputStream != null;
+        translationConfig.setDefault(new Translation(GSON.fromJson(inputStream, JsonObject.class)));
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        packManager.reload();
+        reloadMainConfig();
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -118,23 +152,23 @@ public class ItemMods extends JavaPlugin {
             Path dirPath;
             try {
                 dirPath = Paths.get(uri);
-            }catch (FileSystemNotFoundException e) {
+            } catch (FileSystemNotFoundException e) {
                 // If this is thrown, then it means that we are running the JAR directly (example: not from an IDE)
                 dirPath = FileSystems.newFileSystem(uri, new HashMap<>()).getPath("/translations/");
             }
 
             Files.list(dirPath)
                     .forEach(p -> {
-                var output = Paths.get(getDataFolder().getAbsolutePath(), p.toString());
-                if (!Files.exists(output)) {
-                    try {
-                        Files.copy(p, output);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } catch (IOException | URISyntaxException e) {
+                        var output = Paths.get(getDataFolder().getAbsolutePath(), p.toString());
+                        if (!Files.exists(output)) {
+                            try {
+                                Files.copy(p, output);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+        } catch (@NotNull IOException | URISyntaxException e) {
             e.printStackTrace();
         }
         baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
@@ -147,6 +181,7 @@ public class ItemMods extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        translationConfig.save();
         tempPath = Paths.get(getDataFolder().getAbsolutePath(), "temp");
         try {
             Files.createDirectories(tempPath);
@@ -192,28 +227,6 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.loaded"));
     }
 
-    private File[] getResourceFolderFiles(String folder) throws IOException, URISyntaxException {
-        URL url = getClassLoader().getResource(folder);
-        assert url != null;
-        String path = url.getPath();
-        System.out.println(path);
-        return new File(path).listFiles();
-    }
-
-
-    private void reloadMainConfig() {
-        try {
-            if (!Files.exists(baseConfig))
-                Files.createFile(baseConfig);
-            mainConfig = GSON.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            mainConfig = new MainConfig();
-        }
-        if (mainConfig == null)
-            mainConfig = new MainConfig();
-    }
-
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
@@ -234,20 +247,6 @@ public class ItemMods extends JavaPlugin {
             connection = DriverManager.getConnection("jdbc:mysql://" + mainConfig.getDatabaseConfig().getHost() + ":" + mainConfig.getDatabaseConfig().getPort() + "/" + mainConfig.getDatabaseConfig().getDatabase(),
                     mainConfig.getDatabaseConfig().getUsername(), mainConfig.getDatabaseConfig().getPassword());
         }
-    }
-
-    public void reload() {
-        translationConfig = new TranslationConfig(GSON, Paths.get(getDataFolder().getAbsolutePath(), "translations", mainConfig.getLocale() + ".json").toString());
-        var inputStream = getTextResource("translations/" + mainConfig.getLocale() + ".json");
-        assert inputStream != null;
-        translationConfig.setDefault(new Translation(GSON.fromJson(inputStream, JsonObject.class)));
-        try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        packManager.reload();
-        reloadMainConfig();
     }
 
     public BaseCommand getBaseCommand() {

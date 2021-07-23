@@ -22,7 +22,7 @@ public class CustomItemManager {
         ItemMeta itemMeta = itemStack.getItemMeta();
         assert itemMeta != null;
         itemMeta.setCustomModelData(customModel);
-        itemMeta.setLocalizedName(asset.getTranslatedName());
+        itemMeta.setLocalizedName(asset.getLocalizedName());
         itemMeta.setDisplayName(asset.getDisplayName());
         itemMeta.setLore(asset.getLore());
         itemStack.setItemMeta(itemMeta);

@@ -32,17 +32,13 @@ public class PackManager {
         try {
             Files.createDirectories(packPath);
             Files.createDirectories(presetPath);
-            if (!hasPreset())
+            if (hasNoPreset())
                 Bukkit.getConsoleSender().sendMessage(ItemMods.getTranslationConfig().getTranslation("plugin.no-preset"));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         reload();
-    }
-
-    public boolean hasPreset() throws IOException {
-        return Files.newDirectoryStream(presetPath).iterator().hasNext();
     }
 
     private static void zipFile(@NotNull Path fileToZip, @NotNull String fileName, @NotNull ZipOutputStream zipOut) throws IOException {
@@ -76,6 +72,10 @@ public class PackManager {
             zipOut.write(bytes, 0, length);
         }
         fis.close();
+    }
+
+    public boolean hasNoPreset() throws IOException {
+        return !Files.newDirectoryStream(presetPath).iterator().hasNext();
     }
 
     public void reload() {
@@ -200,37 +200,29 @@ public class PackManager {
     }
 
     public void export(String variation) throws IOException {
-        if (!hasPreset())
+        if (hasNoPreset())
             return;
         var output = Paths.get(ItemMods.getTempPath().toString(), "output");
         if (Files.exists(output))
-            try (Stream<Path> walk = Files.walk(output)) {
-                walk.sorted(Comparator.reverseOrder())
-                        .forEach((path) -> {
-                            try {
-                                Files.delete(path);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        Files.createDirectories(output);
-        try (Stream<Path> walk = Files.walk(presetPath)) {
-            walk.sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
+            Files.walk(output).sorted(Comparator.reverseOrder())
                     .forEach((path) -> {
                         try {
-                            var current = Paths.get(output.toString(), presetPath.relativize(path).toString());
-                            Files.createDirectories(current.getParent());
-                            Files.copy(path, current, StandardCopyOption.REPLACE_EXISTING);
+                            Files.delete(path);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Files.createDirectories(output);
+        Files.walk(output).sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
+                .forEach((path) -> {
+                    try {
+                        var current = Paths.get(output.toString(), presetPath.relativize(path).toString());
+                        Files.createDirectories(current.getParent());
+                        Files.copy(path, current, StandardCopyOption.REPLACE_EXISTING);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
         var packMeta = ItemMods.GSON.fromJson(Files.readString(Paths.get(output.toString(), "pack.mcmeta")), JsonObject.class);
         var packFormat = packMeta.getAsJsonObject("pack").get("pack_format").getAsInt();
         for (ItemModsPack pack : packs) pack.export(variation, packFormat, output);

@@ -34,7 +34,7 @@
       },
       "knowledge": {
         "title": "§6Knowledge Book",
-        "description": "§7Gp tp the mod information for the users"
+        "description": "§7Go to the mod \n§7information for the users"
       },
       "addons": {
         "title": "§6Addons",
@@ -58,8 +58,32 @@
       "wiki": {
         "title": "§6Wiki",
         "description": "§7Get the wiki link",
-        "link": "§eItemMods §7» §b§n%s"
+        "link": "§eItemMods §7» §eWiki: §b§n%s"
+      },
+      "export": {
+        "title": "§6Export",
+        "description": "§7Export resource pack",
+        "message": "§eItemMods §7» §eExporting",
+        "success": "§eItemMods §7» §aSuccessfully exported the resource pack",
+        "failed": "§eItemMods §7» §aExporting resource pack failed. See the console for details!"
+      },
+      "reset": {
+        "title": "§6Reset",
+        "description": "§7Reset the identifiers\n§7for the resource pack"
+      },
+      "locale": {
+        "title": "§6Locale",
+        "description": "§3%s\n\n§7Click to set locale"
       }
+    },
+    "locales": {
+      "title": "§6Locales §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "item": "§6%s",
+      "actions": "§7Click to set"
     },
     "packs": {
       "title": "§6Packs §7(%d/%d)",
@@ -67,6 +91,7 @@
       "previous": "§6Previous",
       "next": "§6Next",
       "last": "§6Last",
+      "item": "§6%s",
       "search": {
         "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
         "title": "§6Search",

@@ -63,7 +63,7 @@ public class DataGui extends ListGui {
     void create(@NotNull Player player, String variation) {
         var gui = new TranslatedChestGui(ItemMods.getTranslationConfig().subTranslation("gui.raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());
-        gui.registerItem(0, 0, new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()){{
+        gui.registerItem(0, 0, new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
             setClickAction(event -> show(player));
         }});
         gui.registerItem(3, 1, new TranslatedGuiItem(new ItemStackBuilder(Material.BEACON).displayName("internet.title").lore("internet.description").build()) {{

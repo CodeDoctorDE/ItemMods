@@ -23,9 +23,9 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class BlockGui extends GuiCollection {
-    protected final PackObject packObject;
+    protected final @NotNull PackObject packObject;
 
-    public BlockGui(PackObject packObject) {
+    public BlockGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
         var t = ItemMods.getTranslationConfig().subTranslation("gui.item");
         var asset = packObject.getItem();
@@ -58,8 +58,8 @@ public class BlockGui extends GuiCollection {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    show(p);
                                     p.sendMessage(t.getTranslation("name.success", s));
+                                    new BlockGui(new PackObject(packObject.getNamespace(), s)).show(p);
                                 } catch (Exception e) {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();

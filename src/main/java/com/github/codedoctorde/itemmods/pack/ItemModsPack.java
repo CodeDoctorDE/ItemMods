@@ -1,7 +1,7 @@
 package com.github.codedoctorde.itemmods.pack;
 
 import com.github.codedoctorde.api.ui.item.GuiItem;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import com.github.codedoctorde.api.utils.FileUtils;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
@@ -11,7 +11,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +31,7 @@ public class ItemModsPack extends NamedPackObject {
     private final List<CustomTemplate> templates = new ArrayList<>();
     private final List<TextureAsset> textures = new ArrayList<>();
     private final List<ModelAsset> models = new ArrayList<>();
-    private ItemStack icon = new ItemStack(Material.GRASS_BLOCK);
+    private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
 
     public ItemModsPack(@NotNull String name, boolean editable) throws UnsupportedOperationException {
@@ -51,13 +50,14 @@ public class ItemModsPack extends NamedPackObject {
         var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
         JsonObject jsonObject = GSON.fromJson(br, JsonObject.class);
         br.close();
-        icon = new ItemStackBuilder(jsonObject.get("icon")).build();
+        if (jsonObject.has("icon") && jsonObject.get("icon").isJsonPrimitive())
+            icon = Objects.requireNonNull(Material.getMaterial(jsonObject.get("icon").getAsString()));
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
 
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(new ItemAsset(new PackObject(getName(), getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                items.add(new ItemAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,7 +66,7 @@ public class ItemModsPack extends NamedPackObject {
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                blocks.add(new BlockAsset(new PackObject(getName(), getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                blocks.add(new BlockAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -75,7 +75,7 @@ public class ItemModsPack extends NamedPackObject {
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                models.add(new ModelAsset(new PackObject(getName(), getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                models.add(new ModelAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,7 +84,7 @@ public class ItemModsPack extends NamedPackObject {
         var texturesPath = Paths.get(path.toString(), "textures");
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                var fileName = getFileName(texturesPath.relativize(current));
+                var fileName = FileUtils.getFileName(texturesPath.relativize(current));
                 textures.add(new TextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -183,11 +183,11 @@ public class ItemModsPack extends NamedPackObject {
         return editable;
     }
 
-    public ItemStack getIcon() {
+    public @NotNull Material getIcon() {
         return icon;
     }
 
-    public void setIcon(ItemStack icon) {
+    public void setIcon(@NotNull Material icon) {
         this.icon = icon;
     }
 
@@ -215,17 +215,9 @@ public class ItemModsPack extends NamedPackObject {
         return null;
     }
 
-    private @NotNull String getFileName(@NotNull Path path) {
-        var pathName = path.toString();
-        pathName = pathName.replace("\\", "/");
-        var pos = pathName.lastIndexOf('.');
-        if (pos > 0) return pathName.substring(0, pos);
-        return "";
-    }
-
     void save(@NotNull Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add("icon", new JsonPrimitive(Objects.requireNonNull((new ItemStackBuilder(icon)).serialize())));
+        jsonObject.add("icon", new JsonPrimitive(icon.name()));
         var dependenciesArray = new JsonArray();
         dependencies.forEach(dependenciesArray::add);
         jsonObject.add("dependencies", dependenciesArray);
@@ -288,7 +280,7 @@ public class ItemModsPack extends NamedPackObject {
         });
     }
 
-    public void export(String variation, int packFormat, Path path) throws IOException {
+    public void export(String variation, int packFormat, @NotNull Path path) throws IOException {
         for (ModelAsset model : models) model.export(getName(), variation, packFormat, path);
         for (TextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
     }

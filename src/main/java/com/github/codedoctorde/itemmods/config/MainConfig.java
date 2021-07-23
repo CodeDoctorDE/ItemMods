@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class MainConfig {
     private final DatabaseConfig databaseConfig = new DatabaseConfig();
-    private @NotNull String locale = "en";
     private final Map<String, Integer> identifiers = new HashMap<>();
+    private @NotNull String locale = "en";
 
     public MainConfig() {
 
@@ -29,7 +29,7 @@ public class MainConfig {
         return identifiers.get(name);
     }
 
-    public @Nullable Integer getIdentifier(PackObject packObject) {
+    public @Nullable Integer getIdentifier(@NotNull PackObject packObject) {
         return getIdentifier(packObject.toString());
     }
 
@@ -37,7 +37,7 @@ public class MainConfig {
         identifiers.put(name, integer);
     }
 
-    public void setIdentifier(PackObject packObject, @Nullable Integer integer) {
+    public void setIdentifier(@NotNull PackObject packObject, @Nullable Integer integer) {
         setIdentifier(packObject.toString(), integer);
     }
 
@@ -45,7 +45,7 @@ public class MainConfig {
         identifiers.remove(name);
     }
 
-    public void removeIdentifier(PackObject packObject) {
+    public void removeIdentifier(@NotNull PackObject packObject) {
         removeIdentifier(packObject.toString());
     }
 
@@ -53,11 +53,11 @@ public class MainConfig {
         identifiers.clear();
     }
 
-    public String getLocale() {
+    public @NotNull String getLocale() {
         return locale;
     }
 
-    public void setLocale(String locale) {
+    public void setLocale(@NotNull String locale) {
         this.locale = locale;
     }
 }

@@ -6,11 +6,8 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
 
 public class MainGui extends TranslatedChestGui {
     public MainGui() {
@@ -24,7 +21,7 @@ public class MainGui extends TranslatedChestGui {
         fillItems(0, getHeight() - 1, getWidth() - 1, getHeight() - 1, placeholder);
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PRISMARINE_CRYSTALS).displayName("reload.title").lore("reload.description").build()) {{
             setClickAction(event -> {
-                ItemMods.getPlugin().reload();
+                ItemMods.reload();
                 event.getWhoClicked().sendMessage(t.getTranslation("reload.success"));
             });
         }});
@@ -51,13 +48,18 @@ public class MainGui extends TranslatedChestGui {
                 event.getWhoClicked().sendMessage("export.message");
                 try {
                     ItemMods.getPackManager().export("default");
+                    event.getWhoClicked().sendMessage("export.success");
                 } catch (Exception e) {
+                    event.getWhoClicked().sendMessage("export.failed");
                     e.printStackTrace();
                 }
-                event.getWhoClicked().sendMessage("export.success");
             });
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("reset.title").lore("reset.description").build()) {
         });
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENCHANTING_TABLE).displayName("locale.title").lore("locale.description").build()) {{
+            setRenderAction(gui -> setPlaceholders(ItemMods.getMainConfig().getLocale()));
+            setClickAction(event -> new LocalesGui().show((Player) event.getWhoClicked()));
+        }});
     }
 }
