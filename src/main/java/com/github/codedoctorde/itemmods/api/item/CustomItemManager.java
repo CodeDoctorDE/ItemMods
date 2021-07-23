@@ -17,10 +17,14 @@ public class CustomItemManager {
         assert asset != null;
         var model = asset.getModel();
         assert model != null;
+        assert model.getFallbackTexture() != null;
         ItemStack itemStack = new ItemStack(model.getFallbackTexture());
         ItemMeta itemMeta = itemStack.getItemMeta();
         assert itemMeta != null;
         itemMeta.setCustomModelData(customModel);
+        itemMeta.setLocalizedName(asset.getTranslatedName());
+        itemMeta.setDisplayName(asset.getDisplayName());
+        itemMeta.setLore(asset.getLore());
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

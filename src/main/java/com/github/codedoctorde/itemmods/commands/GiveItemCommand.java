@@ -32,17 +32,17 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
         } else {
             Player player = Bukkit.getPlayer(args[0]);
             if (player == null) {
-                commandSender.sendMessage(t.getTranslation("noplayer"));
+                commandSender.sendMessage(t.getTranslation("no-player"));
                 return true;
             }
             var packObject = PackObject.fromIdentifier(args[1]);
             if (packObject == null) {
-                commandSender.sendMessage(t.getTranslation("noitem"));
+                commandSender.sendMessage(t.getTranslation("no-item"));
                 return true;
             }
             var itemAsset = packObject.getItem();
             if (itemAsset == null) {
-                commandSender.sendMessage(t.getTranslation("noitem"));
+                commandSender.sendMessage(t.getTranslation("no-item"));
                 return true;
             }
             int count = 1;
@@ -50,13 +50,18 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 try {
                     count = Integer.parseInt(args[2]);
                 } catch (Exception e) {
-                    commandSender.sendMessage(t.getTranslation("nonumber"));
+                    commandSender.sendMessage(t.getTranslation("no-number"));
                     return true;
                 }
             }
             var itemStack = ItemMods.getCustomItemManager().create(packObject);
+            if (itemStack == null) {
+                commandSender.sendMessage(t.getTranslation("no-item"));
+                return true;
+            }
             itemStack.setAmount(count);
             player.getInventory().addItem(itemStack);
+            commandSender.sendMessage(t.getTranslation("success", packObject.toString()));
         }
         return true;
     }

@@ -85,7 +85,6 @@ public class ItemModsPack extends NamedPackObject {
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
                 var fileName = getFileName(texturesPath.relativize(current));
-                System.out.println(fileName);
                 textures.add(new TextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();

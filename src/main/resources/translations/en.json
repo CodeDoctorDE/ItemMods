@@ -378,13 +378,13 @@
   "command": {
     "base": {
       "usage": "§eItemMods §7» §cUsage: §3/itemmods§c!",
-      "noplayer": "§eItemMods §7» §4This command is only for players!"
+      "no-player": "§eItemMods §7» §4This command is only for players!"
     },
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
-      "noplayer": "§eItemMods §7» §4This command is only for players!",
-      "noitem": "§eItemMods §7» §4That is not a valid item!",
-      "nonumber": "§eItemMods §7» §4That is not a number!",
+      "no-player": "§eItemMods §7» §4This command is only for players!",
+      "no-item": "§eItemMods §7» §4That is not a valid item!",
+      "no-number": "§eItemMods §7» §4That is not a number!",
       "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
     }
   }

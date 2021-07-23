@@ -100,10 +100,9 @@ public class ModelAsset extends RawAsset {
         if (fallbackTexture != null) {
             var fallbackPath = Paths.get(path.toString(), "assets", "minecraft", "models", fallbackTexture.isBlock() ? "block" : "item",
                     fallbackTexture.name().toLowerCase() + ".json");
-            System.out.println(fallbackPath);
             if (Files.exists(fallbackPath)) {
                 var modelObject = GSON.fromJson(Files.readString(fallbackPath), JsonObject.class);
-                var modelData = ItemMods.getMainConfig().getResourcePackConfig().getIdentifier(packObject);
+                var modelData = ItemMods.getMainConfig().getIdentifier(packObject);
                 JsonArray overrides = new JsonArray();
                 if (modelObject.has("overrides") && modelObject.get("overrides").isJsonArray())
                     overrides = modelObject.getAsJsonArray("overrides");
@@ -133,6 +132,7 @@ public class ModelAsset extends RawAsset {
                 overrides.add(current);
                 modelObject.add("overrides", overrides);
                 Files.writeString(fallbackPath, GSON.toJson(modelObject));
+                ItemMods.getMainConfig().setIdentifier(packObject, modelData);
             }
         }
         var currentPath = Paths.get(path.toString(), "assets", namespace, "models", getName() + ".json");

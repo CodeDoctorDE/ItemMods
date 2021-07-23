@@ -85,7 +85,7 @@ public class PackObject {
         assert asset != null;
         if (asset.getStaticModel() != null)
             return asset.getStaticModel();
-        return ItemMods.getMainConfig().getResourcePackConfig().getIdentifiers().get(toString());
+        return ItemMods.getMainConfig().getIdentifiers().get(toString());
     }
 
     public void save() {

@@ -29,7 +29,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
             else
                 new KnowledgeGui().show((Player) sender);
         else
-            sender.sendMessage(t.getTranslation("command.base.noplayer"));
+            sender.sendMessage(t.getTranslation("command.base.no-player"));
         return true;
     }
 
