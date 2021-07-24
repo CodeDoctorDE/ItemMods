@@ -152,18 +152,18 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,java.lang.String)">Stringboard</a></span>&#8203;(java.lang.String&nbsp;title,
-           java.lang.String&nbsp;name)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,java.lang.String)">Stringboard</a></span>&#8203;(@NotNull java.lang.String&nbsp;title,
+           @NotNull java.lang.String&nbsp;name)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.scoreboard.Objective)">Stringboard</a></span>&#8203;(org.bukkit.scoreboard.Objective&nbsp;objective)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.scoreboard.Objective)">Stringboard</a></span>&#8203;(@NotNull org.bukkit.scoreboard.Objective&nbsp;objective)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.scoreboard.Scoreboard,java.lang.String,java.lang.String)">Stringboard</a></span>&#8203;(org.bukkit.scoreboard.Scoreboard&nbsp;scoreboard,
-           java.lang.String&nbsp;title,
-           java.lang.String&nbsp;name)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.scoreboard.Scoreboard,java.lang.String,java.lang.String)">Stringboard</a></span>&#8203;(@NotNull org.bukkit.scoreboard.Scoreboard&nbsp;scoreboard,
+           @NotNull java.lang.String&nbsp;title,
+           @NotNull java.lang.String&nbsp;name)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -186,16 +186,16 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#closeScoreboard(org.bukkit.entity.Player...)">closeScoreboard</a></span>&#8203;(org.bukkit.entity.Player...&nbsp;players)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#closeScoreboard(org.bukkit.entity.Player...)">closeScoreboard</a></span>&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="DynamicStringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">DynamicStringboardValue</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull java.util.List&lt;<a href="DynamicStringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">DynamicStringboardValue</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDynamicValues()">getDynamicValues</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>org.bukkit.scoreboard.Scoreboard</code></td>
+<td class="colFirst"><code>@Nullable org.bukkit.scoreboard.Scoreboard</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getScoreboard()">getScoreboard</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -205,13 +205,13 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="StringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">StringboardValue</a>&gt;</code></td>
+<td class="colFirst"><code>@NotNull java.util.List&lt;<a href="StringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">StringboardValue</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValues()">getValues</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openScoreboard(org.bukkit.entity.Player...)">openScoreboard</a></span>&#8203;(org.bukkit.entity.Player...&nbsp;players)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openScoreboard(org.bukkit.entity.Player...)">openScoreboard</a></span>&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
@@ -226,7 +226,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show(org.bukkit.entity.Player)">show</a></span>&#8203;(org.bukkit.entity.Player&nbsp;player)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show(org.bukkit.entity.Player)">show</a></span>&#8203;(@NotNull org.bukkit.entity.Player&nbsp;player)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -269,9 +269,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Stringboard</h4>
-<pre>public&nbsp;Stringboard&#8203;(org.bukkit.scoreboard.Scoreboard&nbsp;scoreboard,
-                   java.lang.String&nbsp;title,
-                   java.lang.String&nbsp;name)</pre>
+<pre>public&nbsp;Stringboard&#8203;(@NotNull
+                   @NotNull org.bukkit.scoreboard.Scoreboard&nbsp;scoreboard,
+                   @NotNull
+                   @NotNull java.lang.String&nbsp;title,
+                   @NotNull
+                   @NotNull java.lang.String&nbsp;name)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(java.lang.String,java.lang.String)">
@@ -280,8 +283,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>Stringboard</h4>
-<pre>public&nbsp;Stringboard&#8203;(java.lang.String&nbsp;title,
-                   java.lang.String&nbsp;name)</pre>
+<pre>public&nbsp;Stringboard&#8203;(@NotNull
+                   @NotNull java.lang.String&nbsp;title,
+                   @NotNull
+                   @NotNull java.lang.String&nbsp;name)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(org.bukkit.scoreboard.Objective)">
@@ -290,7 +295,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Stringboard</h4>
-<pre>public&nbsp;Stringboard&#8203;(org.bukkit.scoreboard.Objective&nbsp;objective)</pre>
+<pre>public&nbsp;Stringboard&#8203;(@NotNull
+                   @NotNull org.bukkit.scoreboard.Objective&nbsp;objective)</pre>
 </li>
 </ul>
 </li>
@@ -318,7 +324,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getValues</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="StringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">StringboardValue</a>&gt;&nbsp;getValues()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.util.List&lt;<a href="StringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">StringboardValue</a>&gt;&nbsp;getValues()</pre>
 </li>
 </ul>
 <a id="getTitle()">
@@ -345,7 +352,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>show</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;show&#8203;(org.bukkit.entity.Player&nbsp;player)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;show&#8203;(@NotNull
+                 @NotNull org.bukkit.entity.Player&nbsp;player)</pre>
 </li>
 </ul>
 <a id="getScoreboard()">
@@ -354,7 +362,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getScoreboard</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.scoreboard.Scoreboard&nbsp;getScoreboard()</pre>
+<pre class="methodSignature">@Nullable
+public&nbsp;@Nullable org.bukkit.scoreboard.Scoreboard&nbsp;getScoreboard()</pre>
 </li>
 </ul>
 <a id="getDynamicValues()">
@@ -363,7 +372,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getDynamicValues</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="DynamicStringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">DynamicStringboardValue</a>&gt;&nbsp;getDynamicValues()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.util.List&lt;<a href="DynamicStringboardValue.html" title="class in com.github.codedoctorde.api.scoreboard">DynamicStringboardValue</a>&gt;&nbsp;getDynamicValues()</pre>
 </li>
 </ul>
 <a id="updateTitle()">
@@ -390,7 +400,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>openScoreboard</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;openScoreboard&#8203;(org.bukkit.entity.Player...&nbsp;players)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;openScoreboard&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</pre>
 </li>
 </ul>
 <a id="closeScoreboard(org.bukkit.entity.Player...)">
@@ -399,7 +409,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>closeScoreboard</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;closeScoreboard&#8203;(org.bukkit.entity.Player...&nbsp;players)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;closeScoreboard&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</pre>
 </li>
 </ul>
 </li>

@@ -185,37 +185,37 @@ implements org.bukkit.event.Listener</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBlockBreak(org.bukkit.event.block.BlockBreakEvent)">onBlockBreak</a></span>&#8203;(org.bukkit.event.block.BlockBreakEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBlockBreak(org.bukkit.event.block.BlockBreakEvent)">onBlockBreak</a></span>&#8203;(@NotNull org.bukkit.event.block.BlockBreakEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBlockPlace(org.bukkit.event.block.BlockPlaceEvent)">onBlockPlace</a></span>&#8203;(org.bukkit.event.block.BlockPlaceEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onBlockPlace(org.bukkit.event.block.BlockPlaceEvent)">onBlockPlace</a></span>&#8203;(@NotNull org.bukkit.event.block.BlockPlaceEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onChat(org.bukkit.event.player.AsyncPlayerChatEvent)">onChat</a></span>&#8203;(org.bukkit.event.player.AsyncPlayerChatEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onChat(org.bukkit.event.player.AsyncPlayerChatEvent)">onChat</a></span>&#8203;(@NotNull org.bukkit.event.player.AsyncPlayerChatEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onItemDrop(org.bukkit.event.player.PlayerDropItemEvent)">onItemDrop</a></span>&#8203;(org.bukkit.event.player.PlayerDropItemEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onItemDrop(org.bukkit.event.player.PlayerDropItemEvent)">onItemDrop</a></span>&#8203;(@NotNull org.bukkit.event.player.PlayerDropItemEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPlayerQuit(org.bukkit.event.player.PlayerQuitEvent)">onPlayerQuit</a></span>&#8203;(org.bukkit.event.player.PlayerQuitEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onPlayerQuit(org.bukkit.event.player.PlayerQuitEvent)">onPlayerQuit</a></span>&#8203;(@NotNull org.bukkit.event.player.PlayerQuitEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onValueChange(org.bukkit.event.player.PlayerItemHeldEvent)">onValueChange</a></span>&#8203;(org.bukkit.event.player.PlayerItemHeldEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onValueChange(org.bukkit.event.player.PlayerItemHeldEvent)">onValueChange</a></span>&#8203;(@NotNull org.bukkit.event.player.PlayerItemHeldEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onValueSubmit(org.bukkit.event.player.PlayerInteractEvent)">onValueSubmit</a></span>&#8203;(org.bukkit.event.player.PlayerInteractEvent&nbsp;event)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#onValueSubmit(org.bukkit.event.player.PlayerInteractEvent)">onValueSubmit</a></span>&#8203;(@NotNull org.bukkit.event.player.PlayerInteractEvent&nbsp;event)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
@@ -290,7 +290,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onChat</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onChat&#8203;(org.bukkit.event.player.AsyncPlayerChatEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onChat&#8203;(@NotNull
+                   @NotNull org.bukkit.event.player.AsyncPlayerChatEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onItemDrop(org.bukkit.event.player.PlayerDropItemEvent)">
@@ -299,7 +300,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onItemDrop</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onItemDrop&#8203;(org.bukkit.event.player.PlayerDropItemEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onItemDrop&#8203;(@NotNull
+                       @NotNull org.bukkit.event.player.PlayerDropItemEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onBlockBreak(org.bukkit.event.block.BlockBreakEvent)">
@@ -308,7 +310,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onBlockBreak</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onBlockBreak&#8203;(org.bukkit.event.block.BlockBreakEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onBlockBreak&#8203;(@NotNull
+                         @NotNull org.bukkit.event.block.BlockBreakEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onPlayerQuit(org.bukkit.event.player.PlayerQuitEvent)">
@@ -317,7 +320,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onPlayerQuit</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onPlayerQuit&#8203;(org.bukkit.event.player.PlayerQuitEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onPlayerQuit&#8203;(@NotNull
+                         @NotNull org.bukkit.event.player.PlayerQuitEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onBlockPlace(org.bukkit.event.block.BlockPlaceEvent)">
@@ -326,7 +330,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onBlockPlace</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onBlockPlace&#8203;(org.bukkit.event.block.BlockPlaceEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onBlockPlace&#8203;(@NotNull
+                         @NotNull org.bukkit.event.block.BlockPlaceEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onValueChange(org.bukkit.event.player.PlayerItemHeldEvent)">
@@ -335,7 +340,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>onValueChange</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onValueChange&#8203;(org.bukkit.event.player.PlayerItemHeldEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onValueChange&#8203;(@NotNull
+                          @NotNull org.bukkit.event.player.PlayerItemHeldEvent&nbsp;event)</pre>
 </li>
 </ul>
 <a id="onValueSubmit(org.bukkit.event.player.PlayerInteractEvent)">
@@ -344,7 +350,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>onValueSubmit</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;onValueSubmit&#8203;(org.bukkit.event.player.PlayerInteractEvent&nbsp;event)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;onValueSubmit&#8203;(@NotNull
+                          @NotNull org.bukkit.event.player.PlayerInteractEvent&nbsp;event)</pre>
 </li>
 </ul>
 </li>

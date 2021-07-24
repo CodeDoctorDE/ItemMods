@@ -209,7 +209,7 @@ extends <a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#buildInventory(org.bukkit.inventory.Inventory)">buildInventory</a></span>&#8203;(org.bukkit.inventory.Inventory&nbsp;inventory)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#buildInventory(org.bukkit.inventory.Inventory)">buildInventory</a></span>&#8203;(@NotNull org.bukkit.inventory.Inventory&nbsp;inventory)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -219,7 +219,7 @@ extends <a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload(org.bukkit.entity.Player...)">reload</a></span>&#8203;(org.bukkit.entity.Player...&nbsp;players)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reload(org.bukkit.entity.Player...)">reload</a></span>&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -233,7 +233,7 @@ extends <a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.github.codedoctorde.api.ui.<a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</a></h3>
-<code><a href="Gui.html#getGui(org.bukkit.entity.Player)">getGui</a>, <a href="Gui.html#getOpenedPlayers()">getOpenedPlayers</a>, <a href="Gui.html#hasCurrentGui(org.bukkit.entity.Player)">hasCurrentGui</a>, <a href="Gui.html#hasGui(org.bukkit.entity.Player)">hasGui</a>, <a href="Gui.html#hide(org.bukkit.entity.Player...)">hide</a>, <a href="Gui.html#hideAll(org.bukkit.entity.Player...)">hideAll</a>, <a href="Gui.html#onClose(org.bukkit.entity.Player)">onClose</a>, <a href="Gui.html#onOpen(org.bukkit.entity.Player)">onOpen</a>, <a href="Gui.html#reloadAll()">reloadAll</a>, <a href="Gui.html#setCloseAction(java.util.function.Consumer)">setCloseAction</a>, <a href="Gui.html#setOpenAction(java.util.function.Consumer)">setOpenAction</a>, <a href="Gui.html#show(org.bukkit.entity.Player...)">show</a></code></li>
+<code><a href="Gui.html#getGui(org.bukkit.entity.Player)">getGui</a>, <a href="Gui.html#getOpenedPlayers()">getOpenedPlayers</a>, <a href="Gui.html#hasCurrentGui(org.bukkit.entity.Player)">hasCurrentGui</a>, <a href="Gui.html#hasGui(org.bukkit.entity.Player)">hasGui</a>, <a href="Gui.html#hide(org.bukkit.entity.Player...)">hide</a>, <a href="Gui.html#hideAll(org.bukkit.entity.Player...)">hideAll</a>, <a href="Gui.html#isSilent()">isSilent</a>, <a href="Gui.html#onClose(org.bukkit.entity.Player)">onClose</a>, <a href="Gui.html#onOpen(org.bukkit.entity.Player)">onOpen</a>, <a href="Gui.html#reloadAll()">reloadAll</a>, <a href="Gui.html#setCloseAction(java.util.function.Consumer)">setCloseAction</a>, <a href="Gui.html#setOpenAction(java.util.function.Consumer)">setOpenAction</a>, <a href="Gui.html#setSilent(boolean)">setSilent</a>, <a href="Gui.html#show(org.bukkit.entity.Player...)">show</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.com.github.codedoctorde.api.ui.GuiPane">
@@ -290,7 +290,7 @@ extends <a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</
 <ul class="blockList">
 <li class="blockList">
 <h4>reload</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;reload&#8203;(org.bukkit.entity.Player...&nbsp;players)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;reload&#8203;(org.bukkit.entity.Player @NotNull ...&nbsp;players)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Gui.html#reload(org.bukkit.entity.Player...)">reload</a></code>&nbsp;in class&nbsp;<code><a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</a></code></dd>
@@ -331,7 +331,8 @@ extends <a href="Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</
 <ul class="blockListLast">
 <li class="blockList">
 <h4>buildInventory</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;buildInventory&#8203;(org.bukkit.inventory.Inventory&nbsp;inventory)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;buildInventory&#8203;(@NotNull
+                           @NotNull org.bukkit.inventory.Inventory&nbsp;inventory)</pre>
 </li>
 </ul>
 </li>

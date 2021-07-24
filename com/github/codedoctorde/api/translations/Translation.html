@@ -130,7 +130,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <hr>
-<pre>public class <span class="typeNameLabel">Translation</span>
+<pre>public final class <span class="typeNameLabel">Translation</span>
 extends java.lang.Object</pre>
 </li>
 </ul>
@@ -156,7 +156,7 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonObject)">Translation</a></span>&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonObject)">Translation</a></span>&#8203;(@NotNull com.google.gson.JsonObject&nbsp;jsonObject)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -184,11 +184,11 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTranslation(java.lang.String,java.lang.Object...)">getTranslation</a></span>&#8203;(java.lang.String&nbsp;key,
-              java.lang.Object...&nbsp;placeholders)</code></th>
+              java.lang.Object @NotNull ...&nbsp;placeholders)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>java.util.Set&lt;java.lang.String&gt;</code></td>
+<td class="colFirst"><code>@NotNull java.util.Set&lt;java.lang.String&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTranslationKeys()">getTranslationKeys</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -203,18 +203,18 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subTranslation(java.lang.String)">subTranslation</a></span>&#8203;(java.lang.String&nbsp;namespace)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>com.google.gson.JsonObject</code></td>
+<td class="colFirst"><code>@NotNull com.google.gson.JsonObject</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toJsonObject()">toJsonObject</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#translate(com.github.codedoctorde.api.utils.ItemStackBuilder,java.lang.Object...)">translate</a></span>&#8203;(<a href="../utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;itemStackBuilder,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#translate(com.github.codedoctorde.api.utils.ItemStackBuilder,java.lang.Object...)">translate</a></span>&#8203;(@NotNull <a href="../utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;itemStackBuilder,
          java.lang.Object...&nbsp;placeholders)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -266,7 +266,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Translation</h4>
-<pre>public&nbsp;Translation&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</pre>
+<pre>public&nbsp;Translation&#8203;(@NotNull
+                   @NotNull com.google.gson.JsonObject&nbsp;jsonObject)</pre>
 </li>
 </ul>
 </li>
@@ -294,7 +295,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTranslationKeys</h4>
-<pre class="methodSignature">public&nbsp;java.util.Set&lt;java.lang.String&gt;&nbsp;getTranslationKeys()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.util.Set&lt;java.lang.String&gt;&nbsp;getTranslationKeys()</pre>
 </li>
 </ul>
 <a id="getTranslation(java.lang.String,java.lang.Object...)">
@@ -304,7 +306,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getTranslation</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getTranslation&#8203;(java.lang.String&nbsp;key,
-                                       java.lang.Object...&nbsp;placeholders)</pre>
+                                       java.lang.Object @NotNull ...&nbsp;placeholders)</pre>
 </li>
 </ul>
 <a id="hasTranslation(java.lang.String)">
@@ -322,7 +324,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>subTranslation</h4>
-<pre class="methodSignature">public&nbsp;<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;subTranslation&#8203;(java.lang.String&nbsp;namespace)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;subTranslation&#8203;(java.lang.String&nbsp;namespace)</pre>
 </li>
 </ul>
 <a id="translate(com.github.codedoctorde.api.utils.ItemStackBuilder,java.lang.Object...)">
@@ -331,7 +334,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>translate</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;translate&#8203;(<a href="../utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;itemStackBuilder,
+<pre class="methodSignature">public&nbsp;void&nbsp;translate&#8203;(@NotNull
+                      @NotNull <a href="../utils/ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;itemStackBuilder,
                       java.lang.Object...&nbsp;placeholders)</pre>
 </li>
 </ul>
@@ -341,7 +345,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toJsonObject</h4>
-<pre class="methodSignature">public&nbsp;com.google.gson.JsonObject&nbsp;toJsonObject()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull com.google.gson.JsonObject&nbsp;toJsonObject()</pre>
 </li>
 </ul>
 </li>

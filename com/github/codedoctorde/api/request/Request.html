@@ -167,7 +167,7 @@ implements org.bukkit.event.Listener</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected org.bukkit.entity.Player</code></td>
+<td class="colFirst"><code>protected @NotNull org.bukkit.entity.Player</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#player">player</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -194,7 +194,7 @@ implements org.bukkit.event.Listener</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.entity.Player)">Request</a></span>&#8203;(org.bukkit.entity.Player&nbsp;player)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.entity.Player)">Request</a></span>&#8203;(@NotNull org.bukkit.entity.Player&nbsp;player)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -222,11 +222,11 @@ implements org.bukkit.event.Listener</pre>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cancelAll(org.bukkit.entity.Player...)">cancelAll</a></span>&#8203;(@NotNull org.bukkit.entity.Player...&nbsp;players)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#cancelAll(org.bukkit.entity.Player...)">cancelAll</a></span>&#8203;(@NotNull org.bukkit.entity.Player @NotNull ...&nbsp;players)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>org.bukkit.entity.Player</code></td>
+<td class="colFirst"><code>@NotNull org.bukkit.entity.Player</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlayer()">getPlayer</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -290,7 +290,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>player</h4>
-<pre>protected final&nbsp;org.bukkit.entity.Player player</pre>
+<pre>@NotNull
+protected final&nbsp;@NotNull org.bukkit.entity.Player player</pre>
 </li>
 </ul>
 <a id="submitAction">
@@ -327,7 +328,8 @@ implements org.bukkit.event.Listener</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Request</h4>
-<pre>public&nbsp;Request&#8203;(org.bukkit.entity.Player&nbsp;player)</pre>
+<pre>public&nbsp;Request&#8203;(@NotNull
+               @NotNull org.bukkit.entity.Player&nbsp;player)</pre>
 </li>
 </ul>
 </li>
@@ -368,7 +370,7 @@ public static&nbsp;@Nullable <a href="Request.html" title="class in com.github.c
 <li class="blockList">
 <h4>cancelAll</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;cancelAll&#8203;(@NotNull
-                             @NotNull org.bukkit.entity.Player...&nbsp;players)</pre>
+                             @NotNull org.bukkit.entity.Player @NotNull ...&nbsp;players)</pre>
 </li>
 </ul>
 <a id="raise(java.lang.Object)">
@@ -406,7 +408,8 @@ public static&nbsp;@Nullable <a href="Request.html" title="class in com.github.c
 <ul class="blockList">
 <li class="blockList">
 <h4>getPlayer</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.entity.Player&nbsp;getPlayer()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull org.bukkit.entity.Player&nbsp;getPlayer()</pre>
 </li>
 </ul>
 <a id="setCancelAction(java.lang.Runnable)">

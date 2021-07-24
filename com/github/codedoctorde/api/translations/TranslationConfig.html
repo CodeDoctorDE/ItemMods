@@ -179,7 +179,7 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">TranslationConfig</a></span>&#8203;(com.google.gson.Gson&nbsp;gson,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">TranslationConfig</a></span>&#8203;(@NotNull com.google.gson.Gson&nbsp;gson,
                  java.lang.String&nbsp;filePath)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -216,7 +216,7 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>com.google.gson.JsonObject</code></td>
+<td class="colFirst"><code>@NotNull com.google.gson.JsonObject</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getJsonObject()">getJsonObject</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -233,12 +233,12 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(java.io.BufferedReader&nbsp;reader)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(@NotNull java.io.BufferedReader&nbsp;reader)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefault(com.github.codedoctorde.api.translations.Translation)">setDefault</a></span>&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDefault(com.github.codedoctorde.api.translations.Translation)">setDefault</a></span>&#8203;(@NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -248,11 +248,11 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setJsonObject(com.google.gson.JsonObject)">setJsonObject</a></span>&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setJsonObject(com.google.gson.JsonObject)">setJsonObject</a></span>&#8203;(@NotNull com.google.gson.JsonObject&nbsp;jsonObject)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#subTranslation(java.lang.String)">subTranslation</a></span>&#8203;(java.lang.String&nbsp;namespace)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -309,7 +309,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TranslationConfig</h4>
-<pre>public&nbsp;TranslationConfig&#8203;(com.google.gson.Gson&nbsp;gson,
+<pre>public&nbsp;TranslationConfig&#8203;(@NotNull
+                         @NotNull com.google.gson.Gson&nbsp;gson,
                          java.lang.String&nbsp;filePath)</pre>
 </li>
 </ul>
@@ -366,7 +367,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>subTranslation</h4>
-<pre class="methodSignature">public&nbsp;<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;subTranslation&#8203;(java.lang.String&nbsp;namespace)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;subTranslation&#8203;(java.lang.String&nbsp;namespace)</pre>
 </li>
 </ul>
 <a id="setDefault(com.github.codedoctorde.api.translations.Translation)">
@@ -375,7 +377,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>setDefault</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setDefault&#8203;(<a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setDefault&#8203;(@NotNull
+                       @NotNull <a href="Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</pre>
 </li>
 </ul>
 <a id="read(java.io.BufferedReader)">
@@ -384,7 +387,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>read</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;read&#8203;(java.io.BufferedReader&nbsp;reader)</pre>
+<pre class="methodSignature">protected&nbsp;void&nbsp;read&#8203;(@NotNull
+                    @NotNull java.io.BufferedReader&nbsp;reader)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../config/JsonConfig.html#read(java.io.BufferedReader)">read</a></code>&nbsp;in class&nbsp;<code><a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></code></dd>
@@ -397,7 +401,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>getJsonObject</h4>
-<pre class="methodSignature">public&nbsp;com.google.gson.JsonObject&nbsp;getJsonObject()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull com.google.gson.JsonObject&nbsp;getJsonObject()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../config/JsonConfig.html#getJsonObject()">getJsonObject</a></code>&nbsp;in class&nbsp;<code><a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></code></dd>
@@ -410,7 +415,8 @@ extends <a href="../config/JsonConfig.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>setJsonObject</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setJsonObject&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setJsonObject&#8203;(@NotNull
+                          @NotNull com.google.gson.JsonObject&nbsp;jsonObject)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../config/JsonConfig.html#setJsonObject(com.google.gson.JsonObject)">setJsonObject</a></code>&nbsp;in class&nbsp;<code><a href="../config/JsonConfig.html" title="class in com.github.codedoctorde.api.config">JsonConfig</a></code></dd>

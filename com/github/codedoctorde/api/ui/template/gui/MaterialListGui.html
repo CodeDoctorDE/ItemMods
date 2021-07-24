@@ -198,7 +198,7 @@ extends <a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.te
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.github.codedoctorde.api.translations.Translation,java.util.function.Consumer)">MaterialListGui</a></span>&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
-               java.util.function.Consumer&lt;org.bukkit.Material&gt;&nbsp;action)</code></th>
+               @NotNull java.util.function.Consumer&lt;org.bukkit.Material&gt;&nbsp;action)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -231,7 +231,7 @@ extends <a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.te
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.github.codedoctorde.api.ui.<a href="../../Gui.html" title="class in com.github.codedoctorde.api.ui">Gui</a></h3>
-<code><a href="../../Gui.html#getGui(org.bukkit.entity.Player)">getGui</a>, <a href="../../Gui.html#hasGui(org.bukkit.entity.Player)">hasGui</a>, <a href="../../Gui.html#hideAll(org.bukkit.entity.Player...)">hideAll</a></code></li>
+<code><a href="../../Gui.html#getGui(org.bukkit.entity.Player)">getGui</a>, <a href="../../Gui.html#hasGui(org.bukkit.entity.Player)">hasGui</a>, <a href="../../Gui.html#hideAll(org.bukkit.entity.Player...)">hideAll</a>, <a href="../../Gui.html#isSilent()">isSilent</a>, <a href="../../Gui.html#setSilent(boolean)">setSilent</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -263,7 +263,8 @@ extends <a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.te
 <li class="blockList">
 <h4>MaterialListGui</h4>
 <pre>public&nbsp;MaterialListGui&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
-                       java.util.function.Consumer&lt;org.bukkit.Material&gt;&nbsp;action)</pre>
+                       @NotNull
+                       @NotNull java.util.function.Consumer&lt;org.bukkit.Material&gt;&nbsp;action)</pre>
 </li>
 </ul>
 </li>

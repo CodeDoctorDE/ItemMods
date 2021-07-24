@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":9,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":42,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":42,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":9,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":42,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":42,"i36":9,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -179,32 +179,32 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonElement)">ItemStackBuilder</a></span>&#8203;(com.google.gson.JsonElement&nbsp;value)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.UUID)">ItemStackBuilder</a></span>&#8203;(@NotNull java.util.UUID&nbsp;uuid)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonObject)">ItemStackBuilder</a></span>&#8203;(com.google.gson.JsonObject&nbsp;value)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.inventory.ItemStack)">ItemStackBuilder</a></span>&#8203;(@NotNull org.bukkit.inventory.ItemStack&nbsp;itemStack)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.Material)">ItemStackBuilder</a></span>&#8203;(@NotNull org.bukkit.Material&nbsp;material)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.Material,int)">ItemStackBuilder</a></span>&#8203;(@NotNull org.bukkit.Material&nbsp;material,
+                int&nbsp;amount)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonElement)">ItemStackBuilder</a></span>&#8203;(@Nullable com.google.gson.JsonElement&nbsp;value)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.JsonObject)">ItemStackBuilder</a></span>&#8203;(@Nullable com.google.gson.JsonObject&nbsp;value)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String)">ItemStackBuilder</a></span>&#8203;(java.lang.String&nbsp;skullId)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.UUID)">ItemStackBuilder</a></span>&#8203;(java.util.UUID&nbsp;uuid)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.inventory.ItemStack)">ItemStackBuilder</a></span>&#8203;(org.bukkit.inventory.ItemStack&nbsp;itemStack)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.Material)">ItemStackBuilder</a></span>&#8203;(org.bukkit.Material&nbsp;material)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(org.bukkit.Material,int)">ItemStackBuilder</a></span>&#8203;(org.bukkit.Material&nbsp;material,
-                int&nbsp;amount)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -226,34 +226,34 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAttributeModifier(org.bukkit.attribute.Attribute,org.bukkit.attribute.AttributeModifier)">addAttributeModifier</a></span>&#8203;(org.bukkit.attribute.Attribute&nbsp;attribute,
-                    org.bukkit.attribute.AttributeModifier&nbsp;attributeModifier)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAttributeModifier(org.bukkit.attribute.Attribute,org.bukkit.attribute.AttributeModifier)">addAttributeModifier</a></span>&#8203;(@NotNull org.bukkit.attribute.Attribute&nbsp;attribute,
+                    @NotNull org.bukkit.attribute.AttributeModifier&nbsp;attributeModifier)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEnchant(org.bukkit.enchantments.Enchantment,int)">addEnchant</a></span>&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment,
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEnchant(org.bukkit.enchantments.Enchantment,int)">addEnchant</a></span>&#8203;(@NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment,
           int&nbsp;level)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addItemFlags(org.bukkit.inventory.ItemFlag...)">addItemFlags</a></span>&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLore(com.google.gson.JsonArray)">addLore</a></span>&#8203;(com.google.gson.JsonArray&nbsp;jsonArray)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLore(com.google.gson.JsonArray)">addLore</a></span>&#8203;(@NotNull com.google.gson.JsonArray&nbsp;jsonArray)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLore(java.lang.String...)">addLore</a></span>&#8203;(java.lang.String...&nbsp;lore)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#amount(int)">amount</a></span>&#8203;(int&nbsp;amount)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -263,27 +263,27 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#customModelData(java.lang.Integer)">customModelData</a></span>&#8203;(java.lang.Integer&nbsp;data)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#damage(int)">damage</a></span>&#8203;(int&nbsp;damage)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>static <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deserialize(java.lang.String)">deserialize</a></span>&#8203;(java.lang.String&nbsp;value)</code></th>
+<td class="colFirst"><code>static @NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deserialize(java.lang.String)">deserialize</a></span>&#8203;(@Nullable java.lang.String&nbsp;value)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#displayName(java.lang.String)">displayName</a></span>&#8203;(java.lang.String&nbsp;displayName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#format(java.lang.Object...)">format</a></span>&#8203;(java.lang.Object...&nbsp;arguments)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -298,7 +298,7 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code>com.google.common.collect.Multimap&lt;org.bukkit.attribute.Attribute,&#8203;org.bukkit.attribute.AttributeModifier&gt;</code></td>
+<td class="colFirst"><code>@Nullable com.google.common.collect.Multimap&lt;org.bukkit.attribute.Attribute,&#8203;org.bukkit.attribute.AttributeModifier&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAttributeModifiers()">getAttributeModifiers</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -313,12 +313,12 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i17" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>@NotNull java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDisplayName()">getDisplayName</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i18" class="altColor">
-<td class="colFirst"><code>java.util.Set&lt;org.bukkit.inventory.ItemFlag&gt;</code></td>
+<td class="colFirst"><code>@NotNull java.util.Set&lt;org.bukkit.inventory.ItemFlag&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getItemFlags()">getItemFlags</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -330,27 +330,27 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i20" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>@NotNull java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLocalizedName()">getLocalizedName</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i21" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
+<td class="colFirst"><code>@NotNull java.util.List&lt;java.lang.String&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLore()">getLore</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i22" class="altColor">
-<td class="colFirst"><code>org.bukkit.Material</code></td>
+<td class="colFirst"><code>@NotNull org.bukkit.Material</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaterial()">getMaterial</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i23" class="rowColor">
-<td class="colFirst"><code>java.util.UUID</code></td>
+<td class="colFirst"><code>@Nullable java.util.UUID</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwner()">getOwner</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i24" class="altColor">
-<td class="colFirst"><code>org.bukkit.OfflinePlayer</code></td>
+<td class="colFirst"><code>@Nullable org.bukkit.OfflinePlayer</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwningPlayer()">getOwningPlayer</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -361,12 +361,12 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i26" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasEnchant(org.bukkit.enchantments.Enchantment)">hasEnchant</a></span>&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasEnchant(org.bukkit.enchantments.Enchantment)">hasEnchant</a></span>&#8203;(@NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i27" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasItemFlag(org.bukkit.inventory.ItemFlag)">hasItemFlag</a></span>&#8203;(org.bukkit.inventory.ItemFlag&nbsp;itemFlag)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hasItemFlag(org.bukkit.inventory.ItemFlag)">hasItemFlag</a></span>&#8203;(@NotNull org.bukkit.inventory.ItemFlag&nbsp;itemFlag)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i28" class="altColor">
@@ -380,32 +380,32 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i30" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#localizedName(java.lang.String)">localizedName</a></span>&#8203;(java.lang.String&nbsp;localizedName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i31" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lore(java.lang.String...)">lore</a></span>&#8203;(java.lang.String...&nbsp;lore)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lore(java.util.List)">lore</a></span>&#8203;(@NotNull java.util.List&lt;java.lang.String&gt;&nbsp;lore)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i32" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lore(java.util.List)">lore</a></span>&#8203;(java.util.List&lt;java.lang.String&gt;&nbsp;lore)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#lore(java.lang.String...)">lore</a></span>&#8203;(java.lang.String...&nbsp;lore)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i33" class="rowColor">
-<td class="colFirst"><code>org.bukkit.Material</code></td>
+<td class="colFirst"><code>@NotNull org.bukkit.Material</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#material()">material</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i34" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#material(org.bukkit.Material)">material</a></span>&#8203;(org.bukkit.Material&nbsp;material)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#material(org.bukkit.Material)">material</a></span>&#8203;(@NotNull org.bukkit.Material&nbsp;material)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i35" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#name(java.lang.String)">name</a></span>&#8203;(java.lang.String&nbsp;displayName)</code></th>
 <td class="colLast">
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>
@@ -414,92 +414,97 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i36" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAttributeModifier(org.bukkit.attribute.Attribute)">removeAttributeModifier</a></span>&#8203;(org.bukkit.attribute.Attribute&nbsp;attribute)</code></th>
+<td class="colFirst"><code>static <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#placeholder()">placeholder</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i37" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEnchant(org.bukkit.enchantments.Enchantment)">removeEnchant</a></span>&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAttributeModifier(org.bukkit.attribute.Attribute)">removeAttributeModifier</a></span>&#8203;(@NotNull org.bukkit.attribute.Attribute&nbsp;attribute)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i38" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeItemFlags(org.bukkit.inventory.ItemFlag...)">removeItemFlags</a></span>&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEnchant(org.bukkit.enchantments.Enchantment)">removeEnchant</a></span>&#8203;(@NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i39" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#serialize()">serialize</a></span>()</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeItemFlags(org.bukkit.inventory.ItemFlag...)">removeItemFlags</a></span>&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i40" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAmount(int)">setAmount</a></span>&#8203;(int&nbsp;amount)</code></th>
+<td class="colFirst"><code>@Nullable java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#serialize()">serialize</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i41" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCustomModelData(java.lang.Integer)">setCustomModelData</a></span>&#8203;(java.lang.Integer&nbsp;data)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAmount(int)">setAmount</a></span>&#8203;(int&nbsp;amount)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i42" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDamage(int)">setDamage</a></span>&#8203;(int&nbsp;damage)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCustomModelData(java.lang.Integer)">setCustomModelData</a></span>&#8203;(java.lang.Integer&nbsp;data)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i43" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDisplayName(java.lang.String)">setDisplayName</a></span>&#8203;(java.lang.String&nbsp;displayName)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDamage(int)">setDamage</a></span>&#8203;(int&nbsp;damage)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i44" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEnchanted(boolean)">setEnchanted</a></span>&#8203;(boolean&nbsp;enchanted)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDisplayName(java.lang.String)">setDisplayName</a></span>&#8203;(java.lang.String&nbsp;displayName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i45" class="rowColor">
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setEnchanted(boolean)">setEnchanted</a></span>&#8203;(boolean&nbsp;enchanted)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setItemStack(org.bukkit.inventory.ItemStack)">setItemStack</a></span>&#8203;(org.bukkit.inventory.ItemStack&nbsp;itemStack)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i46" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<tr id="i47" class="rowColor">
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLocalizedName(java.lang.String)">setLocalizedName</a></span>&#8203;(java.lang.String&nbsp;localizedName)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i47" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLore(java.lang.String...)">setLore</a></span>&#8203;(java.lang.String...&nbsp;lore)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
 <tr id="i48" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLore(java.util.List)">setLore</a></span>&#8203;(java.util.List&lt;java.lang.String&gt;&nbsp;lore)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLore(java.util.List)">setLore</a></span>&#8203;(@NotNull java.util.List&lt;java.lang.String&gt;&nbsp;lore)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i49" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaterial(org.bukkit.Material)">setMaterial</a></span>&#8203;(org.bukkit.Material&nbsp;material)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLore(java.lang.String...)">setLore</a></span>&#8203;(java.lang.String @NotNull ...&nbsp;lore)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i50" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwner(java.util.UUID)">setOwner</a></span>&#8203;(java.util.UUID&nbsp;uuid)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaterial(org.bukkit.Material)">setMaterial</a></span>&#8203;(@NotNull org.bukkit.Material&nbsp;material)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i51" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwningPlayer(org.bukkit.OfflinePlayer)">setOwningPlayer</a></span>&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwner(java.util.UUID)">setOwner</a></span>&#8203;(@NotNull java.util.UUID&nbsp;uuid)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i52" class="altColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSkullId(java.lang.String)">setSkullId</a></span>&#8203;(java.lang.String&nbsp;skullId)</code></th>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwningPlayer(org.bukkit.OfflinePlayer)">setOwningPlayer</a></span>&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i53" class="rowColor">
-<td class="colFirst"><code><a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSkullId(java.lang.String)">setSkullId</a></span>&#8203;(java.lang.String&nbsp;skullId)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i54" class="altColor">
+<td class="colFirst"><code>@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setUnbreakable(boolean)">setUnbreakable</a></span>&#8203;(boolean&nbsp;unbreakable)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -561,7 +566,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(org.bukkit.Material&nbsp;material,
+<pre>public&nbsp;ItemStackBuilder&#8203;(@NotNull
+                        @NotNull org.bukkit.Material&nbsp;material,
                         int&nbsp;amount)</pre>
 </li>
 </ul>
@@ -571,7 +577,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(org.bukkit.Material&nbsp;material)</pre>
+<pre>public&nbsp;ItemStackBuilder&#8203;(@NotNull
+                        @NotNull org.bukkit.Material&nbsp;material)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(java.lang.String)">
@@ -589,7 +596,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(java.util.UUID&nbsp;uuid)</pre>
+<pre>public&nbsp;ItemStackBuilder&#8203;(@NotNull
+                        @NotNull java.util.UUID&nbsp;uuid)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(org.bukkit.inventory.ItemStack)">
@@ -598,7 +606,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(org.bukkit.inventory.ItemStack&nbsp;itemStack)</pre>
+<pre>public&nbsp;ItemStackBuilder&#8203;(@NotNull
+                        @NotNull org.bukkit.inventory.ItemStack&nbsp;itemStack)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(com.google.gson.JsonObject)">
@@ -607,7 +616,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(com.google.gson.JsonObject&nbsp;value)</pre>
+<pre>public&nbsp;ItemStackBuilder&#8203;(@Nullable
+                        @Nullable com.google.gson.JsonObject&nbsp;value)</pre>
 </li>
 </ul>
 <a id="&lt;init&gt;(com.google.gson.JsonElement)">
@@ -616,7 +626,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ItemStackBuilder</h4>
-<pre>public&nbsp;ItemStackBuilder&#8203;(com.google.gson.JsonElement&nbsp;value)</pre>
+<pre>public&nbsp;ItemStackBuilder&#8203;(@Nullable
+                        @Nullable com.google.gson.JsonElement&nbsp;value)</pre>
 </li>
 </ul>
 </li>
@@ -629,40 +640,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getOwningPlayer()">
+<a id="placeholder()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getOwningPlayer</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.OfflinePlayer&nbsp;getOwningPlayer()</pre>
-</li>
-</ul>
-<a id="getOwner()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getOwner</h4>
-<pre class="methodSignature">public&nbsp;java.util.UUID&nbsp;getOwner()</pre>
-</li>
-</ul>
-<a id="setOwningPlayer(org.bukkit.OfflinePlayer)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setOwningPlayer</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwningPlayer&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</pre>
-</li>
-</ul>
-<a id="setOwner(java.util.UUID)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setOwner</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwner&#8203;(java.util.UUID&nbsp;uuid)</pre>
+<h4>placeholder</h4>
+<pre class="methodSignature">public static&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;placeholder()</pre>
 </li>
 </ul>
 <a id="deserialize(java.lang.String)">
@@ -671,7 +655,50 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>deserialize</h4>
-<pre class="methodSignature">public static&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;deserialize&#8203;(java.lang.String&nbsp;value)</pre>
+<pre class="methodSignature">@NotNull
+public static&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;deserialize&#8203;(@Nullable
+                                                    @Nullable java.lang.String&nbsp;value)</pre>
+</li>
+</ul>
+<a id="getOwningPlayer()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOwningPlayer</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;@Nullable org.bukkit.OfflinePlayer&nbsp;getOwningPlayer()</pre>
+</li>
+</ul>
+<a id="setOwningPlayer(org.bukkit.OfflinePlayer)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setOwningPlayer</h4>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwningPlayer&#8203;(org.bukkit.OfflinePlayer&nbsp;player)</pre>
+</li>
+</ul>
+<a id="getOwner()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOwner</h4>
+<pre class="methodSignature">@Nullable
+public&nbsp;@Nullable java.util.UUID&nbsp;getOwner()</pre>
+</li>
+</ul>
+<a id="setOwner(java.util.UUID)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setOwner</h4>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setOwner&#8203;(@NotNull
+                                          @NotNull java.util.UUID&nbsp;uuid)</pre>
 </li>
 </ul>
 <a id="getMaterial()">
@@ -680,7 +707,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getMaterial</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.Material&nbsp;getMaterial()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull org.bukkit.Material&nbsp;getMaterial()</pre>
 </li>
 </ul>
 <a id="setMaterial(org.bukkit.Material)">
@@ -689,7 +717,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setMaterial</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setMaterial&#8203;(org.bukkit.Material&nbsp;material)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setMaterial&#8203;(@NotNull
+                                             @NotNull org.bukkit.Material&nbsp;material)</pre>
 </li>
 </ul>
 <a id="material(org.bukkit.Material)">
@@ -698,7 +728,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>material</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;material&#8203;(org.bukkit.Material&nbsp;material)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;material&#8203;(@NotNull
+                                          @NotNull org.bukkit.Material&nbsp;material)</pre>
 </li>
 </ul>
 <a id="material()">
@@ -707,7 +739,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>material</h4>
-<pre class="methodSignature">public&nbsp;org.bukkit.Material&nbsp;material()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull org.bukkit.Material&nbsp;material()</pre>
 </li>
 </ul>
 <a id="getAmount()">
@@ -725,7 +758,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setAmount</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setAmount&#8203;(int&nbsp;amount)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setAmount&#8203;(int&nbsp;amount)</pre>
 </li>
 </ul>
 <a id="amount(int)">
@@ -734,7 +768,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>amount</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;amount&#8203;(int&nbsp;amount)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;amount&#8203;(int&nbsp;amount)</pre>
 </li>
 </ul>
 <a id="getLore()">
@@ -743,7 +778,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getLore</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;getLore()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.util.List&lt;java.lang.String&gt;&nbsp;getLore()</pre>
 </li>
 </ul>
 <a id="setLore(java.lang.String...)">
@@ -752,7 +788,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLore&#8203;(java.lang.String...&nbsp;lore)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLore&#8203;(java.lang.String @NotNull ...&nbsp;lore)</pre>
 </li>
 </ul>
 <a id="setLore(java.util.List)">
@@ -761,7 +798,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLore&#8203;(java.util.List&lt;java.lang.String&gt;&nbsp;lore)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLore&#8203;(@NotNull
+                                         @NotNull java.util.List&lt;java.lang.String&gt;&nbsp;lore)</pre>
 </li>
 </ul>
 <a id="lore(java.util.List)">
@@ -770,7 +809,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>lore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;lore&#8203;(java.util.List&lt;java.lang.String&gt;&nbsp;lore)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;lore&#8203;(@NotNull
+                                      @NotNull java.util.List&lt;java.lang.String&gt;&nbsp;lore)</pre>
 </li>
 </ul>
 <a id="lore(java.lang.String...)">
@@ -779,7 +820,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>lore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;lore&#8203;(java.lang.String...&nbsp;lore)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;lore&#8203;(java.lang.String...&nbsp;lore)</pre>
 </li>
 </ul>
 <a id="addLore(java.lang.String...)">
@@ -788,7 +830,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addLore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addLore&#8203;(java.lang.String...&nbsp;lore)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addLore&#8203;(java.lang.String...&nbsp;lore)</pre>
 </li>
 </ul>
 <a id="addLore(com.google.gson.JsonArray)">
@@ -797,7 +840,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addLore</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addLore&#8203;(com.google.gson.JsonArray&nbsp;jsonArray)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addLore&#8203;(@NotNull
+                                         @NotNull com.google.gson.JsonArray&nbsp;jsonArray)</pre>
 </li>
 </ul>
 <a id="getLocalizedName()">
@@ -806,7 +851,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getLocalizedName</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getLocalizedName()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.lang.String&nbsp;getLocalizedName()</pre>
 </li>
 </ul>
 <a id="setLocalizedName(java.lang.String)">
@@ -815,7 +861,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setLocalizedName</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLocalizedName&#8203;(java.lang.String&nbsp;localizedName)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setLocalizedName&#8203;(java.lang.String&nbsp;localizedName)</pre>
 </li>
 </ul>
 <a id="localizedName(java.lang.String)">
@@ -824,7 +871,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>localizedName</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;localizedName&#8203;(java.lang.String&nbsp;localizedName)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;localizedName&#8203;(java.lang.String&nbsp;localizedName)</pre>
 </li>
 </ul>
 <a id="getDisplayName()">
@@ -833,7 +881,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getDisplayName</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getDisplayName()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.lang.String&nbsp;getDisplayName()</pre>
 </li>
 </ul>
 <a id="setDisplayName(java.lang.String)">
@@ -842,7 +891,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setDisplayName</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setDisplayName&#8203;(java.lang.String&nbsp;displayName)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setDisplayName&#8203;(java.lang.String&nbsp;displayName)</pre>
 </li>
 </ul>
 <a id="name(java.lang.String)">
@@ -852,7 +902,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>name</h4>
 <pre class="methodSignature">@Deprecated
-public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;name&#8203;(java.lang.String&nbsp;displayName)</pre>
+@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;name&#8203;(java.lang.String&nbsp;displayName)</pre>
 <div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
 <div class="deprecationComment">Replaced by <a href="#displayName(java.lang.String)"><code>displayName(String)</code></a> ()}</div>
 </div>
@@ -864,7 +915,8 @@ public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedocto
 <ul class="blockList">
 <li class="blockList">
 <h4>displayName</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;displayName&#8203;(java.lang.String&nbsp;displayName)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;displayName&#8203;(java.lang.String&nbsp;displayName)</pre>
 </li>
 </ul>
 <a id="getCustomModelData()">
@@ -883,7 +935,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setCustomModelData</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setCustomModelData&#8203;(java.lang.Integer&nbsp;data)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setCustomModelData&#8203;(java.lang.Integer&nbsp;data)</pre>
 </li>
 </ul>
 <a id="customModelData(java.lang.Integer)">
@@ -892,7 +945,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>customModelData</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;customModelData&#8203;(java.lang.Integer&nbsp;data)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;customModelData&#8203;(java.lang.Integer&nbsp;data)</pre>
 </li>
 </ul>
 <a id="getDamage()">
@@ -910,7 +964,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setDamage</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setDamage&#8203;(int&nbsp;damage)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setDamage&#8203;(int&nbsp;damage)</pre>
 </li>
 </ul>
 <a id="damage(int)">
@@ -919,7 +974,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>damage</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;damage&#8203;(int&nbsp;damage)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;damage&#8203;(int&nbsp;damage)</pre>
 </li>
 </ul>
 <a id="addItemFlags(org.bukkit.inventory.ItemFlag...)">
@@ -928,7 +984,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addItemFlags</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addItemFlags&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addItemFlags&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</pre>
 </li>
 </ul>
 <a id="removeItemFlags(org.bukkit.inventory.ItemFlag...)">
@@ -937,7 +994,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeItemFlags</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeItemFlags&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeItemFlags&#8203;(org.bukkit.inventory.ItemFlag...&nbsp;itemFlags)</pre>
 </li>
 </ul>
 <a id="hasItemFlag(org.bukkit.inventory.ItemFlag)">
@@ -946,7 +1004,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>hasItemFlag</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;hasItemFlag&#8203;(org.bukkit.inventory.ItemFlag&nbsp;itemFlag)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;hasItemFlag&#8203;(@NotNull
+                           @NotNull org.bukkit.inventory.ItemFlag&nbsp;itemFlag)</pre>
 </li>
 </ul>
 <a id="getItemFlags()">
@@ -955,7 +1014,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getItemFlags</h4>
-<pre class="methodSignature">public&nbsp;java.util.Set&lt;org.bukkit.inventory.ItemFlag&gt;&nbsp;getItemFlags()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.util.Set&lt;org.bukkit.inventory.ItemFlag&gt;&nbsp;getItemFlags()</pre>
 </li>
 </ul>
 <a id="addAttributeModifier(org.bukkit.attribute.Attribute,org.bukkit.attribute.AttributeModifier)">
@@ -964,8 +1024,11 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addAttributeModifier</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addAttributeModifier&#8203;(org.bukkit.attribute.Attribute&nbsp;attribute,
-                                             org.bukkit.attribute.AttributeModifier&nbsp;attributeModifier)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addAttributeModifier&#8203;(@NotNull
+                                                      @NotNull org.bukkit.attribute.Attribute&nbsp;attribute,
+                                                      @NotNull
+                                                      @NotNull org.bukkit.attribute.AttributeModifier&nbsp;attributeModifier)</pre>
 </li>
 </ul>
 <a id="removeAttributeModifier(org.bukkit.attribute.Attribute)">
@@ -974,7 +1037,9 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeAttributeModifier</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeAttributeModifier&#8203;(org.bukkit.attribute.Attribute&nbsp;attribute)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeAttributeModifier&#8203;(@NotNull
+                                                         @NotNull org.bukkit.attribute.Attribute&nbsp;attribute)</pre>
 </li>
 </ul>
 <a id="hasAttributeModifier(org.bukkit.attribute.Attribute)">
@@ -992,7 +1057,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setSkullId</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setSkullId&#8203;(java.lang.String&nbsp;skullId)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setSkullId&#8203;(java.lang.String&nbsp;skullId)</pre>
 </li>
 </ul>
 <a id="getAttributeModifiers()">
@@ -1001,7 +1067,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAttributeModifiers</h4>
-<pre class="methodSignature">public&nbsp;com.google.common.collect.Multimap&lt;org.bukkit.attribute.Attribute,&#8203;org.bukkit.attribute.AttributeModifier&gt;&nbsp;getAttributeModifiers()</pre>
+<pre class="methodSignature">@Nullable
+public&nbsp;@Nullable com.google.common.collect.Multimap&lt;org.bukkit.attribute.Attribute,&#8203;org.bukkit.attribute.AttributeModifier&gt;&nbsp;getAttributeModifiers()</pre>
 </li>
 </ul>
 <a id="getAttributeModifier(org.bukkit.attribute.Attribute)">
@@ -1028,7 +1095,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setUnbreakable</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setUnbreakable&#8203;(boolean&nbsp;unbreakable)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setUnbreakable&#8203;(boolean&nbsp;unbreakable)</pre>
 </li>
 </ul>
 <a id="format(java.lang.Object...)">
@@ -1037,7 +1105,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>format</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;format&#8203;(java.lang.Object...&nbsp;arguments)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;format&#8203;(java.lang.Object...&nbsp;arguments)</pre>
 </li>
 </ul>
 <a id="serialize()">
@@ -1046,7 +1115,8 @@ public&nbsp;@Nullable java.lang.Integer&nbsp;getCustomModelData()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;serialize()</pre>
+<pre class="methodSignature">@Nullable
+public&nbsp;@Nullable java.lang.String&nbsp;serialize()</pre>
 </li>
 </ul>
 <a id="build()">
@@ -1084,8 +1154,10 @@ public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>addEnchant</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addEnchant&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment,
-                                   int&nbsp;level)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;addEnchant&#8203;(@NotNull
+                                            @NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment,
+                                            int&nbsp;level)</pre>
 </li>
 </ul>
 <a id="removeEnchant(org.bukkit.enchantments.Enchantment)">
@@ -1094,7 +1166,9 @@ public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeEnchant</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeEnchant&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;removeEnchant&#8203;(@NotNull
+                                               @NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment)</pre>
 </li>
 </ul>
 <a id="hasEnchant(org.bukkit.enchantments.Enchantment)">
@@ -1103,7 +1177,8 @@ public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>hasEnchant</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;hasEnchant&#8203;(org.bukkit.enchantments.Enchantment&nbsp;enchantment)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;hasEnchant&#8203;(@NotNull
+                          @NotNull org.bukkit.enchantments.Enchantment&nbsp;enchantment)</pre>
 </li>
 </ul>
 <a id="isEnchanted()">
@@ -1121,7 +1196,8 @@ public&nbsp;org.bukkit.inventory.ItemStack&nbsp;getItemStack()</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setEnchanted</h4>
-<pre class="methodSignature">public&nbsp;<a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setEnchanted&#8203;(boolean&nbsp;enchanted)</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull <a href="ItemStackBuilder.html" title="class in com.github.codedoctorde.api.utils">ItemStackBuilder</a>&nbsp;setEnchanted&#8203;(boolean&nbsp;enchanted)</pre>
 </li>
 </ul>
 </li>

@@ -228,7 +228,7 @@ extends java.lang.Enum&lt;<a href="Version.html" title="enum in com.github.coded
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colFirst"><code>static @NotNull java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBukkitVersion()">getBukkitVersion</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -238,23 +238,23 @@ extends java.lang.Enum&lt;<a href="Version.html" title="enum in com.github.coded
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>static <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a></code></td>
+<td class="colFirst"><code>static @NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVersion()">getVersion</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code>@NotNull java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVersionName()">getVersionName</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isBiggerThan(com.github.codedoctorde.api.server.Version)">isBiggerThan</a></span>&#8203;(<a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isBiggerThan(com.github.codedoctorde.api.server.Version)">isBiggerThan</a></span>&#8203;(@NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isLowerThan(com.github.codedoctorde.api.server.Version)">isLowerThan</a></span>&#8203;(<a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isLowerThan(com.github.codedoctorde.api.server.Version)">isLowerThan</a></span>&#8203;(@NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
@@ -469,7 +469,8 @@ not permitted.)</div>
 <ul class="blockList">
 <li class="blockList">
 <h4>getVersion</h4>
-<pre class="methodSignature">public static&nbsp;<a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;getVersion()</pre>
+<pre class="methodSignature">@NotNull
+public static&nbsp;@NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;getVersion()</pre>
 </li>
 </ul>
 <a id="getBukkitVersion()">
@@ -478,7 +479,8 @@ not permitted.)</div>
 <ul class="blockList">
 <li class="blockList">
 <h4>getBukkitVersion</h4>
-<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;getBukkitVersion()</pre>
+<pre class="methodSignature">@NotNull
+public static&nbsp;@NotNull java.lang.String&nbsp;getBukkitVersion()</pre>
 </li>
 </ul>
 <a id="getVersionName()">
@@ -487,7 +489,8 @@ not permitted.)</div>
 <ul class="blockList">
 <li class="blockList">
 <h4>getVersionName</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getVersionName()</pre>
+<pre class="methodSignature">@NotNull
+public&nbsp;@NotNull java.lang.String&nbsp;getVersionName()</pre>
 </li>
 </ul>
 <a id="isBiggerThan(com.github.codedoctorde.api.server.Version)">
@@ -496,7 +499,8 @@ not permitted.)</div>
 <ul class="blockList">
 <li class="blockList">
 <h4>isBiggerThan</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isBiggerThan&#8203;(<a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isBiggerThan&#8203;(@NotNull
+                            @NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</pre>
 </li>
 </ul>
 <a id="isLowerThan(com.github.codedoctorde.api.server.Version)">
@@ -505,7 +509,8 @@ not permitted.)</div>
 <ul class="blockList">
 <li class="blockList">
 <h4>isLowerThan</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isLowerThan&#8203;(<a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isLowerThan&#8203;(@NotNull
+                           @NotNull <a href="Version.html" title="enum in com.github.codedoctorde.api.server">Version</a>&nbsp;version)</pre>
 </li>
 </ul>
 <a id="getIndex()">

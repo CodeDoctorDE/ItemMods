@@ -184,7 +184,7 @@ extends <a href="FileConfig.html" title="class in com.github.codedoctorde.api.co
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">JsonConfig</a></span>&#8203;(com.google.gson.Gson&nbsp;gson,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.google.gson.Gson,java.lang.String)">JsonConfig</a></span>&#8203;(@NotNull com.google.gson.Gson&nbsp;gson,
           java.lang.String&nbsp;filePath)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -227,7 +227,7 @@ extends <a href="FileConfig.html" title="class in com.github.codedoctorde.api.co
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(java.io.BufferedReader&nbsp;reader)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read(java.io.BufferedReader)">read</a></span>&#8203;(@NotNull java.io.BufferedReader&nbsp;reader)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
@@ -305,7 +305,8 @@ extends <a href="FileConfig.html" title="class in com.github.codedoctorde.api.co
 <ul class="blockListLast">
 <li class="blockList">
 <h4>JsonConfig</h4>
-<pre>public&nbsp;JsonConfig&#8203;(com.google.gson.Gson&nbsp;gson,
+<pre>public&nbsp;JsonConfig&#8203;(@NotNull
+                  @NotNull com.google.gson.Gson&nbsp;gson,
                   java.lang.String&nbsp;filePath)</pre>
 </li>
 </ul>
@@ -338,7 +339,8 @@ extends <a href="FileConfig.html" title="class in com.github.codedoctorde.api.co
 <ul class="blockList">
 <li class="blockList">
 <h4>read</h4>
-<pre class="methodSignature">protected&nbsp;void&nbsp;read&#8203;(java.io.BufferedReader&nbsp;reader)</pre>
+<pre class="methodSignature">protected&nbsp;void&nbsp;read&#8203;(@NotNull
+                    @NotNull java.io.BufferedReader&nbsp;reader)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="FileConfig.html#read(java.io.BufferedReader)">read</a></code>&nbsp;in class&nbsp;<code><a href="FileConfig.html" title="class in com.github.codedoctorde.api.config">FileConfig</a></code></dd>
@@ -363,22 +365,22 @@ extends <a href="FileConfig.html" title="class in com.github.codedoctorde.api.co
 <pre class="methodSignature">public&nbsp;void&nbsp;setGson&#8203;(com.google.gson.Gson&nbsp;gson)</pre>
 </li>
 </ul>
-<a id="setJsonObject(com.google.gson.JsonObject)">
+<a id="getJsonObject()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setJsonObject</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setJsonObject&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</pre>
+<h4>getJsonObject</h4>
+<pre class="methodSignature">public&nbsp;com.google.gson.JsonObject&nbsp;getJsonObject()</pre>
 </li>
 </ul>
-<a id="getJsonObject()">
+<a id="setJsonObject(com.google.gson.JsonObject)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getJsonObject</h4>
-<pre class="methodSignature">public&nbsp;com.google.gson.JsonObject&nbsp;getJsonObject()</pre>
+<h4>setJsonObject</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setJsonObject&#8203;(com.google.gson.JsonObject&nbsp;jsonObject)</pre>
 </li>
 </ul>
 </li>
