@@ -7,7 +7,6 @@ import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.PackObject;
-import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
 import com.github.codedoctorde.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;

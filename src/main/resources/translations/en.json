@@ -70,6 +70,10 @@
         "title": "§6Packs",
         "description": "§7Go to the packs list"
       },
+      "inactive-packs": {
+        "title": "§6Inactive Packs",
+        "description": "§7Go to the inactive packs list"
+      },
       "knowledge": {
         "title": "§6Knowledge Book",
         "description": "§7Go to the mod \n§7information for the users"
@@ -141,6 +145,20 @@
         "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
         "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid pack name."
+      },
+      "actions": "§3%s\n\n§7Open the pack gui"
+    },
+    "inactive-packs": {
+      "title": "§6Inactive packs §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "item": "§6%s",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
       },
       "actions": "§3%s\n\n§7Open the pack gui"
     },
@@ -244,10 +262,28 @@
         "failed": "§eItemMods §7» §cInvalid item name."
       },
       "display-name": {
-        "title": "§6Display name",
-        "description": "§3%s\n\n§7Click to change the display name",
+        "not-set": {
+          "title": "§6Display name",
+          "description": "§cNot set\n\n§7Click to change the display name"
+        },
+        "set": {
+          "title": "§6Display name",
+          "description": "§3%s\n\n§7Click to change the display name"
+        },
         "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
         "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      },
+      "localized-name": {
+        "not-set": {
+          "title": "§6Localized name",
+          "description": "§cNot set\n\n§7Click to change the localized name"
+        },
+        "set": {
+          "title": "§6Localized name",
+          "description": "§3%s\n\n§7Click to change the localized name"
+        },
+        "message": "§eItemMods §7» §ePlease enter the localized name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item localized name to §3%s§a."
       },
       "model": {
         "not-set": {
@@ -312,10 +348,28 @@
         "failed": "§eItemMods §7» §cInvalid block name."
       },
       "display-name": {
-        "title": "§6Display name",
-        "description": "§3%s\n\n§7Click to change the display name",
-        "message": "§eItemMods §7» §ePlease enter the display name of the block. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the block display name to §3%s§a."
+        "not-set": {
+          "title": "§6Display name",
+          "description": "§cNot set\n\n§7Click to change the display name"
+        },
+        "set": {
+          "title": "§6Display name",
+          "description": "§3%s\n\n§7Click to change the display name"
+        },
+        "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      },
+      "localized-name": {
+        "not-set": {
+          "title": "§6Localized name",
+          "description": "§cNot set\n\n§7Click to change the localized name"
+        },
+        "set": {
+          "title": "§6Localized name",
+          "description": "§3%s\n\n§7Click to change the localized name"
+        },
+        "message": "§eItemMods §7» §ePlease enter the localized name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item localized name to §3%s§a."
       },
       "model": {
         "not-set": {
@@ -368,14 +422,14 @@
         "title": "§6Model §3%s",
         "back": {
           "title": "§6Back",
-          "description": "§7Go to the pack list"
+          "description": "§7Go to the model list"
         },
         "name": {
           "title": "§6Name",
           "description": "§3%s\n\n§7Click to change the name",
           "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
           "success": "§eItemMods §7» §aSuccessfully change the model name to §3%s§a.",
-          "failed": "§eItemMods §7» §cInvalid pack name."
+          "failed": "§eItemMods §7» §cInvalid model name."
         },
         "fallback": {
           "title": "§6Fallback texture",
@@ -383,7 +437,7 @@
         },
         "data": {
           "title": "§6Data",
-          "description": "§7Click to set the variations\n§7of items for the resource pack"
+          "description": "§7Click to set the variations\n§7of models for the resource pack"
         },
         "general": "§6General",
         "appearance": "§6Appearance",
@@ -394,6 +448,58 @@
           "gui": {
             "title": "§6Delete model §3%s§6?",
             "message": "§6Delete model §3%s§6?",
+            "description": "§7This process cannot be undo!",
+            "yes": "§aYes",
+            "no": "§cNo"
+          }
+        }
+      },
+      "textures": {
+        "title": "§6Textures §3%s §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "search": {
+          "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+          "title": "§6Search",
+          "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        },
+        "create": {
+          "title": "§6Create",
+          "description": "§7Create a new texture",
+          "message": "§eItemMods §7» §ePlease enter the name of the texture. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully created the texture §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid texture name."
+        },
+        "actions": "§3%s\n\n§7Open the model gui"
+      },
+      "texture": {
+        "title": "§6Texture §3%s",
+        "back": {
+          "title": "§6Back",
+          "description": "§7Go to the texture list"
+        },
+        "name": {
+          "title": "§6Name",
+          "description": "§3%s\n\n§7Click to change the name",
+          "message": "§eItemMods §7» §ePlease enter the name of the texture. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully change the texture name to §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid texture name."
+        },
+        "data": {
+          "title": "§6Data",
+          "description": "§7Click to set the variations\n§7of textures for the resource pack"
+        },
+        "general": "§6General",
+        "appearance": "§6Appearance",
+        "administration": "§6Administration",
+        "delete": {
+          "title": "§6Delete",
+          "description": "§7Delete the current texture",
+          "gui": {
+            "title": "§6Delete texture §3%s§6?",
+            "message": "§6Delete texture §3%s§6?",
             "description": "§7This process cannot be undo!",
             "yes": "§aYes",
             "no": "§cNo"
@@ -423,11 +529,15 @@
             },
             "internet": {
               "title": "§6Internet",
-              "description": "§7Get the data from the internet"
+              "description": "§7Get the data from the internet",
+              "message": "§eItemMods §7» §ePlease enter the direct link to the file. Cancel with a left click.",
+              "success": "§eItemMods §7» §aSuccessfully added the data for the variation §3%s §afrom §3%s"
             },
             "file": {
               "title": "§6File",
-              "description": "§7Get the data from a file in the temp directory."
+              "description": "§7Get the data from a file in the temp directory.",
+              "message": "§eItemMods §7» §ePlease enter the name to the file. Cancel with a left click.",
+              "success": "§eItemMods §7» §aSuccessfully added the data for the variation §3%s §afrom §3%s"
             }
           }
         },

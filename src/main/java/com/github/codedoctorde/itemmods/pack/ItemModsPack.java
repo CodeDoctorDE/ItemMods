@@ -285,6 +285,7 @@ public class ItemModsPack extends NamedPackObject {
     public CustomTemplate getTemplate(String name) {
         return templates.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
+
     @Override
     public void setName(@NotNull String name) throws UnsupportedOperationException {
         if (!NAME_PATTERN.matcher(name).matches())

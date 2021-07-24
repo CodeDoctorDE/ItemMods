@@ -11,12 +11,12 @@ You need this folder structure to have a working resource pack.
 If you have an item with the fallback texture diamond, you need to have a `diamond.json`.
 
 ```markdown
-* assets
-    * minecraft
-        * models
-            * item
-                * diamond.json
-* pack.mcmeta
+├── pack.mcmeta
+└── assets
+    └── minecraft 
+        └── models
+            └── item
+                └── diamond.json
 ```
 
 The `pack.mcmeta` needs to have this content:

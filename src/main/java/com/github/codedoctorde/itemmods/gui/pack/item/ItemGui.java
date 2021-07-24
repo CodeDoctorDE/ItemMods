@@ -100,10 +100,9 @@ public class ItemGui extends GuiCollection {
                             var request = new ChatRequest(p);
                             p.sendMessage(t.getTranslation("localized-name.message"));
                             request.setSubmitAction(s -> {
-                                var ts = ChatColor.translateAlternateColorCodes('&', s);
-                                asset.setDisplayName(ts);
+                                asset.setDisplayName(s);
                                 show(p);
-                                p.sendMessage(t.getTranslation("localized-name.success", ts));
+                                p.sendMessage(t.getTranslation("localized-name.success", s));
                             });
                         });
                     }});

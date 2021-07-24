@@ -16,8 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
 /**
  * @author CodeDoctorDE
  */
@@ -41,7 +39,7 @@ public class BlockSetTemplate extends CustomTemplate {
     @Override
     public boolean isCompatible(@NotNull PackObject packObject) {
         var item = packObject.getItem();
-        if(item == null)
+        if (item == null)
             return false;
         var model = item.getModel();
         return model != null;
@@ -49,13 +47,11 @@ public class BlockSetTemplate extends CustomTemplate {
 
     @Override
     public boolean openConfigGui(CustomTemplateData data, Player player) {
-        new ChoosePackGui(pack -> {
-            new ChooseBlockGui(pack.getName(), asset -> {
-                var packObject = new PackObject(pack.getName(), asset.getName());
-                setBlock(data, packObject);
-                new ItemGui(packObject).show(player);
-            });
-        });
+        new ChoosePackGui(pack -> new ChooseBlockGui(pack.getName(), asset -> {
+            var packObject = new PackObject(pack.getName(), asset.getName());
+            setBlock(data, packObject);
+            new ItemGui(packObject).show(player);
+        }));
         return true;
     }
 
@@ -69,6 +65,7 @@ public class BlockSetTemplate extends CustomTemplate {
     public PackObject getBlock(@NotNull CustomTemplateData data) {
         return new BlockSetTemplateData(data).getBlock();
     }
+
     public void setBlock(@NotNull CustomTemplateData data, @Nullable PackObject packObject) {
         var templateData = new BlockSetTemplateData(data);
         templateData.setBlock(packObject);

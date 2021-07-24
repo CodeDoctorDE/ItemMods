@@ -1,6 +1,7 @@
 ---
 title: Home
 slug: /
+sidebar_position: 0
 ---
 
 Welcome to the ItemMods wiki!

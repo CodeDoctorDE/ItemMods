@@ -1,10 +1,8 @@
 package com.github.codedoctorde.itemmods.api.block;
 
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.api.events.CustomBlockBreakEvent;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -15,12 +13,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public class CustomBlock {
-    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "customblock_type");
-    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "customblock_data");
+    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_type");
+    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_data");
     private final Location location;
 
     public CustomBlock(Location location) {
@@ -61,6 +56,7 @@ public class CustomBlock {
     public void breakBlock(Player player) {
         getBlock().breakNaturally(player.getInventory().getItemInMainHand());
     }
+
     public void breakBlock() {
         getBlock().breakNaturally();
     }

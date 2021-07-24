@@ -28,6 +28,9 @@ public class MainGui extends TranslatedChestGui {
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.DIAMOND).displayName("packs.title").lore("packs.description").build()) {{
             setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
         }});
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.COAL).displayName("inactive-packs.title").lore("inactive-packs.description").build()) {{
+            setClickAction(event -> new InactivePacksGui().show((Player) event.getWhoClicked()));
+        }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.KNOWLEDGE_BOOK).displayName("knowledge.title").lore("knowledge.description").build()) {{
             setClickAction(event -> new KnowledgeGui().show((Player) event.getWhoClicked()));
         }});

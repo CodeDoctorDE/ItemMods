@@ -1,3 +1,7 @@
+---
+title: BetterGui
+---
+
 > Visit [BetterGUI](https://www.spigotmc.org/resources/75620/)
 
 Usage:

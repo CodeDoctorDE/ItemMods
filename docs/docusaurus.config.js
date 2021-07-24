@@ -2,8 +2,8 @@
 module.exports = {
   title: "ItemMods",
   tagline: "Add custom items/blocks to your game.",
-  url: "https://codedoctor.tk",
-  baseUrl: "/ItemMods/",
+  url: "https://itemmods.codedoctor.tk",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -23,14 +23,14 @@ module.exports = {
           label: "Docs",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        {
+        /*{
           label: "Addons",
           to: "addons",
         },
         {
           label: "Mods",
           to: "mods",
-        },
+        },*/
         {
           href: "https://github.com/CodeDoctorDE/ItemMods",
           label: "GitHub",

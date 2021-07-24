@@ -18,7 +18,7 @@ public class ChooseItemGui extends ListGui {
         super(ItemMods.getTranslationConfig().subTranslation("gui.choose.item"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
                         .displayName("item").lore("actions").build()) {{
-                            setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
+                    setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls());

@@ -14,6 +14,7 @@ import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.model.ChooseModelGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.model.ModelGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -64,6 +65,44 @@ public class BlockGui extends GuiCollection {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();
                                 }
+                            });
+                        });
+                    }});
+                    addItem(new TranslatedGuiItem() {{
+                        setRenderAction(gui -> {
+                            var prefix = "display-name." + (asset.getDisplayName() == null ? "not-set" : "set") + ".";
+                            setItemStack(new ItemStackBuilder(Material.PAPER).displayName(prefix + "title").lore(prefix + "description").build());
+                            if (asset.getDisplayName() != null) setPlaceholders(asset.getDisplayName());
+                        });
+                        setRenderAction(gui -> setPlaceholders(asset.getDisplayName()));
+                        setClickAction(event -> {
+                            var p = (Player) event.getWhoClicked();
+                            hide(p);
+                            var request = new ChatRequest(p);
+                            p.sendMessage(t.getTranslation("display-name.message"));
+                            request.setSubmitAction(s -> {
+                                var ts = ChatColor.translateAlternateColorCodes('&', s);
+                                asset.setDisplayName(ts);
+                                show(p);
+                                p.sendMessage(t.getTranslation("display-name.success", ts));
+                            });
+                        });
+                    }});
+                    addItem(new TranslatedGuiItem() {{
+                        setRenderAction(gui -> {
+                            var prefix = "localized-name." + (asset.getLocalizedName() == null ? "not-set" : "set") + ".";
+                            setItemStack(new ItemStackBuilder(Material.BOOK).displayName(prefix + "title").lore(prefix + "description").build());
+                            if (asset.getLocalizedName() != null) setPlaceholders(asset.getLocalizedName());
+                        });
+                        setClickAction(event -> {
+                            var p = (Player) event.getWhoClicked();
+                            hide(p);
+                            var request = new ChatRequest(p);
+                            p.sendMessage(t.getTranslation("localized-name.message"));
+                            request.setSubmitAction(s -> {
+                                asset.setDisplayName(s);
+                                show(p);
+                                p.sendMessage(t.getTranslation("localized-name.success", s));
                             });
                         });
                     }});
