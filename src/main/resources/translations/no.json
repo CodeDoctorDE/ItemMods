@@ -5,7 +5,8 @@
     "unloading": "§eItemMods §7» §eAv-Laster plugin...",
     "unloaded": "§eItemMods §7» §avellykket Av-lastet Plugin!",
     "compatible": "§eItemMods §7» §6Denne Plugin er ikke kompatibel med versjonen din!",
-    "version": "$eItemMods $7» §6Det er en ny versjon tilgjengelig: §3%s"
+    "version": "$eItemMods $7» §6Det er en ny versjon tilgjengelig: §3%s",
+    "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
   },
   "api": {
     "register": "§eItemMods §7» §aRegistrerte ny addon §3%s§a!",
@@ -19,11 +20,50 @@
   "coming-soon": "§cKommer snart...",
   "addon": {},
   "gui": {
+    "choose": {
+      "item": {
+        "title": "§6Choose item §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "block": {
+        "title": "§6Choose block §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "model": {
+        "title": "§6Choose model §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "texture": {
+        "title": "§6Choose texture §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      }
+    },
     "main": {
       "title": "§6§lItemMods §7(%s)",
       "reload": {
         "title": "§6Oppdater",
-        "description": "§7Oppdater hele utvidelsen"
+        "description": "§7Oppdater hele utvidelsen",
+        "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
       },
       "packs": {
         "title": "§6Packs",
@@ -31,7 +71,7 @@
       },
       "knowledge": {
         "title": "§6Kunnskapsbok",
-        "description": "§7Gp tp mod-informasjon for brukerne"
+        "description": "§7Go to the mod \n§7information for the users"
       },
       "addons": {
         "title": "§6Addons",
@@ -40,30 +80,55 @@
       "source": {
         "title": "§6Kilde",
         "description": "§7Få Github Linken",
-        "link": "§eItemMods §7» §b§lhttps://github.com/CodeDoctorDE/ItemMods.git"
+        "link": "§eItemMods §7» §eSource: §b§%s"
       },
       "support": {
         "title": "§6Brukerstøtte",
         "description": "§7Få Discord-Server Linken",
-        "link": "§eItemMods §7» §b§lhttps://discord.gg/WzcRNGF"
+        "link": "§eItemMods §7» §eSupport: §b§n%s"
       },
       "crowdin": {
         "title": "§6Crowdin",
         "description": "§7Få crowdin linken",
-        "link": "§eItemMods §7» §b§lhttps://linwood.crowdin.com/ItemMods"
+        "link": "§eItemMods §7» §eCrowdin: §b§n%s"
       },
       "wiki": {
         "title": "§6Wiki",
         "description": "§7Få Wiki Linken",
-        "link": "§eItemMods §7» §b§lhttps://itemmods.codedoctor.tk"
+        "link": "§eItemMods §7» §eWiki: §b§n%s"
+      },
+      "export": {
+        "title": "§6Export",
+        "description": "§7Export resource pack",
+        "message": "§eItemMods §7» §eExporting",
+        "success": "§eItemMods §7» §aSuccessfully exported the resource pack",
+        "failed": "§eItemMods §7» §aExporting resource pack failed. See the console for details!"
+      },
+      "reset": {
+        "title": "§6Reset",
+        "description": "§7Reset the identifiers\n§7for the resource pack"
+      },
+      "locale": {
+        "title": "§6Locale",
+        "description": "§3%s\n\n§7Click to set locale"
       }
     },
-    "packs": {
-      "title": "§6Packs",
+    "locales": {
+      "title": "§6Locales §7(%d/%d)",
       "first": "§6First",
       "previous": "§6Previous",
       "next": "§6Next",
       "last": "§6Last",
+      "item": "§6%s",
+      "actions": "§7Click to set"
+    },
+    "packs": {
+      "title": "§6Packs §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "item": "§6%s",
       "search": {
         "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
         "title": "§6Search",
@@ -72,11 +137,11 @@
       "create": {
         "title": "§6Create",
         "description": "§7Create a new pack",
-        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully created the pack §3%s§a.",
-        "failed": "§6ItemMods §7» §cInvalid pack name."
+        "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid pack name."
       },
-      "actions": "\n§3%s\n§7Open the pack gui"
+      "actions": "§3%s\n\n§7Open the pack gui"
     },
     "pack": {
       "title": "§6Pack §3%s",
@@ -87,11 +152,13 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§6ItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§6ItemMods §7» §aSuccessfully change the pack name to §3%s§a."
+        "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid pack name."
       },
       "general": "§6General",
       "contents": "§6Contents",
+      "raw": "§6Raw",
       "administration": "§6Administration",
       "items": {
         "title": "§6Gjenstander",
@@ -127,11 +194,244 @@
       },
       "delete": {
         "title": "§6Delete",
-        "description": "§7Delete the current pack"
+        "description": "§7Delete the current pack",
+        "gui": {
+          "title": "§6Delete pack §3%s§6?",
+          "message": "§6Delete pack §3%s§6?",
+          "description": "§7This will delete the pack\n§7folder and the content of it.\n§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
       }
     },
     "materials": {
       "title": "Materials"
+    },
+    "items": {
+      "title": "§6Items §3%s §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new item",
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
+      },
+      "actions": "§3%s\n\n§7Open the item gui"
+    },
+    "item": {
+      "title": "§6Item §3%s",
+      "back": {
+        "title": "§6Back",
+        "description": "§7Go to the item list"
+      },
+      "general": "§6General",
+      "administration": "§6Administration",
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Click to change the name",
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
+      },
+      "display-name": {
+        "title": "§6Display name",
+        "description": "§3%s\n\n§7Click to change the display name",
+        "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      },
+      "model": {
+        "not-set": {
+          "title": "§6Model",
+          "description": "§cNot set\n\n§7Click to add a model"
+        },
+        "set": {
+          "title": "§6Model",
+          "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        }
+      },
+      "templates": {
+        "title": "§6Templates",
+        "description": "§7Go to the template list"
+      },
+      "delete": {
+        "title": "§6Delete",
+        "description": "§7Delete the current item",
+        "gui": {
+          "title": "§6Delete item §3%s§6?",
+          "message": "§6Delete item §3%s§6?",
+          "description": "§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
+      }
+    },
+    "blocks": {
+      "title": "§6Blocks §3%s §7(%d/%d)",
+      "first": "§6First",
+      "previous": "§6Previous",
+      "next": "§6Next",
+      "last": "§6Last",
+      "search": {
+        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+        "title": "§6Search",
+        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      },
+      "create": {
+        "title": "§6Create",
+        "description": "§7Create a new item",
+        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid item name."
+      },
+      "actions": "§3%s\n\n§7Open the item gui"
+    },
+    "block": {
+      "title": "§6Block §3%s",
+      "back": {
+        "title": "§6Back",
+        "description": "§7Go to the block list"
+      },
+      "general": "§6General",
+      "block": "§6Block",
+      "administration": "§6Administration",
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Click to change the name",
+        "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the block name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid block name."
+      },
+      "display-name": {
+        "title": "§6Display name",
+        "description": "§3%s\n\n§7Click to change the display name",
+        "message": "§eItemMods §7» §ePlease enter the display name of the block. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the block display name to §3%s§a."
+      },
+      "model": {
+        "not-set": {
+          "title": "§6Model",
+          "description": "§cNot set\n\n§7Click to add a model"
+        },
+        "set": {
+          "title": "§6Model",
+          "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        }
+      },
+      "templates": {
+        "title": "§6Templates",
+        "description": "§7Go to the template list"
+      },
+      "delete": {
+        "title": "§6Delete",
+        "description": "§7Delete the current block",
+        "gui": {
+          "title": "§6Delete block §3%s§6?",
+          "message": "§6Delete block §3%s§6?",
+          "description": "§7This process cannot be undo!",
+          "yes": "§aYes",
+          "no": "§cNo"
+        }
+      }
+    },
+    "raw": {
+      "models": {
+        "title": "§6Models §3%s §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "search": {
+          "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+          "title": "§6Search",
+          "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        },
+        "create": {
+          "title": "§6Create",
+          "description": "§7Create a new model",
+          "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully created the model §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid model name."
+        },
+        "actions": "§3%s\n\n§7Open the model gui"
+      },
+      "model": {
+        "title": "§6Model §3%s",
+        "back": {
+          "title": "§6Back",
+          "description": "§7Go to the pack list"
+        },
+        "name": {
+          "title": "§6Name",
+          "description": "§3%s\n\n§7Click to change the name",
+          "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+          "success": "§eItemMods §7» §aSuccessfully change the model name to §3%s§a.",
+          "failed": "§eItemMods §7» §cInvalid pack name."
+        },
+        "fallback": {
+          "title": "§6Fallback texture",
+          "description": "§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
+        },
+        "data": {
+          "title": "§6Data",
+          "description": "§7Click to set the variations\n§7of items for the resource pack"
+        },
+        "general": "§6General",
+        "appearance": "§6Appearance",
+        "administration": "§6Administration",
+        "delete": {
+          "title": "§6Delete",
+          "description": "§7Delete the current model",
+          "gui": {
+            "title": "§6Delete model §3%s§6?",
+            "message": "§6Delete model §3%s§6?",
+            "description": "§7This process cannot be undo!",
+            "yes": "§aYes",
+            "no": "§cNo"
+          }
+        }
+      },
+      "data": {
+        "title": "§6Data §3%s §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "search": {
+          "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+          "title": "§6Search",
+          "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        },
+        "create": {
+          "title": "§6Create",
+          "description": "§7Create a new model",
+          "variation": "§eItemMods §7» §ePlease enter the name of the variation. Cancel with a left click.",
+          "gui": {
+            "title": "§6Create data",
+            "back": {
+              "title": "§6Back",
+              "description": "§7Go to the data list"
+            },
+            "internet": {
+              "title": "§6Internet",
+              "description": "§7Get the data from the internet"
+            },
+            "file": {
+              "title": "§6File",
+              "description": "§7Get the data from a file in the temp directory."
+            }
+          }
+        },
+        "actions": "§3%s\n\n§7Open the model gui"
+      }
     }
   },
   "event": {
@@ -140,13 +440,14 @@
   "command": {
     "base": {
       "usage": "§eItemMods §7» §cBruk: §3/itemmods§c!",
-      "noplayer": "§eItemMods §7» §4Denne kommandoen er bare for spillere!"
+      "no-player": "§eItemMods §7» §4Denne kommandoen er bare for spillere!"
     },
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
-      "noplayer": "§eItemMods §7» §4Denne kommandoen er bare for spillere!",
-      "noitem": "§eItemMods §7» §4Det er ikke en gyldig gjenstand!",
-      "nonumber": "§eItemMods §7» §4Det er ikke et tall!",
+      "no-player": "§eItemMods §7» §4Denne kommandoen er bare for spillere!",
+      "no-item": "§eItemMods §7» §4Det er ikke en gyldig gjenstand!",
+      "no-number": "§eItemMods §7» §4Det er ikke et tall!",
+      "no-permission": "§eItemMods §7» §4You don't have the permission to do that!",
       "success": "§eItemMods §7» §avellykket ga deg gjenstand §3%s§a!"
     }
   }
