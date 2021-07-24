@@ -14,11 +14,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
@@ -63,7 +60,7 @@ public class CustomBlockListener implements Listener {
                 }
                 if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
                     return;
-                if (!ItemMods.getCustomBlockManager().setCustomBlock(location, template.getBlock(customTemplateData), player))
+                if (ItemMods.getCustomBlockManager().setCustomBlock(location, template.getBlock(customTemplateData), player) == null)
                     return;
                 event.setCancelled(true);
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
@@ -71,19 +68,6 @@ public class CustomBlockListener implements Listener {
             }
         });
     }
-
-    /*@EventHandler
-    public void onCustomBlockGet(InventoryCreativeEvent event) {
-        if (event.getWhoClicked().getGameMode() != GameMode.CREATIVE)
-            return;
-        Block block = event.getWhoClicked().getTargetBlock(null, 10);
-        if (block.getType() == Material.AIR)
-            return;
-        CustomBlock customBlock = new CustomBlock(block);
-        if (customBlock.getConfig() == null)
-            return;
-        event.getWhoClicked().getInventory().setItemInMainHand(customBlock.getConfig().getReferenceItemAsset().getItemStack());
-    }*/
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onCustomBlockBreak(@NotNull BlockBreakEvent event) {
@@ -93,8 +77,6 @@ public class CustomBlockListener implements Listener {
         if (customBlock.getConfig() == null)
             return;
         event.setCancelled(true);
-        if (!customBlock.breakBlock(event.getPlayer()))
-            return;
         event.getBlock().setType(Material.AIR);
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
         if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
@@ -108,22 +90,4 @@ public class CustomBlockListener implements Listener {
             event.setCancelled(true);
     }
 
-    @EventHandler
-    public void onChunkLoad(ChunkLoadEvent event) {
-    }
-
-    @EventHandler
-    public void onChunkUnload(ChunkUnloadEvent event) {
-
-    }
-
-    @EventHandler
-    public void onCustomBlockRedstone(BlockRedstoneEvent event) {
-       /* for (int x = -1; x < 2; x++)
-            for (int y = -1; y < 2; y++)
-                for (int z = -1; z < 2; z++)
-                    if (event.getBlock().getWorld().getBlockAt(event.getBlock().getLocation().getBlockX() + x,
-                            event.getBlock().getLocation().getBlockY() + y, event.getBlock().getLocation().getBlockZ() + z).equals()) {
-                    }*/
-    }
 }

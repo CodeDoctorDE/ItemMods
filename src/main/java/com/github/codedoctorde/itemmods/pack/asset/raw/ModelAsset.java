@@ -82,8 +82,10 @@ public class ModelAsset extends RawAsset {
         return fallbackTexture == null;
     }
 
-    public @Nullable Material getIcon() {
-        return fallbackTexture;
+    public @NotNull Material getIcon() {
+        if (fallbackTexture != null)
+            return fallbackTexture;
+        return Material.ARMOR_STAND;
     }
 
     @Override

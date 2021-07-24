@@ -26,7 +26,7 @@ public class PackManager {
     private final List<ItemModsPack> packs = new ArrayList<>();
     private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
-    public PackManager() throws IOException {
+    public PackManager() {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
         presetPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "preset");
         try {

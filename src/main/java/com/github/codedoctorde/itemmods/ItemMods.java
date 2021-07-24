@@ -30,11 +30,12 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -197,16 +198,13 @@ public class ItemMods extends JavaPlugin {
         }
         if (Version.getVersion() == Version.UNKNOWN)
             Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
-        try {
-            packManager = new PackManager();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        packManager = new PackManager();
 
         baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();
         customBlockManager = new CustomBlockManager();
         customItemManager = new CustomItemManager();
+
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
         Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
@@ -251,9 +249,5 @@ public class ItemMods extends JavaPlugin {
 
     public BaseCommand getBaseCommand() {
         return baseCommand;
-    }
-
-    public @NotNull Gson getGson() {
-        return GSON;
     }
 }

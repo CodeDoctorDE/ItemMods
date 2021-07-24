@@ -58,26 +58,11 @@ public class CustomBlock {
     }
 
 
-    public boolean breakBlock(Player player) {
-        //BlockConfig config = getConfig();
-        /*if (config == null || dropType == null) return false;
-        if (config.getBlock() != null)
-            getBlock().setType(Material.AIR);
-        getBlock().getDrops().clear();
-        List<ItemStack> drops = new ArrayList<>();
-        if (dropType == BlockDropType.SILK_TOUCH && config.getReferenceItemAsset() != null)
-            drops.add(config.getReferenceItemAsset().giveItemStack());
-        else if (dropType == BlockDropType.DROP || config.getReferenceItemAsset() == null)
-            getConfig().getDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));
-        else if (dropType == BlockDropType.FORTUNE)
-            getConfig().getFortuneDrops().stream().filter(drop -> new Random().nextInt(99) + 1 <= drop.getRarity()).forEach(drop -> drops.add(drop.getItemStack()));*/
-        CustomBlockBreakEvent event = new CustomBlockBreakEvent(this, new ArrayList<>(), player);
-        Bukkit.getPluginManager().callEvent(event);
-        if (event.isCancelled())
-            return false;
-        Location dropLocation = getBlock().getLocation().clone().add(0.5, 0, 0.5);
-        event.getDrops().forEach(drop -> Objects.requireNonNull(dropLocation.getWorld()).dropItemNaturally(dropLocation, drop));
-        return true;
+    public void breakBlock(Player player) {
+        getBlock().breakNaturally(player.getInventory().getItemInMainHand());
+    }
+    public void breakBlock() {
+        getBlock().breakNaturally();
     }
 
     public @NotNull Block getBlock() {

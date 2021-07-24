@@ -7,8 +7,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.regex.Pattern;
 
 public abstract class NamedPackObject {
-    public static @NotNull Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    public static @NotNull Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
+    public static @NotNull
+    final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    public static @NotNull
+    final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
     private String name;
 
     public NamedPackObject(@NotNull String name) {

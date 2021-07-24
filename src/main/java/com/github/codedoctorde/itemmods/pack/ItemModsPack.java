@@ -1,6 +1,5 @@
 package com.github.codedoctorde.itemmods.pack;
 
-import com.github.codedoctorde.api.ui.item.GuiItem;
 import com.github.codedoctorde.api.utils.FileUtils;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
@@ -209,10 +208,6 @@ public class ItemModsPack extends NamedPackObject {
     @Nullable
     public TextureAsset getTexture(String name) {
         return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    public @Nullable GuiItem getGuiItem(PackObject packObject) {
-        return null;
     }
 
     void save(@NotNull Path path) throws IOException {

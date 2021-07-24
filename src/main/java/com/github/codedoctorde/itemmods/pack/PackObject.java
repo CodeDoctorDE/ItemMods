@@ -12,7 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.regex.Pattern;
 
 public class PackObject {
-    public static @NotNull Pattern IDENTIFIER_PATTERN = Pattern.compile("^(?<namespace>^[a-z\\-]+):(?<name>[a-z_\\-]+(/+[a-z_\\-]+)*)$");
+    public static @NotNull
+    final Pattern IDENTIFIER_PATTERN = Pattern.compile("^(?<namespace>^[a-z\\-]+):(?<name>[a-z_\\-]+(/+[a-z_\\-]+)*)$");
     private final String namespace, name;
 
     public PackObject(String namespace, String name) {

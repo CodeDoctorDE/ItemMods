@@ -13,6 +13,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 /**
  * @author CodeDoctorDE
  */
@@ -40,7 +42,7 @@ public class BlockSetTemplate extends CustomTemplate {
         var model = item.getModel();
         if (model == null)
             return false;
-        return model.getFallbackTexture().isBlock();
+        return Objects.requireNonNull(model.getFallbackTexture()).isBlock();
     }
 
     @Override

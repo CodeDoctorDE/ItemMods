@@ -13,8 +13,9 @@ import org.jetbrains.annotations.NotNull;
  * @author CodeDoctorDE
  */
 public class BaseAddon {
-    ItemModsPack pack;
-    @NotNull Translation addonTranslation = ItemMods.getTranslationConfig().subTranslation("addon.main");
+    final ItemModsPack pack;
+    @NotNull
+    final Translation addonTranslation = ItemMods.getTranslationConfig().subTranslation("addon.main");
 
     public BaseAddon() {
         pack = new ItemModsPack("itemmods");

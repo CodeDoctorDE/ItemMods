@@ -1,9 +1,14 @@
 package com.github.codedoctorde.itemmods.api.block;
 
+import com.github.codedoctorde.itemmods.api.events.CustomBlockPlaceEvent;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -13,7 +18,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class CustomBlockManager {
-    private final List<CustomBlock> loadedBlocks = new ArrayList<>();
 
     public static @NotNull String locationToString(final @Nullable Location location) {
         if (location == null) return "";
@@ -28,77 +32,25 @@ public class CustomBlockManager {
     }
 
     /**
-     * Get the custom block by the location
-     *
-     * @param location the location of the custom block
-     * @return The custom block
-     * @deprecated Use the {@link CustomBlock} constructor
-     */
-    @Nullable
-    @Deprecated
-    public CustomBlock getCustomBlock(final Location location) {
-        return new CustomBlock(location);
-    }
-
-    /**
-     * Get the custom block by the block
-     *
-     * @param block the "real" block of the custom block
-     * @return The custom block
-     * @deprecated Use the {@link CustomBlock} constructor
-     */
-    @Deprecated
-    @Nullable
-    public CustomBlock getCustomBlock(final @NotNull Block block) {
-        return getCustomBlock(block.getLocation());
-    }
-
-    /*public List<BlockConfig> getBlocks() {
-        return ItemMods.getMainConfig().getBlocks();
-    }*/
-
-    /**
      * @param location   The location where the custom block will be placed!
      * @param packObject The block config for the custom block
      * @param player     The player who is placing the block
      * @return Returns if it was placed!
      */
-    public boolean setCustomBlock(Location location, PackObject packObject, Player player) {
-        /*if (new CustomBlock(location).getConfig() != null)
-            return false;
+    public CustomBlock setCustomBlock(Location location, PackObject packObject, @Nullable Player player) {
+        var customBlock = new CustomBlock(location);
+        if (customBlock.getConfig() != null)
+            return null;
         if (location.getBlock().getType().isSolid())
-            return false;
-        CustomBlockPlaceEvent event = new CustomBlockPlaceEvent(location, blockConfig, player);
+            return null;
+        var event = new CustomBlockPlaceEvent(location, packObject, player);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled())
-            return false;
+            return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
-        if (blockConfig.getBlock() != null)
-            block.setBlockData(blockConfig.getBlock());
-        ArmorStand armorStand = null;
+        block.setType(Material.SPAWNER);
+        // TODO: CRAFT BUKKIT
 
-        ArmorStandBlockConfig armorStandBlockConfig = blockConfig.getArmorStand();
-        if (armorStandBlockConfig != null) armorStandBlockConfig.spawn(location);
-        if (blockConfig.getNbt() != null)
-            BlockNBT.setNbt(block, blockConfig.getNbt());
-        if (location.getChunk().isLoaded())
-            loadedBlocks.add(new CustomBlock(location) {{
-                setIdentifier(blockConfig.getIdentifier());
-                configure();
-            }});
-        */
-        return true;
-    }
-
-    public void onTick() {
-        /*loadedBlocks.stream().filter(customBlock -> customBlock.getConfig().getTemplate() != null).forEach(customBlock -> {
-            CustomBlockTemplate template = customBlock.getConfig().getTemplate().getInstance();
-            if (template != null)
-                template.tick(customBlock);
-        });*/
-    }
-
-    public @NotNull List<CustomBlock> getLoadedBlocks() {
-        return loadedBlocks;
+        return customBlock;
     }
 }
