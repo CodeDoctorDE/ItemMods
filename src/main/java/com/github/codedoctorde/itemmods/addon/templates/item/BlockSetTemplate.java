@@ -3,6 +3,9 @@ package com.github.codedoctorde.itemmods.addon.templates.item;
 import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
+import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
+import com.github.codedoctorde.itemmods.gui.pack.block.ChooseBlockGui;
+import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
@@ -38,20 +41,21 @@ public class BlockSetTemplate extends CustomTemplate {
     @Override
     public boolean isCompatible(@NotNull PackObject packObject) {
         var item = packObject.getItem();
-        assert item != null;
-        var model = item.getModel();
-        if (model == null)
+        if(item == null)
             return false;
-        return Objects.requireNonNull(model.getFallbackTexture()).isBlock();
+        var model = item.getModel();
+        return model != null;
     }
 
     @Override
     public boolean openConfigGui(CustomTemplateData data, Player player) {
-        /*new ChooseBlockConfigGui(blockConfig -> {
-            data.setBlock(blockConfig.getIdentifier());
-            data.save();
-            new ItemGui(itemAsset.getIdentifier()).show(player);
-        });*/
+        new ChoosePackGui(pack -> {
+            new ChooseBlockGui(pack.getName(), asset -> {
+                var packObject = new PackObject(pack.getName(), asset.getName());
+                setBlock(data, packObject);
+                new ItemGui(packObject).show(player);
+            });
+        });
         return true;
     }
 
@@ -63,36 +67,37 @@ public class BlockSetTemplate extends CustomTemplate {
 
     @Nullable
     public PackObject getBlock(@NotNull CustomTemplateData data) {
-        return PackObject.fromIdentifier(new BlockSetTemplateData(this, data).getBlock());
+        return new BlockSetTemplateData(data).getBlock();
+    }
+    public void setBlock(@NotNull CustomTemplateData data, @Nullable PackObject packObject) {
+        var templateData = new BlockSetTemplateData(data);
+        templateData.setBlock(packObject);
+        templateData.save();
     }
 
     private static class BlockSetTemplateData {
         private static final Gson GSON = new Gson();
-        private final BlockSetTemplate template;
-        private String block;
+        private final CustomTemplateData data;
+        private PackObject block;
 
-        BlockSetTemplateData(BlockSetTemplate template, @NotNull CustomTemplateData data) {
-            this.template = template;
+        BlockSetTemplateData(@NotNull CustomTemplateData data) {
+            this.data = data;
             JsonObject jsonObject = GSON.fromJson(data.getData(), JsonObject.class);
             if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
-                block = jsonObject.get("block").getAsString();
+                block = PackObject.fromIdentifier(jsonObject.get("block").getAsString());
         }
 
-        public BlockSetTemplate getTemplate() {
-            return template;
-        }
-
-        public String getBlock() {
+        public PackObject getBlock() {
             return block;
         }
 
-        public void setBlock(String block) {
+        public void setBlock(PackObject block) {
             this.block = block;
         }
 
-        void save(@NotNull CustomTemplateData data) {
+        void save() {
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("block", block);
+            jsonObject.addProperty("block", block.toString());
             data.setData(jsonObject);
             data.getObject().save();
         }

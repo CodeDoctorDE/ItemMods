@@ -21,8 +21,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class ItemModsPack extends NamedPackObject {
+    public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
     private final List<ItemAsset> items = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
@@ -282,5 +284,11 @@ public class ItemModsPack extends NamedPackObject {
 
     public CustomTemplate getTemplate(String name) {
         return templates.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
+    }
+    @Override
+    public void setName(@NotNull String name) throws UnsupportedOperationException {
+        if (!NAME_PATTERN.matcher(name).matches())
+            throw new UnsupportedOperationException();
+        this.name = name;
     }
 }

@@ -1,3 +1,7 @@
+---
+title: API
+---
+
 The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
 * You can use maven to get the dependency or can use the jars in the github actions.

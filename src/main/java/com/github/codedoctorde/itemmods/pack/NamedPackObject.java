@@ -11,7 +11,7 @@ public abstract class NamedPackObject {
     final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     public static @NotNull
     final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
-    private String name;
+    protected String name;
 
     public NamedPackObject(@NotNull String name) {
         setName(name);

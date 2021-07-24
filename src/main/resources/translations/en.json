@@ -21,6 +21,44 @@
   "addon": {
   },
   "gui": {
+    "choose": {
+      "item": {
+        "title": "§6Choose item §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "block": {
+        "title": "§6Choose block §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "model": {
+        "title": "§6Choose model §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      },
+      "texture": {
+        "title": "§6Choose texture §7(%d/%d)",
+        "first": "§6First",
+        "previous": "§6Previous",
+        "next": "§6Next",
+        "last": "§6Last",
+        "item": "§6%s",
+        "actions": "§7Click to choose"
+      }
+    },
     "main": {
       "title": "§6§6§lItemMods §7(%s)",
       "reload": {
