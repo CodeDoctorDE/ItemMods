@@ -59,7 +59,7 @@
       }
     },
     "main": {
-      "title": "§6§6§lItemMods §7(%s)",
+      "title": "§6§lItemMods §7(%s)",
       "reload": {
         "title": "§6Reload",
         "description": "§7Reload the whole plugin",
@@ -92,7 +92,7 @@
         "link": "§eItemMods §7» §eSupport: §b§n%s"
       },
       "crowdin": {
-        "title": "§6§6Crowdin",
+        "title": "§6Crowdin",
         "description": "§7Get the crowdin link",
         "link": "§eItemMods §7» §eCrowdin: §b§n%s"
       },
