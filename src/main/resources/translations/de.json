@@ -1,80 +1,80 @@
 {
   "plugin": {
-    "loading": "§eItemMods §7» §eLoading plugin...",
-    "loaded": "§eItemMods §7» §aSuccessfully loaded plugin!",
-    "unloading": "§eItemMods §7» §eUnloading plugin...",
-    "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
-    "compatible": "§eItemMods §7» §6This plugin isn't compatible with your version!",
-    "version": "$eItemMods $7» §6There is a new version available: §3%s",
-    "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
+    "loading": "§eItemMods §7» §eLade Plugin...",
+    "loaded": "§eItemMods §7» §aErfolgreich Plugin geladen!",
+    "unloading": "§eItemMods §7» §eEntlade Plugin...",
+    "unloaded": "§eItemMods §7» §aErfolgreich Plugin entladen!",
+    "compatible": "§eItemMods §7» §6Dieses Plugin ist nicht mit deiner Version kompatibel!",
+    "version": "$eItemMods $7» §6Es ist eine neue Version verfügbar: §3%s",
+    "no-preset": "§eItemMods §7» §cEs gibt kein voreingestelltes Ressourcenpaket. Bitte kopiere ein Beispieltextur-Paket dort."
   },
   "api": {
-    "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
-    "unregister": "§eItemMods §7» §aUnregistered addon §3%s§a!"
+    "register": "§eItemMods §7» §aNeues Addon registriert: §3%s§a!",
+    "unregister": "§eItemMods §7» §aNeues Addon unregistriert: §3%s§a!"
   },
   "pack": {
-    "created": "§eItemMods $7» §6Pack folder was created!",
-    "exporting": "§eItemMods $7» §eExporting resource pack...",
-    "exported": "§eItemMods $7» §6Resource pack was exported!"
+    "created": "§eItemMods $7» §6Pack-Ordner wurde erstellt!",
+    "exporting": "§eItemMods $7» §eExportiere Ressourcenpaket...",
+    "exported": "§eItemMods $7» §6Ressourcenpaket wurde exportiert!"
   },
-  "coming-soon": "§cComing soon...",
+  "coming-soon": "§cBald verfügbar...",
   "addon": {},
   "gui": {
     "choose": {
       "item": {
-        "title": "§6Choose item §7(%d/%d)",
-        "first": "§6First",
-        "previous": "§6Previous",
-        "next": "§6Next",
-        "last": "§6Last",
+        "title": "§6Wähle Gegenstand §7(%d/%d)",
+        "first": "§6Erste",
+        "previous": "§6Vorherige",
+        "next": "§6Nächste",
+        "last": "§6Letzter",
         "item": "§6%s",
-        "actions": "§7Click to choose"
+        "actions": "§7Klicke zum Auswählen"
       },
       "block": {
-        "title": "§6Choose block §7(%d/%d)",
-        "first": "§6First",
-        "previous": "§6Previous",
-        "next": "§6Next",
-        "last": "§6Last",
+        "title": "§6Wähle Block §7(%d/%d)",
+        "first": "§6Erste",
+        "previous": "§6Vorherige",
+        "next": "§6Nächste",
+        "last": "§6Letzter",
         "item": "§6%s",
-        "actions": "§7Click to choose"
+        "actions": "§7Klicke zum Auswählen"
       },
       "model": {
-        "title": "§6Choose model §7(%d/%d)",
-        "first": "§6First",
-        "previous": "§6Previous",
-        "next": "§6Next",
-        "last": "§6Last",
+        "title": "§6Wähle Modell §7(%d/%d)",
+        "first": "§6Erste",
+        "previous": "§6Vorherige",
+        "next": "§6Nächste",
+        "last": "§6Letzter",
         "item": "§6%s",
-        "actions": "§7Click to choose"
+        "actions": "§7Klicke zum Auswählen"
       },
       "texture": {
-        "title": "§6Choose texture §7(%d/%d)",
-        "first": "§6First",
-        "previous": "§6Previous",
-        "next": "§6Next",
-        "last": "§6Last",
+        "title": "§6Wähle Textur §7(%d/%d)",
+        "first": "§6Erste",
+        "previous": "§6Vorherige",
+        "next": "§6Nächste",
+        "last": "§6Letzter",
         "item": "§6%s",
-        "actions": "§7Click to choose"
+        "actions": "§7Klicke zum Auswählen"
       }
     },
     "main": {
       "title": "§6§6§lItemMods §7(%s)",
       "reload": {
-        "title": "§6Reload",
-        "description": "§7Reload the whole plugin",
-        "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
+        "title": "§6Neuladen",
+        "description": "§7Lade das ganze Plugin neu",
+        "success": "§eItemMods §7» §aErfolgreich neu geladen"
       },
       "packs": {
-        "title": "§6Packs",
-        "description": "§7Go to the packs list"
+        "title": "§6Pakete",
+        "description": "§7Gehe zur Paketliste"
       },
       "inactive-packs": {
-        "title": "§6Inactive Packs",
-        "description": "§7Go to the inactive packs list"
+        "title": "§6Inaktive Pakete",
+        "description": "§7Gehe zur inaktiven Paketliste"
       },
       "knowledge": {
-        "title": "§6Knowledge Book",
+        "title": "§6Wissensbuch",
         "description": "§7Go to the mod \n§7information for the users"
       },
       "addons": {
@@ -152,35 +152,35 @@
       "first": "§6First",
       "previous": "§6Previous",
       "next": "§6Next",
-      "last": "§6Last",
+      "last": "§6Letzter",
       "item": "§6%s",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
       },
-      "actions": "§3%s\n\n§7Open the pack gui"
+      "actions": "§3%s\n\n§7Öffne das Paketgui"
     },
     "pack": {
-      "title": "§6Pack §3%s",
+      "title": "§6Paket §3%s",
       "back": {
-        "title": "§6Back",
-        "description": "§7Go to the pack list"
+        "title": "§6Zurück",
+        "description": "§7Gehe zur Paketliste"
       },
       "name": {
         "title": "§6Name",
-        "description": "§3%s\n\n§7Click to change the name",
-        "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid pack name."
+        "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+        "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Paketnamen zu §3%s§a geändert.",
+        "failed": "§eItemMods §7» §cUngültiger Paketname."
       },
-      "general": "§6General",
-      "contents": "§6Contents",
-      "raw": "§6Raw",
+      "general": "§6Allgemein",
+      "contents": "§6Inhalte",
+      "raw": "§6Roh",
       "administration": "§6Administration",
       "items": {
         "title": "§6Items",
-        "description": "§7Go to the item list"
+        "description": "§7Gehe zur Itemliste"
       },
       "blocks": {
         "title": "§6Blocks",
