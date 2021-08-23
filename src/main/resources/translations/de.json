@@ -20,6 +20,9 @@
   "coming-soon": "§cBald verfügbar...",
   "addon": {},
   "gui": {
+    "knowledge": {
+      "title": "§6Knowledge"
+    },
     "choose": {
       "item": {
         "title": "§6Wähle Gegenstand §7(%d/%d)",
@@ -263,7 +266,7 @@
       "display-name": {
         "not-set": {
           "title": "§6Anzeigename",
-          "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"
+          "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
         },
         "set": {
           "title": "§6Anzeigename",
@@ -349,7 +352,7 @@
       "display-name": {
         "not-set": {
           "title": "§6Anzeigename",
-          "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"
+          "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
         },
         "set": {
           "title": "§6Anzeigename",
