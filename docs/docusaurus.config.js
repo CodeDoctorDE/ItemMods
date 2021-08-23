@@ -2,7 +2,7 @@
 module.exports = {
   title: "ItemMods",
   tagline: "Add custom items/blocks to your game.",
-  url: "https://itemmods.codedoctor.tk",
+  url: "https://itemmods.linwood.dev",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
