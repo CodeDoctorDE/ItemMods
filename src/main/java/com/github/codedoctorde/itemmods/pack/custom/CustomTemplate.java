@@ -10,7 +10,7 @@ public abstract class CustomTemplate {
 
     public abstract @NotNull ItemStack createIcon(CustomTemplateData data);
 
-    public abstract @NotNull ItemStack createMainIcon(PackObject object);
+    public abstract @NotNull ItemStack getIcon();
 
     public boolean isCompatible(PackObject object) {
         return true;

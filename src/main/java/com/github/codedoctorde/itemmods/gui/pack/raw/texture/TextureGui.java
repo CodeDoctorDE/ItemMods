@@ -24,7 +24,6 @@ public class TextureGui extends GuiCollection {
         var t = ItemMods.getTranslationConfig().subTranslation("gui.raw.texture");
         var asset = packObject.getTexture();
         assert asset != null;
-        var empty = new StaticItem();
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(TextureTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
             setPlaceholders(packObject.toString());

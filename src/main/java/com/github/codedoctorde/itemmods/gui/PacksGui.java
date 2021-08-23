@@ -18,7 +18,12 @@ public class PacksGui extends ListGui {
                         new TranslatedGuiItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(itemModsPack.getName()));
-                            setClickAction(event -> new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked()));
+                            setClickAction(event -> {
+                                if (itemModsPack.isEditable())
+                                    new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked());
+                                else
+                                    event.getWhoClicked().sendMessage(getTranslation().getTranslation("readonly"));
+                            });
                         }}).toArray(GuiItem[]::new));
         var t = getTranslation();
         setListControls(new VerticalListControls() {{

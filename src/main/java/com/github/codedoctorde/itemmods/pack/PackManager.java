@@ -31,7 +31,7 @@ public class PackManager {
         presetPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "preset");
         try {
             Files.createDirectories(packPath);
-            Files.createDirectories(presetPath);
+            Files.createDirectories(Paths.get(presetPath.toString(), "default"));
             if (hasNoPreset())
                 Bukkit.getConsoleSender().sendMessage(ItemMods.getTranslationConfig().getTranslation("plugin.no-preset"));
         } catch (Exception e) {
@@ -202,7 +202,9 @@ public class PackManager {
     public void export(String variation) throws IOException {
         if (hasNoPreset())
             return;
-        var output = Paths.get(ItemMods.getTempPath().toString(), "output");
+        if (!NamedPackObject.NAME_PATTERN.matcher(variation).matches())
+            return;
+        var output = Paths.get(ItemMods.getTempPath().toString(), "output", variation);
         if (Files.exists(output))
             Files.walk(output).sorted(Comparator.reverseOrder())
                     .forEach((path) -> {
@@ -213,16 +215,29 @@ public class PackManager {
                         }
                     });
         Files.createDirectories(output);
-        Files.walk(output).sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
+        var defaultPack = Paths.get(presetPath.toString(), "default");
+        Files.walk(defaultPack).sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
                 .forEach((path) -> {
                     try {
-                        var current = Paths.get(output.toString(), presetPath.relativize(path).toString());
+                        var current = Paths.get(output.toString(), defaultPack.relativize(path).toString());
                         Files.createDirectories(current.getParent());
                         Files.copy(path, current, StandardCopyOption.REPLACE_EXISTING);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
+        var variationPack = Paths.get(presetPath.toString(), "default");
+        if (Files.exists(variationPack))
+            Files.walk(variationPack).sorted(Comparator.reverseOrder()).filter(Files::isRegularFile)
+                    .forEach((path) -> {
+                        try {
+                            var current = Paths.get(output.toString(), variationPack.relativize(path).toString());
+                            Files.createDirectories(current.getParent());
+                            Files.copy(path, current, StandardCopyOption.REPLACE_EXISTING);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
         var packMeta = ItemMods.GSON.fromJson(Files.readString(Paths.get(output.toString(), "pack.mcmeta")), JsonObject.class);
         var packFormat = packMeta.getAsJsonObject("pack").get("pack_format").getAsInt();
         for (ItemModsPack pack : packs) pack.export(variation, packFormat, output);

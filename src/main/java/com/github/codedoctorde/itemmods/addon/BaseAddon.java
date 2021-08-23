@@ -12,21 +12,14 @@ import org.jetbrains.annotations.NotNull;
  *
  * @author CodeDoctorDE
  */
-public class BaseAddon {
-    final ItemModsPack pack;
+public class BaseAddon extends ItemModsPack {
     @NotNull
     final Translation addonTranslation = ItemMods.getTranslationConfig().subTranslation("addon.main");
 
     public BaseAddon() {
-        pack = new ItemModsPack("itemmods");
-        pack.setIcon(Material.EMERALD_ORE);
-        pack.setDescription(addonTranslation.getTranslation("description"));
-        pack.registerTemplate(new BlockSetTemplate());
-
-        ItemMods.getPackManager().registerPack(pack);
-    }
-
-    public ItemModsPack getPack() {
-        return pack;
+        super("itemmods", false);
+        setIcon(Material.EMERALD_ORE);
+        setDescription(addonTranslation.getTranslation("description"));
+        registerTemplate(new BlockSetTemplate());
     }
 }

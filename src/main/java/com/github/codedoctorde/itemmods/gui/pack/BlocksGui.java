@@ -37,6 +37,7 @@ public class BlocksGui extends ListGui {
                     p.sendMessage(t.getTranslation("create.success", s));
                     var blockAsset = new BlockAsset(s);
                     pack.registerBlock(blockAsset);
+                    ItemMods.getPackManager().save(pack.getName());
                     rebuild();
                     show(p);
                 });

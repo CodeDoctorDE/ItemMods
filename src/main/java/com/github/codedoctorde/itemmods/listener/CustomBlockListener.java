@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CustomBlockListener implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(@NotNull PlayerInteractEvent event) {
         if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
                 event.getAction() != Action.RIGHT_CLICK_BLOCK ||
@@ -69,7 +69,7 @@ public class CustomBlockListener implements Listener {
         });
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH)
     public void onCustomBlockBreak(@NotNull BlockBreakEvent event) {
         if (event.isCancelled())
             return;

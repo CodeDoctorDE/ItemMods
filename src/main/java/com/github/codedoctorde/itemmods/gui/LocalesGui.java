@@ -20,7 +20,7 @@ public class LocalesGui extends ListGui {
                             setRenderAction(gui -> setPlaceholders(s));
                             setClickAction(event -> {
                                 ItemMods.getMainConfig().setLocale(s);
-                                ItemMods.saveBaseConfig();
+                                ItemMods.saveMainConfig();
                                 ItemMods.reload();
                                 new MainGui().show((Player) event.getWhoClicked());
                             });

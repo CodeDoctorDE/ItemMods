@@ -28,6 +28,10 @@ public class CustomTemplateData {
         return object;
     }
 
+    public CustomTemplate getTemplate() {
+        return object.getTemplate();
+    }
+
     public void save() {
         object.save();
     }

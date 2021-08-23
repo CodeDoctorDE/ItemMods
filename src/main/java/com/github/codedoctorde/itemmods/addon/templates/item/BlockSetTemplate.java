@@ -6,11 +6,13 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
 import com.github.codedoctorde.itemmods.gui.pack.block.ChooseBlockGui;
 import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
+import com.github.codedoctorde.itemmods.gui.pack.template.TemplateGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -28,12 +30,8 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack createMainIcon(@NotNull PackObject object) {
-        var asset = object.getItem();
-        if (asset != null)
-            return new ItemStackBuilder(t.getTranslation("main-icon.has")).format(object.toString()).build();
-        else
-            return new ItemStackBuilder(t.getTranslation("main-icon.null")).build();
+    public @NotNull ItemStack getIcon() {
+        return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 
     @Override
@@ -50,8 +48,8 @@ public class BlockSetTemplate extends CustomTemplate {
         new ChoosePackGui(pack -> new ChooseBlockGui(pack.getName(), asset -> {
             var packObject = new PackObject(pack.getName(), asset.getName());
             setBlock(data, packObject);
-            new ItemGui(packObject).show(player);
-        }));
+            player.closeInventory();
+        }).show(player)).show(player);
         return true;
     }
 

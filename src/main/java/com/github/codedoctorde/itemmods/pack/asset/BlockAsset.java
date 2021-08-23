@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockAsset extends CustomNamedAsset {
     private @Nullable PackObject modelObject;
-    private PackObject itemObject;
     private @Nullable String displayName;
     private @Nullable PackObject referenceItem;
 
@@ -23,15 +22,6 @@ public class BlockAsset extends CustomNamedAsset {
 
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
-
-        jsonObject.getAsJsonArray("block-templates").forEach(o -> {
-            var current = o.getAsJsonObject();
-            try {
-                getCustomTemplates().add(new CustomTemplateData(PackObject.fromIdentifier(current.get("object").getAsString()), current.getAsJsonObject("data")));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public @Nullable String getDisplayName() {

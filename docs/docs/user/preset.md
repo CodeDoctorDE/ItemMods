@@ -51,4 +51,4 @@ The model file should be similar to this:
 ```
 
 If you have a block fallback texture like a grass block, the model file is in the block subdirectory, 
-for example `assets/minecraft/models/blck/grass_block.json`.
+for example `assets/minecraft/models/block/grass_block.json`.

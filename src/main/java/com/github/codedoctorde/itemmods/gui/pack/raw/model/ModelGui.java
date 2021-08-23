@@ -25,7 +25,6 @@ public class ModelGui extends GuiCollection {
         var t = ItemMods.getTranslationConfig().subTranslation("gui.raw.model");
         var asset = packObject.getModel();
         assert asset != null;
-        var empty = new StaticItem();
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         for (ModelTab value : ModelTab.values()) {
             var gui = new TranslatedChestGui(t, 4);

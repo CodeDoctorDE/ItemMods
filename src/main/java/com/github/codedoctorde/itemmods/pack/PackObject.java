@@ -3,6 +3,7 @@ package com.github.codedoctorde.itemmods.pack;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
 import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
+import com.github.codedoctorde.itemmods.pack.asset.PackAsset;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
 import com.github.codedoctorde.itemmods.pack.asset.raw.TextureAsset;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
@@ -39,6 +40,20 @@ public class PackObject {
     @Nullable
     public ItemModsPack getPack() {
         return ItemMods.getPackManager().getPack(namespace);
+    }
+
+    @Nullable
+    public PackAsset getAsset() {
+        var item = getItem();
+        if (item != null)
+            return item;
+        var block = getBlock();
+        if (block != null)
+            return block;
+        var model = getModel();
+        if (model != null)
+            return model;
+        return getTexture();
     }
 
     @Nullable
@@ -86,7 +101,7 @@ public class PackObject {
         assert asset != null;
         if (asset.getStaticModel() != null)
             return asset.getStaticModel();
-        return ItemMods.getMainConfig().getIdentifiers().get(toString());
+        return ItemMods.getMainConfig().getIdentifiers().getOrDefault(toString(), 0);
     }
 
     public void save() {

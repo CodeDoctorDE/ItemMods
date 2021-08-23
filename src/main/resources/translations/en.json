@@ -21,6 +21,9 @@
   "addon": {
   },
   "gui": {
+    "knowledge": {
+      "title": "§6Knowledge"
+    },
     "choose": {
       "item": {
         "title": "§6Choose item §7(%d/%d)",
@@ -264,7 +267,7 @@
       "display-name": {
         "not-set": {
           "title": "§6Display name",
-          "description": "§cNot set\n\n§7Click to change the display name"
+          "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
         },
         "set": {
           "title": "§6Display name",
@@ -350,7 +353,7 @@
       "display-name": {
         "not-set": {
           "title": "§6Display name",
-          "description": "§cNot set\n\n§7Click to change the display name"
+          "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
         },
         "set": {
           "title": "§6Display name",

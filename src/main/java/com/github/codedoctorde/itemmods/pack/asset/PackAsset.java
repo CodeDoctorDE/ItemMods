@@ -38,8 +38,16 @@ public abstract class PackAsset extends NamedPackObject {
         customTemplates.add(data);
     }
 
+    public void registerCustomTemplate(PackObject template) {
+        customTemplates.add(new CustomTemplateData(template));
+    }
+
     public void unregisterCustomTemplate(int index) {
         customTemplates.remove(index);
+    }
+
+    public void unregisterCustomTemplate(PackObject packObject) {
+        customTemplates.removeIf(customTemplateData -> customTemplateData.getObject().equals(packObject));
     }
 
     public JsonObject save(String namespace) {

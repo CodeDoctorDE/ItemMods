@@ -91,6 +91,7 @@ public class PackGui extends GuiCollection {
                             p.sendMessage(t.getTranslation("name.message"));
                             request.setSubmitAction(s -> {
                                 pack.setName(s);
+                                ItemMods.getPackManager().save(pack.getName());
                                 p.sendMessage(t.getTranslation("name.success", s));
                                 new PackGui(s).show(p);
                             });

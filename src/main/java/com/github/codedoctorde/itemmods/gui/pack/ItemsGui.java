@@ -36,6 +36,7 @@ public class ItemsGui extends ListGui {
                     p.sendMessage(t.getTranslation("create.success", s));
                     var itemAsset = new ItemAsset(s);
                     pack.registerItem(itemAsset);
+                    ItemMods.getPackManager().save(pack.getName());
                     rebuild();
                     show(p);
                 });

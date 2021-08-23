@@ -8,7 +8,7 @@ import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
 import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
 import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
-import com.github.codedoctorde.itemmods.gui.PacksGui;
+import com.github.codedoctorde.itemmods.gui.pack.BlocksGui;
 import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.ModelsGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.model.ChooseModelGui;
@@ -29,16 +29,15 @@ public class BlockGui extends GuiCollection {
     public BlockGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
         var t = ItemMods.getTranslationConfig().subTranslation("gui.item");
-        var asset = packObject.getItem();
+        var asset = packObject.getBlock();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
-        var empty = new StaticItem();
         Arrays.stream(BlockTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
             setPlaceholders(packObject.toString());
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
+                setClickAction(event -> new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
             }});
             addItem(placeholder);
             Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
@@ -74,7 +73,6 @@ public class BlockGui extends GuiCollection {
                             setItemStack(new ItemStackBuilder(Material.PAPER).displayName(prefix + "title").lore(prefix + "description").build());
                             if (asset.getDisplayName() != null) setPlaceholders(asset.getDisplayName());
                         });
-                        setRenderAction(gui -> setPlaceholders(asset.getDisplayName()));
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
@@ -83,6 +81,7 @@ public class BlockGui extends GuiCollection {
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
                                 asset.setDisplayName(ts);
+                                packObject.save();
                                 show(p);
                                 p.sendMessage(t.getTranslation("display-name.success", ts));
                             });
@@ -100,7 +99,8 @@ public class BlockGui extends GuiCollection {
                             var request = new ChatRequest(p);
                             p.sendMessage(t.getTranslation("localized-name.message"));
                             request.setSubmitAction(s -> {
-                                asset.setDisplayName(s);
+                                asset.setLocalizedName(s);
+                                packObject.save();
                                 show(p);
                                 p.sendMessage(t.getTranslation("localized-name.success", s));
                             });
@@ -142,6 +142,7 @@ public class BlockGui extends GuiCollection {
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
+                                    packObject.save();
                                     new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{

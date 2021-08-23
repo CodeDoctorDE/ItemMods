@@ -135,6 +135,7 @@ public class ModelAsset extends RawAsset {
                 modelObject.add("overrides", overrides);
                 Files.writeString(fallbackPath, GSON.toJson(modelObject));
                 ItemMods.getMainConfig().setIdentifier(packObject, modelData);
+                ItemMods.saveMainConfig();
             }
         }
         var currentPath = Paths.get(path.toString(), "assets", namespace, "models", getName() + ".json");

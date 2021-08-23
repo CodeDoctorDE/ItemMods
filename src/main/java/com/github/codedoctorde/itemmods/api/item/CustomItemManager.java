@@ -13,8 +13,9 @@ public class CustomItemManager {
 
     public @Nullable ItemStack create(@NotNull PackObject packObject) {
         var asset = packObject.getItem();
-        var customModel = packObject.getCustomModel();
         assert asset != null;
+        assert asset.getModelObject() != null;
+        var customModel = asset.getModelObject().getCustomModel();
         var model = asset.getModel();
         assert model != null;
         assert model.getFallbackTexture() != null;

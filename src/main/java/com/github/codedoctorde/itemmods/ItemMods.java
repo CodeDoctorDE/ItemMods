@@ -8,7 +8,7 @@ import com.github.codedoctorde.api.translations.Translation;
 import com.github.codedoctorde.api.translations.TranslationConfig;
 import com.github.codedoctorde.api.ui.Gui;
 import com.github.codedoctorde.api.utils.FileUtils;
-import com.github.codedoctorde.api.utils.UpdateChecker;
+import com.github.codedoctorde.itemmods.addon.BaseAddon;
 import com.github.codedoctorde.itemmods.api.block.CustomBlockManager;
 import com.github.codedoctorde.itemmods.api.item.CustomItemManager;
 import com.github.codedoctorde.itemmods.commands.BaseCommand;
@@ -53,7 +53,7 @@ public class ItemMods extends JavaPlugin {
             .serializeNulls()
             .setPrettyPrinting().create();
     private static ItemMods plugin;
-    private static Path baseConfig;
+    private static Path mainConfigFile;
     private static MainConfig mainConfig;
     private static CustomBlockManager customBlockManager;
     private static CustomItemManager customItemManager;
@@ -61,7 +61,6 @@ public class ItemMods extends JavaPlugin {
     private static Path tempPath;
     private static Path translationsPath;
     private static PackManager packManager;
-    private BaseCommand baseCommand;
     private Connection connection;
 
     public static ItemMods getPlugin() {
@@ -76,9 +75,9 @@ public class ItemMods extends JavaPlugin {
         return customItemManager;
     }
 
-    public static void saveBaseConfig() {
+    public static void saveMainConfig() {
         try {
-            FileWriter writer = new FileWriter(baseConfig.toString());
+            FileWriter writer = new FileWriter(mainConfigFile.toString());
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(GSON.toJson(mainConfig));
             bw.close();
@@ -110,9 +109,9 @@ public class ItemMods extends JavaPlugin {
 
     public static void reloadMainConfig() {
         try {
-            if (!Files.exists(baseConfig))
-                Files.createFile(baseConfig);
-            mainConfig = GSON.fromJson(new FileReader(baseConfig.toString()), MainConfig.class);
+            if (!Files.exists(mainConfigFile))
+                Files.createFile(mainConfigFile);
+            mainConfig = GSON.fromJson(new FileReader(mainConfigFile.toString()), MainConfig.class);
         } catch (Exception ex) {
             ex.printStackTrace();
             mainConfig = new MainConfig();
@@ -142,8 +141,6 @@ public class ItemMods extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        UpdateChecker updateChecker = new UpdateChecker(this, 72461);
-        //updateChecker.getVersion(version -> Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.version", version)));
         translationsPath = Paths.get(getDataFolder().getAbsolutePath(), "translations");
         try {
             Files.createDirectories(translationsPath);
@@ -172,7 +169,7 @@ public class ItemMods extends JavaPlugin {
         } catch (@NotNull IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-        baseConfig = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
+        mainConfigFile = Paths.get(getPlugin().getDataFolder().getPath(), "config.json");
         reloadMainConfig();
         translationConfig = new TranslationConfig(GSON, Paths.get(getDataFolder().getAbsolutePath(), "translations", mainConfig.getLocale() + ".json").toString());
         var inputStream = getTextResource("translations/" + mainConfig.getLocale() + ".json");
@@ -199,8 +196,9 @@ public class ItemMods extends JavaPlugin {
         if (Version.getVersion() == Version.UNKNOWN)
             Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
         packManager = new PackManager();
+        packManager.registerPack(new BaseAddon());
 
-        baseCommand = new BaseCommand();
+        BaseCommand baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();
         customBlockManager = new CustomBlockManager();
         customItemManager = new CustomItemManager();
@@ -209,7 +207,7 @@ public class ItemMods extends JavaPlugin {
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);
         Objects.requireNonNull(getCommand("giveitem")).setExecutor(giveItemCommand);
         Objects.requireNonNull(getCommand("giveitem")).setTabCompleter(giveItemCommand);
-        saveBaseConfig();
+        saveMainConfig();
 
         Bukkit.getPluginManager().registerEvents(new CustomItemListener(), ItemMods.getPlugin());
         Bukkit.getPluginManager().registerEvents(new CustomBlockListener(), ItemMods.getPlugin());
@@ -229,7 +227,7 @@ public class ItemMods extends JavaPlugin {
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloading"));
         Bukkit.getOnlinePlayers().stream().filter(Gui::hasGui).forEach(HumanEntity::closeInventory);
-        saveBaseConfig();
+        saveMainConfig();
         super.onDisable();
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
     }
@@ -247,7 +245,4 @@ public class ItemMods extends JavaPlugin {
         }
     }
 
-    public BaseCommand getBaseCommand() {
-        return baseCommand;
-    }
 }
