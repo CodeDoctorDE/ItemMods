@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -202,6 +202,15 @@ extends <a href="../../GuiCollection.html" title="class in com.github.codedoctor
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.github.codedoctorde.api.translations.Translation)">ListGui</a></span>&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.github.codedoctorde.api.translations.Translation,int)">ListGui</a></span>&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
+       int&nbsp;height)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.github.codedoctorde.api.translations.Translation,int,java.util.function.Function)">ListGui</a></span>&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
        int&nbsp;height,
        java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../item/GuiItem.html" title="interface in com.github.codedoctorde.api.ui.item">GuiItem</a>[]&gt;&nbsp;itemBuilder)</code></th>
@@ -268,20 +277,30 @@ extends <a href="../../GuiCollection.html" title="class in com.github.codedoctor
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setControlsBuilder(java.util.function.Function)">setControlsBuilder</a></span>&#8203;(java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../GuiPane.html" title="class in com.github.codedoctorde.api.ui">GuiPane</a>&gt;&nbsp;controlsBuilder)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setControlsBuilder()">setControlsBuilder</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setListControls(com.github.codedoctorde.api.ui.template.gui.pane.list.ListControls)">setListControls</a></span>&#8203;(@NotNull <a href="pane/list/ListControls.html" title="class in com.github.codedoctorde.api.ui.template.gui.pane.list">ListControls</a>&nbsp;controls)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setControlsBuilder(java.util.function.Function)">setControlsBuilder</a></span>&#8203;(java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../GuiPane.html" title="class in com.github.codedoctorde.api.ui">GuiPane</a>&gt;&nbsp;controlsBuilder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPlaceholders(java.lang.Object...)">setPlaceholders</a></span>&#8203;(java.lang.Object...&nbsp;placeholders)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setItemBuilder(java.util.function.Function)">setItemBuilder</a></span>&#8203;(java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../item/GuiItem.html" title="interface in com.github.codedoctorde.api.ui.item">GuiItem</a>[]&gt;&nbsp;itemBuilder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setListControls(com.github.codedoctorde.api.ui.template.gui.pane.list.ListControls)">setListControls</a></span>&#8203;(@NotNull <a href="pane/list/ListControls.html" title="class in com.github.codedoctorde.api.ui.template.gui.pane.list">ListControls</a>&nbsp;controls)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPlaceholders(java.lang.Object...)">setPlaceholders</a></span>&#8203;(java.lang.Object...&nbsp;placeholders)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSearchText(java.lang.String)">setSearchText</a></span>&#8203;(java.lang.String&nbsp;searchText)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -338,11 +357,30 @@ extends <a href="../../GuiCollection.html" title="class in com.github.codedoctor
 <a id="&lt;init&gt;(com.github.codedoctorde.api.translations.Translation,java.util.function.Function)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ListGui</h4>
 <pre>public&nbsp;ListGui&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
                java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../item/GuiItem.html" title="interface in com.github.codedoctorde.api.ui.item">GuiItem</a>[]&gt;&nbsp;itemBuilder)</pre>
+</li>
+</ul>
+<a id="&lt;init&gt;(com.github.codedoctorde.api.translations.Translation,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ListGui</h4>
+<pre>public&nbsp;ListGui&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation,
+               int&nbsp;height)</pre>
+</li>
+</ul>
+<a id="&lt;init&gt;(com.github.codedoctorde.api.translations.Translation)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ListGui</h4>
+<pre>public&nbsp;ListGui&#8203;(<a href="../../../translations/Translation.html" title="class in com.github.codedoctorde.api.translations">Translation</a>&nbsp;translation)</pre>
 </li>
 </ul>
 </li>
@@ -362,6 +400,24 @@ extends <a href="../../GuiCollection.html" title="class in com.github.codedoctor
 <li class="blockList">
 <h4>setControlsBuilder</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setControlsBuilder&#8203;(java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../GuiPane.html" title="class in com.github.codedoctorde.api.ui">GuiPane</a>&gt;&nbsp;controlsBuilder)</pre>
+</li>
+</ul>
+<a id="setControlsBuilder()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setControlsBuilder</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setControlsBuilder()</pre>
+</li>
+</ul>
+<a id="setItemBuilder(java.util.function.Function)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setItemBuilder</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setItemBuilder&#8203;(java.util.function.Function&lt;<a href="ListGui.html" title="class in com.github.codedoctorde.api.ui.template.gui">ListGui</a>,&#8203;<a href="../../item/GuiItem.html" title="interface in com.github.codedoctorde.api.ui.item">GuiItem</a>[]&gt;&nbsp;itemBuilder)</pre>
 </li>
 </ul>
 <a id="setListControls(com.github.codedoctorde.api.ui.template.gui.pane.list.ListControls)">
