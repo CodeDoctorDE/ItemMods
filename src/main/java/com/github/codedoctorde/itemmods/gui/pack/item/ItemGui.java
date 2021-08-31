@@ -15,6 +15,7 @@ import com.github.codedoctorde.itemmods.gui.pack.raw.model.ChooseModelGui;
 import com.github.codedoctorde.itemmods.gui.pack.raw.model.ModelGui;
 import com.github.codedoctorde.itemmods.gui.pack.template.TemplateGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
+import com.github.codedoctorde.itemmods.pack.asset.ItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -46,6 +47,8 @@ public class ItemGui extends GuiCollection {
                 setClickAction(event -> setCurrent(tab.ordinal()));
             }}).forEach(this::addItem);
             fillItems(0, 0, 8, 1, placeholder);
+            var pack = packObject.getPack();
+            assert pack != null;
             switch (value) {
                 case GENERAL:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
@@ -116,6 +119,13 @@ public class ItemGui extends GuiCollection {
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
                             var modelObject = asset.getModelObject();
+                            if(modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
+                                if(packObject.getPack().getModel(packObject.getName()) != null)
+                                    event.getWhoClicked().sendMessage(t.getTranslation("model.exist"));
+                                else {
+                                    pack.registerItem(new ItemAsset(pack.getName()));
+                                    reloadAll();
+                                }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
                                 new ChoosePackGui(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
                                     asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));

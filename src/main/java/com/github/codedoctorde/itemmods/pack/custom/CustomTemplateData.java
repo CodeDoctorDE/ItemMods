@@ -2,12 +2,13 @@ package com.github.codedoctorde.itemmods.pack.custom;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.google.gson.JsonElement;
+import org.jetbrains.annotations.Nullable;
 
 public class CustomTemplateData {
     private final PackObject object;
-    private JsonElement data;
+    private @Nullable JsonElement data;
 
-    public CustomTemplateData(PackObject object, JsonElement data) {
+    public CustomTemplateData(PackObject object, @Nullable JsonElement data) {
         this.object = object;
         this.data = data;
     }
@@ -16,11 +17,11 @@ public class CustomTemplateData {
         this(object, null);
     }
 
-    public JsonElement getData() {
+    public @Nullable JsonElement getData() {
         return data;
     }
 
-    public void setData(JsonElement data) {
+    public void setData(@Nullable JsonElement data) {
         this.data = data;
     }
 

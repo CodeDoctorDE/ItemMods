@@ -17,7 +17,7 @@ public abstract class CustomNamedAsset extends PackAsset {
         if (jsonObject.has("localized-name"))
             localizedName = jsonObject.get("localized-name").getAsString();
         if (jsonObject.has("display"))
-        displayName = jsonObject.get("display").getAsString();
+            displayName = jsonObject.get("display").getAsString();
     }
 
     public @Nullable String getLocalizedName() {

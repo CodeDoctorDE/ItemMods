@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 public abstract class CustomTemplate {
     public abstract @NotNull String getName();
 
-    public abstract @NotNull ItemStack createIcon(CustomTemplateData data);
+    public abstract @NotNull ItemStack getIcon(CustomTemplateData data);
 
-    public abstract @NotNull ItemStack getIcon();
+    public abstract @NotNull ItemStack getMainIcon();
 
     public boolean isCompatible(PackObject object) {
         return true;

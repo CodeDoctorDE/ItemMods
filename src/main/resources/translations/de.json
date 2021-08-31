@@ -260,7 +260,7 @@
         "success": "§eItemMods §7» §aErfolgreich den Itemnamen zu §3%s§a.",
         "failed": "§eArtikelmods §7» §cUngültiger Itemname."
       },
-      "display-name": {
+      "display": {
         "not-set": {
           "title": "§6Anzeigename",
           "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"
@@ -346,7 +346,7 @@
         "success": "§eItemMods §7» §aErfolgreich den Blocknamen zu §3%s §ageändert.",
         "failed": "§eItemMods §7» §cUngültiger Blockname."
       },
-      "display-name": {
+      "display": {
         "not-set": {
           "title": "§6Anzeigename",
           "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"

@@ -5,8 +5,6 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
 import com.github.codedoctorde.itemmods.gui.pack.block.ChooseBlockGui;
-import com.github.codedoctorde.itemmods.gui.pack.item.ItemGui;
-import com.github.codedoctorde.itemmods.gui.pack.template.TemplateGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
@@ -22,15 +20,18 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.templates.item.block_set");
+    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block");
 
     @Override
-    public @NotNull ItemStack createIcon(CustomTemplateData data) {
-        return new ItemStackBuilder(t.getTranslation("icon")).build();
+    public @NotNull ItemStack getIcon(CustomTemplateData data) {
+        var block = getBlock(data);
+        return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
+                block != null ?
+                        t.getTranslation("actions.has", block.toString()) : t.getTranslation("actions.empty")).build();
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getMainIcon() {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 

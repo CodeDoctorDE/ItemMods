@@ -2,7 +2,6 @@ package com.github.codedoctorde.itemmods.pack.asset;
 
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.ModelAsset;
-import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;

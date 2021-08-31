@@ -260,7 +260,7 @@
         "success": "§eItemMods §7» §aSuccessfully change the item name to §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid item name."
       },
-      "display-name": {
+      "display": {
         "not-set": {
           "title": "§6Display name",
           "description": "§cNot set\n\n§7Click to change the display name"
@@ -346,7 +346,7 @@
         "success": "§eItemMods §7» §aSuccessfully change the block name to §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid block name."
       },
-      "display-name": {
+      "display": {
         "not-set": {
           "title": "§6Display name",
           "description": "§cNot set\n\n§7Click to change the display name"

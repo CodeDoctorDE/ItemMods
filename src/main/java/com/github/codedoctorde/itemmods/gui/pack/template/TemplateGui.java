@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class TemplateGui extends ListGui {
     public TemplateGui(@NotNull PackObject packObject) {
-        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).createIcon(customTemplateData)) {{
+        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getIcon(customTemplateData)) {{
             var asset = packObject.getAsset();
             assert asset != null;
             setClickAction(event -> {
@@ -26,7 +26,11 @@ public class TemplateGui extends ListGui {
             });
         }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls() {{
-            setCreateAction(event -> new ChoosePackGui(itemModsPack -> new ChooseTemplateGui(itemModsPack.getName(), customTemplate -> Objects.requireNonNull(packObject.getAsset()).registerCustomTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()))).show((Player) event.getWhoClicked())).show((Player) event.getWhoClicked()));
+            setCreateAction(event -> new ChoosePackGui(itemModsPack -> new ChooseTemplateGui(itemModsPack.getName(), customTemplate -> {
+                Objects.requireNonNull(packObject.getAsset()).registerCustomTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()));
+                rebuild();
+                show((Player) event.getWhoClicked());
+            }).show((Player) event.getWhoClicked())).show((Player) event.getWhoClicked()));
         }});
     }
 }
