@@ -119,8 +119,8 @@
   "main": {
     "title": "§6§lItemMods §7(%s)",
     "reload": {
-      "title": "§6Reload",
-      "description": "§7Reload the whole plugin",
+      "title": "§6Oppdater",
+      "description": "§7Oppdater hele utvidelsen",
       "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
     },
     "packs": {
@@ -132,31 +132,31 @@
       "description": "§7Go to the inactive packs list"
     },
     "knowledge": {
-      "title": "§6Knowledge Book",
+      "title": "§6Kunnskapsbok",
       "description": "§7Go to the mod \n§7information for the users"
     },
     "addons": {
       "title": "§6Addons",
-      "description": "§7Active, configure, deactivate addons"
+      "description": "§7Active, configure, deaktiver addons"
     },
     "source": {
-      "title": "§6Source",
-      "description": "§7Get the github link",
+      "title": "§6Kilde",
+      "description": "§7Få Github Linken",
       "link": "§eItemMods §7» §eSource: §b§%s"
     },
     "support": {
-      "title": "§6Support",
-      "description": "§7Get the discord link",
+      "title": "§6Brukerstøtte",
+      "description": "§7Få Discord-Server Linken",
       "link": "§eItemMods §7» §eSupport: §b§n%s"
     },
     "crowdin": {
       "title": "§6Crowdin",
-      "description": "§7Get the crowdin link",
+      "description": "§7Få crowdin linken",
       "link": "§eItemMods §7» §eCrowdin: §b§n%s"
     },
     "wiki": {
       "title": "§6Wiki",
-      "description": "§7Get the wiki link",
+      "description": "§7Få Wiki Linken",
       "link": "§eItemMods §7» §eWiki: §b§n%s"
     },
     "export": {
@@ -544,14 +544,14 @@
     "rename": "§eItemMods §7» §cdenne Gjenstanden Kan Ikke Få Ett Nytt Navn!"
   },
   "command": {
-    "usage": "§eItemMods §7» §cUsage: §3/itemmods§c!",
-    "no-player": "§eItemMods §7» §4This command is only for players!",
+    "usage": "§eItemMods §7» §cBruk: §3/itemmods§c!",
+    "no-player": "§eItemMods §7» §4Denne kommandoen er bare for spillere!",
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4This is not a valid item count!"
     },
-    "no-number": "§eItemMods §7» §4That is not a number!",
-    "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
+    "no-number": "§eItemMods §7» §4Det er ikke et tall!",
+    "success": "§eItemMods §7» §avellykket ga deg gjenstand §3%s§a!"
   },
   "no-permission": "§eItemMods §7» §4You don't have the permission to do that!"
 }
