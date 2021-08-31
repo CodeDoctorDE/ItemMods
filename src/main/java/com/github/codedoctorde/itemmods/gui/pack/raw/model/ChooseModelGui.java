@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public class ChooseModelGui extends ListGui {
     public ChooseModelGui(String namespace, @NotNull Consumer<ModelAsset> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.model"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
+        super(ItemMods.getTranslationConfig().subTranslation("choose.model"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

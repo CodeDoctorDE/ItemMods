@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class LocalesGui extends ListGui {
     public LocalesGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.locales"), 4, (gui) -> {
+        super(ItemMods.getTranslationConfig().subTranslation("locales"), 4, (gui) -> {
             try {
                 return ItemMods.getLocales().stream().map(s ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("item").lore("actions").build()) {{

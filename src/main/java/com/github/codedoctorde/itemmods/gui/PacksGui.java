@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class PacksGui extends ListGui {
     public PacksGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.packs"), 4, (gui) ->
+        super(ItemMods.getTranslationConfig().subTranslation("packs"), 4, (gui) ->
                 ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new TranslatedGuiItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("actions").build()) {{

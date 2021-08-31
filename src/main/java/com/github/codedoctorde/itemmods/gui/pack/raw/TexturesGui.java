@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class TexturesGui extends ListGui {
     public TexturesGui(String namespace) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.raw.textures"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        super(ItemMods.getTranslationConfig().subTranslation("raw.textures"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(textureAsset -> textureAsset.getName().contains(gui.getSearchText())).map(textureAsset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName(textureAsset.getName()).lore("actions").build()) {{
                     setClickAction(event -> new TextureGui(new PackObject(namespace, textureAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));

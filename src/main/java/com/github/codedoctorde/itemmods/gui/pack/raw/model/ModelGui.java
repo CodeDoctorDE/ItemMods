@@ -22,7 +22,7 @@ import java.util.Objects;
 public class ModelGui extends GuiCollection {
     public ModelGui(@NotNull PackObject packObject) {
         super();
-        var t = ItemMods.getTranslationConfig().subTranslation("gui.raw.model");
+        var t = ItemMods.getTranslationConfig().subTranslation("raw.model");
         var asset = packObject.getModel();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
@@ -71,7 +71,7 @@ public class ModelGui extends GuiCollection {
                             var prefix = "fallback." + (asset.isCustom() ? "custom" : "predefined") + ".";
                             setItemStack(new ItemStackBuilder(icon).displayName(prefix + "title").lore(prefix + "description").build());
                         });
-                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("gui.materials"), material -> {
+                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials"), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
                             show((Player) event.getWhoClicked());

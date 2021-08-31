@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class BlocksGui extends ListGui {
     public BlocksGui(String name) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.blocks"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
+        super(ItemMods.getTranslationConfig().subTranslation("blocks"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
                 .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(
                         blockAsset.getIcon()).displayName(blockAsset.getName())
                         .lore(gui.getTranslation().getTranslation("actions", new PackObject(name, blockAsset.getName()).toString())).build()) {{

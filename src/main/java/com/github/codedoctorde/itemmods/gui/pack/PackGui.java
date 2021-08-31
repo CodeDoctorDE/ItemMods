@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class PackGui extends GuiCollection {
     public PackGui(String name) {
-        var t = ItemMods.getTranslationConfig().subTranslation("gui.pack");
+        var t = ItemMods.getTranslationConfig().subTranslation("pack");
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
         if (!pack.isEditable()) {

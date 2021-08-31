@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class MainGui extends TranslatedChestGui {
     public MainGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.main"), 4);
+        super(ItemMods.getTranslationConfig().subTranslation("main"), 4);
         Translation t = getTranslation();
         setPlaceholders(ItemMods.getVersion());
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());

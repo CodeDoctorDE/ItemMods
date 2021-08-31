@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class ItemsGui extends ListGui {
     public ItemsGui(String name) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.items"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
+        super(ItemMods.getTranslationConfig().subTranslation("items"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
                 .filter(itemAsset -> itemAsset.getName().contains(gui.getSearchText())).map(itemAsset -> new StaticItem(new ItemStackBuilder(itemAsset.getIcon()).displayName(itemAsset.getName())
                         .lore(gui.getTranslation().getTranslation("actions", new PackObject(name, itemAsset.getName()).toString())).build()) {{
                     setClickAction(event -> new ItemGui(new PackObject(name, itemAsset.getName())).show((Player) event.getWhoClicked()));

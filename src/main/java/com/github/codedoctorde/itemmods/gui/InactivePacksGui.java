@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class InactivePacksGui extends ListGui {
     public InactivePacksGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.inactive-packs"), 4, (gui) ->
+        super(ItemMods.getTranslationConfig().subTranslation("inactive-packs"), 4, (gui) ->
                 ItemMods.getPackManager().getInactivePacks().stream().map(itemModsPack ->
                         new StaticItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).addLore(gui.getTranslation().getTranslation("actions", itemModsPack.getName())).build()) {{

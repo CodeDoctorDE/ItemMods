@@ -1,0 +1,29 @@
+itemmods {
+    info;
+    gui;
+    help;
+    pack {
+        pack brigadier:string single_word {
+            info;
+            gui;
+            name {
+                name brigadier:string single_word;
+            }
+            display {
+                display brigadier:string greedy_phrase;
+            }
+        }
+    }
+    item {
+        item brigadier:string single_word {
+            info;
+            gui;
+            name {
+                name brigadier:string single_word;
+            }
+            display {
+                display brigadier:string greedy_phrase;
+            }
+        }
+    }
+}

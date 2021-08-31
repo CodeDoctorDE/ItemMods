@@ -16,8 +16,8 @@ public abstract class CustomNamedAsset extends PackAsset {
         super(packObject, jsonObject);
         if (jsonObject.has("localized-name"))
             localizedName = jsonObject.get("localized-name").getAsString();
-        if (jsonObject.has("display-name"))
-        displayName = jsonObject.get("display-name").getAsString();
+        if (jsonObject.has("display"))
+        displayName = jsonObject.get("display").getAsString();
     }
 
     public @Nullable String getLocalizedName() {
@@ -47,7 +47,7 @@ public abstract class CustomNamedAsset extends PackAsset {
     @Override
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
-        jsonObject.addProperty("display-name", displayName);
+        jsonObject.addProperty("display", displayName);
         jsonObject.addProperty("localized-name", localizedName);
         return jsonObject;
     }

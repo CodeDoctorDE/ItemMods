@@ -28,7 +28,7 @@ public class BlockGui extends GuiCollection {
 
     public BlockGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
-        var t = ItemMods.getTranslationConfig().subTranslation("gui.item");
+        var t = ItemMods.getTranslationConfig().subTranslation("item");
         var asset = packObject.getBlock();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
@@ -69,7 +69,7 @@ public class BlockGui extends GuiCollection {
                     }});
                     addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
-                            var prefix = "display-name." + (asset.getDisplayName() == null ? "not-set" : "set") + ".";
+                            var prefix = "display." + (asset.getDisplayName() == null ? "not-set" : "set") + ".";
                             setItemStack(new ItemStackBuilder(Material.PAPER).displayName(prefix + "title").lore(prefix + "description").build());
                             if (asset.getDisplayName() != null) setPlaceholders(asset.getDisplayName());
                         });
@@ -77,13 +77,13 @@ public class BlockGui extends GuiCollection {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(t.getTranslation("display-name.message"));
+                            p.sendMessage(t.getTranslation("display.message"));
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
                                 asset.setDisplayName(ts);
                                 packObject.save();
                                 show(p);
-                                p.sendMessage(t.getTranslation("display-name.success", ts));
+                                p.sendMessage(t.getTranslation("display.success", ts));
                             });
                         });
                     }});

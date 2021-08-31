@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 
 public class ChooseTextureGui extends ListGui {
     public ChooseTextureGui(String namespace, @NotNull Consumer<TextureAsset> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.choose.texture"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        super(ItemMods.getTranslationConfig().subTranslation("choose.texture"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

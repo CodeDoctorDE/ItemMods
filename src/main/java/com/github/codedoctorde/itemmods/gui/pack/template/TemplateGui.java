@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class TemplateGui extends ListGui {
     public TemplateGui(@NotNull PackObject packObject) {
-        super(ItemMods.getTranslationConfig().subTranslation("gui.template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).createIcon(customTemplateData)) {{
+        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).createIcon(customTemplateData)) {{
             var asset = packObject.getAsset();
             assert asset != null;
             setClickAction(event -> {
