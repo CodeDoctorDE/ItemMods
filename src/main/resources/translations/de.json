@@ -12,73 +12,71 @@
     "register": "§eItemMods §7» §aNeues Addon registriert: §3%s§a!",
     "unregister": "§eItemMods §7» §aNeues Addon unregistriert: §3%s§a!"
   },
-  "pack": {
-    "title": "§6Paket §3%s",
-    "back": {
-      "title": "§6Zurück",
-      "description": "§7Gehe zur Paketliste"
+  "coming-soon": "§cBald verfügbar...",
+  "addon": {
+    "item": {
+      "block": {
+        "title": "§6Block set template",
+        "actions": {
+          "has": "§3%s\n\n§7Click here to change the block template",
+          "empty": "§cNot set\n\n§7Click here to set the block template"
+        }
+      }
     },
-    "name": {
-      "title": "§6Name",
-      "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
-      "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
-      "success": "§eItemMods §7» §aErfolgreich den Paketnamen zu §3%s§a geändert.",
-      "failed": "§eItemMods §7» §cUngültiger Paketname."
-    },
-    "general": "§6Allgemein",
-    "contents": "§6Inhalte",
-    "raw": "§6Roh",
-    "administration": "§6Administration",
-    "items": {
-      "title": "§6Items",
-      "description": "§7Gehe zur Itemliste"
-    },
-    "blocks": {
-      "title": "§6Blöcke",
-      "description": "§7Gehe zur Blockliste"
-    },
-    "textures": {
-      "title": "§6Texturen",
-      "description": "§7Gehe zur Texturliste"
-    },
-    "models": {
-      "title": "§6Modelle",
-      "description": "§7Gehe zur Modellliste"
-    },
-    "sounds": {
-      "title": "§6Töne",
-      "description": "§7Gehe zur Tonliste"
-    },
-    "deactivated": {
-      "title": "§cDeaktiviert",
-      "description": "§7Klicke, um das aktuelle Paket zu aktivieren"
-    },
-    "activated": {
-      "title": "§aAktiviert",
-      "description": "§7Klicke, um das aktuelle Paket zu deaktivieren"
-    },
-    "export": {
-      "title": "§6Exportieren",
-      "description": "§7Exportiere das aktuelle Paket in einer Zip-Datei"
-    },
-    "delete": {
-      "title": "§6Löschen",
-      "description": "§7Lösche das aktuelle Paket",
-      "gui": {
-        "title": "§6Packet §3%s §6löschen?",
-        "message": "§6Packet §3%s §6löschen?",
-        "description": "§7Dies löscht das Paket\n§7Ordner und den Inhalt davon.\n§7Dieser Vorgang kann nicht rückgängig gemacht werden!",
-        "yes": "§aJa",
-        "no": "§cNein"
+    "model": {
+      "block": {
+        "title": "§6Block model template"
       }
     }
   },
-  "coming-soon": "§cBald verfügbar...",
-  "addon": {},
   "knowledge": {
     "title": "§6Knowledge"
   },
+  "template": {
+    "title": "§6Template",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "create": {
+      "title": "§6Add",
+      "description": "§7Add new template"
+    },
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    }
+  },
   "choose": {
+    "pack": {
+      "title": "§6Choose pack §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "template": {
+      "title": "§6Choose template §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
     "item": {
       "title": "§6Wähle Gegenstand §7(%d/%d)",
       "first": "§6Erste",
@@ -86,7 +84,12 @@
       "next": "§6Nächste",
       "last": "§6Letzter",
       "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen"
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
     },
     "block": {
       "title": "§6Wähle Block §7(%d/%d)",
@@ -95,7 +98,12 @@
       "next": "§6Nächste",
       "last": "§6Letzter",
       "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen"
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
     },
     "model": {
       "title": "§6Wähle Modell §7(%d/%d)",
@@ -104,7 +112,12 @@
       "next": "§6Nächste",
       "last": "§6Letzter",
       "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen"
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
     },
     "texture": {
       "title": "§6Wähle Textur §7(%d/%d)",
@@ -113,7 +126,12 @@
       "next": "§6Nächste",
       "last": "§6Letzter",
       "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen"
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
     }
   },
   "main": {
@@ -190,7 +208,6 @@
     "previous": "§6Vorherige",
     "next": "§6Nächste",
     "last": "§6Letzter",
-    "item": "§6%s",
     "search": {
       "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
       "title": "§6Suche",
@@ -203,6 +220,7 @@
       "success": "§eItemMods §7» §aErfolgreich das Paket §3%s§a erstellt.",
       "failed": "§eItemMods §7» §cUngültiger Paketname."
     },
+    "item": "§6%s",
     "actions": "§3%s\n\n§7Öffne das Paketgui"
   },
   "inactive-packs": {
@@ -218,6 +236,70 @@
       "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     },
     "actions": "§3%s\n\n§7Öffne das Paketgui"
+  },
+  "pack": {
+    "created": "§eItemMods $7» §6Pack-Ordner wurde erstellt!",
+    "exporting": "§eItemMods $7» §eExportiere Ressourcenpaket...",
+    "exported": "§eItemMods $7» §6Ressourcenpaket wurde exportiert!",
+    "title": "§6Paket §3%s",
+    "back": {
+      "title": "§6Zurück",
+      "description": "§7Gehe zur Paketliste"
+    },
+    "name": {
+      "title": "§6Name",
+      "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Paketnamen zu §3%s§a geändert.",
+      "failed": "§eItemMods §7» §cUngültiger Paketname."
+    },
+    "general": "§6Allgemein",
+    "contents": "§6Inhalte",
+    "raw": "§6Roh",
+    "administration": "§6Administration",
+    "items": {
+      "title": "§6Items",
+      "description": "§7Gehe zur Itemliste"
+    },
+    "blocks": {
+      "title": "§6Blöcke",
+      "description": "§7Gehe zur Blockliste"
+    },
+    "textures": {
+      "title": "§6Texturen",
+      "description": "§7Gehe zur Texturliste"
+    },
+    "models": {
+      "title": "§6Modelle",
+      "description": "§7Gehe zur Modellliste"
+    },
+    "sounds": {
+      "title": "§6Töne",
+      "description": "§7Gehe zur Tonliste"
+    },
+    "deactivated": {
+      "title": "§cDeaktiviert",
+      "description": "§7Klicke, um das aktuelle Paket zu aktivieren"
+    },
+    "activated": {
+      "title": "§aAktiviert",
+      "description": "§7Klicke, um das aktuelle Paket zu deaktivieren"
+    },
+    "export": {
+      "title": "§6Exportieren",
+      "description": "§7Exportiere das aktuelle Paket in einer Zip-Datei"
+    },
+    "delete": {
+      "title": "§6Löschen",
+      "description": "§7Lösche das aktuelle Paket",
+      "gui": {
+        "title": "§6Packet §3%s §6löschen?",
+        "message": "§6Packet §3%s §6löschen?",
+        "description": "§7Dies löscht das Paket\n§7Ordner und den Inhalt davon.\n§7Dieser Vorgang kann nicht rückgängig gemacht werden!",
+        "yes": "§aJa",
+        "no": "§cNein"
+      }
+    }
   },
   "materials": {
     "title": "Materialien"
@@ -257,7 +339,7 @@
       "success": "§eItemMods §7» §aErfolgreich den Itemnamen zu §3%s§a.",
       "failed": "§eArtikelmods §7» §cUngültiger Itemname."
     },
-    "display-name": {
+    "display": {
       "not-set": {
         "title": "§6Anzeigename",
         "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
@@ -343,7 +425,7 @@
       "success": "§eItemMods §7» §aErfolgreich den Blocknamen zu §3%s §ageändert.",
       "failed": "§eItemMods §7» §cUngültiger Blockname."
     },
-    "display-name": {
+    "display": {
       "not-set": {
         "title": "§6Anzeigename",
         "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
