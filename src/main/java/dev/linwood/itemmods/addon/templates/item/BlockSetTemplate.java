@@ -48,6 +48,7 @@ public class BlockSetTemplate extends CustomTemplate {
         new ChoosePackGui(pack -> new ChooseBlockGui(pack.getName(), asset -> {
             var block = new PackObject(pack.getName(), asset.getName());
             setBlock(data, block);
+            packObject.save();
             new TemplateGui(packObject).show(player);
         }).show(player)).show(player);
         return true;

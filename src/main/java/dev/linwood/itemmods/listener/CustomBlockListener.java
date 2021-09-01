@@ -32,8 +32,8 @@ public class CustomBlockListener implements Listener {
         if (customItem.getConfig() == null)
             return;
         customItem.getConfig().getCustomTemplates().forEach(customTemplateData -> {
-            if (customTemplateData.getObject().getTemplate() instanceof BlockSetTemplate) {
-                var template = (BlockSetTemplate) customTemplateData.getObject().getTemplate();
+            if (customTemplateData.getTemplate() instanceof BlockSetTemplate) {
+                var template = (BlockSetTemplate) customTemplateData.getTemplate();
                 if (template.getBlock(customTemplateData) == null)
                     return;
                 Player player = event.getPlayer();
@@ -78,6 +78,7 @@ public class CustomBlockListener implements Listener {
             return;
         event.setCancelled(true);
         event.getBlock().setType(Material.AIR);
+        event.setExpToDrop(0);
         ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
         if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
             ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());

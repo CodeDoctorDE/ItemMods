@@ -28,6 +28,7 @@ public class TemplateGui extends ListGui {
         setListControls(new VerticalListControls() {{
             setCreateAction(event -> new ChoosePackGui(itemModsPack -> new ChooseTemplateGui(itemModsPack.getName(), customTemplate -> {
                 Objects.requireNonNull(packObject.getAsset()).registerCustomTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()));
+                packObject.save();
                 rebuild();
                 show((Player) event.getWhoClicked());
             }).show((Player) event.getWhoClicked())).show((Player) event.getWhoClicked()));

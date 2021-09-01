@@ -12,8 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class CustomItem {
-    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
-    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
+    protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
+    protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
     private final @NotNull ItemStack itemStack;
 
     public CustomItem(@NotNull ItemStack itemStack) {

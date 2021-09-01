@@ -50,17 +50,28 @@
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
                         </filter>
+                        <filter>
+                            <artifact>de.tr7zw:item-nbt-api</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
                     </filters>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.github.codedoctorde.itemmods.bstats</shadedPattern>
+                            <shadedPattern>dev.linwood.itemmods.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>de.tr7zw.changeme.nbtapi</pattern>
+                            <shadedPattern>dev.linwood.itemmods.nbtapi</shadedPattern>
                         </relocation>
                     </relocations>
                     <artifactSet>
                         <includes>
                             <include>org.bstats:bstats-bukkit</include>
                             <include>com.github.codedoctorde.api</include>
+                            <include>de.tr7zw:item-nbt-api</include>
                         </includes>
                     </artifactSet>
                 </configuration>
@@ -72,6 +83,7 @@
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
+            <layout>default</layout>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -81,9 +93,8 @@
     <dependencies>
         <dependency>
             <groupId>de.tr7zw</groupId>
-            <artifactId>item-nbt-api-plugin</artifactId>
+            <artifactId>item-nbt-api</artifactId>
             <version>2.8.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>

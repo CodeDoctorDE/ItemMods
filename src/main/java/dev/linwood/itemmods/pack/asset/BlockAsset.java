@@ -1,8 +1,8 @@
 package dev.linwood.itemmods.pack.asset;
 
+import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +19,13 @@ public class BlockAsset extends CustomNamedAsset {
     public BlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
 
+        if (jsonObject.has("display-name") && jsonObject.get("display-name").isJsonPrimitive())
+            displayName = jsonObject.get("display-name").getAsString();
+
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
+        if (jsonObject.has("reference-item") && jsonObject.get("reference-item").isJsonPrimitive())
+            referenceItem = PackObject.fromIdentifier(jsonObject.get("reference-item").getAsString());
     }
 
     public @Nullable String getDisplayName() {
@@ -68,5 +73,14 @@ public class BlockAsset extends CustomNamedAsset {
 
     public void setReferenceItem(@Nullable PackObject referenceItem) {
         this.referenceItem = referenceItem;
+    }
+
+    @Override
+    public JsonObject save(String namespace) {
+        var object = super.save(namespace);
+        object.addProperty("model-object", modelObject == null ? null : modelObject.toString());
+        object.addProperty("display-name", displayName);
+        object.addProperty("reference-item", referenceItem == null ? null : referenceItem.toString());
+        return object;
     }
 }

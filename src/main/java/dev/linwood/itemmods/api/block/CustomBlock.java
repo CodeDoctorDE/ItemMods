@@ -14,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomBlock {
-    private static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_type");
-    private static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_data");
+    protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_type");
+    protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_data");
     private final Location location;
 
     public CustomBlock(Location location) {

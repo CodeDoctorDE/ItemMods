@@ -1,14 +1,17 @@
 package dev.linwood.itemmods.api.block;
 
-import de.tr7zw.nbtapi.NBTContainer;
-import de.tr7zw.nbtapi.NBTTileEntity;
+import de.tr7zw.changeme.nbtapi.NBTTileEntity;
+import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.TileState;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,21 +53,22 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
-        NBTTileEntity tent = new NBTTileEntity(block.getState());
-        tent.setInteger("RequiredPlayerRange", 0);
-        tent.addCompound("SpawnData");
-        var spawnData = tent.getCompound("SpawnData");
-        var armorItems = spawnData.getCompoundList("ArmorItems");
-        // Boots
-        armorItems.addCompound();
-        // Leggings
-        armorItems.addCompound();
-        // Chest plate
-        armorItems.addCompound();
-        // Head
-        var head = armorItems.addCompound();
-        head.setString("id", model.getFallbackTexture().getKey().toString());
-        head.setDouble("Count", 1d);
+        ((TileState)block.getState()).getPersistentDataContainer().set(CustomBlock.TYPE_KEY, PersistentDataType.STRING, packObject.toString());
+            NBTTileEntity tent = new NBTTileEntity(block.getState());
+            tent.setInteger("RequiredPlayerRange", 0);
+            var spawnData = tent.addCompound("SpawnData");
+            spawnData.setString("id", EntityType.ARMOR_STAND.getKey().toString());
+            var armorItems = spawnData.getCompoundList("ArmorItems");
+            // Boots
+            armorItems.addCompound();
+            // Leggings
+            armorItems.addCompound();
+            // Chest plate
+            armorItems.addCompound();
+            // Head
+            var head = armorItems.addCompound();
+            head.setString("id", model.getFallbackTexture().getKey().toString());
+            head.setDouble("Count", 1d);
 
         return customBlock;
     }
