@@ -60,7 +60,7 @@ public class CustomBlockListener implements Listener {
                 }
                 if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
                     return;
-                if (ItemMods.getCustomBlockManager().setCustomBlock(location, template.getBlock(customTemplateData), player) == null)
+                if (ItemMods.getCustomBlockManager().create(location, template.getBlock(customTemplateData), player) == null)
                     return;
                 event.setCancelled(true);
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE)

@@ -11,7 +11,7 @@ public class CustomItemManager {
     public CustomItemManager() {
     }
 
-    public @Nullable ItemStack create(@NotNull PackObject packObject) {
+    public CustomItem create(@NotNull PackObject packObject) {
         var asset = packObject.getItem();
         assert asset != null;
         assert asset.getModelObject() != null;
@@ -27,6 +27,6 @@ public class CustomItemManager {
         itemMeta.setDisplayName(asset.getDisplayName());
         itemMeta.setLore(asset.getLore());
         itemStack.setItemMeta(itemMeta);
-        return itemStack;
+        return new CustomItem(itemStack);
     }
 }

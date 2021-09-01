@@ -1,5 +1,7 @@
 package dev.linwood.itemmods.api.block;
 
+import de.tr7zw.nbtapi.NBTContainer;
+import de.tr7zw.nbtapi.NBTTileEntity;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
@@ -32,11 +34,15 @@ public class CustomBlockManager {
      * @param player     The player who is placing the block
      * @return Returns if it was placed!
      */
-    public CustomBlock setCustomBlock(Location location, PackObject packObject, @Nullable Player player) {
+    public CustomBlock create(Location location, PackObject packObject, @Nullable Player player) {
         var customBlock = new CustomBlock(location);
         if (customBlock.getConfig() != null)
             return null;
-        if (location.getBlock().getType().isSolid())
+        var asset = packObject.getBlock();
+        if (location.getBlock().getType().isSolid() || asset == null)
+            return null;
+        var model = asset.getModel();
+        if(model == null || model.getFallbackTexture() == null)
             return null;
         var event = new CustomBlockPlaceEvent(location, packObject, player);
         Bukkit.getPluginManager().callEvent(event);
@@ -44,7 +50,21 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
-        // TODO: CRAFT BUKKIT
+        NBTTileEntity tent = new NBTTileEntity(block.getState());
+        tent.setInteger("RequiredPlayerRange", 0);
+        tent.addCompound("SpawnData");
+        var spawnData = tent.getCompound("SpawnData");
+        var armorItems = spawnData.getCompoundList("ArmorItems");
+        // Boots
+        armorItems.addCompound();
+        // Leggings
+        armorItems.addCompound();
+        // Chest plate
+        armorItems.addCompound();
+        // Head
+        var head = armorItems.addCompound();
+        head.setString("id", model.getFallbackTexture().getKey().toString());
+        head.setDouble("Count", 1d);
 
         return customBlock;
     }

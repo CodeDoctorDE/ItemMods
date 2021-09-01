@@ -24,6 +24,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Coming soon in 2.0.0-alpha.1
+ */
 public class CubitBlockModelTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.model.cubit_block");
 
