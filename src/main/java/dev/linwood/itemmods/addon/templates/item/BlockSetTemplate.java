@@ -7,6 +7,8 @@ import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.block.ChooseBlockGui;
 import dev.linwood.itemmods.gui.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import dev.linwood.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonNull;
@@ -37,12 +39,8 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(@NotNull PackObject packObject) {
-        var item = packObject.getItem();
-        if (item == null)
-            return false;
-        var model = item.getModel();
-        return model != null;
+    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
+        return packAsset instanceof ItemAsset;
     }
 
     @Override

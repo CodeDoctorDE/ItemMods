@@ -7,6 +7,9 @@ import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.raw.texture.ChooseTextureGui;
 import dev.linwood.itemmods.gui.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.PackAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import dev.linwood.itemmods.pack.custom.CustomTemplateData;
 import com.google.gson.JsonNull;
@@ -18,12 +21,12 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockModelTemplate extends CustomTemplate {
+public class ItemBlockModelTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.model.block");
 
     @Override
     public @NotNull String getName() {
-        return "block_model_template";
+        return "item_block";
     }
 
     @Override
@@ -62,5 +65,10 @@ public class BlockModelTemplate extends CustomTemplate {
             data.setData(JsonNull.INSTANCE);
         else
             data.setData(new JsonPrimitive(packObject.toString()));
+    }
+
+    @Override
+    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
+        return packAsset instanceof ModelAsset;
     }
 }

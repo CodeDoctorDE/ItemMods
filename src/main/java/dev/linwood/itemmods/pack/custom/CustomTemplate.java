@@ -1,6 +1,7 @@
 package dev.linwood.itemmods.pack.custom;
 
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +13,7 @@ public abstract class CustomTemplate {
 
     public abstract @NotNull ItemStack getMainIcon();
 
-    public boolean isCompatible(PackObject packObject) {
+    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
         return true;
     }
 
