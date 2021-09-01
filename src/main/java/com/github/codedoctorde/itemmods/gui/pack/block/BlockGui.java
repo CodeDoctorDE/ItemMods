@@ -118,8 +118,8 @@ public class BlockGui extends GuiCollection {
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
                             var modelObject = asset.getModelObject();
-                            if(modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
-                                if(packObject.getPack().getModel(packObject.getName()) != null)
+                            if (modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
+                                if (packObject.getPack().getModel(packObject.getName()) != null)
                                     event.getWhoClicked().sendMessage(t.getTranslation("model.exist"));
                                 else {
                                     pack.registerItem(new ItemAsset(pack.getName()));

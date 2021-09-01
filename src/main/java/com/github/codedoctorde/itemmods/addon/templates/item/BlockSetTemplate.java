@@ -5,11 +5,12 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.gui.pack.ChoosePackGui;
 import com.github.codedoctorde.itemmods.gui.pack.block.ChooseBlockGui;
+import com.github.codedoctorde.itemmods.gui.pack.template.TemplateGui;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplate;
 import com.github.codedoctorde.itemmods.pack.custom.CustomTemplateData;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -23,7 +24,7 @@ public class BlockSetTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block");
 
     @Override
-    public @NotNull ItemStack getIcon(CustomTemplateData data) {
+    public @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
@@ -45,11 +46,11 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean openConfigGui(CustomTemplateData data, Player player) {
+    public boolean openConfigGui(PackObject packObject, CustomTemplateData data, Player player) {
         new ChoosePackGui(pack -> new ChooseBlockGui(pack.getName(), asset -> {
-            var packObject = new PackObject(pack.getName(), asset.getName());
-            setBlock(data, packObject);
-            player.closeInventory();
+            var block = new PackObject(pack.getName(), asset.getName());
+            setBlock(data, block);
+            new TemplateGui(packObject).show(player);
         }).show(player)).show(player);
         return true;
     }
@@ -60,42 +61,16 @@ public class BlockSetTemplate extends CustomTemplate {
         return t.getTranslation("name");
     }
 
-    @Nullable
-    public PackObject getBlock(@NotNull CustomTemplateData data) {
-        return new BlockSetTemplateData(data).getBlock();
+    public @Nullable PackObject getBlock(CustomTemplateData data) {
+        if (data.getData() == null)
+            return null;
+        return PackObject.fromIdentifier(data.getData().getAsString());
     }
 
-    public void setBlock(@NotNull CustomTemplateData data, @Nullable PackObject packObject) {
-        var templateData = new BlockSetTemplateData(data);
-        templateData.setBlock(packObject);
-        templateData.save();
-    }
-
-    private static class BlockSetTemplateData {
-        private static final Gson GSON = new Gson();
-        private final CustomTemplateData data;
-        private PackObject block;
-
-        BlockSetTemplateData(@NotNull CustomTemplateData data) {
-            this.data = data;
-            JsonObject jsonObject = GSON.fromJson(data.getData(), JsonObject.class);
-            if (jsonObject != null && jsonObject.has("block") && jsonObject.get("block").isJsonPrimitive())
-                block = PackObject.fromIdentifier(jsonObject.get("block").getAsString());
-        }
-
-        public PackObject getBlock() {
-            return block;
-        }
-
-        public void setBlock(PackObject block) {
-            this.block = block;
-        }
-
-        void save() {
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("block", block.toString());
-            data.setData(jsonObject);
-            data.getObject().save();
-        }
+    public void setBlock(CustomTemplateData data, @Nullable PackObject packObject) {
+        if (packObject == null)
+            data.setData(JsonNull.INSTANCE);
+        else
+            data.setData(new JsonPrimitive(packObject.toString()));
     }
 }

@@ -8,13 +8,19 @@ import com.github.codedoctorde.api.utils.ItemStackBuilder;
 import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.BlockAsset;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ChooseBlockGui extends ListGui {
-    public ChooseBlockGui(String namespace, @NotNull Consumer<BlockAsset> action) {
+    public ChooseBlockGui(String name, @NotNull Consumer<BlockAsset> action) {
+        this(name, null, action);
+    }
+
+    public ChooseBlockGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<BlockAsset> action) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.block"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new StaticItem(new ItemStackBuilder(
                         asset.getIcon()).displayName(asset.getDisplayName())
@@ -22,6 +28,9 @@ public class ChooseBlockGui extends ListGui {
                     setClickAction(event -> action.accept(asset));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls());
+        var back = backAction;
+        setListControls(new VerticalListControls() {{
+            setBackAction(back);
+        }});
     }
 }

@@ -8,15 +8,15 @@ import org.jetbrains.annotations.NotNull;
 public abstract class CustomTemplate {
     public abstract @NotNull String getName();
 
-    public abstract @NotNull ItemStack getIcon(CustomTemplateData data);
+    public abstract @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data);
 
     public abstract @NotNull ItemStack getMainIcon();
 
-    public boolean isCompatible(PackObject object) {
+    public boolean isCompatible(PackObject packObject) {
         return true;
     }
 
-    public boolean openConfigGui(CustomTemplateData data, Player player) {
+    public boolean openConfigGui(PackObject packObject, CustomTemplateData data, Player player) {
         return false;
     }
 }

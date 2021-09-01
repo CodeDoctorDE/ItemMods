@@ -144,9 +144,7 @@ public class ItemMods extends JavaPlugin {
         translationsPath = Paths.get(getDataFolder().getAbsolutePath(), "translations");
         try {
             Files.createDirectories(translationsPath);
-            System.out.println("RESOURCES");
             var uri = Objects.requireNonNull(getClass().getResource("/translations/")).toURI();
-            System.out.println(uri);
             Path dirPath;
             try {
                 dirPath = Paths.get(uri);

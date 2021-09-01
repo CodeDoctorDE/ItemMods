@@ -9,19 +9,28 @@ import com.github.codedoctorde.itemmods.ItemMods;
 import com.github.codedoctorde.itemmods.pack.PackObject;
 import com.github.codedoctorde.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ChooseTextureGui extends ListGui {
-    public ChooseTextureGui(String namespace, @NotNull Consumer<TextureAsset> action) {
+    public ChooseTextureGui(String name, @NotNull Consumer<TextureAsset> action) {
+        this(name, null, action);
+    }
+
+    public ChooseTextureGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<TextureAsset> action) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.texture"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls());
+        var back = backAction;
+        setListControls(new VerticalListControls() {{
+            setBackAction(back);
+        }});
     }
 }

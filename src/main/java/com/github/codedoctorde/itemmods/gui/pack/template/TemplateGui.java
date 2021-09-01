@@ -15,14 +15,14 @@ import java.util.Objects;
 
 public class TemplateGui extends ListGui {
     public TemplateGui(@NotNull PackObject packObject) {
-        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getIcon(customTemplateData)) {{
+        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> Objects.requireNonNull(packObject.getAsset()).getCustomTemplates().stream().map(customTemplateData -> new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getIcon(packObject, customTemplateData)) {{
             var asset = packObject.getAsset();
             assert asset != null;
             setClickAction(event -> {
                 if (event.getClick() == ClickType.DROP)
                     asset.unregisterCustomTemplate(packObject);
                 else if (event.getClick() == ClickType.LEFT)
-                    customTemplateData.getTemplate().openConfigGui(customTemplateData, (Player) event.getWhoClicked());
+                    customTemplateData.getTemplate().openConfigGui(packObject, customTemplateData, (Player) event.getWhoClicked());
             });
         }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls() {{
