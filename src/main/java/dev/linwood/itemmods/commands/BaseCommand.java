@@ -1,6 +1,6 @@
 package dev.linwood.itemmods.commands;
 
-import com.github.codedoctorde.api.translations.TranslationConfig;
+import dev.linwood.api.translations.TranslationConfig;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.KnowledgeGui;
 import dev.linwood.itemmods.gui.MainGui;

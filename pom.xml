@@ -39,7 +39,7 @@
                 <configuration>
                     <filters>
                         <filter>
-                            <artifact>com.github.codedoctorde.api:*</artifact>
+                            <artifact>dev.linwood:*</artifact>
                             <excludes>
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
@@ -54,13 +54,17 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.github.codedoctorde.itemmods.bstats</shadedPattern>
+                            <shadedPattern>dev.linwood.itemmods.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>de.tr7zw.changeme.nbtapi</pattern>
+                            <shadedPattern>dev.linwood.itemmods.nbtapi</shadedPattern>
                         </relocation>
                     </relocations>
                     <artifactSet>
                         <includes>
                             <include>org.bstats:bstats-bukkit</include>
-                            <include>com.github.codedoctorde.api</include>
+                            <include>dev.linwood</include>
                         </includes>
                     </artifactSet>
                 </configuration>
@@ -81,7 +85,7 @@
     <dependencies>
         <dependency>
             <groupId>de.tr7zw</groupId>
-            <artifactId>item-nbt-api-plugin</artifactId>
+            <artifactId>item-nbt-api</artifactId>
             <version>2.8.0</version>
             <scope>provided</scope>
         </dependency>
@@ -99,43 +103,43 @@
         </dependency>
         <dependency>
             <artifactId>ui-templates</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>serializer</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>ui</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>config</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>server</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>translations</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>request</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>utils</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

@@ -1,6 +1,6 @@
 package dev.linwood.itemmods.addon;
 
-import com.github.codedoctorde.api.translations.Translation;
+import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.addon.templates.item.BlockSetTemplate;
 import dev.linwood.itemmods.pack.ItemModsPack;

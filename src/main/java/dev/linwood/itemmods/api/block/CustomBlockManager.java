@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.api.block;
 
-import de.tr7zw.nbtapi.NBTContainer;
-import de.tr7zw.nbtapi.NBTTileEntity;
+import de.tr7zw.changeme.nbtapi.NBTTileEntity;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
@@ -50,7 +49,7 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
-        NBTTileEntity tent = new NBTTileEntity(block.getState());
+        var tent = new NBTTileEntity(block.getState());
         tent.setInteger("RequiredPlayerRange", 0);
         tent.addCompound("SpawnData");
         var spawnData = tent.getCompound("SpawnData");

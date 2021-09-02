@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.addon.templates.item;
 
-import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import dev.linwood.api.translations.Translation;
+import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.block.ChooseBlockGui;

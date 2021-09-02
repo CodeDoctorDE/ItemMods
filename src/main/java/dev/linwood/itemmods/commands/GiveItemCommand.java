@@ -1,6 +1,6 @@
 package dev.linwood.itemmods.commands;
 
-import com.github.codedoctorde.api.translations.Translation;
+import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
@@ -58,11 +58,12 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                     return true;
                 }
             }
-            var itemStack = ItemMods.getCustomItemManager().create(packObject);
-            if (itemStack == null) {
+            var customItem = ItemMods.getCustomItemManager().create(packObject);
+            if (customItem == null) {
                 commandSender.sendMessage(t.getTranslation("no-item"));
                 return true;
             }
+            var itemStack = customItem.getItemStack();
             itemStack.setAmount(count);
             player.getInventory().addItem(itemStack);
             commandSender.sendMessage(t.getTranslation("success", packObject.toString()));

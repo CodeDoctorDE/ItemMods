@@ -1,13 +1,13 @@
 package dev.linwood.itemmods.gui.pack.raw.model;
 
-import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.ui.GuiCollection;
-import com.github.codedoctorde.api.ui.item.StaticItem;
-import com.github.codedoctorde.api.ui.template.gui.MaterialListGui;
-import com.github.codedoctorde.api.ui.template.gui.MessageGui;
-import com.github.codedoctorde.api.ui.template.gui.TranslatedChestGui;
-import com.github.codedoctorde.api.ui.template.item.TranslatedGuiItem;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import dev.linwood.api.request.ChatRequest;
+import dev.linwood.api.ui.GuiCollection;
+import dev.linwood.api.ui.item.StaticItem;
+import dev.linwood.api.ui.template.gui.MaterialListGui;
+import dev.linwood.api.ui.template.gui.MessageGui;
+import dev.linwood.api.ui.template.gui.TranslatedChestGui;
+import dev.linwood.api.ui.template.item.TranslatedGuiItem;
+import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.raw.DataGui;
 import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
