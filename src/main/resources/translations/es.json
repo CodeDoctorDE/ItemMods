@@ -32,6 +32,7 @@
   "knowledge": {
     "title": "§6Knowledge"
   },
+  "readonly": "§eItemMods §7» §cThis element is readonly.",
   "template": {
     "title": "§6Template",
     "first": "§6First",
@@ -180,7 +181,7 @@
     "export": {
       "title": "§6Export",
       "description": "§7Export resource pack",
-      "message": "§eItemMods §7» §eExporting",
+      "message": "§eItemMods §7» §eExporting...",
       "success": "§eItemMods §7» §aSuccessfully exported the resource pack",
       "failed": "§eItemMods §7» §aExporting resource pack failed. See the console for details!"
     },
