@@ -23,7 +23,7 @@ public abstract class PackAsset extends NamedPackObject {
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
             try {
-                registerCustomTemplate(new CustomTemplateData(PackObject.fromIdentifier(current.get("object").getAsString()), current.get("data")));
+                registerCustomTemplate(new CustomTemplateData(new PackObject(current.get("object").getAsString()), current.get("data")));
             } catch (Exception e) {
                 e.printStackTrace();
             }

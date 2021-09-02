@@ -98,7 +98,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerDependency(@NotNull String name) {
-        if (NamedPackObject.NAME_PATTERN.matcher(name).matches())
+        if (PackObject.NAME_PATTERN.matcher(name).matches())
             dependencies.add(name);
     }
 
@@ -111,7 +111,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerItem(@NotNull ItemAsset itemAsset) {
-        if (NamedPackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
+        if (PackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
             items.add(itemAsset);
     }
 
@@ -124,7 +124,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerBlock(@NotNull BlockAsset blockAsset) {
-        if (NamedPackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
+        if (PackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
             blocks.add(blockAsset);
     }
 
@@ -137,7 +137,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerTexture(@NotNull TextureAsset textureAsset) {
-        if (NamedPackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
+        if (PackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
 
@@ -150,7 +150,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerModel(@NotNull ModelAsset modelAsset) {
-        if (NamedPackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
+        if (PackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
             models.add(modelAsset);
     }
 
@@ -163,7 +163,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void registerTemplate(@NotNull CustomTemplate customTemplate) {
-        if (NamedPackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
+        if (PackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
             templates.add(customTemplate);
     }
 

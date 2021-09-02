@@ -22,9 +22,7 @@ public class CustomItem {
 
     public @Nullable ItemAsset getConfig() {
         try {
-            var packObject = PackObject.fromIdentifier(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
-            if (packObject == null)
-                return null;
+            var packObject = new PackObject(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
             return packObject.getItem();
         } catch (Exception e) {
             return null;

@@ -59,12 +59,14 @@ public class PackGui extends GuiCollection {
                     }});
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
                         setClickAction(event -> {
+                            event.getWhoClicked().sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                             try {
                                 ItemMods.getPackManager().zip(pack.getName());
+                                event.getWhoClicked().sendMessage(t.getTranslation("export.success", "plugins/ItemMods/exports/" + pack.getName()));
                             } catch (IOException e) {
+                                event.getWhoClicked().sendMessage(t.getTranslation("export.failed"));
                                 e.printStackTrace();
                             }
-                            event.getWhoClicked().sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + pack.getName()));
                         });
                     }});
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{

@@ -34,39 +34,40 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
         if (args.length < 2 || args.length > 3) {
             commandSender.sendMessage(t.getTranslation("usage"));
         } else {
-            Player player = Bukkit.getPlayer(args[0]);
-            if (player == null) {
-                commandSender.sendMessage(t.getTranslation("no-player"));
-                return true;
-            }
-            var packObject = PackObject.fromIdentifier(args[1]);
-            if (packObject == null) {
-                commandSender.sendMessage(t.getTranslation("no-item"));
-                return true;
-            }
-            var itemAsset = packObject.getItem();
-            if (itemAsset == null) {
-                commandSender.sendMessage(t.getTranslation("no-item"));
-                return true;
-            }
-            int count = 1;
-            if (args.length == 3) {
-                try {
-                    count = Integer.parseInt(args[2]);
-                } catch (Exception e) {
-                    commandSender.sendMessage(t.getTranslation("no-number"));
+            try {
+                Player player = Bukkit.getPlayer(args[0]);
+                if (player == null) {
+                    commandSender.sendMessage(t.getTranslation("no-player"));
                     return true;
                 }
-            }
-            var customItem = ItemMods.getCustomItemManager().create(packObject);
-            if (customItem == null) {
+                var packObject = new PackObject(args[1]);
+                var itemAsset = packObject.getItem();
+                if (itemAsset == null) {
+                    commandSender.sendMessage(t.getTranslation("no-item"));
+                    return true;
+                }
+                int count = 1;
+                if (args.length == 3) {
+                    try {
+                        count = Integer.parseInt(args[2]);
+                    } catch (Exception e) {
+                        commandSender.sendMessage(t.getTranslation("no-number"));
+                        return true;
+                    }
+                }
+                var customItem = ItemMods.getCustomItemManager().create(packObject);
+                if (customItem == null) {
+                    commandSender.sendMessage(t.getTranslation("no-item"));
+                    return true;
+                }
+                var itemStack = customItem.getItemStack();
+                itemStack.setAmount(count);
+                player.getInventory().addItem(itemStack);
+                commandSender.sendMessage(t.getTranslation("success", packObject.toString()));
+            } catch (UnsupportedOperationException exception) {
                 commandSender.sendMessage(t.getTranslation("no-item"));
                 return true;
             }
-            var itemStack = customItem.getItemStack();
-            itemStack.setAmount(count);
-            player.getInventory().addItem(itemStack);
-            commandSender.sendMessage(t.getTranslation("success", packObject.toString()));
         }
         return true;
     }

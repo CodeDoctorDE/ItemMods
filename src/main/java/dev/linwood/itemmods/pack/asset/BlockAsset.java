@@ -23,9 +23,9 @@ public class BlockAsset extends CustomNamedAsset {
             displayName = jsonObject.get("display-name").getAsString();
 
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
-            modelObject = PackObject.fromIdentifier(jsonObject.get("model-object").getAsString());
+            modelObject = new PackObject(jsonObject.get("model-object").getAsString());
         if (jsonObject.has("reference-item") && jsonObject.get("reference-item").isJsonPrimitive())
-            referenceItem = PackObject.fromIdentifier(jsonObject.get("reference-item").getAsString());
+            referenceItem = new PackObject(jsonObject.get("reference-item").getAsString());
     }
 
     public @Nullable String getDisplayName() {

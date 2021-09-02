@@ -41,39 +41,6 @@ public class PackManager {
         reload();
     }
 
-    private static void zipFile(@NotNull Path fileToZip, @NotNull String fileName, @NotNull ZipOutputStream zipOut) throws IOException {
-        if (Files.isHidden(fileToZip)) {
-            return;
-        }
-        if (Files.isDirectory(fileToZip)) {
-            if (fileName.endsWith("/")) {
-                zipOut.putNextEntry(new ZipEntry(fileName));
-            } else {
-                zipOut.putNextEntry(new ZipEntry(fileName + "/"));
-            }
-            zipOut.closeEntry();
-            try (Stream<Path> paths = Files.walk(fileToZip)) {
-                paths.forEach(path -> {
-                    try {
-                        zipFile(path, fileName + "/" + path.getFileName(), zipOut);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-            return;
-        }
-        var fis = Files.newInputStream(fileToZip);
-        var zipEntry = new ZipEntry(fileName);
-        zipOut.putNextEntry(zipEntry);
-        byte[] bytes = new byte[1024];
-        int length;
-        while ((length = fis.read(bytes)) >= 0) {
-            zipOut.write(bytes, 0, length);
-        }
-        fis.close();
-    }
-
     public boolean hasNoPreset() throws IOException {
         return !Files.newDirectoryStream(presetPath).iterator().hasNext();
     }
@@ -103,7 +70,7 @@ public class PackManager {
 
     public void save(String namespace) {
         var pack = getPack(namespace);
-        if (pack == null || !pack.isEditable() || !NamedPackObject.NAME_PATTERN.matcher(
+        if (pack == null || !pack.isEditable() || !PackObject.NAME_PATTERN.matcher(
                 pack.getName()).matches())
             return;
         var path = Paths.get(packPath.toString(), pack.getName());
@@ -133,7 +100,7 @@ public class PackManager {
     }
 
     public void registerPack(@NotNull ItemModsPack pack) {
-        if (!NamedPackObject.NAME_PATTERN.matcher(pack.getName()).matches()) return;
+        if (!PackObject.NAME_PATTERN.matcher(pack.getName()).matches()) return;
         if (packs.stream().anyMatch(current -> current.getName().equals(pack.getName())))
             return;
         packs.add(pack);
@@ -187,22 +154,29 @@ public class PackManager {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public void zip(@NotNull String name) throws IOException {
-        var pack = getPack(name);
-        if (pack == null || !pack.isEditable())
-            return;
-        var zipOut = new ZipOutputStream(Files.newOutputStream(Paths.get(ItemMods.getTempPath().toString(), name)));
-        var path = Paths.get(packPath.toString(), name);
-        if (!Files.exists(path))
-            return;
-        zipFile(path, name, zipOut);
-        zipOut.close();
+    private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {
+        Path p = Files.createFile(zipFilePath);
+        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(p))) {
+            Files.walk(sourceDirPath)
+                    .filter(path -> !Files.isDirectory(path))
+                    .forEach(path -> {
+                        ZipEntry zipEntry = new ZipEntry(sourceDirPath.relativize(path).toString());
+                        try {
+                            zs.putNextEntry(zipEntry);
+                            Files.copy(path, zs);
+                            zs.closeEntry();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
     }
+
 
     public void export(String variation) throws IOException {
         if (hasNoPreset())
             return;
-        if (!NamedPackObject.NAME_PATTERN.matcher(variation).matches())
+        if (!PackObject.NAME_PATTERN.matcher(variation).matches())
             return;
         var output = Paths.get(ItemMods.getTempPath().toString(), "output", variation);
         if (Files.exists(output))
@@ -241,9 +215,16 @@ public class PackManager {
         var packMeta = ItemMods.GSON.fromJson(Files.readString(Paths.get(output.toString(), "pack.mcmeta")), JsonObject.class);
         var packFormat = packMeta.getAsJsonObject("pack").get("pack_format").getAsInt();
         for (ItemModsPack pack : packs) pack.export(variation, packFormat, output);
+        pack(output, Paths.get(ItemMods.getTempPath().toString(), "output.zip"));
     }
 
     public boolean isActivated(String name) {
         return packs.stream().anyMatch(pack -> pack.getName().equals(name));
+    }
+
+    public void zip(String name) throws IOException {
+        if(getPack(name) == null && PackObject.NAME_PATTERN.matcher(name).matches())
+            throw new UnsupportedOperationException();
+        pack(Paths.get(getPackPath().toString(), name), Paths.get(ItemMods.getTempPath().toString(), name + ".zip"));
     }
 }

@@ -25,7 +25,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
 
     @Override
     public @Nullable ItemStack modify(ItemStack itemStack, UUID uuid, @NotNull Map<String, StringReplacer> map) {
-        var customItem = ItemMods.getCustomItemManager().create(Objects.requireNonNull(PackObject.fromIdentifier(StringReplacer.replace(value, uuid, map.values()))));
+        var customItem = ItemMods.getCustomItemManager().create(new PackObject(StringReplacer.replace(value, uuid, map.values())));
         if(customItem == null)
             return null;
         return customItem.getItemStack();

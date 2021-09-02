@@ -7,6 +7,7 @@ import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
+import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,6 +16,8 @@ import java.util.regex.Pattern;
 public class PackObject {
     public static @NotNull
     final Pattern IDENTIFIER_PATTERN = Pattern.compile("^(?<namespace>^[a-z\\-]+):(?<name>[a-z_\\-]+(/+[a-z_\\-]+)*)$");
+    public static @NotNull
+    final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
     private final String namespace, name;
 
     public PackObject(String namespace, String name) {
@@ -22,11 +25,16 @@ public class PackObject {
         this.name = name;
     }
 
-    @Nullable
-    public static PackObject fromIdentifier(@NotNull String identifier) {
+    public PackObject(@NotNull String identifier) throws UnsupportedOperationException {
         var matcher = IDENTIFIER_PATTERN.matcher(identifier);
-        if (!matcher.matches()) return null;
-        return new PackObject(matcher.group("namespace"), matcher.group("name"));
+        if (!matcher.matches()) throw new UnsupportedOperationException();
+        namespace = matcher.group("namespace");
+        name = matcher.group("name");
+    }
+
+    public PackObject(@NotNull NamespacedKey key) {
+        namespace = key.getNamespace();
+        name = key.getKey();
     }
 
     public String getNamespace() {

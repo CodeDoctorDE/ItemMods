@@ -63,7 +63,7 @@ public class BlockSetTemplate extends CustomTemplate {
     public @Nullable PackObject getBlock(CustomTemplateData data) {
         if (data.getData() == null)
             return null;
-        return PackObject.fromIdentifier(data.getData().getAsString());
+        return new PackObject(data.getData().getAsString());
     }
 
     public void setBlock(CustomTemplateData data, @Nullable PackObject packObject) {

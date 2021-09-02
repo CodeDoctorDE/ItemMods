@@ -55,7 +55,7 @@ public class CubitBlockModelTemplate extends CustomTemplate {
         if (data.getData() == null)
             return null;
         var textures = new HashMap<String, PackObject>();
-        data.getData().getAsJsonObject().entrySet().forEach(entry -> textures.put(entry.getKey(), PackObject.fromIdentifier(entry.getValue().getAsString())));
+        data.getData().getAsJsonObject().entrySet().forEach(entry -> textures.put(entry.getKey(), new PackObject(entry.getValue().getAsString())));
         return textures;
     }
 

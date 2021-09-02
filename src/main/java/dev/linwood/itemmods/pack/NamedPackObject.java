@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 public abstract class NamedPackObject {
     public static @NotNull
     final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    public static @NotNull
-    final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+(/+[a-z_\\-]+)*$");
     protected String name;
 
     public NamedPackObject(@NotNull String name) {
@@ -22,7 +20,7 @@ public abstract class NamedPackObject {
     }
 
     public void setName(@NotNull String name) throws UnsupportedOperationException {
-        if (!NAME_PATTERN.matcher(name).matches())
+        if (!PackObject.NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
         this.name = name;
     }

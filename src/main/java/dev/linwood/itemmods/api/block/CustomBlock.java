@@ -27,13 +27,15 @@ public class CustomBlock {
     }
 
     public @Nullable BlockAsset getConfig() {
-        var type = getType();
-        if (type == null)
+        try {
+            var type = getType();
+            if (type == null)
+                return null;
+            var packObject = new PackObject(type);
+            return packObject.getBlock();
+        }catch (Exception ignored){
             return null;
-        var packObject = PackObject.fromIdentifier(type);
-        if (packObject == null)
-            return null;
-        return packObject.getBlock();
+        }
     }
 
     public Location getLocation() {
