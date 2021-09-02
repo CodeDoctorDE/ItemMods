@@ -1,6 +1,6 @@
 package dev.linwood.itemmods.pack;
 
-import com.github.codedoctorde.api.utils.FileUtils;
+import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;

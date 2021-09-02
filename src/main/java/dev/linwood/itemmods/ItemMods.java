@@ -1,13 +1,13 @@
 package dev.linwood.itemmods;
 
-import com.github.codedoctorde.api.serializer.BlockDataTypeAdapter;
-import com.github.codedoctorde.api.serializer.ItemStackTypeAdapter;
-import com.github.codedoctorde.api.serializer.LocationTypeAdapter;
-import com.github.codedoctorde.api.server.Version;
-import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.translations.TranslationConfig;
-import com.github.codedoctorde.api.ui.Gui;
-import com.github.codedoctorde.api.utils.FileUtils;
+import dev.linwood.api.serializer.BlockDataTypeAdapter;
+import dev.linwood.api.serializer.ItemStackTypeAdapter;
+import dev.linwood.api.serializer.LocationTypeAdapter;
+import dev.linwood.api.server.Version;
+import dev.linwood.api.translations.Translation;
+import dev.linwood.api.translations.TranslationConfig;
+import dev.linwood.api.ui.Gui;
+import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.addon.BaseAddon;
 import dev.linwood.itemmods.api.block.CustomBlockManager;
 import dev.linwood.itemmods.api.item.CustomItemManager;

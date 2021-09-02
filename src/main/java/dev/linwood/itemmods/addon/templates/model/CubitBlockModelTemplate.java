@@ -1,12 +1,12 @@
 package dev.linwood.itemmods.addon.templates.model;
 
-import com.github.codedoctorde.api.request.ChatRequest;
-import com.github.codedoctorde.api.translations.Translation;
-import com.github.codedoctorde.api.ui.item.GuiItem;
-import com.github.codedoctorde.api.ui.item.StaticItem;
-import com.github.codedoctorde.api.ui.template.gui.ListGui;
-import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
-import com.github.codedoctorde.api.utils.ItemStackBuilder;
+import dev.linwood.api.request.ChatRequest;
+import dev.linwood.api.translations.Translation;
+import dev.linwood.api.ui.item.GuiItem;
+import dev.linwood.api.ui.item.StaticItem;
+import dev.linwood.api.ui.template.gui.ListGui;
+import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
+import dev.linwood.api.utils.ItemStackBuilder;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.ItemMods;

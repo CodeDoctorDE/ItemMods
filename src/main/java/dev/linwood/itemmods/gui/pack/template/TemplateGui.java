@@ -1,9 +1,9 @@
 package dev.linwood.itemmods.gui.pack.template;
 
-import com.github.codedoctorde.api.ui.item.GuiItem;
-import com.github.codedoctorde.api.ui.item.StaticItem;
-import com.github.codedoctorde.api.ui.template.gui.ListGui;
-import com.github.codedoctorde.api.ui.template.gui.pane.list.VerticalListControls;
+import dev.linwood.api.ui.item.GuiItem;
+import dev.linwood.api.ui.item.StaticItem;
+import dev.linwood.api.ui.template.gui.ListGui;
+import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.pack.PackObject;
