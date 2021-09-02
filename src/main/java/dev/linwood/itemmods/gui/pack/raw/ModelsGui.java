@@ -18,7 +18,9 @@ import java.util.Objects;
 public class ModelsGui extends ListGui {
     public ModelsGui(String namespace) {
         super(ItemMods.getTranslationConfig().subTranslation("raw.models"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
-                .stream().filter(modelAsset -> modelAsset.getName().contains(gui.getSearchText())).map(modelAsset -> new TranslatedGuiItem(new ItemStackBuilder(Objects.requireNonNull(modelAsset.getIcon())).displayName(modelAsset.getName()).lore("actions").build()) {{
+                .stream().filter(modelAsset -> modelAsset.getName().contains(gui.getSearchText())).map(modelAsset ->
+                        new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("actions").build()) {{
+                            setRenderAction(gui -> setPlaceholders(new PackObject(namespace, modelAsset.getName()).toString()));
                     setClickAction(event -> new ModelGui(new PackObject(namespace, modelAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
         setPlaceholders(namespace);

@@ -4,7 +4,9 @@ import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
+import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
+import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.block.BlockGui;
@@ -17,9 +19,10 @@ import java.util.Objects;
 public class BlocksGui extends ListGui {
     public BlocksGui(String name) {
         super(ItemMods.getTranslationConfig().subTranslation("blocks"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
-                .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new StaticItem(new ItemStackBuilder(
-                        blockAsset.getIcon()).displayName(blockAsset.getName())
-                        .lore(gui.getTranslation().getTranslation("actions", new PackObject(name, blockAsset.getName()).toString())).build()) {{
+                .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new TranslatedGuiItem(new ItemStackBuilder(
+                        blockAsset.getIcon()).displayName("item")
+                        .lore("actions").build()) {{
+                            setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
                     setClickAction(event -> new BlockGui(new PackObject(name, blockAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
         setPlaceholders(name);

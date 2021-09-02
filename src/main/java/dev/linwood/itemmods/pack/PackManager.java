@@ -155,6 +155,7 @@ public class PackManager {
     }
 
     private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {
+        Files.deleteIfExists(zipFilePath);
         Path p = Files.createFile(zipFilePath);
         try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(p))) {
             Files.walk(sourceDirPath)

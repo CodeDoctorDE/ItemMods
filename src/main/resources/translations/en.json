@@ -222,7 +222,7 @@
       "failed": "§eItemMods §7» §cInvalid pack name."
     },
     "item": "§6%s",
-    "actions": "§3%s\n\n§7Open the pack gui"
+    "actions": "§7Open the pack gui"
   },
   "inactive-packs": {
     "title": "§6Inactive packs §7(%d/%d)",
@@ -236,7 +236,7 @@
       "title": "§6Search",
       "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
     },
-    "actions": "§3%s\n\n§7Open the pack gui"
+    "actions": "§7Open the pack gui"
   },
   "pack": {
     "created": "§eItemMods $7» §6Pack folder was created!",
@@ -316,6 +316,7 @@
       "title": "§6Search",
       "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
     },
+    "item": "%s",
     "create": {
       "title": "§6Create",
       "description": "§7Create a new item",
@@ -323,7 +324,7 @@
       "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
       "failed": "§eItemMods §7» §cInvalid item name."
     },
-    "actions": "§3%s\n\n§7Open the item gui"
+    "actions": "§7Open the item gui"
   },
   "item": {
     "title": "§6Item §3%s",
@@ -396,6 +397,7 @@
     "previous": "§6Previous",
     "next": "§6Next",
     "last": "§6Last",
+    "item": "%s",
     "search": {
       "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
       "title": "§6Search",
@@ -403,12 +405,12 @@
     },
     "create": {
       "title": "§6Create",
-      "description": "§7Create a new item",
-      "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid item name."
+      "description": "§7Create a new block",
+      "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
+      "success": "§eItemMods §7» §aSuccessfully created the block §3%s§a.",
+      "failed": "§eItemMods §7» §cInvalid block name."
     },
-    "actions": "§3%s\n\n§7Open the item gui"
+    "actions": "§7Open the block gui"
   },
   "block": {
     "title": "§6Block §3%s",
@@ -483,6 +485,7 @@
       "previous": "§6Previous",
       "next": "§6Next",
       "last": "§6Last",
+      "item": "§6%s",
       "search": {
         "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
         "title": "§6Search",
@@ -495,7 +498,7 @@
         "success": "§eItemMods §7» §aSuccessfully created the model §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid model name."
       },
-      "actions": "§3%s\n\n§7Open the model gui"
+      "actions": "§7Open the model gui"
     },
     "model": {
       "title": "§6Model §3%s",
@@ -512,7 +515,7 @@
       },
       "fallback": {
         "title": "§6Fallback texture",
-        "description": "§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
+        "description": "§3%s\n\n§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
       },
       "data": {
         "title": "§6Data",
@@ -551,7 +554,8 @@
         "success": "§eItemMods §7» §aSuccessfully created the texture §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid texture name."
       },
-      "actions": "§3%s\n\n§7Open the model gui"
+      "item": "§6%s",
+      "actions": "§7Open the model gui"
     },
     "texture": {
       "title": "§6Texture §3%s",
@@ -620,7 +624,7 @@
           }
         }
       },
-      "actions": "§3%s\n\n§7Open the model gui"
+      "actions": "§7Click to remove"
     }
   },
   "event": {

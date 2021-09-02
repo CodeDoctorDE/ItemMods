@@ -41,6 +41,7 @@ public class TextureGui extends GuiCollection {
             switch (value) {
                 case GENERAL:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
+                        setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
                             hide(p);

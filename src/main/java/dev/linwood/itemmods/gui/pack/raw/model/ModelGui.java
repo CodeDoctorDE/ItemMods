@@ -14,6 +14,7 @@ import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -43,6 +44,7 @@ public class ModelGui extends GuiCollection {
             switch (value) {
                 case GENERAL:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.NAME_TAG).displayName("name.title").lore("name.description").build()) {{
+                        setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
@@ -63,14 +65,8 @@ public class ModelGui extends GuiCollection {
                     }});
                     break;
                 case APPEARANCE:
-                    gui.addItem(new TranslatedGuiItem() {{
-                        setRenderAction(gui -> {
-                            var icon = asset.getFallbackTexture();
-                            if (icon == null)
-                                icon = Material.ARMOR_STAND;
-                            var prefix = "fallback." + (asset.isCustom() ? "custom" : "predefined") + ".";
-                            setItemStack(new ItemStackBuilder(icon).displayName(prefix + "title").lore(prefix + "description").build());
-                        });
+                    gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture()).displayName("fallback.title").lore("fallback.description").build()) {{
+                        setRenderAction(gui -> setPlaceholders(asset.getFallbackTexture().getKey().toString()));
                         setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials"), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
