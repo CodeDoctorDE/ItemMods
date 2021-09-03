@@ -5,7 +5,7 @@
     "unloading": "§eItemMods §7» §eEntlade Plugin...",
     "unloaded": "§eItemMods §7» §aErfolgreich Plugin entladen!",
     "compatible": "§eItemMods §7» §6Dieses Plugin ist nicht mit deiner Version kompatibel!",
-    "version": "$eItemMods $7» §6Es ist eine neue Version verfügbar: §3%s",
+    "version": "§eItemMods §7» §6There is a new version available: §3%s",
     "no-preset": "§eItemMods §7» §cEs gibt kein voreingestelltes Ressourcenpaket. Bitte kopiere ein Beispieltextur-Paket dort."
   },
   "api": {
@@ -32,7 +32,6 @@
   "knowledge": {
     "title": "§6Knowledge"
   },
-  "readonly": "§eItemMods §7» §cThis element is readonly.",
   "template": {
     "title": "§6Template",
     "first": "§6Erste",
@@ -187,7 +186,8 @@
     },
     "reset": {
       "title": "§6Zurücksetzen",
-      "description": "§7Setze die Identifikatoren\n§7für das Ressourcenpaket zurück"
+      "description": "§7Setze die Identifikatoren\n§7für das Ressourcenpaket zurück",
+      "message": "§eItemMods §7» §aSuccessfully reset the identifiers"
     },
     "locale": {
       "title": "§6Sprache",
@@ -209,6 +209,7 @@
     "previous": "§6Vorherige",
     "next": "§6Nächste",
     "last": "§6Letzter",
+    "readonly": "§eItemMods §7» §cThis pack is readonly.",
     "search": {
       "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
       "title": "§6Suche",
@@ -222,7 +223,7 @@
       "failed": "§eItemMods §7» §cUngültiger Paketname."
     },
     "item": "§6%s",
-    "actions": "§3%s\n\n§7Öffne das Paketgui"
+    "actions": "§7Open the pack gui"
   },
   "inactive-packs": {
     "title": "§6Inaktive Pakete §7(%d/%d)",
@@ -236,16 +237,18 @@
       "title": "§6Suche",
       "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     },
-    "actions": "§3%s\n\n§7Öffne das Paketgui"
+    "actions": "§7Open the pack gui"
   },
   "pack": {
-    "created": "§eItemMods $7» §6Pack-Ordner wurde erstellt!",
-    "exporting": "§eItemMods $7» §eExportiere Ressourcenpaket...",
-    "exported": "§eItemMods $7» §6Ressourcenpaket wurde exportiert!",
+    "created": "§eItemMods §7» §6Pack folder was created!",
     "title": "§6Paket §3%s",
     "back": {
       "title": "§6Zurück",
       "description": "§7Gehe zur Paketliste"
+    },
+    "readonly": {
+      "title": "§cReadonly",
+      "description": "§7You cannot edit this pack."
     },
     "name": {
       "title": "§6Name",
@@ -288,7 +291,10 @@
     },
     "export": {
       "title": "§6Exportieren",
-      "description": "§7Exportiere das aktuelle Paket in einer Zip-Datei"
+      "description": "§7Exportiere das aktuelle Paket in einer Zip-Datei",
+      "message": "§eItemMods §7» §eExporting resource pack...",
+      "success": "§eItemMods §7» §6Resource pack was exported!",
+      "failed": "§eItemMods §7» §cExporting failed."
     },
     "delete": {
       "title": "§6Löschen",
@@ -316,6 +322,7 @@
       "title": "§6Suche",
       "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     },
+    "item": "%s",
     "create": {
       "title": "§6Erstellen",
       "description": "§7Neues Item erstellen",
@@ -323,7 +330,7 @@
       "success": "§eItemMods §7» §aErfolgreich das Item §3%s §aerstellt.",
       "failed": "§eArtikelmods §7» §cUngültiger Itemname."
     },
-    "actions": "§3%s\n\n§7Öffne das Item Gui"
+    "actions": "§7Open the item gui"
   },
   "item": {
     "title": "§6Item §3%s",
@@ -396,6 +403,7 @@
     "previous": "§6Vorherige",
     "next": "§6Nächste",
     "last": "§6Letzter",
+    "item": "%s",
     "search": {
       "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
       "title": "§6Suche",
@@ -403,12 +411,12 @@
     },
     "create": {
       "title": "§6Erstellen",
-      "description": "§7Neues Item erstellen",
-      "message": "§eItemMods §7» §eBitte gib den Namen des Items ein. Mit einem Linksklick abbrechen.",
-      "success": "§eItemMods §7» §aErfolgreich das Item §3%s §aerstellt.",
-      "failed": "§eArtikelmods §7» §cUngültiger Itemname."
+      "description": "§7Create a new block",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Blocks ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aSuccessfully created the block §3%s§a.",
+      "failed": "§eItemMods §7» §cUngültiger Blockname."
     },
-    "actions": "§3%s\n\n§7Öffne das Item Gui"
+    "actions": "§7Open the block gui"
   },
   "block": {
     "title": "§6Block §3%s",
@@ -483,6 +491,7 @@
       "previous": "§6Vorherige",
       "next": "§6Nächste",
       "last": "§6Letzter",
+      "item": "§6%s",
       "search": {
         "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
         "title": "§6Suche",
@@ -495,7 +504,7 @@
         "success": "§eItemMods §7» §aErfolgreich das Modell §3%s §aerstellt.",
         "failed": "§eItemMods §7» §cUngültiger Modellname."
       },
-      "actions": "§3%s\n\n§7Öffne das Modellgui"
+      "actions": "§7Open the model gui"
     },
     "model": {
       "title": "§6Modell §3%s",
@@ -512,7 +521,7 @@
       },
       "fallback": {
         "title": "§6Fallback-Textur",
-        "description": "§7Klicke um das Material\n§7zu setzen, das angezeigt wird, wenn der Spieler\n§7das Ressourcenpaket nicht aktiviert"
+        "description": "§3%s\n\n§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
       },
       "data": {
         "title": "§6Daten",
@@ -551,7 +560,8 @@
         "success": "§eItemMods §7» §aErfolgreich die Textur §3%s §aerstellt.",
         "failed": "§eItemMods §7» §cUngültiger Texturname."
       },
-      "actions": "§3%s\n\n§7Öffne das Modellgui"
+      "item": "§6%s",
+      "actions": "§7Open the model gui"
     },
     "texture": {
       "title": "§6Textur §3%s",
@@ -620,7 +630,7 @@
           }
         }
       },
-      "actions": "§3%s\n\n§7Öffne das Modellgui"
+      "actions": "§7Click to remove"
     }
   },
   "event": {
@@ -631,7 +641,8 @@
     "no-player": "§eItemMods §7» §4Dieser Befehl ist nur für Spieler!",
     "give": {
       "usage": "§eItemMods §7» §cVerwende: §3/giveitem <Spieler> <Item> [<Anzahl>]§c!",
-      "no-item": "§eItemMods §7» §4This is not a valid item count!"
+      "no-item": "§eItemMods §7» §4This is not a valid item count!",
+      "success": "§eItemMods §7» §aSuccessfully gave %s the item %s"
     },
     "no-number": "§eItemMods §7» §4Das ist keine Zahl!",
     "success": "§eItemMods §7» §aErfolgreich gab dir den Gegenstand §3%s§a!"
