@@ -1,14 +1,13 @@
 package dev.linwood.itemmods.api.block;
 
 import de.tr7zw.changeme.nbtapi.NBTTileEntity;
-import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.TileState;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
@@ -47,7 +46,7 @@ public class CustomBlockManager {
         if (location.getBlock().getType().isSolid() || asset == null)
             return null;
         var model = asset.getModel();
-        if (model == null || model.getFallbackTexture() == null)
+        if (model == null)
             return null;
         var event = new CustomBlockPlaceEvent(location, packObject, player);
         Bukkit.getPluginManager().callEvent(event);
@@ -55,16 +54,20 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
-        ((TileState) block.getState()).getPersistentDataContainer().set(CustomBlock.TYPE_KEY, PersistentDataType.STRING, packObject.toString());
         NBTTileEntity tent = new NBTTileEntity(block.getState());
         tent.setInteger("RequiredPlayerRange", 0);
+        tent.setInteger("SpawnCount", 0);
         var spawnData = tent.addCompound("SpawnData");
         spawnData.setString("id", EntityType.ARMOR_STAND.getKey().toString());
         var handItems = spawnData.getCompoundList("HandItems");
         var hand = handItems.addCompound();
         hand.setString("id", model.getFallbackTexture().getKey().toString());
         hand.addCompound("tag").setInteger("CustomModelData", asset.getModelObject() == null ? null : asset.getModelObject().getCustomModel());
-        hand.setDouble("Count", 1d);
+        hand.setByte("Count", (byte) 1);
+        var state = (CreatureSpawner) block.getState();
+        state.getPersistentDataContainer().set(CustomBlock.TYPE_KEY, PersistentDataType.STRING, packObject.toString());
+        state.update();
+
 
         return customBlock;
     }

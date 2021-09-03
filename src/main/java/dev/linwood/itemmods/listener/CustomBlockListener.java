@@ -36,6 +36,7 @@ public class CustomBlockListener implements Listener {
                 var template = (BlockSetTemplate) customTemplateData.getTemplate();
                 if (template.getBlock(customTemplateData) == null)
                     return;
+                event.setCancelled(true);
                 Player player = event.getPlayer();
                 Location location = event.getClickedBlock().getLocation();
                 switch (event.getBlockFace()) {
@@ -62,7 +63,6 @@ public class CustomBlockListener implements Listener {
                     return;
                 if (ItemMods.getCustomBlockManager().create(location, template.getBlock(customTemplateData), player) == null)
                     return;
-                event.setCancelled(true);
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
             }

@@ -5,7 +5,7 @@
     "unloading": "§eItemMods §7» §eAv-Laster plugin...",
     "unloaded": "§eItemMods §7» §avellykket Av-lastet Plugin!",
     "compatible": "§eItemMods §7» §6Denne Plugin er ikke kompatibel med versjonen din!",
-    "version": "$eItemMods $7» §6Det er en ny versjon tilgjengelig: §3%s",
+    "version": "§eItemMods §7» §6Det er en ny versjon tilgjengelig: §3%s",
     "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
   },
   "api": {
@@ -13,9 +13,9 @@
     "unregister": "§eItemMods §7» §aUregistrert addon §3%s§a!"
   },
   "pack": {
-    "created": "§eItemMods $7» §6Pakke-mappen ble opprettet!",
-    "exporting": "§eItemMods $7» §eEksporterer ressurspakke...",
-    "exported": "§eItemMods $7» §6Ressurspakken ble eksportert!"
+    "created": "§eItemMods §7» §6Pakke-mappen ble opprettet!",
+    "exporting": "§eItemMods §7» §eEksporterer ressurspakke...",
+    "exported": "§eItemMods §7» §6Ressurspakken ble eksportert!"
   },
   "coming-soon": "§cKommer snart...",
   "addon": {},

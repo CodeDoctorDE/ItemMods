@@ -22,7 +22,7 @@ public class PacksGui extends ListGui {
                                 if (itemModsPack.isEditable())
                                     new PackGui(itemModsPack.getName()).show((Player) event.getWhoClicked());
                                 else
-                                    event.getWhoClicked().sendMessage(getTranslation().getTranslation("readonly"));
+                                    event.getWhoClicked().sendMessage(gui.getTranslation().getTranslation("readonly"));
                             });
                         }}).toArray(GuiItem[]::new));
         var t = getTranslation();

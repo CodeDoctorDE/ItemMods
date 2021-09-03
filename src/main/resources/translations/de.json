@@ -5,7 +5,7 @@
     "unloading": "§eItemMods §7» §eEntlade Plugin...",
     "unloaded": "§eItemMods §7» §aErfolgreich Plugin entladen!",
     "compatible": "§eItemMods §7» §6Dieses Plugin ist nicht mit deiner Version kompatibel!",
-    "version": "$eItemMods $7» §6Es ist eine neue Version verfügbar: §3%s",
+    "version": "§eItemMods §7» §6Es ist eine neue Version verfügbar: §3%s",
     "no-preset": "§eItemMods §7» §cEs gibt kein voreingestelltes Ressourcenpaket. Bitte kopiere ein Beispieltextur-Paket dort."
   },
   "api": {
@@ -13,9 +13,9 @@
     "unregister": "§eItemMods §7» §aNeues Addon unregistriert: §3%s§a!"
   },
   "pack": {
-    "created": "§eItemMods $7» §6Pack-Ordner wurde erstellt!",
-    "exporting": "§eItemMods $7» §eExportiere Ressourcenpaket...",
-    "exported": "§eItemMods $7» §6Ressourcenpaket wurde exportiert!"
+    "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
+    "exporting": "§eItemMods §7» §eExportiere Ressourcenpaket...",
+    "exported": "§eItemMods §7» §6Ressourcenpaket wurde exportiert!"
   },
   "coming-soon": "§cBald verfügbar...",
   "addon": {},

@@ -41,25 +41,30 @@ public class MainGui extends TranslatedChestGui {
             setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("support.link", "https://discord.gg/WzcRNGF")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BOOK).displayName("wiki.title").lore("wiki.description").build()) {{
-            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("wiki.link", "https://itemmods.codedoctor.tk")));
+            setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("wiki.link", "https://itemmods.linwood.dev")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.PAINTING).displayName("crowdin.title").lore("crowdin.description").build()) {{
             setClickAction(event -> event.getWhoClicked().sendMessage(t.getTranslation("crowdin.link", "https://linwood.crowdin.com/ItemMods")));
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.CHEST).displayName("export.title").lore("export.description").build()) {{
             setClickAction(event -> {
-                event.getWhoClicked().sendMessage("export.message");
+                event.getWhoClicked().sendMessage(t.getTranslation("export.message"));
                 try {
                     ItemMods.getPackManager().export("default");
-                    event.getWhoClicked().sendMessage("export.success");
+                    event.getWhoClicked().sendMessage(t.getTranslation("export.success"));
                 } catch (Exception e) {
-                    event.getWhoClicked().sendMessage("export.failed");
+                    event.getWhoClicked().sendMessage(t.getTranslation("export.failed"));
                     e.printStackTrace();
                 }
             });
         }});
-        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("reset.title").lore("reset.description").build()) {
-        });
+        addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("reset.title").lore("reset.description").build()) {{
+            setClickAction(event -> {
+                ItemMods.getMainConfig().clearIdentifiers();
+                ItemMods.saveMainConfig();
+               event.getWhoClicked().sendMessage(t.getTranslation("reset.message"));
+            });
+        }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENCHANTING_TABLE).displayName("locale.title").lore("locale.description").build()) {{
             setRenderAction(gui -> setPlaceholders(ItemMods.getMainConfig().getLocale()));
             setClickAction(event -> new LocalesGui().show((Player) event.getWhoClicked()));
