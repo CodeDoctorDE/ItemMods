@@ -606,6 +606,14 @@
         "title": "§6Suche",
         "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
       },
+      "has": {
+        "title": "§6%s",
+        "description": "§7Left click » Show content\n§7Drop » Delete"
+      },
+      "not-set": {
+        "title": "§cNot set",
+        "description": "§7Klicke, um zu setzen"
+      },
       "create": {
         "title": "§6Erstellen",
         "description": "§7Erstelle ein neues Modell",
