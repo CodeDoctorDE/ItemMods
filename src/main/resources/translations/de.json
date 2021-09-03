@@ -5,7 +5,7 @@
     "unloading": "§eItemMods §7» §eEntlade Plugin...",
     "unloaded": "§eItemMods §7» §aErfolgreich Plugin entladen!",
     "compatible": "§eItemMods §7» §6Dieses Plugin ist nicht mit deiner Version kompatibel!",
-    "version": "§eItemMods §7» §6There is a new version available: §3%s",
+    "version": "§eItemMods §7» §6Es ist eine neue Version verfügbar: §3%s",
     "no-preset": "§eItemMods §7» §cEs gibt kein voreingestelltes Ressourcenpaket. Bitte kopiere ein Beispieltextur-Paket dort."
   },
   "api": {
@@ -240,7 +240,7 @@
     "actions": "§7Open the pack gui"
   },
   "pack": {
-    "created": "§eItemMods §7» §6Pack folder was created!",
+    "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
     "title": "§6Paket §3%s",
     "back": {
       "title": "§6Zurück",
@@ -515,9 +515,21 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
-        "message": "§eItemMods §7» §eBitte geben Sie den Namen des Modells ein. Mit einem Linksklick abbrechen.",
-        "success": "§eItemMods §7» §aErfolgreich den Modellnamen zu §3%s §ageändert.",
-        "failed": "§eItemMods §7» §cUngültiger Modellname."
+        "message": "§eItemMods §7» §eBitte gib den Namen des Items ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Itemnamen zu §3%s§a.",
+        "failed": "§eArtikelmods §7» §cUngültiger Itemname."
+      },
+      "display": {
+        "not-set": {
+          "title": "§6Anzeigename",
+          "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"
+        },
+        "set": {
+          "title": "§6Anzeigename",
+          "description": "§3%s\n\n§7Klicken, um den Anzeigenamen zu ändern"
+        },
+        "message": "§eItemMods §7» §eBitte gib den Anzeigenamen des Items ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Anzeigenamen zu §3%s §ageändert."
       },
       "fallback": {
         "title": "§6Fallback-Textur",
@@ -572,9 +584,33 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
-        "message": "§eItemMods §7» §eBitte geben Sie den Namen der Textur ein. Mit einem Linksklick abbrechen.",
-        "success": "§eItemMods §7» §aErfolgreich den Texturnamen zu §3%s §ageändert.",
-        "failed": "§eItemMods §7» §cUngültiger Texturname."
+        "message": "§eItemMods §7» §eBitte gib den Namen des Blocks ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Blocknamen zu §3%s §ageändert.",
+        "failed": "§eItemMods §7» §cUngültiger Blockname."
+      },
+      "display": {
+        "not-set": {
+          "title": "§6Anzeigename",
+          "description": "§cNicht gesetzt\n\n§7Klick, um den Anzeigenamen zu ändern"
+        },
+        "set": {
+          "title": "§6Anzeigename",
+          "description": "§3%s\n\n§7Klicken, um den Anzeigenamen zu ändern"
+        },
+        "message": "§eItemMods §7» §eBitte gib den Anzeigenamen des Items ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Anzeigenamen zu §3%s §ageändert."
+      },
+      "localized-name": {
+        "not-set": {
+          "title": "§6Lokalisierter Name",
+          "description": "§cNicht gesetzt\n\n§7Klick, um den lokalisierten Namen zu ändern"
+        },
+        "set": {
+          "title": "§6Lokalisierter Name",
+          "description": "§3%s\n\n§7Klicken, um den lokalisierten Namen zu ändern"
+        },
+        "message": "§eItemMods §7» §eBitte den lokalisierten Namen des Items eingeben. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den lokalisierten Item Namen zu §3%s§a geändert."
       },
       "data": {
         "title": "§6Daten",

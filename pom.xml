@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.codedoctorde</groupId>
+    <groupId>dev.linwood</groupId>
     <artifactId>ItemMods</artifactId>
-    <version>2.0.0-alpha.0</version>
+    <version>2.0.0-alpha.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
@@ -39,7 +39,7 @@
                 <configuration>
                     <filters>
                         <filter>
-                            <artifact>com.github.codedoctorde.api:*</artifact>
+                            <artifact>dev.linwood:*</artifact>
                             <excludes>
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
@@ -50,17 +50,28 @@
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
                         </filter>
+                        <filter>
+                            <artifact>de.tr7zw:item-nbt-api</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
                     </filters>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>com.github.codedoctorde.itemmods.bstats</shadedPattern>
+                            <shadedPattern>dev.linwood.itemmods.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>de.tr7zw.changeme.nbtapi</pattern>
+                            <shadedPattern>dev.linwood.itemmods.nbtapi</shadedPattern>
                         </relocation>
                     </relocations>
                     <artifactSet>
                         <includes>
                             <include>org.bstats:bstats-bukkit</include>
-                            <include>com.github.codedoctorde.api</include>
+                            <include>dev.linwood</include>
+                            <include>de.tr7zw:item-nbt-api</include>
                         </includes>
                     </artifactSet>
                 </configuration>
@@ -72,10 +83,7 @@
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>codemc-snapshots</id>
-            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
+            <layout>default</layout>
         </repository>
         <repository>
             <id>spigot-repo</id>
@@ -83,6 +91,11 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>de.tr7zw</groupId>
+            <artifactId>item-nbt-api</artifactId>
+            <version>2.8.0</version>
+        </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
@@ -97,43 +110,43 @@
         </dependency>
         <dependency>
             <artifactId>ui-templates</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>serializer</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>ui</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>config</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>server</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>translations</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>request</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <artifactId>utils</artifactId>
-            <groupId>com.github.codedoctorde.api</groupId>
-            <version>3.0.0-SNAPSHOT</version>
+            <groupId>dev.linwood</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
