@@ -1,5 +1,7 @@
 package dev.linwood.itemmods.addon.templates.model;
 
+import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.api.ui.item.GuiItem;
@@ -7,8 +9,6 @@ import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.utils.ItemStackBuilder;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;

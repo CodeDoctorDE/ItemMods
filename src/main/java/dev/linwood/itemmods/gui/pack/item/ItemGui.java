@@ -132,7 +132,7 @@ public class ItemGui extends GuiCollection {
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }).show(p)).show(p);
+                                }).show(p), backEvent -> ItemGui.this.show((Player) backEvent.getWhoClicked())).show(p);
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
@@ -146,11 +146,12 @@ public class ItemGui extends GuiCollection {
                         });
                     }});
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()) {{
-                        setClickAction(event -> new TemplateGui(packObject).show((Player) event.getWhoClicked()));
+                        setClickAction(event -> new TemplateGui(packObject, backEvent -> show((Player) backEvent.getWhoClicked())).show((Player) event.getWhoClicked()));
                     }});
                     break;
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+                        setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {

@@ -17,10 +17,10 @@ import java.util.function.Consumer;
 
 public class ChooseTemplateGui extends ListGui {
     public ChooseTemplateGui(String name, @NotNull Consumer<CustomTemplate> action) {
-        this(name, null, action);
+        this(name, action, null);
     }
 
-    public ChooseTemplateGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<CustomTemplate> action) {
+    public ChooseTemplateGui(String namespace, @NotNull Consumer<CustomTemplate> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.template"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTemplates()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getMainIcon())
                         .displayName("item").lore("actions").build()) {{

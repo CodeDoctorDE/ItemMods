@@ -2,9 +2,7 @@ package dev.linwood.itemmods.gui.pack;
 
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.item.GuiItem;
-import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
-import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.api.utils.ItemStackBuilder;
@@ -22,7 +20,7 @@ public class BlocksGui extends ListGui {
                 .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new TranslatedGuiItem(new ItemStackBuilder(
                         blockAsset.getIcon()).displayName("item")
                         .lore("actions").build()) {{
-                            setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
+                    setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
                     setClickAction(event -> new BlockGui(new PackObject(name, blockAsset.getName())).show((Player) event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
         setPlaceholders(name);
@@ -37,12 +35,16 @@ public class BlocksGui extends ListGui {
                 var request = new ChatRequest(p);
                 p.sendMessage(t.getTranslation("create.message"));
                 request.setSubmitAction(s -> {
-                    p.sendMessage(t.getTranslation("create.success", s));
-                    var blockAsset = new BlockAsset(s);
-                    pack.registerBlock(blockAsset);
-                    ItemMods.getPackManager().save(pack.getName());
-                    rebuild();
-                    show(p);
+                    try {
+                        pack.registerBlock(new BlockAsset(s));
+                        new PackObject(pack.getName(), s).save();
+                        p.sendMessage(t.getTranslation("create.success", s));
+                        rebuild();
+                    } catch (UnsupportedOperationException e) {
+                        p.sendMessage(t.getTranslation("create.failed"));
+                    } finally {
+                        show(p);
+                    }
                 });
             });
         }});

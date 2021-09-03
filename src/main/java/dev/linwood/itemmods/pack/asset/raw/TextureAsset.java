@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
-import dev.linwood.itemmods.pack.PackObject;
 import com.google.gson.JsonObject;
+import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;

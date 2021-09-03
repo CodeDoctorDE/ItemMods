@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.gui.pack.block;
 
 import dev.linwood.api.ui.item.GuiItem;
-import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
@@ -18,10 +17,10 @@ import java.util.function.Consumer;
 
 public class ChooseBlockGui extends ListGui {
     public ChooseBlockGui(String name, @NotNull Consumer<BlockAsset> action) {
-        this(name, null, action);
+        this(name, action, null);
     }
 
-    public ChooseBlockGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<BlockAsset> action) {
+    public ChooseBlockGui(String namespace, @NotNull Consumer<BlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.block"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(
                         asset.getIcon()).displayName("item")

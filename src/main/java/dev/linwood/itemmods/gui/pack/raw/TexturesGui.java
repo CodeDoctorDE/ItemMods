@@ -34,12 +34,18 @@ public class TexturesGui extends ListGui {
                 p.sendMessage(t.getTranslation("create.message"));
                 hide(p);
                 request.setSubmitAction(s -> {
-                    var pack = ItemMods.getPackManager().getPack(namespace);
-                    assert pack != null;
-                    pack.registerTexture(new TextureAsset(s));
-                    p.sendMessage(t.getTranslation("create.success", s));
-                    rebuild();
-                    show(p);
+                    try {
+                        var pack = ItemMods.getPackManager().getPack(namespace);
+                        assert pack != null;
+                        pack.registerTexture(new TextureAsset(s));
+                        new PackObject(namespace, s).save();
+                        p.sendMessage(t.getTranslation("create.success", s));
+                        rebuild();
+                    } catch (UnsupportedOperationException e) {
+                        p.sendMessage(t.getTranslation("create.failed"));
+                    } finally {
+                        show(p);
+                    }
                 });
             });
         }});

@@ -7,12 +7,18 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.ItemModsPack;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
 public class ChoosePackGui extends ListGui {
     public ChoosePackGui(@NotNull Consumer<ItemModsPack> action) {
+        this(action, null);
+    }
+
+    public ChoosePackGui(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.pack"), 4, (gui) -> ItemMods.getPackManager().getPacks()
                 .stream().filter(pack -> pack.getName().contains(gui.getSearchText())).map(pack ->
                         new TranslatedGuiItem(
@@ -20,6 +26,9 @@ public class ChoosePackGui extends ListGui {
                             setRenderAction(gui -> setPlaceholders(pack.getName()));
                             setClickAction(event -> action.accept(pack));
                         }}).toArray(GuiItem[]::new));
-        setListControls(new VerticalListControls());
+        var back = backAction;
+        setListControls(new VerticalListControls() {{
+            setBackAction(back);
+        }});
     }
 }

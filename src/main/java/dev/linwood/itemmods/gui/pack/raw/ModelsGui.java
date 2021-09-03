@@ -21,8 +21,8 @@ public class ModelsGui extends ListGui {
                 .stream().filter(modelAsset -> modelAsset.getName().contains(gui.getSearchText())).map(modelAsset ->
                         new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, modelAsset.getName()).toString()));
-                    setClickAction(event -> new ModelGui(new PackObject(namespace, modelAsset.getName())).show((Player) event.getWhoClicked()));
-                }}).toArray(GuiItem[]::new));
+                            setClickAction(event -> new ModelGui(new PackObject(namespace, modelAsset.getName())).show((Player) event.getWhoClicked()));
+                        }}).toArray(GuiItem[]::new));
         setPlaceholders(namespace);
         var t = getTranslation();
         setListControls(new VerticalListControls() {{
@@ -33,12 +33,18 @@ public class ModelsGui extends ListGui {
                 p.sendMessage(t.getTranslation("create.message"));
                 hide(p);
                 request.setSubmitAction(s -> {
-                    var pack = ItemMods.getPackManager().getPack(namespace);
-                    assert pack != null;
-                    pack.registerModel(new ModelAsset(s));
-                    p.sendMessage(t.getTranslation("create.success", s));
-                    rebuild();
-                    show(p);
+                    try {
+                        var pack = ItemMods.getPackManager().getPack(namespace);
+                        assert pack != null;
+                        pack.registerModel(new ModelAsset(s));
+                        new PackObject(namespace, s).save();
+                        p.sendMessage(t.getTranslation("create.success", s));
+                        rebuild();
+                    } catch (UnsupportedOperationException e) {
+                        p.sendMessage(t.getTranslation("create.failed"));
+                    } finally {
+                        show(p);
+                    }
                 });
             });
         }});

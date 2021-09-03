@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.regex.Pattern;
-
 public abstract class NamedPackObject {
     public static @NotNull
     final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

@@ -1,5 +1,8 @@
 package dev.linwood.itemmods;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import dev.linwood.api.serializer.BlockDataTypeAdapter;
 import dev.linwood.api.serializer.ItemStackTypeAdapter;
 import dev.linwood.api.serializer.LocationTypeAdapter;
@@ -19,9 +22,6 @@ import dev.linwood.itemmods.listener.CustomItemListener;
 import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.utils.BetterGuiCustomModifier;
 import dev.linwood.itemmods.utils.PluginMetrics;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import me.hsgamer.bettergui.builder.ItemModifierBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

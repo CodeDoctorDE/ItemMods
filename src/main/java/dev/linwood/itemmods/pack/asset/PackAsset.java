@@ -1,10 +1,10 @@
 package dev.linwood.itemmods.pack.asset;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.NamedPackObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.custom.CustomTemplateData;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

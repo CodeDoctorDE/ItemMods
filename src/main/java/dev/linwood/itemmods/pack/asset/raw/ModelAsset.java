@@ -1,9 +1,9 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
-import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.PackObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,8 +32,8 @@ public class ModelAsset extends RawAsset {
         super(packObject, jsonObject);
         if (jsonObject.has("fallback-texture") && jsonObject.get("fallback-texture").isJsonPrimitive()) {
             var material = Material.getMaterial(jsonObject.get("fallback-texture").getAsString());
-            if(material != null)
-            fallbackTexture = material;
+            if (material != null)
+                fallbackTexture = material;
         }
         if (jsonObject.has("static-model") && jsonObject.get("static-model").isJsonPrimitive())
             staticModel = jsonObject.get("static-model").getAsInt();

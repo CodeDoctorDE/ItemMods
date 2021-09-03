@@ -14,7 +14,7 @@ public class CustomItemManager {
 
     public @Nullable CustomItem create(@NotNull PackObject packObject) {
         var asset = packObject.getItem();
-        if(asset == null || asset.getModelObject() == null)
+        if (asset == null || asset.getModelObject() == null)
             return null;
         var customModel = asset.getModelObject().getCustomModel();
         var model = asset.getModel();

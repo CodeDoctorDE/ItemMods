@@ -33,7 +33,7 @@ public class DataGui extends ListGui {
                 .map(bytes -> new StaticItem() {{
                     setRenderAction(gui -> {
                         var hasData = asset.getVariations().contains(bytes);
-                        var prefix = (hasData ? "has" : "not-has") + ".";
+                        var prefix = (hasData ? "set" : "not-set") + ".";
                         setItemStack(new ItemStackBuilder(hasData ? Material.IRON_INGOT : Material.BARRIER).displayName(prefix + "title").lore(prefix + "description").build());
                     });
                     setClickAction(event -> {

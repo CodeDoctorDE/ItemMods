@@ -1,9 +1,9 @@
 package dev.linwood.itemmods.pack.asset;
 
-import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

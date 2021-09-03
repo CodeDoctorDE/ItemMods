@@ -39,7 +39,7 @@ public class PacksGui extends ListGui {
                         ItemMods.getPackManager().save(s);
                         p.sendMessage(t.getTranslation("create.success", s));
                         rebuild();
-                    } catch (Exception e) {
+                    } catch (UnsupportedOperationException e) {
                         p.sendMessage(t.getTranslation("create.failed"));
                     } finally {
                         show(p);

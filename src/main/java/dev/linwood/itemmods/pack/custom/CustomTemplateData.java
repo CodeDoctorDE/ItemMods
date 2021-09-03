@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.pack.custom;
 
-import dev.linwood.itemmods.pack.PackObject;
 import com.google.gson.JsonElement;
+import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomTemplateData {

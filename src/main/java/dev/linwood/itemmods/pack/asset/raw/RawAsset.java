@@ -1,8 +1,8 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
+import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;
-import com.google.gson.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
@@ -20,7 +20,6 @@ public abstract class RawAsset extends PackAsset {
 
     public RawAsset(@NotNull String name) {
         super(name);
-        data.put("default", new byte[0]);
     }
 
     public RawAsset(@NotNull String name, @NotNull String url) throws IOException {

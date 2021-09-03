@@ -33,7 +33,7 @@ public class CustomBlock {
                 return null;
             var packObject = new PackObject(type);
             return packObject.getBlock();
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
             return null;
         }
     }

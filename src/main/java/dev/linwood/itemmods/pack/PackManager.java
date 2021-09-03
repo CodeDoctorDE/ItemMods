@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.pack;
 
-import dev.linwood.itemmods.ItemMods;
 import com.google.gson.JsonObject;
+import dev.linwood.itemmods.ItemMods;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -39,6 +39,25 @@ public class PackManager {
         }
 
         reload();
+    }
+
+    private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {
+        Files.deleteIfExists(zipFilePath);
+        Path p = Files.createFile(zipFilePath);
+        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(p))) {
+            Files.walk(sourceDirPath)
+                    .filter(path -> !Files.isDirectory(path))
+                    .forEach(path -> {
+                        ZipEntry zipEntry = new ZipEntry(sourceDirPath.relativize(path).toString());
+                        try {
+                            zs.putNextEntry(zipEntry);
+                            Files.copy(path, zs);
+                            zs.closeEntry();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+        }
     }
 
     public boolean hasNoPreset() throws IOException {
@@ -154,26 +173,6 @@ public class PackManager {
         return packs.stream().filter(pack -> pack.getName().equals(name)).findFirst().orElse(null);
     }
 
-    private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {
-        Files.deleteIfExists(zipFilePath);
-        Path p = Files.createFile(zipFilePath);
-        try (ZipOutputStream zs = new ZipOutputStream(Files.newOutputStream(p))) {
-            Files.walk(sourceDirPath)
-                    .filter(path -> !Files.isDirectory(path))
-                    .forEach(path -> {
-                        ZipEntry zipEntry = new ZipEntry(sourceDirPath.relativize(path).toString());
-                        try {
-                            zs.putNextEntry(zipEntry);
-                            Files.copy(path, zs);
-                            zs.closeEntry();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
-        }
-    }
-
-
     public void export(String variation) throws IOException {
         if (hasNoPreset())
             return;
@@ -224,7 +223,7 @@ public class PackManager {
     }
 
     public void zip(String name) throws IOException {
-        if(getPack(name) == null && PackObject.NAME_PATTERN.matcher(name).matches())
+        if (getPack(name) == null && PackObject.NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
         pack(Paths.get(getPackPath().toString(), name), Paths.get(ItemMods.getTempPath().toString(), name + ".zip"));
     }

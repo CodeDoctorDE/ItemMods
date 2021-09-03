@@ -131,7 +131,7 @@ public class BlockGui extends GuiCollection {
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }).show(p)).show(p);
+                                }).show(p), backEvent -> BlockGui.this.show((Player) backEvent.getWhoClicked())).show(p);
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
@@ -148,6 +148,7 @@ public class BlockGui extends GuiCollection {
                     break;
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
+                        setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {

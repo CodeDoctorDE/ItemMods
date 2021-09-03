@@ -1,18 +1,19 @@
 package dev.linwood.itemmods.addon.templates.item;
 
+import com.google.gson.JsonNull;
+import com.google.gson.JsonPrimitive;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.block.ChooseBlockGui;
+import dev.linwood.itemmods.gui.pack.item.ItemGui;
 import dev.linwood.itemmods.gui.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import dev.linwood.itemmods.pack.custom.CustomTemplateData;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonPrimitive;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -49,8 +50,8 @@ public class BlockSetTemplate extends CustomTemplate {
             var block = new PackObject(pack.getName(), asset.getName());
             setBlock(data, block);
             packObject.save();
-            new TemplateGui(packObject).show(player);
-        }).show(player)).show(player);
+            new TemplateGui(packObject, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player);
+        }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player)).show(player);
         return true;
     }
 

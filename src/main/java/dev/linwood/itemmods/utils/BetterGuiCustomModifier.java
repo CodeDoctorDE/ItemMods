@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -26,7 +25,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
     @Override
     public @Nullable ItemStack modify(ItemStack itemStack, UUID uuid, @NotNull Map<String, StringReplacer> map) {
         var customItem = ItemMods.getCustomItemManager().create(new PackObject(StringReplacer.replace(value, uuid, map.values())));
-        if(customItem == null)
+        if (customItem == null)
             return null;
         return customItem.getItemStack();
     }

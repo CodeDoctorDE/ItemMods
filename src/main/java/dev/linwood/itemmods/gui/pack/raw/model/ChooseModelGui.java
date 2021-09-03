@@ -17,10 +17,10 @@ import java.util.function.Consumer;
 
 public class ChooseModelGui extends ListGui {
     public ChooseModelGui(String name, @NotNull Consumer<ModelAsset> action) {
-        this(name, null, action);
+        this(name, action, null);
     }
 
-    public ChooseModelGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<ModelAsset> action) {
+    public ChooseModelGui(String namespace, @NotNull Consumer<ModelAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.model"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture())
                         .displayName("item").lore("actions").build()) {{

@@ -62,7 +62,7 @@ public class MainGui extends TranslatedChestGui {
             setClickAction(event -> {
                 ItemMods.getMainConfig().clearIdentifiers();
                 ItemMods.saveMainConfig();
-               event.getWhoClicked().sendMessage(t.getTranslation("reset.message"));
+                event.getWhoClicked().sendMessage(t.getTranslation("reset.message"));
             });
         }});
         addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENCHANTING_TABLE).displayName("locale.title").lore("locale.description").build()) {{
