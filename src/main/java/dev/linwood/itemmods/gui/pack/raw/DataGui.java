@@ -13,6 +13,8 @@ import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -30,17 +32,32 @@ public class DataGui extends ListGui {
             remove("default");
             add(0, "default");
         }}.stream().filter(bytes -> bytes.contains(gui.getSearchText()))
-                .map(bytes -> new StaticItem() {{
+                .map(variation -> new TranslatedGuiItem() {{
                     setRenderAction(gui -> {
-                        var hasData = asset.getVariations().contains(bytes);
+                        var hasData = asset.getVariations().contains(variation);
                         var prefix = (hasData ? "set" : "not-set") + ".";
                         setItemStack(new ItemStackBuilder(hasData ? Material.IRON_INGOT : Material.BARRIER).displayName(prefix + "title").lore(prefix + "description").build());
+                        if(hasData)
+                        setPlaceholders(variation);
                     });
                     setClickAction(event -> {
-                        var hasData = asset.getVariations().contains(bytes);
+                        var hasData = asset.getVariations().contains(variation);
                         if (hasData) {
-                            asset.removeVariation(bytes);
-                            gui.rebuild();
+                            switch(event.getClick()){
+                                case LEFT:
+                                    var itemStack = new ItemStack(Material.WRITTEN_BOOK);
+                                    var itemMeta = (BookMeta) itemStack.getItemMeta();
+                                    assert itemMeta != null;
+                                    itemMeta.setTitle(variation);
+                                    itemMeta.setAuthor("§6ItemMods");
+                                    itemMeta.addPage(new String(asset.getData(variation)));
+                                    itemStack.setItemMeta(itemMeta);
+                                    ((Player)event.getWhoClicked()).openBook(itemStack);
+                                    break;
+                                case DROP:
+                                    asset.removeVariation(variation);
+                                    gui.rebuild();
+                            }
                         } else
                             create((Player) event.getWhoClicked(), "default");
                     });
@@ -69,14 +86,14 @@ public class DataGui extends ListGui {
         gui.registerItem(3, 1, new TranslatedGuiItem(new ItemStackBuilder(Material.BEACON).displayName("internet.title").lore("internet.description").build()) {{
             setClickAction((event) -> {
                 var request = new ChatRequest(player);
-                player.sendMessage(getTranslation().getTranslation("internet.message"));
+                player.sendMessage(gui.getTranslation().getTranslation("internet.message"));
                 hide(player);
                 request.setSubmitAction(s -> {
                     try {
                         asset.setData(variation, s);
-                        player.sendMessage(getTranslation().getTranslation("internet.success", variation, s));
+                        player.sendMessage(gui.getTranslation().getTranslation("internet.success", variation, s));
                     } catch (IOException e) {
-                        player.sendMessage(getTranslation().getTranslation("internet.failed", variation, s));
+                        player.sendMessage(gui.getTranslation().getTranslation("internet.failed", variation, s));
                         e.printStackTrace();
                     } finally {
                         show(player);
@@ -87,15 +104,15 @@ public class DataGui extends ListGui {
         gui.registerItem(5, 1, new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).displayName("file.title").lore("file.description").build()) {{
             setClickAction((event) -> {
                 var request = new ChatRequest(player);
-                player.sendMessage(getTranslation().getTranslation("file.message"));
+                player.sendMessage(gui.getTranslation().getTranslation("file.message"));
                 hide(player);
                 request.setSubmitAction(s -> {
                     try {
                         var path = Paths.get(ItemMods.getTempPath().toString(), s);
                         asset.setData(variation, Files.readAllBytes(path));
-                        player.sendMessage(getTranslation().getTranslation("file.success", variation, s));
+                        player.sendMessage(gui.getTranslation().getTranslation("file.success", variation, s));
                     } catch (Exception e) {
-                        player.sendMessage(getTranslation().getTranslation("file.failed", variation, s));
+                        player.sendMessage(gui.getTranslation().getTranslation("file.failed", variation, s));
                         e.printStackTrace();
                     } finally {
                         show(player);
