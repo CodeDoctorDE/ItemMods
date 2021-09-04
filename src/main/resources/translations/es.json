@@ -515,21 +515,9 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the item name to §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid item name."
-      },
-      "display": {
-        "not-set": {
-          "title": "§6Display name",
-          "description": "§cNot set\n\n§7Click to change the display name"
-        },
-        "set": {
-          "title": "§6Display name",
-          "description": "§3%s\n\n§7Click to change the display name"
-        },
-        "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+        "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the model name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid model name."
       },
       "fallback": {
         "title": "§6Fallback texture",
@@ -584,33 +572,9 @@
       "name": {
         "title": "§6Name",
         "description": "§3%s\n\n§7Click to change the name",
-        "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the block name to §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid block name."
-      },
-      "display": {
-        "not-set": {
-          "title": "§6Display name",
-          "description": "§cNot set\n\n§7Click to change the display name"
-        },
-        "set": {
-          "title": "§6Display name",
-          "description": "§3%s\n\n§7Click to change the display name"
-        },
-        "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
-      },
-      "localized-name": {
-        "not-set": {
-          "title": "§6Localized name",
-          "description": "§cNot set\n\n§7Click to change the localized name"
-        },
-        "set": {
-          "title": "§6Localized name",
-          "description": "§3%s\n\n§7Click to change the localized name"
-        },
-        "message": "§eItemMods §7» §ePlease enter the localized name of the item. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the item localized name to §3%s§a."
+        "message": "§eItemMods §7» §ePlease enter the name of the texture. Cancel with a left click.",
+        "success": "§eItemMods §7» §aSuccessfully change the texture name to §3%s§a.",
+        "failed": "§eItemMods §7» §cInvalid texture name."
       },
       "data": {
         "title": "§6Data",
@@ -642,7 +606,7 @@
         "title": "§6Search",
         "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
       },
-      "has": {
+      "set": {
         "title": "§6%s",
         "description": "§7Left click » Show content\n§7Drop » Delete"
       },
