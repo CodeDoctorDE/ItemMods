@@ -1,659 +1,659 @@
 {
   "plugin": {
-    "loading": "§eItemMods §7» §eLoading plugin...",
-    "loaded": "§eItemMods §7» §aSuccessfully loaded plugin!",
-    "unloading": "§eItemMods §7» §eUnloading plugin...",
-    "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
-    "compatible": "§eItemMods §7» §6This plugin isn't compatible with your version!",
-    "version": "§eItemMods §7» §6There is a new version available: §3%s",
-    "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
+    "loading": "§eItemMods §7» §eCargando plugin...",
+    "loaded": "§eItemMods §7» §a¡Plugin cargado con éxito!",
+    "unloading": "§eMods §7» §eDescargando plugin...",
+    "unloaded": "§e¡Mods de ítems §7» §aPlugin descargado con éxito!",
+    "compatible": "§eItemMods §7» §6Este plugin no es compatible con tu versión!",
+    "version": "§eMods §7» §6Hay una nueva versión disponible: §3%s",
+    "no-preset": "§eItemMods §7» §cNo hay paquetes de recursos predefinidos. Por favor, copia un paquete de texturas de ejemplo allí."
   },
   "api": {
-    "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
-    "unregister": "§eItemMods §7» §aUnregistered addon §3%s§a!"
+    "register": "§eMods ítems §7» §aRegistrados el nuevo complemento §3%s§a!",
+    "unregister": "§eMods §7» §aComplemento no registrado §3%s§a!"
   },
-  "coming-soon": "§cComing soon...",
+  "coming-soon": "§cPróximamente...",
   "addon": {
     "item": {
       "block": {
-        "title": "§6Block set template",
+        "title": "§6Bloquear plantilla",
         "actions": {
-          "has": "§3%s\n\n§7Click here to change the block template",
-          "empty": "§cNot set\n\n§7Click here to set the block template"
+          "has": "§3%s\n\n§7Haz clic aquí para cambiar la plantilla de bloque",
+          "empty": "§cNo establecido\n\n§7Clic aquí para establecer la plantilla de bloque"
         }
       }
     },
     "model": {
       "block": {
-        "title": "§6Block model template"
+        "title": "§6Modelo de bloque"
       }
     }
   },
   "knowledge": {
-    "title": "§6Knowledge"
+    "title": "§6Conocimiento"
   },
   "template": {
-    "title": "§6Template",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
+    "title": "§6Plantilla",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
     "create": {
-      "title": "§6Add",
-      "description": "§7Add new template"
+      "title": "§6Añadir",
+      "description": "§7Añadir nueva plantilla"
     },
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     }
   },
   "choose": {
     "pack": {
-      "title": "§6Choose pack §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir paquete §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     },
     "template": {
-      "title": "§6Choose template §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§6Elegir plantilla §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     },
     "item": {
-      "title": "§6Choose item §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir objeto §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     },
     "block": {
-      "title": "§6Choose block §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§6Elegir bloque §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     },
     "model": {
-      "title": "§6Choose model §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§6Elegir modelo §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     },
     "texture": {
-      "title": "§6Choose texture §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§6Elegir textura §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
-      "actions": "§7Click to choose",
+      "actions": "§7Clic para elegir",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       }
     }
   },
   "main": {
-    "title": "§6§lItemMods §7(%s)",
+    "title": "§6§lMods de elementos §7(%s)",
     "reload": {
       "title": "§6Reload",
-      "description": "§7Reload the whole plugin",
-      "success": "§eItemMods §7» §aSuccessfully reloaded the plugin"
+      "description": "§7Recargar todo el plugin",
+      "success": "§eMods de ítems §7» §aRecargado exitosamente el plugin"
     },
     "packs": {
-      "title": "§6Packs",
-      "description": "§7Go to the packs list"
+      "title": "§6Paquetes",
+      "description": "§7Ir a la lista de paquetes"
     },
     "inactive-packs": {
-      "title": "§6Inactive Packs",
-      "description": "§7Go to the inactive packs list"
+      "title": "§6Paquetes inactivos",
+      "description": "§7Ir a la lista de paquetes inactivos"
     },
     "knowledge": {
-      "title": "§6Knowledge Book",
-      "description": "§7Go to the mod \n§7information for the users"
+      "title": "§6Libro de Conocimientos",
+      "description": "§7Ve al mod \n§7información para los usuarios"
     },
     "addons": {
       "title": "§6Addons",
-      "description": "§7Active, configure, deactivate addons"
+      "description": "§7Activo, configurar, desactivar complementos"
     },
     "source": {
-      "title": "§6Source",
+      "title": "§6Fuente",
       "description": "§7Get the github link",
       "link": "§eItemMods §7» §eSource: §b§%s"
     },
     "support": {
-      "title": "§6Support",
-      "description": "§7Get the discord link",
+      "title": "§6Soporte",
+      "description": "§7Consigue el enlace de Discord",
       "link": "§eItemMods §7» §eSupport: §b§n%s"
     },
     "crowdin": {
       "title": "§6Crowdin",
-      "description": "§7Get the crowdin link",
-      "link": "§eItemMods §7» §eCrowdin: §b§n%s"
+      "description": "§7Consigue el enlace de crowdin",
+      "link": "§eMods de ítems §7» §eCrowdin: §b§n%s"
     },
     "wiki": {
       "title": "§6Wiki",
-      "description": "§7Get the wiki link",
+      "description": "§7Consigue el enlace wiki",
       "link": "§eItemMods §7» §eWiki: §b§n%s"
     },
     "export": {
-      "title": "§6Export",
-      "description": "§7Export resource pack",
-      "message": "§eItemMods §7» §eExporting...",
-      "success": "§eItemMods §7» §aSuccessfully exported the resource pack",
-      "failed": "§eItemMods §7» §aExporting resource pack failed. See the console for details!"
+      "title": "§6Exportar",
+      "description": "§7Exportar paquete de recursos",
+      "message": "§eMods §7» §eExportando...",
+      "success": "§eMods §7» §aExportados exitosamente el paquete de recursos",
+      "failed": "§eItemMods §7» §aExportando paquete de recursos fallido. ¡Mira la consola para más detalles!"
     },
     "reset": {
       "title": "§6Reset",
-      "description": "§7Reset the identifiers\n§7for the resource pack",
-      "message": "§eItemMods §7» §aSuccessfully reset the identifiers"
+      "description": "§7Restablecer los identificadores\n§7para el paquete de recursos",
+      "message": "§eItemMods §7» §aReinicia correctamente los identificadores"
     },
     "locale": {
-      "title": "§6Locale",
-      "description": "§3%s\n\n§7Click to set locale"
+      "title": "§6Idioma",
+      "description": "§3%s\n\n§7Clic para establecer la configuración regional"
     }
   },
   "locales": {
     "title": "§6Locales §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
     "item": "§6%s",
-    "actions": "§7Click to set"
+    "actions": "§7Clic para establecer"
   },
   "packs": {
-    "title": "§6Packs §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "readonly": "§eItemMods §7» §cThis pack is readonly.",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aPaquetes §7(%d/%d)",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
+    "readonly": "§eMods §7» §cEste paquete es de sólo lectura.",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     },
     "create": {
-      "title": "§6Create",
-      "description": "§7Create a new pack",
-      "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid pack name."
+      "title": "§6Crear",
+      "description": "§7Crear un nuevo paquete",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del paquete. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCreado con éxito el pack §3%s§a.",
+      "failed": "§eMods §7» §cNombre del paquete inválido."
     },
     "item": "§6%s",
-    "actions": "§7Open the pack gui"
+    "actions": "§7Abrir el gui del pack"
   },
   "inactive-packs": {
-    "title": "§6Inactive packs §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
+    "title": "§6Paquetes inactivos §7(%d/%d)",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
     "item": "§6%s",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     },
-    "actions": "§7Open the pack gui"
+    "actions": "§7Abrir el gui del pack"
   },
   "pack": {
-    "created": "§eItemMods §7» §6Pack folder was created!",
-    "title": "§6Pack §3%s",
+    "created": "§eItemMods §7» §6La carpeta del paquete ha sido creada!",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aPaquete §3%s",
     "back": {
-      "title": "§6Back",
-      "description": "§7Go to the pack list"
+      "title": "§6Atrás",
+      "description": "§7Ir a la lista de paquetes"
     },
     "readonly": {
-      "title": "§cReadonly",
-      "description": "§7You cannot edit this pack."
+      "title": "§cSólo lectura",
+      "description": "§7No puedes editar este paquete."
     },
     "name": {
-      "title": "§6Name",
-      "description": "§3%s\n\n§7Click to change the name",
-      "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the pack name to §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid pack name."
+      "title": "§6Nombre",
+      "description": "§3%s\n\n§7Haz clic para cambiar el nombre",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del paquete. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambia el nombre del paquete exitosamente a §3%s§a.",
+      "failed": "§eMods §7» §cNombre del paquete inválido."
     },
     "general": "§6General",
-    "contents": "§6Contents",
-    "raw": "§6Raw",
-    "administration": "§6Administration",
+    "contents": "§6Contenido",
+    "raw": "§2♣§d§kii§a§l",
+    "administration": "§6Administración",
     "items": {
-      "title": "§6Items",
-      "description": "§7Go to the item list"
+      "title": "§6Elementos",
+      "description": "§7Ir a la lista de artículos"
     },
     "blocks": {
-      "title": "§6Blocks",
-      "description": "§7Go to the block list"
+      "title": "§6Bloques",
+      "description": "§7Ir a la lista de bloques"
     },
     "textures": {
-      "title": "§6Textures",
-      "description": "§7Go to the texture list"
+      "title": "§6Texturas",
+      "description": "§7Ir a la lista de texturas"
     },
     "models": {
-      "title": "§6Models",
-      "description": "§7Go to the model list"
+      "title": "§6Modelos",
+      "description": "§7Ir a la lista de modelos"
     },
     "sounds": {
-      "title": "§6Sounds",
-      "description": "§7Go to the sound list"
+      "title": "§6Sonidos",
+      "description": "§7Ir a la lista de sonidos"
     },
     "deactivated": {
-      "title": "§cDeactivated",
-      "description": "§7Click to activate the current pack"
+      "title": "§cDesactivado",
+      "description": "§7Haz clic para activar el paquete actual"
     },
     "activated": {
-      "title": "§aActivated",
-      "description": "§7Click to deactivate the current pack"
+      "title": "§aActivado",
+      "description": "§7Haz clic para desactivar el paquete actual"
     },
     "export": {
-      "title": "§6Export",
-      "description": "§7Export the current pack in a zip file",
-      "message": "§eItemMods §7» §eExporting resource pack...",
-      "success": "§eItemMods §7» §6Resource pack was exported!",
-      "failed": "§eItemMods §7» §cExporting failed."
+      "title": "§6Exportar",
+      "description": "§7Exportar el paquete actual a un archivo zip",
+      "message": "§eMods §7» §eExportando paquete de recursos...",
+      "success": "§eItemMods §7» §6Paquete de recursos exportado!",
+      "failed": "§eMods §7» §cExportación fallida."
     },
     "delete": {
-      "title": "§6Delete",
-      "description": "§7Delete the current pack",
+      "title": "§6Eliminar",
+      "description": "§7Borrar el paquete actual",
       "gui": {
-        "title": "§6Delete pack §3%s§6?",
-        "message": "§6Delete pack §3%s§6?",
-        "description": "§7This will delete the pack\n§7folder and the content of it.\n§7This process cannot be undo!",
-        "yes": "§aYes",
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar paquete §3%s§6?",
+        "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar paquete §3%s§6?",
+        "description": "§7Esto eliminará la carpeta del paquete\n§7y el contenido del mismo.\n§7¡Este proceso no se puede deshacer!",
+        "yes": "§aSí",
         "no": "§cNo"
       }
     }
   },
   "materials": {
-    "title": "Materials"
+    "title": "Materiales"
   },
   "items": {
-    "title": "§6Items §3%s §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aArtículos §3%s §7(%d/%d)",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     },
     "item": "%s",
     "create": {
-      "title": "§6Create",
-      "description": "§7Create a new item",
-      "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
+      "title": "§6Crear",
+      "description": "§7Crear un nuevo objeto",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del objeto. Cancela con un clic izquierdo.",
       "success": "§eItemMods §7» §aSuccessfully created the item §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid item name."
+      "failed": "§eMods §7» §cNombre de elemento inválido."
     },
-    "actions": "§7Open the item gui"
+    "actions": "§7Abrir el gui del objeto"
   },
   "item": {
-    "title": "§6Item §3%s",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣%s",
     "back": {
-      "title": "§6Back",
-      "description": "§7Go to the item list"
+      "title": "§6Atrás",
+      "description": "§7Ir a la lista de artículos"
     },
     "general": "§6General",
-    "administration": "§6Administration",
+    "administration": "§6Administración",
     "name": {
-      "title": "§6Name",
-      "description": "§3%s\n\n§7Click to change the name",
-      "message": "§eItemMods §7» §ePlease enter the name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the item name to §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid item name."
+      "title": "§6Nombre",
+      "description": "§3%s\n\n§7Haz clic para cambiar el nombre",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del objeto. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambiados exitosamente el nombre del objeto a §3%s§a.",
+      "failed": "§eMods §7» §cNombre de elemento inválido."
     },
     "display": {
       "not-set": {
-        "title": "§6Display name",
-        "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ Nombre mostrado",
+        "description": "§cNo establecido\n\n§7Click izquierdo » Haz clic para cambiar el nombre de la pantalla\n§7Eliminar nombre"
       },
       "set": {
-        "title": "§6Display name",
-        "description": "§3%s\n\n§7Click to change the display name"
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ Nombre mostrado",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre de la pantalla"
       },
-      "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre de la pantalla del objeto. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambiados exitosamente el nombre del objeto a §3%s§a."
     },
     "localized-name": {
       "not-set": {
-        "title": "§6Localized name",
-        "description": "§cNot set\n\n§7Click to change the localized name"
+        "title": "§6Nombre localizado",
+        "description": "§cNo establecido\n\n§7Haz clic para cambiar el nombre localizado"
       },
       "set": {
-        "title": "§6Localized name",
-        "description": "§3%s\n\n§7Click to change the localized name"
+        "title": "§6Nombre localizado",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre localizado"
       },
-      "message": "§eItemMods §7» §ePlease enter the localized name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the item localized name to §3%s§a."
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre localizado del elemento. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambia el nombre del objeto traducido a §3%s§a."
     },
     "model": {
       "not-set": {
-        "title": "§6Model",
-        "description": "§cNot set\n\n§7Click to add a model"
+        "title": "§6Modelo",
+        "description": "§cNo establecido\n\n§7Clic para añadir un modelo"
       },
       "set": {
-        "title": "§6Model",
-        "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        "title": "§6Modelo",
+        "description": "§3%s\n\n§7Clic izquierdo » Configurar\n§7Clic derecho » Reasignar\n§7Soltar » Eliminar"
       }
     },
     "templates": {
-      "title": "§6Templates",
-      "description": "§7Go to the template list"
+      "title": "§6Plantillas",
+      "description": "§7Ir a la lista de plantillas"
     },
     "delete": {
-      "title": "§6Delete",
-      "description": "§7Delete the current item",
+      "title": "§6Eliminar",
+      "description": "§7Borrar el elemento actual",
       "gui": {
-        "title": "§6Delete item §3%s§6?",
-        "message": "§6Delete item §3%s§6?",
-        "description": "§7This process cannot be undo!",
-        "yes": "§aYes",
+        "title": "§6¿Eliminar elemento §3%s§6?",
+        "message": "§6¿Eliminar elemento §3%s§6?",
+        "description": "§7Este proceso no se puede deshacer!",
+        "yes": "§aSí",
         "no": "§cNo"
       }
     }
   },
   "blocks": {
-    "title": "§6Blocks §3%s §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aBloques §3%s §7(%d/%d)",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
     "item": "%s",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     },
     "create": {
-      "title": "§6Create",
-      "description": "§7Create a new block",
-      "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully created the block §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid block name."
+      "title": "§6Crear",
+      "description": "§7Crear un nuevo bloque",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del bloque. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCreado con éxito el bloque §3%s§a.",
+      "failed": "§eMods §7» §cNombre de bloque inválido."
     },
-    "actions": "§7Open the block gui"
+    "actions": "§7Abrir el gui del bloque"
   },
   "block": {
-    "title": "§6Block §3%s",
+    "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aBloqueo §3%s",
     "back": {
-      "title": "§6Back",
-      "description": "§7Go to the block list"
+      "title": "§6Atrás",
+      "description": "§7Ir a la lista de bloques"
     },
     "general": "§6General",
-    "block": "§6Block",
-    "administration": "§6Administration",
+    "block": "§6Bloque",
+    "administration": "§6Administración",
     "name": {
-      "title": "§6Name",
-      "description": "§3%s\n\n§7Click to change the name",
-      "message": "§eItemMods §7» §ePlease enter the name of the block. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the block name to §3%s§a.",
-      "failed": "§eItemMods §7» §cInvalid block name."
+      "title": "§6Nombre",
+      "description": "§3%s\n\n§7Haz clic para cambiar el nombre",
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre del bloque. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambiaron exitosamente el nombre del bloque a §3%s§a.",
+      "failed": "§eMods §7» §cNombre de bloque inválido."
     },
     "display": {
       "not-set": {
-        "title": "§6Display name",
-        "description": "§cNot set\n\n§7Left click » Click to change the display name\n§7Drop » Delete display name"
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ Nombre mostrado",
+        "description": "§cNo establecido\n\n§7Click izquierdo » Haz clic para cambiar el nombre de la pantalla\n§7Eliminar nombre"
       },
       "set": {
-        "title": "§6Display name",
-        "description": "§3%s\n\n§7Click to change the display name"
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ Nombre mostrado",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre de la pantalla"
       },
-      "message": "§eItemMods §7» §ePlease enter the display name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the item display name to §3%s§a."
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre de la pantalla del objeto. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambiados exitosamente el nombre del objeto a §3%s§a."
     },
     "localized-name": {
       "not-set": {
-        "title": "§6Localized name",
-        "description": "§cNot set\n\n§7Click to change the localized name"
+        "title": "§6Nombre localizado",
+        "description": "§cNo establecido\n\n§7Haz clic para cambiar el nombre localizado"
       },
       "set": {
-        "title": "§6Localized name",
-        "description": "§3%s\n\n§7Click to change the localized name"
+        "title": "§6Nombre localizado",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre localizado"
       },
-      "message": "§eItemMods §7» §ePlease enter the localized name of the item. Cancel with a left click.",
-      "success": "§eItemMods §7» §aSuccessfully change the item localized name to §3%s§a."
+      "message": "§eItemMods §7» §ePor favor, introduce el nombre localizado del elemento. Cancela con un clic izquierdo.",
+      "success": "§eMods §7» §aCambia el nombre del objeto traducido a §3%s§a."
     },
     "model": {
       "not-set": {
-        "title": "§6Model",
-        "description": "§cNot set\n\n§7Click to add a model"
+        "title": "§6Modelo",
+        "description": "§cNo establecido\n\n§7Clic para añadir un modelo"
       },
       "set": {
-        "title": "§6Model",
-        "description": "§3%s\n\n§7Left click » Configure\n§7Right click » Reassign\n§7Drop » Remove"
+        "title": "§6Modelo",
+        "description": "§3%s\n\n§7Clic izquierdo » Configurar\n§7Clic derecho » Reasignar\n§7Soltar » Eliminar"
       }
     },
     "templates": {
-      "title": "§6Templates",
-      "description": "§7Go to the template list"
+      "title": "§6Plantillas",
+      "description": "§7Ir a la lista de plantillas"
     },
     "delete": {
-      "title": "§6Delete",
-      "description": "§7Delete the current block",
+      "title": "§6Eliminar",
+      "description": "§7Borrar el bloque actual",
       "gui": {
-        "title": "§6Delete block §3%s§6?",
-        "message": "§6Delete block §3%s§6?",
-        "description": "§7This process cannot be undo!",
-        "yes": "§aYes",
+        "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar bloque §a%s§2?",
+        "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar bloque §a%s§2?",
+        "description": "§7Este proceso no se puede deshacer!",
+        "yes": "§aSí",
         "no": "§cNo"
       }
     }
   },
   "raw": {
     "models": {
-      "title": "§6Models §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aModelos §3%s §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "item": "§6%s",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       },
       "create": {
-        "title": "§6Create",
-        "description": "§7Create a new model",
-        "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully created the model §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid model name."
+        "title": "§6Crear",
+        "description": "§7Crear un nuevo modelo",
+        "message": "§eItemMods §7» §ePor favor, introduce el nombre del modelo. Cancela con un clic izquierdo.",
+        "success": "§eMods §7» §aCreado exitosamente el modelo §3%s§a.",
+        "failed": "§eMods §7» §cNombre del modelo inválido."
       },
-      "actions": "§7Open the model gui"
+      "actions": "§7Abrir el gui del modelo"
     },
     "model": {
-      "title": "§6Model §3%s",
+      "title": "§6Modelo §3%s",
       "back": {
-        "title": "§6Back",
-        "description": "§7Go to the model list"
+        "title": "§6Atrás",
+        "description": "§7Ir a la lista de modelos"
       },
       "name": {
-        "title": "§6Name",
-        "description": "§3%s\n\n§7Click to change the name",
-        "message": "§eItemMods §7» §ePlease enter the name of the model. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the model name to §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid model name."
+        "title": "§6Nombre",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre",
+        "message": "§eItemMods §7» §ePor favor, introduce el nombre del modelo. Cancela con un clic izquierdo.",
+        "success": "§eMods §7» §aCambian el nombre del modelo a §3%s§a.",
+        "failed": "§eMods §7» §cNombre del modelo inválido."
       },
       "fallback": {
-        "title": "§6Fallback texture",
-        "description": "§3%s\n\n§7Click to set the material\n§7which will be shown if the player\n§7does not activate the resource pack"
+        "title": "§6Textura de Fallback",
+        "description": "§3%s\n\n§7Haz clic para establecer el material\n§7que se mostrará si el jugador\n§7no activa el paquete de recursos"
       },
       "data": {
-        "title": "§6Data",
-        "description": "§7Click to set the variations\n§7of models for the resource pack"
+        "title": "§6Datos",
+        "description": "§7Haz clic para establecer las variaciones\n§7de modelos para el paquete de recursos"
       },
       "general": "§6General",
-      "appearance": "§6Appearance",
-      "administration": "§6Administration",
+      "appearance": "§6Apariencia",
+      "administration": "§6Administración",
       "delete": {
-        "title": "§6Delete",
-        "description": "§7Delete the current model",
+        "title": "§6Eliminar",
+        "description": "§7Borrar el modelo actual",
         "gui": {
-          "title": "§6Delete model §3%s§6?",
-          "message": "§6Delete model §3%s§6?",
-          "description": "§7This process cannot be undo!",
-          "yes": "§aYes",
+          "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar modelo §3%s§6?",
+          "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar modelo §3%s§6?",
+          "description": "§7Este proceso no se puede deshacer!",
+          "yes": "§aSí",
           "no": "§cNo"
         }
       }
     },
     "textures": {
-      "title": "§6Textures §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aTexturas §3%s §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       },
       "create": {
-        "title": "§6Create",
-        "description": "§7Create a new texture",
-        "message": "§eItemMods §7» §ePlease enter the name of the texture. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully created the texture §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid texture name."
+        "title": "§6Crear",
+        "description": "§7Crear una nueva textura",
+        "message": "§eItemMods §7» §ePor favor, introduce el nombre de la textura. Cancela con un clic izquierdo.",
+        "success": "§eMods §7» §aCreado exitosamente la textura §3%s§a.",
+        "failed": "§eMods §7» §cNombre de textura inválido."
       },
       "item": "§6%s",
-      "actions": "§7Open the model gui"
+      "actions": "§7Abrir el gui del modelo"
     },
     "texture": {
-      "title": "§6Texture §3%s",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aTextura §3%s",
       "back": {
-        "title": "§6Back",
-        "description": "§7Go to the texture list"
+        "title": "§6Atrás",
+        "description": "§7Ir a la lista de texturas"
       },
       "name": {
-        "title": "§6Name",
-        "description": "§3%s\n\n§7Click to change the name",
-        "message": "§eItemMods §7» §ePlease enter the name of the texture. Cancel with a left click.",
-        "success": "§eItemMods §7» §aSuccessfully change the texture name to §3%s§a.",
-        "failed": "§eItemMods §7» §cInvalid texture name."
+        "title": "§6Nombre",
+        "description": "§3%s\n\n§7Haz clic para cambiar el nombre",
+        "message": "§eItemMods §7» §ePor favor, introduce el nombre de la textura. Cancela con un clic izquierdo.",
+        "success": "§eMods §7» §aCambian exitosamente el nombre de la textura a §3%s§a.",
+        "failed": "§eMods §7» §cNombre de textura inválido."
       },
       "data": {
-        "title": "§6Data",
-        "description": "§7Click to set the variations\n§7of textures for the resource pack"
+        "title": "§6Datos",
+        "description": "§7Haz clic para establecer las variaciones\n§7de texturas para el paquete de recursos"
       },
       "general": "§6General",
-      "appearance": "§6Appearance",
-      "administration": "§6Administration",
+      "appearance": "§6Apariencia",
+      "administration": "§6Administración",
       "delete": {
-        "title": "§6Delete",
-        "description": "§7Delete the current texture",
+        "title": "§6Eliminar",
+        "description": "§7Borrar la textura actual",
         "gui": {
-          "title": "§6Delete texture §3%s§6?",
-          "message": "§6Delete texture §3%s§6?",
-          "description": "§7This process cannot be undo!",
-          "yes": "§aYes",
+          "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar textura §3%s§a?",
+          "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar textura §3%s§a?",
+          "description": "§7Este proceso no se puede deshacer!",
+          "yes": "§aSí",
           "no": "§cNo"
         }
       }
     },
     "data": {
-      "title": "§6Data §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aDatos §3%s §7(%d/%d)",
+      "first": "§6Primero",
+      "previous": "§6Anterior",
+      "next": "§6Siguiente",
+      "last": "§6Última",
       "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+        "title": "§6Buscar",
+        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
       },
       "set": {
         "title": "§6%s",
-        "description": "§7Left click » Show content\n§7Drop » Delete"
+        "description": "§7Click izquierdo » Mostrar contenido\n§7Drop » Eliminar"
       },
       "not-set": {
-        "title": "§cNot set",
-        "description": "§7Click to set"
+        "title": "§cNo establecido",
+        "description": "§7Clic para establecer"
       },
       "create": {
-        "title": "§6Create",
-        "description": "§7Create a new model",
-        "variation": "§eItemMods §7» §ePlease enter the name of the variation. Cancel with a left click.",
+        "title": "§6Crear",
+        "description": "§7Crear un nuevo modelo",
+        "variation": "§eItemMods §7» §ePor favor, introduce el nombre de la variación. Cancela con un clic izquierdo.",
         "gui": {
-          "title": "§6Create data",
+          "title": "§6Crear datos",
           "back": {
-            "title": "§6Back",
-            "description": "§7Go to the data list"
+            "title": "§6Atrás",
+            "description": "§7Ir a la lista de datos"
           },
           "internet": {
             "title": "§6Internet",
-            "description": "§7Get the data from the internet",
-            "message": "§eItemMods §7» §ePlease enter the direct link to the file. Cancel with a left click.",
-            "success": "§eItemMods §7» §aSuccessfully added the data for the variation §3%s §afrom §3%s"
+            "description": "§7Obtener los datos de internet",
+            "message": "§eItemMods §7» §ePor favor, introduce el enlace directo al archivo. Cancela con un clic izquierdo.",
+            "success": "§eMods §7» §aAñadidos correctamente los datos para la variación §3%s §ade §3%s"
           },
           "file": {
-            "title": "§6File",
-            "description": "§7Get the data from a file in the temp directory.",
-            "message": "§eItemMods §7» §ePlease enter the name to the file. Cancel with a left click.",
-            "success": "§eItemMods §7» §aSuccessfully added the data for the variation §3%s §afrom §3%s"
+            "title": "§6Archivo",
+            "description": "§7Obtener los datos de un archivo en el directorio temporal.",
+            "message": "§eItemMods §7» §ePor favor, introduce el nombre del archivo. Cancela con un clic izquierdo.",
+            "success": "§eMods §7» §aAñadidos correctamente los datos para la variación §3%s §ade §3%s"
           }
         }
       },
-      "actions": "§7Click to remove"
+      "actions": "§7Clic para eliminar"
     }
   },
   "event": {
-    "rename": "§eItemMods §7» §cThis item cannot be renamed!"
+    "rename": "§eItemMods §7» §cEste objeto no puede ser renombrado!"
   },
   "command": {
-    "usage": "§eItemMods §7» §cUsage: §3/itemmods§c!",
-    "no-player": "§eItemMods §7» §4This command is only for players!",
+    "usage": "§eItemMods §7» §cUso: §3/itemmods§c!",
+    "no-player": "§eMods §7» §4¡Este comando es sólo para jugadores!",
     "give": {
-      "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
-      "no-item": "§eItemMods §7» §4This is not a valid item count!",
-      "success": "§eItemMods §7» §aSuccessfully gave %s the item %s"
+      "usage": "§eMods §7» §cUso: §3/giveitem <Player> <Item> [<Count>]§c!",
+      "no-item": "§eItemMods §7» §4¡Este no es un número válido de objetos!",
+      "success": "§eMods §7» §a§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kiii§2♣ §aMods §aMods §2» §2» §2h dio con éxito a %s el objeto %s"
     },
-    "no-number": "§eItemMods §7» §4That is not a number!",
+    "no-number": "§eItemMods §7» §4¡No es un número!",
     "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
   },
-  "no-permission": "§eItemMods §7» §4You don't have the permission to do that!"
+  "no-permission": "§eItemMods §7» §4¡No tienes permiso para hacer eso!"
 }
