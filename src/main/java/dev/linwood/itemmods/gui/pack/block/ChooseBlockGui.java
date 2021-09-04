@@ -8,6 +8,7 @@ import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,7 +24,7 @@ public class ChooseBlockGui extends ListGui {
     public ChooseBlockGui(String namespace, @NotNull Consumer<BlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("choose.block"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(
-                        asset.getIcon()).displayName("item")
+                        asset.getModel() == null ? Material.GRASS_BLOCK : asset.getModel().getFallbackTexture()).displayName("item")
                         .lore(gui.getTranslation().getTranslation("actions", new PackObject(namespace, asset.getName()).toString())).build()) {{
                     setRenderAction(gui -> setPlaceholders(asset.getName()));
                     setClickAction(event -> action.accept(asset));

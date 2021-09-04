@@ -14,6 +14,8 @@ import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -76,6 +78,15 @@ public class ModelGui extends GuiCollection {
                         setClickAction(event -> new DataGui(packObject.getNamespace(), asset, () -> {
                             packObject.save();
                             show((Player) event.getWhoClicked());
+                        }, (variation) -> {
+                            var itemStack = new ItemStack(Material.WRITTEN_BOOK);
+                            var itemMeta = (BookMeta) itemStack.getItemMeta();
+                            assert itemMeta != null;
+                            itemMeta.setTitle(variation);
+                            itemMeta.setAuthor("§6ItemMods");
+                            itemMeta.addPage(new String(asset.getData(variation)));
+                            itemStack.setItemMeta(itemMeta);
+                            ((Player)event.getWhoClicked()).openBook(itemStack);
                         }).show((Player) event.getWhoClicked()));
                     }});
                     break;

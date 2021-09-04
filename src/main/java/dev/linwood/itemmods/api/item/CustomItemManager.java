@@ -19,7 +19,6 @@ public class CustomItemManager {
         var customModel = asset.getModelObject().getCustomModel();
         var model = asset.getModel();
         assert model != null;
-        assert model.getFallbackTexture() != null;
         ItemStack itemStack = new ItemStack(model.getFallbackTexture());
         ItemMeta itemMeta = itemStack.getItemMeta();
         assert itemMeta != null;

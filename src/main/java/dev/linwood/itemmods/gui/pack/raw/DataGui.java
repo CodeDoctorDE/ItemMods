@@ -13,19 +13,18 @@ import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class DataGui extends ListGui {
     private final @NotNull RawAsset asset;
 
-    public DataGui(@NotNull String namespace, @NotNull RawAsset asset, @NotNull Runnable action) {
+    public DataGui(@NotNull String namespace, @NotNull RawAsset asset, @NotNull Runnable action, @NotNull Consumer<String> showAction) {
         super(ItemMods.getTranslationConfig().subTranslation("raw.data"), 4);
         setPlaceholders(new PackObject(namespace, asset.getName()).toString());
         setItemBuilder((gui) -> new ArrayList<>(asset.getVariations()) {{
@@ -37,22 +36,15 @@ public class DataGui extends ListGui {
                         var hasData = asset.getVariations().contains(variation);
                         var prefix = (hasData ? "set" : "not-set") + ".";
                         setItemStack(new ItemStackBuilder(hasData ? Material.IRON_INGOT : Material.BARRIER).displayName(prefix + "title").lore(prefix + "description").build());
-                        if(hasData)
-                        setPlaceholders(variation);
+                        if (hasData)
+                            setPlaceholders(variation);
                     });
                     setClickAction(event -> {
                         var hasData = asset.getVariations().contains(variation);
                         if (hasData) {
-                            switch(event.getClick()){
+                            switch (event.getClick()) {
                                 case LEFT:
-                                    var itemStack = new ItemStack(Material.WRITTEN_BOOK);
-                                    var itemMeta = (BookMeta) itemStack.getItemMeta();
-                                    assert itemMeta != null;
-                                    itemMeta.setTitle(variation);
-                                    itemMeta.setAuthor("§6ItemMods");
-                                    itemMeta.addPage(new String(asset.getData(variation)));
-                                    itemStack.setItemMeta(itemMeta);
-                                    ((Player)event.getWhoClicked()).openBook(itemStack);
+                                    showAction.accept(variation);
                                     break;
                                 case DROP:
                                     asset.removeVariation(variation);

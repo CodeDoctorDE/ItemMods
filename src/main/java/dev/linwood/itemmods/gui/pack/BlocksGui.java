@@ -10,6 +10,7 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.block.BlockGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class BlocksGui extends ListGui {
     public BlocksGui(String name) {
         super(ItemMods.getTranslationConfig().subTranslation("blocks"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
                 .filter(blockAsset -> blockAsset.getName().contains(gui.getSearchText())).map(blockAsset -> new TranslatedGuiItem(new ItemStackBuilder(
-                        blockAsset.getIcon()).displayName("item")
+                        blockAsset.getModel() == null ? Material.GRASS_BLOCK : blockAsset.getModel().getFallbackTexture()).displayName("item")
                         .lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
                     setClickAction(event -> new BlockGui(new PackObject(name, blockAsset.getName())).show((Player) event.getWhoClicked()));

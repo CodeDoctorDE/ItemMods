@@ -66,7 +66,7 @@ public class TextureGui extends GuiCollection {
                         setClickAction(event -> new DataGui(packObject.getNamespace(), asset, () -> {
                             packObject.save();
                             show((Player) event.getWhoClicked());
-                        }).show((Player) event.getWhoClicked()));
+                        }, variation -> event.getWhoClicked().sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon"))).show((Player) event.getWhoClicked()));
                     }});
                     break;
                 case ADMINISTRATION:
