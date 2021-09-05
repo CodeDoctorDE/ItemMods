@@ -1,0 +1,659 @@
+{
+  "plugin": {
+    "loading": "§eItemMods §7» §eChargement du plugin...",
+    "loaded": "§eItemMods §7» §aChargé avec succès !",
+    "unloading": "§eItemMods §7» §eDéchargement du plugin...",
+    "unloaded": "§eItemMods §7» §aDéchargé avec succès !",
+    "compatible": "§eItemMods §7» §6Ce plugin n'est pas compatible avec votre version !",
+    "version": "§eItemMods §7» §6Il y a une nouvelle version disponible : §3%s",
+    "no-preset": "§eItemMods §7» §cIl n'y a pas de pack de ressources prédéfinis. Veuillez copier un exemple de pack de textures."
+  },
+  "api": {
+    "register": "§eItemMods §7» §aNouveau addon §3%s§a enregistré !",
+    "unregister": "§eItemMods §7» §aModule non enregistré §3%s§a !"
+  },
+  "coming-soon": "§cProchainement...",
+  "addon": {
+    "item": {
+      "block": {
+        "title": "§7Modèle de bloc défini",
+        "actions": {
+          "has": "§3%s\n\n§7Cliquez ici pour changer le modèle de bloc",
+          "empty": "§cNon défini\n\n§7Cliquez ici pour définir le modèle de bloc"
+        }
+      }
+    },
+    "model": {
+      "block": {
+        "title": "§7Modèle de modèle de bloc"
+      }
+    }
+  },
+  "knowledge": {
+    "title": "§7Connaissance"
+  },
+  "template": {
+    "title": "§7Modèle",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "create": {
+      "title": "§7Ajouter",
+      "description": "§7Ajouter un nouveau modèle"
+    },
+    "search": {
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+    }
+  },
+  "choose": {
+    "pack": {
+      "title": "§7Choisissez le pack §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    },
+    "template": {
+      "title": "§7Choisissez le modèle §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    },
+    "item": {
+      "title": "§7Choisissez l'objet §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    },
+    "block": {
+      "title": "§7Choisissez le bloc §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    },
+    "model": {
+      "title": "§7Choisissez le modèle §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    },
+    "texture": {
+      "title": "§7Choisissez la texture §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "actions": "§7Cliquez pour choisir",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      }
+    }
+  },
+  "main": {
+    "title": "§6§lItemMods §7(%s)",
+    "reload": {
+      "title": "§6Reload",
+      "description": "§7Recharger l'ensemble du plugin",
+      "success": "§eItemMods §7» §aa rechargé le plugin avec succès"
+    },
+    "packs": {
+      "title": "§7Packs",
+      "description": "§7Aller à la liste des packs"
+    },
+    "inactive-packs": {
+      "title": "§7Packs inactifs",
+      "description": "§7Aller à la liste des packs inactifs"
+    },
+    "knowledge": {
+      "title": "§7Livre de connaissances",
+      "description": "§7Aller au mod \n§7information pour les utilisateurs"
+    },
+    "addons": {
+      "title": "§6Addons",
+      "description": "§7Actif, configurer, désactiver les addons"
+    },
+    "source": {
+      "title": "§7Source",
+      "description": "§7Get the github link",
+      "link": "§eItemMods §7» §eSource: §b§%s"
+    },
+    "support": {
+      "title": "§7Support",
+      "description": "§7Obtenir le lien de discorde",
+      "link": "§eItemMods §7» §eSupport: §b§n%s"
+    },
+    "crowdin": {
+      "title": "§7Crowdin",
+      "description": "§7Obtenir le lien crowdin",
+      "link": "§eItemMods §7» §eCrowdin : §b§n%s"
+    },
+    "wiki": {
+      "title": "§7Wiki",
+      "description": "§7Obtenir le lien wiki",
+      "link": "§eItemMods §7» §eWiki: §b§n%s"
+    },
+    "export": {
+      "title": "§7Exporter",
+      "description": "§7Exporter le pack de ressources",
+      "message": "§eItemMods §7» §eExportation...",
+      "success": "§eItemMods §7» §aa exporté avec succès le pack de ressources",
+      "failed": "§eItemMods §7» §aL'exportation du pack de ressources a échoué. Voir la console pour plus de détails!"
+    },
+    "reset": {
+      "title": "§6Reset",
+      "description": "§7Réinitialiser les identifiants\n§7pour le pack de ressources",
+      "message": "§eItemMods §7» §aRéinitialise les identifiants avec succès"
+    },
+    "locale": {
+      "title": "§7Locale",
+      "description": "§3%s\n\n§7Cliquez pour définir la locale"
+    }
+  },
+  "locales": {
+    "title": "§6Locales §7(%d/%d)",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "item": "§6%s",
+    "actions": "§7Cliquez pour définir"
+  },
+  "packs": {
+    "title": "§6Packs §7(%d/%d)",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "readonly": "§eItemMods §7» §cCe pack est en lecture seule.",
+    "search": {
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+    },
+    "create": {
+      "title": "§7Créer",
+      "description": "§7Créer un nouveau pack",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom du pack. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aLe pack §3%sa été créé avec succès.",
+      "failed": "§eItemMods §7» §cNom de pack invalide."
+    },
+    "item": "§6%s",
+    "actions": "§7Ouvre l'interface du pack"
+  },
+  "inactive-packs": {
+    "title": "§7packs inactifs §7(%d/%d)",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+    },
+    "actions": "§7Ouvre l'interface du pack"
+  },
+  "pack": {
+    "created": "§eItemMods §7» §6Le dossier Pack a été créé !",
+    "title": "§7Pack §3%s",
+    "back": {
+      "title": "§7Retour",
+      "description": "§7Aller à la liste des packs"
+    },
+    "readonly": {
+      "title": "§cLecture seule",
+      "description": "§7Vous ne pouvez pas modifier ce pack."
+    },
+    "name": {
+      "title": "§7Nom",
+      "description": "§3%s\n\n§7Cliquez pour changer le nom",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom du pack. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez le nom du pack en §3%s§a.",
+      "failed": "§eItemMods §7» §cNom de pack invalide."
+    },
+    "general": "§7Général",
+    "contents": "§7Contenus",
+    "raw": "§7Brut",
+    "administration": "§7Administration",
+    "items": {
+      "title": "§7Objets",
+      "description": "§7Aller à la liste des objets"
+    },
+    "blocks": {
+      "title": "§7Blocs",
+      "description": "§7Aller à la liste de blocage"
+    },
+    "textures": {
+      "title": "§7Textures",
+      "description": "§7Aller à la liste des textures"
+    },
+    "models": {
+      "title": "§7Modèles",
+      "description": "§7Aller à la liste des modèles"
+    },
+    "sounds": {
+      "title": "§7Sons",
+      "description": "§7Aller à la liste des sons"
+    },
+    "deactivated": {
+      "title": "§cDésactivé",
+      "description": "§7Cliquez pour activer le pack actuel"
+    },
+    "activated": {
+      "title": "§aActivé",
+      "description": "§7Cliquez pour désactiver le pack actuel"
+    },
+    "export": {
+      "title": "§7Exporter",
+      "description": "§7Exporter le pack actuel dans un fichier zip",
+      "message": "§eItemMods §7» §eExportation du pack de ressources...",
+      "success": "§eItemMods §7» §6Le pack de ressources a été exporté !",
+      "failed": "§eItemMods §7» §cL'exportation a échoué."
+    },
+    "delete": {
+      "title": "§7Supprimer",
+      "description": "§7Supprimer le pack actuel",
+      "gui": {
+        "title": "§6Supprimer le pack §3%s?",
+        "message": "§6Supprimer le pack §3%s?",
+        "description": "§7Ceci supprimera le dossier\n§7et le contenu de celui-ci.\n§7Ce processus ne peut pas être annulé !",
+        "yes": "§aOui",
+        "no": "§cNon"
+      }
+    }
+  },
+  "materials": {
+    "title": "Matériaux"
+  },
+  "items": {
+    "title": "§7Items §3%s §7(%d/%d)",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "search": {
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+    },
+    "item": "%s",
+    "create": {
+      "title": "§7Créer",
+      "description": "§7Créer un nouvel objet",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aL'item §3%sa été créé avec succès.",
+      "failed": "§eItemMods §7» §cNom d'objet invalide."
+    },
+    "actions": "§7Ouvre l'interface item"
+  },
+  "item": {
+    "title": "§7Item §3%s",
+    "back": {
+      "title": "§7Retour",
+      "description": "§7Aller à la liste des objets"
+    },
+    "general": "§7Général",
+    "administration": "§7Administration",
+    "name": {
+      "title": "§7Nom",
+      "description": "§3%s\n\n§7Cliquez pour changer le nom",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez le nom de l'item en §3%s§a.",
+      "failed": "§eItemMods §7» §cNom d'objet invalide."
+    },
+    "display": {
+      "not-set": {
+        "title": "§7Nom d'affichage",
+        "description": "§cNon défini\n\n§7Clic gauche » Cliquez pour changer le nom d'affichage\n§7Drop » Supprimer le nom d'affichage"
+      },
+      "set": {
+        "title": "§7Nom d'affichage",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom d'affichage"
+      },
+      "message": "§eItemMods §7» §eVeuillez entrer le nom d'affichage de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez avec succès le nom d'affichage de l'item en §3%s§a."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§7Nom localisé",
+        "description": "§cNon défini\n\n§7Cliquez pour changer le nom localisé"
+      },
+      "set": {
+        "title": "§7Nom localisé",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom localisé"
+      },
+      "message": "§eItemMods §7» §eVeuillez entrer le nom localisé de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez avec succès le nom de l'item localisé en §3%s§a."
+    },
+    "model": {
+      "not-set": {
+        "title": "§7Modèle",
+        "description": "§cNon défini\n\n§7Cliquez pour ajouter un modèle"
+      },
+      "set": {
+        "title": "§7Modèle",
+        "description": "§3%s\n\n§7Clic gauche » Configurer\n§7Clic droit » Assigner à nouveau\n§7Droit » Supprimer"
+      }
+    },
+    "templates": {
+      "title": "§7Modèles",
+      "description": "§7Aller à la liste des modèles"
+    },
+    "delete": {
+      "title": "§7Supprimer",
+      "description": "§7Supprime l'objet courant",
+      "gui": {
+        "title": "§7Supprimer l'objet §3%s§6?",
+        "message": "§7Supprimer l'objet §3%s§6?",
+        "description": "§7Ce processus ne peut pas être annulé!",
+        "yes": "§aOui",
+        "no": "§cNon"
+      }
+    }
+  },
+  "blocks": {
+    "title": "§6Blocs §3%s §7(%d/%d)",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "item": "%s",
+    "search": {
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+    },
+    "create": {
+      "title": "§7Créer",
+      "description": "§7Créer un nouveau bloc",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom du bloc. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aLe bloc §3%sa été créé avec succès.",
+      "failed": "§eItemMods §7» §cNom de bloc invalide."
+    },
+    "actions": "§7Ouvre l'interface du bloc"
+  },
+  "block": {
+    "title": "§7Bloc §3%s",
+    "back": {
+      "title": "§7Retour",
+      "description": "§7Aller à la liste de blocage"
+    },
+    "general": "§7Général",
+    "block": "§7Bloc",
+    "administration": "§7Administration",
+    "name": {
+      "title": "§7Nom",
+      "description": "§3%s\n\n§7Cliquez pour changer le nom",
+      "message": "§eItemMods §7» §eVeuillez entrer le nom du bloc. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez le nom du bloc en §3%s§a.",
+      "failed": "§eItemMods §7» §cNom de bloc invalide."
+    },
+    "display": {
+      "not-set": {
+        "title": "§7Nom d'affichage",
+        "description": "§cNon défini\n\n§7Clic gauche » Cliquez pour changer le nom d'affichage\n§7Drop » Supprimer le nom d'affichage"
+      },
+      "set": {
+        "title": "§7Nom d'affichage",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom d'affichage"
+      },
+      "message": "§eItemMods §7» §eVeuillez entrer le nom d'affichage de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez avec succès le nom d'affichage de l'item en §3%s§a."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§7Nom localisé",
+        "description": "§cNon défini\n\n§7Cliquez pour changer le nom localisé"
+      },
+      "set": {
+        "title": "§7Nom localisé",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom localisé"
+      },
+      "message": "§eItemMods §7» §eVeuillez entrer le nom localisé de l'item. Annuler avec un clic gauche.",
+      "success": "§eItemMods §7» §aChangez avec succès le nom de l'item localisé en §3%s§a."
+    },
+    "model": {
+      "not-set": {
+        "title": "§7Modèle",
+        "description": "§cNon défini\n\n§7Cliquez pour ajouter un modèle"
+      },
+      "set": {
+        "title": "§7Modèle",
+        "description": "§3%s\n\n§7Clic gauche » Configurer\n§7Clic droit » Assigner à nouveau\n§7Droit » Supprimer"
+      }
+    },
+    "templates": {
+      "title": "§7Modèles",
+      "description": "§7Aller à la liste des modèles"
+    },
+    "delete": {
+      "title": "§7Supprimer",
+      "description": "§7Supprimer le bloc actuel",
+      "gui": {
+        "title": "§6Supprimer le bloc §3%s§6?",
+        "message": "§6Supprimer le bloc §3%s§6?",
+        "description": "§7Ce processus ne peut pas être annulé!",
+        "yes": "§aOui",
+        "no": "§cNon"
+      }
+    }
+  },
+  "raw": {
+    "models": {
+      "title": "§6Modèles §3%s §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "item": "§6%s",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      },
+      "create": {
+        "title": "§7Créer",
+        "description": "§7Créer un nouveau modèle",
+        "message": "§eItemMods §7» §eVeuillez entrer le nom du modèle. Annuler avec un clic gauche.",
+        "success": "§eItemMods §7» §aLe modèle §3%sa été créé avec succès.",
+        "failed": "§eItemMods §7» §cNom de modèle invalide."
+      },
+      "actions": "§7Ouvre l'interface du modèle"
+    },
+    "model": {
+      "title": "§7Modèle §3%s",
+      "back": {
+        "title": "§7Retour",
+        "description": "§7Aller à la liste des modèles"
+      },
+      "name": {
+        "title": "§7Nom",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom",
+        "message": "§eItemMods §7» §eVeuillez entrer le nom du modèle. Annuler avec un clic gauche.",
+        "success": "§eItemMods §7» §aChangez le nom du modèle en §3%s§a.",
+        "failed": "§eItemMods §7» §cNom de modèle invalide."
+      },
+      "fallback": {
+        "title": "§7Texture de secours",
+        "description": "§3%s\n\n§7Cliquez pour définir le matériau\n§7qui sera affiché si le joueur\n§7n'active pas le pack de ressources"
+      },
+      "data": {
+        "title": "§7Données",
+        "description": "§7Cliquez pour définir les variations\n§7des modèles du pack de ressources"
+      },
+      "general": "§7Général",
+      "appearance": "§7Apparence",
+      "administration": "§7Administration",
+      "delete": {
+        "title": "§7Supprimer",
+        "description": "§7Supprimer le modèle actuel",
+        "gui": {
+          "title": "§7Supprimer le modèle §3%s?",
+          "message": "§7Supprimer le modèle §3%s?",
+          "description": "§7Ce processus ne peut pas être annulé!",
+          "yes": "§aOui",
+          "no": "§cNon"
+        }
+      }
+    },
+    "textures": {
+      "title": "§7Textures §3%s §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      },
+      "create": {
+        "title": "§7Créer",
+        "description": "§7Créer une nouvelle texture",
+        "message": "§eItemMods §7» §eVeuillez entrer le nom de la texture. Annuler avec un clic gauche.",
+        "success": "§eItemMods §7» §aa créé la texture §3%s§a.",
+        "failed": "§eItemMods §7» §cNom de texture invalide."
+      },
+      "item": "§6%s",
+      "actions": "§7Ouvre l'interface du modèle"
+    },
+    "texture": {
+      "title": "§7Texture §3%s",
+      "back": {
+        "title": "§7Retour",
+        "description": "§7Aller à la liste des textures"
+      },
+      "name": {
+        "title": "§7Nom",
+        "description": "§3%s\n\n§7Cliquez pour changer le nom",
+        "message": "§eItemMods §7» §eVeuillez entrer le nom de la texture. Annuler avec un clic gauche.",
+        "success": "§eItemMods §7» §aChangez le nom de la texture en §3%s§a.",
+        "failed": "§eItemMods §7» §cNom de texture invalide."
+      },
+      "data": {
+        "title": "§7Données",
+        "description": "§7Cliquez pour définir les variations\n§7des textures du pack de ressources"
+      },
+      "general": "§7Général",
+      "appearance": "§7Apparence",
+      "administration": "§7Administration",
+      "delete": {
+        "title": "§7Supprimer",
+        "description": "§7Supprimer la texture actuelle",
+        "gui": {
+          "title": "§7Supprimer la texture §3%s§6?",
+          "message": "§7Supprimer la texture §3%s§6?",
+          "description": "§7Ce processus ne peut pas être annulé!",
+          "yes": "§aOui",
+          "no": "§cNon"
+        }
+      }
+    },
+    "data": {
+      "title": "§7Données §3%s §7(%d/%d)",
+      "first": "§7Premier",
+      "previous": "§7Précédent",
+      "next": "§7Suivant",
+      "last": "Dernier",
+      "search": {
+        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+        "title": "§7Recherche",
+        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
+      },
+      "set": {
+        "title": "§6%s",
+        "description": "§7Clic gauche » Afficher le contenu\n§7Drop » Supprimer"
+      },
+      "not-set": {
+        "title": "§cNon défini",
+        "description": "§7Cliquez pour définir"
+      },
+      "create": {
+        "title": "§7Créer",
+        "description": "§7Créer un nouveau modèle",
+        "variation": "§eItemMods §7» §eVeuillez entrer le nom de la variation. Annulez avec un clic gauche.",
+        "gui": {
+          "title": "§7Créer des données",
+          "back": {
+            "title": "§7Retour",
+            "description": "§7Aller à la liste des données"
+          },
+          "internet": {
+            "title": "§7Internet",
+            "description": "§7Obtenir les données de l'internet",
+            "message": "§eItemMods §7» §eVeuillez entrer le lien direct vers le fichier. Annuler avec un clic gauche.",
+            "success": "§eItemMods §7» §aAjoute les données de la variation §3%s §ade §3%s"
+          },
+          "file": {
+            "title": "§7Fichier",
+            "description": "§7Récupère les données à partir d'un fichier dans le répertoire temp.",
+            "message": "§eItemMods §7» §eVeuillez entrer le nom dans le fichier. Annuler avec un clic gauche.",
+            "success": "§eItemMods §7» §aAjoute les données de la variation §3%s §ade §3%s"
+          }
+        }
+      },
+      "actions": "§7Cliquez pour supprimer"
+    }
+  },
+  "event": {
+    "rename": "§eItemMods §7» §cCet item ne peut pas être renommé !"
+  },
+  "command": {
+    "usage": "§eItemMods §7» §cUsage: §3/itemmods§c!",
+    "no-player": "§eItemMods §7» §4Cette commande est réservée aux joueurs !",
+    "give": {
+      "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
+      "no-item": "§eItemMods §7» §4Ce n'est pas un nombre d'items valide !",
+      "success": "§eItemMods §7» §a %s a donné l'item %s avec succès."
+    },
+    "no-number": "§eItemMods §7» §4Ce n'est pas un nombre !",
+    "success": "§eItemMods §7» §aVous avez donné avec succès l'item §3%s§a !"
+  },
+  "no-permission": "§eItemMods §7» §4Vous n'avez pas la permission de le faire !"
+}

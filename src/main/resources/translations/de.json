@@ -1,0 +1,659 @@
+{
+  "plugin": {
+    "loading": "§eItemMods §7» §eLade Plugin...",
+    "loaded": "§eItemMods §7» §aErfolgreich Plugin geladen!",
+    "unloading": "§eItemMods §7» §eEntlade Plugin...",
+    "unloaded": "§eItemMods §7» §aErfolgreich Plugin entladen!",
+    "compatible": "§eItemMods §7» §6Dieses Plugin ist nicht mit deiner Version kompatibel!",
+    "version": "§eItemMods §7» §6Es ist eine neue Version verfügbar: §3%s",
+    "no-preset": "§eItemMods §7» §cEs gibt kein voreingestelltes Ressourcenpaket. Bitte kopiere ein Beispieltextur-Paket dort."
+  },
+  "api": {
+    "register": "§eItemMods §7» §aNeues Addon registriert: §3%s§a!",
+    "unregister": "§eItemMods §7» §aNeues Addon unregistriert: §3%s§a!"
+  },
+  "coming-soon": "§cBald verfügbar...",
+  "addon": {
+    "item": {
+      "block": {
+        "title": "§6Setze Vorlage blockieren",
+        "actions": {
+          "has": "§3%s\n\n§7Klicken, um den lokalisierten Namen zu ändern",
+          "empty": "§cNicht gesetzt\n\n§7Klicke hier, um die Blockvorlage zu setzen"
+        }
+      }
+    },
+    "model": {
+      "block": {
+        "title": "§6Blockmodellvorlage"
+      }
+    }
+  },
+  "knowledge": {
+    "title": "§6Wissen"
+  },
+  "template": {
+    "title": "§6Vorlage",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "create": {
+      "title": "§6Hinzufügen",
+      "description": "§7Vorlage hinzufügen"
+    },
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    }
+  },
+  "choose": {
+    "pack": {
+      "title": "§6Wähle Paket §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "template": {
+      "title": "§6Vorlage auswählen §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "item": {
+      "title": "§6Wähle Gegenstand §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "block": {
+      "title": "§6Wähle Block §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "model": {
+      "title": "§6Wähle Modell §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    },
+    "texture": {
+      "title": "§6Wähle Textur §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "actions": "§7Klicke zum Auswählen",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      }
+    }
+  },
+  "main": {
+    "title": "§6ItemMods §7(%s)",
+    "reload": {
+      "title": "§6Neuladen",
+      "description": "§7Lade das ganze Plugin neu",
+      "success": "§eItemMods §7» §aErfolgreich neu geladen"
+    },
+    "packs": {
+      "title": "§6Pakete",
+      "description": "§7Gehe zur Paketliste"
+    },
+    "inactive-packs": {
+      "title": "§6Inaktive Pakete",
+      "description": "§7Gehe zur inaktiven Paketliste"
+    },
+    "knowledge": {
+      "title": "§6Wissensbuch",
+      "description": "§7Gehe zur Mod \n§7Informationen für die Benutzer"
+    },
+    "addons": {
+      "title": "§6Addons",
+      "description": "§7Aktiv, konfigurieren, Addons deaktivieren"
+    },
+    "source": {
+      "title": "§6Quelle",
+      "description": "§7Bekomme den Github Link",
+      "link": "§eItemMods §7» §eQuelle: §b§%s"
+    },
+    "support": {
+      "title": "§6Support",
+      "description": "§7Bekomme den Discord Link",
+      "link": "§eItemMods §7» §eSupport: §b§n%s"
+    },
+    "crowdin": {
+      "title": "§6Crowdin",
+      "description": "§7Bekomme den Crowdin-Link",
+      "link": "§eItemMods §7» §eCrowdin: §b§n%s"
+    },
+    "wiki": {
+      "title": "§6Wiki",
+      "description": "§7Bekomme den Wiki-Link",
+      "link": "§eItemMods §7» §eWiki: §b§n%s"
+    },
+    "export": {
+      "title": "§6Exportieren",
+      "description": "§7Ressourcenpaket exportieren",
+      "message": "§eItemMods §7» §eExportieren...",
+      "success": "§eItemMods §7» §aErfolgreich das Ressourcenpaket exportiert",
+      "failed": "§eItemMods §7» §aExport des Ressourcenpakets fehlgeschlagen. Siehe die Konsole für Details!"
+    },
+    "reset": {
+      "title": "§6Zurücksetzen",
+      "description": "§7Setze die Identifikatoren\n§7für das Ressourcenpaket zurück",
+      "message": "§eItemMods §7» §aErfolgreich die Identifikatoren zurücksetzen"
+    },
+    "locale": {
+      "title": "§6Sprache",
+      "description": "§3%s\n\n§7Klicke um Sprache zu setzen"
+    }
+  },
+  "locales": {
+    "title": "§6Übersetzungen §7(%d/%d)",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "item": "§6%s",
+    "actions": "§7Klicke, um zu setzen"
+  },
+  "packs": {
+    "title": "§6Pakete §7(%d/%d)",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "readonly": "§eItemMods §7» §cDieses Paket ist schreibgeschützt.",
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    },
+    "create": {
+      "title": "§6Erstellen",
+      "description": "§7Erstelle ein neues Paket",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich das Paket §3%s§a erstellt.",
+      "failed": "§eItemMods §7» §cUngültiger Paketname."
+    },
+    "item": "§6%s",
+    "actions": "§7Öffne das Paketgui"
+  },
+  "inactive-packs": {
+    "title": "§6Inaktive Pakete §7(%d/%d)",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    },
+    "actions": "§7Öffne das Paketgui"
+  },
+  "pack": {
+    "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
+    "title": "§6Paket §3%s",
+    "back": {
+      "title": "§6Zurück",
+      "description": "§7Gehe zur Paketliste"
+    },
+    "readonly": {
+      "title": "§cNur lesen",
+      "description": "§7Du kannst dieses Paket nicht bearbeiten."
+    },
+    "name": {
+      "title": "§6Name",
+      "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Paketnamen zu §3%s§a geändert.",
+      "failed": "§eItemMods §7» §cUngültiger Paketname."
+    },
+    "general": "§6Allgemein",
+    "contents": "§6Inhalte",
+    "raw": "§6Roh",
+    "administration": "§6Administration",
+    "items": {
+      "title": "§6Items",
+      "description": "§7Gehe zur Itemliste"
+    },
+    "blocks": {
+      "title": "§6Blöcke",
+      "description": "§7Gehe zur Blockliste"
+    },
+    "textures": {
+      "title": "§6Texturen",
+      "description": "§7Gehe zur Texturliste"
+    },
+    "models": {
+      "title": "§6Modelle",
+      "description": "§7Gehe zur Modellliste"
+    },
+    "sounds": {
+      "title": "§6Töne",
+      "description": "§7Gehe zur Tonliste"
+    },
+    "deactivated": {
+      "title": "§cDeaktiviert",
+      "description": "§7Klicke, um das aktuelle Paket zu aktivieren"
+    },
+    "activated": {
+      "title": "§aAktiviert",
+      "description": "§7Klicke, um das aktuelle Paket zu deaktivieren"
+    },
+    "export": {
+      "title": "§6Exportieren",
+      "description": "§7Exportiere das aktuelle Paket in einer Zip-Datei",
+      "message": "§eItemMods §7» §eExport Ressourcen-Paket...",
+      "success": "§eItemMods §7» §6Ressourcenpaket wurde exportiert!",
+      "failed": "§eItemMods §7» §cExport fehlgeschlagen."
+    },
+    "delete": {
+      "title": "§6Löschen",
+      "description": "§7Lösche das aktuelle Paket",
+      "gui": {
+        "title": "§6Packet §3%s §6löschen?",
+        "message": "§6Packet §3%s §6löschen?",
+        "description": "§7Dies löscht das Paket\n§7Ordner und den Inhalt davon.\n§7Dieser Vorgang kann nicht rückgängig gemacht werden!",
+        "yes": "§aJa",
+        "no": "§cNein"
+      }
+    }
+  },
+  "materials": {
+    "title": "Materialien"
+  },
+  "items": {
+    "title": "§6Items §3%s §7(%d/%d)",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    },
+    "item": "%s",
+    "create": {
+      "title": "§6Erstellen",
+      "description": "§7Neues Item erstellen",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Items ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich das Item §3%s §aerstellt.",
+      "failed": "§eArtikelmods §7» §cUngültiger Itemname."
+    },
+    "actions": "§7Öffne das Gegenstandsgui"
+  },
+  "item": {
+    "title": "§6Item §3%s",
+    "back": {
+      "title": "§6Zurück",
+      "description": "§7Gehe zur Itemliste"
+    },
+    "general": "§6Allgemein",
+    "administration": "§6Administration",
+    "name": {
+      "title": "§6Name",
+      "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Items ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Itemnamen zu §3%s§a.",
+      "failed": "§eArtikelmods §7» §cUngültiger Itemname."
+    },
+    "display": {
+      "not-set": {
+        "title": "§6Anzeigename",
+        "description": "§cNicht gesetzt\n\n§7Linksklick » Klick um den Anzeigenamen zu ändern\n§7Drop » Anzeigename löschen"
+      },
+      "set": {
+        "title": "§6Anzeigename",
+        "description": "§3%s\n\n§7Klicken, um den Anzeigenamen zu ändern"
+      },
+      "message": "§eItemMods §7» §eBitte gib den Anzeigenamen des Items ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Anzeigenamen zu §3%s §ageändert."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§6Lokalisierter Name",
+        "description": "§cNicht gesetzt\n\n§7Klick, um den lokalisierten Namen zu ändern"
+      },
+      "set": {
+        "title": "§6Lokalisierter Name",
+        "description": "§3%s\n\n§7Klicken, um den lokalisierten Namen zu ändern"
+      },
+      "message": "§eItemMods §7» §eBitte den lokalisierten Namen des Items eingeben. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den lokalisierten Item Namen zu §3%s§a geändert."
+    },
+    "model": {
+      "not-set": {
+        "title": "§6Modell",
+        "description": "§cNicht gesetzt\n\n§7Klicken, um ein Modell hinzuzufügen"
+      },
+      "set": {
+        "title": "§6Modell",
+        "description": "§3%s\n\n§7Linksklick » Konfigurieren\n§7Rechtsklick » Zuweisen\n§7Drop » Entfernen"
+      }
+    },
+    "templates": {
+      "title": "§6Vorlagen",
+      "description": "§7Gehe zur Vorlagenliste"
+    },
+    "delete": {
+      "title": "§6Löschen",
+      "description": "§7Lösche das aktuelle Item",
+      "gui": {
+        "title": "§6Item §3%s§6 löschen?",
+        "message": "§6Item §3%s§6 löschen?",
+        "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
+        "yes": "§aJa",
+        "no": "§cNein"
+      }
+    }
+  },
+  "blocks": {
+    "title": "§6Blöcke §3%s §7(%d/%d)",
+    "first": "§6Erste",
+    "previous": "§6Vorherige",
+    "next": "§6Nächste",
+    "last": "§6Letzter",
+    "item": "%s",
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    },
+    "create": {
+      "title": "§6Erstellen",
+      "description": "§7Erstelle einen neuen Block",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Blocks ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Block §3%s§a erstellt.",
+      "failed": "§eItemMods §7» §cUngültiger Blockname."
+    },
+    "actions": "§7Öffne den Block gui"
+  },
+  "block": {
+    "title": "§6Block §3%s",
+    "back": {
+      "title": "§6Zurück",
+      "description": "§7Gehe zur Blockliste"
+    },
+    "general": "§6Allgemein",
+    "block": "§6Block",
+    "administration": "§6Administration",
+    "name": {
+      "title": "§6Name",
+      "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+      "message": "§eItemMods §7» §eBitte gib den Namen des Blocks ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Blocknamen zu §3%s §ageändert.",
+      "failed": "§eItemMods §7» §cUngültiger Blockname."
+    },
+    "display": {
+      "not-set": {
+        "title": "§6Anzeigename",
+        "description": "§cNicht gesetzt\n\n§7Linksklick » Klick um den Anzeigenamen zu ändern\n§7Drop » Anzeigename löschen"
+      },
+      "set": {
+        "title": "§6Anzeigename",
+        "description": "§3%s\n\n§7Klicken, um den Anzeigenamen zu ändern"
+      },
+      "message": "§eItemMods §7» §eBitte gib den Anzeigenamen des Items ein. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den Anzeigenamen zu §3%s §ageändert."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§6Lokalisierter Name",
+        "description": "§cNicht gesetzt\n\n§7Klick, um den lokalisierten Namen zu ändern"
+      },
+      "set": {
+        "title": "§6Lokalisierter Name",
+        "description": "§3%s\n\n§7Klicken, um den lokalisierten Namen zu ändern"
+      },
+      "message": "§eItemMods §7» §eBitte den lokalisierten Namen des Items eingeben. Mit einem Linksklick abbrechen.",
+      "success": "§eItemMods §7» §aErfolgreich den lokalisierten Item Namen zu §3%s§a geändert."
+    },
+    "model": {
+      "not-set": {
+        "title": "§6Modell",
+        "description": "§cNicht gesetzt\n\n§7Klicken, um ein Modell hinzuzufügen"
+      },
+      "set": {
+        "title": "§6Modell",
+        "description": "§3%s\n\n§7Linksklick » Konfigurieren\n§7Rechtsklick » Zuweisen\n§7Drop » Entfernen"
+      }
+    },
+    "templates": {
+      "title": "§6Vorlagen",
+      "description": "§7Gehe zur Vorlagenliste"
+    },
+    "delete": {
+      "title": "§6Löschen",
+      "description": "§7Lösche den aktuellen Block",
+      "gui": {
+        "title": "§6Block §3%s §6löschen?",
+        "message": "§6Block §3%s §6löschen?",
+        "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
+        "yes": "§aJa",
+        "no": "§cNein"
+      }
+    }
+  },
+  "raw": {
+    "models": {
+      "title": "§6Modelle §3%s §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "item": "§6%s",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      },
+      "create": {
+        "title": "§6Erstellen",
+        "description": "§7Erstelle ein neues Modell",
+        "message": "§eItemMods §7» §eBitte geben Sie den Namen des Modells ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich das Modell §3%s §aerstellt.",
+        "failed": "§eItemMods §7» §cUngültiger Modellname."
+      },
+      "actions": "§7Öffne das Modell gui"
+    },
+    "model": {
+      "title": "§6Modell §3%s",
+      "back": {
+        "title": "§6Zurück",
+        "description": "§7Gehe zur Modellliste"
+      },
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+        "message": "§eItemMods §7» §eBitte geben Sie den Namen des Modells ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Modellnamen zu §3%s §ageändert.",
+        "failed": "§eItemMods §7» §cUngültiger Modellname."
+      },
+      "fallback": {
+        "title": "§6Fallback-Textur",
+        "description": "§3%s\n\n§7Klicke um das Material zu setzen\n§7das angezeigt wird, wenn der Spieler\n§7das Ressourcenpaket nicht aktiviert"
+      },
+      "data": {
+        "title": "§6Daten",
+        "description": "§7Klicke, um die Variationen\n§7der Modelle für das Ressourcenpaket zu setzen"
+      },
+      "general": "§6Allgemein",
+      "appearance": "§6Erscheinung",
+      "administration": "§6Administration",
+      "delete": {
+        "title": "§6Löschen",
+        "description": "§7Lösche das aktuelle Modell",
+        "gui": {
+          "title": "§6Modell §3%s§6 löschen?",
+          "message": "§6Modell §3%s§6 löschen?",
+          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
+          "yes": "§aJa",
+          "no": "§cNein"
+        }
+      }
+    },
+    "textures": {
+      "title": "§6Texturen §3%s §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      },
+      "create": {
+        "title": "§6Erstellen",
+        "description": "§7Erstelle eine neue Textur",
+        "message": "§eItemMods §7» §eBitte geben Sie den Namen der Textur ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich die Textur §3%s §aerstellt.",
+        "failed": "§eItemMods §7» §cUngültiger Texturname."
+      },
+      "item": "§6%s",
+      "actions": "§7Öffne das Modell gui"
+    },
+    "texture": {
+      "title": "§6Textur §3%s",
+      "back": {
+        "title": "§6Zurück",
+        "description": "§7Gehe zur Texturliste"
+      },
+      "name": {
+        "title": "§6Name",
+        "description": "§3%s\n\n§7Klicke um den Namen zu ändern",
+        "message": "§eItemMods §7» §eBitte geben Sie den Namen der Textur ein. Mit einem Linksklick abbrechen.",
+        "success": "§eItemMods §7» §aErfolgreich den Texturnamen zu §3%s §ageändert.",
+        "failed": "§eItemMods §7» §cUngültiger Texturname."
+      },
+      "data": {
+        "title": "§6Daten",
+        "description": "§7Klicke, um die Variationen\n§7der Texturen für das Ressourcenpaket zu setzen"
+      },
+      "general": "§6Allgemein",
+      "appearance": "§6Erscheinung",
+      "administration": "§6Administration",
+      "delete": {
+        "title": "§6Löschen",
+        "description": "§7Lösche die aktuelle Textur",
+        "gui": {
+          "title": "§6Textur §3%s §6löschen?",
+          "message": "§6Textur §3%s §6löschen?",
+          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
+          "yes": "§aJa",
+          "no": "§cNein"
+        }
+      }
+    },
+    "data": {
+      "title": "§6Daten §3%s §7(%d/%d)",
+      "first": "§6Erste",
+      "previous": "§6Vorherige",
+      "next": "§6Nächste",
+      "last": "§6Letzter",
+      "search": {
+        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+        "title": "§6Suche",
+        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+      },
+      "set": {
+        "title": "§6%s",
+        "description": "§7Linksklick » Inhalt anzeigen\n§7Drop » Löschen"
+      },
+      "not-set": {
+        "title": "§cNicht gesetzt",
+        "description": "§7Klicke, um zu setzen"
+      },
+      "create": {
+        "title": "§6Erstellen",
+        "description": "§7Erstelle ein neues Modell",
+        "variation": "§eItemMods §7» §eBitte geben Sie den Namen der Variation ein. Mit einem Linksklick abbrechen.",
+        "gui": {
+          "title": "§6Daten erstellen",
+          "back": {
+            "title": "§6Zurück",
+            "description": "§7Gehe zur Datenliste"
+          },
+          "internet": {
+            "title": "§6Internet",
+            "description": "§7Hol dir die Daten aus dem Internet",
+            "message": "§eItemMods §7» §eBitte geben Sie den direkten Link zur Datei ein. Mit einem Linksklick abbrechen.",
+            "success": "§eItemMods §7» §aErfolgreich die Daten für die Variation §3%s §avon §3%s hinzugefügt"
+          },
+          "file": {
+            "title": "§6Datei",
+            "description": "§7Hol dir die Daten aus einer Datei im temporären Verzeichnis.",
+            "message": "§eItemMods §7» §eBitte geben Sie den Namen in die Datei ein. Mit einem Linksklick abbrechen.",
+            "success": "§eItemMods §7» §aErfolgreich die Daten für die Variation §3%s §avon §3%s hinzugefügt"
+          }
+        }
+      },
+      "actions": "§7Klicke zum Entfernen"
+    }
+  },
+  "event": {
+    "rename": "§eItemMods §7» §cDieser Gegenstand kann nicht umbenannt werden!"
+  },
+  "command": {
+    "usage": "§eArtikelmods §7» §cVerwende: §3/Itemmods§c!",
+    "no-player": "§eItemMods §7» §4Dieser Befehl ist nur für Spieler!",
+    "give": {
+      "usage": "§eItemMods §7» §cVerwende: §3/giveitem <Spieler> <Item> [<Anzahl>]§c!",
+      "no-item": "§eItemMods §7» §4Dies ist keine gültige Gegenstandsanzahl!",
+      "success": "§eItemMods §7» §aErfolgreich %s den Gegenstand %s gegeben"
+    },
+    "no-number": "§eItemMods §7» §4Das ist keine Zahl!",
+    "success": "§eItemMods §7» §aErfolgreich gab dir den Gegenstand §3%s§a!"
+  },
+  "no-permission": "§eItemMods §7» §4Du hast nicht die Berechtigung das zu tun!"
+}
