@@ -54,16 +54,12 @@ module.exports = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
               label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              href: "https://go.linwood.dev/itemmods-discord",
             },
             {
               label: "Twitter",
-              href: "https://twitter.com/docusaurus",
+              href: "https://twitter.com/LinwoodCloud",
             },
           ],
         },
@@ -76,7 +72,7 @@ module.exports = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/CodeDoctorDE/ItemMods",
             },
           ],
         },
@@ -94,13 +90,13 @@ module.exports = {
           routeBasePath: "docs",
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/",
+            "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/blog/",
+            "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
