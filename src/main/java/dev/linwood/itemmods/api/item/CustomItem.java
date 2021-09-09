@@ -21,15 +21,9 @@ public class CustomItem {
     }
 
     public @Nullable ItemAsset getConfig() {
-        try {
-            var packObject = new PackObject(Objects.requireNonNull(Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING)));
-            return packObject.getItem();
-        } catch (Exception e) {
-            return null;
-        }
+        return getPackObject().getItem();
     }
-
-
+    
     public @NotNull String getData() {
         return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().getOrDefault(DATA_KEY, PersistentDataType.STRING, "");
     }
@@ -40,6 +34,13 @@ public class CustomItem {
 
     private @Nullable String getType() {
         return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING);
+    }
+
+    public PackObject getPackObject() {
+        var type = getType();
+        if (type == null)
+            return null;
+        return new PackObject(type);
     }
 
 

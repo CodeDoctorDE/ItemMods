@@ -1,6 +1,8 @@
 package dev.linwood.itemmods.api.item;
 
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -10,6 +12,17 @@ import org.jetbrains.annotations.Nullable;
 public class CustomItemManager {
 
     public CustomItemManager() {
+    }
+
+    public ItemAsset getAssetByKey(String key) {
+        var packObject = new PackObject(key);
+        if(packObject != null)
+            return packObject.getItem();
+        return null;
+    }
+
+    public CustomItem fromItemStack(ItemStack itemStack) {
+        return new CustomItem(itemStack);
     }
 
     public @Nullable CustomItem create(@NotNull PackObject packObject) {
