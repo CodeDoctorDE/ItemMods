@@ -18,9 +18,16 @@ module.exports = {
       },
       items: [
         {
-          to: "docs",
-          position: "left",
-          label: "Docs",
+          type: 'doc',
+          docId: 'user/intro',
+          label: 'Docs',
+          position: 'left'
+        },
+        {
+          type: 'doc',
+          docId: 'api/intro',
+          label: 'API',
+          position: 'left'
         },
         { to: "/blog", label: "Blog", position: "left" },
         /*{
