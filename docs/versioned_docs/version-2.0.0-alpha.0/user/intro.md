@@ -2,7 +2,6 @@
 title: Home
 slug: /
 sidebar_position: 0
-id: introduction
 ---
 
 Welcome to the ItemMods wiki!
