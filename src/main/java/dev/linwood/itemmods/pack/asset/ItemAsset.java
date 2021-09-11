@@ -17,6 +17,7 @@ public class ItemAsset extends CustomNamedAsset {
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();
 
+
     public ItemAsset(@NotNull String name) {
         super(name);
     }

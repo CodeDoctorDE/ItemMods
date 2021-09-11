@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
+import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
@@ -218,6 +219,7 @@ public class ItemModsPack extends NamedPackObject {
         var dependenciesArray = new JsonArray();
         dependencies.forEach(dependenciesArray::add);
         jsonObject.add("dependencies", dependenciesArray);
+        jsonObject.addProperty("version", ItemMods.FILE_VERSION);
         Files.writeString(Paths.get(path.toString(), "pack.json"), GSON.toJson(jsonObject));
 
         var itemsDir = Paths.get(path.toString(), "items");

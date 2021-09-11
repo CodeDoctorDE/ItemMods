@@ -60,7 +60,9 @@ public class ItemMods extends JavaPlugin {
     private static TranslationConfig translationConfig;
     private static Path tempPath;
     private static Path translationsPath;
+    private static boolean runningOnPaper;
     private static PackManager packManager;
+    public static final int FILE_VERSION = 0;
     private Connection connection;
 
     public static ItemMods getPlugin() {
@@ -142,6 +144,12 @@ public class ItemMods extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         translationsPath = Paths.get(getDataFolder().getAbsolutePath(), "translations");
+        try {
+            Class.forName("com.destroystokyo.paper.PaperConfig");
+            runningOnPaper = true;
+        }catch(ClassNotFoundException e) {
+            runningOnPaper = false;
+        }
         try {
             Files.createDirectories(translationsPath);
             var uri = Objects.requireNonNull(getClass().getResource("/translations/")).toURI();
@@ -243,4 +251,7 @@ public class ItemMods extends JavaPlugin {
         }
     }
 
+    public static boolean isRunningOnPaper() {
+        return runningOnPaper;
+    }
 }

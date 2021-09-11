@@ -36,11 +36,12 @@ public class CustomItemManager {
         ItemMeta itemMeta = itemStack.getItemMeta();
         assert itemMeta != null;
         itemMeta.setCustomModelData(customModel);
-        itemMeta.setLocalizedName(asset.getLocalizedName());
-        itemMeta.setDisplayName(asset.getDisplayName());
+        //itemMeta.setLocalizedName(asset.getLocalizedName());
+        //itemMeta.setDisplayName(asset.getDisplayName());
         itemMeta.setLore(asset.getLore());
         itemMeta.getPersistentDataContainer().set(CustomItem.TYPE_KEY, PersistentDataType.STRING, packObject.toString());
         itemStack.setItemMeta(itemMeta);
+
         return new CustomItem(itemStack);
     }
 }

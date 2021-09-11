@@ -25,9 +25,9 @@ It will be cool if anybody can help me to maintain this plugin. If you have any 
 
 ## Links
 
-* [Discord](https://discord.gg/WzcRNGF)
-* [Wiki](https://github.com/CodeDoctorDE/ItemMods/wiki)
+* [Discord](https://go.linwood.dev/itemmods-discord)
+* [Wiki](https://itemmods.linwood.dev)
 * [Last build](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastSuccessfulBuild/)
-* [API](https://github.com/CodeDoctorDE/ItemMods/wiki/api)
+* [API](https://itemmods.linwood.dev/docs/api/intro)
 
 [![BStats](https://bstats.org/signatures/bukkit/ItemMods.svg)](https://bstats.org/plugin/bukkit/ItemMods)
