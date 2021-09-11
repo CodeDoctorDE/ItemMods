@@ -4,6 +4,7 @@ dev.linwood.api.config
 dev.linwood.api.game
 dev.linwood.api.game.teams
 dev.linwood.api.game.template
+dev.linwood.api.item
 dev.linwood.api.region
 dev.linwood.api.request
 dev.linwood.api.scoreboard
