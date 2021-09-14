@@ -19,11 +19,11 @@ public abstract class CustomNamedAsset extends PackAsset {
             displayName = new TranslatableName(jsonObject.getAsJsonObject("display"));
     }
 
-    public TranslatableName getDisplayName() {
+    public @Nullable TranslatableName getDisplayName() {
         return displayName;
     }
 
-    public void setDisplayName(TranslatableName displayName) {
+    public void setDisplayName(@Nullable TranslatableName displayName) {
         this.displayName = displayName;
     }
 
@@ -34,7 +34,7 @@ public abstract class CustomNamedAsset extends PackAsset {
     @Override
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
-        jsonObject.add("display", displayName.save());
+        jsonObject.add("display", displayName == null ? null : displayName.save());
         return jsonObject;
     }
 }
