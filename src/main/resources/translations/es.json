@@ -512,7 +512,7 @@
     "give": {
       "usage": "§eMods §7» §cUso: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4¡Este no es un número válido de objetos!",
-      "success": "§eMods §7» §a§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kiii§2♣ §aMods §aMods §2» §2» §2h dio con éxito a %s el objeto %s"
+      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
     },
     "no-number": "§eItemMods §7» §4¡No es un número!",
     "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
