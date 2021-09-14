@@ -3,6 +3,8 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +42,17 @@ public class BlockAsset extends CustomNamedAsset {
         if (modelObject == null)
             return null;
         return modelObject.getModel();
+    }
+
+    public ItemStack getModelTexture() {
+        var modelObject = getModelObject();
+        var model = modelObject == null ? null : modelObject.getModel();
+        var itemStack = new ItemStack(model == null ? Material.STONE : model.getFallbackTexture());
+        var itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        itemMeta.setCustomModelData(modelObject == null ? null : modelObject.getCustomModel());
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 
     public @Nullable PackObject getReferenceItem() {
