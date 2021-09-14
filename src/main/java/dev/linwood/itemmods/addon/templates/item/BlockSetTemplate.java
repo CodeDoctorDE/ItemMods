@@ -27,6 +27,11 @@ public class BlockSetTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block");
 
     @Override
+    public @NotNull String getName() {
+        return "block";
+    }
+
+    @Override
     public @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
@@ -55,11 +60,6 @@ public class BlockSetTemplate extends CustomTemplate {
         return true;
     }
 
-    @NotNull
-    @Override
-    public String getName() {
-        return t.getTranslation("name");
-    }
 
     public @Nullable PackObject getBlock(CustomTemplateData data) {
         if (data.getData() == null)
