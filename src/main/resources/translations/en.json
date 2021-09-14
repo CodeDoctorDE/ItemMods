@@ -512,7 +512,7 @@
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4This is not a valid item count!",
-      "success": "§eItemMods §7» §aSuccessfully gave %s the item %s"
+      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
     },
     "no-number": "§eItemMods §7» §4That is not a number!",
     "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"
