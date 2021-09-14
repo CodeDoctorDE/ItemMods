@@ -2,8 +2,8 @@ package dev.linwood.itemmods.addon.templates.item;
 
 import com.google.gson.JsonNull;
 import com.google.gson.JsonPrimitive;
-import dev.linwood.api.translations.Translation;
 import dev.linwood.api.item.ItemStackBuilder;
+import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.block.ChooseBlockGui;

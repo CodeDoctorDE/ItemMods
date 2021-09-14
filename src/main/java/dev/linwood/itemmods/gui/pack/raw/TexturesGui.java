@@ -1,11 +1,11 @@
 package dev.linwood.itemmods.gui.pack.raw;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.PackGui;
 import dev.linwood.itemmods.gui.pack.raw.texture.TextureGui;
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class TexturesGui extends ListGui {
     public TexturesGui(String namespace) {
-        super(ItemMods.getTranslationConfig().subTranslation("raw.textures"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        super(ItemMods.getTranslationConfig().subTranslation("raw.textures").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(textureAsset -> textureAsset.getName().contains(gui.getSearchText())).map(textureAsset ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, textureAsset.getName()).toString()));

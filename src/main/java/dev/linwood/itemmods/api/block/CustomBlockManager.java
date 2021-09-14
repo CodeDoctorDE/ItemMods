@@ -33,11 +33,9 @@ public class CustomBlockManager {
                 Double.parseDouble(locationArray[3]));
     }
 
-    public BlockAsset getAssetByKey(String key) {
+    public BlockAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
-        if(packObject != null)
-            return packObject.getBlock();
-        return null;
+        return packObject.getBlock();
     }
 
     public CustomBlock fromLocation(Location location) {

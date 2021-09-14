@@ -23,7 +23,7 @@ public class CustomItem {
     public @Nullable ItemAsset getConfig() {
         return getPackObject().getItem();
     }
-    
+
     public @NotNull String getData() {
         return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().getOrDefault(DATA_KEY, PersistentDataType.STRING, "");
     }

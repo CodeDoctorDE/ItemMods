@@ -3,8 +3,8 @@ package dev.linwood.itemmods;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackTypeAdapter;
 import dev.linwood.api.serializer.BlockDataTypeAdapter;
-import dev.linwood.api.serializer.ItemStackTypeAdapter;
 import dev.linwood.api.serializer.LocationTypeAdapter;
 import dev.linwood.api.server.Version;
 import dev.linwood.api.translations.Translation;
@@ -52,6 +52,7 @@ public class ItemMods extends JavaPlugin {
             .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
             .serializeNulls()
             .setPrettyPrinting().create();
+    public static final int FILE_VERSION = 0;
     private static ItemMods plugin;
     private static Path mainConfigFile;
     private static MainConfig mainConfig;
@@ -62,7 +63,6 @@ public class ItemMods extends JavaPlugin {
     private static Path translationsPath;
     private static boolean runningOnPaper;
     private static PackManager packManager;
-    public static final int FILE_VERSION = 0;
     private Connection connection;
 
     public static ItemMods getPlugin() {
@@ -140,6 +140,10 @@ public class ItemMods extends JavaPlugin {
         reloadMainConfig();
     }
 
+    public static boolean isRunningOnPaper() {
+        return runningOnPaper;
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -147,7 +151,7 @@ public class ItemMods extends JavaPlugin {
         try {
             Class.forName("com.destroystokyo.paper.PaperConfig");
             runningOnPaper = true;
-        }catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             runningOnPaper = false;
         }
         try {
@@ -249,9 +253,5 @@ public class ItemMods extends JavaPlugin {
             connection = DriverManager.getConnection("jdbc:mysql://" + mainConfig.getDatabaseConfig().getHost() + ":" + mainConfig.getDatabaseConfig().getPort() + "/" + mainConfig.getDatabaseConfig().getDatabase(),
                     mainConfig.getDatabaseConfig().getUsername(), mainConfig.getDatabaseConfig().getPassword());
         }
-    }
-
-    public static boolean isRunningOnPaper() {
-        return runningOnPaper;
     }
 }

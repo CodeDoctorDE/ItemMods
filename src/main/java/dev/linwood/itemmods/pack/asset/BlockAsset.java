@@ -3,7 +3,6 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

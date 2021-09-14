@@ -1,10 +1,10 @@
 package dev.linwood.itemmods.gui.pack.raw.texture;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
@@ -22,7 +22,7 @@ public class ChooseTextureGui extends ListGui {
     }
 
     public ChooseTextureGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<TextureAsset> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("choose.texture"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        super(ItemMods.getTranslationConfig().subTranslation("choose.texture").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

@@ -80,7 +80,7 @@ public class CustomBlockListener implements Listener {
             return;
         var customEvent = new CustomBlockBreakEvent(customBlock, event.getPlayer());
         Bukkit.getPluginManager().callEvent(customEvent);
-        if(!customEvent.isCancelled()) {
+        if (!customEvent.isCancelled()) {
             event.setCancelled(true);
             event.getBlock().setType(Material.AIR);
             event.setExpToDrop(0);

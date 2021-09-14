@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.api.item;
 
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,11 +13,9 @@ public class CustomItemManager {
     public CustomItemManager() {
     }
 
-    public ItemAsset getAssetByKey(String key) {
+    public ItemAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
-        if(packObject != null)
-            return packObject.getItem();
-        return null;
+        return packObject.getItem();
     }
 
     public CustomItem fromItemStack(ItemStack itemStack) {
