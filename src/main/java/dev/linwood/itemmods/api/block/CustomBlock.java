@@ -76,7 +76,7 @@ public class CustomBlock {
         return null;
     }
 
-    public void setString(@NotNull NamespacedKey key, @NotNull String value) {
+    private void setString(@NotNull NamespacedKey key, @NotNull String value) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;
