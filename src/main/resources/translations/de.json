@@ -32,106 +32,39 @@
   "knowledge": {
     "title": "§6Wissen"
   },
-  "template": {
-    "title": "§6Vorlage",
+  "gui": {
     "first": "§6Erste",
     "previous": "§6Vorherige",
     "next": "§6Nächste",
     "last": "§6Letzter",
+    "actions": "§7Klicke zum Auswählen",
+    "item": "§6%s"
+  },
+  "template": {
+    "title": "§6Vorlage",
     "create": {
       "title": "§6Hinzufügen",
       "description": "§7Vorlage hinzufügen"
-    },
-    "search": {
-      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-      "title": "§6Suche",
-      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     }
   },
   "choose": {
     "pack": {
-      "title": "§6Wähle Paket §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Wähle Paket §7(%d/%d)"
     },
     "template": {
-      "title": "§6Vorlage auswählen §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Vorlage auswählen §7(%d/%d)"
     },
     "item": {
-      "title": "§6Wähle Gegenstand §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Wähle Gegenstand §7(%d/%d)"
     },
     "block": {
-      "title": "§6Wähle Block §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Wähle Block §7(%d/%d)"
     },
     "model": {
-      "title": "§6Wähle Modell §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Wähle Modell §7(%d/%d)"
     },
     "texture": {
-      "title": "§6Wähle Textur §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "actions": "§7Klicke zum Auswählen",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      }
+      "title": "§6Wähle Textur §7(%d/%d)"
     }
   },
   "main": {
@@ -196,25 +129,11 @@
   },
   "locales": {
     "title": "§6Übersetzungen §7(%d/%d)",
-    "first": "§6Erste",
-    "previous": "§6Vorherige",
-    "next": "§6Nächste",
-    "last": "§6Letzter",
-    "item": "§6%s",
     "actions": "§7Klicke, um zu setzen"
   },
   "packs": {
     "title": "§6Pakete §7(%d/%d)",
-    "first": "§6Erste",
-    "previous": "§6Vorherige",
-    "next": "§6Nächste",
-    "last": "§6Letzter",
     "readonly": "§eItemMods §7» §cDieses Paket ist schreibgeschützt.",
-    "search": {
-      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-      "title": "§6Suche",
-      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-    },
     "create": {
       "title": "§6Erstellen",
       "description": "§7Erstelle ein neues Paket",
@@ -222,21 +141,10 @@
       "success": "§eItemMods §7» §aErfolgreich das Paket §3%s§a erstellt.",
       "failed": "§eItemMods §7» §cUngültiger Paketname."
     },
-    "item": "§6%s",
     "actions": "§7Öffne das Paketgui"
   },
   "inactive-packs": {
     "title": "§6Inaktive Pakete §7(%d/%d)",
-    "first": "§6Erste",
-    "previous": "§6Vorherige",
-    "next": "§6Nächste",
-    "last": "§6Letzter",
-    "item": "§6%s",
-    "search": {
-      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-      "title": "§6Suche",
-      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-    },
     "actions": "§7Öffne das Paketgui"
   },
   "pack": {
@@ -313,15 +221,6 @@
   },
   "items": {
     "title": "§6Items §3%s §7(%d/%d)",
-    "first": "§6Erste",
-    "previous": "§6Vorherige",
-    "next": "§6Nächste",
-    "last": "§6Letzter",
-    "search": {
-      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-      "title": "§6Suche",
-      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-    },
     "item": "%s",
     "create": {
       "title": "§6Erstellen",
@@ -399,16 +298,7 @@
   },
   "blocks": {
     "title": "§6Blöcke §3%s §7(%d/%d)",
-    "first": "§6Erste",
-    "previous": "§6Vorherige",
-    "next": "§6Nächste",
-    "last": "§6Letzter",
     "item": "%s",
-    "search": {
-      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-      "title": "§6Suche",
-      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-    },
     "create": {
       "title": "§6Erstellen",
       "description": "§7Erstelle einen neuen Block",
@@ -487,16 +377,6 @@
   "raw": {
     "models": {
       "title": "§6Modelle §3%s §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "item": "§6%s",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      },
       "create": {
         "title": "§6Erstellen",
         "description": "§7Erstelle ein neues Modell",
@@ -544,15 +424,6 @@
     },
     "textures": {
       "title": "§6Texturen §3%s §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      },
       "create": {
         "title": "§6Erstellen",
         "description": "§7Erstelle eine neue Textur",
@@ -597,15 +468,6 @@
     },
     "data": {
       "title": "§6Daten §3%s §7(%d/%d)",
-      "first": "§6Erste",
-      "previous": "§6Vorherige",
-      "next": "§6Nächste",
-      "last": "§6Letzter",
-      "search": {
-        "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
-        "title": "§6Suche",
-        "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
-      },
       "set": {
         "title": "§6%s",
         "description": "§7Linksklick » Inhalt anzeigen\n§7Drop » Löschen"
