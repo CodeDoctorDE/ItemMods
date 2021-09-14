@@ -131,6 +131,8 @@ public class ModelAsset extends RawAsset {
         }
         var currentPath = Paths.get(path.toString(), "assets", namespace, "models", getName() + ".json");
         Files.createDirectories(currentPath.getParent());
-        Files.write(currentPath, getDataOrDefault(variation));
+        var content = getDataOrDefault(variation);
+        if (content != null)
+            Files.write(currentPath, content);
     }
 }
