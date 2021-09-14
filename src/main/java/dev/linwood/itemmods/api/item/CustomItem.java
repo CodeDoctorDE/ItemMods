@@ -1,17 +1,21 @@
 package dev.linwood.itemmods.api.item;
 
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.TileState;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class CustomItem {
+public class CustomItem implements CustomElement<ItemAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
     private final @NotNull ItemStack itemStack;
@@ -21,24 +25,45 @@ public class CustomItem {
     }
 
     public @Nullable ItemAsset getConfig() {
-        return getPackObject().getItem();
+        var packObject = getPackObject();
+        if(packObject == null)
+            return null;
+        return packObject.getItem();
+    }
+
+    @Override
+    public void configure() {
+        setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
+    }
+
+    private @NotNull String getType() {
+        return getString(TYPE_KEY);
     }
 
     public @NotNull String getData() {
-        return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().getOrDefault(DATA_KEY, PersistentDataType.STRING, "");
+        return getString(DATA_KEY);
     }
 
-    public void setData(String data) {
-        Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().set(DATA_KEY, PersistentDataType.STRING, "");
+    public void setData(@NotNull String data) {
+        setString(DATA_KEY, data);
     }
 
-    private @Nullable String getType() {
-        return Objects.requireNonNull(itemStack.getItemMeta()).getPersistentDataContainer().get(TYPE_KEY, PersistentDataType.STRING);
+    private @NotNull String getString(@NotNull NamespacedKey key) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        return itemMeta.getPersistentDataContainer().getOrDefault(key, PersistentDataType.STRING, "");
     }
 
-    public PackObject getPackObject() {
+    private void setString(@NotNull NamespacedKey key, @NotNull String value) {
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        assert itemMeta != null;
+        itemMeta.getPersistentDataContainer().set(key, PersistentDataType.STRING, value);
+        itemStack.setItemMeta(itemMeta);
+    }
+
+    public @Nullable PackObject getPackObject() {
         var type = getType();
-        if (type == null)
+        if(type.equals(""))
             return null;
         return new PackObject(type);
     }

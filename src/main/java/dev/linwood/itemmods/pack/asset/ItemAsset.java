@@ -58,7 +58,7 @@ public class ItemAsset extends CustomNamedAsset {
     @NotNull
     public Material getIcon() {
         var model = getModel();
-        if (model == null || model.getFallbackTexture() == null)
+        if (model == null)
             return Material.DIAMOND;
         return model.getFallbackTexture();
     }
