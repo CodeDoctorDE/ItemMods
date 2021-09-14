@@ -32,106 +32,39 @@
   "knowledge": {
     "title": "§6Knowledge"
   },
-  "template": {
-    "title": "§6Template",
+  "gui": {
     "first": "§6First",
     "previous": "§6Previous",
     "next": "§6Next",
     "last": "§6Last",
+    "actions": "§7Click to choose",
+    "item": "§6%s"
+  },
+  "template": {
+    "title": "§6Template",
     "create": {
       "title": "§6Add",
       "description": "§7Add new template"
-    },
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
     }
   },
   "choose": {
     "pack": {
-      "title": "§6Choose pack §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose pack §7(%d/%d)"
     },
     "template": {
-      "title": "§6Choose template §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose template §7(%d/%d)"
     },
     "item": {
-      "title": "§6Choose item §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose item §7(%d/%d)"
     },
     "block": {
-      "title": "§6Choose block §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose block §7(%d/%d)"
     },
     "model": {
-      "title": "§6Choose model §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose model §7(%d/%d)"
     },
     "texture": {
-      "title": "§6Choose texture §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "actions": "§7Click to choose",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      }
+      "title": "§6Choose texture §7(%d/%d)"
     }
   },
   "main": {
@@ -196,25 +129,11 @@
   },
   "locales": {
     "title": "§6Locales §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "item": "§6%s",
     "actions": "§7Click to set"
   },
   "packs": {
     "title": "§6Packs §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
     "readonly": "§eItemMods §7» §cThis pack is readonly.",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-    },
     "create": {
       "title": "§6Create",
       "description": "§7Create a new pack",
@@ -222,21 +141,10 @@
       "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
       "failed": "§eItemMods §7» §cInvalid pack name."
     },
-    "item": "§6%s",
     "actions": "§7Open the pack gui"
   },
   "inactive-packs": {
     "title": "§6Inactive packs §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "item": "§6%s",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-    },
     "actions": "§7Open the pack gui"
   },
   "pack": {
@@ -313,15 +221,6 @@
   },
   "items": {
     "title": "§6Items §3%s §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-    },
     "item": "%s",
     "create": {
       "title": "§6Create",
@@ -399,16 +298,7 @@
   },
   "blocks": {
     "title": "§6Blocks §3%s §7(%d/%d)",
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
     "item": "%s",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-    },
     "create": {
       "title": "§6Create",
       "description": "§7Create a new block",
@@ -487,16 +377,6 @@
   "raw": {
     "models": {
       "title": "§6Models §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "item": "§6%s",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      },
       "create": {
         "title": "§6Create",
         "description": "§7Create a new model",
@@ -544,15 +424,6 @@
     },
     "textures": {
       "title": "§6Textures §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      },
       "create": {
         "title": "§6Create",
         "description": "§7Create a new texture",
@@ -597,15 +468,6 @@
     },
     "data": {
       "title": "§6Data §3%s §7(%d/%d)",
-      "first": "§6First",
-      "previous": "§6Previous",
-      "next": "§6Next",
-      "last": "§6Last",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-        "title": "§6Search",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
-      },
       "set": {
         "title": "§6%s",
         "description": "§7Left click » Show content\n§7Drop » Delete"
