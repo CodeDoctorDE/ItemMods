@@ -32,106 +32,39 @@
   "knowledge": {
     "title": "§7Connaissance"
   },
+  "gui": {
+    "first": "§6First",
+    "previous": "§6Previous",
+    "next": "§6Next",
+    "last": "§6Last",
+    "actions": "§7Click to choose",
+    "item": "§6%s"
+  },
   "template": {
     "title": "§7Modèle",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
     "create": {
       "title": "§7Ajouter",
       "description": "§7Ajouter un nouveau modèle"
-    },
-    "search": {
-      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-      "title": "§7Recherche",
-      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
     }
   },
   "choose": {
     "pack": {
-      "title": "§7Choisissez le pack §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez le pack §7(%d/%d)"
     },
     "template": {
-      "title": "§7Choisissez le modèle §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez le modèle §7(%d/%d)"
     },
     "item": {
-      "title": "§7Choisissez l'objet §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez l'objet §7(%d/%d)"
     },
     "block": {
-      "title": "§7Choisissez le bloc §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez le bloc §7(%d/%d)"
     },
     "model": {
-      "title": "§7Choisissez le modèle §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez le modèle §7(%d/%d)"
     },
     "texture": {
-      "title": "§7Choisissez la texture §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "actions": "§7Cliquez pour choisir",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      }
+      "title": "§7Choisissez la texture §7(%d/%d)"
     }
   },
   "main": {
@@ -196,25 +129,11 @@
   },
   "locales": {
     "title": "§6Locales §7(%d/%d)",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
-    "item": "§6%s",
     "actions": "§7Cliquez pour définir"
   },
   "packs": {
     "title": "§6Packs §7(%d/%d)",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
     "readonly": "§eItemMods §7» §cCe pack est en lecture seule.",
-    "search": {
-      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-      "title": "§7Recherche",
-      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-    },
     "create": {
       "title": "§7Créer",
       "description": "§7Créer un nouveau pack",
@@ -222,21 +141,10 @@
       "success": "§eItemMods §7» §aLe pack §3%sa été créé avec succès.",
       "failed": "§eItemMods §7» §cNom de pack invalide."
     },
-    "item": "§6%s",
     "actions": "§7Ouvre l'interface du pack"
   },
   "inactive-packs": {
     "title": "§7packs inactifs §7(%d/%d)",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
-    "item": "§6%s",
-    "search": {
-      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-      "title": "§7Recherche",
-      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-    },
     "actions": "§7Ouvre l'interface du pack"
   },
   "pack": {
@@ -313,15 +221,6 @@
   },
   "items": {
     "title": "§7Items §3%s §7(%d/%d)",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
-    "search": {
-      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-      "title": "§7Recherche",
-      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-    },
     "item": "%s",
     "create": {
       "title": "§7Créer",
@@ -399,16 +298,7 @@
   },
   "blocks": {
     "title": "§6Blocs §3%s §7(%d/%d)",
-    "first": "§7Premier",
-    "previous": "§7Précédent",
-    "next": "§7Suivant",
-    "last": "Dernier",
     "item": "%s",
-    "search": {
-      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-      "title": "§7Recherche",
-      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-    },
     "create": {
       "title": "§7Créer",
       "description": "§7Créer un nouveau bloc",
@@ -487,16 +377,6 @@
   "raw": {
     "models": {
       "title": "§6Modèles §3%s §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "item": "§6%s",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      },
       "create": {
         "title": "§7Créer",
         "description": "§7Créer un nouveau modèle",
@@ -544,15 +424,6 @@
     },
     "textures": {
       "title": "§7Textures §3%s §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      },
       "create": {
         "title": "§7Créer",
         "description": "§7Créer une nouvelle texture",
@@ -597,15 +468,6 @@
     },
     "data": {
       "title": "§7Données §3%s §7(%d/%d)",
-      "first": "§7Premier",
-      "previous": "§7Précédent",
-      "next": "§7Suivant",
-      "last": "Dernier",
-      "search": {
-        "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
-        "title": "§7Recherche",
-        "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
-      },
       "set": {
         "title": "§6%s",
         "description": "§7Clic gauche » Afficher le contenu\n§7Drop » Supprimer"
