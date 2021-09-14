@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.pack;
 
 import com.google.gson.JsonObject;
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 
 public class TranslatableName {
@@ -35,15 +34,6 @@ public class TranslatableName {
         this.translated = translated;
     }
 
-    /**
-     * Construct a component based on the name and if it is translated
-     * This only works for paper!
-     *
-     * @return A text component or a translatable component
-     */
-    public @NotNull Component constructComponent() {
-        return translated ? Component.translatable(name) : Component.text(name);
-    }
 
     public JsonObject save() {
         var jsonObject = new JsonObject();
