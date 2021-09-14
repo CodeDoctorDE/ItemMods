@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Maven
-        run: mvn clean install package
+        run: mvn clean install javadoc:javadoc
       - uses: actions/upload-artifact@v2
         with:
           name: "JavaDoc"
