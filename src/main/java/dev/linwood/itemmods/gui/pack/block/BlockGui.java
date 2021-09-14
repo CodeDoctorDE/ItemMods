@@ -14,6 +14,7 @@ import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
 import dev.linwood.itemmods.gui.pack.raw.model.ChooseModelGui;
 import dev.linwood.itemmods.gui.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -83,29 +84,10 @@ public class BlockGui extends GuiCollection {
                             p.sendMessage(t.getTranslation("display.message"));
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
-                                asset.setDisplayName(ts);
+                                asset.setDisplayName(new TranslatableName(ts));
                                 packObject.save();
                                 show(p);
                                 p.sendMessage(t.getTranslation("display.success", ts));
-                            });
-                        });
-                    }});
-                    addItem(new TranslatedGuiItem() {{
-                        setRenderAction(gui -> {
-                            var prefix = "localized-name." + (asset.getLocalizedName() == null ? "not-set" : "set") + ".";
-                            setItemStack(new ItemStackBuilder(Material.BOOK).displayName(prefix + "title").lore(prefix + "description").build());
-                            if (asset.getLocalizedName() != null) setPlaceholders(asset.getLocalizedName());
-                        });
-                        setClickAction(event -> {
-                            var p = (Player) event.getWhoClicked();
-                            hide(p);
-                            var request = new ChatRequest(p);
-                            p.sendMessage(t.getTranslation("localized-name.message"));
-                            request.setSubmitAction(s -> {
-                                asset.setLocalizedName(s);
-                                packObject.save();
-                                show(p);
-                                p.sendMessage(t.getTranslation("localized-name.success", s));
                             });
                         });
                     }});

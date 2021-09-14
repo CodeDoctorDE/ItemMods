@@ -42,7 +42,7 @@ public class CustomBlock {
         return location;
     }
 
-    public @Nullable String getType() {
+    private @Nullable String getType() {
         return getString(TYPE_KEY);
     }
 
@@ -90,5 +90,12 @@ public class CustomBlock {
      */
     public void configure() {
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
+    }
+
+    public PackObject getPackObject() {
+        var type = getType();
+        if (type == null)
+            return null;
+        return new PackObject(type);
     }
 }

@@ -3,7 +3,9 @@ package dev.linwood.itemmods.listener;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.addon.templates.item.BlockSetTemplate;
 import dev.linwood.itemmods.api.block.CustomBlock;
+import dev.linwood.itemmods.api.events.CustomBlockBreakEvent;
 import dev.linwood.itemmods.api.item.CustomItem;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -76,12 +78,16 @@ public class CustomBlockListener implements Listener {
         CustomBlock customBlock = new CustomBlock(event.getBlock());
         if (customBlock.getConfig() == null)
             return;
-        event.setCancelled(true);
-        event.getBlock().setType(Material.AIR);
-        event.setExpToDrop(0);
-        ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
-        if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
-            ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
+        var customEvent = new CustomBlockBreakEvent(customBlock, event.getPlayer());
+        Bukkit.getPluginManager().callEvent(customEvent);
+        if(!customEvent.isCancelled()) {
+            event.setCancelled(true);
+            event.getBlock().setType(Material.AIR);
+            event.setExpToDrop(0);
+            ItemMeta itemMeta = event.getPlayer().getInventory().getItemInMainHand().getItemMeta();
+            if (itemMeta instanceof Damageable && event.getPlayer().getGameMode() != GameMode.CREATIVE)
+                ((Damageable) itemMeta).setDamage(((Damageable) itemMeta).getDamage());
+        }
     }
 
     @EventHandler
