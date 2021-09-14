@@ -32,106 +32,39 @@
   "knowledge": {
     "title": "§6Kunnskap"
   },
+  "gui": {
+    "first": "§6First",
+    "previous": "§6Previous",
+    "next": "§6Next",
+    "last": "§6Last",
+    "actions": "§7Click to choose",
+    "item": "§6%s"
+  },
   "template": {
     "title": "§6Mal",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
     "create": {
       "title": "§6Legg til",
       "description": "§7Add new template"
-    },
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-      "title": "§6Søk",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
     }
   },
   "choose": {
     "pack": {
-      "title": "§6Velg pakke §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg pakke §7(%d/%d)"
     },
     "template": {
-      "title": "§6Velg mal §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg mal §7(%d/%d)"
     },
     "item": {
-      "title": "§6Velg element §7%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg element §7%d/%d)"
     },
     "block": {
-      "title": "§6Velg blokk §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg blokk §7(%d/%d)"
     },
     "model": {
-      "title": "§6Velg modell §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg modell §7(%d/%d)"
     },
     "texture": {
-      "title": "§6Velg tekstur §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "actions": "§7Klikk for å velge",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      }
+      "title": "§6Velg tekstur §7(%d/%d)"
     }
   },
   "main": {
@@ -196,25 +129,11 @@
   },
   "locales": {
     "title": "§6Locales §7(%d/%d)",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
-    "item": "§7%s",
     "actions": "§7Klikk for å angi"
   },
   "packs": {
     "title": "§6Pakker §7(%d/%d)",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
     "readonly": "§eItemMods §7» §c» §cDenne pakken er skrivebeskyttet.",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-      "title": "§6Søk",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-    },
     "create": {
       "title": "§6Lag",
       "description": "§7Opprett en ny pakke",
@@ -222,21 +141,10 @@
       "success": "§eItemMods §7» §aVellykket opprettet pakken §3%s§a.",
       "failed": "§eItemMods §7» §cUgyldig pakkenavn."
     },
-    "item": "§7%s",
     "actions": "§7Åpne pakken gui"
   },
   "inactive-packs": {
     "title": "§6Inaktive pakker §7(%d/%d)",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
-    "item": "§7%s",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-      "title": "§6Søk",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-    },
     "actions": "§7Åpne pakken gui"
   },
   "pack": {
@@ -313,15 +221,6 @@
   },
   "items": {
     "title": "§6Gjenstander §3%s §7(%d/%d)",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-      "title": "§6Søk",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-    },
     "item": "%s",
     "create": {
       "title": "§6Lag",
@@ -399,16 +298,7 @@
   },
   "blocks": {
     "title": "§6Blokker §3%s §7(%d/%d)",
-    "first": "§6Første",
-    "previous": "§6Forrige",
-    "next": "§6Neste",
-    "last": "§6Siste",
     "item": "%s",
-    "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-      "title": "§6Søk",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-    },
     "create": {
       "title": "§6Lag",
       "description": "§7Opprett en ny blokk",
@@ -487,16 +377,6 @@
   "raw": {
     "models": {
       "title": "§6Modeller §3%s §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "item": "§7%s",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      },
       "create": {
         "title": "§6Lag",
         "description": "§7Opprett en ny modell",
@@ -544,15 +424,6 @@
     },
     "textures": {
       "title": "§6Teksturer §3%s §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      },
       "create": {
         "title": "§6Lag",
         "description": "§7Create a new texture",
@@ -597,15 +468,6 @@
     },
     "data": {
       "title": "§6Data §3%s §7(%d/%d)",
-      "first": "§6Første",
-      "previous": "§6Forrige",
-      "next": "§6Neste",
-      "last": "§6Siste",
-      "search": {
-        "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
-        "title": "§6Søk",
-        "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
-      },
       "set": {
         "title": "§7%s",
         "description": "§7Venstre klikk » Vis innhold\n§7Drop » Slett"
