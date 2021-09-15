@@ -1,33 +1,29 @@
-# ItemMods
+<div align="center">
 
-[![GitHub](https://img.shields.io/github/license/CodeDoctorDE/ItemMods?style=for-the-badge)](LICENSE)
-![Jenkins](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.codemc.io%2Fjob%2FCodeDoctorDE%2Fjob%2FItemMods%2F&style=for-the-badge)
-![Spiget Downloads](https://img.shields.io/spiget/downloads/72461?style=for-the-badge)
-![Spiget Version](https://img.shields.io/spiget/version/72461?style=for-the-badge)
-![Spiget Download Size](https://img.shields.io/spiget/download-size/72461?style=for-the-badge)
-![Spiget Stars](https://img.shields.io/spiget/stars/72461?style=for-the-badge)
-![Spiget tested server versions](https://img.shields.io/spiget/tested-versions/72461?style=for-the-badge)
-![Discord](https://img.shields.io/discord/586558998749118467?style=for-the-badge)
-![Helpers needed!](https://img.shields.io/badge/Helpers-needed-orange?style=for-the-badge)
+![# ItemMods](./assets/header.png)
 
-![Header](./assets/Header.png)
+[![Latest release)](https://img.shields.io/github/v/release/CodeDoctorDE/ItemMods?color=FF0000&include_prereleases&style=for-the-badge&logo=github&logoColor=FF0000)](https://github.com/CodeDoctorDE/ItemMods/releases)
+[![Wiki](https://img.shields.io/badge/Wiki-itemmods.linwood.dev-FF0000?style=for-the-badge)](https://itemmods.linwood.dev)
+[![Discord](https://img.shields.io/discord/586558998749118467?color=%23FF0000&label=Discord&style=for-the-badge&logo=discord&logoColor=FF0000)](https://go.linwood.dev/itemmods-discord)
+[![JavaDocs](https://img.shields.io/badge/API-Documentation-FF0000?style=for-the-badge)](https://itemmods.linwood.dev/apidocs)
+[![Supported](https://img.shields.io/badge/Supported-1.14.4--1.17.1-%23FF0000?style=for-the-badge)](https://itemmods.linwood.dev/docs/supported)
+</div>
 
-![Features](./assets/Features.png)
+---
 
-![Permissions](./assets/Permission.png)
+*Please note that this plugin is in alpha state and is not ready for production!*
 
+ItemMods is a plugin where you can extend your vanilla experience. 
+You can add custom blocks, items and more using a beautiful gui. 
+Get started [here](https://itemmods.linwood.dev/docs).
+You can add custom textures using the new custom model data added in 1.14.
 
+[Share your pack](https://itemmods.linwood.dev/docs/user/pack#share-the-pack) on our discord or [create an addon](https://itemmods.linwood.dev/docs/api/create-addons) to develop your own modification.
 
-## Contribute
+[Read the contribution guide](CONTRIBUTING.md) if you want to help me to develop the plugin.
 
-It will be cool if anybody can help me to maintain this plugin. If you have any question feel free to visit my discord and open a ticket.
+![## Screenshots](assets/screenshots.png)
 
-
-## Links
-
-* [Discord](https://go.linwood.dev/itemmods-discord)
-* [Wiki](https://itemmods.linwood.dev)
-* [Last build](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastSuccessfulBuild/)
-* [API](https://itemmods.linwood.dev/docs/api/intro)
+---
 
 [![BStats](https://bstats.org/signatures/bukkit/ItemMods.svg)](https://bstats.org/plugin/bukkit/ItemMods)
