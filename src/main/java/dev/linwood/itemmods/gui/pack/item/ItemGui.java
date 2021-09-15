@@ -139,7 +139,7 @@ public class ItemGui extends GuiCollection {
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> ItemGui.this.show((Player) event.getWhoClicked()));
