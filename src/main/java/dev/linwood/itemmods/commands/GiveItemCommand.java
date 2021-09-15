@@ -63,7 +63,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
                 var itemStack = customItem.getItemStack();
                 itemStack.setAmount(count);
                 player.getInventory().addItem(itemStack);
-                commandSender.sendMessage(t.getTranslation("success", packObject.toString()));
+                commandSender.sendMessage(t.getTranslation("success", player.getName(), packObject.toString()));
             } catch (UnsupportedOperationException exception) {
                 commandSender.sendMessage(t.getTranslation("no-item"));
                 return true;

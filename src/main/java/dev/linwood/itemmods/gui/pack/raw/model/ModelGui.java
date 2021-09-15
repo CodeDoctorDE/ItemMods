@@ -1,5 +1,6 @@
 package dev.linwood.itemmods.gui.pack.raw.model;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.GuiCollection;
 import dev.linwood.api.ui.item.StaticItem;
@@ -7,7 +8,6 @@ import dev.linwood.api.ui.template.gui.MaterialListGui;
 import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.raw.DataGui;
 import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
@@ -68,7 +68,7 @@ public class ModelGui extends GuiCollection {
                 case APPEARANCE:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture()).displayName("fallback.title").lore("fallback.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getFallbackTexture().getKey().toString()));
-                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials"), material -> {
+                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials").merge(ItemMods.getTranslationConfig().subTranslation("gui")), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
                             show((Player) event.getWhoClicked());
@@ -86,7 +86,7 @@ public class ModelGui extends GuiCollection {
                             itemMeta.setAuthor("§6ItemMods");
                             itemMeta.addPage(new String(asset.getData(variation)));
                             itemStack.setItemMeta(itemMeta);
-                            ((Player)event.getWhoClicked()).openBook(itemStack);
+                            ((Player) event.getWhoClicked()).openBook(itemStack);
                         }).show((Player) event.getWhoClicked()));
                     }});
                     break;
@@ -94,6 +94,7 @@ public class ModelGui extends GuiCollection {
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                            setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterModel(asset.getName());

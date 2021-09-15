@@ -32,106 +32,46 @@
   "knowledge": {
     "title": "§6Conocimiento"
   },
+  "gui": {
+    "first": "§6First",
+    "previous": "§6Previous",
+    "next": "§6Next",
+    "last": "§6Last",
+    "actions": "§7Click to choose",
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+      "title": "§6Search",
+      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+    },
+    "yes": "§aYes",
+    "no": "§cNo"
+  },
   "template": {
     "title": "§6Plantilla",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
     "create": {
       "title": "§6Añadir",
       "description": "§7Añadir nueva plantilla"
-    },
-    "search": {
-      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-      "title": "§6Buscar",
-      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     }
   },
   "choose": {
     "pack": {
-      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir paquete §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir paquete §7(%d/%d)"
     },
     "template": {
-      "title": "§6Elegir plantilla §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§6Elegir plantilla §7(%d/%d)"
     },
     "item": {
-      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir objeto §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aElegir objeto §7(%d/%d)"
     },
     "block": {
-      "title": "§6Elegir bloque §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§6Elegir bloque §7(%d/%d)"
     },
     "model": {
-      "title": "§6Elegir modelo §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§6Elegir modelo §7(%d/%d)"
     },
     "texture": {
-      "title": "§6Elegir textura §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "actions": "§7Clic para elegir",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      }
+      "title": "§6Elegir textura §7(%d/%d)"
     }
   },
   "main": {
@@ -195,49 +135,23 @@
     }
   },
   "locales": {
-    "title": "§6Locales §7(%d/%d)",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
-    "item": "§6%s",
-    "actions": "§7Clic para establecer"
+    "title": "§6Locales §7(%d/%d)"
   },
   "packs": {
     "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aPaquetes §7(%d/%d)",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
+    "actions": "§7Abrir el gui del pack",
     "readonly": "§eMods §7» §cEste paquete es de sólo lectura.",
-    "search": {
-      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-      "title": "§6Buscar",
-      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-    },
     "create": {
       "title": "§6Crear",
       "description": "§7Crear un nuevo paquete",
       "message": "§eItemMods §7» §ePor favor, introduce el nombre del paquete. Cancela con un clic izquierdo.",
       "success": "§eMods §7» §aCreado con éxito el pack §3%s§a.",
       "failed": "§eMods §7» §cNombre del paquete inválido."
-    },
-    "item": "§6%s",
-    "actions": "§7Abrir el gui del pack"
+    }
   },
   "inactive-packs": {
     "title": "§6Paquetes inactivos §7(%d/%d)",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
-    "item": "§6%s",
-    "search": {
-      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-      "title": "§6Buscar",
-      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-    },
-    "actions": "§7Abrir el gui del pack"
+    "actions": "§7Click to activate"
   },
   "pack": {
     "created": "§eItemMods §7» §6La carpeta del paquete ha sido creada!",
@@ -313,16 +227,6 @@
   },
   "items": {
     "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aArtículos §3%s §7(%d/%d)",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
-    "search": {
-      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-      "title": "§6Buscar",
-      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-    },
-    "item": "%s",
     "create": {
       "title": "§6Crear",
       "description": "§7Crear un nuevo objeto",
@@ -399,16 +303,6 @@
   },
   "blocks": {
     "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aBloques §3%s §7(%d/%d)",
-    "first": "§6Primero",
-    "previous": "§6Anterior",
-    "next": "§6Siguiente",
-    "last": "§6Última",
-    "item": "%s",
-    "search": {
-      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-      "title": "§6Buscar",
-      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-    },
     "create": {
       "title": "§6Crear",
       "description": "§7Crear un nuevo bloque",
@@ -487,16 +381,6 @@
   "raw": {
     "models": {
       "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aModelos §3%s §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "item": "§6%s",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      },
       "create": {
         "title": "§6Crear",
         "description": "§7Crear un nuevo modelo",
@@ -536,23 +420,12 @@
         "gui": {
           "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar modelo §3%s§6?",
           "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar modelo §3%s§6?",
-          "description": "§7Este proceso no se puede deshacer!",
-          "yes": "§aSí",
-          "no": "§cNo"
+          "description": "§7Este proceso no se puede deshacer!"
         }
       }
     },
     "textures": {
       "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aTexturas §3%s §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      },
       "create": {
         "title": "§6Crear",
         "description": "§7Crear una nueva textura",
@@ -560,8 +433,7 @@
         "success": "§eMods §7» §aCreado exitosamente la textura §3%s§a.",
         "failed": "§eMods §7» §cNombre de textura inválido."
       },
-      "item": "§6%s",
-      "actions": "§7Abrir el gui del modelo"
+      "actions": "§7Open the texture gui"
     },
     "texture": {
       "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aTextura §3%s",
@@ -589,23 +461,12 @@
         "gui": {
           "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar textura §3%s§a?",
           "message": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ ¿Eliminar textura §3%s§a?",
-          "description": "§7Este proceso no se puede deshacer!",
-          "yes": "§aSí",
-          "no": "§cNo"
+          "description": "§7Este proceso no se puede deshacer!"
         }
       }
     },
     "data": {
       "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aDatos §3%s §7(%d/%d)",
-      "first": "§6Primero",
-      "previous": "§6Anterior",
-      "next": "§6Siguiente",
-      "last": "§6Última",
-      "search": {
-        "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
-        "title": "§6Buscar",
-        "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
-      },
       "set": {
         "title": "§6%s",
         "description": "§7Click izquierdo » Mostrar contenido\n§7Drop » Eliminar"
@@ -650,7 +511,7 @@
     "give": {
       "usage": "§eMods §7» §cUso: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4¡Este no es un número válido de objetos!",
-      "success": "§eMods §7» §a§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§2♣§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kii§a§lSkyblock§d§kiii§2♣ §aMods §aMods §2» §2» §2h dio con éxito a %s el objeto %s"
+      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
     },
     "no-number": "§eItemMods §7» §4¡No es un número!",
     "success": "§eItemMods §7» §aSuccessfully gave you the item §3%s§a!"

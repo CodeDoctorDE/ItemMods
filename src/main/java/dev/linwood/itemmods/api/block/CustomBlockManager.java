@@ -3,6 +3,7 @@ package dev.linwood.itemmods.api.block;
 import de.tr7zw.changeme.nbtapi.NBTTileEntity;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,18 +19,31 @@ import java.util.Objects;
 
 public class CustomBlockManager {
 
-    public static @NotNull
+    private static @NotNull
     String locationToString(final @Nullable Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }
 
-    public static @NotNull
+    private static @NotNull
     Location stringToLocation(final @NotNull String location) {
         String[] locationArray = location.split(":");
         return new Location(Bukkit.getWorld(locationArray[0]), Double.parseDouble(locationArray[1]),
                 Double.parseDouble(locationArray[2]),
                 Double.parseDouble(locationArray[3]));
+    }
+
+    public BlockAsset getAssetByKey(String key) throws UnsupportedOperationException {
+        var packObject = new PackObject(key);
+        return packObject.getBlock();
+    }
+
+    public CustomBlock fromLocation(Location location) {
+        return new CustomBlock(location);
+    }
+
+    public CustomBlock fromBlock(Block block) {
+        return new CustomBlock(block);
     }
 
     /**

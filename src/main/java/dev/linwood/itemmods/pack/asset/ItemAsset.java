@@ -17,6 +17,7 @@ public class ItemAsset extends CustomNamedAsset {
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();
 
+
     public ItemAsset(@NotNull String name) {
         super(name);
     }
@@ -57,7 +58,7 @@ public class ItemAsset extends CustomNamedAsset {
     @NotNull
     public Material getIcon() {
         var model = getModel();
-        if (model == null || model.getFallbackTexture() == null)
+        if (model == null)
             return Material.DIAMOND;
         return model.getFallbackTexture();
     }

@@ -1,12 +1,12 @@
 package dev.linwood.itemmods.gui.pack.block;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.GuiCollection;
 import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.BlocksGui;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
@@ -14,6 +14,7 @@ import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
 import dev.linwood.itemmods.gui.pack.raw.model.ChooseModelGui;
 import dev.linwood.itemmods.gui.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -83,29 +84,10 @@ public class BlockGui extends GuiCollection {
                             p.sendMessage(t.getTranslation("display.message"));
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
-                                asset.setDisplayName(ts);
+                                asset.setDisplayName(new TranslatableName(ts));
                                 packObject.save();
                                 show(p);
                                 p.sendMessage(t.getTranslation("display.success", ts));
-                            });
-                        });
-                    }});
-                    addItem(new TranslatedGuiItem() {{
-                        setRenderAction(gui -> {
-                            var prefix = "localized-name." + (asset.getLocalizedName() == null ? "not-set" : "set") + ".";
-                            setItemStack(new ItemStackBuilder(Material.BOOK).displayName(prefix + "title").lore(prefix + "description").build());
-                            if (asset.getLocalizedName() != null) setPlaceholders(asset.getLocalizedName());
-                        });
-                        setClickAction(event -> {
-                            var p = (Player) event.getWhoClicked();
-                            hide(p);
-                            var request = new ChatRequest(p);
-                            p.sendMessage(t.getTranslation("localized-name.message"));
-                            request.setSubmitAction(s -> {
-                                asset.setLocalizedName(s);
-                                packObject.save();
-                                show(p);
-                                p.sendMessage(t.getTranslation("localized-name.success", s));
                             });
                         });
                     }});
@@ -150,11 +132,12 @@ public class BlockGui extends GuiCollection {
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                            setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new ModelsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> BlockGui.this.show((Player) event.getWhoClicked()));

@@ -3,8 +3,8 @@ package dev.linwood.itemmods;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackTypeAdapter;
 import dev.linwood.api.serializer.BlockDataTypeAdapter;
-import dev.linwood.api.serializer.ItemStackTypeAdapter;
 import dev.linwood.api.serializer.LocationTypeAdapter;
 import dev.linwood.api.server.Version;
 import dev.linwood.api.translations.Translation;
@@ -52,6 +52,7 @@ public class ItemMods extends JavaPlugin {
             .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
             .serializeNulls()
             .setPrettyPrinting().create();
+    public static final int FILE_VERSION = 0;
     private static ItemMods plugin;
     private static Path mainConfigFile;
     private static MainConfig mainConfig;
@@ -60,6 +61,7 @@ public class ItemMods extends JavaPlugin {
     private static TranslationConfig translationConfig;
     private static Path tempPath;
     private static Path translationsPath;
+    private static boolean runningOnPaper;
     private static PackManager packManager;
     private Connection connection;
 
@@ -138,10 +140,20 @@ public class ItemMods extends JavaPlugin {
         reloadMainConfig();
     }
 
+    public static boolean isRunningOnPaper() {
+        return runningOnPaper;
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
         translationsPath = Paths.get(getDataFolder().getAbsolutePath(), "translations");
+        try {
+            Class.forName("com.destroystokyo.paper.PaperConfig");
+            runningOnPaper = true;
+        } catch (ClassNotFoundException e) {
+            runningOnPaper = false;
+        }
         try {
             Files.createDirectories(translationsPath);
             var uri = Objects.requireNonNull(getClass().getResource("/translations/")).toURI();
@@ -242,5 +254,4 @@ public class ItemMods extends JavaPlugin {
                     mainConfig.getDatabaseConfig().getUsername(), mainConfig.getDatabaseConfig().getPassword());
         }
     }
-
 }

@@ -1,12 +1,12 @@
 package dev.linwood.itemmods.gui.pack.raw.texture;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.GuiCollection;
 import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.raw.DataGui;
 import dev.linwood.itemmods.gui.pack.raw.TexturesGui;
@@ -73,6 +73,7 @@ public class TextureGui extends GuiCollection {
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getName()));
                         setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                            setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterTexture(asset.getName());

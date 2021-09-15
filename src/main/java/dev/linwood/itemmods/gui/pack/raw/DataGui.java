@@ -1,5 +1,6 @@
 package dev.linwood.itemmods.gui.pack.raw;
 
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.item.StaticItem;
@@ -7,7 +8,6 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
-import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
@@ -25,7 +25,7 @@ public class DataGui extends ListGui {
     private final @NotNull RawAsset asset;
 
     public DataGui(@NotNull String namespace, @NotNull RawAsset asset, @NotNull Runnable action, @NotNull Consumer<String> showAction) {
-        super(ItemMods.getTranslationConfig().subTranslation("raw.data"), 4);
+        super(ItemMods.getTranslationConfig().subTranslation("raw.data").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4);
         setPlaceholders(new PackObject(namespace, asset.getName()).toString());
         setItemBuilder((gui) -> new ArrayList<>(asset.getVariations()) {{
             remove("default");

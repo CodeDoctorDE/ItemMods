@@ -2,6 +2,7 @@ package dev.linwood.itemmods.pack.asset;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.NamedPackObject;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.custom.CustomTemplateData;
@@ -59,6 +60,7 @@ public abstract class PackAsset extends NamedPackObject {
             current.addProperty("object", customTemplateData.getObject().toString());
             return current;
         }).forEach(customTemplatesArray::add);
+        jsonObject.addProperty("version", ItemMods.FILE_VERSION);
         jsonObject.add("templates", customTemplatesArray);
         return jsonObject;
     }

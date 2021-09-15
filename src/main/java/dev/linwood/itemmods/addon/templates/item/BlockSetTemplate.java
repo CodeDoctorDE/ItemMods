@@ -2,8 +2,8 @@ package dev.linwood.itemmods.addon.templates.item;
 
 import com.google.gson.JsonNull;
 import com.google.gson.JsonPrimitive;
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.translations.Translation;
-import dev.linwood.api.utils.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.gui.pack.ChoosePackGui;
 import dev.linwood.itemmods.gui.pack.block.ChooseBlockGui;
@@ -25,6 +25,11 @@ import org.jetbrains.annotations.Nullable;
  */
 public class BlockSetTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block");
+
+    @Override
+    public @NotNull String getName() {
+        return "block";
+    }
 
     @Override
     public @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data) {
@@ -55,11 +60,6 @@ public class BlockSetTemplate extends CustomTemplate {
         return true;
     }
 
-    @NotNull
-    @Override
-    public String getName() {
-        return t.getTranslation("name");
-    }
 
     public @Nullable PackObject getBlock(CustomTemplateData data) {
         if (data.getData() == null)

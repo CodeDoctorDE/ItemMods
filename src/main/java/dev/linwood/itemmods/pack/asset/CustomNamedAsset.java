@@ -2,11 +2,12 @@ package dev.linwood.itemmods.pack.asset;
 
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.TranslatableName;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class CustomNamedAsset extends PackAsset {
-    private @Nullable String localizedName, displayName;
+    private @Nullable TranslatableName displayName;
 
     public CustomNamedAsset(@NotNull String name) {
         super(name);
@@ -14,29 +15,15 @@ public abstract class CustomNamedAsset extends PackAsset {
 
     public CustomNamedAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
-        if (jsonObject.has("localized-name"))
-            localizedName = jsonObject.get("localized-name").getAsString();
-        if (jsonObject.has("display"))
-            displayName = jsonObject.get("display").getAsString();
+        if (jsonObject.has("display") && jsonObject.get("display").isJsonObject())
+            displayName = new TranslatableName(jsonObject.getAsJsonObject("display"));
     }
 
-    public @Nullable String getLocalizedName() {
-        return localizedName;
-    }
-
-    public void setLocalizedName(@Nullable String localizedName) {
-        this.localizedName = localizedName;
-    }
-
-    public void removeLocalizedName() {
-        localizedName = null;
-    }
-
-    public @Nullable String getDisplayName() {
+    public @Nullable TranslatableName getDisplayName() {
         return displayName;
     }
 
-    public void setDisplayName(@Nullable String displayName) {
+    public void setDisplayName(@Nullable TranslatableName displayName) {
         this.displayName = displayName;
     }
 
@@ -47,8 +34,7 @@ public abstract class CustomNamedAsset extends PackAsset {
     @Override
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
-        jsonObject.addProperty("display", displayName);
-        jsonObject.addProperty("localized-name", localizedName);
+        jsonObject.add("display", displayName == null ? null : displayName.save());
         return jsonObject;
     }
 }

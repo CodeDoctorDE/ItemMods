@@ -16,9 +16,9 @@ The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/I
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>com.github.codedoctorde</groupId>
+            <groupId>dev.linwood</groupId>
             <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.0</version>
+            <version>2.0.0-alpha.1</version>
         </dependency>
     </dependencies>
   </project>

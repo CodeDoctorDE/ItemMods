@@ -1,6 +1,7 @@
 package dev.linwood.itemmods.api.block;
 
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import org.bukkit.Location;
@@ -13,7 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CustomBlock {
+public class CustomBlock implements CustomElement<BlockAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_data");
     private final Location location;
@@ -27,26 +28,21 @@ public class CustomBlock {
     }
 
     public @Nullable BlockAsset getConfig() {
-        try {
-            var type = getType();
-            if (type == null)
-                return null;
-            var packObject = new PackObject(type);
-            return packObject.getBlock();
-        } catch (Exception ignored) {
+        var packObject = getPackObject();
+        if(packObject == null)
             return null;
-        }
+        return packObject.getBlock();
     }
 
     public Location getLocation() {
         return location;
     }
 
-    public @Nullable String getType() {
+    private @NotNull String getType() {
         return getString(TYPE_KEY);
     }
 
-    public @Nullable String getData() {
+    public @NotNull String getData() {
         return getString(DATA_KEY);
     }
 
@@ -67,16 +63,16 @@ public class CustomBlock {
         return location.getBlock();
     }
 
-    private @Nullable String getString(@NotNull NamespacedKey key) {
+    private @NotNull String getString(@NotNull NamespacedKey key) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;
-            return tileState.getPersistentDataContainer().get(key, PersistentDataType.STRING);
+            return tileState.getPersistentDataContainer().getOrDefault(key, PersistentDataType.STRING, "");
         }
-        return null;
+        return "";
     }
 
-    public void setString(@NotNull NamespacedKey key, @NotNull String value) {
+    private void setString(@NotNull NamespacedKey key, @NotNull String value) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;
@@ -90,5 +86,12 @@ public class CustomBlock {
      */
     public void configure() {
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
+    }
+
+    public @Nullable PackObject getPackObject() {
+        var type = getType();
+        if (type.equals(""))
+            return null;
+        return new PackObject(type);
     }
 }
