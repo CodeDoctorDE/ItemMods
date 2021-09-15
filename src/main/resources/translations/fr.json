@@ -38,7 +38,14 @@
     "next": "§6Next",
     "last": "§6Last",
     "actions": "§7Click to choose",
-    "item": "§6%s"
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+      "title": "§6Search",
+      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+    },
+    "yes": "§aYes",
+    "no": "§cNo"
   },
   "template": {
     "title": "§7Modèle",
@@ -128,11 +135,11 @@
     }
   },
   "locales": {
-    "title": "§6Locales §7(%d/%d)",
-    "actions": "§7Cliquez pour définir"
+    "title": "§6Locales §7(%d/%d)"
   },
   "packs": {
     "title": "§6Packs §7(%d/%d)",
+    "actions": "§7Ouvre l'interface du pack",
     "readonly": "§eItemMods §7» §cCe pack est en lecture seule.",
     "create": {
       "title": "§7Créer",
@@ -140,12 +147,11 @@
       "message": "§eItemMods §7» §eVeuillez entrer le nom du pack. Annuler avec un clic gauche.",
       "success": "§eItemMods §7» §aLe pack §3%sa été créé avec succès.",
       "failed": "§eItemMods §7» §cNom de pack invalide."
-    },
-    "actions": "§7Ouvre l'interface du pack"
+    }
   },
   "inactive-packs": {
     "title": "§7packs inactifs §7(%d/%d)",
-    "actions": "§7Ouvre l'interface du pack"
+    "actions": "§7Click to activate"
   },
   "pack": {
     "created": "§eItemMods §7» §6Le dossier Pack a été créé !",
@@ -221,7 +227,6 @@
   },
   "items": {
     "title": "§7Items §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§7Créer",
       "description": "§7Créer un nouvel objet",
@@ -298,7 +303,6 @@
   },
   "blocks": {
     "title": "§6Blocs §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§7Créer",
       "description": "§7Créer un nouveau bloc",
@@ -416,9 +420,7 @@
         "gui": {
           "title": "§7Supprimer le modèle §3%s?",
           "message": "§7Supprimer le modèle §3%s?",
-          "description": "§7Ce processus ne peut pas être annulé!",
-          "yes": "§aOui",
-          "no": "§cNon"
+          "description": "§7Ce processus ne peut pas être annulé!"
         }
       }
     },
@@ -431,8 +433,7 @@
         "success": "§eItemMods §7» §aa créé la texture §3%s§a.",
         "failed": "§eItemMods §7» §cNom de texture invalide."
       },
-      "item": "§6%s",
-      "actions": "§7Ouvre l'interface du modèle"
+      "actions": "§7Open the texture gui"
     },
     "texture": {
       "title": "§7Texture §3%s",
@@ -460,9 +461,7 @@
         "gui": {
           "title": "§7Supprimer la texture §3%s§6?",
           "message": "§7Supprimer la texture §3%s§6?",
-          "description": "§7Ce processus ne peut pas être annulé!",
-          "yes": "§aOui",
-          "no": "§cNon"
+          "description": "§7Ce processus ne peut pas être annulé!"
         }
       }
     },
