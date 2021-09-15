@@ -1,11 +1,15 @@
-![ItemMods](./assets/header.svg)
-# ItemMods
+<div align="center">
+
+![# ItemMods](./assets/header.svg)
 
 [![Latest release)](https://img.shields.io/github/v/release/CodeDoctorDE/ItemMods?color=FF0000&include_prereleases&style=for-the-badge&logo=github&logoColor=FF0000)](https://github.com/CodeDoctorDE/ItemMods/releases)
 [![Wiki](https://img.shields.io/badge/Wiki-itemmods.linwood.dev-FF0000?style=for-the-badge)](https://itemmods.linwood.dev)
 [![Discord](https://img.shields.io/discord/586558998749118467?color=%23FF0000&label=Discord&style=for-the-badge&logo=discord&logoColor=FF0000)](https://go.linwood.dev/itemmods-discord)
 [![JavaDocs](https://img.shields.io/badge/API-Documentation-FF0000?style=for-the-badge)](https://itemmods.linwood.dev/apidocs)
 [![Supported](https://img.shields.io/badge/Supported-1.14.4--1.17.1-%23FF0000?style=for-the-badge)](https://itemmods.linwood.dev/docs/supported)
+</div>
+
+---
 
 *Please note that this plugin is in alpha state and is not ready for production!*
 
