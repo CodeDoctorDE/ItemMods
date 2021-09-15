@@ -38,7 +38,14 @@
     "next": "§6Next",
     "last": "§6Last",
     "actions": "§7Click to choose",
-    "item": "§6%s"
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+      "title": "§6Search",
+      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+    },
+    "yes": "§aYes",
+    "no": "§cNo"
   },
   "template": {
     "title": "§6Mal",
@@ -128,11 +135,11 @@
     }
   },
   "locales": {
-    "title": "§6Locales §7(%d/%d)",
-    "actions": "§7Klikk for å angi"
+    "title": "§6Locales §7(%d/%d)"
   },
   "packs": {
     "title": "§6Pakker §7(%d/%d)",
+    "actions": "§7Åpne pakken gui",
     "readonly": "§eItemMods §7» §c» §cDenne pakken er skrivebeskyttet.",
     "create": {
       "title": "§6Lag",
@@ -140,12 +147,11 @@
       "message": "§eItemMods §7» §ePlease enter the name of the pack. Avbryt med et venstre klikk.",
       "success": "§eItemMods §7» §aVellykket opprettet pakken §3%s§a.",
       "failed": "§eItemMods §7» §cUgyldig pakkenavn."
-    },
-    "actions": "§7Åpne pakken gui"
+    }
   },
   "inactive-packs": {
     "title": "§6Inaktive pakker §7(%d/%d)",
-    "actions": "§7Åpne pakken gui"
+    "actions": "§7Click to activate"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pakke mappen ble opprettet!",
@@ -221,7 +227,6 @@
   },
   "items": {
     "title": "§6Gjenstander §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Lag",
       "description": "§7Create a new item",
@@ -298,7 +303,6 @@
   },
   "blocks": {
     "title": "§6Blokker §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Lag",
       "description": "§7Opprett en ny blokk",
@@ -416,9 +420,7 @@
         "gui": {
           "title": "§6Slett modell §3%s§6?",
           "message": "§6Slett modell §3%s§6?",
-          "description": "§7Denne prosessen kan ikke angres!",
-          "yes": "§aJa",
-          "no": "§cNei"
+          "description": "§7Denne prosessen kan ikke angres!"
         }
       }
     },
@@ -431,8 +433,7 @@
         "success": "§eItemMods §7» §aVellykket opprettet teksturen §3%s§a.",
         "failed": "§eItemMods §7» §cUgyldig texture navn."
       },
-      "item": "§7%s",
-      "actions": "§7Åpne modellen gui"
+      "actions": "§7Open the texture gui"
     },
     "texture": {
       "title": "§6Tekstur §3%s",
@@ -460,9 +461,7 @@
         "gui": {
           "title": "§6Slett tekstur §3%s§6?",
           "message": "§6Slett tekstur §3%s§6?",
-          "description": "§7Denne prosessen kan ikke angres!",
-          "yes": "§aJa",
-          "no": "§cNei"
+          "description": "§7Denne prosessen kan ikke angres!"
         }
       }
     },

@@ -38,7 +38,14 @@
     "next": "§6Nächste",
     "last": "§6Letzter",
     "actions": "§7Klicke zum Auswählen",
-    "item": "§6%s"
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §eBitte den Suchtext eingeben. Mit einem Linksklick abbrechen.",
+      "title": "§6Suche",
+      "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
+    },
+    "yes": "§aJa",
+    "no": "§cNein"
   },
   "template": {
     "title": "§6Vorlage",
@@ -128,11 +135,11 @@
     }
   },
   "locales": {
-    "title": "§6Übersetzungen §7(%d/%d)",
-    "actions": "§7Klicke, um zu setzen"
+    "title": "§6Übersetzungen §7(%d/%d)"
   },
   "packs": {
     "title": "§6Pakete §7(%d/%d)",
+    "actions": "§7Öffne das Paketgui",
     "readonly": "§eItemMods §7» §cDieses Paket ist schreibgeschützt.",
     "create": {
       "title": "§6Erstellen",
@@ -140,12 +147,11 @@
       "message": "§eItemMods §7» §eBitte gib den Namen des Pakets ein. Mit einem Linksklick abbrechen.",
       "success": "§eItemMods §7» §aErfolgreich das Paket §3%s§a erstellt.",
       "failed": "§eItemMods §7» §cUngültiger Paketname."
-    },
-    "actions": "§7Öffne das Paketgui"
+    }
   },
   "inactive-packs": {
     "title": "§6Inaktive Pakete §7(%d/%d)",
-    "actions": "§7Öffne das Paketgui"
+    "actions": "§7Click to activate"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
@@ -221,7 +227,6 @@
   },
   "items": {
     "title": "§6Items §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Erstellen",
       "description": "§7Neues Item erstellen",
@@ -298,7 +303,6 @@
   },
   "blocks": {
     "title": "§6Blöcke §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Erstellen",
       "description": "§7Erstelle einen neuen Block",
@@ -416,9 +420,7 @@
         "gui": {
           "title": "§6Modell §3%s§6 löschen?",
           "message": "§6Modell §3%s§6 löschen?",
-          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
-          "yes": "§aJa",
-          "no": "§cNein"
+          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!"
         }
       }
     },
@@ -431,8 +433,7 @@
         "success": "§eItemMods §7» §aErfolgreich die Textur §3%s §aerstellt.",
         "failed": "§eItemMods §7» §cUngültiger Texturname."
       },
-      "item": "§6%s",
-      "actions": "§7Öffne das Modell gui"
+      "actions": "§7Open the texture gui"
     },
     "texture": {
       "title": "§6Textur §3%s",
@@ -460,9 +461,7 @@
         "gui": {
           "title": "§6Textur §3%s §6löschen?",
           "message": "§6Textur §3%s §6löschen?",
-          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!",
-          "yes": "§aJa",
-          "no": "§cNein"
+          "description": "§7Dieser Prozess kann nicht rückgängig gemacht werden!"
         }
       }
     },
@@ -512,7 +511,7 @@
     "give": {
       "usage": "§eItemMods §7» §cVerwende: §3/giveitem <Spieler> <Item> [<Anzahl>]§c!",
       "no-item": "§eItemMods §7» §4Dies ist keine gültige Gegenstandsanzahl!",
-      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
+      "success": "§eItemMods §7» §aErfolgreich §3%s §adem Gegenstand §3%s gegeben"
     },
     "no-number": "§eItemMods §7» §4Das ist keine Zahl!",
     "success": "§eItemMods §7» §aErfolgreich gab dir den Gegenstand §3%s§a!"
