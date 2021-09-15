@@ -25,7 +25,7 @@ public class DataGui extends ListGui {
     private final @NotNull RawAsset asset;
 
     public DataGui(@NotNull String namespace, @NotNull RawAsset asset, @NotNull Runnable action, @NotNull Consumer<String> showAction) {
-        super(ItemMods.getTranslationConfig().subTranslation("raw.data"), 4);
+        super(ItemMods.getTranslationConfig().subTranslation("raw.data").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4);
         setPlaceholders(new PackObject(namespace, asset.getName()).toString());
         setItemBuilder((gui) -> new ArrayList<>(asset.getVariations()) {{
             remove("default");

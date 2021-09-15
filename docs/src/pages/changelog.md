@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0-alpha.1
+
+This is a maintenance update.
+Translation bugs ([#18](https://github.com/CodeDoctorDE/ItemMods/issues/18)) were fixed and new api methods were implemented.
+
 ## 2.0.0-alpha.0
 
 ItemMods has its first birthday! Happy birthday! Come to [the discord](https://go.linwood.dev/itemmods-discord) to celebrate this!

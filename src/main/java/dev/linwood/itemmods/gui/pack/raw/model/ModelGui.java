@@ -68,7 +68,7 @@ public class ModelGui extends GuiCollection {
                 case APPEARANCE:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture()).displayName("fallback.title").lore("fallback.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getFallbackTexture().getKey().toString()));
-                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials"), material -> {
+                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials").merge(ItemMods.getTranslationConfig().subTranslation("gui")), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
                             show((Player) event.getWhoClicked());
