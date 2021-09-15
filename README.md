@@ -1,6 +1,6 @@
 <div align="center">
 
-![# ItemMods](./assets/header.svg)
+![# ItemMods](./assets/header.png)
 
 [![Latest release)](https://img.shields.io/github/v/release/CodeDoctorDE/ItemMods?color=FF0000&include_prereleases&style=for-the-badge&logo=github&logoColor=FF0000)](https://github.com/CodeDoctorDE/ItemMods/releases)
 [![Wiki](https://img.shields.io/badge/Wiki-itemmods.linwood.dev-FF0000?style=for-the-badge)](https://itemmods.linwood.dev)
