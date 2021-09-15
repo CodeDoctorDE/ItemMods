@@ -22,7 +22,18 @@ You can add custom textures using the new custom model data added in 1.14.
 
 [Read the contribution guide](CONTRIBUTING.md) if you want to help me to develop the plugin.
 
+---
+<div align="center">
+
 ![## Screenshots](assets/screenshots.png)
+
+![Main gui](assets/screenshots/main.png)
+
+![Pack gui](assets/screenshots/pack.png)
+
+![Custom block](assets/screenshots/block.png)
+
+</div>
 
 ---
 
