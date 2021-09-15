@@ -38,7 +38,14 @@
     "next": "§6Next",
     "last": "§6Last",
     "actions": "§7Click to choose",
-    "item": "§6%s"
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
+      "title": "§6Search",
+      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+    },
+    "yes": "§aYes",
+    "no": "§cNo"
   },
   "template": {
     "title": "§6Template",
@@ -128,11 +135,11 @@
     }
   },
   "locales": {
-    "title": "§6Locales §7(%d/%d)",
-    "actions": "§7Click to set"
+    "title": "§6Locales §7(%d/%d)"
   },
   "packs": {
     "title": "§6Packs §7(%d/%d)",
+    "actions": "§7Open the pack gui",
     "readonly": "§eItemMods §7» §cThis pack is readonly.",
     "create": {
       "title": "§6Create",
@@ -140,12 +147,11 @@
       "message": "§eItemMods §7» §ePlease enter the name of the pack. Cancel with a left click.",
       "success": "§eItemMods §7» §aSuccessfully created the pack §3%s§a.",
       "failed": "§eItemMods §7» §cInvalid pack name."
-    },
-    "actions": "§7Open the pack gui"
+    }
   },
   "inactive-packs": {
     "title": "§6Inactive packs §7(%d/%d)",
-    "actions": "§7Open the pack gui"
+    "actions": "§7Click to activate"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pack folder was created!",
@@ -221,7 +227,6 @@
   },
   "items": {
     "title": "§6Items §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Create",
       "description": "§7Create a new item",
@@ -298,7 +303,6 @@
   },
   "blocks": {
     "title": "§6Blocks §3%s §7(%d/%d)",
-    "item": "%s",
     "create": {
       "title": "§6Create",
       "description": "§7Create a new block",
@@ -416,9 +420,7 @@
         "gui": {
           "title": "§6Delete model §3%s§6?",
           "message": "§6Delete model §3%s§6?",
-          "description": "§7This process cannot be undo!",
-          "yes": "§aYes",
-          "no": "§cNo"
+          "description": "§7This process cannot be undo!"
         }
       }
     },
@@ -431,8 +433,7 @@
         "success": "§eItemMods §7» §aSuccessfully created the texture §3%s§a.",
         "failed": "§eItemMods §7» §cInvalid texture name."
       },
-      "item": "§6%s",
-      "actions": "§7Open the model gui"
+      "actions": "§7Open the texture gui"
     },
     "texture": {
       "title": "§6Texture §3%s",
@@ -460,9 +461,7 @@
         "gui": {
           "title": "§6Delete texture §3%s§6?",
           "message": "§6Delete texture §3%s§6?",
-          "description": "§7This process cannot be undo!",
-          "yes": "§aYes",
-          "no": "§cNo"
+          "description": "§7This process cannot be undo!"
         }
       }
     },
