@@ -5,7 +5,7 @@ files: [
     {
       source: 'src/main/resources/translations/en.json',
       translation: '/src/main/resources/translations/%two_letters_code%.json'
-    }
+    },
     # JSON translation files
     {
       source: '/docs/i18n/en/**/*',
