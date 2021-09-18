@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '12.x'
       - name: Test Build
+        working-directory: docs
         run: |
           if [ -e yarn.lock ]; then
             yarn install --frozen-lockfile
