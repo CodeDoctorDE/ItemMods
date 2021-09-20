@@ -38,6 +38,8 @@ body:
         - Paper
         - Airplane
         - Purpur
+    validations:
+      required: true
   - type: dropdown
     id: server-version
     attributes:
@@ -56,6 +58,8 @@ body:
         - "1.15.1"
         - "1.15"
         - "1.14.4"
+    validations:
+      required: true
   - type: textarea
     id: logs
     attributes:
