@@ -49,7 +49,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: "JavaDoc-Snapshot"
-          path: "target/site/apidocs-snapshot"
+          path: "target/site/apidocs"
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
