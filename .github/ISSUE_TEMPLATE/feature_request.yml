@@ -1,7 +1,7 @@
 name: Feature request
 description: Suggest a feature
 title: "[Feature request]: "
-labels: ["enchancement", "triage"]
+labels: ["enhancement", "triage"]
 assignees:
   - CodeDoctorDE
 body:
