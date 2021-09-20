@@ -29,7 +29,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: server
+    id: server-type
     attributes:
       label: Server type
       description: What type is your server running on?
@@ -39,7 +39,7 @@ body:
         - Airplane
         - Purpur
   - type: dropdown
-    id: server
+    id: server-version
     attributes:
       label: Server version
       description: What version is your server running on?
