@@ -52,6 +52,10 @@ public class ItemMods extends JavaPlugin {
             .registerTypeHierarchyAdapter(BlockData.class, new BlockDataTypeAdapter())
             .serializeNulls()
             .setPrettyPrinting().create();
+    /**
+     * The current version of the file.
+     * This is used to update the file if a new version is released!
+     */
     public static final int FILE_VERSION = 0;
     private static ItemMods plugin;
     private static Path mainConfigFile;
@@ -65,18 +69,34 @@ public class ItemMods extends JavaPlugin {
     private static PackManager packManager;
     private Connection connection;
 
+    /**
+     * Get the current plugin
+     * @return The singleton of this class created from the server
+     */
     public static ItemMods getPlugin() {
         return plugin;
     }
 
+    /**
+     * Get the current custom block manager singleton
+     * @return The singleton created from the plugin
+     */
     public static CustomBlockManager getCustomBlockManager() {
         return customBlockManager;
     }
 
+
+    /**
+     * Get the current custom item manager singleton
+     * @return The singleton created from the plugin
+     */
     public static CustomItemManager getCustomItemManager() {
         return customItemManager;
     }
 
+    /**
+     * Save the main config which can be got from the {@link #getMainConfig()} method
+     */
     public static void saveMainConfig() {
         try {
             FileWriter writer = new FileWriter(mainConfigFile.toString());
@@ -89,26 +109,50 @@ public class ItemMods extends JavaPlugin {
 
     }
 
+    /**
+     * Get the translation config where all translations for this plugin
+     * @return The translation config with all translations
+     */
     public static TranslationConfig getTranslationConfig() {
         return translationConfig;
     }
 
+    /**
+     * Get the general configuration located in plugins/ItemMods/config.json
+     * Can be saved with {@link #saveMainConfig()}
+     * @return The main config instance
+     */
     public static MainConfig getMainConfig() {
         return mainConfig;
     }
 
+    /**
+     * Get the pack manager to control all packs
+     * @return The singleton created from the plugin
+     */
     public static PackManager getPackManager() {
         return packManager;
     }
 
+    /**
+     * Get the version of the plugin
+     * @return The version string
+     */
     public static @NotNull String getVersion() {
         return getPlugin().getDescription().getVersion();
     }
 
+    /**
+     * Get the directory located in plugins/ItemMods/temp
+     * @return The path of the directory
+     */
     public static Path getTempPath() {
         return tempPath;
     }
 
+    /**
+     * Reload the main config which can be got from the {@link #getMainConfig()} method
+     */
     public static void reloadMainConfig() {
         try {
             if (!Files.exists(mainConfigFile))
@@ -122,10 +166,18 @@ public class ItemMods extends JavaPlugin {
             mainConfig = new MainConfig();
     }
 
+    /**
+     * Get all supported locales
+     * @return A list of the supported locales
+     * @throws IOException Throws if the directory can't be read
+     */
     public static List<String> getLocales() throws IOException {
         return Files.walk(translationsPath).filter(Files::isRegularFile).map(path -> translationsPath.relativize(path)).map(FileUtils::getFileName).collect(Collectors.toList());
     }
 
+    /**
+     * Reload the translation config, the main config and the pack manager
+     */
     public static void reload() {
         translationConfig = new TranslationConfig(GSON, Paths.get(getPlugin().getDataFolder().getAbsolutePath(), "translations", mainConfig.getLocale() + ".json").toString());
         var inputStream = getPlugin().getTextResource("translations/" + mainConfig.getLocale() + ".json");
@@ -140,6 +192,10 @@ public class ItemMods extends JavaPlugin {
         reloadMainConfig();
     }
 
+    /**
+     * Test if the server is running on paper
+     * @return Returns true if the server is running on paper
+     */
     public static boolean isRunningOnPaper() {
         return runningOnPaper;
     }
@@ -242,6 +298,9 @@ public class ItemMods extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.unloaded"));
     }
 
+    /**
+     * Currently not used
+     */
     private void connect() throws ClassNotFoundException, SQLException {
         if (connection != null && !connection.isClosed()) {
             return;

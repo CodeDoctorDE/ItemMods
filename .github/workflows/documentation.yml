@@ -31,17 +31,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: main
       - name: Build with Maven
         run: mvn clean install javadoc:javadoc
       - uses: actions/upload-artifact@v2
         with:
           name: "JavaDoc"
-          path: "target/site"
+          path: "target/site/apidocs"
+  javadoc-snapshot:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with Maven
+        run: mvn clean install javadoc:javadoc
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "JavaDoc-Snapshot"
+          path: "target/site/apidocs-snapshot"
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs:
       - javadoc
+      - javadoc-snapshot
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -58,8 +72,13 @@ jobs:
       - name: Download javadoc
         uses: actions/download-artifact@v2
         with:
-          name: JavaDoc
-          path: docs/static
+          name: "JavaDoc"
+          path: docs/static/apidocs
+      - name: Download javadoc-snapshot
+        uses: actions/download-artifact@v2
+        with:
+          name: "JavaDoc-Snapshot"
+          path: docs/static/apidocs-snapshot
       - name: Release to GitHub Pages
         working-directory: docs
         env:
