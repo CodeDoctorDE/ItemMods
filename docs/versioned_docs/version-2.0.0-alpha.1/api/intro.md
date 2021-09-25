@@ -23,7 +23,7 @@ The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/I
     </dependencies>
   </project>
    ```
-* The documentation about the api can you find [here](https://codedoctor.tk/ItemMods/apidocs). Please use the classes in the api package. The ItemModsApi instance can you get with `ItemMods.getPlugin().getApi()`
+* The documentation about the api can you find [here](/apidocs). Please use the classes in the api package. The ItemModsApi instance can you get with `ItemMods.getPlugin().getApi()`
 * Custom events:
    * CustomBlockPlaceEvent
    * CustomBlockBreakEvent
