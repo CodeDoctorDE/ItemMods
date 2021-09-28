@@ -44,6 +44,10 @@ module.exports = {
           dropdownItemsAfter: [{to: '/versions', label: 'All versions'}]
         },
         {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
           href: "https://github.com/CodeDoctorDE/ItemMods",
           label: "GitHub",
           position: "right",
