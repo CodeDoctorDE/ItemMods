@@ -39,6 +39,11 @@ module.exports = {
           to: "mods",
         },*/
         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}]
+        },
+        {
           href: "https://github.com/CodeDoctorDE/ItemMods",
           label: "GitHub",
           position: "right",
@@ -111,4 +116,8 @@ module.exports = {
       },
     ],
   ],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de', 'fr', 'no', 'es'],
+  }
 };
