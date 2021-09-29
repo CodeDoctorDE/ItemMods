@@ -2,8 +2,8 @@ package dev.linwood.itemmods.commands;
 
 import dev.linwood.api.translations.TranslationConfig;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.gui.KnowledgeGui;
-import dev.linwood.itemmods.gui.MainGui;
+import dev.linwood.itemmods.actions.KnowledgeAction;
+import dev.linwood.itemmods.actions.MainAction;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,9 +25,9 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
         }
         if (sender instanceof Player)
             if (sender.hasPermission("itemmods.admin"))
-                new MainGui().show((Player) sender);
+                new MainAction().showGui((Player) sender);
             else
-                new KnowledgeGui().show((Player) sender);
+                new KnowledgeAction().showGui((Player) sender);
         else
             sender.sendMessage(t.getTranslation("command.base.no-player"));
         return true;

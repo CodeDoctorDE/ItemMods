@@ -1,11 +1,11 @@
-package dev.linwood.itemmods.gui.pack.template;
+package dev.linwood.itemmods.actions.pack.template;
 
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.gui.pack.ChoosePackGui;
+import dev.linwood.itemmods.actions.pack.ChoosePackGui;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

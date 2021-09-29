@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.gui.pack;
+package dev.linwood.itemmods.actions.pack;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -7,7 +7,7 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.gui.pack.item.ItemGui;
+import dev.linwood.itemmods.actions.pack.item.ItemGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.gui.pack.raw;
+package dev.linwood.itemmods.actions.pack.raw;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;

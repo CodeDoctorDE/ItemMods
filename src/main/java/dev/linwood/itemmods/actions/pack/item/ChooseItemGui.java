@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.gui.pack.item;
+package dev.linwood.itemmods.actions.pack.item;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.ui.item.GuiItem;

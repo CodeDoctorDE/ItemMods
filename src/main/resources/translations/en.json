@@ -45,7 +45,8 @@
       "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
     },
     "yes": "§aYes",
-    "no": "§cNo"
+    "no": "§cNo",
+    "no-player": "§eItemMods §7» §cGuis can only be used by players!"
   },
   "template": {
     "title": "§6Template",

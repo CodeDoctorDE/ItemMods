@@ -1,6 +1,8 @@
-package dev.linwood.itemmods.gui;
+package dev.linwood.itemmods.actions;
 
 import dev.linwood.api.item.ItemStackBuilder;
+import dev.linwood.api.translations.Translation;
+import dev.linwood.api.ui.Gui;
 import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
@@ -11,18 +13,21 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 
-public class LocalesGui extends ListGui {
-    public LocalesGui() {
-        super(ItemMods.getTranslationConfig().subTranslation("locales").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4, (gui) -> {
+public class LocalesAction extends CommandAction {
+    public void selectLocale(String locale) {
+        ItemMods.getMainConfig().setLocale(locale);
+        ItemMods.saveMainConfig();
+        ItemMods.reload();
+    }
+    public Gui buildGui() {
+        var gui = new ListGui(getTranslation(), 4, (listGui) -> {
             try {
                 return ItemMods.getLocales().stream().map(s ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(s));
                             setClickAction(event -> {
-                                ItemMods.getMainConfig().setLocale(s);
-                                ItemMods.saveMainConfig();
-                                ItemMods.reload();
-                                new MainGui().show((Player) event.getWhoClicked());
+                                selectLocale(s);
+                                new MainAction().showGui((Player) event.getWhoClicked());
                             });
                         }}).toArray(GuiItem[]::new);
             } catch (IOException e) {
@@ -30,8 +35,14 @@ public class LocalesGui extends ListGui {
             }
             return new GuiItem[0];
         });
-        setListControls(new VerticalListControls() {{
-            setBackAction(event -> new MainGui().show((Player) event.getWhoClicked()));
+        gui.setListControls(new VerticalListControls() {{
+            setBackAction(event -> new MainAction().showGui((Player) event.getWhoClicked()));
         }});
+        return gui;
+    }
+
+    @Override
+    public Translation getTranslation() {
+        return ItemMods.getTranslationConfig().subTranslation("locales").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
     }
 }

@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.gui.pack;
+package dev.linwood.itemmods.actions.pack;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -8,9 +8,9 @@ import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.gui.PacksGui;
-import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
-import dev.linwood.itemmods.gui.pack.raw.TexturesGui;
+import dev.linwood.itemmods.actions.PacksAction;
+import dev.linwood.itemmods.actions.pack.raw.ModelsGui;
+import dev.linwood.itemmods.actions.pack.raw.TexturesGui;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +33,7 @@ public class PackGui extends GuiCollection {
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new PacksGui().show((Player) event.getWhoClicked()));
+                setClickAction(event -> new PacksAction().showGui((Player) event.getWhoClicked()));
             }});
             addItem(placeholder);
             Arrays.stream(PackTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
@@ -75,7 +75,7 @@ public class PackGui extends GuiCollection {
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     ItemMods.getPackManager().deletePack(name);
-                                    new PacksGui().show((Player) event.getWhoClicked());
+                                    new PacksAction().showGui((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> PackGui.this.show((Player) event.getWhoClicked()));

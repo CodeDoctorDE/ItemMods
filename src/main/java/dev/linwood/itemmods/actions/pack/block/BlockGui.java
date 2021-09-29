@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.gui.pack.item;
+package dev.linwood.itemmods.actions.pack.block;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -8,12 +8,10 @@ import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.gui.pack.ChoosePackGui;
-import dev.linwood.itemmods.gui.pack.ItemsGui;
-import dev.linwood.itemmods.gui.pack.raw.ModelsGui;
-import dev.linwood.itemmods.gui.pack.raw.model.ChooseModelGui;
-import dev.linwood.itemmods.gui.pack.raw.model.ModelGui;
-import dev.linwood.itemmods.gui.pack.template.TemplateGui;
+import dev.linwood.itemmods.actions.pack.BlocksGui;
+import dev.linwood.itemmods.actions.pack.ChoosePackGui;
+import dev.linwood.itemmods.actions.pack.raw.model.ChooseModelGui;
+import dev.linwood.itemmods.actions.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
@@ -26,24 +24,24 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ItemGui extends GuiCollection {
+public class BlockGui extends GuiCollection {
     protected final @NotNull PackObject packObject;
 
-    public ItemGui(@NotNull PackObject packObject) {
+    public BlockGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
         var t = ItemMods.getTranslationConfig().subTranslation("item");
-        var asset = packObject.getItem();
+        var asset = packObject.getBlock();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
-        Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
+        Arrays.stream(BlockTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
             setPlaceholders(packObject.toString());
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
+                setClickAction(event -> new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
             }});
             addItem(placeholder);
-            Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
+            Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
                 setClickAction(event -> setCurrent(tab.ordinal()));
             }}).forEach(this::addItem);
@@ -64,7 +62,7 @@ public class ItemGui extends GuiCollection {
                                     asset.setName(s);
                                     packObject.save();
                                     p.sendMessage(t.getTranslation("name.success", s));
-                                    new ItemGui(new PackObject(packObject.getNamespace(), s)).show(p);
+                                    new BlockGui(new PackObject(packObject.getNamespace(), s)).show(p);
                                 } catch (Exception e) {
                                     p.sendMessage(t.getTranslation("name.failed"));
                                     e.printStackTrace();
@@ -94,7 +92,7 @@ public class ItemGui extends GuiCollection {
                     }});
                     addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
-                            var prefix = "model." + (asset.getModelObject() == null ? "not-set" : "set") + ".";
+                            var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
                             setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title").lore(prefix + "description").build());
                             if (asset.getModelObject() != null) setPlaceholders(asset.getModelObject().toString());
                         });
@@ -114,7 +112,7 @@ public class ItemGui extends GuiCollection {
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }).show(p), backEvent -> ItemGui.this.show((Player) backEvent.getWhoClicked())).show(p);
+                                }).show(p), backEvent -> BlockGui.this.show((Player) backEvent.getWhoClicked())).show(p);
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
@@ -127,9 +125,7 @@ public class ItemGui extends GuiCollection {
                                 }
                         });
                     }});
-                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()) {{
-                        setClickAction(event -> new TemplateGui(packObject, backEvent -> show((Player) backEvent.getWhoClicked())).show((Player) event.getWhoClicked()));
-                    }});
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()));
                     break;
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
@@ -140,10 +136,10 @@ public class ItemGui extends GuiCollection {
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
-                                setClickAction(event -> ItemGui.this.show((Player) event.getWhoClicked()));
+                                setClickAction(event -> BlockGui.this.show((Player) event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));
                     }});
@@ -154,7 +150,7 @@ public class ItemGui extends GuiCollection {
         }}).forEach(this::registerGui);
     }
 
-    public enum ItemTab {
+    public enum BlockTab {
         GENERAL, ADMINISTRATION;
 
         public @NotNull Material getMaterial() {
