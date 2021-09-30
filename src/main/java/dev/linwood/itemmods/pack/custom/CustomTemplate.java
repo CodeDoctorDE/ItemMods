@@ -1,23 +1,26 @@
 package dev.linwood.itemmods.pack.custom;
 
+import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public abstract class CustomTemplate {
-    public abstract @NotNull String getName();
+public abstract class CustomTemplate extends CustomAsset {
+    public CustomTemplate(String name) {
+        super(name);
+    }
 
-    public abstract @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data);
-
-    public abstract @NotNull ItemStack getMainIcon();
-
-    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
+    public boolean isCompatible(PackObject packObject, PackAsset asset) {
         return true;
     }
 
-    public boolean openConfigGui(PackObject packObject, CustomTemplateData data, Player player) {
-        return false;
+    public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, PackAsset asset) {
+        return null;
     }
+
+    public abstract @NotNull ItemStack getIcon(PackObject packObject, CustomData data, PackAsset asset);
+
+    public abstract @NotNull ItemStack getMainIcon();
 }

@@ -13,8 +13,8 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
-import dev.linwood.itemmods.pack.custom.CustomTemplateData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -30,15 +30,15 @@ import java.util.Map;
 public class CubitBlockModelTemplate extends CustomTemplate {
     private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.model.cubit_block");
 
-    @Override
-    public @NotNull String getName() {
-        return "cubit_block";
+    public CubitBlockModelTemplate(String name) {
+        super("cubit_block");
     }
 
+
     @Override
-    public @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data) {
+    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, PackAsset asset) {
         return new ItemStackBuilder(Material.STONE).displayName(t.getTranslation("title")).lore(
-                t.getTranslation("actions")).build();
+                t.getTranslation("action")).build();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class CubitBlockModelTemplate extends CustomTemplate {
         return packAsset instanceof ModelAsset;
     }
 
-    public @Nullable Map<String, PackObject> getTextures(CustomTemplateData data) {
+    public @Nullable Map<String, PackObject> getTextures(CustomData data) {
         if (data.getData() == null)
             return null;
         var textures = new HashMap<String, PackObject>();
@@ -59,7 +59,7 @@ public class CubitBlockModelTemplate extends CustomTemplate {
         return textures;
     }
 
-    public void setTextures(CustomTemplateData data, @Nullable Map<String, PackObject> textures) {
+    public void setTextures(CustomData data, @Nullable Map<String, PackObject> textures) {
         if (textures == null)
             data.setData(JsonNull.INSTANCE);
         else {
@@ -69,13 +69,13 @@ public class CubitBlockModelTemplate extends CustomTemplate {
         }
     }
 
-    public ListGui createGui(CustomTemplateData data) {
+    public ListGui createGui(CustomData data) {
         var loadedTextures = getTextures(data);
         if (loadedTextures == null)
             loadedTextures = new HashMap<>();
         var textures = loadedTextures;
         return new ListGui(t, gui -> textures.entrySet().stream().filter(entry -> entry.getKey().contains(gui.getSearchText()))
-                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("actions")).build()) {{
+                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("action")).build()) {{
                     setClickAction((event) -> {
                         textures.remove(entry.getKey());
                         setTextures(data, textures);

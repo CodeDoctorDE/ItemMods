@@ -5,38 +5,41 @@ import com.google.gson.JsonPrimitive;
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.actions.pack.ChoosePackGui;
-import dev.linwood.itemmods.actions.pack.block.ChooseBlockGui;
-import dev.linwood.itemmods.actions.pack.item.ItemGui;
-import dev.linwood.itemmods.actions.pack.template.TemplateGui;
+import dev.linwood.itemmods.action.CommandAction;
+import dev.linwood.itemmods.action.pack.PackAction;
+import dev.linwood.itemmods.action.pack.block.ChooseBlockGui;
+import dev.linwood.itemmods.action.pack.item.ItemGui;
+import dev.linwood.itemmods.action.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.PackAsset;
+import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
-import dev.linwood.itemmods.pack.custom.CustomTemplateData;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
+
 /**
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block");
+    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
 
-    @Override
-    public @NotNull String getName() {
-        return "block";
+    public BlockSetTemplate() {
+        super("block");
     }
 
     @Override
-    public @NotNull ItemStack getIcon(PackObject packObject, CustomTemplateData data) {
+    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, PackAsset asset) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
-                        t.getTranslation("actions.has", block.toString()) : t.getTranslation("actions.empty")).build();
+                        t.getTranslation("action.has", block.toString()) : t.getTranslation("action.empty")).build();
     }
 
     @Override
@@ -45,29 +48,44 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
-        return packAsset instanceof ItemAsset;
+    public boolean isCompatible(PackObject packObject, PackAsset asset) {
+        return asset instanceof ItemAsset;
     }
 
     @Override
-    public boolean openConfigGui(PackObject packObject, CustomTemplateData data, Player player) {
-        new ChoosePackGui(pack -> new ChooseBlockGui(pack.getName(), asset -> {
-            var block = new PackObject(pack.getName(), asset.getName());
-            setBlock(data, block);
-            packObject.save();
-            new TemplateGui(packObject, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player);
-        }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player)).show(player);
-        return true;
+    public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, PackAsset asset) {
+        return new CommandAction() {
+            @Override
+            public Translation getTranslation() {
+                return t;
+            }
+
+            @Override
+            public boolean showGui(CommandSender... senders) {
+                if (!(senders instanceof Player[])) {
+                    Arrays.stream(senders).forEach(sender -> sender.sendMessage(t.getTranslation("no-player")));
+                    return true;
+                }
+                var players = (Player[]) senders;
+                PackAction.showChoose(pack -> new ChooseBlockGui(pack.getName(), asset -> {
+                    var block = new PackObject(pack.getName(), asset.getName());
+                    setBlock(data, block);
+                    packObject.save();
+                    new TemplateGui(packObject, asset, event -> new ItemGui(packObject).show(players)).show(players);
+                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(players), inventoryClickEvent -> new ItemGui(packObject).show(players), senders);
+                return true;
+            }
+        };
     }
 
 
-    public @Nullable PackObject getBlock(CustomTemplateData data) {
+    public @Nullable PackObject getBlock(CustomData data) {
         if (data.getData() == null)
             return null;
         return new PackObject(data.getData().getAsString());
     }
 
-    public void setBlock(CustomTemplateData data, @Nullable PackObject packObject) {
+    public void setBlock(CustomData data, @Nullable PackObject packObject) {
         if (packObject == null)
             data.setData(JsonNull.INSTANCE);
         else

@@ -11,8 +11,8 @@ jobs:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: action/checkout@v2
+      - uses: action/setup-node@v2
         with:
           node-version: '12.x'
       - name: Test Build
@@ -30,12 +30,12 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: action/checkout@v2
         with:
           ref: main
       - name: Build with Maven
         run: mvn clean install javadoc:javadoc
-      - uses: actions/upload-artifact@v2
+      - uses: action/upload-artifact@v2
         with:
           name: "JavaDoc"
           path: "target/site/apidocs"
@@ -43,10 +43,10 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: action/checkout@v2
       - name: Build with Maven
         run: mvn clean install javadoc:javadoc
-      - uses: actions/upload-artifact@v2
+      - uses: action/upload-artifact@v2
         with:
           name: "JavaDoc-Snapshot"
           path: "target/site/apidocs"
@@ -57,25 +57,25 @@ jobs:
       - javadoc
       - javadoc-snapshot
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: action/checkout@v2
+      - uses: action/setup-node@v2
         with:
           node-version: '12.x'
       - uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: action/setup-java@v2
         with:
           distribution: 'adopt'
           java-version: 11
       - name: Download javadoc
-        uses: actions/download-artifact@v2
+        uses: action/download-artifact@v2
         with:
           name: "JavaDoc"
           path: docs/static/apidocs
       - name: Download javadoc-snapshot
-        uses: actions/download-artifact@v2
+        uses: action/download-artifact@v2
         with:
           name: "JavaDoc-Snapshot"
           path: docs/static/apidocs-snapshot

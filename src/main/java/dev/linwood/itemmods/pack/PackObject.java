@@ -50,7 +50,12 @@ public class PackObject {
         return ItemMods.getPackManager().getPack(namespace);
     }
 
+    /**
+     * @return Returns the asset by the given namespace and key
+     * @deprecated Deprecated because assets can have the same pack object if they have a different type
+     */
     @Nullable
+    @Deprecated
     public PackAsset getAsset() {
         var item = getItem();
         if (item != null)
