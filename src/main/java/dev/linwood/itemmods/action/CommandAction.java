@@ -4,7 +4,7 @@ import dev.linwood.api.translations.Translation;
 import org.bukkit.command.CommandSender;
 
 public abstract class CommandAction {
-    public boolean showGui(CommandSender... senders) {
+    public boolean showGui(CommandSender sender) {
         return false;
     }
 

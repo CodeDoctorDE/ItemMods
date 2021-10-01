@@ -10,8 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
 public class MainAction extends CommandAction {
 
     public Translation getTranslation() {
@@ -20,9 +18,9 @@ public class MainAction extends CommandAction {
 
 
     @Override
-    public boolean showGui(CommandSender... senders) {
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(getTranslation().getTranslation("no-player")));
+    public boolean showGui(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation().getTranslation("no-player"));
             return true;
         }
         Translation t = getTranslation();
@@ -67,7 +65,7 @@ public class MainAction extends CommandAction {
             setRenderAction(gui -> setPlaceholders(ItemMods.getMainConfig().getLocale()));
             setClickAction(event -> showLocales(event.getWhoClicked()));
         }});
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
         return true;
     }
 

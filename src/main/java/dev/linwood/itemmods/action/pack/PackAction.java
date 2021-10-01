@@ -35,10 +35,14 @@ public class PackAction extends CommandAction {
         this.name = name;
     }
 
-    public static void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender... senders) {
+    public static void showChoose(@NotNull Consumer<ItemModsPack> action, CommandSender sender) {
+        showChoose(action, null, sender);
+    }
+
+    public static void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
         var t = ItemMods.getTranslationConfig().subTranslation("choose.pack").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(t.getTranslation("no-player")));
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
         var gui = new ListGui(t, 4, (listGui) -> ItemMods.getPackManager().getPacks()
@@ -52,12 +56,12 @@ public class PackAction extends CommandAction {
         gui.setListControls(new VerticalListControls() {{
             setBackAction(back);
         }});
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
     }
 
-    public boolean showGui(CommandSender... senders) {
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(getTranslation().getTranslation("no-player")));
+    public boolean showGui(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation().getTranslation("no-player"));
             return true;
         }
         var gui = new GuiCollection();
@@ -135,7 +139,7 @@ public class PackAction extends CommandAction {
             fillItems(0, 0, 8, 1, placeholder);
             fillItems(0, 3, 8, 3, placeholder);
         }}).forEach(gui::registerGui);
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
         return true;
     }
 
@@ -169,7 +173,7 @@ public class PackAction extends CommandAction {
 
     public void showItems(CommandSender sender) {
         if (sender instanceof Player)
-            new ItemsGui(name).show((Player) sender);
+            new ItemsAction(name).showGui(sender);
         else
             sender.sendMessage(getTranslation().getTranslation("no-player"));
     }

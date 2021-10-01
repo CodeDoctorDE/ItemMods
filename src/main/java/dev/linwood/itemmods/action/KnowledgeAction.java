@@ -9,19 +9,17 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
 public class KnowledgeAction extends CommandAction {
     @Override
-    public boolean showGui(CommandSender... senders) {
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(getTranslation().getTranslation("no-player")));
+    public boolean showGui(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation().getTranslation("no-player"));
             return true;
         }
         var gui = new TranslatedChestGui(getTranslation(), 4);
         //Translation t = getTranslation();
         gui.registerItem(4, 1, new TranslatedItem(ItemMods.getTranslationConfig().getInstance(), new ItemStackBuilder(Material.BARRIER).displayName("coming-soon").build()));
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
         return true;
     }
 

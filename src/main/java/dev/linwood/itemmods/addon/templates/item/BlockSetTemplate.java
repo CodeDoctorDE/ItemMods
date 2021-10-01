@@ -22,8 +22,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-
 /**
  * @author CodeDoctorDE
  */
@@ -61,18 +59,18 @@ public class BlockSetTemplate extends CustomTemplate {
             }
 
             @Override
-            public boolean showGui(CommandSender... senders) {
-                if (!(senders instanceof Player[])) {
-                    Arrays.stream(senders).forEach(sender -> sender.sendMessage(t.getTranslation("no-player")));
+            public boolean showGui(CommandSender sender) {
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage(t.getTranslation("no-player"));
                     return true;
                 }
-                var players = (Player[]) senders;
+                var player = (Player) sender;
                 PackAction.showChoose(pack -> new ChooseBlockGui(pack.getName(), asset -> {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateGui(packObject, asset, event -> new ItemGui(packObject).show(players)).show(players);
-                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(players), inventoryClickEvent -> new ItemGui(packObject).show(players), senders);
+                    new TemplateGui(packObject, asset, event -> new ItemGui(packObject).show(player)).show(player);
+                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player), inventoryClickEvent -> new ItemGui(packObject).show(player), player);
                 return true;
             }
         };

@@ -14,8 +14,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-
 public class PacksAction extends CommandAction {
     @Override
     public Translation getTranslation() {
@@ -23,9 +21,9 @@ public class PacksAction extends CommandAction {
     }
 
     @Override
-    public boolean showGui(CommandSender... senders) {
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(getTranslation().getTranslation("no-player")));
+    public boolean showGui(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation().getTranslation("no-player"));
             return true;
         }
         var gui = new ListGui(getTranslation(), 4, (listGui) ->
@@ -46,7 +44,7 @@ public class PacksAction extends CommandAction {
                 });
             });
         }});
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
         return true;
     }
 

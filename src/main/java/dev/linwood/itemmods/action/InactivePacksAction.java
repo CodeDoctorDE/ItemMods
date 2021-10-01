@@ -10,13 +10,11 @@ import dev.linwood.itemmods.ItemMods;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
 public class InactivePacksAction extends CommandAction {
     @Override
-    public boolean showGui(CommandSender... senders) {
-        if (!(senders instanceof Player[])) {
-            Arrays.stream(senders).forEach(sender -> sender.sendMessage(getTranslation().getTranslation("no-player")));
+    public boolean showGui(CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation().getTranslation("no-player"));
             return true;
         }
         var t = getTranslation();
@@ -32,7 +30,7 @@ public class InactivePacksAction extends CommandAction {
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new MainAction().showGui(event.getWhoClicked()));
         }});
-        gui.show((Player[]) senders);
+        gui.show((Player) sender);
         return true;
     }
 

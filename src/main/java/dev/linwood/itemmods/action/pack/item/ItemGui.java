@@ -8,7 +8,7 @@ import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.action.pack.ItemsGui;
+import dev.linwood.itemmods.action.pack.ItemsAction;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.action.pack.raw.model.ChooseModelGui;
 import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
@@ -39,7 +39,7 @@ public class ItemGui extends GuiCollection {
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
+                setClickAction(event -> new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked()));
             }});
             addItem(placeholder);
             Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
@@ -139,7 +139,7 @@ public class ItemGui extends GuiCollection {
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new ItemsGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> ItemGui.this.show((Player) event.getWhoClicked()));
