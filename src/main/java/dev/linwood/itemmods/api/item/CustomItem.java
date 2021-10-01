@@ -5,15 +5,11 @@ import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.TileState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public class CustomItem implements CustomElement<ItemAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
@@ -26,7 +22,7 @@ public class CustomItem implements CustomElement<ItemAsset> {
 
     public @Nullable ItemAsset getConfig() {
         var packObject = getPackObject();
-        if(packObject == null)
+        if (packObject == null)
             return null;
         return packObject.getItem();
     }
@@ -63,7 +59,7 @@ public class CustomItem implements CustomElement<ItemAsset> {
 
     public @Nullable PackObject getPackObject() {
         var type = getType();
-        if(type.equals(""))
+        if (type.equals(""))
             return null;
         return new PackObject(type);
     }

@@ -9,14 +9,14 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class KnowledgeAction extends CommandAction {
+public class KnowledgeAction extends TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new TranslatedChestGui(getTranslation(), 4);
+        var gui = new TranslatedChestGui(getTranslationNamespace(), 4);
         //Translation t = getTranslation();
         gui.registerItem(4, 1, new TranslatedItem(ItemMods.getTranslationConfig().getInstance(), new ItemStackBuilder(Material.BARRIER).displayName("coming-soon").build()));
         gui.show((Player) sender);
@@ -24,7 +24,7 @@ public class KnowledgeAction extends CommandAction {
     }
 
     @Override
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("knowledge");
+    protected Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("knowledge");
     }
 }

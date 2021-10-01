@@ -8,7 +8,7 @@ import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.action.pack.BlocksGui;
+import dev.linwood.itemmods.action.pack.BlocksAction;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.action.pack.raw.model.ChooseModelGui;
 import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
@@ -38,7 +38,7 @@ public class BlockGui extends GuiCollection {
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked()));
+                setClickAction(event -> new BlocksAction(packObject.getNamespace()).showGui(event.getWhoClicked()));
             }});
             addItem(placeholder);
             Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
@@ -136,7 +136,7 @@ public class BlockGui extends GuiCollection {
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new BlocksGui(packObject.getNamespace()).show((Player) event.getWhoClicked());
+                                    new BlocksAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
                                 setClickAction(event -> BlockGui.this.show((Player) event.getWhoClicked()));

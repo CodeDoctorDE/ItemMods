@@ -14,26 +14,26 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
-public class PacksAction extends CommandAction {
+public class PacksAction extends TranslationCommandAction {
     @Override
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("packs").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
+
+    public Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("packs", "gui");
     }
 
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslation(), 4, (listGui) ->
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
                 ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new TranslatedGuiItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("action").build()) {{
                             setRenderAction(gui -> setPlaceholders(itemModsPack.getName()));
                             setClickAction(event -> openPack(event.getWhoClicked(), itemModsPack.getName()));
                         }}).toArray(GuiItem[]::new));
-        var t = getTranslation();
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new MainAction().showGui(event.getWhoClicked()));
             setCreateAction(event -> {
@@ -48,6 +48,10 @@ public class PacksAction extends CommandAction {
         return true;
     }
 
+    public String getTranslation(String key, Object... placeholders) {
+        return getTranslationNamespace().getTranslation(key, placeholders);
+    }
+
     public void openPack(CommandSender sender, String name) {
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
@@ -55,9 +59,9 @@ public class PacksAction extends CommandAction {
             if (sender instanceof Player)
                 new PackAction(pack.getName()).showGui(sender);
             else
-                sender.sendMessage(getTranslation().getTranslation("no-player"));
+                sender.sendMessage(getTranslation("no-player"));
         else
-            sender.sendMessage(getTranslation().getTranslation("readonly"));
+            sender.sendMessage(getTranslation("readonly"));
     }
 
     public void createPack(CommandSender sender) {
@@ -65,19 +69,18 @@ public class PacksAction extends CommandAction {
     }
 
     public void createPack(CommandSender sender, @Nullable Runnable action) {
-        var t = getTranslation();
         if (!(sender instanceof Player)) {
-            sender.sendMessage(t.getTranslation("only-player"));
+            sender.sendMessage(getTranslation("only-player"));
             return;
         }
         var p = (Player) sender;
         var request = new ChatRequest(p);
-        p.sendMessage(t.getTranslation("create.message"));
+        p.sendMessage(getTranslation("create.message"));
         request.setSubmitAction(s -> {
             try {
                 createPack(sender, s);
             } catch (UnsupportedOperationException e) {
-                p.sendMessage(t.getTranslation("create.failed"));
+                p.sendMessage(getTranslation("create.failed"));
             } finally {
                 if (action != null)
                     action.run();
@@ -88,6 +91,6 @@ public class PacksAction extends CommandAction {
     public void createPack(CommandSender sender, String name) throws UnsupportedOperationException {
         ItemMods.getPackManager().registerPack(new ItemModsPack(name, true));
         ItemMods.getPackManager().save(name);
-        sender.sendMessage(getTranslation().getTranslation("create.success", name));
+        sender.sendMessage(getTranslation("create.success", name));
     }
 }

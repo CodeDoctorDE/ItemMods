@@ -6,6 +6,7 @@ import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.CommandAction;
+import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.action.pack.block.ChooseBlockGui;
 import dev.linwood.itemmods.action.pack.item.ItemGui;
@@ -52,9 +53,9 @@ public class BlockSetTemplate extends CustomTemplate {
 
     @Override
     public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, PackAsset asset) {
-        return new CommandAction() {
+        return new TranslationCommandAction() {
             @Override
-            public Translation getTranslation() {
+            public Translation getTranslationNamespace() {
                 return t;
             }
 

@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 
-public class LocalesAction extends CommandAction {
+public class LocalesAction extends TranslationCommandAction {
     public void selectLocale(String locale) {
         ItemMods.getMainConfig().setLocale(locale);
         ItemMods.saveMainConfig();
@@ -23,10 +23,10 @@ public class LocalesAction extends CommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslation(), 4, (listGui) -> {
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> {
             try {
                 return ItemMods.getLocales().stream().map(s ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("item").lore("action").build()) {{
@@ -44,12 +44,12 @@ public class LocalesAction extends CommandAction {
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new MainAction().showGui(event.getWhoClicked()));
         }});
-        gui.show((Player) sender);
         return true;
     }
 
+
     @Override
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("locales").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
+    protected Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("locales", "gui");
     }
 }

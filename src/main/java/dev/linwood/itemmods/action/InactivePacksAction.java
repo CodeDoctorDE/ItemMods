@@ -10,18 +10,17 @@ import dev.linwood.itemmods.ItemMods;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class InactivePacksAction extends CommandAction {
+public class InactivePacksAction extends TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var t = getTranslation();
-        var gui = new ListGui(t, 4, (listGui) ->
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
                 ItemMods.getPackManager().getInactivePacks().stream().map(itemModsPack ->
                         new StaticItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(t.getTranslation("action", itemModsPack.getName())).build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("action", itemModsPack.getName())).build()) {{
                             setClickAction(event -> {
                                 activatePack(event.getWhoClicked(), itemModsPack.getName());
                                 listGui.rebuild();
@@ -35,8 +34,8 @@ public class InactivePacksAction extends CommandAction {
     }
 
     @Override
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("inactive-packs").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
+    protected Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("inactive-packs", "gui");
     }
 
     public void activatePack(CommandSender sender, String pack) {

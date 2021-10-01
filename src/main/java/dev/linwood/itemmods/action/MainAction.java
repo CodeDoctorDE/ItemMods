@@ -10,21 +10,16 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class MainAction extends CommandAction {
-
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("main").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
-    }
+public class MainAction extends TranslationCommandAction {
 
 
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        Translation t = getTranslation();
-        var gui = new TranslatedChestGui(getTranslation(), 4);
+        var gui = new TranslatedChestGui(getTranslationNamespace(), 4);
         gui.setPlaceholders(ItemMods.getVersion());
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         gui.fillItems(0, 0, 0, 3, placeholder);
@@ -69,71 +64,76 @@ public class MainAction extends CommandAction {
         return true;
     }
 
+
     public void export(CommandSender sender) {
-        var t = getTranslation();
-        sender.sendMessage(t.getTranslation("export.message"));
+        sender.sendMessage(getTranslation("export.message"));
         try {
             ItemMods.getPackManager().export("default");
-            sender.sendMessage(t.getTranslation("export.success"));
+            sender.sendMessage(getTranslation("export.success"));
         } catch (Exception e) {
-            sender.sendMessage(t.getTranslation("export.failed"));
+            sender.sendMessage(getTranslation("export.failed"));
             e.printStackTrace();
         }
     }
 
     public void reload(CommandSender sender) {
         ItemMods.reload();
-        sender.sendMessage(getTranslation().getTranslation("reload.success"));
+        sender.sendMessage(getTranslation("reload.success"));
     }
 
     public void showPacks(CommandSender sender) {
         if (sender instanceof Player)
             new PacksAction().showGui(sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showInactivePacks(CommandSender sender) {
         if (sender instanceof Player)
             new InactivePacksAction().showGui(sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showKnowledge(CommandSender sender) {
         if (sender instanceof Player)
             new KnowledgeAction().showGui(sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showSource(CommandSender sender) {
-        sender.sendMessage(getTranslation().getTranslation("source.link", "https://github.com/CodeDoctorDE/ItemMods"));
+        sender.sendMessage(getTranslation("source.link", "https://github.com/CodeDoctorDE/ItemMods"));
     }
 
     public void showSupport(CommandSender sender) {
-        sender.sendMessage(getTranslation().getTranslation("support.link", "https://go.linwood.dev/itemmods-discord"));
+        sender.sendMessage(getTranslation("support.link", "https://go.linwood.dev/itemmods-discord"));
     }
 
     public void showWiki(CommandSender sender) {
-        sender.sendMessage(getTranslation().getTranslation("wiki.link", "https://itemmods.linwood.dev"));
+        sender.sendMessage(getTranslation("wiki.link", "https://itemmods.linwood.dev"));
     }
 
     public void showCrowdin(CommandSender sender) {
-        sender.sendMessage(getTranslation().getTranslation("crowdin.link", "https://linwood.crowdin.com/ItemMods"));
+        sender.sendMessage(getTranslation("crowdin.link", "https://linwood.crowdin.com/ItemMods"));
     }
 
     public void showLocales(CommandSender sender) {
         if (sender instanceof Player)
             new LocalesAction().showGui(sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
 
     public void reset(CommandSender sender) {
         ItemMods.getMainConfig().clearIdentifiers();
         ItemMods.saveMainConfig();
-        sender.sendMessage(getTranslation().getTranslation("reset.message"));
+        sender.sendMessage(getTranslation("reset.message"));
+    }
+
+    @Override
+    protected Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("main", "gui");
     }
 }

@@ -12,8 +12,8 @@ import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.PacksAction;
+import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.raw.ModelsGui;
 import dev.linwood.itemmods.action.pack.raw.TexturesGui;
 import dev.linwood.itemmods.pack.ItemModsPack;
@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class PackAction extends CommandAction {
+public class PackAction extends TranslationCommandAction {
     private final String name;
 
     public PackAction(String name) {
@@ -40,7 +40,7 @@ public class PackAction extends CommandAction {
     }
 
     public static void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
-        var t = ItemMods.getTranslationConfig().subTranslation("choose.pack").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
+        var t = ItemMods.subTranslation("choose.pack", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
@@ -53,19 +53,20 @@ public class PackAction extends CommandAction {
                             setClickAction(event -> action.accept(pack));
                         }}).toArray(GuiItem[]::new));
         var back = backAction;
-        gui.setListControls(new VerticalListControls() {{
-            setBackAction(back);
-        }});
+        gui.setListControls(new VerticalListControls() {
+            {
+                setBackAction(back);
+            }
+        });
         gui.show((Player) sender);
     }
 
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
         var gui = new GuiCollection();
-        var t = getTranslation();
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
         if (!pack.isEditable()) {
@@ -73,7 +74,7 @@ public class PackAction extends CommandAction {
             return true;
         }
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
-        Arrays.stream(PackTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
+        Arrays.stream(PackTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
             setPlaceholders(name);
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
@@ -147,35 +148,29 @@ public class PackAction extends CommandAction {
         if (sender instanceof Player)
             sender.sendMessage(ItemMods.getTranslationConfig().getTranslation("coming-soon"));
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showModels(CommandSender sender) {
         if (sender instanceof Player)
             new ModelsGui(name).show((Player) sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showTextures(CommandSender sender) {
         if (sender instanceof Player)
             new TexturesGui(name).show((Player) sender);
         else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showBlocks(CommandSender sender) {
-        if (sender instanceof Player)
-            new BlocksGui(name).show((Player) sender);
-        else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+        new BlocksAction(name).showGui(sender);
     }
 
     public void showItems(CommandSender sender) {
-        if (sender instanceof Player)
-            new ItemsAction(name).showGui(sender);
-        else
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+        new ItemsAction(name).showGui(sender);
     }
 
     public void showName(CommandSender sender) {
@@ -184,12 +179,11 @@ public class PackAction extends CommandAction {
 
     public void showName(CommandSender sender, @Nullable Runnable action) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return;
         }
-        var t = getTranslation();
         var request = new ChatRequest((Player) sender);
-        sender.sendMessage(t.getTranslation("name.message"));
+        sender.sendMessage(getTranslation("name.message"));
         request.setSubmitAction(s -> {
             setName(sender, s);
             if (action != null)
@@ -208,17 +202,16 @@ public class PackAction extends CommandAction {
     public void setName(CommandSender sender, String s) {
         getPack().setName(s);
         ItemMods.getPackManager().save(name);
-        sender.sendMessage(getTranslation().getTranslation("name.success", s));
+        sender.sendMessage(getTranslation("name.success", s));
     }
 
     public void showDelete(CommandSender sender) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(getTranslation().getTranslation("no-player"));
+            sender.sendMessage(getTranslation("no-player"));
             return;
         }
-        var t = getTranslation();
         var player = (Player) sender;
-        new MessageGui(t.subTranslation("delete.gui")) {{
+        new MessageGui(getTranslationNamespace().subTranslation("delete.gui")) {{
             setPlaceholders(name);
             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                 setClickAction(event -> {
@@ -236,13 +229,12 @@ public class PackAction extends CommandAction {
     }
 
     public void exportPack(CommandSender sender) {
-        var t = getTranslation();
-        sender.sendMessage(t.getTranslation("export.message", "plugins/ItemMods/exports/" + name));
+        sender.sendMessage(getTranslation("export.message", "plugins/ItemMods/exports/" + name));
         try {
             ItemMods.getPackManager().zip(name);
-            sender.sendMessage(t.getTranslation("export.success", "plugins/ItemMods/exports/" + name));
+            sender.sendMessage(getTranslation("export.success", "plugins/ItemMods/exports/" + name));
         } catch (IOException e) {
-            sender.sendMessage(t.getTranslation("export.failed"));
+            sender.sendMessage(getTranslation("export.failed"));
             e.printStackTrace();
         }
     }
@@ -252,6 +244,11 @@ public class PackAction extends CommandAction {
             ItemMods.getPackManager().deactivatePack(name);
         else
             ItemMods.getPackManager().activatePack(name);
+    }
+
+    @Override
+    protected Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("pack", "gui");
     }
 
     enum PackTab {
@@ -270,10 +267,5 @@ public class PackAction extends CommandAction {
             }
             return Material.AIR;
         }
-    }
-
-    @Override
-    public Translation getTranslation() {
-        return ItemMods.getTranslationConfig().subTranslation("pack");
     }
 }

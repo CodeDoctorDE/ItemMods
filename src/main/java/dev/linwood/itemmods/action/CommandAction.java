@@ -1,6 +1,5 @@
 package dev.linwood.itemmods.action;
 
-import dev.linwood.api.translations.Translation;
 import org.bukkit.command.CommandSender;
 
 public abstract class CommandAction {
@@ -16,6 +15,5 @@ public abstract class CommandAction {
         return new String[0];
     }
 
-
-    public abstract Translation getTranslation();
+    public abstract String getTranslation(String key, Object... placeholders);
 }
