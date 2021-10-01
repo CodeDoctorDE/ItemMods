@@ -1,6 +1,6 @@
 name: ItemMods
 author: CodeDoctorDE
-version: 2.0.0-alpha.1
+version: 2.0.0-alpha.2
 load: STARTUP
 api-version: "1.15"
 main: dev.linwood.itemmods.ItemMods
