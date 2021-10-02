@@ -12,6 +12,7 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticRawAsset;
+import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -107,7 +108,7 @@ public class DataGui extends ListGui {
                 hide(player);
                 request.setSubmitAction(s -> {
                     try {
-                        var path = Paths.get(ItemMods.getTempPath().toString(), s);
+                        var path = Paths.get(ItemMods.getTempPath().toString(), FilenameUtils.getName(s));
                         ((StaticRawAsset) asset).setData(variation, Files.readAllBytes(path));
                         player.sendMessage(gui.getTranslation().getTranslation("file.success", variation, s));
                     } catch (Exception e) {
