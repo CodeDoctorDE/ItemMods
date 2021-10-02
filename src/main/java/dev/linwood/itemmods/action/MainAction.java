@@ -10,7 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class MainAction extends TranslationCommandAction {
+import java.util.Arrays;
+
+public class MainAction implements CommandAction, TranslationCommandAction, SubCommandAction {
 
 
     @Override
@@ -133,7 +135,53 @@ public class MainAction extends TranslationCommandAction {
     }
 
     @Override
-    protected Translation getTranslationNamespace() {
+    public Translation getTranslationNamespace() {
         return ItemMods.subTranslation("main", "gui");
+    }
+
+    @Override
+    public boolean runAction(CommandSender sender, String label, String[] args) {
+        switch (label) {
+            case "reload":
+            case "rl":
+                reload(sender);
+                break;
+            case "reset":
+            case "rs":
+                reset(sender);
+                break;
+            case "locales":
+                return new LocalesAction().handleCommand(sender, args);
+            case "source":
+                showSource(sender);
+                break;
+            case "crowdin":
+                showCrowdin(sender);
+                break;
+            case "knowledge":
+                return new KnowledgeAction().handleCommand(sender, args);
+            case "gui":
+                showGui(sender);
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String[] tabComplete(CommandSender sender, String[] args) {
+        if (args.length <= 1)
+            return new String[]{"reload", "rl", "reset", "rs", "locales", "source", "crowdin", "knowledge", "gui"};
+        else {
+            var subArgs = Arrays.copyOfRange(args, 1, args.length);
+            switch (args[0]) {
+                case "locales":
+                    return new LocalesAction().tabComplete(sender, subArgs);
+                case "knowledge":
+                    return new KnowledgeAction().tabComplete(sender, subArgs);
+            }
+        }
+        return new String[0];
     }
 }

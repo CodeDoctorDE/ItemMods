@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class PackAction extends TranslationCommandAction {
+public class PackAction implements TranslationCommandAction {
     private final String name;
 
     public PackAction(String name) {
@@ -61,6 +61,7 @@ public class PackAction extends TranslationCommandAction {
         gui.show((Player) sender);
     }
 
+    @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(getTranslation("no-player"));
@@ -247,7 +248,7 @@ public class PackAction extends TranslationCommandAction {
     }
 
     @Override
-    protected Translation getTranslationNamespace() {
+    public Translation getTranslationNamespace() {
         return ItemMods.subTranslation("pack", "gui");
     }
 

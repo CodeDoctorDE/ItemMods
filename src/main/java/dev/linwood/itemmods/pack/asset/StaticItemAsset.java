@@ -3,7 +3,7 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ItemAsset extends CustomNamedAsset {
+public class StaticItemAsset extends StaticTemplateReadyPackAsset {
     @Nullable
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();
 
 
-    public ItemAsset(@NotNull String name) {
+    public StaticItemAsset(@NotNull String name) {
         super(name);
     }
 
-    public ItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public StaticItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = new PackObject(jsonObject.get("model-object").getAsString());
@@ -49,7 +49,7 @@ public class ItemAsset extends CustomNamedAsset {
     }
 
     @Nullable
-    public ModelAsset getModel() {
+    public StaticModelAsset getModel() {
         if (modelObject == null)
             return null;
         return modelObject.getModel();

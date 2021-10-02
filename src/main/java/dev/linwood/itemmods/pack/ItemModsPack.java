@@ -5,9 +5,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticNamedPackObject;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
@@ -24,15 +25,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends NamedPackObject {
+public class ItemModsPack extends StaticNamedPackObject {
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
-    private final List<ItemAsset> items = new ArrayList<>();
-    private final List<BlockAsset> blocks = new ArrayList<>();
+    private final List<StaticItemAsset> items = new ArrayList<>();
+    private final List<StaticBlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
     private final List<TextureAsset> textures = new ArrayList<>();
-    private final List<ModelAsset> models = new ArrayList<>();
+    private final List<StaticModelAsset> models = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
 
@@ -59,7 +60,7 @@ public class ItemModsPack extends NamedPackObject {
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(new ItemAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                items.add(new StaticItemAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,7 +69,7 @@ public class ItemModsPack extends NamedPackObject {
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                blocks.add(new BlockAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                blocks.add(new StaticBlockAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,7 +78,7 @@ public class ItemModsPack extends NamedPackObject {
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                models.add(new ModelAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                models.add(new StaticModelAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -107,11 +108,11 @@ public class ItemModsPack extends NamedPackObject {
         dependencies.removeIf(dependency -> dependency.equals(name));
     }
 
-    public @NotNull List<ItemAsset> getItems() {
+    public @NotNull List<StaticItemAsset> getItems() {
         return Collections.unmodifiableList(items);
     }
 
-    public void registerItem(@NotNull ItemAsset itemAsset) {
+    public void registerItem(@NotNull StaticItemAsset itemAsset) {
         if (PackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
             items.add(itemAsset);
     }
@@ -120,11 +121,11 @@ public class ItemModsPack extends NamedPackObject {
         items.removeIf(itemAsset -> itemAsset.getName().equals(name));
     }
 
-    public @NotNull List<BlockAsset> getBlocks() {
+    public @NotNull List<StaticBlockAsset> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
 
-    public void registerBlock(@NotNull BlockAsset blockAsset) {
+    public void registerBlock(@NotNull StaticBlockAsset blockAsset) {
         if (PackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
             blocks.add(blockAsset);
     }
@@ -146,11 +147,11 @@ public class ItemModsPack extends NamedPackObject {
         textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
     }
 
-    public @NotNull List<ModelAsset> getModels() {
+    public @NotNull List<StaticModelAsset> getModels() {
         return Collections.unmodifiableList(models);
     }
 
-    public void registerModel(@NotNull ModelAsset modelAsset) {
+    public void registerModel(@NotNull StaticModelAsset modelAsset) {
         if (PackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
             models.add(modelAsset);
     }
@@ -194,17 +195,17 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     @Nullable
-    public BlockAsset getBlock(String name) {
+    public StaticBlockAsset getBlock(String name) {
         return blocks.stream().filter(blockAsset -> blockAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public ItemAsset getItem(String name) {
+    public StaticItemAsset getItem(String name) {
         return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public ModelAsset getModel(String name) {
+    public StaticModelAsset getModel(String name) {
         return models.stream().filter(modelAsset -> modelAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
@@ -280,7 +281,7 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public void export(String variation, int packFormat, @NotNull Path path) throws IOException {
-        for (ModelAsset model : models) model.export(getName(), variation, packFormat, path);
+        for (StaticModelAsset model : models) model.export(getName(), variation, packFormat, path);
         for (TextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
     }
 

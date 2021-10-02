@@ -7,7 +7,7 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.PackAsset;
+import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -18,11 +18,11 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class TemplateGui extends ListGui {
-    public TemplateGui(@NotNull PackObject packObject, @NotNull PackAsset asset) {
+    public TemplateGui(@NotNull PackObject packObject, @NotNull TemplateReadyPackAsset asset) {
         this(packObject, asset, null);
     }
 
-    public TemplateGui(@NotNull PackObject packObject, @NotNull PackAsset asset, @Nullable Consumer<InventoryClickEvent> backAction) {
+    public TemplateGui(@NotNull PackObject packObject, @NotNull TemplateReadyPackAsset asset, @Nullable Consumer<InventoryClickEvent> backAction) {
         super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> asset.getCustomTemplates().stream().map(customTemplateData ->
                 new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getIcon(packObject, customTemplateData, asset)) {{
                     setClickAction(event -> {

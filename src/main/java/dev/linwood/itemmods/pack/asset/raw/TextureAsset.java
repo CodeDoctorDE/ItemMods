@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class TextureAsset extends RawAsset {
+public class TextureAsset extends StaticRawAsset implements RawAsset {
 
     public TextureAsset(@NotNull String name) {
         super(name);

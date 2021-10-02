@@ -1,10 +1,10 @@
 package dev.linwood.itemmods.pack;
 
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
-import dev.linwood.itemmods.pack.asset.PackAsset;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.NamespacedKey;
@@ -56,7 +56,7 @@ public class PackObject {
      */
     @Nullable
     @Deprecated
-    public PackAsset getAsset() {
+    public StaticPackAsset getAsset() {
         var item = getItem();
         if (item != null)
             return item;
@@ -70,7 +70,7 @@ public class PackObject {
     }
 
     @Nullable
-    public ItemAsset getItem() {
+    public StaticItemAsset getItem() {
         var pack = getPack();
         if (pack == null)
             return null;
@@ -78,7 +78,7 @@ public class PackObject {
     }
 
     @Nullable
-    public BlockAsset getBlock() {
+    public StaticBlockAsset getBlock() {
         var pack = getPack();
         if (pack == null)
             return null;
@@ -94,7 +94,7 @@ public class PackObject {
     }
 
     @Nullable
-    public ModelAsset getModel() {
+    public StaticModelAsset getModel() {
         var pack = getPack();
         if (pack == null)
             return null;

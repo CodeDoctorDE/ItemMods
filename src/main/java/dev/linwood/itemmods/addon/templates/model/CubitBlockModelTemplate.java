@@ -11,8 +11,9 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.PackAsset;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
@@ -36,7 +37,7 @@ public class CubitBlockModelTemplate extends CustomTemplate {
 
 
     @Override
-    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, PackAsset asset) {
+    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
         return new ItemStackBuilder(Material.STONE).displayName(t.getTranslation("title")).lore(
                 t.getTranslation("action")).build();
     }
@@ -47,8 +48,8 @@ public class CubitBlockModelTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject, PackAsset packAsset) {
-        return packAsset instanceof ModelAsset;
+    public boolean isCompatible(PackObject packObject, StaticPackAsset packAsset) {
+        return packAsset instanceof StaticModelAsset;
     }
 
     public @Nullable Map<String, PackObject> getTextures(CustomData data) {

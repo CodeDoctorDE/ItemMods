@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class KnowledgeAction extends TranslationCommandAction {
+public class KnowledgeAction implements TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
@@ -24,7 +24,7 @@ public class KnowledgeAction extends TranslationCommandAction {
     }
 
     @Override
-    protected Translation getTranslationNamespace() {
+    public Translation getTranslationNamespace() {
         return ItemMods.subTranslation("knowledge");
     }
 }

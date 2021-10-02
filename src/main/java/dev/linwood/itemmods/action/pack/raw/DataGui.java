@@ -11,6 +11,7 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticRawAsset;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -47,7 +48,8 @@ public class DataGui extends ListGui {
                                     showAction.accept(variation);
                                     break;
                                 case DROP:
-                                    asset.removeVariation(variation);
+                                    if (asset instanceof StaticRawAsset)
+                                        ((StaticRawAsset) asset).removeVariation(variation);
                                     gui.rebuild();
                             }
                         } else
@@ -56,13 +58,16 @@ public class DataGui extends ListGui {
                 }}).toArray(GuiItem[]::new));
         setListControls(new VerticalListControls() {{
             setBackAction(event -> action.run());
-            setCreateAction(event -> create((Player) event.getWhoClicked()));
+            if (asset instanceof StaticRawAsset)
+                setCreateAction(event -> create((Player) event.getWhoClicked()));
         }});
         this.asset = asset;
         setCloseAction(player -> action.run());
     }
 
     void create(@NotNull Player player) {
+        if (!(asset instanceof StaticRawAsset))
+            return;
         var request = new ChatRequest(player);
         player.sendMessage(getTranslation().getTranslation("create.variation"));
         hide(player);
@@ -70,6 +75,8 @@ public class DataGui extends ListGui {
     }
 
     void create(@NotNull Player player, String variation) {
+        if (!(asset instanceof StaticRawAsset))
+            return;
         var gui = new TranslatedChestGui(ItemMods.getTranslationConfig().subTranslation("raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());
         gui.registerItem(0, 0, new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
@@ -82,7 +89,7 @@ public class DataGui extends ListGui {
                 hide(player);
                 request.setSubmitAction(s -> {
                     try {
-                        asset.setData(variation, s);
+                        ((StaticRawAsset) asset).setData(variation, s);
                         player.sendMessage(gui.getTranslation().getTranslation("internet.success", variation, s));
                     } catch (IOException e) {
                         player.sendMessage(gui.getTranslation().getTranslation("internet.failed", variation, s));
@@ -101,7 +108,7 @@ public class DataGui extends ListGui {
                 request.setSubmitAction(s -> {
                     try {
                         var path = Paths.get(ItemMods.getTempPath().toString(), s);
-                        asset.setData(variation, Files.readAllBytes(path));
+                        ((StaticRawAsset) asset).setData(variation, Files.readAllBytes(path));
                         player.sendMessage(gui.getTranslation().getTranslation("file.success", variation, s));
                     } catch (Exception e) {
                         player.sendMessage(gui.getTranslation().getTranslation("file.failed", variation, s));

@@ -2,21 +2,21 @@ package dev.linwood.itemmods.pack.asset;
 
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BlockAsset extends CustomNamedAsset {
+public class StaticBlockAsset extends StaticTemplateReadyPackAsset {
     private @Nullable PackObject modelObject;
     private @Nullable PackObject referenceItem;
 
-    public BlockAsset(@NotNull String name) {
+    public StaticBlockAsset(@NotNull String name) {
         super(name);
     }
 
-    public BlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public StaticBlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
 
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
@@ -38,7 +38,7 @@ public class BlockAsset extends CustomNamedAsset {
     }
 
     @Nullable
-    public ModelAsset getModel() {
+    public StaticModelAsset getModel() {
         if (modelObject == null)
             return null;
         return modelObject.getModel();

@@ -10,7 +10,7 @@ import dev.linwood.itemmods.ItemMods;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class InactivePacksAction extends TranslationCommandAction {
+public class InactivePacksAction implements TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
@@ -34,7 +34,7 @@ public class InactivePacksAction extends TranslationCommandAction {
     }
 
     @Override
-    protected Translation getTranslationNamespace() {
+    public Translation getTranslationNamespace() {
         return ItemMods.subTranslation("inactive-packs", "gui");
     }
 

@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
-public class PacksAction extends TranslationCommandAction {
+public class PacksAction implements TranslationCommandAction {
     @Override
 
     public Translation getTranslationNamespace() {

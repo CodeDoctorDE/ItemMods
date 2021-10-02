@@ -12,8 +12,9 @@ import dev.linwood.itemmods.action.pack.block.ChooseBlockGui;
 import dev.linwood.itemmods.action.pack.item.ItemGui;
 import dev.linwood.itemmods.action.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
-import dev.linwood.itemmods.pack.asset.PackAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
@@ -34,7 +35,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, PackAsset asset) {
+    public @NotNull ItemStack getIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
@@ -47,12 +48,12 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject, PackAsset asset) {
-        return asset instanceof ItemAsset;
+    public boolean isCompatible(PackObject packObject, StaticPackAsset asset) {
+        return asset instanceof StaticItemAsset;
     }
 
     @Override
-    public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, PackAsset asset) {
+    public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
         return new TranslationCommandAction() {
             @Override
             public Translation getTranslationNamespace() {

@@ -61,6 +61,12 @@
                                 <exclude>META-INF/*.MF</exclude>
                             </excludes>
                         </filter>
+                        <filter>
+                            <artifact>me.lucko::commodore</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.MF</exclude>
+                            </excludes>
+                        </filter>
                     </filters>
                     <relocations>
                         <relocation>

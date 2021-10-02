@@ -15,7 +15,7 @@ import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.action.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -104,7 +104,7 @@ public class ItemGui extends GuiCollection {
                                 if (packObject.getPack().getModel(packObject.getName()) != null)
                                     event.getWhoClicked().sendMessage(t.getTranslation("model.exist"));
                                 else {
-                                    pack.registerItem(new ItemAsset(pack.getName()));
+                                    pack.registerItem(new StaticItemAsset(pack.getName()));
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)

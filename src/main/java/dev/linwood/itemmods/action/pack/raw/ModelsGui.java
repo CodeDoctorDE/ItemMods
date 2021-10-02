@@ -10,7 +10,7 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
@@ -36,7 +36,7 @@ public class ModelsGui extends ListGui {
                     try {
                         var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
-                        pack.registerModel(new ModelAsset(s));
+                        pack.registerModel(new StaticModelAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(t.getTranslation("create.success", s));
                         rebuild();

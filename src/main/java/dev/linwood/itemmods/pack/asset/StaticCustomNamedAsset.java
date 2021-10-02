@@ -6,14 +6,14 @@ import dev.linwood.itemmods.pack.TranslatableName;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class CustomNamedAsset extends PackAsset {
+public abstract class StaticCustomNamedAsset extends StaticPackAsset {
     private @Nullable TranslatableName displayName;
 
-    public CustomNamedAsset(@NotNull String name) {
+    public StaticCustomNamedAsset(@NotNull String name) {
         super(name);
     }
 
-    public CustomNamedAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public StaticCustomNamedAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         if (jsonObject.has("display") && jsonObject.get("display").isJsonObject())
             displayName = new TranslatableName(jsonObject.getAsJsonObject("display"));

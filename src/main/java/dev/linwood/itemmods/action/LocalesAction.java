@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 
-public class LocalesAction extends TranslationCommandAction {
+public class LocalesAction implements TranslationCommandAction {
     public void selectLocale(String locale) {
         ItemMods.getMainConfig().setLocale(locale);
         ItemMods.saveMainConfig();
@@ -47,9 +47,8 @@ public class LocalesAction extends TranslationCommandAction {
         return true;
     }
 
-
     @Override
-    protected Translation getTranslationNamespace() {
+    public Translation getTranslationNamespace() {
         return ItemMods.subTranslation("locales", "gui");
     }
 }

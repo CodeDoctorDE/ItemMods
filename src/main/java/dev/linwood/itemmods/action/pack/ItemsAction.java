@@ -11,13 +11,13 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.item.ItemGui;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
-public class ItemsAction extends TranslationCommandAction {
+public class ItemsAction implements TranslationCommandAction {
     final String name;
 
     public ItemsAction(String name) {
@@ -29,6 +29,7 @@ public class ItemsAction extends TranslationCommandAction {
         return ItemMods.subTranslation("items", "gui");
     }
 
+    @Override
     public boolean showGui(CommandSender sender) {
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getItems().stream()
                 .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon()).displayName("item")
@@ -48,7 +49,7 @@ public class ItemsAction extends TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerItem(new ItemAsset(s));
+                        pack.registerItem(new StaticItemAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();

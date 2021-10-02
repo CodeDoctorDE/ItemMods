@@ -11,14 +11,14 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.block.BlockGui;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
-public class BlocksAction extends TranslationCommandAction {
+public class BlocksAction implements TranslationCommandAction {
     private final String name;
 
     public BlocksAction(String name) {
@@ -30,6 +30,7 @@ public class BlocksAction extends TranslationCommandAction {
         return ItemMods.subTranslation("blocks", "gui");
     }
 
+    @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
             return true;
@@ -53,7 +54,7 @@ public class BlocksAction extends TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerBlock(new BlockAsset(s));
+                        pack.registerBlock(new StaticBlockAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
