@@ -11,7 +11,7 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -80,7 +80,7 @@ public class TextureAction implements TranslationCommandAction {
                     break;
                 case APPEARANCE:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.IRON_INGOT).displayName("data.title").lore("data.description").build()) {{
-                        setClickAction(event -> new DataAction(TextureAsset.class, packObject).showGui(sender));
+                        setClickAction(event -> new DataAction(StaticTextureAsset.class, packObject).showGui(sender));
                     }});
                     break;
                 case ADMINISTRATION:

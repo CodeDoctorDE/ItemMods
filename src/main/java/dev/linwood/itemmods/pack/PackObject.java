@@ -6,7 +6,7 @@ import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
@@ -104,7 +104,7 @@ public class PackObject {
     }
 
     @Nullable
-    public TextureAsset getTexture() {
+    public StaticTextureAsset getTexture() {
         var pack = getPack();
         if (pack == null)
             return null;
@@ -143,7 +143,7 @@ public class PackObject {
             return getTemplate();
         if (ModelAsset.class.isAssignableFrom(assetClass))
             return getModel();
-        if (TextureAsset.class.isAssignableFrom(assetClass))
+        if (StaticTextureAsset.class.isAssignableFrom(assetClass))
             return getTexture();
         return null;
     }

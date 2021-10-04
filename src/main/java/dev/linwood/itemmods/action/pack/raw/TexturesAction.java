@@ -11,7 +11,7 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -58,7 +58,7 @@ public class TexturesAction implements TranslationCommandAction {
                     try {
                         var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
-                        pack.registerTexture(new TextureAsset(s));
+                        pack.registerTexture(new StaticTextureAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -74,11 +74,11 @@ public class TexturesAction implements TranslationCommandAction {
         return true;
     }
 
-    public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action) {
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticTextureAsset> action) {
         showChoose(sender, action, null);
     }
 
-    public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticTextureAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         var t = ItemMods.subTranslation("choose.texture", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));

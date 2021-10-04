@@ -5,13 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.pack.asset.DisplayedAsset;
 import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import dev.linwood.itemmods.pack.asset.StaticNamedPackObject;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,14 +27,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends StaticNamedPackObject {
+public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsset {
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
     private final List<StaticItemAsset> items = new ArrayList<>();
     private final List<StaticBlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<StaticTextureAsset> textures = new ArrayList<>();
     private final List<StaticModelAsset> models = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
@@ -88,7 +90,7 @@ public class ItemModsPack extends StaticNamedPackObject {
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
                 var fileName = FileUtils.getFileName(texturesPath.relativize(current));
-                textures.add(new TextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                textures.add(new StaticTextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -134,11 +136,11 @@ public class ItemModsPack extends StaticNamedPackObject {
         blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
     }
 
-    public @NotNull List<TextureAsset> getTextures() {
+    public @NotNull List<StaticTextureAsset> getTextures() {
         return Collections.unmodifiableList(textures);
     }
 
-    public void registerTexture(@NotNull TextureAsset textureAsset) {
+    public void registerTexture(@NotNull StaticTextureAsset textureAsset) {
         if (PackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
@@ -186,8 +188,8 @@ public class ItemModsPack extends StaticNamedPackObject {
         return editable;
     }
 
-    public @NotNull Material getIcon() {
-        return icon;
+    public @NotNull ItemStack getIcon() {
+        return new ItemStack(icon);
     }
 
     public void setIcon(@NotNull Material icon) {
@@ -210,7 +212,7 @@ public class ItemModsPack extends StaticNamedPackObject {
     }
 
     @Nullable
-    public TextureAsset getTexture(String name) {
+    public StaticTextureAsset getTexture(String name) {
         return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
@@ -282,7 +284,7 @@ public class ItemModsPack extends StaticNamedPackObject {
 
     public void export(String variation, int packFormat, @NotNull Path path) throws IOException {
         for (StaticModelAsset model : models) model.export(getName(), variation, packFormat, path);
-        for (TextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
+        for (StaticTextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
     }
 
     public CustomTemplate getTemplate(String name) {

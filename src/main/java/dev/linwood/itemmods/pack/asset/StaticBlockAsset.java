@@ -1,14 +1,14 @@
 package dev.linwood.itemmods.pack.asset;
 
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class StaticBlockAsset extends StaticTemplateReadyPackAsset {
+public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements BlockAsset, DisplayedAsset {
     private @Nullable PackObject modelObject;
     private @Nullable PackObject referenceItem;
 
@@ -37,22 +37,13 @@ public class StaticBlockAsset extends StaticTemplateReadyPackAsset {
             this.modelObject = modelObject;
     }
 
-    @Nullable
-    public StaticModelAsset getModel() {
-        if (modelObject == null)
-            return null;
-        return modelObject.getModel();
-    }
-
-    public ItemStack getModelTexture() {
-        var modelObject = getModelObject();
-        var model = modelObject == null ? null : modelObject.getModel();
-        var itemStack = new ItemStack(model == null ? Material.STONE : model.getFallbackTexture());
-        var itemMeta = itemStack.getItemMeta();
-        assert itemMeta != null;
-        itemMeta.setCustomModelData(modelObject == null ? null : modelObject.getCustomModel());
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
+    @Override
+    public @NotNull ItemStack getIcon() {
+        var model = getModel();
+        var material = Material.GRASS_BLOCK;
+        if (model != null)
+            material = model.getFallbackTexture();
+        return new ItemStackBuilder(material).displayName(getDisplayName() == null ? null : getDisplayName().getName()).build();
     }
 
     public @Nullable PackObject getReferenceItem() {

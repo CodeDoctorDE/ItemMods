@@ -2,9 +2,11 @@ package dev.linwood.itemmods.pack.asset;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class StaticItemAsset extends StaticTemplateReadyPackAsset {
+public class StaticItemAsset extends StaticTemplateReadyPackAsset implements DisplayedAsset {
     @Nullable
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();
@@ -56,11 +58,12 @@ public class StaticItemAsset extends StaticTemplateReadyPackAsset {
     }
 
     @NotNull
-    public Material getIcon() {
+    public ItemStack getIcon() {
         var model = getModel();
-        if (model == null)
-            return Material.DIAMOND;
-        return model.getFallbackTexture();
+        var material = Material.DIAMOND;
+        if (model != null)
+            material = model.getFallbackTexture();
+        return new ItemStackBuilder(material).displayName(getDisplayName() == null ? null : getDisplayName().getName()).build();
     }
 
     @Override
