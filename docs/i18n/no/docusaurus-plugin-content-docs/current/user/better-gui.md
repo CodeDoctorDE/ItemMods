@@ -7,7 +7,7 @@ title: BetterGui
 Usage:
 ```yaml
 stone:
-  custom-item: YOUR_TAG
+  itemmods: YOUR_TAG
   amount: 32
 ```
 Replace YOUR_TAG with the tag of the custom item.
