@@ -6,9 +6,9 @@ import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.CommandAction;
+import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.action.pack.block.ChooseBlockGui;
+import dev.linwood.itemmods.action.pack.BlocksAction;
 import dev.linwood.itemmods.action.pack.item.ItemGui;
 import dev.linwood.itemmods.action.pack.template.TemplateGui;
 import dev.linwood.itemmods.pack.PackObject;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.item.block").merge(ItemMods.getTranslationConfig().subTranslation("gui"));
+    private final Translation t = ItemMods.subTranslation("addon.item.block", "gui");
 
     public BlockSetTemplate() {
         super("block");
@@ -67,12 +67,12 @@ public class BlockSetTemplate extends CustomTemplate {
                     return true;
                 }
                 var player = (Player) sender;
-                PackAction.showChoose(pack -> new ChooseBlockGui(pack.getName(), asset -> {
+                new PacksAction().showChoose(pack -> new BlocksAction(pack.getName()).showChoose(asset -> {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
                     new TemplateGui(packObject, asset, event -> new ItemGui(packObject).show(player)).show(player);
-                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked())).show(player), inventoryClickEvent -> new ItemGui(packObject).show(player), player);
+                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked()), sender), event -> new ItemGui(packObject).show(player), player);
                 return true;
             }
         };

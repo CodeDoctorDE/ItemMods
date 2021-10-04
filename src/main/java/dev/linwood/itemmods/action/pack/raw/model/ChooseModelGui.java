@@ -21,7 +21,7 @@ public class ChooseModelGui extends ListGui {
     }
 
     public ChooseModelGui(String namespace, @NotNull Consumer<StaticModelAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        super(ItemMods.getTranslationConfig().subTranslation("choose.model").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
+        super(ItemMods.subTranslation("choose.model", "gui"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture())
                         .displayName("item").lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

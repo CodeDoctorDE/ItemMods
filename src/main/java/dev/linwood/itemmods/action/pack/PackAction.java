@@ -4,12 +4,9 @@ import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.api.ui.GuiCollection;
-import dev.linwood.api.ui.item.GuiItem;
 import dev.linwood.api.ui.item.StaticItem;
-import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
-import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
@@ -20,13 +17,11 @@ import dev.linwood.itemmods.pack.ItemModsPack;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class PackAction implements TranslationCommandAction {
     private final String name;
@@ -35,31 +30,6 @@ public class PackAction implements TranslationCommandAction {
         this.name = name;
     }
 
-    public static void showChoose(@NotNull Consumer<ItemModsPack> action, CommandSender sender) {
-        showChoose(action, null, sender);
-    }
-
-    public static void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
-        var t = ItemMods.subTranslation("choose.pack", "gui");
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(t.getTranslation("no-player"));
-            return;
-        }
-        var gui = new ListGui(t, 4, (listGui) -> ItemMods.getPackManager().getPacks()
-                .stream().filter(pack -> pack.getName().contains(listGui.getSearchText())).map(pack ->
-                        new TranslatedGuiItem(
-                                new ItemStackBuilder(pack.getIcon()).displayName("item").lore("action").build()) {{
-                            setRenderAction(gui -> setPlaceholders(pack.getName()));
-                            setClickAction(event -> action.accept(pack));
-                        }}).toArray(GuiItem[]::new));
-        var back = backAction;
-        gui.setListControls(new VerticalListControls() {
-            {
-                setBackAction(back);
-            }
-        });
-        gui.show((Player) sender);
-    }
 
     @Override
     public boolean showGui(CommandSender sender) {

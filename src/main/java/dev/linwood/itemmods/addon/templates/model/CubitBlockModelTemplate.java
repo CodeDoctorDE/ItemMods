@@ -29,7 +29,7 @@ import java.util.Map;
  * Coming soon in 2.0.0-alpha.1
  */
 public class CubitBlockModelTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.getTranslationConfig().subTranslation("addon.model.cubit_block");
+    private final Translation t = ItemMods.subTranslation("addon.model.cubit_block");
 
     public CubitBlockModelTemplate(String name) {
         super("cubit_block");

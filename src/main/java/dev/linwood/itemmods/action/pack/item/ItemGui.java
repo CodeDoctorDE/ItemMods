@@ -8,8 +8,8 @@ import dev.linwood.api.ui.template.gui.MessageGui;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.pack.ItemsAction;
-import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.action.pack.raw.model.ChooseModelGui;
 import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
 import dev.linwood.itemmods.action.pack.template.TemplateGui;
@@ -30,7 +30,7 @@ public class ItemGui extends GuiCollection {
 
     public ItemGui(@NotNull PackObject packObject) {
         this.packObject = packObject;
-        var t = ItemMods.getTranslationConfig().subTranslation("item");
+        var t = ItemMods.subTranslation("item");
         var asset = packObject.getItem();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
@@ -108,7 +108,7 @@ public class ItemGui extends GuiCollection {
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
-                                PackAction.showChoose(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
+                                new PacksAction().showChoose(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
                                     asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
                                     packObject.save();
                                     reloadAll();

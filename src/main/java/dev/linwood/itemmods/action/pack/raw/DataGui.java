@@ -27,7 +27,7 @@ public class DataGui extends ListGui {
     private final @NotNull RawAsset asset;
 
     public DataGui(@NotNull String namespace, @NotNull RawAsset asset, @NotNull Runnable action, @NotNull Consumer<String> showAction) {
-        super(ItemMods.getTranslationConfig().subTranslation("raw.data").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4);
+        super(ItemMods.subTranslation("raw.data", "gui"), 4);
         setPlaceholders(new PackObject(namespace, asset.getName()).toString());
         setItemBuilder((gui) -> new ArrayList<>(asset.getVariations()) {{
             remove("default");
@@ -78,7 +78,7 @@ public class DataGui extends ListGui {
     void create(@NotNull Player player, String variation) {
         if (!(asset instanceof StaticRawAsset))
             return;
-        var gui = new TranslatedChestGui(ItemMods.getTranslationConfig().subTranslation("raw.data.create.gui"), 4);
+        var gui = new TranslatedChestGui(ItemMods.subTranslation("raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());
         gui.registerItem(0, 0, new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
             setClickAction(event -> show(player));

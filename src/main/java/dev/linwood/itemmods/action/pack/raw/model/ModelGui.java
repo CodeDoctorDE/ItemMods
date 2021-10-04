@@ -24,7 +24,7 @@ import java.util.Objects;
 public class ModelGui extends GuiCollection {
     public ModelGui(@NotNull PackObject packObject) {
         super();
-        var t = ItemMods.getTranslationConfig().subTranslation("raw.model");
+        var t = ItemMods.subTranslation("raw.model");
         var asset = packObject.getModel();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
@@ -68,7 +68,7 @@ public class ModelGui extends GuiCollection {
                 case APPEARANCE:
                     gui.addItem(new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture()).displayName("fallback.title").lore("fallback.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getFallbackTexture().getKey().toString()));
-                        setClickAction(event -> new MaterialListGui(ItemMods.getTranslationConfig().subTranslation("materials").merge(ItemMods.getTranslationConfig().subTranslation("gui")), material -> {
+                        setClickAction(event -> new MaterialListGui(ItemMods.subTranslation("materials", "gui"), material -> {
                             asset.setFallbackTexture(material);
                             packObject.save();
                             show((Player) event.getWhoClicked());

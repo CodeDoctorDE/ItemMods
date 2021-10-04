@@ -9,20 +9,24 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.block.BlockGui;
+import dev.linwood.itemmods.action.pack.block.BlockAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public class BlocksAction implements TranslationCommandAction {
-    private final String name;
+    private final String namespace;
 
-    public BlocksAction(String name) {
-        this.name = name;
+    public BlocksAction(String namespace) {
+        this.namespace = namespace;
     }
 
     @Override
@@ -33,20 +37,21 @@ public class BlocksAction implements TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(name)).getBlocks().stream()
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks().stream()
                 .filter(blockAsset -> blockAsset.getName().contains(listGui.getSearchText())).map(blockAsset -> new TranslatedGuiItem(new ItemStackBuilder(
                         blockAsset.getModel() == null ? Material.GRASS_BLOCK : blockAsset.getModel().getFallbackTexture()).displayName("item")
                         .lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
-                    setClickAction(event -> new BlockGui(new PackObject(name, blockAsset.getName())).show((Player) event.getWhoClicked()));
+                    setClickAction(event -> new BlockAction(new PackObject(namespace, blockAsset.getName())).showGui(event.getWhoClicked()));
                 }}).toArray(GuiItem[]::new));
-        gui.setPlaceholders(name);
-        var pack = ItemMods.getPackManager().getPack(name);
+        gui.setPlaceholders(namespace);
+        var pack = ItemMods.getPackManager().getPack(namespace);
         assert pack != null;
         gui.setListControls(new VerticalListControls() {{
-            setBackAction(event -> new PackAction(name).showGui(event.getWhoClicked()));
+            setBackAction(event -> new PackAction(namespace).showGui(event.getWhoClicked()));
             setCreateAction(event -> {
                 var p = (Player) event.getWhoClicked();
                 gui.hide(p);
@@ -68,5 +73,29 @@ public class BlocksAction implements TranslationCommandAction {
         }});
         gui.show((Player) sender);
         return true;
+    }
+
+    public void showChoose(@NotNull Consumer<StaticBlockAsset> action, CommandSender sender) {
+        showChoose(action, null, sender);
+    }
+
+    public void showChoose(@NotNull Consumer<StaticBlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
+        var t = ItemMods.subTranslation("choose.block", "gui");
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(t.getTranslation("no-player"));
+            return;
+        }
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
+                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(
+                        asset.getModel() == null ? Material.GRASS_BLOCK : asset.getModel().getFallbackTexture()).displayName("item")
+                        .lore(listGui.getTranslation().getTranslation("action", new PackObject(namespace, asset.getName()).toString())).build()) {{
+                    setRenderAction(gui -> setPlaceholders(asset.getName()));
+                    setClickAction(event -> action.accept(asset));
+                }}).toArray(GuiItem[]::new));
+        var back = backAction;
+        gui.setListControls(new VerticalListControls() {{
+            setBackAction(back);
+        }});
+        gui.show((Player) sender);
     }
 }

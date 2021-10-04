@@ -5,7 +5,7 @@ import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.action.pack.PackAction;
+import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class TemplateGui extends ListGui {
     }
 
     public TemplateGui(@NotNull PackObject packObject, @NotNull TemplateReadyPackAsset asset, @Nullable Consumer<InventoryClickEvent> backAction) {
-        super(ItemMods.getTranslationConfig().subTranslation("template"), 4, gui -> asset.getCustomTemplates().stream().map(customTemplateData ->
+        super(ItemMods.subTranslation("template"), 4, gui -> asset.getCustomTemplates().stream().map(customTemplateData ->
                 new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getIcon(packObject, customTemplateData, asset)) {{
                     setClickAction(event -> {
                         if (event.getClick() == ClickType.DROP)
@@ -38,7 +38,7 @@ public class TemplateGui extends ListGui {
         var back = backAction;
         setListControls(new VerticalListControls() {{
             setBackAction(back);
-            setCreateAction(event -> PackAction.showChoose(itemModsPack -> new ChooseTemplateGui(itemModsPack.getName(), customTemplate -> {
+            setCreateAction(event -> new PacksAction().showChoose(itemModsPack -> new ChooseTemplateGui(itemModsPack.getName(), customTemplate -> {
                 asset.registerCustomTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()));
                 packObject.save();
                 rebuild();

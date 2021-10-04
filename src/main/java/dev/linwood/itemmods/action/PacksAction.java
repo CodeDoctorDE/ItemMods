@@ -12,7 +12,11 @@ import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.ItemModsPack;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 public class PacksAction implements TranslationCommandAction {
     @Override
@@ -92,5 +96,31 @@ public class PacksAction implements TranslationCommandAction {
         ItemMods.getPackManager().registerPack(new ItemModsPack(name, true));
         ItemMods.getPackManager().save(name);
         sender.sendMessage(getTranslation("create.success", name));
+    }
+
+    public void showChoose(@NotNull Consumer<ItemModsPack> action, CommandSender sender) {
+        showChoose(action, null, sender);
+    }
+
+    public void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
+        var t = ItemMods.subTranslation("choose.pack", "gui");
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(t.getTranslation("no-player"));
+            return;
+        }
+        var gui = new ListGui(t, 4, (listGui) -> ItemMods.getPackManager().getPacks()
+                .stream().filter(pack -> pack.getName().contains(listGui.getSearchText())).map(pack ->
+                        new TranslatedGuiItem(
+                                new ItemStackBuilder(pack.getIcon()).displayName("item").lore("action").build()) {{
+                            setRenderAction(gui -> setPlaceholders(pack.getName()));
+                            setClickAction(event -> action.accept(pack));
+                        }}).toArray(GuiItem[]::new));
+        var back = backAction;
+        gui.setListControls(new VerticalListControls() {
+            {
+                setBackAction(back);
+            }
+        });
+        gui.show((Player) sender);
     }
 }

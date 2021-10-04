@@ -22,7 +22,7 @@ public class ChooseTextureGui extends ListGui {
     }
 
     public ChooseTextureGui(String namespace, @Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<TextureAsset> action) {
-        super(ItemMods.getTranslationConfig().subTranslation("choose.texture").merge(ItemMods.getTranslationConfig().subTranslation("gui")), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        super(ItemMods.subTranslation("choose.texture", "gui"), 4, (gui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(gui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
                         .displayName("item").lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

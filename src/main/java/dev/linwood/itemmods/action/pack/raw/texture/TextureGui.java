@@ -21,7 +21,7 @@ import java.util.Objects;
 public class TextureGui extends GuiCollection {
     public TextureGui(@NotNull PackObject packObject) {
         super();
-        var t = ItemMods.getTranslationConfig().subTranslation("raw.texture");
+        var t = ItemMods.subTranslation("raw.texture");
         var asset = packObject.getTexture();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
