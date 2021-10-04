@@ -98,11 +98,11 @@ public class PacksAction implements TranslationCommandAction {
         sender.sendMessage(getTranslation("create.success", name));
     }
 
-    public void showChoose(@NotNull Consumer<ItemModsPack> action, CommandSender sender) {
-        showChoose(action, null, sender);
+    public void showChoose(CommandSender sender, @NotNull Consumer<ItemModsPack> action) {
+        showChoose(sender, action, null);
     }
 
-    public void showChoose(@NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
+    public void showChoose(CommandSender sender, @NotNull Consumer<ItemModsPack> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         var t = ItemMods.subTranslation("choose.pack", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));

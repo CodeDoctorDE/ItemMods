@@ -1,7 +1,8 @@
-package dev.linwood.itemmods.action.pack.item;
+package dev.linwood.itemmods.action.pack;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
+import dev.linwood.api.translations.Translation;
 import dev.linwood.api.ui.GuiCollection;
 import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.MessageGui;
@@ -9,15 +10,15 @@ import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
-import dev.linwood.itemmods.action.pack.ItemsAction;
-import dev.linwood.itemmods.action.pack.raw.model.ChooseModelGui;
-import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
-import dev.linwood.itemmods.action.pack.template.TemplateGui;
+import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.action.pack.raw.ModelAction;
+import dev.linwood.itemmods.action.pack.raw.ModelsAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.jetbrains.annotations.NotNull;
@@ -25,16 +26,29 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ItemGui extends GuiCollection {
+public class ItemAction implements TranslationCommandAction {
     protected final @NotNull PackObject packObject;
 
-    public ItemGui(@NotNull PackObject packObject) {
+    public ItemAction(@NotNull PackObject packObject) {
         this.packObject = packObject;
-        var t = ItemMods.subTranslation("item");
+    }
+
+    @Override
+    public Translation getTranslationNamespace() {
+        return ItemMods.subTranslation("item");
+    }
+
+    @Override
+    public boolean showGui(@NotNull CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation("no-player"));
+            return true;
+        }
+        var gui = new GuiCollection();
         var asset = packObject.getItem();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
-        Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(t, 4) {{
+        Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
             setPlaceholders(packObject.toString());
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
@@ -44,7 +58,7 @@ public class ItemGui extends GuiCollection {
             addItem(placeholder);
             Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
-                setClickAction(event -> setCurrent(tab.ordinal()));
+                setClickAction(event -> gui.setCurrent(tab.ordinal()));
             }}).forEach(this::addItem);
             fillItems(0, 0, 8, 1, placeholder);
             var pack = packObject.getPack();
@@ -57,15 +71,15 @@ public class ItemGui extends GuiCollection {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(t.getTranslation("name.message"));
+                            p.sendMessage(ItemAction.this.getTranslation("name.message"));
                             request.setSubmitAction(s -> {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    p.sendMessage(t.getTranslation("name.success", s));
-                                    new ItemGui(new PackObject(packObject.getNamespace(), s)).show(p);
+                                    p.sendMessage(ItemAction.this.getTranslation("name.success", s));
+                                    new ItemAction(new PackObject(packObject.getNamespace(), s)).showGui(p);
                                 } catch (Exception e) {
-                                    p.sendMessage(t.getTranslation("name.failed"));
+                                    p.sendMessage(ItemAction.this.getTranslation("name.failed"));
                                     e.printStackTrace();
                                 }
                             });
@@ -81,13 +95,13 @@ public class ItemGui extends GuiCollection {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(t.getTranslation("display.message"));
+                            p.sendMessage(ItemAction.this.getTranslation("display.message"));
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
                                 asset.setDisplayName(new TranslatableName(ts));
                                 packObject.save();
                                 show(p);
-                                p.sendMessage(t.getTranslation("display.success", ts));
+                                p.sendMessage(ItemAction.this.getTranslation("display.success", ts));
                             });
                         });
                     }});
@@ -102,22 +116,22 @@ public class ItemGui extends GuiCollection {
                             var modelObject = asset.getModelObject();
                             if (modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
                                 if (packObject.getPack().getModel(packObject.getName()) != null)
-                                    event.getWhoClicked().sendMessage(t.getTranslation("model.exist"));
+                                    event.getWhoClicked().sendMessage(ItemAction.this.getTranslation("model.exist"));
                                 else {
                                     pack.registerItem(new StaticItemAsset(pack.getName()));
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
-                                new PacksAction().showChoose(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
+                                new PacksAction().showChoose(event.getWhoClicked(), pack -> new ModelsAction(pack.getName()).showChoose(sender, modelAsset -> {
                                     asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }).show(p), backEvent -> ItemGui.this.show((Player) backEvent.getWhoClicked()), event.getWhoClicked());
+                                }), backEvent -> showGui(backEvent.getWhoClicked()));
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
-                                        new ModelGui(modelObject).show(p);
+                                        new ModelAction(modelObject).showGui(p);
                                         break;
                                     case DROP:
                                         asset.setModelObject(null);
@@ -127,13 +141,13 @@ public class ItemGui extends GuiCollection {
                         });
                     }});
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()) {{
-                        setClickAction(event -> new TemplateGui(packObject, asset, backEvent -> show((Player) backEvent.getWhoClicked())).show((Player) event.getWhoClicked()));
+                        setClickAction(event -> new TemplateAction(packObject, StaticItemAsset.class).showGui(sender, backEvent -> show((Player) backEvent.getWhoClicked())));
                     }});
                     break;
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getName()));
-                        setClickAction(event -> new MessageGui(t.subTranslation("delete.gui")) {{
+                        setClickAction(event -> new MessageGui(ItemMods.subTranslation("delete.gui")) {{
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
@@ -142,7 +156,7 @@ public class ItemGui extends GuiCollection {
                                     new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
-                                setClickAction(event -> ItemGui.this.show((Player) event.getWhoClicked()));
+                                setClickAction(event -> ItemAction.this.showGui(event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));
                     }});
@@ -150,7 +164,9 @@ public class ItemGui extends GuiCollection {
             }
             fillItems(0, 0, 8, 1, placeholder);
             fillItems(0, 3, 8, 3, placeholder);
-        }}).forEach(this::registerGui);
+        }}).forEach(gui::registerGui);
+        gui.show((Player) sender);
+        return true;
     }
 
     public enum ItemTab {

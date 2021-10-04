@@ -16,6 +16,7 @@ import java.util.List;
 
 public class BaseCommand implements CommandExecutor, TabCompleter {
     private final CommandAction action = new MainAction();
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         action.handleCommand(sender, args);

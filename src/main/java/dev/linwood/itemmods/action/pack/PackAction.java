@@ -11,8 +11,8 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.raw.ModelsGui;
-import dev.linwood.itemmods.action.pack.raw.TexturesGui;
+import dev.linwood.itemmods.action.pack.raw.ModelsAction;
+import dev.linwood.itemmods.action.pack.raw.TexturesAction;
 import dev.linwood.itemmods.pack.ItemModsPack;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -124,14 +124,14 @@ public class PackAction implements TranslationCommandAction {
 
     public void showModels(CommandSender sender) {
         if (sender instanceof Player)
-            new ModelsGui(name).show((Player) sender);
+            new ModelsAction(name).showGui(sender);
         else
             sender.sendMessage(getTranslation("no-player"));
     }
 
     public void showTextures(CommandSender sender) {
         if (sender instanceof Player)
-            new TexturesGui(name).show((Player) sender);
+            new TexturesAction(name).showGui(sender);
         else
             sender.sendMessage(getTranslation("no-player"));
     }

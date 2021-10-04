@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.action.pack.block;
+package dev.linwood.itemmods.action.pack;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -11,9 +11,8 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.BlocksAction;
-import dev.linwood.itemmods.action.pack.raw.model.ChooseModelGui;
-import dev.linwood.itemmods.action.pack.raw.model.ModelGui;
+import dev.linwood.itemmods.action.pack.raw.ModelAction;
+import dev.linwood.itemmods.action.pack.raw.ModelsAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
@@ -119,16 +118,16 @@ public class BlockAction implements TranslationCommandAction {
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
-                                new PacksAction().showChoose(pack -> new ChooseModelGui(pack.getName(), modelAsset -> {
+                                new PacksAction().showChoose(sender, pack -> new ModelsAction(pack.getName()).showChoose(sender, modelAsset -> {
                                     asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }).show(p), backEvent -> showGui(backEvent.getWhoClicked()), event.getWhoClicked());
+                                }), backEvent -> showGui(sender));
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
-                                        new ModelGui(modelObject).show(p);
+                                        new ModelAction(modelObject).showGui(p);
                                         break;
                                     case DROP:
                                         asset.setModelObject(null);

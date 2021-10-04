@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.action.pack;
+package dev.linwood.itemmods.action.pack.raw;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -9,8 +9,9 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -20,16 +21,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class ItemsAction implements TranslationCommandAction {
+public class ModelsAction implements TranslationCommandAction {
     final String namespace;
 
-    public ItemsAction(String namespace) {
+    public ModelsAction(String namespace) {
         this.namespace = namespace;
     }
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("items", "gui");
+        return ItemMods.subTranslation("raw.models", "gui");
     }
 
     @Override
@@ -38,26 +39,26 @@ public class ItemsAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems().stream()
-                .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon()).displayName("item")
-                        .lore("action").build()) {{
-                    setRenderAction(gui -> setPlaceholders(itemAsset.getName()));
-                    setClickAction(event -> new ItemAction(new PackObject(namespace, itemAsset.getName())).showGui(event.getWhoClicked()));
-                }}).toArray(GuiItem[]::new));
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
+                .stream().filter(modelAsset -> modelAsset.getName().contains(listGui.getSearchText())).map(modelAsset ->
+                        new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("action").build()) {{
+                            setRenderAction(gui -> setPlaceholders(new PackObject(namespace, modelAsset.getName()).toString()));
+                            setClickAction(event -> new ModelAction(new PackObject(namespace, modelAsset.getName())).showGui(event.getWhoClicked()));
+                        }}).toArray(GuiItem[]::new));
         gui.setPlaceholders(namespace);
-        var pack = ItemMods.getPackManager().getPack(namespace);
-        assert pack != null;
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new PackAction(namespace).showGui(event.getWhoClicked()));
             setCreateAction(event -> {
                 var p = (Player) event.getWhoClicked();
-                gui.hide(p);
                 var request = new ChatRequest(p);
                 p.sendMessage(getTranslation("create.message"));
+                gui.hide(p);
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerItem(new StaticItemAsset(s));
-                        new PackObject(pack.getName(), s).save();
+                        var pack = ItemMods.getPackManager().getPack(namespace);
+                        assert pack != null;
+                        pack.registerModel(new StaticModelAsset(s));
+                        new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
                     } catch (UnsupportedOperationException e) {
@@ -72,20 +73,20 @@ public class ItemsAction implements TranslationCommandAction {
         return true;
     }
 
-    public void showChoose(@NotNull Consumer<StaticItemAsset> action, CommandSender sender) {
-        showChoose(null, action, sender);
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticModelAsset> action) {
+        showChoose(sender, action, null);
     }
 
-    public void showChoose(@Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<StaticItemAsset> action, CommandSender sender) {
-        var t = ItemMods.subTranslation("choose.item", "gui");
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticModelAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
+        var t = ItemMods.subTranslation("choose.model", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems()
-                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
+                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture())
                         .displayName("item").lore("action").build()) {{
-                    setRenderAction(gui -> setPlaceholders(asset.getName()));
+                    setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));
         var back = backAction;
@@ -94,5 +95,4 @@ public class ItemsAction implements TranslationCommandAction {
         }});
         gui.show((Player) sender);
     }
-
 }

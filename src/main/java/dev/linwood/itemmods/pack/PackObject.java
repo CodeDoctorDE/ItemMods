@@ -1,9 +1,10 @@
 package dev.linwood.itemmods.pack;
 
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
-import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
@@ -52,11 +53,11 @@ public class PackObject {
 
     /**
      * @return Returns the asset by the given namespace and key
-     * @deprecated Deprecated because assets can have the same pack object if they have a different type
+     * @deprecated Deprecated because assets can have the same pack object if they have a different type. Use  for this
      */
     @Nullable
     @Deprecated
-    public StaticPackAsset getAsset() {
+    public PackAsset getAsset() {
         var item = getItem();
         if (item != null)
             return item;
@@ -68,6 +69,7 @@ public class PackObject {
             return model;
         return getTexture();
     }
+
 
     @Nullable
     public StaticItemAsset getItem() {
@@ -124,5 +126,25 @@ public class PackObject {
     @Override
     public @NotNull String toString() {
         return namespace + ":" + name;
+    }
+
+    /**
+     * Get the asset by the class
+     *
+     * @param assetClass The class of the searched asset
+     * @return Returns null if nothing found or the asset
+     */
+    public @Nullable PackAsset getAssetByType(Class<? extends PackAsset> assetClass) {
+        if (StaticItemAsset.class.isAssignableFrom(assetClass))
+            return getItem();
+        if (StaticBlockAsset.class.isAssignableFrom(assetClass))
+            return getBlock();
+        if (CustomTemplate.class.isAssignableFrom(assetClass))
+            return getTemplate();
+        if (ModelAsset.class.isAssignableFrom(assetClass))
+            return getModel();
+        if (TextureAsset.class.isAssignableFrom(assetClass))
+            return getTexture();
+        return null;
     }
 }

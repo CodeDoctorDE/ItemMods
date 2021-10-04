@@ -9,9 +9,10 @@ import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.BlocksAction;
-import dev.linwood.itemmods.action.pack.item.ItemGui;
-import dev.linwood.itemmods.action.pack.template.TemplateGui;
+import dev.linwood.itemmods.action.pack.ItemAction;
+import dev.linwood.itemmods.action.pack.TemplateAction;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import dev.linwood.itemmods.pack.asset.StaticPackAsset;
 import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
@@ -67,12 +68,12 @@ public class BlockSetTemplate extends CustomTemplate {
                     return true;
                 }
                 var player = (Player) sender;
-                new PacksAction().showChoose(pack -> new BlocksAction(pack.getName()).showChoose(asset -> {
+                new PacksAction().showChoose(sender, pack -> new BlocksAction(pack.getName()).showChoose(player, asset -> {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateGui(packObject, asset, event -> new ItemGui(packObject).show(player)).show(player);
-                }, event -> new ItemGui(packObject).show((Player) event.getWhoClicked()), sender), event -> new ItemGui(packObject).show(player), player);
+                    new TemplateAction(packObject, StaticBlockAsset.class).showGui(sender, event -> new ItemAction(packObject).showGui(player));
+                }, event -> new ItemAction(packObject).showGui(event.getWhoClicked())), event -> new ItemAction(packObject).showGui(player));
                 return true;
             }
         };

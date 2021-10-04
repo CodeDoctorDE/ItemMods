@@ -9,7 +9,6 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.block.BlockAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import org.bukkit.Material;
@@ -75,11 +74,11 @@ public class BlocksAction implements TranslationCommandAction {
         return true;
     }
 
-    public void showChoose(@NotNull Consumer<StaticBlockAsset> action, CommandSender sender) {
-        showChoose(action, null, sender);
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticBlockAsset> action) {
+        showChoose(sender, action, null);
     }
 
-    public void showChoose(@NotNull Consumer<StaticBlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction, CommandSender sender) {
+    public void showChoose(CommandSender sender, @NotNull Consumer<StaticBlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
         var t = ItemMods.subTranslation("choose.block", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
