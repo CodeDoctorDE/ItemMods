@@ -5,14 +5,14 @@
     "unloading": "§eItemMods §7» §e正在卸载插件...",
     "unloaded": "§eItemMods §7» §a插件已成功卸载！",
     "compatible": "§eItemMods §7» §6插件与服务器版本不兼容！",
-    "version": "§eItemMods §7» §6There is a new version available: §3%s",
+    "version": "§eItemMods§7» §6有新版本可用：§3%s",
     "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
   },
   "api": {
-    "register": "§eItemMods §7» §aRegistered new addon §3%s§a!",
-    "unregister": "§eItemMods §7» §aUnregistered addon §3%s§a!"
+    "register": "§eItemMods §7» §a成功注册新拓展：§3%s§a！",
+    "unregister": "§eItemMods §7» §a成功移除拓展：§3%s§a！"
   },
-  "coming-soon": "§cComing soon...",
+  "coming-soon": "§c即将到来...",
   "addon": {
     "item": {
       "block": {
