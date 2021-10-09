@@ -1,10 +1,10 @@
 {
   "plugin": {
-    "loading": "§eItemMods §7» §eLoading plugin...",
-    "loaded": "§eItemMods §7» §aSuccessfully loaded plugin!",
-    "unloading": "§eItemMods §7» §eUnloading plugin...",
-    "unloaded": "§eItemMods §7» §aSuccessfully unloaded plugin!",
-    "compatible": "§eItemMods §7» §6This plugin isn't compatible with your version!",
+    "loading": "§eItemMods§7» §e正在加载插件...",
+    "loaded": "§eItemMods §7» §a插件已成功加载！",
+    "unloading": "§eItemMods §7» §e正在卸载插件...",
+    "unloaded": "§eItemMods §7» §a插件已成功卸载！",
+    "compatible": "§eItemMods §7» §6插件与服务器版本不兼容！",
     "version": "§eItemMods §7» §6There is a new version available: §3%s",
     "no-preset": "§eItemMods §7» §cThere is no preset resource pack. Please copy a sample texture pack there."
   },
