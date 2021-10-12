@@ -105,17 +105,17 @@
     },
     "support": {
       "title": "§6Support",
-      "description": "§7Get the discord link",
+      "description": "§7获取Discord链接",
       "link": "§eItemMods §7» §eSupport: §b§n%s"
     },
     "crowdin": {
       "title": "§6Crowdin",
-      "description": "§7Get the crowdin link",
+      "description": "§7获取Crowdin链接",
       "link": "§eItemMods §7» §eCrowdin: §b§n%s"
     },
     "wiki": {
       "title": "§6Wiki",
-      "description": "§7Get the wiki link",
+      "description": "§7获取Wiki链接",
       "link": "§eItemMods §7» §eWiki: §b§n%s"
     },
     "export": {
@@ -212,7 +212,7 @@
       "failed": "§eItemMods §7» §cExporting failed."
     },
     "delete": {
-      "title": "§6Delete",
+      "title": "§6删除",
       "description": "§7Delete the current pack",
       "gui": {
         "title": "§6Delete pack §3%s§6?",
