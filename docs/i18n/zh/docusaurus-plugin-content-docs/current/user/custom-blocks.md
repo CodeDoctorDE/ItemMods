@@ -1,14 +1,14 @@
 ---
-title: Custom blocks
+title: 自定义块
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+:::note 要有自定义的纹理，你需要有一个包。 查看 [这里](pack.md#create-a-pack) 来查看您如何创建一个。 :::
 
-## Create a custom block
+## 创建一个自定义块
 
-* Create a [reference item](custom-items.md)
-* Go to the block list and click on the knowledge book
-* Give the block a name
-* [Create a model](custom-models.md) for this block
-* Set the model in the block gui
-* Add the `Block set template` to the reference item and set the current block
+* 创建一个 [引用项](custom-items.md)
+* 转到方块列表并点击知识簿
+* 给方块一个名称
+* [为此方块创建一个模型](custom-models.md)
+* 在方块界面设置模型
+* 将 `块设置模板` 添加到参考项并设置当前块
