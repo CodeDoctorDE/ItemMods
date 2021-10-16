@@ -1,31 +1,31 @@
 ---
-title: Custom models
+title: 自定义模型
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+:::note 要有自定义的纹理，你需要有一个包。 查看 [这里](pack.md#create-a-pack) 来查看您如何创建一个。 :::
 
-## Create a custom model
+## 创建自定义模型
 
-* Go to the model list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the model file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.json`
-    * If you choose internet, you need the direct link to the json
-        * If you choose it, please add `.json` to the url, for example `https://example.com/YOURFILE.json`
+* 转到应用界面中的模型列表
+* 点击知识书
+* 给它一个名字
+* 转到数据界面
+* 通过点击知识书来更改默认变量或将您自己的变量添加到纹理中
+* 您可以选择模型文件的所在位置。 文件或互联网：
+    * 如果您选择了文件，您需要在插件/临时模式/临时中添加纹理文件
+        * 现在您需要输入文件名，例如 `ruby.json`
+    * 如果您选择互联网，您需要直接链接到json
+        * 如果您选择它，请将 `.json` 添加到网址上，例如 `https://example.com/YOURFILE.json`
 
-:::caution You need to export the resource pack before having a custom model. :::
+::::警告 你需要在有自定义模型之前导出资源包。 :::
 
-## Examples
+## 示例：
 
-Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
+在临时目录中创建带有此内容的文件。 用您的值替换 *<placeholder\>* 并将其分配到模型
 
-### Block model
+### 块模型
 
-The default block model:
+默认块型号：
 ```json title="block.json"
 {
     "textures": {
@@ -68,7 +68,7 @@ The default block model:
 
 ```
 
-### Block item model
+### 阻止项目模型
 
 ```json title="block_item.json"
 {
