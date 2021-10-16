@@ -33,20 +33,20 @@
     "title": "§6Kunnskap"
   },
   "gui": {
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "actions": "§7Click to choose",
-    "item": "§6%s",
+    "first": "§6Første",
+    "previous": "§6Forrige",
+    "next": "§6Neste",
+    "last": "§6Siste",
+    "actions": "§7Klikk for å velge",
+    "item": "§7%s",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePlease enter the search text. Avbryt med et venstre klikk.",
+      "title": "§6Søk",
+      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Tilbakestill search text\n§7Drop » Tilbake"
     },
-    "yes": "§aYes",
-    "no": "§cNo",
-    "no-player": "§eItemMods §7» §cGuis can only be used by players!"
+    "yes": "§aJa",
+    "no": "§cNei",
+    "no-player": "§eItemMods §7» §cGuis kan bare brukes av spillere!"
   },
   "template": {
     "title": "§6Mal",
@@ -152,7 +152,7 @@
   },
   "inactive-packs": {
     "title": "§6Inaktive pakker §7(%d/%d)",
-    "actions": "§7Click to activate"
+    "actions": "§7Klikk for å aktivere"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pakke mappen ble opprettet!",
@@ -434,7 +434,7 @@
         "success": "§eItemMods §7» §aVellykket opprettet teksturen §3%s§a.",
         "failed": "§eItemMods §7» §cUgyldig texture navn."
       },
-      "actions": "§7Open the texture gui"
+      "actions": "§7Åpne tekstur-gui"
     },
     "texture": {
       "title": "§6Tekstur §3%s",
@@ -512,7 +512,7 @@
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4Dette er ikke et gyldig antall gjenstander!",
-      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
+      "success": "§eItemMods §7» §aVellykket gitt §3%s §athe item §3%s"
     },
     "no-number": "§eItemMods §7» §4Det er ikke et tall!",
     "success": "§eItemMods §7» §avellykket ga deg gjenstand §3%s§a!"

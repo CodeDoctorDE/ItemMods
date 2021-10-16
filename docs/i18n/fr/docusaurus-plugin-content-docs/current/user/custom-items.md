@@ -1,13 +1,12 @@
 ---
-title: Custom items
+title: Éléments personnalisés
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
-one. :::
+:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack.md#create-a-pack) pour voir comment vous pouvez créer un. :::
 
-## Create a custom item
+## Créer un élément personnalisé
 
-* Go to the item list and click on the knowledge book
-* Give the item a name
-* [Create a model](custom-models.md) for this block
-* Set the model in the item gui
+* Allez dans la liste des articles et cliquez sur le livre de connaissances
+* Donner un nom à l'objet
+* [Créer un modèle](custom-models.md) pour ce bloc
+* Définir le modèle dans l'interface d'élément

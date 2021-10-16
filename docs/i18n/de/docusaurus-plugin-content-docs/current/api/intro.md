@@ -1,34 +1,33 @@
 ---
 title: "API"
 slug: "/api"
-sidebar_label: "Home"
 sidebar_position: 0
+sidebar_label: "Zuhause"
 ---
 
-The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
+Die neueste Version findest du [hier](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
-* You can use maven to get the dependency or can use the jars in the github actions.
-    * For maven please use this:
+* Du kannst maven benutzen, um die Abhängigkeit zu erhalten, oder die Gläser in den github Aktionen verwenden.
+    * Für Mappen, benutze es bitte:
    ```xml
   <project>
     <repositories>
         <repository>
             <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <url>https://repo. odemc. rg/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev.linwood</groupId>
-            <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.1</version>
+            <groupId>dev. inwood</groupId>
+            <artifactId>Artikel Mods</artifactId>
+            <version>2. .0-Alpha.</version>
         </dependency>
     </dependencies>
   </project>
    ```
-* The documentation about the api can you find [here](https://itemmods.linwood.dev/apidocs). Please use the classes in
-  the api package.
-* The ItemModsApi instance can you get with `ItemMods.getPlugin()`
-* Custom events:
+* Die Dokumentation über die api findest du [hier](https://itemmods.linwood.dev/apidocs). Bitte verwenden Sie die Klassen im api Paket.
+* Die ItemModsApi Instanz kann mit `ItemMods.getPlugin()` geladen werden
+* Eigene Ereignisse:
     * CustomBlockPlaceEvent
-    * CustomBlockBreakEvent
+    * CustomblockBreakEvent

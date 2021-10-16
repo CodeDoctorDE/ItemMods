@@ -2,4 +2,4 @@
 title: Addons
 ---
 
-There are currently no addons.
+Derzeit gibt es keine Addons.

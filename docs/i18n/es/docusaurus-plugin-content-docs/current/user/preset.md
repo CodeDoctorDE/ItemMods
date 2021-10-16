@@ -2,19 +2,17 @@
 title: Preset
 ---
 
-The preset directory is the preset for the resource pack. Here you can configure the `pack.mcmeta` and all
-models/textures and everything else.
+El directorio predefinido es el preset para el paquete de recursos. Aquí puedes configurar el `pack.mcmeta` y todos los modelos/texturas y todo lo demás.
 
-## Create the preset
+## Crear el preset
 
-You need this folder structure to have a working resource pack. If you have an item with the fallback texture diamond,
-you need to have a `diamond.json`.
+Necesita esta estructura de carpetas para tener un paquete de recursos de trabajo. Si tienes un elemento con el diamante de la textura de recurso, necesitas tener un `diamond.json`.
 
 ```markdown
-├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
+★ pack.mcmeta, assets → → → minecraft, modelos, y el elemento → tv diamond.json
 ```
 
-The `pack.mcmeta` needs to have this content:
+El `pack.mcmeta` necesita tener este contenido:
 
 ```json title="pack.mcmeta"
 {
@@ -25,18 +23,15 @@ The `pack.mcmeta` needs to have this content:
 }
 ```
 
-The `diamond.json` needs to have the same content as the default texture of minecraft.
+El `diamond.json` necesita tener el mismo contenido que la textura predeterminada de minecraft.
 
-To get this done, you need an archive reader like 7-zip or WinRAR.
+Para hacerlo, necesita un lector de archivos como 7-zip o WinRAR.
 
-Then you need to locate to your minecraft client jar which is normally located
-in `%appdata%/.minecraft/versions/VERSION/VERSION.jar` (You need to replace the VERSION with the version which you used
-to connect to the server).
+Luego tienes que localizar en tu jarra de cliente de minecraft que normalmente se encuentra en `%appdata%/.minecraft/versions/VERSION/VERSION. ar` (Necesitas reemplazar la VERSION por la versión que usaste para conectar al servidor).
 
-In the jar archive you will find a `assets` directory. There you need to copy the same file. If you have the diamond
-fallback texture you need to copy the file in `assets/minecraft/models/item/diamond.json`.
+En el archivo jar encontrarás un directorio de `activos`. Ahí necesita copiar el mismo archivo. Si tienes la textura de reserva de diamante necesitas copiar el archivo en `assets/minecraft/models/item/diamond.json`.
 
-The model file should be similar to this:
+El archivo del modelo debe ser similar a esto:
 
 ```json title="assets/minecraft/models/item/diamond.json"
 {
@@ -47,5 +42,4 @@ The model file should be similar to this:
 }
 ```
 
-If you have a block fallback texture like a grass block, the model file is in the block subdirectory, for
-example `assets/minecraft/models/block/grass_block.json`.
+If you have a block fallback texture like a grass block, the model file is in the block subdirectory, for example `assets/minecraft/models/block/grass_block.json`.

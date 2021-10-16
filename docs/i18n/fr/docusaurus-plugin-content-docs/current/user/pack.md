@@ -1,23 +1,23 @@
 ---
-title: Pack
+title: Paquet
 ---
 
-A pack is a collection of blocks, items, models, textures and more.
+Un pack est une collection de blocs, d'objets, de modèles, de textures et plus encore.
 
-## Create a pack
+## Créer un pack
 
-* Run `/itemmods`
-* Click on the pack icon
-* Click on the knowledge book and give a name. The name should only have a-z, - and _.
-* Done
+* Exécutez `/itemmods`
+* Cliquez sur l'icône du pack
+* Cliquez sur le livre de connaissances et donnez un nom. Le nom ne doit avoir que a-z, - et _.
+* Fait
 
-Now you can create [custom items](custom-items.md), [custom blocks](custom-blocks.md) and more...
+Maintenant vous pouvez créer des [éléments personnalisés](custom-items.md), [blocs personnalisés](custom-blocks.md) et plus...
 
-## Share the pack
+## Partager le pack
 
-* Go to the pack gui
-* Open the manage gui
-* Click on export
-* Now you should have a zip file with the same name as the pack in the temp folder
+* Aller à l'interface du pack
+* Ouvrir l'interface de gestion
+* Cliquer sur Exporter
+* Maintenant vous devriez avoir un fichier zip avec le même nom que le pack dans le dossier temp
 
-This archive can you send with a description in our #share channel in the discord server.
+Cette archive peut vous être envoyée avec une description dans notre canal #share sur le serveur discord.

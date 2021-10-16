@@ -33,20 +33,20 @@
     "title": "§6Conocimiento"
   },
   "gui": {
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "actions": "§7Click to choose",
+    "first": "§6Primero",
+    "previous": "§6Anterior",
+    "next": "§6Siguiente",
+    "last": "§6Última",
+    "actions": "§7Clic para elegir",
     "item": "§6%s",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §ePor favor, introduce el texto de búsqueda. Cancela con un clic izquierdo.",
+      "title": "§6Buscar",
+      "description": "§3%s\n\n§7Click izquierdo » Entrada de texto de búsqueda\n§7Click derecho » Restablecer texto de búsqueda\n§7Volver"
     },
-    "yes": "§aYes",
+    "yes": "§aSí",
     "no": "§cNo",
-    "no-player": "§eItemMods §7» §cGuis can only be used by players!"
+    "no-player": "§eItemMods §7» §c¡§cGuis sólo puede ser usado por jugadores!"
   },
   "template": {
     "title": "§6Plantilla",
@@ -152,7 +152,7 @@
   },
   "inactive-packs": {
     "title": "§6Paquetes inactivos §7(%d/%d)",
-    "actions": "§7Click to activate"
+    "actions": "§7Clic para activar"
   },
   "pack": {
     "created": "§eItemMods §7» §6La carpeta del paquete ha sido creada!",
@@ -434,7 +434,7 @@
         "success": "§eMods §7» §aCreado exitosamente la textura §3%s§a.",
         "failed": "§eMods §7» §cNombre de textura inválido."
       },
-      "actions": "§7Open the texture gui"
+      "actions": "§7Abrir el gui de la textura"
     },
     "texture": {
       "title": "§2♣§d§kii§a§lSkyblock§d§kii§2♣ §aTextura §3%s",

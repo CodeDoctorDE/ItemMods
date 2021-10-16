@@ -1,17 +1,17 @@
 ---
-title: "Home"
+title: "Domicile"
 slug: "/"
 sidebar_position: 0
 ---
 
-![Header](https://github.com/CodeDoctorDE/ItemMods/blob/develop/assets/header.png?raw=true)
+![En-tête](https://github.com/CodeDoctorDE/ItemMods/blob/develop/assets/header.png?raw=true)
 
 ---
 
-Welcome to the ItemMods wiki! Use the navigator to navigate between pages.
+Bienvenue sur le wiki ItemMods ! Utilisez le navigateur pour naviguer entre les pages.
 
-## Resource Pages:
+## Pages de ressources:
 
 * [SpigotMC](https://www.spigotmc.org/resources/72461/)
-* [Polymart](https://polymart.org/resource/15)
+* [Polynésien](https://polymart.org/resource/15)
 * [Songoda](https://songoda.com/marketplace/product/162)

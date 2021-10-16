@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "ItemMods",
+    "message": "Artikelmods",
     "description": "The title in the navbar"
   },
   "item.label.Docs": {
-    "message": "Docs",
+    "message": "Texte",
     "description": "Navbar item with label Docs"
   },
   "item.label.API": {

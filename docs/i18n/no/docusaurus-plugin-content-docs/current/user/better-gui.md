@@ -2,14 +2,14 @@
 title: BetterGui
 ---
 
-> Visit [BetterGUI](https://www.spigotmc.org/resources/75620/)
+> Besøk [BetterGUI](https://www.spigotmc.org/resources/75620/)
 
-Usage:
+Bruk:
 
 ```yaml
-stone:
-  itemmods: YOUR_TAG
-  amount: 32
+stein:
+  elementmods: YOUR_TAG
+  mengde: 32
 ```
 
-Replace YOUR_TAG with the tag of the custom item.
+Erstatt YOUR_TAG med taggen til spesialelementet.
