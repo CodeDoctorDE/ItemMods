@@ -1,13 +1,13 @@
 ---
-title: BetterGui
+title: Mieux Gui
 ---
 
-> Visit [BetterGUI](https://www.spigotmc.org/resources/75620/)
+> Visitez [Mieux GUI](https://www.spigotmc.org/resources/75620/)
 
-Usage:
+Utilisation:
 ```yaml
-stone:
-  itemmods: YOUR_TAG
-  amount: 32
+pierre :
+  itemmods : VOTRE_TAG
+  montant : 32
 ```
-Replace YOUR_TAG with the tag of the custom item.
+Remplacez VOTRE_TAG par le tag de l'élément personnalisé.
