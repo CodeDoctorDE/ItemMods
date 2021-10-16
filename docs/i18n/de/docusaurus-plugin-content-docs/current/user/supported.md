@@ -1,16 +1,16 @@
 ---
-title: Supported
+title: Unterstützt
 ---
 
-## Supported server
+## Unterstützter Server
 
-Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.17.1.
+Getestet auf Spigot, Papier, Flugzeug und Papier. Unterstützte Versionen sind 1.14.4-1.17.1.
 
-## Supported plugins
+## Unterstützte Plugins
 
-__Supported by the author itself__
-* (Outdated) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (Outdated) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+__Unterstützt vom Autor selbst__
+* (veraltet) 📢 [OreAnkündiger](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (veraltet) 🚀 [Eigener Erzgenerator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
-__Supported by me__
+__Unterstützt von mir__
 * 📌 [BetterGui](better-gui.md)
