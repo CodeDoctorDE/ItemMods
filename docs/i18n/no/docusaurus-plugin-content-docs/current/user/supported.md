@@ -1,16 +1,16 @@
 ---
-title: Supported
+title: Støttet
 ---
 
-## Supported server
+## Serveren som støttes
 
-Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.17.1.
+Prøvd på spigot, papir, fly og papir. Støttede versjoner er 1.14.4-1.17.1.
 
-## Supported plugins
+## Støttede plugins
 
-__Supported by the author itself__
-* (Outdated) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (Outdated) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+__Støttet av selve forfatteren__
+* (Utdatert) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (Utdatert) 🚀 [Egendefinert org generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
-__Supported by me__
+__Støttet av meg__
 * 📌 [BetterGui](better-gui.md)
