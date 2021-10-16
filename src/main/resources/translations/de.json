@@ -45,7 +45,8 @@
       "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     },
     "yes": "§aJa",
-    "no": "§cNein"
+    "no": "§cNein",
+    "no-player": "§eItemMods §7» §cGuis can only be used by players!"
   },
   "template": {
     "title": "§6Vorlage",
