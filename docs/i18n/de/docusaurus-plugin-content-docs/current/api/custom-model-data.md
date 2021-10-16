@@ -1,7 +1,7 @@
 ---
-title: Custom model data
+title: Eigene Modelldaten
 ---
 
-## What is custom model data?
+## Was sind benutzerdefinierte Modelldaten?
 
-Minecraft added in 1.14 this new item property. With this you can change every item to a new model and texture.
+Minecraft hat in 1.14 diese neue Objekt Eigenschaft hinzugefügt. Damit können Sie jeden Artikel in ein neues Modell und Textur umwandeln.
