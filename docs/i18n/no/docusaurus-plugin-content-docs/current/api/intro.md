@@ -2,33 +2,32 @@
 title:
   API slug:
     /api sidebar_position:
-      0 sidebar_label: Home
+      0 sidebar_label: Hjem
 ---
 
-The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
+Den nyeste versjonen kan du finne [her](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
-* You can use maven to get the dependency or can use the jars in the github actions.
-   * For maven please use this:
+* Du kan bruke maven for å få avhengigheten eller bruke jarene i github handlingene.
+   * For maven, vennligst bruk dette:
    ```xml
   <project>
     <repositories>
         <repository>
             <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <url>https://repo. odemc. rg/repository/maven-offentlig/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev.linwood</groupId>
-            <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.1</version>
+            <groupId>dev. inntre</groupId>
+            <artifactId>elementMods</artifactId>
+            <version>2. 0 - alpha.</version>
         </dependency>
     </dependencies>
   </project>
    ```
-* The documentation about the api can you find [here](https://itemmods.linwood.dev/apidocs). Please use the classes in
-  the api package.
-* The ItemModsApi instance can you get with `ItemMods.getPlugin()`
-* Custom events:
+* Dokumentasjonen om api finner du [her](https://itemmods.linwood.dev/apidocs). Vennligst bruk timene i api pakken.
+* En element-modsApi forekomst kan du få med `ItemMods.getPlugin()`
+* Egendefinerte hendelser:
   * CustomBlockPlaceEvent
   * CustomBlockBreakEvent
