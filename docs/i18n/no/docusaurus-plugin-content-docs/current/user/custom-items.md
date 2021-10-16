@@ -1,12 +1,12 @@
 ---
-title: Custom items
+title: Egendefinerte elementer
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
 
-## Create a custom item
+## Opprette et egendefinert element
 
-* Go to the item list and click on the knowledge book
-* Give the item a name
-* [Create a model](custom-models.md) for this block
-* Set the model in the item gui
+* Gå til produktlisten og klikk på kunnskapsboken
+* Gi objektet et navn
+* [Lag en modell](custom-models.md) for denne blokken
+* Angi modellen i elementet gui
