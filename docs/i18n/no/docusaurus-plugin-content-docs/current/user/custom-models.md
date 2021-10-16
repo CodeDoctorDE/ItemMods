@@ -1,74 +1,74 @@
 ---
-title: Custom models
+title: Egendefinerte modeller
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
 
-## Create a custom model
+## Opprett en tilpasset modell
 
-* Go to the model list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the model file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.json`
-    * If you choose internet, you need the direct link to the json
-        * If you choose it, please add `.json` to the url, for example `https://example.com/YOURFILE.json`
+* Gå til modell-listen i pakken gui
+* Klikk på kunnskapsboken
+* Gi det et navn
+* Gå til datalinje
+* Endre standardvariasjonen eller legge til din egen variasjon i tekstur ved å klikke på kunnskapsboken
+* Du kan velge hvor modellfilen ligger. Fil eller Internett:
+    * Hvis du velger fil må du legge til tekstur i plugins/ItemMods/temp
+        * Nå må du angi filnavnet, for eksempel `ruby.json`
+    * Dersom du velger internett, trenger du direkte link til json
+        * Hvis du velger det, legg til `.json` til nettadressen, for eksempel `https://example.com/YOURFILE.json`
 
-:::caution You need to export the resource pack before having a custom model. :::
+::caution Du må eksportere ressurspakken før du har en egendefinert modell. :::
 
-## Examples
+## Eksempler
 
-Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
+Lag en fil med dette innholdet i den midlertidige mappen. Erstatt *\<placeholder\>* med verdiene dine og tildel den til en modell
 
-### Block model
+### Blokk modell
 
-The default block model:
+Standard blokkmodell:
 ```json title="block.json"
 {
-    "textures": {
-        "0": "<your block texture>",
-        "particle": "<your block texture>"
+    "teksturer": {
+        "0": "<your block texture>
+        "partikkel": "<your block texture>"
     },
-    "elements": [
+    "elementer": [
         {
-            "from": [0, 0, 0],
-            "to": [16, 16, 16],
-            "faces": {
-                "north": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "east": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "south": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "west": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+            "fra": [0, 0, 0],
+            "til": [16, 16, 16]
+            "flate": {
+                "north": {"uv": [0, 0, 16, 16], "tekst": "#0"},
+                "øst": {"uv": [0, 16, 16], "tekst": "#0"},
+                "sør": {"uv": [0, 0, 16, 16], "tekst": "#0"},
+                "vest": {"uv": [0, 0, 16, 16], "tekst": "#0"},
+                "opp": {"uv": [0, 16, 16], "texture": "#0"},
+                "down": {"uv": [0, 16, 16], "tekst": "#0"}
             }
         }
     ],
-    "display": {
+    "vise": {
         "thirdperson_righthand": {
             "translation": [-7, 5, 3],
-            "rotation": [45.5, 5, -8.5],
-            "scale": [3.9, 3.9, 3.9]
+            "rotasjon": [45. , 5, -8,5],
+            "skala": [3.9, 3.9, 3. ]
         },
-        "ground": {
-            "scale": [0.3, 0.3, 0.3]
+        "bakke": {
+            "skala": [0. , 0,3, 0. ]
         },
         "gui": {
-            "rotation": [45, 45, 0],
-            "scale": [0.65, 0.65, 0.65]
+            "rotasjon": [45, 45, 0],
+            "skala": [0. 5, 0,65, 0. 5]
         },
-        "head": {
-            "translation": [0, -30.75, 0],
-            "scale": [4, 4, 4]
+        "hode": {
+            "translation": [0, -30. 5, 0],
+            "skala": [4, 4]
         }
     }
 }
 
 ```
 
-### Block item model
+### Blokker element modell
 
 ```json title="block_item.json"
 {
@@ -76,5 +76,5 @@ The default block model:
   "textures": {
     "all": "<your block texture>"
   }
-}
+
 ```
