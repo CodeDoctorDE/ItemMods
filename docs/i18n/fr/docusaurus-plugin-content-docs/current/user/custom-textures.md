@@ -1,18 +1,18 @@
 ---
-title: Custom textures
+title: Textures personnalisées
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack.md#create-a-pack) pour voir comment vous pouvez en créer un. :::
 
-## Create a custom texture
+## Créer une texture personnalisée
 
-* Go to the textures list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the texture file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.png`
-    * If you choose internet, you need the direct link to the png
-        * If you choose imgur, please add `.png` to the url, for example `https://example.com/YOURFILE.png`
+* Accéder à la liste des textures du pack
+* Cliquez sur le livre de connaissances
+* Donnez-lui un nom
+* Aller à l'interface des données
+* Modifiez la variation par défaut ou ajoutez votre propre variation à la texture en cliquant sur le livre de connaissances
+* Vous pouvez choisir où se trouve le fichier de texture. Fichier ou internet :
+    * Si vous choisissez un fichier, vous devez ajouter le fichier de texture dans plugins/ItemMods/temp
+        * Vous devez maintenant entrer le nom du fichier, par exemple `ruby.png`
+    * Si vous choisissez Internet, vous avez besoin du lien direct vers le png
+        * Si vous choisissez imgur, veuillez ajouter `.png` à l'url, par exemple `https://example.com/YOURFILE.png`
