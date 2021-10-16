@@ -1,7 +1,7 @@
 ---
-title: Custom model data
+title: 自定义模型数据
 ---
 
-## What is custom model data?
+## 什么是自定义模型数据？
 
-Minecraft added in 1.14 this new item property. With this you can change every item to a new model and texture.
+Minecraft添加到1.14中此新项目属性。 你可以通过这个操作将每个项目更改为新型号和纹理.
