@@ -1,5 +1,5 @@
 ---
-title: API
+title: API slug: /api
 ---
 
 The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
