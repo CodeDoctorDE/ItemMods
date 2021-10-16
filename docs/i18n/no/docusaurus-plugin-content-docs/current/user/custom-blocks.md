@@ -1,14 +1,14 @@
 ---
-title: Custom blocks
+title: Egne blokker
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
 
-## Create a custom block
+## Opprette en egendefinert blokk
 
-* Create a [reference item](custom-items.md)
-* Go to the block list and click on the knowledge book
-* Give the block a name
-* [Create a model](custom-models.md) for this block
-* Set the model in the block gui
-* Add the `Block set template` to the reference item and set the current block
+* Opprett et [referanseelement](custom-items.md)
+* Gå til blokklisten og klikk på kunnskapsboken
+* Gi blokken et navn
+* [Lag en modell](custom-models.md) for denne blokken
+* Angi modell i blokk gui
+* Legg til malen `Blokk sett` til referanseelementet og sett den gjeldende blokken
