@@ -9,12 +9,7 @@ El directorio predefinido es el preset para el paquete de recursos. Aquí puedes
 Necesita esta estructura de carpetas para tener un paquete de recursos de trabajo. Si tienes un elemento con el diamante de la textura de recurso, necesitas tener un `diamond.json`.
 
 ```markdown
-★ pack.mcmeta
-NingunoOR)format@@5 assets
-    tv minecraft 
-        cv modela
-            cv elemento
-                av diamond.json
+★ pack.mcmeta, assets → → → minecraft, modelos, y el elemento → tv diamond.json
 ```
 
 El `pack.mcmeta` necesita tener este contenido:
@@ -32,11 +27,12 @@ El `diamond.json` necesita tener el mismo contenido que la textura predeterminad
 
 Para hacerlo, necesita un lector de archivos como 7-zip o WinRAR.
 
-Luego tienes que localizar en tu jarra de cliente de minecraft, que normalmente se encuentra en `%appdata%/.minecraft/versions/VERSION/VERSION. ar` (Necesitas reemplazar la VERSION por la versión que usaste para conectar al servidor).
+Luego tienes que localizar en tu jarra de cliente de minecraft que normalmente se encuentra en `%appdata%/.minecraft/versions/VERSION/VERSION. ar` (Necesitas reemplazar la VERSION por la versión que usaste para conectar al servidor).
 
-En el archivo jar encontrarás un directorio de `activos`. Ahí necesita copiar el mismo archivo. Si tiene la textura de reserva de diamante necesita copiar el archivo en `assets/minecraft/models/item/diamond.json`.
+En el archivo jar encontrarás un directorio de `activos`. Ahí necesita copiar el mismo archivo. Si tienes la textura de reserva de diamante necesitas copiar el archivo en `assets/minecraft/models/item/diamond.json`.
 
 El archivo del modelo debe ser similar a esto:
+
 ```json title="assets/minecraft/models/item/diamond.json"
 {
   "parent": "minecraft:item/generated",
@@ -46,4 +42,4 @@ El archivo del modelo debe ser similar a esto:
 }
 ```
 
-Si tienes un bloque de textura de retroceso como un bloque de hierba, el archivo de modelo está en el subdirectorio de bloques, por ejemplo `assets/minecraft/models/block/grass_block. son`.
+If you have a block fallback texture like a grass block, the model file is in the block subdirectory, for example `assets/minecraft/models/block/grass_block.json`.
