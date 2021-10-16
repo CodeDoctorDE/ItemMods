@@ -3,22 +3,27 @@
     border: 1px solid var(--ifm-color-content);
     border-radius: 30px;
 }
+
 .searchInput:focus {
     outline: none;
     border: 1px solid var(--ifm-color-primary);
 }
+
 .searchBar {
     position: sticky;
     text-align: center;
     width: 100%;
 }
+
 .searchBar > label {
     padding: 0.5em;
 }
+
 .list {
     width: 100%;
     text-align: center;
 }
+
 .listItem {
     display: inline-block;
     min-width: 20em;

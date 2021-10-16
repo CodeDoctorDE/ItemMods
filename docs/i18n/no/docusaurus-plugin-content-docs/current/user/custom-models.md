@@ -2,7 +2,8 @@
 title: Custom models
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
+one. :::
 
 ## Create a custom model
 
@@ -21,11 +22,13 @@ title: Custom models
 
 ## Examples
 
-Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
+Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a
+model
 
 ### Block model
 
 The default block model:
+
 ```json title="block.json"
 {
     "textures": {

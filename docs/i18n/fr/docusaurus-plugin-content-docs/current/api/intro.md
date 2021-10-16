@@ -1,14 +1,14 @@
 ---
-title:
-  API slug:
-    /api sidebar_position:
-      0 sidebar_label: Home
+title: "API"
+slug: "/api"
+sidebar_position: 0 
+"sidebar_label": Home
 ---
 
 The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
 * You can use maven to get the dependency or can use the jars in the github actions.
-   * For maven please use this:
+    * For maven please use this:
    ```xml
   <project>
     <repositories>
@@ -26,8 +26,9 @@ The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/I
     </dependencies>
   </project>
    ```
-* The documentation about the api can you find [here](https://itemmods.linwood.dev/apidocs). Please use the classes in the api package.
+* The documentation about the api can you find [here](https://itemmods.linwood.dev/apidocs). Please use the classes in
+  the api package.
 * The ItemModsApi instance can you get with `ItemMods.getPlugin()`
 * Custom events:
-  * CustomBlockPlaceEvent
-  * CustomBlockBreakEvent
+    * CustomBlockPlaceEvent
+    * CustomBlockBreakEvent

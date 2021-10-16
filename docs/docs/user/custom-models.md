@@ -2,8 +2,8 @@
 title: Custom models
 ---
 
-:::note
-To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one.
+:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
+one.
 :::
 
 ## Create a custom model
@@ -19,18 +19,18 @@ To have custom textures, you need to have a pack. See [here](pack.md#create-a-pa
     * If you choose internet, you need the direct link to the json
         * If you choose it, please add `.json` to the url, for example `https://example.com/YOURFILE.json`
 
-:::caution
-You need to export the resource pack before having a custom model.
+:::caution You need to export the resource pack before having a custom model.
 :::
 
 ## Examples
 
-Create a file with this content in the temp directory. 
-Replace the *\<placeholder\>* with your values and assign it to a model
+Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a
+model
 
 ### Block model
 
 The default block model:
+
 ```json title="block.json"
 {
 	"textures": {
