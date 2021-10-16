@@ -1,14 +1,14 @@
 ---
-title:
-  API slug:
-    /api sidebar_position:
-      0 sidebar_label: Hjem
+title: "API"
+slug: "/api"
+sidebar_position: 0
+sidebar_label: "Hjem"
 ---
 
 Den nyeste versjonen kan du finne [her](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
 * Du kan bruke maven for å få avhengigheten eller bruke jarene i github handlingene.
-   * For maven, vennligst bruk dette:
+    * For maven, vennligst bruk dette:
    ```xml
   <project>
     <repositories>
@@ -29,5 +29,5 @@ Den nyeste versjonen kan du finne [her](https://ci.codemc.io/job/CodeDoctorDE/jo
 * Dokumentasjonen om api finner du [her](https://itemmods.linwood.dev/apidocs). Vennligst bruk timene i api pakken.
 * En element-modsApi forekomst kan du få med `ItemMods.getPlugin()`
 * Egendefinerte hendelser:
-  * CustomBlockPlaceEvent
-  * CustomBlockBreakEvent
+    * CustomBlockPlaceEvent
+    * CustomBlockBreakEvent
