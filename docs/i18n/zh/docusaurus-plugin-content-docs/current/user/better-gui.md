@@ -2,14 +2,14 @@
 title: BetterGui
 ---
 
-> Visit [BetterGUI](https://www.spigotmc.org/resources/75620/)
+> 访问 [BetterGUI](https://www.spigotmc.org/resources/75620/)
 
-Usage:
+用法：
 
 ```yaml
-stone:
+石头:
   itemmods: YOUR_TAG
   amount: 32
 ```
 
-Replace YOUR_TAG with the tag of the custom item.
+用自定义项的标签替换YOUR_TAG
