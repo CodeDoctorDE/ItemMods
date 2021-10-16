@@ -1,5 +1,7 @@
 ---
-title: FoodMods - Home slug: / sidebar_label: Home
+title: "FoodMods - Home"
+slug: "/"
+sidebar_label: "Home"
 ---
 
 ![Header](https://github.com/CodeDoctorDE/FoodMods/blob/master/assets/header.png?raw=true)
