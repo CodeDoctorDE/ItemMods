@@ -1,14 +1,14 @@
 ---
-title:
-  API slug:
-    /api sidebar_position:
-      0 sidebar_label: Domicile
+title: "API"
+slug: "/api"
+sidebar_position: 0
+sidebar_label: "Domicile"
 ---
 
 La dernière version peut vous permettre de trouver [ici](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
 
 * Vous pouvez utiliser maven pour obtenir la dépendance ou utiliser les jars dans les actions github.
-   * Pour maven, veuillez utiliser ceci :
+    * Pour maven, veuillez utiliser ceci :
    ```xml
   <project>
     <repositories>
@@ -29,5 +29,5 @@ La dernière version peut vous permettre de trouver [ici](https://ci.codemc.io/j
 * La documentation sur l'api peut vous trouver [ici](https://itemmods.linwood.dev/apidocs). Veuillez utiliser les classes dans le paquet api.
 * L'instance ItemModsApi peut vous obtenir avec `ItemMods.getPlugin()`
 * Événements personnalisés :
-  * format@@0 CustomBlockPlaceEvent
-  * format@@0 CustomBlockBreakEvent
+    * format@@0 CustomBlockPlaceEvent
+    * format@@0 CustomBlockBreakEvent
