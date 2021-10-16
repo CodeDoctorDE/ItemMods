@@ -1,19 +1,18 @@
 ---
-title: Custom textures
+title: 自定义纹理
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
-one. :::
+:::note 要有自定义的纹理，你需要有一个包。 查看 [这里](pack.md#create-a-pack) 来查看您如何创建 一个。 :::
 
-## Create a custom texture
+## 创建自定义纹理
 
-* Go to the textures list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the texture file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.png`
-    * If you choose internet, you need the direct link to the png
-        * If you choose imgur, please add `.png` to the url, for example `https://example.com/YOURFILE.png`
+* 转到包皮中的纹理列表
+* 点击知识书
+* 给它一个名字
+* 转到数据界面
+* 通过点击知识书来更改默认变量或将您自己的变量添加到纹理中
+* 您可以选择纹理文件所在位置。 文件或互联网：
+    * 如果您选择了文件，您需要在插件/临时模式/临时中添加纹理文件
+        * 现在您需要输入文件名，例如 `ruby.png`
+    * 如果您选择互联网，您需要直接链接到png
+        * 如果您选择imgur, 请将 `.png` 添加到URL, 例如 `https://example.com/YOURFILE.png`
