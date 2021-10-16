@@ -1,18 +1,18 @@
 ---
-title: Supported
+title: Soportado
 ---
 
-## Supported server
+## Servidor soportado
 
-Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.17.1.
+Pruebas sobre espigota, papel, avión y papel. Las versiones soportadas son 1.14.4-1.17.1.
 
-## Supported plugins
+## Plugins soportados
 
-__Supported by the author itself__
+__Apoyado por el propio autor__
 
-* (Outdated) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (Outdated) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+* (Antiguo) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (Actualizado) :cocket: [Generador de mineral personalizado](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
-__Supported by me__
+__Soportado por mí__
 
 * 📌 [BetterGui](better-gui.md)
