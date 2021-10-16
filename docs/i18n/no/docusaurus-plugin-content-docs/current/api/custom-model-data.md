@@ -1,7 +1,7 @@
 ---
-title: Custom model data
+title: Egendefinert modelldata
 ---
 
-## What is custom model data?
+## Hva er tilpasset modelldata?
 
-Minecraft added in 1.14 this new item property. With this you can change every item to a new model and texture.
+Minecraft lagt til i 1.14 denne nye egenskapen. Med dette kan du endre alle elementer til en ny modell og tekstur.
