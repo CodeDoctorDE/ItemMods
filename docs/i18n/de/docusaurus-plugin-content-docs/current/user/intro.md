@@ -1,7 +1,7 @@
 ---
-title: Home
-slug: /
-sidebar_position: 0
+title:
+  Home slug:
+    /user sidebar_position: 0
 ---
 
 ![Header](https://github.com/CodeDoctorDE/ItemMods/blob/develop/assets/header.png?raw=true)
