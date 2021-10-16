@@ -2,4 +2,4 @@
 title: Addons
 ---
 
-There are currently no addons.
+Det finnes for øyeblikket ingen tillegg.
