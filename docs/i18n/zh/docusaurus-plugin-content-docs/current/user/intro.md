@@ -4,13 +4,13 @@ title:
     /user sidebar_position: 0
 ---
 
-![Header](https://github.com/CodeDoctorDE/ItemMods/blob/develop/assets/header.png?raw=true)
+![标题](https://github.com/CodeDoctorDE/ItemMods/blob/develop/assets/header.png?raw=true)
 
 ---
 
-Welcome to the ItemMods wiki! Use the navigator to navigate between pages.
+欢迎来到项目维基！ 使用导航器在页面之间导航。
 
-## Resource Pages:
+## 资源页面：
 * [SpigotMC](https://www.spigotmc.org/resources/72461/)
 * [Polymart](https://polymart.org/resource/15)
 * [Songoda](https://songoda.com/marketplace/product/162)
