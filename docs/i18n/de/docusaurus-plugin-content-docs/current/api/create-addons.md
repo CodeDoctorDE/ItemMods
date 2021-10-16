@@ -1,8 +1,8 @@
 ---
-title: Create an addon
+title: Erstelle ein Addon
 ---
 
-* First, use this template: <https://github.com/CodeDoctorDE/ItemMods-Addon>. You can find a button "Use this template" to create your repository from this template.
-* Clone this repository to your computer with the `git clone` command.
+* Benutze zuerst diese Vorlage: <https://github.com/CodeDoctorDE/ItemMods-Addon>. Sie können einen Button "Diese Vorlage verwenden" finden, um Ihr Projektarchiv aus dieser Vorlage zu erstellen.
+* Klonen Sie dieses Repository mit dem Befehl `git clone` auf Ihren Computer.
 * ...
-* Upload that on <https://spigotmc.org>. I will help you if you have problems or you want to link it on the main page of ItemMods.
+* Laden Sie das auf <https://spigotmc.org> hoch. Ich werde Ihnen helfen, wenn Sie Probleme haben oder Sie es auf der Hauptseite von ItemMods verlinken möchten.
