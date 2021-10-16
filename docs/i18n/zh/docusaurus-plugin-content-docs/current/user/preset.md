@@ -2,11 +2,11 @@
 title: Preset
 ---
 
-The preset directory is the preset for the resource pack. Here you can configure the `pack.mcmeta` and all models/textures and everything else.
+预设目录是资源包的预设。 您可以在这里配置 `pack.mcmeta` 和所有模型/纹理及其他一切。
 
-## Create the preset
+## 创建预设
 
-You need this folder structure to have a working resource pack. If you have an item with the fallback texture diamond, you need to have a `diamond.json`.
+您需要此文件夹结构才能有一个工作资源包。 如果你有一个带有后退纹理钻石的物品，你需要有一个 `钻石.json`。
 
 ```markdown
 ├── pack.mcmeta
@@ -17,26 +17,26 @@ You need this folder structure to have a working resource pack. If you have an i
                 └── diamond.json
 ```
 
-The `pack.mcmeta` needs to have this content:
+`pack.mcmeta` 需要有这个内容：
 
 ```json title="pack.mcmeta"
-{
-  "pack": {
-    "description": "The name of the resource pack",
-    "pack_format": 7
+主席:
+  "pack":
+    "description": "资源包的名称",
+    "pack_格式": 7
   }
 }
 ```
 
-The `diamond.json` needs to have the same content as the default texture of minecraft.
+`diamid.json` 需要有与我的默认纹理相同的内容。
 
-To get this done, you need an archive reader like 7-zip or WinRAR.
+要完成这个操作，您需要像7-zip或 WinRAR 这样的归档阅读器。
 
-Then you need to locate to your minecraft client jar which is normally located in `%appdata%/.minecraft/versions/VERSION/VERSION.jar` (You need to replace the VERSION with the version which you used to connect to the server).
+然后你需要找到通常位于 `%appdata%/.minecraft/versions/VERSION/VERSION的Minecraft客户端jar。 ar` (您需要将VERSION替换为您用来连接到服务器的版本)。
 
-In the jar archive you will find a `assets` directory. There you need to copy the same file. If you have the diamond fallback texture you need to copy the file in `assets/minecraft/models/item/diamond.json`.
+在 jar 归档中，您将找到一个 `assets` 目录。 您需要复制相同的文件。 如果你有钻石后退纹理 ，你需要将文件复制到 `assets/minecraft/models/item/diamond.json` 中。
 
-The model file should be similar to this:
+模型文件应该类似于：
 ```json title="assets/minecraft/models/item/diamond.json"
 {
   "parent": "minecraft:item/generated",
@@ -46,4 +46,4 @@ The model file should be similar to this:
 }
 ```
 
-If you have a block fallback texture like a grass block, the model file is in the block subdirectory, for example `assets/minecraft/models/block/grass_block.json`.
+如果你有块后退纹理像草块，模型文件就在块子目录， 例如 `assets/minecraft/models/block/grass_block。 儿子`
