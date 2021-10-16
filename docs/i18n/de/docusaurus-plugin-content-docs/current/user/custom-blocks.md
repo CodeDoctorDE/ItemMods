@@ -2,7 +2,7 @@
 title: Eigene Blöcke
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Sehen Sie [hier](pack.md#create-a-pack) um zu sehen, wie Sie eine erstellen können. :::
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack.md#create-a-pack) um zu sehen, wie Sie erstellen können. :::
 
 ## Neuen Block erstellen
 
