@@ -3,19 +3,15 @@ package dev.linwood.itemmods.api.item;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.NamespacedKey;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.TileState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
-public class CustomItem implements CustomElement<ItemAsset> {
+public class CustomItem implements CustomElement<StaticItemAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
     private final @NotNull ItemStack itemStack;
@@ -24,9 +20,9 @@ public class CustomItem implements CustomElement<ItemAsset> {
         this.itemStack = itemStack;
     }
 
-    public @Nullable ItemAsset getConfig() {
+    public @Nullable StaticItemAsset getConfig() {
         var packObject = getPackObject();
-        if(packObject == null)
+        if (packObject == null)
             return null;
         return packObject.getItem();
     }
@@ -63,7 +59,7 @@ public class CustomItem implements CustomElement<ItemAsset> {
 
     public @Nullable PackObject getPackObject() {
         var type = getType();
-        if(type.equals(""))
+        if (type.equals(""))
             return null;
         return new PackObject(type);
     }

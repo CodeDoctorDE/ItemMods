@@ -14,8 +14,8 @@ import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.addon.BaseAddon;
 import dev.linwood.itemmods.api.block.CustomBlockManager;
 import dev.linwood.itemmods.api.item.CustomItemManager;
-import dev.linwood.itemmods.commands.BaseCommand;
-import dev.linwood.itemmods.commands.GiveItemCommand;
+import dev.linwood.itemmods.command.BaseCommand;
+import dev.linwood.itemmods.command.GiveItemCommand;
 import dev.linwood.itemmods.config.MainConfig;
 import dev.linwood.itemmods.listener.CustomBlockListener;
 import dev.linwood.itemmods.listener.CustomItemListener;
@@ -71,6 +71,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the current plugin
+     *
      * @return The singleton of this class created from the server
      */
     public static ItemMods getPlugin() {
@@ -79,6 +80,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the current custom block manager singleton
+     *
      * @return The singleton created from the plugin
      */
     public static CustomBlockManager getCustomBlockManager() {
@@ -88,6 +90,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the current custom item manager singleton
+     *
      * @return The singleton created from the plugin
      */
     public static CustomItemManager getCustomItemManager() {
@@ -111,15 +114,29 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the translation config where all translations for this plugin
+     *
      * @return The translation config with all translations
      */
     public static TranslationConfig getTranslationConfig() {
         return translationConfig;
     }
 
+    public static Translation subTranslation(String... namespaces) {
+        if (namespaces.length == 0)
+            return new Translation();
+        var t = translationConfig.subTranslation(namespaces[0]);
+        for (String namespace : namespaces) t = t.merge(translationConfig.subTranslation(namespace));
+        return t;
+    }
+
+    public static String getTranslation(String key, Object... placeholders) {
+        return translationConfig.getTranslation(key, placeholders);
+    }
+
     /**
      * Get the general configuration located in plugins/ItemMods/config.json
      * Can be saved with {@link #saveMainConfig()}
+     *
      * @return The main config instance
      */
     public static MainConfig getMainConfig() {
@@ -128,6 +145,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the pack manager to control all packs
+     *
      * @return The singleton created from the plugin
      */
     public static PackManager getPackManager() {
@@ -136,6 +154,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the version of the plugin
+     *
      * @return The version string
      */
     public static @NotNull String getVersion() {
@@ -144,6 +163,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get the directory located in plugins/ItemMods/temp
+     *
      * @return The path of the directory
      */
     public static Path getTempPath() {
@@ -168,6 +188,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Get all supported locales
+     *
      * @return A list of the supported locales
      * @throws IOException Throws if the directory can't be read
      */
@@ -194,6 +215,7 @@ public class ItemMods extends JavaPlugin {
 
     /**
      * Test if the server is running on paper
+     *
      * @return Returns true if the server is running on paper
      */
     public static boolean isRunningOnPaper() {

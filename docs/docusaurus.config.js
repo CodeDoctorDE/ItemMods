@@ -101,27 +101,41 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
-          path: "docs",
-          routeBasePath: "docs",
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/",
+            sidebarPath: require.resolve("./sidebars.js"),
+            path: "docs",
+            routeBasePath: "docs",
+            id: "default",
+            // Please change this to your repo.
+            editUrl:
+                "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/",
         },
         blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/blog/",
+            showReadingTime: true,
+            // Please change this to your repo.
+            editUrl:
+                "https://github.com/CodeDoctorDE/ItemMods/edit/develop/docs/blog/",
         },
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
+          theme: {
+              customCss: require.resolve("./src/css/custom.css"),
+          },
       },
     ],
   ],
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'de', 'fr', 'no', 'es'],
-  }
+    plugins: [
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'foodmods',
+                path: 'foodmods',
+                routeBasePath: 'foodmods',
+                sidebarPath: require.resolve('./sidebarsFoodMods.js'),
+
+            },
+        ],
+
+    ],
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en', 'de', 'fr', 'no', 'es'],
+    }
 };

@@ -3,7 +3,7 @@ package dev.linwood.itemmods.api.block;
 import de.tr7zw.changeme.nbtapi.NBTTileEntity;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -33,7 +33,7 @@ public class CustomBlockManager {
                 Double.parseDouble(locationArray[3]));
     }
 
-    public BlockAsset getAssetByKey(String key) throws UnsupportedOperationException {
+    public StaticBlockAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
         return packObject.getBlock();
     }

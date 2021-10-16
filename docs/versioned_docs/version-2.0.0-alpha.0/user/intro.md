@@ -1,7 +1,5 @@
 ---
-title: Home
-slug: /
-sidebar_position: 0
+title: Home slug: /foodmods sidebar_position: 0
 ---
 
 Welcome to the ItemMods wiki!

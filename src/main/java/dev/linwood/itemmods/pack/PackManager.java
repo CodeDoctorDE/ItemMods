@@ -2,6 +2,7 @@ package dev.linwood.itemmods.pack;
 
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.ItemMods;
+import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -225,6 +226,6 @@ public class PackManager {
     public void zip(String name) throws IOException {
         if (getPack(name) == null && PackObject.NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
-        pack(Paths.get(getPackPath().toString(), name), Paths.get(ItemMods.getTempPath().toString(), name + ".zip"));
+        pack(Paths.get(getPackPath().toString(), FilenameUtils.getName(name)), Paths.get(ItemMods.getTempPath().toString(), FilenameUtils.getName(name + ".zip")));
     }
 }
