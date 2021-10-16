@@ -21,11 +21,12 @@ title: Egendefinerte modeller
 
 ## Eksempler
 
-Lag en fil med dette innholdet i den midlertidige mappen. Erstatt *\<placeholder\>* med verdiene dine og tildel den til en modell
+Lag en fil med dette innholdet i den midlertidige mappen. Erstatt *\<placeholder\>* med verdiene dine og tilordne det til en modell
 
 ### Blokk modell
 
 Standard blokkmodell:
+
 ```json title="block.json"
 {
     "teksturer": {
