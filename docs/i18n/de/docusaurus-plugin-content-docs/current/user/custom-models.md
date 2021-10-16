@@ -2,7 +2,7 @@
 title: Eigene Modelle
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Sehen Sie [hier](pack.md#create-a-pack) um zu sehen, wie Sie eine erstellen können. :::
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack.md#create-a-pack) um zu sehen, wie Sie erstellen können. :::
 
 ## Ein individuelles Modell erstellen
 
@@ -21,11 +21,12 @@ title: Eigene Modelle
 
 ## Beispiele
 
-Erstellen Sie eine Datei mit diesem Inhalt im temporären Verzeichnis. Ersetzen Sie *\<placeholder\>* mit Ihren Werten und weisen Sie es einem Modell an
+Erstellen Sie eine Datei mit diesem Inhalt im temporären Verzeichnis. Ersetzen Sie das *\<placeholder\>* mit Ihren Werten und weisen Sie es einem Modell zu.
 
 ### Blockmodell
 
 Das Standard-Blockmodell:
+
 ```json title="block.json"
 {
     "textures": {
