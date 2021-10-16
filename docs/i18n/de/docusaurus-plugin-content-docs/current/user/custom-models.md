@@ -1,47 +1,47 @@
 ---
-title: Custom models
+title: Eigene Modelle
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one. :::
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Sehen Sie [hier](pack.md#create-a-pack) um zu sehen, wie Sie eine erstellen können. :::
 
-## Create a custom model
+## Ein individuelles Modell erstellen
 
-* Go to the model list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the model file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.json`
-    * If you choose internet, you need the direct link to the json
-        * If you choose it, please add `.json` to the url, for example `https://example.com/YOURFILE.json`
+* Gehe zur Modellliste im Paketgui
+* Klicken Sie auf das Wissensbuch
+* Gib ihm einen Namen
+* Gehe zum Datengui
+* Ändern Sie die Standardvariation oder fügen Sie Ihre eigene Variation zur Textur hinzu, indem Sie auf das Wissensbuch klicken
+* Sie können wählen, wo sich die Modelldatei befindet. Datei oder Internet:
+    * Wenn Sie eine Datei wählen, müssen Sie die Texturdatei in Plugins/ItemMods/temp hinzufügen
+        * Jetzt müssen Sie den Dateinamen eingeben, zum Beispiel `ruby.json`
+    * Wenn du Internet wählst, benötigst du den direkten Link zum json
+        * Wenn Sie es wählen, fügen Sie bitte `.json` der URL hinzu, zum Beispiel `https://example.com/YOURFILE.json`
 
-:::caution You need to export the resource pack before having a custom model. :::
+:::caution Du musst das Ressourcenpaket exportieren, bevor du ein benutzerdefiniertes Modell hast. :::
 
-## Examples
+## Beispiele
 
-Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
+Erstellen Sie eine Datei mit diesem Inhalt im temporären Verzeichnis. Ersetzen Sie *\<placeholder\>* mit Ihren Werten und weisen Sie es einem Modell an
 
-### Block model
+### Blockmodell
 
-The default block model:
+Das Standard-Blockmodell:
 ```json title="block.json"
 {
     "textures": {
         "0": "<your block texture>",
-        "particle": "<your block texture>"
+        "Teilchen": "<your block texture>"
     },
-    "elements": [
+    "Elemente": [
         {
-            "from": [0, 0, 0],
-            "to": [16, 16, 16],
+            "von": [0, 0, 0],
+            "bis": [16, 16, 16],
             "faces": {
-                "north": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "east": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "south": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "west": {"uv": [0, 0, 16, 16], "texture": "#0"},
-                "up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+                "Nord": {"uv": [0, 0, 16, 16], "texture": "#0"},
+                "Ost": {"uv": [0, 0, 16, 16], "texture": "#0"},
+                "Süden": {"uv": [0, 0, 16, 16], "texture": "#0"},
+                "West": {"uv": [0, 16], "texture": 0, 16, 16], "texture": "#0"},
+                "up": {"uv": [0, 0, 0, 16, 16], "texture": "#0"},
                 "down": {"uv": [0, 0, 16, 16], "texture": "#0"}
             }
         }
@@ -49,26 +49,26 @@ The default block model:
     "display": {
         "thirdperson_righthand": {
             "translation": [-7, 5, 3],
-            "rotation": [45.5, 5, -8.5],
-            "scale": [3.9, 3.9, 3.9]
+            "Rotation": [45. , 5, -8.5],
+            "scale": [3.9, 3.9, 3. ]
         },
         "ground": {
-            "scale": [0.3, 0.3, 0.3]
+            "scale": [0. , 0.3, 0. ]
         },
         "gui": {
             "rotation": [45, 45, 0],
-            "scale": [0.65, 0.65, 0.65]
+            "scale": [0. 5, 0.65, 0. 5]
         },
         "head": {
-            "translation": [0, -30.75, 0],
-            "scale": [4, 4, 4]
+            "translation": [0, -30. 5, 0],
+            "Skalieren": [4, 4, 4 4]
         }
     }
 }
 
 ```
 
-### Block item model
+### Block-Artikelmodell
 
 ```json title="block_item.json"
 {
