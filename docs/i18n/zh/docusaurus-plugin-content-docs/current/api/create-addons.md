@@ -1,10 +1,8 @@
 ---
-title: Create an addon
+title: 创建一个插件
 ---
 
-* First, use this template: <https://github.com/CodeDoctorDE/ItemMods-Addon>. You can find a button "Use this template"
-  to create your repository from this template.
-* Clone this repository to your computer with the `git clone` command.
+* 首先，使用此模板： <https://github.com/CodeDoctorDE/ItemMods-Addon>。 您可以找到按钮“使用此模板” 从此模板创建您的存储库。
+* 使用 `git 克隆` 命令将这个仓库复制到您的电脑。
 * ...
-* Upload that on <https://spigotmc.org>. I will help you if you have problems or you want to link it on the main page of
-  ItemMods.
+* 在 <https://spigotmc.org> 上上上传 如果您遇到问题或想要在 项目主页上链接，我会帮您。
