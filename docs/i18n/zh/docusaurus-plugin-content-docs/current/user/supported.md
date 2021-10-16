@@ -1,16 +1,16 @@
 ---
-title: Supported
+title: 支持的
 ---
 
-## Supported server
+## 支持的服务器
 
-Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.17.1.
+在拼写、纸、飞机和纸上进行测试。 支持的版本是1.14.4-1.17.1。
 
-## Supported plugins
+## 支持的插件
 
-__Supported by the author itself__
-* (Outdated) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (Outdated) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+__得到提交人本人的支持__
+* (过时) 📢 [Oreannouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (Outdated) :ro火箭: [自定义 Ore 生成器](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
-__Supported by me__
-* 📌 [BetterGui](better-gui.md)
+__我支持的__
+* :packpin: [BetterGui](better-gui.md)
