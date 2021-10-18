@@ -45,7 +45,7 @@ public class BlocksAction implements TranslationCommandAction {
                         blockAsset.getModel() == null ? Material.GRASS_BLOCK : blockAsset.getModel().getFallbackTexture()).displayName("item")
                         .lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
-                    setClickAction(event -> new BlockAction(new PackObject(namespace, blockAsset.getName())).showGui(event.getWhoClicked()));
+                    setClickAction(event -> openBlock(sender, blockAsset.getName()));
                 }}).toArray(GuiItem[]::new));
         gui.setPlaceholders(namespace);
         var pack = ItemMods.getPackManager().getPack(namespace);
@@ -73,6 +73,14 @@ public class BlocksAction implements TranslationCommandAction {
         }});
         gui.show((Player) sender);
         return true;
+    }
+
+    private void openBlock(CommandSender sender, String name) {
+        var asset = new PackObject(namespace, name).getBlock();
+        assert asset != null;
+        var action = asset.generateAction(namespace);
+        if (action != null)
+            action.showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<BlockAsset> action) {

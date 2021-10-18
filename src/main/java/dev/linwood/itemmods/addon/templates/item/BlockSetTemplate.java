@@ -9,7 +9,6 @@ import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.BlocksAction;
-import dev.linwood.itemmods.action.pack.ItemAction;
 import dev.linwood.itemmods.action.pack.TemplateAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
@@ -62,6 +61,12 @@ public class BlockSetTemplate extends CustomTemplate {
                 return t;
             }
 
+            public void back(Player player) {
+                var action = asset.generateAction(packObject.getNamespace());
+                if (action != null)
+                    action.showGui(player);
+            }
+
             @Override
             public boolean showGui(CommandSender sender) {
                 if (!(sender instanceof Player)) {
@@ -73,8 +78,8 @@ public class BlockSetTemplate extends CustomTemplate {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateAction(packObject, StaticBlockAsset.class).showGui(sender, event -> new ItemAction(packObject).showGui(player));
-                }, event -> new ItemAction(packObject).showGui(event.getWhoClicked())), event -> new ItemAction(packObject).showGui(player));
+                    new TemplateAction(packObject, StaticBlockAsset.class).showGui(sender, event -> back(player));
+                }, event -> back(player)), event -> back(player));
                 return true;
             }
         };

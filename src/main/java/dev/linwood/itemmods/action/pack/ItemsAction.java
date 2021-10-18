@@ -43,7 +43,7 @@ public class ItemsAction implements TranslationCommandAction {
                 .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon(namespace)).displayName("item")
                         .lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(itemAsset.getName()));
-                    setClickAction(event -> new ItemAction(new PackObject(namespace, itemAsset.getName())).showGui(event.getWhoClicked()));
+                    setClickAction(event -> openItem(sender, itemAsset.getName()));
                 }}).toArray(GuiItem[]::new));
         gui.setPlaceholders(namespace);
         var pack = ItemMods.getPackManager().getPack(namespace);
@@ -71,6 +71,14 @@ public class ItemsAction implements TranslationCommandAction {
         }});
         gui.show((Player) sender);
         return true;
+    }
+
+    private void openItem(CommandSender sender, String name) {
+        var asset = new PackObject(namespace, name).getItem();
+        assert asset != null;
+        var action = asset.generateAction(namespace);
+        if (action != null)
+            action.showGui(sender);
     }
 
     public void showChoose(@NotNull Consumer<ItemAsset> action, CommandSender sender) {

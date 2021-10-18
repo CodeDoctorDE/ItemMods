@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public interface ItemAsset extends TemplateReadyPackAsset {
+public interface ItemAsset extends TemplateReadyPackAsset, CustomNamedAsset {
     @NotNull List<String> getLore();
 
     @Nullable PackObject getModelObject();

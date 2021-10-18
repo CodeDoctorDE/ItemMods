@@ -45,7 +45,7 @@ public class TexturesAction implements TranslationCommandAction {
                 .stream().filter(textureAsset -> textureAsset.getName().contains(listGui.getSearchText())).map(textureAsset ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("action").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, textureAsset.getName()).toString()));
-                            setClickAction(event -> new TextureAction(new PackObject(namespace, textureAsset.getName())).showGui(event.getWhoClicked()));
+                            setClickAction(event -> openTexture(textureAsset.getName(), sender));
                         }}).toArray(GuiItem[]::new));
         gui.setPlaceholders(namespace);
         gui.setListControls(new VerticalListControls() {{
@@ -73,6 +73,14 @@ public class TexturesAction implements TranslationCommandAction {
         }});
         gui.show((Player) sender);
         return true;
+    }
+
+    private void openTexture(String name, CommandSender sender) {
+        var asset = new PackObject(namespace, name).getItem();
+        assert asset != null;
+        var action = asset.generateAction(namespace);
+        if (action != null)
+            action.showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action) {

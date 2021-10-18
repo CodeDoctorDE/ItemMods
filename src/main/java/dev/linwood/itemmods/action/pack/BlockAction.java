@@ -74,7 +74,9 @@ public class BlockAction implements TranslationCommandAction {
                                     asset.setName(s);
                                     packObject.save();
                                     p.sendMessage(BlockAction.this.getTranslation("name.success", s));
-                                    new BlockAction(new PackObject(packObject.getNamespace(), s)).showGui(p);
+                                    var action = asset.generateAction(packObject.getNamespace());
+                                    if (action != null)
+                                        action.showGui(p);
                                 } catch (Exception e) {
                                     p.sendMessage(BlockAction.this.getTranslation("name.failed"));
                                     e.printStackTrace();

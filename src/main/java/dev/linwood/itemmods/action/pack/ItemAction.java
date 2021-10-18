@@ -77,7 +77,9 @@ public class ItemAction implements TranslationCommandAction {
                                     asset.setName(s);
                                     packObject.save();
                                     p.sendMessage(ItemAction.this.getTranslation("name.success", s));
-                                    new ItemAction(new PackObject(packObject.getNamespace(), s)).showGui(p);
+                                    var action = asset.generateAction(packObject.getNamespace());
+                                    if (action != null)
+                                        action.showGui(p);
                                 } catch (Exception e) {
                                     p.sendMessage(ItemAction.this.getTranslation("name.failed"));
                                     e.printStackTrace();
