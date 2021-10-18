@@ -1,19 +1,18 @@
 ---
-title: Custom textures
+title: Egendefinerte teksturer
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
-one. :::
+::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
 
-## Create a custom texture
+## Opprett en egendefinert tekstur
 
-* Go to the textures list in the pack gui
-* Click on the knowledge book
-* Give it a name
-* Go to the data gui
-* Change the default variation or add your own variation to the texture by clicking on the knowledge book
-* You can choose where the texture file is located. File or internet:
-    * If you choose file, you need to add the texture file in plugins/ItemMods/temp
-        * Now you need to enter the file name, for example `ruby.png`
-    * If you choose internet, you need the direct link to the png
-        * If you choose imgur, please add `.png` to the url, for example `https://example.com/YOURFILE.png`
+* Gå til tekstur-listen i pakke-guiden
+* Klikk på kunnskapsboken
+* Gi det et navn
+* Gå til datalinje
+* Endre standardvariasjonen eller legge til din egen variasjon i tekstur ved å klikke på kunnskapsboken
+* Du kan velge hvor teksturfilen ligger. Fil eller Internett:
+    * Hvis du velger fil må du legge til tekstur i plugins/ItemMods/temp
+        * Nå må du skrive inn filnavnet, for eksempel `ruby.png`
+    * Hvis du velger internett, trenger du direkte link til png
+        * Hvis du velger imgur, legg til `.png` til nettadressen, f.eks `https://example.com/YOURFILE.png`

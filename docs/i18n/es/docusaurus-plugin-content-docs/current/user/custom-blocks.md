@@ -1,15 +1,14 @@
 ---
-title: Custom blocks
+title: Bloques personalizados
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create
-one. :::
+:::note Para tener texturas personalizadas, necesitas tener un paquete. Mira [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno. :::
 
-## Create a custom block
+## Crear un bloque personalizado
 
-* Create a [reference item](custom-items.md)
-* Go to the block list and click on the knowledge book
-* Give the block a name
-* [Create a model](custom-models.md) for this block
-* Set the model in the block gui
-* Add the `Block set template` to the reference item and set the current block
+* Crear un elemento de referencia [](custom-items.md)
+* Ve a la lista de bloques y haz clic en el libro de conocimientos
+* Dar un nombre al bloque
+* [Crear un modelo](custom-models.md) para este bloque
+* Establecer el modelo en el gui del bloque
+* Añade la plantilla de `set de bloques` al elemento de referencia y establece el bloque actual

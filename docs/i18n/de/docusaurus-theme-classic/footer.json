@@ -1,6 +1,6 @@
 {
   "link.title.Docs": {
-    "message": "Docs",
+    "message": "Texte",
     "description": "The title of the footer links column with title=Docs in the footer"
   },
   "link.title.Community": {
@@ -8,7 +8,7 @@
     "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.title.More": {
-    "message": "More",
+    "message": "Mehr",
     "description": "The title of the footer links column with title=More in the footer"
   },
   "link.item.label.Tutorial": {

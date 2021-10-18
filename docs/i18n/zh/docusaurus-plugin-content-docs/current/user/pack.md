@@ -1,23 +1,23 @@
 ---
-title: Pack
+title: 包
 ---
 
-A pack is a collection of blocks, items, models, textures and more.
+包是块、物品、模型、纹理和更多的集合。
 
-## Create a pack
+## 创建包
 
-* Run `/itemmods`
-* Click on the pack icon
-* Click on the knowledge book and give a name. The name should only have a-z, - and _.
-* Done
+* 运行 `/itemmods`
+* 点击包图标
+* 点击知识书并给出一个名字。 名称只能有 a-z，- 和 _。
+* 完成
 
-Now you can create [custom items](custom-items.md), [custom blocks](custom-blocks.md) and more...
+现在您可以创建 [个自定义项](custom-items.md), [自定义块](custom-blocks.md) 及更多...
 
-## Share the pack
+## 分享包
 
-* Go to the pack gui
-* Open the manage gui
-* Click on export
-* Now you should have a zip file with the same name as the pack in the temp folder
+* 转到包界面
+* 打开管理界面
+* 点击导出
+* 现在你应该有一个与临时文件夹中的包相同名称的zip文件
 
-This archive can you send with a description in our #share channel in the discord server.
+这个归档可以在Discord 服务器上的#共享频道中发送描述。

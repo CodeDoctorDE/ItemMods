@@ -2,41 +2,36 @@
 title: Preset
 ---
 
-The preset directory is the preset for the resource pack. Here you can configure the `pack.mcmeta` and all
-models/textures and everything else.
+Den forhåndsinnstilte mappen er forhåndsinnstillingen for ressurspakken. Her kan du konfigurere `-pakken. mcmeta` og alle modeller/teksturer og alt annet.
 
-## Create the preset
+## Opprett forhåndsinnstilling
 
-You need this folder structure to have a working resource pack. If you have an item with the fallback texture diamond,
-you need to have a `diamond.json`.
+Du trenger denne mappestrukturen for å ha en fungerende ressurspakke. Hvis du har et element med fallback-teksturdiamant, må du ha en `diamond.json`.
 
 ```markdown
-├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
+➜ pack.mcmeta ➠ ″assets ″″″minecraftminecraft ″-minecraft φ models εminecraftitem ε″″diamond.json
 ```
 
-The `pack.mcmeta` needs to have this content:
+`pakken .mcmeta` må ha dette innholdet:
 
 ```json title="pack.mcmeta"
 {
-  "pack": {
+  "pakke": {
     "description": "The name of the resource pack",
     "pack_format": 7
-  }
+
 }
 ```
 
-The `diamond.json` needs to have the same content as the default texture of minecraft.
+`diamond.json` må ha det samme innholdet som standardteksten for minecraft.
 
-To get this done, you need an archive reader like 7-zip or WinRAR.
+For å gjøre dette må du ha en arkivleser som 7-zip eller WinRAR.
 
-Then you need to locate to your minecraft client jar which is normally located
-in `%appdata%/.minecraft/versions/VERSION/VERSION.jar` (You need to replace the VERSION with the version which you used
-to connect to the server).
+Du må deretter finne din minecraft klientkrukke som normalt ligger i `%appdata%/.minecraft/versions/VERSION/VERSION. ar` (Du må erstatte VERSION med versjonen du brukte til å koble til serveren).
 
-In the jar archive you will find a `assets` directory. There you need to copy the same file. If you have the diamond
-fallback texture you need to copy the file in `assets/minecraft/models/item/diamond.json`.
+I jar-arkivet finner du en `element` mappe. Du må kopiere den samme filen. Dersom du har diamant tilbakefall må du kopiere filen i `eiendeler/minecraft/models/item/diamond.json`.
 
-The model file should be similar to this:
+Modellfilen bør ligne dette slik:
 
 ```json title="assets/minecraft/models/item/diamond.json"
 {
@@ -44,8 +39,7 @@ The model file should be similar to this:
   "textures": {
     "layer0": "minecraft:item/diamond"
   }
-}
+
 ```
 
-If you have a block fallback texture like a grass block, the model file is in the block subdirectory, for
-example `assets/minecraft/models/block/grass_block.json`.
+Hvis du har en blokk fallback-tekstur som en gressblokk, er modellfilen i blokkunderkatalogen, for example `assets/minecraft/models/block/grass_block. sønn`.

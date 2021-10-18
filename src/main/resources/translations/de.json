@@ -46,7 +46,7 @@
     },
     "yes": "§aJa",
     "no": "§cNein",
-    "no-player": "§eItemMods §7» §cGuis can only be used by players!"
+    "no-player": "§eItemMods §7» §cGuis kann nur von Spielern benutzt werden!"
   },
   "template": {
     "title": "§6Vorlage",
@@ -152,7 +152,7 @@
   },
   "inactive-packs": {
     "title": "§6Inaktive Pakete §7(%d/%d)",
-    "actions": "§7Click to activate"
+    "actions": "§7Klicke zum Aktivieren"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
@@ -434,7 +434,7 @@
         "success": "§eItemMods §7» §aErfolgreich die Textur §3%s §aerstellt.",
         "failed": "§eItemMods §7» §cUngültiger Texturname."
       },
-      "actions": "§7Open the texture gui"
+      "actions": "§7Öffne das Texturgui"
     },
     "texture": {
       "title": "§6Textur §3%s",

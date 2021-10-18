@@ -1,23 +1,23 @@
 ---
-title: Pack
+title: Pakke
 ---
 
-A pack is a collection of blocks, items, models, textures and more.
+En pakke er en samling blokker, gjenstander, modeller, teksturer og mer.
 
-## Create a pack
+## Opprett en pakke
 
-* Run `/itemmods`
-* Click on the pack icon
-* Click on the knowledge book and give a name. The name should only have a-z, - and _.
-* Done
+* Kjør `/itemmods`
+* Klikk på pakkeikonet
+* Klikk på kunnskapsboken og gi et navn. Navnet bør bare ha a-z, - og _.
+* Ferdig
 
-Now you can create [custom items](custom-items.md), [custom blocks](custom-blocks.md) and more...
+Nå kan du opprette [egendefinerte elementer](custom-items.md), [egendefinerte blokker](custom-blocks.md) og mer...
 
-## Share the pack
+## Del pakken
 
-* Go to the pack gui
-* Open the manage gui
-* Click on export
-* Now you should have a zip file with the same name as the pack in the temp folder
+* Gå til pakken gui
+* Åpne håndterings-gui
+* Klikk på eksport
+* Nå skal du ha en zip-fil med samme navn som pakken i midlertidig mappen
 
-This archive can you send with a description in our #share channel in the discord server.
+Dette arkivet kan du sende med en beskrivelse i vår #dele kanal i discord server.
