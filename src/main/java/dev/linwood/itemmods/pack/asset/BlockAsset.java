@@ -1,15 +1,15 @@
 package dev.linwood.itemmods.pack.asset;
 
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-public interface BlockAsset extends TemplateReadyPackAsset {
+public interface BlockAsset extends TemplateReadyPackAsset, CustomNamedAsset {
     @Nullable PackObject getModelObject();
 
-    default @Nullable StaticModelAsset getModel() {
+    default @Nullable ModelAsset getModel() {
         var modelObject = getModelObject();
         if (modelObject == null)
             return null;

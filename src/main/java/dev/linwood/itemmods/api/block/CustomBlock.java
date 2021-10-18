@@ -3,7 +3,7 @@ package dev.linwood.itemmods.api.block;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -14,7 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CustomBlock implements CustomElement<StaticBlockAsset> {
+public class CustomBlock implements CustomElement<BlockAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_block_data");
     private final Location location;
@@ -27,7 +27,7 @@ public class CustomBlock implements CustomElement<StaticBlockAsset> {
         this(block.getLocation());
     }
 
-    public @Nullable StaticBlockAsset getConfig() {
+    public @Nullable BlockAsset getConfig() {
         var packObject = getPackObject();
         if (packObject == null)
             return null;

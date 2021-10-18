@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.pack.asset;
 
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,5 +12,10 @@ public interface ItemAsset extends TemplateReadyPackAsset {
 
     @Nullable PackObject getModelObject();
 
-    StaticModelAsset getModel();
+    default ModelAsset getModel() {
+        var modelObject = getModelObject();
+        if (modelObject == null)
+            return null;
+        return modelObject.getModel();
+    }
 }

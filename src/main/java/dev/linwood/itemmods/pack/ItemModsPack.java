@@ -5,12 +5,11 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.asset.DisplayedAsset;
-import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
-import dev.linwood.itemmods.pack.asset.StaticNamedPackObject;
+import dev.linwood.itemmods.pack.asset.*;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
+import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -27,15 +26,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsset {
+public class ItemModsPack extends StaticNamedPackObject implements DisplayedObject {
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
-    private final List<StaticItemAsset> items = new ArrayList<>();
-    private final List<StaticBlockAsset> blocks = new ArrayList<>();
+    private final List<ItemAsset> items = new ArrayList<>();
+    private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<StaticTextureAsset> textures = new ArrayList<>();
-    private final List<StaticModelAsset> models = new ArrayList<>();
+    private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<ModelAsset> models = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
 
@@ -110,7 +109,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         dependencies.removeIf(dependency -> dependency.equals(name));
     }
 
-    public @NotNull List<StaticItemAsset> getItems() {
+    public @NotNull List<ItemAsset> getItems() {
         return Collections.unmodifiableList(items);
     }
 
@@ -123,7 +122,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         items.removeIf(itemAsset -> itemAsset.getName().equals(name));
     }
 
-    public @NotNull List<StaticBlockAsset> getBlocks() {
+    public @NotNull List<BlockAsset> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
 
@@ -136,7 +135,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
     }
 
-    public @NotNull List<StaticTextureAsset> getTextures() {
+    public @NotNull List<TextureAsset> getTextures() {
         return Collections.unmodifiableList(textures);
     }
 
@@ -149,7 +148,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
     }
 
-    public @NotNull List<StaticModelAsset> getModels() {
+    public @NotNull List<ModelAsset> getModels() {
         return Collections.unmodifiableList(models);
     }
 
@@ -197,22 +196,22 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
     }
 
     @Nullable
-    public StaticBlockAsset getBlock(String name) {
+    public BlockAsset getBlock(String name) {
         return blocks.stream().filter(blockAsset -> blockAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public StaticItemAsset getItem(String name) {
+    public ItemAsset getItem(String name) {
         return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public StaticModelAsset getModel(String name) {
+    public ModelAsset getModel(String name) {
         return models.stream().filter(modelAsset -> modelAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public StaticTextureAsset getTexture(String name) {
+    public TextureAsset getTexture(String name) {
         return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
@@ -228,8 +227,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         var itemsDir = Paths.get(path.toString(), "items");
         if (!Files.exists(itemsDir))
             Files.createDirectories(itemsDir);
-        items.forEach(itemAsset -> {
-            var current = itemAsset.save(getName());
+        items.stream().filter(itemAsset -> itemAsset instanceof StaticPackAsset).forEach(itemAsset -> {
+            var current = ((StaticPackAsset) itemAsset).save(getName());
             try {
                 var currentPath = Paths.get(itemsDir.toString(), itemAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -242,8 +241,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         var blocksDir = Paths.get(path.toString(), "blocks");
         if (!Files.exists(blocksDir))
             Files.createDirectories(blocksDir);
-        blocks.forEach(blockAsset -> {
-            var current = blockAsset.save(getName());
+        blocks.stream().filter(blockAsset -> blockAsset instanceof StaticPackAsset).forEach(blockAsset -> {
+            var current = ((StaticPackAsset) blockAsset).save(getName());
             try {
                 var currentPath = Paths.get(blocksDir.toString(), blockAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -256,8 +255,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         var texturesDir = Paths.get(path.toString(), "textures");
         if (!Files.exists(texturesDir))
             Files.createDirectories(texturesDir);
-        textures.forEach(textureAsset -> {
-            var current = textureAsset.save(getName());
+        textures.stream().filter(textureAsset -> textureAsset instanceof StaticPackAsset).forEach(textureAsset -> {
+            var current = ((StaticPackAsset) textureAsset).save(getName());
             try {
                 var currentPath = Paths.get(texturesDir.toString(), textureAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -270,8 +269,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
         var modelsDir = Paths.get(path.toString(), "models");
         if (!Files.exists(modelsDir))
             Files.createDirectories(modelsDir);
-        models.forEach(modelAsset -> {
-            var current = modelAsset.save(getName());
+        models.stream().filter(modelAsset -> modelAsset instanceof StaticPackAsset).forEach(modelAsset -> {
+            var current = ((StaticPackAsset) modelAsset).save(getName());
             try {
                 var currentPath = Paths.get(modelsDir.toString(), modelAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -283,8 +282,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedAsse
     }
 
     public void export(String variation, int packFormat, @NotNull Path path) throws IOException {
-        for (StaticModelAsset model : models) model.export(getName(), variation, packFormat, path);
-        for (StaticTextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
+        for (ModelAsset model : models) model.export(getName(), variation, packFormat, path);
+        for (TextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
     }
 
     public CustomTemplate getTemplate(String name) {

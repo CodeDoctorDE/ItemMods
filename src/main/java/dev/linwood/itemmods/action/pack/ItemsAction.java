@@ -10,6 +10,7 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -72,11 +73,11 @@ public class ItemsAction implements TranslationCommandAction {
         return true;
     }
 
-    public void showChoose(@NotNull Consumer<StaticItemAsset> action, CommandSender sender) {
+    public void showChoose(@NotNull Consumer<ItemAsset> action, CommandSender sender) {
         showChoose(null, action, sender);
     }
 
-    public void showChoose(@Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<StaticItemAsset> action, CommandSender sender) {
+    public void showChoose(@Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<ItemAsset> action, CommandSender sender) {
         var t = ItemMods.subTranslation("choose.item", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));

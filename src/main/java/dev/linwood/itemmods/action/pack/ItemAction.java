@@ -45,7 +45,7 @@ public class ItemAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = packObject.getItem();
+        var asset = (StaticItemAsset) packObject.getItem();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
         Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{

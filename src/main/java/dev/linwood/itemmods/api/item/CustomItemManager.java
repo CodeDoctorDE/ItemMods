@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.api.item;
 
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -13,7 +13,7 @@ public class CustomItemManager {
     public CustomItemManager() {
     }
 
-    public StaticItemAsset getAssetByKey(String key) throws UnsupportedOperationException {
+    public ItemAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
         return packObject.getItem();
     }

@@ -3,6 +3,8 @@ package dev.linwood.itemmods.pack.asset.raw;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Set;
 
 public interface RawAsset extends PackAsset {
@@ -21,4 +23,6 @@ public interface RawAsset extends PackAsset {
 
     @NotNull Set<String> getVariations();
 
+
+    void export(String namespace, String variation, int packFormat, Path path) throws IOException;
 }

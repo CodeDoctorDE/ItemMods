@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -48,13 +47,6 @@ public class StaticItemAsset extends StaticTemplateReadyPackAsset implements Ite
             this.modelObject = null;
         else if (modelObject.getModel() != null)
             this.modelObject = modelObject;
-    }
-
-    @Nullable
-    public StaticModelAsset getModel() {
-        if (modelObject == null)
-            return null;
-        return modelObject.getModel();
     }
 
     @NotNull

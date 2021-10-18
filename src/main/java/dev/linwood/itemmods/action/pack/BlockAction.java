@@ -15,6 +15,7 @@ import dev.linwood.itemmods.action.pack.raw.ModelAction;
 import dev.linwood.itemmods.action.pack.raw.ModelsAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
+import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -41,7 +42,7 @@ public class BlockAction implements TranslationCommandAction {
     @Override
     public boolean showGui(CommandSender sender) {
         var gui = new GuiCollection();
-        var asset = packObject.getBlock();
+        var asset = (StaticBlockAsset) packObject.getBlock();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
         Arrays.stream(BlockTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{

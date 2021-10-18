@@ -3,7 +3,7 @@ package dev.linwood.itemmods.api.item;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.CustomElement;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -11,7 +11,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CustomItem implements CustomElement<StaticItemAsset> {
+public class CustomItem implements CustomElement<ItemAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
     private final @NotNull ItemStack itemStack;
@@ -20,7 +20,7 @@ public class CustomItem implements CustomElement<StaticItemAsset> {
         this.itemStack = itemStack;
     }
 
-    public @Nullable StaticItemAsset getConfig() {
+    public @Nullable ItemAsset getConfig() {
         var packObject = getPackObject();
         if (packObject == null)
             return null;

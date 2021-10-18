@@ -39,7 +39,7 @@ public class TextureAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = packObject.getTexture();
+        var asset = (StaticTextureAsset) packObject.getTexture();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(TextureTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
