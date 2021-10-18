@@ -6,7 +6,7 @@ import dev.linwood.itemmods.pack.TranslatableName;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class StaticCustomNamedAsset extends StaticPackAsset {
+public abstract class StaticCustomNamedAsset extends StaticPackAsset implements CustomNamedAsset {
     private @Nullable TranslatableName displayName;
 
     public StaticCustomNamedAsset(@NotNull String name) {

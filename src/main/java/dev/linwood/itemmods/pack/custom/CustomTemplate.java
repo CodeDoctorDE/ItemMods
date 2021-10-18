@@ -29,7 +29,5 @@ public abstract class CustomTemplate implements PackAsset {
         return null;
     }
 
-    public abstract @NotNull ItemStack getIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset);
-
-    public abstract @NotNull ItemStack getMainIcon();
+    public abstract @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset);
 }

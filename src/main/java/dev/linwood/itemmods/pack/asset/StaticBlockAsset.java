@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements BlockAsset, DisplayedAsset {
+public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements BlockAsset {
     private @Nullable PackObject modelObject;
     private @Nullable PackObject referenceItem;
 

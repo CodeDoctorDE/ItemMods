@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class StaticItemAsset extends StaticTemplateReadyPackAsset implements DisplayedAsset {
+public class StaticItemAsset extends StaticTemplateReadyPackAsset implements ItemAsset {
     @Nullable
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();

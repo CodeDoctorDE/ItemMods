@@ -2,9 +2,11 @@ package dev.linwood.itemmods.pack.asset.raw;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -129,5 +131,10 @@ public class StaticModelAsset extends StaticRawAsset implements ModelAsset {
         var content = getDataOrDefault(variation);
         if (content != null)
             Files.write(currentPath, content);
+    }
+
+    @Override
+    public @NotNull ItemStack getIcon() {
+        return new ItemStackBuilder(Material.ARMOR_STAND).displayName(ItemMods.getTranslation("gui.item", name)).build();
     }
 }

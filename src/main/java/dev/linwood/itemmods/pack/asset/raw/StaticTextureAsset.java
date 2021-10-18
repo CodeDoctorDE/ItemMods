@@ -1,7 +1,11 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
 import com.google.gson.JsonObject;
+import dev.linwood.api.item.ItemStackBuilder;
+import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -28,5 +32,10 @@ public class StaticTextureAsset extends StaticRawAsset implements TextureAsset {
         var currentPath = Paths.get(path.toString(), "assets", namespace, "textures", getName() + ".png");
         Files.createDirectories(currentPath.getParent());
         Files.write(currentPath, getDataOrDefault(variation));
+    }
+
+    @Override
+    public @NotNull ItemStack getIcon() {
+        return new ItemStackBuilder(Material.ITEM_FRAME).displayName(ItemMods.getTranslation("gui.item", name)).build();
     }
 }
