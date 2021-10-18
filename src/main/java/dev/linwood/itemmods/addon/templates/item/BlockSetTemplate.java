@@ -44,7 +44,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 
@@ -53,8 +53,9 @@ public class BlockSetTemplate extends CustomTemplate {
         return asset instanceof StaticItemAsset;
     }
 
+
     @Override
-    public @Nullable CommandAction generateAction(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
+    public @Nullable CommandAction generateItemAction(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
         return new TranslationCommandAction() {
             @Override
             public Translation getTranslationNamespace() {

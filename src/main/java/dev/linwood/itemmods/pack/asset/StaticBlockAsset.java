@@ -38,7 +38,7 @@ public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements Bl
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         var model = getModel();
         var material = Material.GRASS_BLOCK;
         if (model != null)
@@ -61,4 +61,5 @@ public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements Bl
         object.addProperty("reference-item", referenceItem == null ? null : referenceItem.toString());
         return object;
     }
+
 }

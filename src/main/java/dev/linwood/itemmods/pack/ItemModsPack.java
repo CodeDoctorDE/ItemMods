@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.action.CommandAction;
+import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.asset.*;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
@@ -295,5 +297,10 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         if (!NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
         this.name = name;
+    }
+
+    @Override
+    public @Nullable CommandAction generateAction() {
+        return new PackAction(name);
     }
 }

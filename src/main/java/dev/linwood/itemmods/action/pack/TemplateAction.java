@@ -43,7 +43,7 @@ public class TemplateAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTemplates()
-                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
+                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon(namespace))
                         .displayName("item").lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
@@ -82,7 +82,7 @@ public class TemplateAction implements TranslationCommandAction {
                         if (event.getClick() == ClickType.DROP)
                             asset.unregisterCustomTemplate(packObject);
                         else if (event.getClick() == ClickType.LEFT) {
-                            var action = customTemplateData.getTemplate().generateAction(packObject, customTemplateData, asset);
+                            var action = customTemplateData.getTemplate().generateItemAction(packObject, customTemplateData, asset);
                             if (action != null)
                                 action.showGui(event.getWhoClicked());
                         }

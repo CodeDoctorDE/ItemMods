@@ -134,7 +134,7 @@ public class StaticModelAsset extends StaticRawAsset implements ModelAsset {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.ARMOR_STAND).displayName(ItemMods.getTranslation("gui.item", name)).build();
     }
 }

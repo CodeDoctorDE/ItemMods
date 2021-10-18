@@ -43,7 +43,7 @@ public class CubitBlockModelTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 

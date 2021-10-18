@@ -50,7 +50,7 @@ public class StaticItemAsset extends StaticTemplateReadyPackAsset implements Ite
     }
 
     @NotNull
-    public ItemStack getIcon() {
+    public ItemStack getIcon(String namespace) {
         var model = getModel();
         var material = Material.DIAMOND;
         if (model != null)

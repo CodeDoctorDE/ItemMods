@@ -35,7 +35,7 @@ public class StaticTextureAsset extends StaticRawAsset implements TextureAsset {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.ITEM_FRAME).displayName(ItemMods.getTranslation("gui.item", name)).build();
     }
 }

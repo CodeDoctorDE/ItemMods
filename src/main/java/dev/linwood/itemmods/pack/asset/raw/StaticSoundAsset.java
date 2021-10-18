@@ -34,7 +34,7 @@ public class StaticSoundAsset extends StaticRawAsset implements SoundAsset {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.NOTE_BLOCK).displayName(ItemMods.getTranslation("gui.item", name)).build();
     }
 }
