@@ -1,22 +1,26 @@
-package dev.linwood.itemmods.pack.asset;
+package dev.linwood.itemmods.addon.simple;
 
 import com.google.gson.JsonObject;
 import dev.linwood.api.item.ItemStackBuilder;
+import dev.linwood.itemmods.action.CommandAction;
+import dev.linwood.itemmods.addon.actions.SimpleBlockAction;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.DefinedTemplateReadyPackAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements BlockAsset {
+public class SimpleBlockAsset extends DefinedTemplateReadyPackAsset implements BlockAsset {
     private @Nullable PackObject modelObject;
     private @Nullable PackObject referenceItem;
 
-    public StaticBlockAsset(@NotNull String name) {
+    public SimpleBlockAsset(@NotNull String name) {
         super(name);
     }
 
-    public StaticBlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public SimpleBlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
 
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
@@ -62,4 +66,8 @@ public class StaticBlockAsset extends StaticTemplateReadyPackAsset implements Bl
         return object;
     }
 
+    @Override
+    public @Nullable CommandAction generateAction(String namespace) {
+        return new SimpleBlockAction(new PackObject(namespace, name));
+    }
 }

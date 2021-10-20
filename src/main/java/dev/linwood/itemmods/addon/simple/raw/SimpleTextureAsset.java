@@ -1,9 +1,10 @@
-package dev.linwood.itemmods.pack.asset.raw;
+package dev.linwood.itemmods.addon.simple.raw;
 
 import com.google.gson.JsonObject;
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -13,17 +14,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class StaticTextureAsset extends StaticRawAsset implements TextureAsset {
+public class SimpleTextureAsset extends SimpleRawAsset implements TextureAsset {
 
-    public StaticTextureAsset(@NotNull String name) {
+    public SimpleTextureAsset(@NotNull String name) {
         super(name);
     }
 
-    public StaticTextureAsset(@NotNull String name, @NotNull String url) throws IOException {
+    public SimpleTextureAsset(@NotNull String name, @NotNull String url) throws IOException {
         super(name, url);
     }
 
-    public StaticTextureAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public SimpleTextureAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
     }
 

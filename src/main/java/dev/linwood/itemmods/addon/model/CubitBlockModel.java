@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.addon.templates.model;
+package dev.linwood.itemmods.addon.model;
 
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
@@ -11,45 +11,32 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticPackAsset;
-import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelTemplateAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
-import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.*;
 
-/**
- * Coming soon in 2.0.0-alpha.1
- */
-public class CubitBlockModelTemplate extends CustomTemplate {
+public class CubitBlockModel extends ModelTemplateAsset {
     private final Translation t = ItemMods.subTranslation("addon.model.cubit_block");
 
-    public CubitBlockModelTemplate(String name) {
-        super("cubit_block");
+    public CubitBlockModel(@NotNull String name) {
+        super(name);
     }
 
-
-    @Override
-    public @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
-        return new ItemStackBuilder(Material.STONE).displayName(t.getTranslation("title")).lore(
-                t.getTranslation("action")).build();
+    public CubitBlockModel(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+        super(packObject, jsonObject);
     }
 
     @Override
     public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
-    }
-
-    @Override
-    public boolean isCompatible(PackObject packObject, StaticPackAsset packAsset) {
-        return packAsset instanceof StaticModelAsset;
     }
 
     public @Nullable Map<String, PackObject> getTextures(CustomData data) {
@@ -93,6 +80,26 @@ public class CubitBlockModelTemplate extends CustomTemplate {
                     }};
                 });
             }});
+        }};
+    }
+
+    @Override
+    protected String buildTemplate(String variation) {
+        try {
+            Paths.get(Objects.requireNonNull(getClass().getResource("cubit_block.json")).toURI());
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
+    @Override
+    public @NotNull Set<String> getVariations() {
+        return new HashSet<>() {{
+            add("default");
         }};
     }
 }

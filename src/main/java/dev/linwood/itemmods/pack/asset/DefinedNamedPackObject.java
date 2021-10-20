@@ -6,12 +6,12 @@ import dev.linwood.itemmods.pack.NamedPackObject;
 import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class StaticNamedPackObject implements NamedPackObject {
+public abstract class DefinedNamedPackObject implements NamedPackObject {
     public static @NotNull
     final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     protected String name;
 
-    public StaticNamedPackObject(@NotNull String name) {
+    public DefinedNamedPackObject(@NotNull String name) {
         setName(name);
     }
 

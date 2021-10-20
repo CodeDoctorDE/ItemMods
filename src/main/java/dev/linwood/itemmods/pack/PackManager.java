@@ -73,8 +73,7 @@ public class PackManager {
                     .filter(path -> Files.exists(Paths.get(path.toString(), "pack.json")))
                     .forEach(path -> {
                         try {
-                            var pack = new ItemModsPack(path);
-                            packs.add(pack);
+                            packs.add(new ItemModsPack(path));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

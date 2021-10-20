@@ -10,9 +10,9 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
+import dev.linwood.itemmods.addon.simple.raw.SimpleModelAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -58,7 +58,7 @@ public class ModelsAction implements TranslationCommandAction {
                     try {
                         var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
-                        pack.registerModel(new StaticModelAsset(s));
+                        pack.registerModel(new SimpleModelAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();

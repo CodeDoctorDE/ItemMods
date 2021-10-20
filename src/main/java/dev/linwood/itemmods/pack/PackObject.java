@@ -1,10 +1,12 @@
 package dev.linwood.itemmods.pack;
 
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.asset.*;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
@@ -132,17 +134,59 @@ public class PackObject {
      * @param assetClass The class of the searched asset
      * @return Returns null if nothing found or the asset
      */
-    public @Nullable PackAsset getAssetByType(Class<? extends PackAsset> assetClass) {
-        if (StaticItemAsset.class.isAssignableFrom(assetClass))
-            return getItem();
-        if (StaticBlockAsset.class.isAssignableFrom(assetClass))
-            return getBlock();
+    public @Nullable <T extends PackAsset> T getAssetByType(Class<T> assetClass) {
+        if (ItemAsset.class.isAssignableFrom(assetClass))
+            return assetClass.cast(getItem());
+        if (BlockAsset.class.isAssignableFrom(assetClass))
+            return assetClass.cast(getBlock());
         if (CustomTemplate.class.isAssignableFrom(assetClass))
-            return getTemplate();
+            return assetClass.cast(getTemplate());
         if (ModelAsset.class.isAssignableFrom(assetClass))
-            return getModel();
-        if (StaticTextureAsset.class.isAssignableFrom(assetClass))
-            return getTexture();
+            return assetClass.cast(getModel());
+        if (TextureAsset.class.isAssignableFrom(assetClass))
+            return assetClass.cast(getTexture());
         return null;
     }
+
+    @SuppressWarnings("unchecked")
+    public @Nullable <T extends PackAsset> CustomAssetGenerator<T> getGeneratorByType(Class<T> assetClass) {
+        if (ItemAsset.class.isAssignableFrom(assetClass))
+            return (CustomAssetGenerator<T>) getItemGenerator();
+        if (BlockAsset.class.isAssignableFrom(assetClass))
+            return (CustomAssetGenerator<T>) getBlockGenerator();
+        if (ModelAsset.class.isAssignableFrom(assetClass))
+            return (CustomAssetGenerator<T>) getModelGenerator();
+        if (TextureAsset.class.isAssignableFrom(assetClass))
+            return (CustomAssetGenerator<T>) getTextureGenerator();
+        return null;
+    }
+
+    public @Nullable CustomAssetGenerator<ItemAsset> getItemGenerator() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getItemGenerator(name);
+    }
+
+    public @Nullable CustomAssetGenerator<BlockAsset> getBlockGenerator() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getBlockGenerator(name);
+    }
+
+    public @Nullable CustomAssetGenerator<TextureAsset> getTextureGenerator() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getTextureGenerator(name);
+    }
+
+    public @Nullable CustomAssetGenerator<ModelAsset> getModelGenerator() {
+        var pack = getPack();
+        if (pack == null)
+            return null;
+        return pack.getModelGenerator(name);
+    }
+
 }

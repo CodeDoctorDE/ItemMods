@@ -1,9 +1,11 @@
-package dev.linwood.itemmods.pack.asset;
+package dev.linwood.itemmods.addon.simple;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.DefinedTemplateReadyPackAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -13,17 +15,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class StaticItemAsset extends StaticTemplateReadyPackAsset implements ItemAsset {
+public class SimpleItemAsset extends DefinedTemplateReadyPackAsset implements ItemAsset {
     @Nullable
     private PackObject modelObject;
     private List<String> lore = new ArrayList<>();
 
 
-    public StaticItemAsset(@NotNull String name) {
+    public SimpleItemAsset(@NotNull String name) {
         super(name);
     }
 
-    public StaticItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public SimpleItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = new PackObject(jsonObject.get("model-object").getAsString());

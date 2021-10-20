@@ -11,10 +11,10 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.addon.simple.raw.SimpleRawAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticRawAsset;
 import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -80,8 +80,8 @@ public class DataAction implements TranslationCommandAction {
                                     sender.sendMessage(ItemMods.getTranslation("coming-soon"));
                                     break;
                                 case DROP:
-                                    if (asset instanceof StaticRawAsset)
-                                        ((StaticRawAsset) asset).removeVariation(variation);
+                                    if (asset instanceof SimpleRawAsset)
+                                        ((SimpleRawAsset) asset).removeVariation(variation);
                                     gui.rebuild();
                             }
                         } else
@@ -90,7 +90,7 @@ public class DataAction implements TranslationCommandAction {
                 }}).toArray(GuiItem[]::new));
         gui.setListControls(new VerticalListControls() {{
             setBackAction(backAction);
-            if (asset instanceof StaticRawAsset)
+            if (asset instanceof SimpleRawAsset)
                 setCreateAction(event -> create((Player) event.getWhoClicked(), () -> showGui(sender, backAction)));
         }});
         gui.show((Player) sender);
@@ -99,7 +99,7 @@ public class DataAction implements TranslationCommandAction {
 
     void create(@NotNull Player player, Runnable action) {
         var asset = (RawAsset) packObject.getAssetByType(assetClass);
-        if (!(asset instanceof StaticRawAsset))
+        if (!(asset instanceof SimpleRawAsset))
             return;
         var request = new ChatRequest(player);
         player.sendMessage(getTranslation("create.variation"));
@@ -108,7 +108,7 @@ public class DataAction implements TranslationCommandAction {
 
     void create(@NotNull Player player, String variation, Runnable action) {
         var asset = (RawAsset) packObject.getAssetByType(assetClass);
-        if (!(asset instanceof StaticRawAsset))
+        if (!(asset instanceof SimpleRawAsset))
             return;
         var gui = new TranslatedChestGui(ItemMods.subTranslation("raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());
@@ -122,7 +122,7 @@ public class DataAction implements TranslationCommandAction {
                 player.closeInventory();
                 request.setSubmitAction(s -> {
                     try {
-                        ((StaticRawAsset) asset).setData(variation, s);
+                        ((SimpleRawAsset) asset).setData(variation, s);
                         player.sendMessage(gui.getTranslation().getTranslation("internet.success", variation, s));
                     } catch (IOException e) {
                         player.sendMessage(gui.getTranslation().getTranslation("internet.failed", variation, s));
@@ -141,7 +141,7 @@ public class DataAction implements TranslationCommandAction {
                 request.setSubmitAction(s -> {
                     try {
                         var path = Paths.get(ItemMods.getTempPath().toString(), FilenameUtils.getName(s));
-                        ((StaticRawAsset) asset).setData(variation, Files.readAllBytes(path));
+                        ((SimpleRawAsset) asset).setData(variation, Files.readAllBytes(path));
                         player.sendMessage(gui.getTranslation().getTranslation("file.success", variation, s));
                     } catch (Exception e) {
                         player.sendMessage(gui.getTranslation().getTranslation("file.failed", variation, s));

@@ -9,9 +9,9 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.addon.simple.SimpleItemAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -57,7 +57,7 @@ public class ItemsAction implements TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerItem(new StaticItemAsset(s));
+                        pack.registerItem(new SimpleItemAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();

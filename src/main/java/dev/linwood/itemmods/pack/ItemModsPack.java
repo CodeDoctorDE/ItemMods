@@ -9,15 +9,15 @@ import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.asset.*;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticTextureAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,14 +28,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends StaticNamedPackObject implements DisplayedObject {
+public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObject {
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
+    private final List<CustomAssetGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
     private final List<ItemAsset> items = new ArrayList<>();
+    private final List<CustomAssetGenerator<BlockAsset>> blockGenerators = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
+    private final List<CustomAssetGenerator<TextureAsset>> textureGenerators = new ArrayList<>();
     private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<CustomAssetGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
     private final List<ModelAsset> models = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
@@ -52,18 +56,16 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
 
     public ItemModsPack(@NotNull Path path) throws IOException {
         super(path.getFileName().toString());
-        editable = true;
         var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
         JsonObject jsonObject = GSON.fromJson(br, JsonObject.class);
         br.close();
         if (jsonObject.has("icon") && jsonObject.get("icon").isJsonPrimitive())
             icon = Objects.requireNonNull(Material.getMaterial(jsonObject.get("icon").getAsString()));
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
-
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(new StaticItemAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                items.add(Objects.requireNonNull(getGenerator(current, ItemAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,7 +74,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                blocks.add(new StaticBlockAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                blocks.add(Objects.requireNonNull(getGenerator(current, BlockAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,7 +83,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                models.add(new StaticModelAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                models.add(Objects.requireNonNull(getGenerator(current, ModelAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -91,11 +93,28 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
                 var fileName = FileUtils.getFileName(texturesPath.relativize(current));
-                textures.add(new StaticTextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                textures.add(Objects.requireNonNull(getGenerator(current, TextureAsset.class)).loadAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+        editable = true;
+    }
+
+
+    @Nullable
+    private <T extends PackAsset> CustomAssetGenerator<T> getGenerator(Path path, Class<T> assetClass) {
+        BufferedReader br;
+        try {
+            br = Files.newBufferedReader(path);
+            var jsonObject = GSON.fromJson(br, JsonObject.class);
+            var generator = jsonObject.get("generator").getAsString();
+            br.close();
+            return new PackObject(generator).getGeneratorByType(assetClass);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public @NotNull List<String> getDependencies() {
@@ -115,7 +134,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         return Collections.unmodifiableList(items);
     }
 
-    public void registerItem(@NotNull StaticItemAsset itemAsset) {
+    public void registerItem(@NotNull ItemAsset itemAsset) {
         if (PackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
             items.add(itemAsset);
     }
@@ -128,7 +147,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         return Collections.unmodifiableList(blocks);
     }
 
-    public void registerBlock(@NotNull StaticBlockAsset blockAsset) {
+    public void registerBlock(@NotNull BlockAsset blockAsset) {
         if (PackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
             blocks.add(blockAsset);
     }
@@ -141,7 +160,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         return Collections.unmodifiableList(textures);
     }
 
-    public void registerTexture(@NotNull StaticTextureAsset textureAsset) {
+    public void registerTexture(@NotNull TextureAsset textureAsset) {
         if (PackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
             textures.add(textureAsset);
     }
@@ -154,7 +173,7 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         return Collections.unmodifiableList(models);
     }
 
-    public void registerModel(@NotNull StaticModelAsset modelAsset) {
+    public void registerModel(@NotNull ModelAsset modelAsset) {
         if (PackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
             models.add(modelAsset);
     }
@@ -174,6 +193,54 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
 
     public void unregisterTemplate(String name) {
         templates.removeIf(templateAsset -> templateAsset.getName().equals(name));
+    }
+
+    public @NotNull List<CustomAssetGenerator<ItemAsset>> getItemGenerators() {
+        return Collections.unmodifiableList(itemGenerators);
+    }
+
+    public void registerItemGenerator(@NotNull CustomAssetGenerator<ItemAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            itemGenerators.add(generator);
+    }
+
+    public void unregisterItemGenerator(String name) {
+        itemGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public @NotNull List<CustomAssetGenerator<BlockAsset>> getBlockGenerators() {
+        return Collections.unmodifiableList(blockGenerators);
+    }
+
+    public void registerBlockGenerator(@NotNull CustomAssetGenerator<BlockAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            blockGenerators.add(generator);
+    }
+
+    public void unregisterBlockGenerator(String name) {
+        blockGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public @NotNull List<CustomAssetGenerator<TextureAsset>> getTextureGenerators() {
+        return Collections.unmodifiableList(textureGenerators);
+    }
+
+    public void registerModelGenerator(@NotNull CustomAssetGenerator<ModelAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            modelGenerators.add(generator);
+    }
+
+    public void unregisterModelGenerator(String name) {
+        modelGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public void registerTextureGenerator(@NotNull CustomAssetGenerator<TextureAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            textureGenerators.add(generator);
+    }
+
+    public void unregisterTextureGenerator(String name) {
+        textureGenerators.removeIf(generator -> generator.getName().equals(name));
     }
 
 
@@ -217,6 +284,26 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
     }
 
+    @Nullable
+    public CustomAssetGenerator<ItemAsset> getItemGenerator(String name) {
+        return itemGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<BlockAsset> getBlockGenerator(String name) {
+        return blockGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<ModelAsset> getModelGenerator(String name) {
+        return modelGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<TextureAsset> getTextureGenerator(String name) {
+        return textureGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
     void save(@NotNull Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("icon", new JsonPrimitive(icon.name()));
@@ -229,8 +316,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var itemsDir = Paths.get(path.toString(), "items");
         if (!Files.exists(itemsDir))
             Files.createDirectories(itemsDir);
-        items.stream().filter(itemAsset -> itemAsset instanceof StaticPackAsset).forEach(itemAsset -> {
-            var current = ((StaticPackAsset) itemAsset).save(getName());
+        items.stream().filter(itemAsset -> itemAsset instanceof DefinedPackAsset).forEach(itemAsset -> {
+            var current = ((DefinedPackAsset) itemAsset).save(getName());
             try {
                 var currentPath = Paths.get(itemsDir.toString(), itemAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -243,8 +330,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var blocksDir = Paths.get(path.toString(), "blocks");
         if (!Files.exists(blocksDir))
             Files.createDirectories(blocksDir);
-        blocks.stream().filter(blockAsset -> blockAsset instanceof StaticPackAsset).forEach(blockAsset -> {
-            var current = ((StaticPackAsset) blockAsset).save(getName());
+        blocks.stream().filter(blockAsset -> blockAsset instanceof DefinedPackAsset).forEach(blockAsset -> {
+            var current = ((DefinedPackAsset) blockAsset).save(getName());
             try {
                 var currentPath = Paths.get(blocksDir.toString(), blockAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -257,8 +344,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var texturesDir = Paths.get(path.toString(), "textures");
         if (!Files.exists(texturesDir))
             Files.createDirectories(texturesDir);
-        textures.stream().filter(textureAsset -> textureAsset instanceof StaticPackAsset).forEach(textureAsset -> {
-            var current = ((StaticPackAsset) textureAsset).save(getName());
+        textures.stream().filter(textureAsset -> textureAsset instanceof DefinedPackAsset).forEach(textureAsset -> {
+            var current = ((DefinedPackAsset) textureAsset).save(getName());
             try {
                 var currentPath = Paths.get(texturesDir.toString(), textureAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -271,8 +358,8 @@ public class ItemModsPack extends StaticNamedPackObject implements DisplayedObje
         var modelsDir = Paths.get(path.toString(), "models");
         if (!Files.exists(modelsDir))
             Files.createDirectories(modelsDir);
-        models.stream().filter(modelAsset -> modelAsset instanceof StaticPackAsset).forEach(modelAsset -> {
-            var current = ((StaticPackAsset) modelAsset).save(getName());
+        models.stream().filter(modelAsset -> modelAsset instanceof DefinedPackAsset).forEach(modelAsset -> {
+            var current = ((DefinedPackAsset) modelAsset).save(getName());
             try {
                 var currentPath = Paths.get(modelsDir.toString(), modelAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());

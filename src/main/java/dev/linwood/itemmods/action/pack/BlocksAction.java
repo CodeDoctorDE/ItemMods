@@ -9,9 +9,9 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.addon.simple.SimpleBlockAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
-import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -59,7 +59,7 @@ public class BlocksAction implements TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerBlock(new StaticBlockAsset(s));
+                        pack.registerBlock(new SimpleBlockAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();

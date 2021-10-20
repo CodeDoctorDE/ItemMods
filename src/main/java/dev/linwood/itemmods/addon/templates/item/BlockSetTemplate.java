@@ -10,10 +10,10 @@ import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.BlocksAction;
 import dev.linwood.itemmods.action.pack.TemplateAction;
+import dev.linwood.itemmods.addon.simple.SimpleBlockAsset;
+import dev.linwood.itemmods.addon.simple.SimpleItemAsset;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticBlockAsset;
-import dev.linwood.itemmods.pack.asset.StaticItemAsset;
-import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.DefinedPackAsset;
 import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
@@ -48,8 +48,8 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject, StaticPackAsset asset) {
-        return asset instanceof StaticItemAsset;
+    public boolean isCompatible(PackObject packObject, DefinedPackAsset asset) {
+        return asset instanceof SimpleItemAsset;
     }
 
 
@@ -78,7 +78,7 @@ public class BlockSetTemplate extends CustomTemplate {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateAction(packObject, StaticBlockAsset.class).showGui(sender, event -> back(player));
+                    new TemplateAction(packObject, SimpleBlockAsset.class).showGui(sender, event -> back(player));
                 }, event -> back(player)), event -> back(player));
                 return true;
             }

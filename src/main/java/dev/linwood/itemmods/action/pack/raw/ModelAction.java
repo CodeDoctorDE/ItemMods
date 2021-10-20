@@ -11,9 +11,9 @@ import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.addon.simple.raw.SimpleModelAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.StaticModelAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -41,7 +41,7 @@ public class ModelAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = (StaticModelAsset) packObject.getModel();
+        var asset = (SimpleModelAsset) packObject.getModel();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(ModelTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{

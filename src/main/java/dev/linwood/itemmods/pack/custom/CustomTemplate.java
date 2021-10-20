@@ -2,8 +2,8 @@ package dev.linwood.itemmods.pack.custom;
 
 import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.DefinedPackAsset;
 import dev.linwood.itemmods.pack.asset.PackAsset;
-import dev.linwood.itemmods.pack.asset.StaticPackAsset;
 import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +25,7 @@ public abstract class CustomTemplate implements PackAsset {
         return name;
     }
 
-    public boolean isCompatible(PackObject packObject, StaticPackAsset asset) {
+    public boolean isCompatible(PackObject packObject, DefinedPackAsset asset) {
         return true;
     }
 

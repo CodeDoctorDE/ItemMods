@@ -1,8 +1,9 @@
-package dev.linwood.itemmods.pack.asset.raw;
+package dev.linwood.itemmods.addon.simple.raw;
 
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.StaticPackAsset;
+import dev.linwood.itemmods.pack.asset.DefinedPackAsset;
+import dev.linwood.itemmods.pack.asset.raw.RawAsset;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
@@ -15,20 +16,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class StaticRawAsset extends StaticPackAsset implements RawAsset {
+public abstract class SimpleRawAsset extends DefinedPackAsset implements RawAsset {
 
     protected final Map<String, byte[]> data = new HashMap<>();
 
-    public StaticRawAsset(@NotNull String name) {
+    public SimpleRawAsset(@NotNull String name) {
         super(name);
     }
 
-    public StaticRawAsset(@NotNull String name, @NotNull String url) throws IOException {
+    public SimpleRawAsset(@NotNull String name, @NotNull String url) throws IOException {
         super(name);
         setDefaultData(url);
     }
 
-    public StaticRawAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public SimpleRawAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         jsonObject.getAsJsonObject("data").entrySet().forEach(entry -> data.put(entry.getKey(), entry.getValue().getAsString().getBytes(StandardCharsets.UTF_8)));
     }
@@ -90,7 +91,7 @@ public abstract class StaticRawAsset extends StaticPackAsset implements RawAsset
         return jsonObject;
     }
 
-    public void export(String namespace, String variation, int packFormat, Path path) throws IOException {
+    public void export(String namespace, String variation, int packFormat, @NotNull Path path) throws IOException {
 
     }
 }

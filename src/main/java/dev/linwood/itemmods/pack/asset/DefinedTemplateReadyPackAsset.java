@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class StaticTemplateReadyPackAsset extends StaticCustomNamedAsset implements TemplateReadyPackAsset {
+public abstract class DefinedTemplateReadyPackAsset extends DefinedNamedAsset implements TemplateReadyPackAsset {
     private final List<CustomData> customTemplates = new ArrayList<>();
 
-    public StaticTemplateReadyPackAsset(@NotNull String name) {
+    public DefinedTemplateReadyPackAsset(@NotNull String name) {
         super(name);
     }
 
-    public StaticTemplateReadyPackAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
+    public DefinedTemplateReadyPackAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
         super(packObject, jsonObject);
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
