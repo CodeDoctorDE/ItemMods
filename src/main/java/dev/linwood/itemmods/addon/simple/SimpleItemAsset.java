@@ -63,6 +63,8 @@ public class SimpleItemAsset extends DefinedTemplateReadyPackAsset implements It
     @Override
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
+        if (jsonObject == null)
+            jsonObject = new JsonObject();
         jsonObject.addProperty("model-object", modelObject == null ? null : modelObject.toString());
         var loreObject = new JsonArray();
         lore.forEach(loreObject::add);

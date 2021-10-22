@@ -5,7 +5,7 @@ import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class DefinedPackAsset extends DefinedNamedPackObject implements PackAsset {
+public abstract class DefinedPackAsset extends DefinedNamedPackObject {
 
     public DefinedPackAsset(@NotNull String name) {
         super(name);
@@ -20,4 +20,5 @@ public abstract class DefinedPackAsset extends DefinedNamedPackObject implements
         jsonObject.addProperty("version", ItemMods.FILE_VERSION);
         return jsonObject;
     }
+
 }
