@@ -48,6 +48,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
     private final List<CustomAssetGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
+
     public ItemModsPack(@NotNull Path path) throws IOException {
         super(path.getFileName().toString());
         var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
@@ -286,7 +287,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
             Files.createDirectories(itemsDir);
         items.forEach(itemAsset -> {
             var current = itemAsset.save();
-            try {
+            if (current != null) try {
                 var currentPath = Paths.get(itemsDir.toString(), itemAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
                 Files.writeString(currentPath, GSON.toJson(current));
@@ -300,7 +301,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
             Files.createDirectories(blocksDir);
         blocks.forEach(blockAsset -> {
             var current = blockAsset.save();
-            try {
+            if (current != null) try {
                 var currentPath = Paths.get(blocksDir.toString(), blockAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
                 Files.writeString(currentPath, GSON.toJson(current));
@@ -314,7 +315,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
             Files.createDirectories(texturesDir);
         textures.forEach(textureAsset -> {
             var current = textureAsset.save();
-            try {
+            if (current != null) try {
                 var currentPath = Paths.get(texturesDir.toString(), textureAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
                 Files.writeString(Paths.get(texturesDir.toString(), textureAsset.getName() + ".json"), GSON.toJson(current));
@@ -328,7 +329,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
             Files.createDirectories(modelsDir);
         models.forEach(modelAsset -> {
             var current = modelAsset.save();
-            try {
+            if (current != null) try {
                 var currentPath = Paths.get(modelsDir.toString(), modelAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
                 Files.writeString(currentPath, GSON.toJson(current));
@@ -405,7 +406,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
 
         @Nullable
         public JsonObject save() {
-            var saveData = asset.save(pack.getName());
+            var saveData = getCustomAssetGenerator().save(pack.getName(), asset);
             if (saveData == null)
                 return null;
             JsonObject jsonObject = new JsonObject();
