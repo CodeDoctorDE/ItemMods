@@ -1,14 +1,11 @@
-package dev.linwood.itemmods.pack.asset;
+package dev.linwood.itemmods.pack;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.linwood.itemmods.pack.NamedPackObject;
-import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class DefinedNamedPackObject implements NamedPackObject {
-    public static @NotNull
-    final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+public abstract class DefinedNamedPackObject {
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     protected String name;
 
     public DefinedNamedPackObject(@NotNull String name) {

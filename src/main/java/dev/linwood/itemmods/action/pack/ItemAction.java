@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.addon.actions;
+package dev.linwood.itemmods.action.pack;
 
 import dev.linwood.api.item.ItemStackBuilder;
 import dev.linwood.api.request.ChatRequest;
@@ -11,13 +11,11 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.action.pack.BlocksAction;
 import dev.linwood.itemmods.action.pack.raw.ModelAction;
 import dev.linwood.itemmods.action.pack.raw.ModelsAction;
-import dev.linwood.itemmods.addon.simple.SimpleBlockAsset;
-import dev.linwood.itemmods.addon.simple.SimpleItemAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -28,10 +26,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class SimpleBlockAction implements TranslationCommandAction {
+public class ItemAction implements TranslationCommandAction {
     protected final @NotNull PackObject packObject;
 
-    public SimpleBlockAction(@NotNull PackObject packObject) {
+    public ItemAction(@NotNull PackObject packObject) {
         this.packObject = packObject;
     }
 
@@ -41,20 +39,24 @@ public class SimpleBlockAction implements TranslationCommandAction {
     }
 
     @Override
-    public boolean showGui(CommandSender sender) {
+    public boolean showGui(@NotNull CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(getTranslation("no-player"));
+            return true;
+        }
         var gui = new GuiCollection();
-        var asset = (SimpleBlockAsset) packObject.getBlock();
+        var asset = packObject.getItem();
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
-        Arrays.stream(BlockTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
+        Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
             setPlaceholders(packObject.toString());
             fillItems(0, 0, 0, 3, placeholder);
             fillItems(8, 0, 8, 3, placeholder);
             addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
-                setClickAction(event -> new BlocksAction(packObject.getNamespace()).showGui(event.getWhoClicked()));
+                setClickAction(event -> new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked()));
             }});
             addItem(placeholder);
-            Arrays.stream(BlockTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
+            Arrays.stream(ItemTab.values()).map(tab -> new TranslatedGuiItem(new ItemStackBuilder(tab.getMaterial()).displayName(tab.name().toLowerCase())
                     .setEnchanted(tab == value).build()) {{
                 setClickAction(event -> gui.setCurrent(tab.ordinal()));
             }}).forEach(this::addItem);
@@ -69,17 +71,15 @@ public class SimpleBlockAction implements TranslationCommandAction {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(SimpleBlockAction.this.getTranslation("name.message"));
+                            p.sendMessage(ItemAction.this.getTranslation("name.message"));
                             request.setSubmitAction(s -> {
                                 try {
                                     asset.setName(s);
                                     packObject.save();
-                                    p.sendMessage(SimpleBlockAction.this.getTranslation("name.success", s));
-                                    var action = asset.generateAction(packObject.getNamespace());
-                                    if (action != null)
-                                        action.showGui(p);
+                                    p.sendMessage(ItemAction.this.getTranslation("name.success", s));
+                                    new ItemAction(new PackObject(packObject.getNamespace(), s)).showGui(p);
                                 } catch (Exception e) {
-                                    p.sendMessage(SimpleBlockAction.this.getTranslation("name.failed"));
+                                    p.sendMessage(ItemAction.this.getTranslation("name.failed"));
                                     e.printStackTrace();
                                 }
                             });
@@ -95,19 +95,19 @@ public class SimpleBlockAction implements TranslationCommandAction {
                             var p = (Player) event.getWhoClicked();
                             hide(p);
                             var request = new ChatRequest(p);
-                            p.sendMessage(SimpleBlockAction.this.getTranslation("display.message"));
+                            p.sendMessage(ItemAction.this.getTranslation("display.message"));
                             request.setSubmitAction(s -> {
                                 var ts = ChatColor.translateAlternateColorCodes('&', s);
                                 asset.setDisplayName(new TranslatableName(ts));
                                 packObject.save();
                                 show(p);
-                                p.sendMessage(SimpleBlockAction.this.getTranslation("display.success", ts));
+                                p.sendMessage(ItemAction.this.getTranslation("display.success", ts));
                             });
                         });
                     }});
                     addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
-                            var prefix = "model." + (asset.getModel() == null ? "not-set" : "set") + ".";
+                            var prefix = "model." + (asset.getModelObject() == null ? "not-set" : "set") + ".";
                             setItemStack(new ItemStackBuilder(Material.ARMOR_STAND).displayName(prefix + "title").lore(prefix + "description").build());
                             if (asset.getModelObject() != null) setPlaceholders(asset.getModelObject().toString());
                         });
@@ -116,18 +116,18 @@ public class SimpleBlockAction implements TranslationCommandAction {
                             var modelObject = asset.getModelObject();
                             if (modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
                                 if (packObject.getPack().getModel(packObject.getName()) != null)
-                                    event.getWhoClicked().sendMessage(SimpleBlockAction.this.getTranslation("model.exist"));
+                                    event.getWhoClicked().sendMessage(ItemAction.this.getTranslation("model.exist"));
                                 else {
-                                    pack.registerItem(new SimpleItemAsset(pack.getName()));
+                                    pack.registerItem(new ItemAsset(pack.getName()));
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
-                                new PacksAction().showChoose(sender, pack -> new ModelsAction(pack.getName()).showChoose(sender, modelAsset -> {
+                                new PacksAction().showChoose(event.getWhoClicked(), pack -> new ModelsAction(pack.getName()).showChoose(sender, modelAsset -> {
                                     asset.setModelObject(new PackObject(pack.getName(), modelAsset.getName()));
                                     packObject.save();
                                     reloadAll();
                                     show(p);
-                                }), backEvent -> showGui(sender));
+                                }), backEvent -> showGui(backEvent.getWhoClicked()));
                             else
                                 switch (event.getClick()) {
                                     case LEFT:
@@ -140,21 +140,23 @@ public class SimpleBlockAction implements TranslationCommandAction {
                                 }
                         });
                     }});
-                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()));
+                    addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.ENDER_CHEST).displayName("templates.title").lore("templates.description").build()) {{
+                        setClickAction(event -> new TemplateAction(packObject, ItemAsset.class).showGui(sender, backEvent -> show((Player) backEvent.getWhoClicked())));
+                    }});
                     break;
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.BARRIER).displayName("delete.title").lore("delete.description").build()) {{
                         setRenderAction(gui -> setPlaceholders(asset.getName()));
-                        setClickAction(event -> new MessageGui(getTranslationNamespace().subTranslation("delete.gui")) {{
+                        setClickAction(event -> new MessageGui(ItemMods.subTranslation("delete.gui")) {{
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
                                     Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
                                     packObject.save();
-                                    new BlocksAction(packObject.getNamespace()).showGui(event.getWhoClicked());
+                                    new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{
-                                setClickAction(event -> showGui(event.getWhoClicked()));
+                                setClickAction(event -> ItemAction.this.showGui(event.getWhoClicked()));
                             }});
                         }}.show((Player) event.getWhoClicked()));
                     }});
@@ -167,7 +169,7 @@ public class SimpleBlockAction implements TranslationCommandAction {
         return true;
     }
 
-    public enum BlockTab {
+    public enum ItemTab {
         GENERAL, ADMINISTRATION;
 
         public @NotNull Material getMaterial() {

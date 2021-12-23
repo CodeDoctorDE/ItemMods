@@ -5,9 +5,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.action.CommandAction;
-import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.pack.asset.*;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
@@ -28,7 +28,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObject {
+import static dev.linwood.itemmods.ItemMods.GSON;
+
+public class ItemModsPack implements NamedPackObject {
+    private String name;
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
     private final List<CustomAssetGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
@@ -45,7 +48,7 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
     private String description = "";
 
     public ItemModsPack(@NotNull String name, boolean editable) throws UnsupportedOperationException {
-        super(name);
+        this.name = name;
         this.editable = editable;
     }
 
@@ -53,9 +56,8 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
         this(name, true);
     }
 
-
     public ItemModsPack(@NotNull Path path) throws IOException {
-        super(path.getFileName().toString());
+        this(path.getFileName().toString(), true);
         var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
         JsonObject jsonObject = GSON.fromJson(br, JsonObject.class);
         br.close();
@@ -98,7 +100,11 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
                 e.printStackTrace();
             }
         });
-        editable = true;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 
@@ -316,8 +322,8 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
         var itemsDir = Paths.get(path.toString(), "items");
         if (!Files.exists(itemsDir))
             Files.createDirectories(itemsDir);
-        items.stream().filter(itemAsset -> itemAsset instanceof DefinedPackAsset).forEach(itemAsset -> {
-            var current = ((DefinedPackAsset) itemAsset).save(getName());
+        items.forEach(itemAsset -> {
+            var current = itemAsset.save(getName());
             try {
                 var currentPath = Paths.get(itemsDir.toString(), itemAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -330,8 +336,8 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
         var blocksDir = Paths.get(path.toString(), "blocks");
         if (!Files.exists(blocksDir))
             Files.createDirectories(blocksDir);
-        blocks.stream().filter(blockAsset -> blockAsset instanceof DefinedPackAsset).forEach(blockAsset -> {
-            var current = ((DefinedPackAsset) blockAsset).save(getName());
+        blocks.forEach(blockAsset -> {
+            var current = blockAsset.save(getName());
             try {
                 var currentPath = Paths.get(blocksDir.toString(), blockAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -344,8 +350,8 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
         var texturesDir = Paths.get(path.toString(), "textures");
         if (!Files.exists(texturesDir))
             Files.createDirectories(texturesDir);
-        textures.stream().filter(textureAsset -> textureAsset instanceof DefinedPackAsset).forEach(textureAsset -> {
-            var current = ((DefinedPackAsset) textureAsset).save(getName());
+        textures.forEach(textureAsset -> {
+            var current = textureAsset.save(getName());
             try {
                 var currentPath = Paths.get(texturesDir.toString(), textureAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -358,8 +364,8 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
         var modelsDir = Paths.get(path.toString(), "models");
         if (!Files.exists(modelsDir))
             Files.createDirectories(modelsDir);
-        models.stream().filter(modelAsset -> modelAsset instanceof DefinedPackAsset).forEach(modelAsset -> {
-            var current = ((DefinedPackAsset) modelAsset).save(getName());
+        models.forEach(modelAsset -> {
+            var current = modelAsset.save(getName());
             try {
                 var currentPath = Paths.get(modelsDir.toString(), modelAsset.getName() + ".json");
                 Files.createDirectories(currentPath.getParent());
@@ -376,18 +382,12 @@ public class ItemModsPack extends DefinedNamedPackObject implements DisplayedObj
     }
 
     public CustomTemplate getTemplate(String name) {
-        return templates.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
+        return templates.stream().filter(template -> template.getName().equals(name)).findFirst().orElse(null);
     }
 
-    @Override
     public void setName(@NotNull String name) throws UnsupportedOperationException {
         if (!NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();
         this.name = name;
-    }
-
-    @Override
-    public @Nullable CommandAction generateAction() {
-        return new PackAction(name);
     }
 }

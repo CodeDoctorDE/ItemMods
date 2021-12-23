@@ -10,8 +10,8 @@ import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.addon.simple.raw.SimpleTextureAsset;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -39,7 +39,7 @@ public class TextureAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = (SimpleTextureAsset) packObject.getTexture();
+        var asset = packObject.getTexture();
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(TextureTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
@@ -80,7 +80,7 @@ public class TextureAction implements TranslationCommandAction {
                     break;
                 case APPEARANCE:
                     addItem(new TranslatedGuiItem(new ItemStackBuilder(Material.IRON_INGOT).displayName("data.title").lore("data.description").build()) {{
-                        setClickAction(event -> new DataAction(SimpleTextureAsset.class, packObject).showGui(sender));
+                        setClickAction(event -> new DataAction(TextureAsset.class, packObject).showGui(sender));
                     }});
                     break;
                 case ADMINISTRATION:

@@ -10,7 +10,6 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.addon.simple.raw.SimpleModelAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.command.CommandSender;
@@ -58,7 +57,7 @@ public class ModelsAction implements TranslationCommandAction {
                     try {
                         var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
-                        pack.registerModel(new SimpleModelAsset(s));
+                        pack.registerModel(new ModelAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -75,11 +74,8 @@ public class ModelsAction implements TranslationCommandAction {
     }
 
     private void openModel(String name, CommandSender sender) {
-        var asset = new PackObject(namespace, name).getItem();
-        assert asset != null;
-        var action = asset.generateAction(namespace);
-        if (action != null)
-            action.showGui(sender);
+        var object = new PackObject(namespace, name);
+        new ModelAction(object).showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<ModelAsset> action) {

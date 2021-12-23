@@ -9,7 +9,6 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.addon.simple.SimpleItemAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.command.CommandSender;
@@ -40,7 +39,7 @@ public class ItemsAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems().stream()
-                .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon(namespace)).displayName("item")
+                .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon()).displayName("item")
                         .lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(itemAsset.getName()));
                     setClickAction(event -> openItem(sender, itemAsset.getName()));
@@ -57,7 +56,7 @@ public class ItemsAction implements TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerItem(new SimpleItemAsset(s));
+                        pack.registerItem(new ItemAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -74,11 +73,8 @@ public class ItemsAction implements TranslationCommandAction {
     }
 
     private void openItem(CommandSender sender, String name) {
-        var asset = new PackObject(namespace, name).getItem();
-        assert asset != null;
-        var action = asset.generateAction(namespace);
-        if (action != null)
-            action.showGui(sender);
+        var object = new PackObject(namespace, name);
+        new ItemAction(object).showGui(sender);
     }
 
     public void showChoose(@NotNull Consumer<ItemAsset> action, CommandSender sender) {
@@ -92,7 +88,7 @@ public class ItemsAction implements TranslationCommandAction {
             return;
         }
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems()
-                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon(namespace))
+                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
                         .displayName("item").lore("action").build()) {{
                     setRenderAction(gui -> setPlaceholders(asset.getName()));
                     setClickAction(event -> action.accept(asset));

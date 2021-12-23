@@ -8,6 +8,7 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.ItemModsPack;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -58,10 +59,9 @@ public class PacksAction implements TranslationCommandAction {
     public void openPack(CommandSender sender, String name) {
         var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
-        var action = pack.generateAction();
-        if (pack.isEditable() && action != null)
+        if (pack.isEditable())
             if (sender instanceof Player)
-                action.showGui(sender);
+                new PackAction(name).showGui(sender);
             else
                 sender.sendMessage(getTranslation("no-player"));
         else

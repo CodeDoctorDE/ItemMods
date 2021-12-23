@@ -11,9 +11,7 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.addon.simple.raw.SimpleRawAsset;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.RawAsset;
 import org.apache.commons.io.FilenameUtils;
 import org.bukkit.Material;
@@ -30,10 +28,10 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 public class DataAction implements TranslationCommandAction {
-    private final @NotNull Class<? extends PackAsset> assetClass;
+    private final @NotNull Class<? extends RawAsset> assetClass;
     private final @NotNull PackObject packObject;
 
-    public DataAction(@NotNull Class<? extends PackAsset> assetClass, @NotNull PackObject packObject) {
+    public DataAction(@NotNull Class<? extends RawAsset> assetClass, @NotNull PackObject packObject) {
         this.assetClass = assetClass;
         this.packObject = packObject;
     }
@@ -56,32 +54,28 @@ public class DataAction implements TranslationCommandAction {
         var gui = new ListGui(getTranslationNamespace(), 4);
         var current = packObject.getAssetByType(assetClass);
         assert current != null;
-        if (!(current instanceof RawAsset))
-            return false;
-        var asset = (RawAsset) current;
-        gui.setPlaceholders(new PackObject(packObject.getNamespace(), asset.getName()).toString());
-        gui.setItemBuilder((listGui) -> new ArrayList<>(asset.getVariations()) {{
+        gui.setPlaceholders(new PackObject(packObject.getNamespace(), current.getName()).toString());
+        gui.setItemBuilder((listGui) -> new ArrayList<>(current.getVariations()) {{
             remove("default");
             add(0, "default");
         }}.stream().filter(bytes -> bytes.contains(gui.getSearchText()))
                 .map(variation -> new TranslatedGuiItem() {{
                     setRenderAction(gui -> {
-                        var hasData = asset.getVariations().contains(variation);
+                        var hasData = current.getVariations().contains(variation);
                         var prefix = (hasData ? "set" : "not-set") + ".";
                         setItemStack(new ItemStackBuilder(hasData ? Material.IRON_INGOT : Material.BARRIER).displayName(prefix + "title").lore(prefix + "description").build());
                         if (hasData)
                             setPlaceholders(variation);
                     });
                     setClickAction(event -> {
-                        var hasData = asset.getVariations().contains(variation);
+                        var hasData = current.getVariations().contains(variation);
                         if (hasData) {
                             switch (event.getClick()) {
                                 case LEFT:
                                     sender.sendMessage(ItemMods.getTranslation("coming-soon"));
                                     break;
                                 case DROP:
-                                    if (asset instanceof SimpleRawAsset)
-                                        ((SimpleRawAsset) asset).removeVariation(variation);
+                                    current.removeVariation(variation);
                                     gui.rebuild();
                             }
                         } else
@@ -90,7 +84,6 @@ public class DataAction implements TranslationCommandAction {
                 }}).toArray(GuiItem[]::new));
         gui.setListControls(new VerticalListControls() {{
             setBackAction(backAction);
-            if (asset instanceof SimpleRawAsset)
                 setCreateAction(event -> create((Player) event.getWhoClicked(), () -> showGui(sender, backAction)));
         }});
         gui.show((Player) sender);
@@ -98,18 +91,14 @@ public class DataAction implements TranslationCommandAction {
     }
 
     void create(@NotNull Player player, Runnable action) {
-        var asset = (RawAsset) packObject.getAssetByType(assetClass);
-        if (!(asset instanceof SimpleRawAsset))
-            return;
         var request = new ChatRequest(player);
         player.sendMessage(getTranslation("create.variation"));
         request.setSubmitAction(s -> create(player, s, action));
     }
 
     void create(@NotNull Player player, String variation, Runnable action) {
-        var asset = (RawAsset) packObject.getAssetByType(assetClass);
-        if (!(asset instanceof SimpleRawAsset))
-            return;
+        var asset = packObject.getAssetByType(assetClass);
+        assert asset != null;
         var gui = new TranslatedChestGui(ItemMods.subTranslation("raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());
         gui.registerItem(0, 0, new TranslatedGuiItem(new ItemStackBuilder(Material.REDSTONE).displayName("back.title").lore("back.description").build()) {{
@@ -122,7 +111,7 @@ public class DataAction implements TranslationCommandAction {
                 player.closeInventory();
                 request.setSubmitAction(s -> {
                     try {
-                        ((SimpleRawAsset) asset).setData(variation, s);
+                        asset.setData(variation, s);
                         player.sendMessage(gui.getTranslation().getTranslation("internet.success", variation, s));
                     } catch (IOException e) {
                         player.sendMessage(gui.getTranslation().getTranslation("internet.failed", variation, s));
@@ -141,7 +130,7 @@ public class DataAction implements TranslationCommandAction {
                 request.setSubmitAction(s -> {
                     try {
                         var path = Paths.get(ItemMods.getTempPath().toString(), FilenameUtils.getName(s));
-                        ((SimpleRawAsset) asset).setData(variation, Files.readAllBytes(path));
+                        asset.setData(variation, Files.readAllBytes(path));
                         player.sendMessage(gui.getTranslation().getTranslation("file.success", variation, s));
                     } catch (Exception e) {
                         player.sendMessage(gui.getTranslation().getTranslation("file.failed", variation, s));

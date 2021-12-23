@@ -33,7 +33,7 @@ public class CustomBlockListener implements Listener {
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
-        customItem.getConfig().getCustomTemplates().forEach(customTemplateData -> {
+        customItem.getConfig().getCustomData().forEach(customTemplateData -> {
             if (customTemplateData.getTemplate() instanceof BlockSetTemplate) {
                 var template = (BlockSetTemplate) customTemplateData.getTemplate();
                 if (template.getBlock(customTemplateData) == null)

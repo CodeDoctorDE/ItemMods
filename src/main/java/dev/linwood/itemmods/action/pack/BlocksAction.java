@@ -9,7 +9,6 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.addon.simple.SimpleBlockAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import org.bukkit.Material;
@@ -59,7 +58,7 @@ public class BlocksAction implements TranslationCommandAction {
                 p.sendMessage(getTranslation("create.message"));
                 request.setSubmitAction(s -> {
                     try {
-                        pack.registerBlock(new SimpleBlockAsset(s));
+                        pack.registerBlock(new BlockAsset(s));
                         new PackObject(pack.getName(), s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -76,11 +75,8 @@ public class BlocksAction implements TranslationCommandAction {
     }
 
     private void openBlock(CommandSender sender, String name) {
-        var asset = new PackObject(namespace, name).getBlock();
-        assert asset != null;
-        var action = asset.generateAction(namespace);
-        if (action != null)
-            action.showGui(sender);
+        var object = new PackObject(namespace, name);
+        new BlockAction(object).showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<BlockAsset> action) {

@@ -10,7 +10,6 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.addon.simple.raw.SimpleTextureAsset;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
@@ -59,7 +58,7 @@ public class TexturesAction implements TranslationCommandAction {
                     try {
                         var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
-                        pack.registerTexture(new SimpleTextureAsset(s));
+                        pack.registerTexture(new TextureAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -76,11 +75,8 @@ public class TexturesAction implements TranslationCommandAction {
     }
 
     private void openTexture(String name, CommandSender sender) {
-        var asset = new PackObject(namespace, name).getItem();
-        assert asset != null;
-        var action = asset.generateAction(namespace);
-        if (action != null)
-            action.showGui(sender);
+        var object = new PackObject(namespace, name);
+        new TextureAction(object).showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action) {
