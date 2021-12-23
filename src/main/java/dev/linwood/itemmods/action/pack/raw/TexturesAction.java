@@ -42,7 +42,7 @@ public class TexturesAction implements TranslationCommandAction {
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(textureAsset -> textureAsset.getName().contains(listGui.getSearchText())).map(textureAsset ->
-                        new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("action").build()) {{
+                        new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, textureAsset.getName()).toString()));
                             setClickAction(event -> openTexture(textureAsset.getName(), sender));
                         }}).toArray(GuiItem[]::new));
@@ -91,7 +91,7 @@ public class TexturesAction implements TranslationCommandAction {
         }
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
-                        .displayName("item").lore("action").build()) {{
+                        .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));

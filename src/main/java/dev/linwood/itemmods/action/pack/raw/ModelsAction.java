@@ -41,7 +41,7 @@ public class ModelsAction implements TranslationCommandAction {
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
                 .stream().filter(modelAsset -> modelAsset.getName().contains(listGui.getSearchText())).map(modelAsset ->
-                        new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("action").build()) {{
+                        new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, modelAsset.getName()).toString()));
                             setClickAction(event -> openModel(modelAsset.getName(), sender));
                         }}).toArray(GuiItem[]::new));
@@ -90,7 +90,7 @@ public class ModelsAction implements TranslationCommandAction {
         }
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getModels()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture())
-                        .displayName("item").lore("action").build()) {{
+                        .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));

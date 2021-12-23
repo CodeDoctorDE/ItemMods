@@ -34,7 +34,7 @@ public class PacksAction implements TranslationCommandAction {
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
                 ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
                         new TranslatedGuiItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("action").build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(itemModsPack.getName()));
                             setClickAction(event -> openPack(event.getWhoClicked(), itemModsPack.getName()));
                         }}).toArray(GuiItem[]::new));
@@ -111,7 +111,7 @@ public class PacksAction implements TranslationCommandAction {
         var gui = new ListGui(t, 4, (listGui) -> ItemMods.getPackManager().getPacks()
                 .stream().filter(pack -> pack.getName().contains(listGui.getSearchText())).map(pack ->
                         new TranslatedGuiItem(
-                                new ItemStackBuilder(pack.getIcon()).displayName("item").lore("action").build()) {{
+                                new ItemStackBuilder(pack.getIcon()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(pack.getName()));
                             setClickAction(event -> action.accept(pack));
                         }}).toArray(GuiItem[]::new));

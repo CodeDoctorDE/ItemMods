@@ -42,7 +42,7 @@ public class BlocksAction implements TranslationCommandAction {
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks().stream()
                 .filter(blockAsset -> blockAsset.getName().contains(listGui.getSearchText())).map(blockAsset -> new TranslatedGuiItem(new ItemStackBuilder(
                         blockAsset.getModel() == null ? Material.GRASS_BLOCK : blockAsset.getModel().getFallbackTexture()).displayName("item")
-                        .lore("action").build()) {{
+                        .lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(blockAsset.getName()));
                     setClickAction(event -> openBlock(sender, blockAsset.getName()));
                 }}).toArray(GuiItem[]::new));
@@ -92,7 +92,7 @@ public class BlocksAction implements TranslationCommandAction {
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getBlocks()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(
                         asset.getModel() == null ? Material.GRASS_BLOCK : asset.getModel().getFallbackTexture()).displayName("item")
-                        .lore(listGui.getTranslation().getTranslation("action", new PackObject(namespace, asset.getName()).toString())).build()) {{
+                        .lore(listGui.getTranslation().getTranslation("actions", new PackObject(namespace, asset.getName()).toString())).build()) {{
                     setRenderAction(gui -> setPlaceholders(asset.getName()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));

@@ -155,6 +155,9 @@ public class MainAction implements CommandAction, TranslationCommandAction, SubC
             case "source":
                 showSource(sender);
                 break;
+            case "support":
+                showSupport(sender);
+                break;
             case "crowdin":
                 showCrowdin(sender);
                 break;
@@ -172,7 +175,7 @@ public class MainAction implements CommandAction, TranslationCommandAction, SubC
     @Override
     public String[] tabComplete(CommandSender sender, String[] args) {
         if (args.length <= 1)
-            return new String[]{"reload", "rl", "reset", "rs", "locales", "source", "crowdin", "knowledge", "gui"};
+            return new String[] {"reload", "reset", "source", "crowdin", "source", "wiki", "support", "gui"};
         else {
             var subArgs = Arrays.copyOfRange(args, 1, args.length);
             switch (args[0]) {

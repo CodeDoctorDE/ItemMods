@@ -40,7 +40,7 @@ public class ItemsAction implements TranslationCommandAction {
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems().stream()
                 .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon()).displayName("item")
-                        .lore("action").build()) {{
+                        .lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(itemAsset.getName()));
                     setClickAction(event -> openItem(sender, itemAsset.getName()));
                 }}).toArray(GuiItem[]::new));
@@ -89,7 +89,7 @@ public class ItemsAction implements TranslationCommandAction {
         }
         var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getItems()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
-                        .displayName("item").lore("action").build()) {{
+                        .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(asset.getName()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));

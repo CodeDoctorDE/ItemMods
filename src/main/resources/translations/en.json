@@ -77,6 +77,7 @@
   },
   "main": {
     "title": "§6§lItemMods §7(%s)",
+    "help": "§eItemMods §7» §6Help \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset §7Reset identifiers",
     "reload": {
       "title": "§6Reload",
       "description": "§7Reload the whole plugin",

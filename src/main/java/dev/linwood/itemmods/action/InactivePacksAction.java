@@ -20,7 +20,7 @@ public class InactivePacksAction implements TranslationCommandAction {
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
                 ItemMods.getPackManager().getInactivePacks().stream().map(itemModsPack ->
                         new StaticItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("action", itemModsPack.getName())).build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("actions", itemModsPack.getName())).build()) {{
                             setClickAction(event -> {
                                 activatePack(event.getWhoClicked(), itemModsPack.getName());
                                 listGui.rebuild();

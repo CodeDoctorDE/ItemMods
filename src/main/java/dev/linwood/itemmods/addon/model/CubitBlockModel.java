@@ -62,7 +62,7 @@ public class CubitBlockModel extends ModelAsset {
             loadedTextures = new HashMap<>();
         var textures = loadedTextures;
         return new ListGui(t, gui -> textures.entrySet().stream().filter(entry -> entry.getKey().contains(gui.getSearchText()))
-                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("action")).build()) {{
+                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("actions")).build()) {{
                     setClickAction((event) -> {
                         textures.remove(entry.getKey());
                         setTextures(data, textures);
