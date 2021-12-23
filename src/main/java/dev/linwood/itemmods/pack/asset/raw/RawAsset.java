@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
 import com.google.gson.JsonObject;
-import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,8 +26,8 @@ public abstract class RawAsset extends PackAsset {
         setDefaultData(url);
     }
 
-    public RawAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public RawAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
         jsonObject.getAsJsonObject("data").entrySet().forEach(entry -> data.put(entry.getKey(), entry.getValue().getAsString().getBytes(StandardCharsets.UTF_8)));
     }
 

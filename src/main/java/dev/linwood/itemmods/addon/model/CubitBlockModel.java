@@ -30,8 +30,8 @@ public class CubitBlockModel extends ModelAsset {
         super(name);
     }
 
-    public CubitBlockModel(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public CubitBlockModel(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
     }
 
     public @NotNull ItemStack getIcon(String namespace) {

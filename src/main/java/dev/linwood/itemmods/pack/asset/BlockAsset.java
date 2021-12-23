@@ -19,8 +19,8 @@ public class BlockAsset extends CustomPackAsset implements DisplayedObject {
         super(name);
     }
 
-    public BlockAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public BlockAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
 
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = new PackObject(jsonObject.get("model-object").getAsString());

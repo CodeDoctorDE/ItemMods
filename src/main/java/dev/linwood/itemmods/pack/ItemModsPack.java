@@ -7,7 +7,6 @@ import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
-import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -67,7 +65,8 @@ public class ItemModsPack implements NamedPackObject {
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(Objects.requireNonNull(getGenerator(current, ItemAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(itemsPath.relativize(current));
+                items.add(new ItemAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -76,7 +75,8 @@ public class ItemModsPack implements NamedPackObject {
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                blocks.add(Objects.requireNonNull(getGenerator(current, BlockAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(blocksPath.relativize(current));
+                blocks.add(new BlockAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -85,7 +85,8 @@ public class ItemModsPack implements NamedPackObject {
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                models.add(Objects.requireNonNull(getGenerator(current, ModelAsset.class)).loadAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(modelsPath.relativize(current));
+                models.add(new ModelAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -95,7 +96,7 @@ public class ItemModsPack implements NamedPackObject {
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
                 var fileName = FileUtils.getFileName(texturesPath.relativize(current));
-                textures.add(Objects.requireNonNull(getGenerator(current, TextureAsset.class)).loadAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                textures.add(new TextureAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -107,21 +108,6 @@ public class ItemModsPack implements NamedPackObject {
         return name;
     }
 
-
-    @Nullable
-    private <T extends PackAsset> CustomAssetGenerator<T> getGenerator(Path path, Class<T> assetClass) {
-        BufferedReader br;
-        try {
-            br = Files.newBufferedReader(path);
-            var jsonObject = GSON.fromJson(br, JsonObject.class);
-            var generator = jsonObject.get("generator").getAsString();
-            br.close();
-            return new PackObject(generator).getGeneratorByType(assetClass);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public @NotNull List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);

@@ -24,8 +24,8 @@ public class ItemAsset extends CustomNamedAsset {
         super(name);
     }
 
-    public ItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public ItemAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = new PackObject(jsonObject.get("model-object").getAsString());
         jsonObject.getAsJsonArray("lore").forEach(jsonElement -> lore.add(jsonElement.getAsString()));

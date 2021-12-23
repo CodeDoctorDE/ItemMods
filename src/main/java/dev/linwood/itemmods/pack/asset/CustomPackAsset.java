@@ -18,8 +18,8 @@ public abstract class CustomPackAsset extends PackAsset {
         super(name);
     }
 
-    public CustomPackAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public CustomPackAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
             try {
