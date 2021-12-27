@@ -31,7 +31,7 @@ public class TexturesAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("raw.textures", "gui");
+        return ItemMods.subTranslation("raw.textures", "action", "gui");
     }
 
     @Override
@@ -84,7 +84,7 @@ public class TexturesAction implements TranslationCommandAction {
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        var t = ItemMods.subTranslation("choose.texture", "gui");
+        var t = ItemMods.subTranslation("choose.texture", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;

@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.subTranslation("addon.item.block", "gui");
+    private final Translation t = ItemMods.subTranslation("addon.item.block", "action", "gui");
 
     public BlockSetTemplate() {
         super("block");

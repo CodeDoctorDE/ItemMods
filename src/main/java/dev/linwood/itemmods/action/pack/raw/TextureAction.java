@@ -29,7 +29,7 @@ public class TextureAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("raw.texture", "gui");
+        return ItemMods.subTranslation("raw.texture", "action", "gui");
     }
 
     @Override

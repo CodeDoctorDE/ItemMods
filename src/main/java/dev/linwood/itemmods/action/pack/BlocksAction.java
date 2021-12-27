@@ -30,7 +30,7 @@ public class BlocksAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("blocks", "gui");
+        return ItemMods.subTranslation("blocks", "action", "gui");
     }
 
     @Override
@@ -84,7 +84,7 @@ public class BlocksAction implements TranslationCommandAction {
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<BlockAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        var t = ItemMods.subTranslation("choose.block", "gui");
+        var t = ItemMods.subTranslation("choose.block", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;

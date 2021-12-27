@@ -49,6 +49,6 @@ public class LocalesAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("locales", "gui");
+        return ItemMods.subTranslation("locales", "action", "gui");
     }
 }

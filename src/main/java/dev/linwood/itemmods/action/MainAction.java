@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainAction implements CommandAction, TranslationCommandAction, SubCommandAction {
@@ -136,47 +137,56 @@ public class MainAction implements CommandAction, TranslationCommandAction, SubC
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("main", "gui");
+        return ItemMods.subTranslation("main", "gui", "action");
     }
 
     @Override
     public boolean runAction(CommandSender sender, String label, String[] args) {
+        // User actions
         switch (label) {
-            case "reload":
-            case "rl":
-                reload(sender);
-                break;
-            case "reset":
-            case "rs":
-                reset(sender);
-                break;
-            case "locales":
-                return new LocalesAction().handleCommand(sender, args);
             case "source":
                 showSource(sender);
-                break;
+                return true;
             case "support":
                 showSupport(sender);
-                break;
+                return true;
+            case "wiki":
+                showWiki(sender);
+                return true;
             case "crowdin":
                 showCrowdin(sender);
-                break;
-            case "knowledge":
-                return new KnowledgeAction().handleCommand(sender, args);
-            case "gui":
-                showGui(sender);
-                break;
-            default:
-                return false;
+                return true;
         }
-        return true;
+        if (sender.hasPermission("itemmods.admin")) {
+            switch (label) {
+                case "reload":
+                case "rl":
+                    reload(sender);
+                    return true;
+                case "reset":
+                case "rs":
+                    reset(sender);
+                    return true;
+                case "locales":
+                    return new LocalesAction().handleCommand(sender, args);
+                case "gui":
+                    showGui(sender);
+                    return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public String[] tabComplete(CommandSender sender, String[] args) {
-        if (args.length <= 1)
-            return new String[] {"reload", "reset", "source", "crowdin", "source", "wiki", "support", "gui"};
-        else {
+        if (args.length <= 1) {
+            var userCommands = new ArrayList<>(Arrays.asList("source", "crowdin", "locales", "wiki", "support"));
+
+            if (sender.hasPermission("itemmods.admin")) {
+                userCommands.addAll(Arrays.asList("reload", "reset", "rl", "rs", "gui"));
+            }
+            return userCommands.toArray(String[]::new);
+        } else {
             var subArgs = Arrays.copyOfRange(args, 1, args.length);
             switch (args[0]) {
                 case "locales":

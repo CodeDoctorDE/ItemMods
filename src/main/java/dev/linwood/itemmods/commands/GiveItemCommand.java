@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.command;
+package dev.linwood.itemmods.commands;
 
 import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;

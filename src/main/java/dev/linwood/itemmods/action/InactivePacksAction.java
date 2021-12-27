@@ -35,7 +35,7 @@ public class InactivePacksAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("inactive-packs", "gui");
+        return ItemMods.subTranslation("inactive-packs", "action", "gui");
     }
 
     public void activatePack(CommandSender sender, String pack) {

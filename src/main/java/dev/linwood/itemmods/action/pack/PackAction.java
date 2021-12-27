@@ -219,7 +219,7 @@ public class PackAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("pack", "gui");
+        return ItemMods.subTranslation("pack", "action", "gui");
     }
 
     enum PackTab {

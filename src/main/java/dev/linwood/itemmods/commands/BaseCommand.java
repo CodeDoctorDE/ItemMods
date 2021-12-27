@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.command;
+package dev.linwood.itemmods.commands;
 
 import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.MainAction;
@@ -27,7 +27,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         var completes = action.tabComplete(sender, args);
         final List<String> completions = new ArrayList<>();
-        StringUtil.copyPartialMatches(args[0], Arrays.asList(completes), completions);
+        StringUtil.copyPartialMatches(args.length == 0 ? "" : args[args.length - 1], Arrays.asList(completes), completions);
         Collections.sort(completions);
         return completions;
     }

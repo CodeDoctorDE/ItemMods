@@ -1,4 +1,4 @@
-package dev.linwood.itemmods.command;
+package dev.linwood.itemmods.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

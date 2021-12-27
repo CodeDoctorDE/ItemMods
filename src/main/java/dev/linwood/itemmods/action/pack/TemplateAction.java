@@ -37,7 +37,7 @@ public class TemplateAction implements TranslationCommandAction {
     }
 
     public static boolean showChoose(CommandSender sender, String namespace, @NotNull Consumer<CustomTemplate> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        var t = ItemMods.subTranslation("choose.template", "gui");
+        var t = ItemMods.subTranslation("choose.template", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return true;
@@ -63,7 +63,7 @@ public class TemplateAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("template", "gui");
+        return ItemMods.subTranslation("template", "action", "gui");
     }
 
     public boolean showGui(CommandSender sender, @Nullable Consumer<InventoryClickEvent> backAction) {

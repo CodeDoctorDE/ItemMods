@@ -38,7 +38,7 @@ public class DataAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("raw.data", "gui");
+        return ItemMods.subTranslation("raw.data", "action", "gui");
     }
 
     @Override

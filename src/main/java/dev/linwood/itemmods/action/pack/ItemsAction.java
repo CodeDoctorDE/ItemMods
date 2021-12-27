@@ -29,7 +29,7 @@ public class ItemsAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("items", "gui");
+        return ItemMods.subTranslation("items", "action", "gui");
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ItemsAction implements TranslationCommandAction {
     }
 
     public void showChoose(@Nullable Consumer<InventoryClickEvent> backAction, @NotNull Consumer<ItemAsset> action, CommandSender sender) {
-        var t = ItemMods.subTranslation("choose.item", "gui");
+        var t = ItemMods.subTranslation("choose.item", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;

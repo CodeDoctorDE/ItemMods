@@ -150,52 +150,52 @@
         <dependency>
             <artifactId>ui-templates</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>serializer</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>ui</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>config</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>command</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>server</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>translations</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>request</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>item</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <artifactId>utils</artifactId>
             <groupId>dev.linwood</groupId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
