@@ -21,8 +21,6 @@ A simple tutorial how you can contribute:
 
 ## Translation
 
-![Locale chart](https://badges.awesome-crowdin.com/translation-200008942-12.png)
-
 If you can translate well, you can help us by translating the message on [crowdin](https://linwood.crowdin.com/itemmods).
 
 ## Community Server
