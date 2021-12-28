@@ -12,8 +12,6 @@ import dev.linwood.api.translations.TranslationConfig;
 import dev.linwood.api.ui.Gui;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.addon.BaseAddon;
-import dev.linwood.itemmods.api.block.CustomBlockManager;
-import dev.linwood.itemmods.api.item.CustomItemManager;
 import dev.linwood.itemmods.commands.BaseCommand;
 import dev.linwood.itemmods.commands.GiveItemCommand;
 import dev.linwood.itemmods.config.MainConfig;
@@ -60,13 +58,10 @@ public class ItemMods extends JavaPlugin {
     private static ItemMods plugin;
     private static Path mainConfigFile;
     private static MainConfig mainConfig;
-    private static CustomBlockManager customBlockManager;
-    private static CustomItemManager customItemManager;
     private static TranslationConfig translationConfig;
     private static Path tempPath;
     private static Path translationsPath;
     private static boolean runningOnPaper;
-    private static PackManager packManager;
     private Connection connection;
 
     /**
@@ -76,25 +71,6 @@ public class ItemMods extends JavaPlugin {
      */
     public static ItemMods getPlugin() {
         return plugin;
-    }
-
-    /**
-     * Get the current custom block manager singleton
-     *
-     * @return The singleton created from the plugin
-     */
-    public static CustomBlockManager getCustomBlockManager() {
-        return customBlockManager;
-    }
-
-
-    /**
-     * Get the current custom item manager singleton
-     *
-     * @return The singleton created from the plugin
-     */
-    public static CustomItemManager getCustomItemManager() {
-        return customItemManager;
     }
 
     /**
@@ -141,15 +117,6 @@ public class ItemMods extends JavaPlugin {
      */
     public static MainConfig getMainConfig() {
         return mainConfig;
-    }
-
-    /**
-     * Get the pack manager to control all packs
-     *
-     * @return The singleton created from the plugin
-     */
-    public static PackManager getPackManager() {
-        return packManager;
     }
 
     /**
@@ -209,7 +176,7 @@ public class ItemMods extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        packManager.reload();
+        PackManager.getInstance().reload();
         reloadMainConfig();
     }
 
@@ -285,13 +252,10 @@ public class ItemMods extends JavaPlugin {
         if (version.isLowerThan(new Version("1.14")) || version.isBiggerThan(new Version("1.18"))) {
             Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
         }
-        packManager = new PackManager();
-        packManager.registerPack(new BaseAddon());
+        PackManager.getInstance().registerPack(new BaseAddon());
 
         BaseCommand baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();
-        customBlockManager = new CustomBlockManager();
-        customItemManager = new CustomItemManager();
 
         Objects.requireNonNull(getCommand("itemmods")).setExecutor(baseCommand);
         Objects.requireNonNull(getCommand("itemmods")).setTabCompleter(baseCommand);

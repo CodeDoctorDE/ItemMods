@@ -9,8 +9,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CustomItemManager {
+    private static CustomItemManager instance;
 
-    public CustomItemManager() {
+    private CustomItemManager() {
+    }
+
+    public static CustomItemManager getInstance() {
+        return instance == null ? instance = new CustomItemManager() : instance;
     }
 
     public ItemAsset getAssetByKey(String key) throws UnsupportedOperationException {

@@ -10,6 +10,7 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.pack.PackAction;
 import dev.linwood.itemmods.pack.ItemModsPack;
+import dev.linwood.itemmods.pack.PackManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -32,7 +33,7 @@ public class PacksAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
-                ItemMods.getPackManager().getPacks().stream().map(itemModsPack ->
+                PackManager.getInstance().getPacks().stream().map(itemModsPack ->
                         new TranslatedGuiItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(itemModsPack.getName()));
@@ -57,7 +58,7 @@ public class PacksAction implements TranslationCommandAction {
     }
 
     public void openPack(CommandSender sender, String name) {
-        var pack = ItemMods.getPackManager().getPack(name);
+        var pack = PackManager.getInstance().getPack(name);
         assert pack != null;
         if (pack.isEditable())
             if (sender instanceof Player)
@@ -93,8 +94,8 @@ public class PacksAction implements TranslationCommandAction {
     }
 
     public void createPack(CommandSender sender, String name) throws UnsupportedOperationException {
-        ItemMods.getPackManager().registerPack(new ItemModsPack(name, true));
-        ItemMods.getPackManager().save(name);
+        PackManager.getInstance().registerPack(new ItemModsPack(name, true));
+        PackManager.getInstance().save(name);
         sender.sendMessage(getTranslation("create.success", name));
     }
 
@@ -108,7 +109,7 @@ public class PacksAction implements TranslationCommandAction {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> ItemMods.getPackManager().getPacks()
+        var gui = new ListGui(t, 4, (listGui) -> PackManager.getInstance().getPacks()
                 .stream().filter(pack -> pack.getName().contains(listGui.getSearchText())).map(pack ->
                         new TranslatedGuiItem(
                                 new ItemStackBuilder(pack.getIcon()).displayName("item").lore("actions").build()) {{

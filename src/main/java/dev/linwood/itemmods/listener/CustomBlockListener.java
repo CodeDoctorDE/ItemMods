@@ -1,8 +1,8 @@
 package dev.linwood.itemmods.listener;
 
-import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.addon.templates.item.BlockSetTemplate;
 import dev.linwood.itemmods.api.block.CustomBlock;
+import dev.linwood.itemmods.api.block.CustomBlockManager;
 import dev.linwood.itemmods.api.events.CustomBlockBreakEvent;
 import dev.linwood.itemmods.api.item.CustomItem;
 import org.bukkit.Bukkit;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CustomBlockListener implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(@NotNull PlayerInteractEvent event) {
         if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
                 event.getAction() != Action.RIGHT_CLICK_BLOCK ||
@@ -63,7 +63,7 @@ public class CustomBlockListener implements Listener {
                 }
                 if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
                     return;
-                if (ItemMods.getCustomBlockManager().create(location, template.getBlock(customTemplateData), player) == null)
+                if (CustomBlockManager.getInstance().create(location, template.getBlock(customTemplateData), player) == null)
                     return;
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
@@ -71,7 +71,7 @@ public class CustomBlockListener implements Listener {
         });
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler (priority = EventPriority.HIGH)
     public void onCustomBlockBreak(@NotNull BlockBreakEvent event) {
         if (event.isCancelled())
             return;

@@ -9,7 +9,7 @@ import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
-import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
+import dev.linwood.itemmods.pack.custom.CustomGenerator;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -29,19 +29,19 @@ import java.util.regex.Pattern;
 import static dev.linwood.itemmods.ItemMods.GSON;
 
 public class ItemModsPack implements NamedPackObject {
-    private String name;
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
-    private final List<CustomAssetGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
+    private final List<CustomGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
     private final List<ItemAsset> items = new ArrayList<>();
-    private final List<CustomAssetGenerator<BlockAsset>> blockGenerators = new ArrayList<>();
+    private final List<CustomGenerator<BlockAsset>> blockGenerators = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<CustomAssetGenerator<TextureAsset>> textureGenerators = new ArrayList<>();
+    private final List<CustomGenerator<TextureAsset>> textureGenerators = new ArrayList<>();
     private final List<TextureAsset> textures = new ArrayList<>();
-    private final List<CustomAssetGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
+    private final List<CustomGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
     private final List<ModelAsset> models = new ArrayList<>();
+    private String name;
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
 
@@ -108,6 +108,11 @@ public class ItemModsPack implements NamedPackObject {
         return name;
     }
 
+    public void setName(@NotNull String name) throws UnsupportedOperationException {
+        if (!NAME_PATTERN.matcher(name).matches())
+            throw new UnsupportedOperationException();
+        this.name = name;
+    }
 
     public @NotNull List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);
@@ -187,11 +192,11 @@ public class ItemModsPack implements NamedPackObject {
         templates.removeIf(templateAsset -> templateAsset.getName().equals(name));
     }
 
-    public @NotNull List<CustomAssetGenerator<ItemAsset>> getItemGenerators() {
+    public @NotNull List<CustomGenerator<ItemAsset>> getItemGenerators() {
         return Collections.unmodifiableList(itemGenerators);
     }
 
-    public void registerItemGenerator(@NotNull CustomAssetGenerator<ItemAsset> generator) {
+    public void registerItemGenerator(@NotNull CustomGenerator<ItemAsset> generator) {
         if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
             itemGenerators.add(generator);
     }
@@ -200,11 +205,11 @@ public class ItemModsPack implements NamedPackObject {
         itemGenerators.removeIf(generator -> generator.getName().equals(name));
     }
 
-    public @NotNull List<CustomAssetGenerator<BlockAsset>> getBlockGenerators() {
+    public @NotNull List<CustomGenerator<BlockAsset>> getBlockGenerators() {
         return Collections.unmodifiableList(blockGenerators);
     }
 
-    public void registerBlockGenerator(@NotNull CustomAssetGenerator<BlockAsset> generator) {
+    public void registerBlockGenerator(@NotNull CustomGenerator<BlockAsset> generator) {
         if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
             blockGenerators.add(generator);
     }
@@ -213,11 +218,11 @@ public class ItemModsPack implements NamedPackObject {
         blockGenerators.removeIf(generator -> generator.getName().equals(name));
     }
 
-    public @NotNull List<CustomAssetGenerator<TextureAsset>> getTextureGenerators() {
+    public @NotNull List<CustomGenerator<TextureAsset>> getTextureGenerators() {
         return Collections.unmodifiableList(textureGenerators);
     }
 
-    public void registerModelGenerator(@NotNull CustomAssetGenerator<ModelAsset> generator) {
+    public void registerModelGenerator(@NotNull CustomGenerator<ModelAsset> generator) {
         if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
             modelGenerators.add(generator);
     }
@@ -226,7 +231,7 @@ public class ItemModsPack implements NamedPackObject {
         modelGenerators.removeIf(generator -> generator.getName().equals(name));
     }
 
-    public void registerTextureGenerator(@NotNull CustomAssetGenerator<TextureAsset> generator) {
+    public void registerTextureGenerator(@NotNull CustomGenerator<TextureAsset> generator) {
         if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
             textureGenerators.add(generator);
     }
@@ -234,7 +239,6 @@ public class ItemModsPack implements NamedPackObject {
     public void unregisterTextureGenerator(String name) {
         textureGenerators.removeIf(generator -> generator.getName().equals(name));
     }
-
 
     public String getDescription() {
         return description;
@@ -277,22 +281,22 @@ public class ItemModsPack implements NamedPackObject {
     }
 
     @Nullable
-    public CustomAssetGenerator<ItemAsset> getItemGenerator(String name) {
+    public CustomGenerator<ItemAsset> getItemGenerator(String name) {
         return itemGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public CustomAssetGenerator<BlockAsset> getBlockGenerator(String name) {
+    public CustomGenerator<BlockAsset> getBlockGenerator(String name) {
         return blockGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public CustomAssetGenerator<ModelAsset> getModelGenerator(String name) {
+    public CustomGenerator<ModelAsset> getModelGenerator(String name) {
         return modelGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 
     @Nullable
-    public CustomAssetGenerator<TextureAsset> getTextureGenerator(String name) {
+    public CustomGenerator<TextureAsset> getTextureGenerator(String name) {
         return textureGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 
@@ -369,11 +373,5 @@ public class ItemModsPack implements NamedPackObject {
 
     public CustomTemplate getTemplate(String name) {
         return templates.stream().filter(template -> template.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    public void setName(@NotNull String name) throws UnsupportedOperationException {
-        if (!NAME_PATTERN.matcher(name).matches())
-            throw new UnsupportedOperationException();
-        this.name = name;
     }
 }

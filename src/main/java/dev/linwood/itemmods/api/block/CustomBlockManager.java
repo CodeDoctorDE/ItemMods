@@ -18,9 +18,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class CustomBlockManager {
+    private static CustomBlockManager instance;
 
-    private static @NotNull
-    String locationToString(final @Nullable Location location) {
+    private CustomBlockManager() {
+    }
+
+    public static CustomBlockManager getInstance() {
+        return instance == null ? instance = new CustomBlockManager() : instance;
+    }
+
+    private static @NotNull String locationToString(final @Nullable Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }

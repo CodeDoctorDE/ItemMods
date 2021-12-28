@@ -84,7 +84,7 @@ public class DataAction implements TranslationCommandAction {
                 }}).toArray(GuiItem[]::new));
         gui.setListControls(new VerticalListControls() {{
             setBackAction(backAction);
-                setCreateAction(event -> create((Player) event.getWhoClicked(), () -> showGui(sender, backAction)));
+            setCreateAction(event -> create((Player) event.getWhoClicked(), () -> showGui(sender, backAction)));
         }});
         gui.show((Player) sender);
         return true;

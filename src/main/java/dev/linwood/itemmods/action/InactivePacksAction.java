@@ -7,6 +7,7 @@ import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.pack.PackManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -18,7 +19,7 @@ public class InactivePacksAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
-                ItemMods.getPackManager().getInactivePacks().stream().map(itemModsPack ->
+                PackManager.getInstance().getInactivePacks().stream().map(itemModsPack ->
                         new StaticItem(
                                 new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("actions", itemModsPack.getName())).build()) {{
                             setClickAction(event -> {
@@ -39,6 +40,6 @@ public class InactivePacksAction implements TranslationCommandAction {
     }
 
     public void activatePack(CommandSender sender, String pack) {
-        ItemMods.getPackManager().activatePack(pack);
+        PackManager.getInstance().activatePack(pack);
     }
 }

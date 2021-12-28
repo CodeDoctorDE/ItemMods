@@ -1,6 +1,6 @@
 package dev.linwood.itemmods.utils;
 
-import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.api.item.CustomItemManager;
 import dev.linwood.itemmods.pack.PackObject;
 import me.hsgamer.bettergui.lib.core.bukkit.item.ItemModifier;
 import me.hsgamer.bettergui.lib.core.common.interfaces.StringReplacer;
@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * A custom {@link ItemModifier} for the <a href="https://github.com/BetterGUI-MC/BetterGUI">BetterGUI</a> library.
+ *
  * @author CodeDoctorDE
  */
 public class BetterGuiCustomModifier implements ItemModifier {
@@ -24,7 +26,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
 
     @Override
     public @Nullable ItemStack modify(ItemStack itemStack, UUID uuid, @NotNull Map<String, StringReplacer> map) {
-        var customItem = ItemMods.getCustomItemManager().create(new PackObject(StringReplacer.replace(value, uuid, map.values())));
+        var customItem = CustomItemManager.getInstance().create(new PackObject(StringReplacer.replace(value, uuid, map.values())));
         if (customItem == null)
             return null;
         return customItem.getItemStack();
