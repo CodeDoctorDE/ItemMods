@@ -1,8 +1,8 @@
 ---
 title: "API"
 slug: "/api"
-sidebar_position: 0
 sidebar_label: "Home"
+sidebar_position: 0
 ---
 
 The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
