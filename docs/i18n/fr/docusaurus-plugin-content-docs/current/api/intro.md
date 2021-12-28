@@ -1,8 +1,8 @@
 ---
 title: "API"
 slug: "/api"
+sidebar_label: "Home"
 sidebar_position: 0
-sidebar_label: "Domicile"
 ---
 
 La dernière version peut vous permettre de trouver [ici](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
@@ -14,14 +14,14 @@ La dernière version peut vous permettre de trouver [ici](https://ci.codemc.io/j
     <repositories>
         <repository>
             <id>codemc-repo</id>
-            <url>https://repo. odemc. rg/repository/maven-public/</url>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev. en bois</groupId>
+            <groupId>dev.linwood</groupId>
             <artifactId>ItemMods</artifactId>
-            <version>2. .0-alpha.</version>
+            <version>2.0.0-alpha.2</version>
         </dependency>
     </dependencies>
   </project>
