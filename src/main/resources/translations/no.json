@@ -77,9 +77,9 @@
   },
   "main": {
     "title": "§6§lItemMods §7(%s)",
-    "usage": "§eItemMods §7» §4Unknown command. Use §e/itemmods §4for help.",
-    "help": "§eItemMods §7» §6Help \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset §7Reset identifiers",
-    "user-help": "§eItemMods §7» §6Help \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
+    "usage": "§eItemMods §7» §4Ukjent kommando. Bruk §e/itemmods §4for hjelp.",
+    "help": "§eItemMods §7» §6Hjelp \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset",
+    "user-help": "§eItemMods §7» §6Hjelp \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
     "reload": {
       "title": "§6Oppdater",
       "description": "§7Oppdater hele utvidelsen",
