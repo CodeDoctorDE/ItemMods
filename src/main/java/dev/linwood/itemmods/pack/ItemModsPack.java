@@ -9,8 +9,10 @@ import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
+import dev.linwood.itemmods.pack.custom.CustomAssetGenerator;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,20 +26,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class ItemModsPack extends NamedPackObject {
+import static dev.linwood.itemmods.ItemMods.GSON;
+
+public class ItemModsPack implements NamedPackObject {
+    private String name;
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
+    private final List<CustomAssetGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
     private final List<ItemAsset> items = new ArrayList<>();
+    private final List<CustomAssetGenerator<BlockAsset>> blockGenerators = new ArrayList<>();
     private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
     private final List<CustomTemplate> templates = new ArrayList<>();
+    private final List<CustomAssetGenerator<TextureAsset>> textureGenerators = new ArrayList<>();
     private final List<TextureAsset> textures = new ArrayList<>();
+    private final List<CustomAssetGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
     private final List<ModelAsset> models = new ArrayList<>();
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
 
     public ItemModsPack(@NotNull String name, boolean editable) throws UnsupportedOperationException {
-        super(name);
+        this.name = name;
         this.editable = editable;
     }
 
@@ -45,21 +54,19 @@ public class ItemModsPack extends NamedPackObject {
         this(name, true);
     }
 
-
     public ItemModsPack(@NotNull Path path) throws IOException {
-        super(path.getFileName().toString());
-        editable = true;
+        this(path.getFileName().toString(), true);
         var br = Files.newBufferedReader(Paths.get(path.toString(), "pack.json"));
         JsonObject jsonObject = GSON.fromJson(br, JsonObject.class);
         br.close();
         if (jsonObject.has("icon") && jsonObject.get("icon").isJsonPrimitive())
             icon = Objects.requireNonNull(Material.getMaterial(jsonObject.get("icon").getAsString()));
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
-
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                items.add(new ItemAsset(new PackObject(getName(), FileUtils.getFileName(itemsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(itemsPath.relativize(current));
+                items.add(new ItemAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,7 +75,8 @@ public class ItemModsPack extends NamedPackObject {
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                blocks.add(new BlockAsset(new PackObject(getName(), FileUtils.getFileName(blocksPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(blocksPath.relativize(current));
+                blocks.add(new BlockAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,7 +85,8 @@ public class ItemModsPack extends NamedPackObject {
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                models.add(new ModelAsset(new PackObject(getName(), FileUtils.getFileName(modelsPath.relativize(current))), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                var fileName = FileUtils.getFileName(modelsPath.relativize(current));
+                models.add(new ModelAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,12 +96,18 @@ public class ItemModsPack extends NamedPackObject {
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
                 var fileName = FileUtils.getFileName(texturesPath.relativize(current));
-                textures.add(new TextureAsset(new PackObject(getName(), fileName), GSON.fromJson(Files.readString(current), JsonObject.class)));
+                textures.add(new TextureAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
 
     public @NotNull List<String> getDependencies() {
         return Collections.unmodifiableList(dependencies);
@@ -172,6 +187,54 @@ public class ItemModsPack extends NamedPackObject {
         templates.removeIf(templateAsset -> templateAsset.getName().equals(name));
     }
 
+    public @NotNull List<CustomAssetGenerator<ItemAsset>> getItemGenerators() {
+        return Collections.unmodifiableList(itemGenerators);
+    }
+
+    public void registerItemGenerator(@NotNull CustomAssetGenerator<ItemAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            itemGenerators.add(generator);
+    }
+
+    public void unregisterItemGenerator(String name) {
+        itemGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public @NotNull List<CustomAssetGenerator<BlockAsset>> getBlockGenerators() {
+        return Collections.unmodifiableList(blockGenerators);
+    }
+
+    public void registerBlockGenerator(@NotNull CustomAssetGenerator<BlockAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            blockGenerators.add(generator);
+    }
+
+    public void unregisterBlockGenerator(String name) {
+        blockGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public @NotNull List<CustomAssetGenerator<TextureAsset>> getTextureGenerators() {
+        return Collections.unmodifiableList(textureGenerators);
+    }
+
+    public void registerModelGenerator(@NotNull CustomAssetGenerator<ModelAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            modelGenerators.add(generator);
+    }
+
+    public void unregisterModelGenerator(String name) {
+        modelGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
+    public void registerTextureGenerator(@NotNull CustomAssetGenerator<TextureAsset> generator) {
+        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
+            textureGenerators.add(generator);
+    }
+
+    public void unregisterTextureGenerator(String name) {
+        textureGenerators.removeIf(generator -> generator.getName().equals(name));
+    }
+
 
     public String getDescription() {
         return description;
@@ -185,8 +248,8 @@ public class ItemModsPack extends NamedPackObject {
         return editable;
     }
 
-    public @NotNull Material getIcon() {
-        return icon;
+    public @NotNull ItemStack getIcon() {
+        return new ItemStack(icon);
     }
 
     public void setIcon(@NotNull Material icon) {
@@ -211,6 +274,26 @@ public class ItemModsPack extends NamedPackObject {
     @Nullable
     public TextureAsset getTexture(String name) {
         return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<ItemAsset> getItemGenerator(String name) {
+        return itemGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<BlockAsset> getBlockGenerator(String name) {
+        return blockGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<ModelAsset> getModelGenerator(String name) {
+        return modelGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    @Nullable
+    public CustomAssetGenerator<TextureAsset> getTextureGenerator(String name) {
+        return textureGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 
     void save(@NotNull Path path) throws IOException {
@@ -285,10 +368,9 @@ public class ItemModsPack extends NamedPackObject {
     }
 
     public CustomTemplate getTemplate(String name) {
-        return templates.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
+        return templates.stream().filter(template -> template.getName().equals(name)).findFirst().orElse(null);
     }
 
-    @Override
     public void setName(@NotNull String name) throws UnsupportedOperationException {
         if (!NAME_PATTERN.matcher(name).matches())
             throw new UnsupportedOperationException();

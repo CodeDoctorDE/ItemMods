@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class BaseAddon extends ItemModsPack {
     @NotNull
-    final Translation addonTranslation = ItemMods.getTranslationConfig().subTranslation("addon.main");
+    final Translation addonTranslation = ItemMods.subTranslation("addon.main");
 
     public BaseAddon() {
         super("itemmods", false);

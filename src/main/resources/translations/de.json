@@ -45,7 +45,8 @@
       "description": "§3%s\n\n§7Linksklick » Suchtext eingeben\n§7Rechtsklick » Suchtext zurücksetzen\n§7Drop » Zurück"
     },
     "yes": "§aJa",
-    "no": "§cNein"
+    "no": "§cNein",
+    "no-player": "§eItemMods §7» §cGuis kann nur von Spielern benutzt werden!"
   },
   "template": {
     "title": "§6Vorlage",
@@ -76,6 +77,9 @@
   },
   "main": {
     "title": "§6ItemMods §7(%s)",
+    "usage": "§eItemMods §7» §4Unbekannter Befehl. Benutze §e/Itemmods §4für Hilfe.",
+    "help": "§eItemMods §7» §6Hilfe \n\n§3> §agui §7Öffne gui\n§3> §acrowdin §7Öffne Crowdin\n§3> §awiki §7Öffne Wiki\n§3> §asupport §7Open Support\n\n§3> §asource §7Open Source\n§3> §areload §7Neuladen Plugin\n§3> §areset §7Reset Identifiers",
+    "user-help": "§eItemMods §7» §6Hilfe \n\n§3> §acrowdin §7Öffne Crowdin\n§3> §awiki §7Open Wiki\n§3> §asupport §7Open Support\n\n§3> §asource §7Open Source",
     "reload": {
       "title": "§6Neuladen",
       "description": "§7Lade das ganze Plugin neu",
@@ -151,7 +155,7 @@
   },
   "inactive-packs": {
     "title": "§6Inaktive Pakete §7(%d/%d)",
-    "actions": "§7Click to activate"
+    "actions": "§7Klicke zum Aktivieren"
   },
   "pack": {
     "created": "§eItemMods §7» §6Pack-Ordner wurde erstellt!",
@@ -433,7 +437,7 @@
         "success": "§eItemMods §7» §aErfolgreich die Textur §3%s §aerstellt.",
         "failed": "§eItemMods §7» §cUngültiger Texturname."
       },
-      "actions": "§7Open the texture gui"
+      "actions": "§7Öffne das Texturgui"
     },
     "texture": {
       "title": "§6Textur §3%s",

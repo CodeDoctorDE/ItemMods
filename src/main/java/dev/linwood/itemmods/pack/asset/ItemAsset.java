@@ -3,6 +3,7 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
+import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ItemAsset extends CustomNamedAsset {
     @Nullable
     private PackObject modelObject;
+    private @Nullable TranslatableName displayName;
     private List<String> lore = new ArrayList<>();
 
 
@@ -22,8 +24,8 @@ public class ItemAsset extends CustomNamedAsset {
         super(name);
     }
 
-    public ItemAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public ItemAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
         if (jsonObject.has("model-object") && jsonObject.get("model-object").isJsonPrimitive())
             modelObject = new PackObject(jsonObject.get("model-object").getAsString());
         jsonObject.getAsJsonArray("lore").forEach(jsonElement -> lore.add(jsonElement.getAsString()));
@@ -53,6 +55,17 @@ public class ItemAsset extends CustomNamedAsset {
         if (modelObject == null)
             return null;
         return modelObject.getModel();
+    }
+
+    @Nullable
+    @Override
+    public TranslatableName getDisplayName() {
+        return displayName;
+    }
+
+    @Override
+    public void setDisplayName(@Nullable TranslatableName displayName) {
+        this.displayName = displayName;
     }
 
     @NotNull

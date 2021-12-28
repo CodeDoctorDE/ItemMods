@@ -68,6 +68,7 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
+        CreatureSpawner spawner = (CreatureSpawner) block.getState();
         NBTTileEntity tent = new NBTTileEntity(block.getState());
         tent.setInteger("RequiredPlayerRange", 0);
         tent.setInteger("SpawnCount", 0);

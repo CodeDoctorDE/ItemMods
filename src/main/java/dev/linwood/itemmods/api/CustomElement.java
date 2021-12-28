@@ -7,10 +7,15 @@ import org.jetbrains.annotations.Nullable;
 
 public interface CustomElement<T extends PackAsset> {
     @Nullable T getConfig();
+
     void configure();
+
     @NotNull String getData();
+
     void setData(@NotNull String data);
+
     @Nullable PackObject getPackObject();
+
     default boolean isCustom() {
         return getPackObject() != null;
     }

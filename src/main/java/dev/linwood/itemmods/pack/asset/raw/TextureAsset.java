@@ -1,7 +1,6 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
 import com.google.gson.JsonObject;
-import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -19,8 +18,8 @@ public class TextureAsset extends RawAsset {
         super(name, url);
     }
 
-    public TextureAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public TextureAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
     }
 
     @Override

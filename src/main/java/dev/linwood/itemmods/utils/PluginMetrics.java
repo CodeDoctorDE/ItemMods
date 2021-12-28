@@ -9,7 +9,6 @@ public class PluginMetrics {
     public static void runMetrics() {
         try {
             metrics = new Metrics(ItemMods.getPlugin(), 5996);
-            metrics.getPluginData();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -19,7 +19,7 @@ public class BetterGuiCustomModifier implements ItemModifier {
 
     @Override
     public @NotNull String getName() {
-        return "customitem";
+        return "itemmods";
     }
 
     @Override

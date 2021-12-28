@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CustomBlockListener implements Listener {
 
-    @EventHandler (priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCustomBlockPlaced(@NotNull PlayerInteractEvent event) {
         if (event.getItem() == null || event.useItemInHand() == Event.Result.DENY ||
                 event.getAction() != Action.RIGHT_CLICK_BLOCK ||
@@ -33,7 +33,7 @@ public class CustomBlockListener implements Listener {
         CustomItem customItem = new CustomItem(event.getItem());
         if (customItem.getConfig() == null)
             return;
-        customItem.getConfig().getCustomTemplates().forEach(customTemplateData -> {
+        customItem.getConfig().getCustomData().forEach(customTemplateData -> {
             if (customTemplateData.getTemplate() instanceof BlockSetTemplate) {
                 var template = (BlockSetTemplate) customTemplateData.getTemplate();
                 if (template.getBlock(customTemplateData) == null)
@@ -71,7 +71,7 @@ public class CustomBlockListener implements Listener {
         });
     }
 
-    @EventHandler (priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onCustomBlockBreak(@NotNull BlockBreakEvent event) {
         if (event.isCancelled())
             return;

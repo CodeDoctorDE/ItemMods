@@ -26,7 +26,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] args) {
-        Translation t = ItemMods.getTranslationConfig().subTranslation("command.give");
+        Translation t = ItemMods.subTranslation("command.give");
         if (!commandSender.hasPermission("itemmods.give")) {
             commandSender.sendMessage(t.getTranslation("permission"));
             return true;

@@ -28,8 +28,8 @@ public class ModelAsset extends RawAsset {
         super(name, url);
     }
 
-    public ModelAsset(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public ModelAsset(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
         if (jsonObject.has("fallback-texture") && jsonObject.get("fallback-texture").isJsonPrimitive()) {
             var material = Material.getMaterial(jsonObject.get("fallback-texture").getAsString());
             if (material != null)

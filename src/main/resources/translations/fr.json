@@ -33,19 +33,20 @@
     "title": "§7Connaissance"
   },
   "gui": {
-    "first": "§6First",
-    "previous": "§6Previous",
-    "next": "§6Next",
-    "last": "§6Last",
-    "actions": "§7Click to choose",
+    "first": "§7Premier",
+    "previous": "§7Précédent",
+    "next": "§7Suivant",
+    "last": "Dernier",
+    "actions": "§7Cliquez pour choisir",
     "item": "§6%s",
     "search": {
-      "message": "§eItemMods §7» §ePlease enter the search text. Cancel with a left click.",
-      "title": "§6Search",
-      "description": "§3%s\n\n§7Left click » Input search text\n§7Right click » Reset search text\n§7Drop » Back"
+      "message": "§eItemMods §7» §eVeuillez entrer le texte de recherche. Annuler avec un clic gauche.",
+      "title": "§7Recherche",
+      "description": "§3%s\n\n§7Clic gauche » Texte de la recherche\n§7Clic droit » Réinitialiser le texte de recherche\n§7Droit » Retour"
     },
-    "yes": "§aYes",
-    "no": "§cNo"
+    "yes": "§aOui",
+    "no": "§cNon",
+    "no-player": "§eItemMods §7» §cGuis ne peut être utilisé que par les joueurs!"
   },
   "template": {
     "title": "§7Modèle",
@@ -76,6 +77,9 @@
   },
   "main": {
     "title": "§6§lItemMods §7(%s)",
+    "usage": "§eItemMods §7» §4Commande inconnue. Utilisez §e/itemmods §4pour obtenir de l'aide.",
+    "help": "§eItemMods §7» §6Aide \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Recharger le plugin\n§3> §areset §7Réinitialiser les identifiants",
+    "user-help": "§eItemMods §7» §6Help \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
     "reload": {
       "title": "§6Reload",
       "description": "§7Recharger l'ensemble du plugin",
@@ -151,7 +155,7 @@
   },
   "inactive-packs": {
     "title": "§7packs inactifs §7(%d/%d)",
-    "actions": "§7Click to activate"
+    "actions": "§7Cliquez pour activer"
   },
   "pack": {
     "created": "§eItemMods §7» §6Le dossier Pack a été créé !",
@@ -433,7 +437,7 @@
         "success": "§eItemMods §7» §aa créé la texture §3%s§a.",
         "failed": "§eItemMods §7» §cNom de texture invalide."
       },
-      "actions": "§7Open the texture gui"
+      "actions": "§7Ouvre l'interface de texture"
     },
     "texture": {
       "title": "§7Texture §3%s",
@@ -511,7 +515,7 @@
     "give": {
       "usage": "§eItemMods §7» §cUsage: §3/giveitem <Player> <Item> [<Count>]§c!",
       "no-item": "§eItemMods §7» §4Ce n'est pas un nombre d'items valide !",
-      "success": "§eItemMods §7» §aSuccessfully gave §3%s §athe item §3%s"
+      "success": "§eItemMods §7» §aa donné §3%s §athe item §3%s"
     },
     "no-number": "§eItemMods §7» §4Ce n'est pas un nombre !",
     "success": "§eItemMods §7» §aVous avez donné avec succès l'item §3%s§a !"

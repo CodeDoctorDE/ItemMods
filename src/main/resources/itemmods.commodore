@@ -7,7 +7,7 @@ itemmods {
             info;
             gui;
             name {
-                name brigadier:string single_word;
+                name brigadier:string greedy_phrase;
             }
             display {
                 display brigadier:string greedy_phrase;
@@ -27,6 +27,21 @@ itemmods {
             }
             give {
                 player brigadier:string single_word;
+            }
+            template {
+                info;
+                add {
+                    name brigadier:string greedy_phrase;
+                }
+                edit {
+                    name brigadier:string greedy_phrase;
+                }
+                gui {
+                    name brigadier:string greedy_phrase;
+                }
+                remove {
+                    name brigadier:string greedy_phrase;
+                }
             }
         }
     }

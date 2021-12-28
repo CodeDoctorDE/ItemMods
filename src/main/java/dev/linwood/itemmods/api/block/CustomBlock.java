@@ -29,7 +29,7 @@ public class CustomBlock implements CustomElement<BlockAsset> {
 
     public @Nullable BlockAsset getConfig() {
         var packObject = getPackObject();
-        if(packObject == null)
+        if (packObject == null)
             return null;
         return packObject.getBlock();
     }

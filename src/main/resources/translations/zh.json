@@ -1,0 +1,524 @@
+{
+  "plugin": {
+    "loading": "§eItemMods§7» §e正在加载插件...",
+    "loaded": "§eItemMods §7» §a插件已成功加载！",
+    "unloading": "§eItemMods §7» §e正在卸载插件...",
+    "unloaded": "§eItemMods §7» §a插件已成功卸载！",
+    "compatible": "§eItemMods §7» §6插件与服务器版本不兼容！",
+    "version": "§eItemMods§7» §6有新版本可用：§3%s",
+    "no-preset": "§eItemMods§7» §cThere is no preset resource pack。请在那里复制样品纹理包。"
+  },
+  "api": {
+    "register": "§eItemMods §7» §a成功注册新拓展：§3%s§a！",
+    "unregister": "§eItemMods §7» §a成功移除拓展：§3%s§a！"
+  },
+  "coming-soon": "§c即将到来...",
+  "addon": {
+    "item": {
+      "block": {
+        "title": "§6方块设置模板",
+        "actions": {
+          "has": "§3%s\n\n§7点击这里更改方块模板",
+          "empty": "§c未设置\n\n§7点击这里设置方块模板"
+        }
+      }
+    },
+    "model": {
+      "block": {
+        "title": "§6方块模型模板"
+      }
+    }
+  },
+  "knowledge": {
+    "title": "§6知识"
+  },
+  "gui": {
+    "first": "§6前",
+    "previous": "§6前一个",
+    "next": "§6下一个",
+    "last": "§6最后一个",
+    "actions": "§7点击选择",
+    "item": "§6%s",
+    "search": {
+      "message": "§eItemMods§7» §e请输入欲搜索的文本，左键取消。",
+      "title": "§6搜索",
+      "description": "§3%s\n\n§7左键 » 输入欲搜索的文本\n§7右键 » 重置搜索\n§7丢弃 » 返回"
+    },
+    "yes": "§a是",
+    "no": "§c否",
+    "no-player": "§eItemMods§7» §cGuis只能被玩家使用!"
+  },
+  "template": {
+    "title": "§6模板",
+    "create": {
+      "title": "§6添加",
+      "description": "§7添加新模板"
+    }
+  },
+  "choose": {
+    "pack": {
+      "title": "§6选择包 §7(%d/%d)"
+    },
+    "template": {
+      "title": "§6选择模板 §7(%d/%d)"
+    },
+    "item": {
+      "title": "§6选择项目 §7(%d/%d)"
+    },
+    "block": {
+      "title": "§6选择块 §7(%d/%d)"
+    },
+    "model": {
+      "title": "§6选择模型 §7(%d/%d)"
+    },
+    "texture": {
+      "title": "§6选择纹理 §7(%d/%d)"
+    }
+  },
+  "main": {
+    "title": "§6§lItemMods §7(%s)",
+    "usage": "§eItemMods§7» §4未知命令。使用 §e/itemmods §4寻求帮助。",
+    "help": "§eItemMods§7» §6帮助 \n\n§3> §agui §7Open gui\n§3> §3> §crowdin §7Open crowdin\n§3> §3> §awiki §7Open Wiki\n§3> §a支持§7Open support\n\n§3> §4> §asource §7Open source\n§3> §7Read插件\n§areset §7reset ident identifiers",
+    "user-help": "§eItemMods§7» §6帮助 \n\n§3> §crowdin §7Open crowdin\n§3> §3> §awiki §7Open wiki\n§3> §a支持 §7Open support\n\n§3> §asource §7Open source §7Open source",
+    "reload": {
+      "title": "§6重载",
+      "description": "§7重新加载插件",
+      "success": "§eItemMods §7» §a成功重载插件"
+    },
+    "packs": {
+      "title": "§6包",
+      "description": "§7转到包列表"
+    },
+    "inactive-packs": {
+      "title": "§6非活动包",
+      "description": "§7转到非活动包列表"
+    },
+    "knowledge": {
+      "title": "§6知识书",
+      "description": "§7转到模组 \n§7信息给用户"
+    },
+    "addons": {
+      "title": "§6拓展",
+      "description": "§7激活、 配置、 禁用拓展"
+    },
+    "source": {
+      "title": "§6源码",
+      "description": "§7获取Github链接",
+      "link": "§eItemMods §7» §e源码: §b§%s"
+    },
+    "support": {
+      "title": "§6支持",
+      "description": "§7获取Discord链接",
+      "link": "§eItemMods §7» §e支持: §b§n%s"
+    },
+    "crowdin": {
+      "title": "§6Crowdin",
+      "description": "§7获取Crowdin链接",
+      "link": "§eItemMods §7» §eCrowdin: §b§n%s"
+    },
+    "wiki": {
+      "title": "§6Wiki",
+      "description": "§7获取Wiki链接",
+      "link": "§eItemMods §7» §eWiki: §b§n%s"
+    },
+    "export": {
+      "title": "§6导出",
+      "description": "§7导出资源包",
+      "message": "§eItemMods§7» §e导出中...",
+      "success": "§eItemMods§7» §a成功导出资源包",
+      "failed": "§eItemMods§7» §a资源包导出失败，请查看控制台了解详细信息！"
+    },
+    "reset": {
+      "title": "§6Reset",
+      "description": "§7重置资源包的\n§7的标识符",
+      "message": "§eItemMods§7» §a成功重置标识符"
+    },
+    "locale": {
+      "title": "§6本地化",
+      "description": "§3%s\n\n§7点击设置区域设置"
+    }
+  },
+  "locales": {
+    "title": "§6Locales §7(%d/%d)"
+  },
+  "packs": {
+    "title": "§6包 §7(%d/%d)",
+    "actions": "§7打开包界面",
+    "readonly": "§eItemMods§7» §cThis pack是只读的",
+    "create": {
+      "title": "§6创建",
+      "description": "§7创建一个新包",
+      "message": "§eItemMods§7» §e请输入包的名称。取消左键点击。",
+      "success": "§eItemMods§7» §a成功创建了 §3%s§a.",
+      "failed": "§eItemMods§7» §c无效的包名"
+    }
+  },
+  "inactive-packs": {
+    "title": "§6非活动包 §7(%d/%d)",
+    "actions": "§7点击以激活"
+  },
+  "pack": {
+    "created": "§eItemMods§7» §6包文件夹已创建!",
+    "title": "§6包 §3%s",
+    "back": {
+      "title": "§6返回",
+      "description": "§7转到包列表"
+    },
+    "readonly": {
+      "title": "§c只读",
+      "description": "§7你不能编辑这个包"
+    },
+    "name": {
+      "title": "§6名称",
+      "description": "§3%s\n\n§7点击更改名称",
+      "message": "§eItemMods§7» §e请输入包的名称。取消左键点击。",
+      "success": "§eItemMods§7» §a成功地将包名称更改为 §3%s§a.",
+      "failed": "§eItemMods§7» §c无效的包名"
+    },
+    "general": "§6概况",
+    "contents": "§6内容",
+    "raw": "§6原始文件",
+    "administration": "§6管理",
+    "items": {
+      "title": "§6物品",
+      "description": "§7转到物品列表"
+    },
+    "blocks": {
+      "title": "§6块",
+      "description": "§7转到方块列表"
+    },
+    "textures": {
+      "title": "§6纹理",
+      "description": "§7转到纹理列表"
+    },
+    "models": {
+      "title": "§6模型",
+      "description": "§7转到模型列表"
+    },
+    "sounds": {
+      "title": "§6声音",
+      "description": "§7转到声音列表"
+    },
+    "deactivated": {
+      "title": "§c停用了",
+      "description": "§7点击激活当前包"
+    },
+    "activated": {
+      "title": "§a已激活",
+      "description": "§7点击禁用当前包"
+    },
+    "export": {
+      "title": "§6导出",
+      "description": "§7导出当前包到zip文件",
+      "message": "§eItemMods§7» §e导出资源包...",
+      "success": "§eItemMods§7» §6资源包已导出!",
+      "failed": "§eItemMods§7» §c导出失败"
+    },
+    "delete": {
+      "title": "§6删除",
+      "description": "§7删除当前包",
+      "gui": {
+        "title": "§6删除包 §3%s§6?",
+        "message": "§6删除包 §3%s§6?",
+        "description": "§7这将删除包\n§7文件夹及其内容。\n§7这个进程不能撤消!",
+        "yes": "§a是",
+        "no": "§c否"
+      }
+    }
+  },
+  "materials": {
+    "title": "材料"
+  },
+  "items": {
+    "title": "§6项目 §3%s §7(%d/%d)",
+    "create": {
+      "title": "§6创建",
+      "description": "§7创建一个新项目",
+      "message": "§eItemMods§7» §e请输入物品的名称. 点击取消.",
+      "success": "§eItemMods§7» §a成功创建项目 §3%s§a.",
+      "failed": "§eItemMods§7» §c无效的物品名称"
+    },
+    "actions": "§7打开物品界面"
+  },
+  "item": {
+    "title": "§6物品 §3%s",
+    "back": {
+      "title": "§6返回",
+      "description": "§7转到物品列表"
+    },
+    "general": "§6概况",
+    "administration": "§6管理",
+    "name": {
+      "title": "§6名称",
+      "description": "§3%s\n\n§7点击更改名称",
+      "message": "§eItemMods§7» §e请输入物品的名称. 点击取消.",
+      "success": "§eItemMods§7» §a成功地将物品名称更改为§3%s§a.",
+      "failed": "§eItemMods§7» §c无效的物品名称"
+    },
+    "display": {
+      "not-set": {
+        "title": "§6显示名称",
+        "description": "§c未设置\n\n§7左键点击 » 点击更改显示名称\n§7Drop » 删除显示名称"
+      },
+      "set": {
+        "title": "§6显示名称",
+        "description": "§3%s\n\n§7点击更改显示名称"
+      },
+      "message": "§eItemMods§7» §e请输入物品的显示名称. 点击取消.",
+      "success": "§eItemMods§7» §a成功地将物品显示名称修改为 §3%s§a."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§6本地化名称",
+        "description": "§c未设置\n\n§7点击更改本地化名称"
+      },
+      "set": {
+        "title": "§6本地化名称",
+        "description": "§3%s\n\n§7点击更改本地化名称"
+      },
+      "message": "§eItemMods§7» §e请输入物品的本地化名称。点击左侧取消此操作。",
+      "success": "§eItemMods§7» §a成功地将物品本地化名称修改为 §3%s§a."
+    },
+    "model": {
+      "not-set": {
+        "title": "§6模型",
+        "description": "§c未设置\n\n§7点击以添加模型"
+      },
+      "set": {
+        "title": "§6模型",
+        "description": "§3%s\n\n§7左键点击 » 配置\n§7右键点击 » 重新分配\n§7拖放» 删除"
+      }
+    },
+    "templates": {
+      "title": "§6模板",
+      "description": "§7转到模板列表"
+    },
+    "delete": {
+      "title": "§6删除",
+      "description": "§7删除当前物品",
+      "gui": {
+        "title": "§6删除项目 §3%s§6?",
+        "message": "§6删除项目 §3%s§6?",
+        "description": "§7此进程不能撤销!",
+        "yes": "§a是",
+        "no": "§c否"
+      }
+    }
+  },
+  "blocks": {
+    "title": "§6方块 §3%s §7(%d/%d)",
+    "create": {
+      "title": "§6创建",
+      "description": "§7创建一个新块",
+      "message": "§eItemMods§7» §e请输入方块的名称。点击左侧取消该方块。",
+      "success": "§eItemMods§7» §a成功创建方块 §3%s§a.",
+      "failed": "§eItemMods§7» §c无效的方块名称"
+    },
+    "actions": "§7打开方块界面"
+  },
+  "block": {
+    "title": "§6方块 §3%s",
+    "back": {
+      "title": "§6返回",
+      "description": "§7转到方块列表"
+    },
+    "general": "§6概况",
+    "block": "§6块",
+    "administration": "§6管理",
+    "name": {
+      "title": "§6名称",
+      "description": "§3%s\n\n§7点击更改名称",
+      "message": "§eItemMods§7» §e请输入方块的名称。点击左侧取消该方块。",
+      "success": "§eItemMods§7» §a成功地将方块名称更改为§3%s§a.",
+      "failed": "§eItemMods§7» §c无效的方块名称"
+    },
+    "display": {
+      "not-set": {
+        "title": "§6显示名称",
+        "description": "§c未设置\n\n§7左键点击 » 点击更改显示名称\n§7Drop » 删除显示名称"
+      },
+      "set": {
+        "title": "§6显示名称",
+        "description": "§3%s\n\n§7点击更改显示名称"
+      },
+      "message": "§eItemMods§7» §e请输入物品的显示名称. 点击取消.",
+      "success": "§eItemMods§7» §a成功地将物品显示名称修改为 §3%s§a."
+    },
+    "localized-name": {
+      "not-set": {
+        "title": "§6本地化名称",
+        "description": "§c未设置\n\n§7点击更改本地化名称"
+      },
+      "set": {
+        "title": "§6本地化名称",
+        "description": "§3%s\n\n§7点击更改本地化名称"
+      },
+      "message": "§eItemMods§7» §e请输入物品的本地化名称。点击左侧取消此操作。",
+      "success": "§eItemMods§7» §a成功地将物品本地化名称修改为 §3%s§a."
+    },
+    "model": {
+      "not-set": {
+        "title": "§6模型",
+        "description": "§c未设置\n\n§7点击以添加模型"
+      },
+      "set": {
+        "title": "§6模型",
+        "description": "§3%s\n\n§7左键点击 » 配置\n§7右键点击 » 重新分配\n§7拖放» 删除"
+      }
+    },
+    "templates": {
+      "title": "§6模板",
+      "description": "§7转到模板列表"
+    },
+    "delete": {
+      "title": "§6删除",
+      "description": "§7删除当前块",
+      "gui": {
+        "title": "§6删除方块 §3%s§6?",
+        "message": "§6删除方块 §3%s§6?",
+        "description": "§7此进程不能撤销!",
+        "yes": "§a是",
+        "no": "§c否"
+      }
+    }
+  },
+  "raw": {
+    "models": {
+      "title": "§6模式§3%s §7(%d/%d)",
+      "create": {
+        "title": "§6创建",
+        "description": "§7创建一个新的模型",
+        "message": "§eItemMods§7» §e请输入模型的名称。取消左键点击。",
+        "success": "§eItemMods§7» §a成功创建了model §3%s§a.",
+        "failed": "§eItemMods§7» §c无效的模型名称"
+      },
+      "actions": "§7打开模型界面"
+    },
+    "model": {
+      "title": "§6模型§3%s",
+      "back": {
+        "title": "§6返回",
+        "description": "§7转到模型列表"
+      },
+      "name": {
+        "title": "§6名称",
+        "description": "§3%s\n\n§7点击更改名称",
+        "message": "§eItemMods§7» §e请输入模型的名称。取消左键点击。",
+        "success": "§eItemMods§7» §a成功地将模型名称更改为§3%s§a.",
+        "failed": "§eItemMods§7» §c无效的模型名称"
+      },
+      "fallback": {
+        "title": "§6备份纹理",
+        "description": "§3%s\n\n§7点击设置材料\n§7如果玩家\n§7没有激活资源包"
+      },
+      "data": {
+        "title": "§6数据",
+        "description": "§7点击设置资源包模型的变量\n§7"
+      },
+      "general": "§6概况",
+      "appearance": "§6外观",
+      "administration": "§6管理",
+      "delete": {
+        "title": "§6删除",
+        "description": "§7删除当前模型",
+        "gui": {
+          "title": "§6删除型号§3%s§6?",
+          "message": "§6删除型号§3%s§6?",
+          "description": "§7此进程不能撤销!"
+        }
+      }
+    },
+    "textures": {
+      "title": "§6纹理 §3%s §7(%d/%d)",
+      "create": {
+        "title": "§6创建",
+        "description": "§7创建新纹理",
+        "message": "§eItemMods§7» §e请输入文本名称. 取消左键点击.",
+        "success": "§eItemMods§7» §a成功创建纹理 §3%s§a.",
+        "failed": "§eItemMods§7» §c无效的纹理名称"
+      },
+      "actions": "§7打开纹理界面"
+    },
+    "texture": {
+      "title": "§6纹理 §3%s",
+      "back": {
+        "title": "§6返回",
+        "description": "§7转到纹理列表"
+      },
+      "name": {
+        "title": "§6名称",
+        "description": "§3%s\n\n§7点击更改名称",
+        "message": "§eItemMods§7» §e请输入文本名称. 取消左键点击.",
+        "success": "§eItemMods§7» §a成功地将纹理名称更改为§3%s§a.",
+        "failed": "§eItemMods§7» §c无效的纹理名称"
+      },
+      "data": {
+        "title": "§6数据",
+        "description": "§7点击设置资源包的纹理变量\n§7"
+      },
+      "general": "§6概况",
+      "appearance": "§6外观",
+      "administration": "§6管理",
+      "delete": {
+        "title": "§6删除",
+        "description": "§7删除当前纹理",
+        "gui": {
+          "title": "§6删除纹理 §3%s§6?",
+          "message": "§6删除纹理 §3%s§6?",
+          "description": "§7此进程不能撤销!"
+        }
+      }
+    },
+    "data": {
+      "title": "§6数据 §3%s §7(%d/%d)",
+      "set": {
+        "title": "§6%s",
+        "description": "§7左键点击 » 显示内容\n§7拖放» 删除"
+      },
+      "not-set": {
+        "title": "§c未设置",
+        "description": "§7点击设置"
+      },
+      "create": {
+        "title": "§6创建",
+        "description": "§7创建一个新的模型",
+        "variation": "§eItemMods§7» §e请输入变量的名称。取消左键点击。",
+        "gui": {
+          "title": "§6创建数据",
+          "back": {
+            "title": "§6返回",
+            "description": "§7转到数据列表"
+          },
+          "internet": {
+            "title": "§6Internet",
+            "description": "§7从互联网获取数据",
+            "message": "§eItemMods§7» §e请输入与文件的直接链接。点击一下即可取消。",
+            "success": "§eItemMods§7» §a成功添加了变量§3%s §afrom §3%s 的数据"
+          },
+          "file": {
+            "title": "§6文件",
+            "description": "§7从临时目录中的一个文件获取数据。",
+            "message": "§eItemMods§7» §e请输入文件名称。点击左侧取消此操作。",
+            "success": "§eItemMods§7» §a成功添加了变量§3%s §afrom §3%s 的数据"
+          }
+        }
+      },
+      "actions": "§7点击删除"
+    }
+  },
+  "event": {
+    "rename": "§eItemMods§7» §c此物品不能重命名!"
+  },
+  "command": {
+    "usage": "§eItemMods§7» §c使用: §3/itemmods§c!",
+    "no-player": "§eItemMods§7» §4这个命令只适用于玩家!",
+    "give": {
+      "usage": "§eItemMods§7» §c用法: §3/赠送项目 <Player> <Item> [<Count>]§c!",
+      "no-item": "§eItemMods§7» §4这不是一个有效的物品数量!",
+      "success": "§eItemMods§7» §a成功赠送了§3%s §a物品§3%s"
+    },
+    "no-number": "§eItemMods§7» §4这不是一个数字!",
+    "success": "§eItemMods§7» §a成功给了你§3%s§a!"
+  },
+  "no-permission": "§eItemMods§7» §4你没有权限这样做!"
+}

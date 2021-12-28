@@ -11,9 +11,9 @@ title: Downloads
 - SpigotMC
 - Polymart
 - Direct download
-  - Stable
-  - Beta
-  - Nightly
+    - Stable
+    - Beta
+    - Nightly
 
 ## Addons
 
@@ -22,7 +22,6 @@ Coming soon...
 ## Share your configurations
 
 Go to the [#share](https://go.linwood.dev/itemmods-share) channel on the item mods discord.
-
 
 ## Useful links
 
