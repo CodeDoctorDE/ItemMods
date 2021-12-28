@@ -77,9 +77,9 @@
   },
   "main": {
     "title": "§6§lItemMods §7(%s)",
-    "usage": "§eItemMods §7» §4Unknown command. Use §e/itemmods §4for help.",
-    "help": "§eItemMods §7» §6Help \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset §7Reset identifiers",
-    "user-help": "§eItemMods §7» §6Help \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
+    "usage": "§eItemMods§7» §4未知命令。使用 §e/itemmods §4寻求帮助。",
+    "help": "§eItemMods§7» §6帮助 \n\n§3> §agui §7Open gui\n§3> §3> §crowdin §7Open crowdin\n§3> §3> §awiki §7Open Wiki\n§3> §a支持§7Open support\n\n§3> §4> §asource §7Open source\n§3> §7Read插件\n§areset §7reset ident identifiers",
+    "user-help": "§eItemMods§7» §6帮助 \n\n§3> §crowdin §7Open crowdin\n§3> §3> §awiki §7Open wiki\n§3> §a支持 §7Open support\n\n§3> §asource §7Open source §7Open source",
     "reload": {
       "title": "§6重载",
       "description": "§7重新加载插件",
