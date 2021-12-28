@@ -77,9 +77,9 @@
   },
   "main": {
     "title": "§6ItemMods §7(%s)",
-    "usage": "§eItemMods §7» §4Unknown command. Use §e/itemmods §4for help.",
-    "help": "§eItemMods §7» §6Help \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset §7Reset identifiers",
-    "user-help": "§eItemMods §7» §6Help \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
+    "usage": "§eItemMods §7» §4Unbekannter Befehl. Benutze §e/Itemmods §4für Hilfe.",
+    "help": "§eItemMods §7» §6Hilfe \n\n§3> §agui §7Öffne gui\n§3> §acrowdin §7Öffne Crowdin\n§3> §awiki §7Öffne Wiki\n§3> §asupport §7Open Support\n\n§3> §asource §7Open Source\n§3> §areload §7Neuladen Plugin\n§3> §areset §7Reset Identifiers",
+    "user-help": "§eItemMods §7» §6Hilfe \n\n§3> §acrowdin §7Öffne Crowdin\n§3> §awiki §7Open Wiki\n§3> §asupport §7Open Support\n\n§3> §asource §7Open Source",
     "reload": {
       "title": "§6Neuladen",
       "description": "§7Lade das ganze Plugin neu",
