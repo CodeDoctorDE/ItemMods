@@ -4,7 +4,7 @@ title: Supported
 
 ## Supported server
 
-Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.17.1.
+Tested on spigot, paper, airplane and paper. Supported versions are 1.14.4-1.18.1.
 
 ## Supported plugins
 
