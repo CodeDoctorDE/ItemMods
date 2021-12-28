@@ -77,9 +77,9 @@
   },
   "main": {
     "title": "§6§lMods de elementos §7(%s)",
-    "usage": "§eItemMods §7» §4Unknown command. Use §e/itemmods §4for help.",
+    "usage": "§eMods §7» §4Comando desconocido. Usa §e/itemmods §4para ayuda.",
     "help": "§eItemMods §7» §6Help \n\n§3> §agui §7Open gui\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source\n§3> §areload §7Reload plugin\n§3> §areset §7Reset identifiers",
-    "user-help": "§eItemMods §7» §6Help \n\n§3> §acrowdin §7Open crowdin\n§3> §awiki §7Open wiki\n§3> §asupport §7Open support\n\n§3> §asource §7Open source",
+    "user-help": "§eMods §7» §6Ayuda \n\n§3> §acrowdin §7Abre crowdin\n§3> §awiki §7Abrir wiki\n§3> §atransportar §7Abrir soporte\n\n§3> §7Abrir código fuente",
     "reload": {
       "title": "§6Reload",
       "description": "§7Recargar todo el plugin",
