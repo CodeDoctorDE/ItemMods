@@ -12,7 +12,8 @@ Willkommen im ItemMods Wiki! Benutzen Sie den Navigator, um zwischen den Seiten 
 
 ## Permissons
 
-itemmods.admin for /itemmods commands itemmods.give for /givecustomitem commands
+- `itemmods.admin` for /itemmods commands
+- `itemmods.give` for /givecustomitem commands
 
 ## Resource Pages
 

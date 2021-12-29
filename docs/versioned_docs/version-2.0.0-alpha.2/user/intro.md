@@ -13,8 +13,8 @@ Use the navigator to navigate between pages.
 
 ## Permissons
 
-itemmods.admin for /itemmods commands
-itemmods.give for /givecustomitem commands
+- `itemmods.admin` for /itemmods commands
+- `itemmods.give` for /givecustomitem commands
 
 ## Resource Pages
 

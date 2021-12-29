@@ -16,7 +16,7 @@ Use the navigator to navigate between pages.
 - `itemmods.admin` for /itemmods commands
 - `itemmods.give` for /givecustomitem commands
 
-## Resource Pages:
+## Resource Pages
 
 * [SpigotMC](https://www.spigotmc.org/resources/72461/)
 * [Polymart](https://polymart.org/resource/15)
