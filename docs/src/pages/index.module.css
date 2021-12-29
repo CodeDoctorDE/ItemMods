@@ -5,21 +5,32 @@
  * and scoped locally.
  */
 
-.heroBanner {
+ .heroBanner {
     padding: 4rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-@media screen and (max-width: 966px) {
+  }
+  
+  @media screen and (max-width: 966px) {
     .heroBanner {
-        padding: 2rem;
+      padding: 2rem;
     }
-}
-
-.buttons {
+  }
+  
+  .buttons {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
+  
+  .indexCtas a {
+    margin: 10px 8px;
+  }
+  .screenshot {
+    width: 100%;
+    max-width: 50em;
+    margin: 5em auto;
+    text-align: center;
+    display: block;
+  }
