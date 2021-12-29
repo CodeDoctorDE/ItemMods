@@ -10,7 +10,11 @@ sidebar_position: 0
 
 Bienvenue sur le wiki ItemMods ! Utilisez le navigateur pour naviguer entre les pages.
 
-## Pages de ressources:
+## Permissons
+
+itemmods.admin for /itemmods commands itemmods.give for /givecustomitem commands
+
+## Resource Pages
 
 * [SpigotMC](https://www.spigotmc.org/resources/72461/)
 * [Polynésien](https://polymart.org/resource/15)
