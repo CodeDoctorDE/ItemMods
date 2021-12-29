@@ -12,7 +12,8 @@ sidebar_position: 0
 
 ## Permissons
 
-itemmods.admin for /itemmods commands itemmods.give for /givecustomitem commands
+- `itemmods.admin` for /itemmods commands
+- `itemmods.give` for /givecustomitem commands
 
 ## Resource Pages
 
