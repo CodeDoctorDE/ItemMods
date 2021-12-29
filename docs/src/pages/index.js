@@ -31,15 +31,12 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Add custom items/blocks to your game.">
-      <HomepageHeader />
-      <main><img
-          src={require('../../static/img/main.png').default}
-          className={styles.screenshot}
-          alt="Screenshot"
-      />
-      </main>
+        title={`Hello from ${siteConfig.title}`}
+        description="Add custom items/blocks to your game.">
+        <HomepageHeader/>
+        <main>
+            <HomepageFeatures/>
+        </main>
     </Layout>
   );
 }

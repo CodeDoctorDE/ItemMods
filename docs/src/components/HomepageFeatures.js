@@ -4,32 +4,30 @@ import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
     {
-        title: 'Easy to Use',
-        Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
+        title: 'Modular',
+        Svg: require('../../static/img/squares-four.svg').default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily installed and
-                used to get your website up and running quickly.
+                Everyone can build their own addons. See the <a href={"/api"}>api documentation</a> for more information.
             </>
         ),
     },
     {
-        title: 'Focus on What Matters',
-        Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+        title: 'Open source and free',
+        Svg: require('../../static/img/code.svg').default,
         description: (
             <>
-                Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-                ahead and move your docs into the <code>docs</code> directory.
+                The source code is available on <a href={"https://github.com/CodeDoctorDE/ItemMods"}>GitHub</a>.
             </>
         ),
     },
     {
-        title: 'Powered by React',
-        Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
+        title: 'Customizable',
+        Svg: require('../../static/img/pencil.svg').default,
         description: (
             <>
-                Extend or customize your website layout by reusing React. Docusaurus can
-                be extended while reusing the same header and footer.
+                You can easily customize the look and functionality of items and blocks.
+                Share your own packs with the community.
             </>
         ),
     },
