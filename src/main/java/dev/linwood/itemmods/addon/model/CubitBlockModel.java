@@ -11,7 +11,7 @@ import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.raw.ModelTemplateAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,18 +23,17 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class CubitBlockModel extends ModelTemplateAsset {
+public class CubitBlockModel extends ModelAsset {
     private final Translation t = ItemMods.subTranslation("addon.model.cubit_block");
 
     public CubitBlockModel(@NotNull String name) {
         super(name);
     }
 
-    public CubitBlockModel(@NotNull PackObject packObject, @NotNull JsonObject jsonObject) {
-        super(packObject, jsonObject);
+    public CubitBlockModel(@NotNull String name, @NotNull JsonObject jsonObject) {
+        super(name, jsonObject);
     }
 
-    @Override
     public @NotNull ItemStack getIcon(String namespace) {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
@@ -63,7 +62,7 @@ public class CubitBlockModel extends ModelTemplateAsset {
             loadedTextures = new HashMap<>();
         var textures = loadedTextures;
         return new ListGui(t, gui -> textures.entrySet().stream().filter(entry -> entry.getKey().contains(gui.getSearchText()))
-                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("action")).build()) {{
+                .map(entry -> new StaticItem(new ItemStackBuilder(Material.PAPER).displayName(t.getTranslation("item", entry.getValue().toString())).lore(t.getTranslation("actions")).build()) {{
                     setClickAction((event) -> {
                         textures.remove(entry.getKey());
                         setTextures(data, textures);
@@ -83,7 +82,6 @@ public class CubitBlockModel extends ModelTemplateAsset {
         }};
     }
 
-    @Override
     protected String buildTemplate(String variation) {
         try {
             Paths.get(Objects.requireNonNull(getClass().getResource("cubit_block.json")).toURI());

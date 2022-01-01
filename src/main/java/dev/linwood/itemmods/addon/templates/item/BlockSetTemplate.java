@@ -9,12 +9,11 @@ import dev.linwood.itemmods.action.CommandAction;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.BlocksAction;
+import dev.linwood.itemmods.action.pack.ItemAction;
 import dev.linwood.itemmods.action.pack.TemplateAction;
-import dev.linwood.itemmods.addon.simple.SimpleBlockAsset;
-import dev.linwood.itemmods.addon.simple.SimpleItemAsset;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.DefinedPackAsset;
-import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
+import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
@@ -28,14 +27,14 @@ import org.jetbrains.annotations.Nullable;
  * @author CodeDoctorDE
  */
 public class BlockSetTemplate extends CustomTemplate {
-    private final Translation t = ItemMods.subTranslation("addon.item.block", "gui");
+    private final Translation t = ItemMods.subTranslation("addon.item.block", "action", "gui");
 
     public BlockSetTemplate() {
         super("block");
     }
 
     @Override
-    public @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
+    public @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, CustomPackAsset asset) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
@@ -43,18 +42,18 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getIcon(String namespace) {
+    public @NotNull ItemStack getPreviewIcon() {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 
     @Override
-    public boolean isCompatible(PackObject packObject, DefinedPackAsset asset) {
-        return asset instanceof SimpleItemAsset;
+    public boolean isCompatible(PackObject packObject, CustomPackAsset asset) {
+        return true;
     }
 
 
     @Override
-    public @Nullable CommandAction generateItemAction(PackObject packObject, CustomData data, TemplateReadyPackAsset asset) {
+    public @Nullable CommandAction generateItemAction(PackObject packObject, CustomData data, CustomPackAsset asset) {
         return new TranslationCommandAction() {
             @Override
             public Translation getTranslationNamespace() {
@@ -62,9 +61,7 @@ public class BlockSetTemplate extends CustomTemplate {
             }
 
             public void back(Player player) {
-                var action = asset.generateAction(packObject.getNamespace());
-                if (action != null)
-                    action.showGui(player);
+                new ItemAction(packObject).showGui(player);
             }
 
             @Override
@@ -78,7 +75,7 @@ public class BlockSetTemplate extends CustomTemplate {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateAction(packObject, SimpleBlockAsset.class).showGui(sender, event -> back(player));
+                    new TemplateAction(packObject, BlockAsset.class).showGui(sender, event -> back(player));
                 }, event -> back(player)), event -> back(player));
                 return true;
             }

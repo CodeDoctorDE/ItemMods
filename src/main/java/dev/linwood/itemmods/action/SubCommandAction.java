@@ -11,7 +11,7 @@ public interface SubCommandAction extends CommandAction {
     @Override
     default boolean handleCommand(CommandSender sender, String[] args) {
         if (args.length == 0 || Objects.equals(args[0], "help"))
-            sender.sendMessage(getTranslation("help"));
+            showHelp(sender);
         else if (!runAction(sender, args[0], Arrays.copyOfRange(args, 1, args.length)))
             sender.sendMessage(getTranslation("usage"));
         return true;
@@ -20,5 +20,12 @@ public interface SubCommandAction extends CommandAction {
     @Override
     default String[] tabComplete(CommandSender sender, String[] args) {
         return CommandAction.super.tabComplete(sender, args);
+    }
+
+    default void showHelp(CommandSender sender) {
+        if (sender.hasPermission("itemmods.use") || !hasTranslation("user-help"))
+            sender.sendMessage(getTranslation("help"));
+        else
+            sender.sendMessage(getTranslation("user-help"));
     }
 }

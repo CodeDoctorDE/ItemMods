@@ -10,8 +10,9 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
+import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.TemplateReadyPackAsset;
+import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -25,9 +26,9 @@ import java.util.function.Consumer;
 
 public class TemplateAction implements TranslationCommandAction {
     private final PackObject packObject;
-    private final Class<? extends TemplateReadyPackAsset> assetClass;
+    private final Class<? extends CustomPackAsset> assetClass;
 
-    public TemplateAction(PackObject packObject, Class<? extends TemplateReadyPackAsset> assetClass) {
+    public TemplateAction(PackObject packObject, Class<? extends CustomPackAsset> assetClass) {
         this.packObject = packObject;
         this.assetClass = assetClass;
     }
@@ -37,14 +38,14 @@ public class TemplateAction implements TranslationCommandAction {
     }
 
     public static boolean showChoose(CommandSender sender, String namespace, @NotNull Consumer<CustomTemplate> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        var t = ItemMods.subTranslation("choose.template", "gui");
+        var t = ItemMods.subTranslation("choose.template", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTemplates()
-                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon(namespace))
-                        .displayName("item").lore("action").build()) {{
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getTemplates()
+                .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getPreviewIcon())
+                        .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));
@@ -63,7 +64,7 @@ public class TemplateAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("template", "gui");
+        return ItemMods.subTranslation("template", "action", "gui");
     }
 
     public boolean showGui(CommandSender sender, @Nullable Consumer<InventoryClickEvent> backAction) {
@@ -71,16 +72,13 @@ public class TemplateAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var current = packObject.getAssetByType(assetClass);
-        if (!(current instanceof TemplateReadyPackAsset)) {
-            return false;
-        }
-        var asset = (TemplateReadyPackAsset) current;
-        var gui = new ListGui(getTranslationNamespace(), 4, listGui -> asset.getCustomTemplates().stream().map(customTemplateData ->
+        var asset = packObject.getAssetByType(assetClass);
+        assert asset != null;
+        var gui = new ListGui(getTranslationNamespace(), 4, listGui -> asset.getCustomData().stream().map(customTemplateData ->
                 new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getItemIcon(packObject, customTemplateData, asset)) {{
                     setClickAction(event -> {
                         if (event.getClick() == ClickType.DROP)
-                            asset.unregisterCustomTemplate(packObject);
+                            asset.unregisterCustomData(packObject);
                         else if (event.getClick() == ClickType.LEFT) {
                             var action = customTemplateData.getTemplate().generateItemAction(packObject, customTemplateData, asset);
                             if (action != null)
@@ -93,7 +91,7 @@ public class TemplateAction implements TranslationCommandAction {
             setBackAction(back);
             setCreateAction(event -> new PacksAction().showChoose(sender, itemModsPack -> TemplateAction
                     .showChoose(sender, itemModsPack.getName(), customTemplate -> {
-                        asset.registerCustomTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()));
+                        asset.registerCustomData(new PackObject(itemModsPack.getName(), customTemplate.getName()));
                         packObject.save();
                         gui.rebuild();
                         gui.show((Player) event.getWhoClicked());

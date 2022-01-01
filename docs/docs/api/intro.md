@@ -1,8 +1,8 @@
 ---
 title: "API"
 slug: "/api"
-sidebar_position: 0
 sidebar_label: "Home"
+sidebar_position: 0
 ---
 
 The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/ItemMods/lastStableBuild/)
@@ -21,7 +21,7 @@ The latest build can you find [here](https://ci.codemc.io/job/CodeDoctorDE/job/I
         <dependency>
             <groupId>dev.linwood</groupId>
             <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.1</version>
+            <version>2.0.0-alpha.2</version>
         </dependency>
     </dependencies>
   </project>

@@ -7,6 +7,7 @@ import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.ListGui;
 import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
+import dev.linwood.itemmods.pack.PackManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -18,9 +19,9 @@ public class InactivePacksAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) ->
-                ItemMods.getPackManager().getInactivePacks().stream().map(itemModsPack ->
+                PackManager.getInstance().getInactivePacks().stream().map(itemModsPack ->
                         new StaticItem(
-                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("action", itemModsPack.getName())).build()) {{
+                                new ItemStackBuilder(itemModsPack.getIcon()).addLore(getTranslation("actions", itemModsPack.getName())).build()) {{
                             setClickAction(event -> {
                                 activatePack(event.getWhoClicked(), itemModsPack.getName());
                                 listGui.rebuild();
@@ -35,10 +36,10 @@ public class InactivePacksAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("inactive-packs", "gui");
+        return ItemMods.subTranslation("inactive-packs", "action", "gui");
     }
 
     public void activatePack(CommandSender sender, String pack) {
-        ItemMods.getPackManager().activatePack(pack);
+        PackManager.getInstance().activatePack(pack);
     }
 }

@@ -29,7 +29,7 @@ public class LocalesAction implements TranslationCommandAction {
         var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> {
             try {
                 return ItemMods.getLocales().stream().map(s ->
-                        new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("item").lore("action").build()) {{
+                        new TranslatedGuiItem(new ItemStackBuilder(Material.PAPER).setDisplayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(s));
                             setClickAction(event -> {
                                 selectLocale(s);
@@ -49,6 +49,6 @@ public class LocalesAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("locales", "gui");
+        return ItemMods.subTranslation("locales", "action", "gui");
     }
 }

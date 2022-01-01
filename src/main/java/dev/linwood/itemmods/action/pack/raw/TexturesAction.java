@@ -10,7 +10,7 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.addon.simple.raw.SimpleTextureAsset;
+import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import org.bukkit.Material;
@@ -32,7 +32,7 @@ public class TexturesAction implements TranslationCommandAction {
 
     @Override
     public Translation getTranslationNamespace() {
-        return ItemMods.subTranslation("raw.textures", "gui");
+        return ItemMods.subTranslation("raw.textures", "action", "gui");
     }
 
     @Override
@@ -41,9 +41,9 @@ public class TexturesAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getTextures()
                 .stream().filter(textureAsset -> textureAsset.getName().contains(listGui.getSearchText())).map(textureAsset ->
-                        new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("action").build()) {{
+                        new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, textureAsset.getName()).toString()));
                             setClickAction(event -> openTexture(textureAsset.getName(), sender));
                         }}).toArray(GuiItem[]::new));
@@ -57,9 +57,9 @@ public class TexturesAction implements TranslationCommandAction {
                 gui.hide(p);
                 request.setSubmitAction(s -> {
                     try {
-                        var pack = ItemMods.getPackManager().getPack(namespace);
+                        var pack = PackManager.getInstance().getPack(namespace);
                         assert pack != null;
-                        pack.registerTexture(new SimpleTextureAsset(s));
+                        pack.registerTexture(new TextureAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -76,11 +76,8 @@ public class TexturesAction implements TranslationCommandAction {
     }
 
     private void openTexture(String name, CommandSender sender) {
-        var asset = new PackObject(namespace, name).getItem();
-        assert asset != null;
-        var action = asset.generateAction(namespace);
-        if (action != null)
-            action.showGui(sender);
+        var object = new PackObject(namespace, name);
+        new TextureAction(object).showGui(sender);
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action) {
@@ -88,14 +85,14 @@ public class TexturesAction implements TranslationCommandAction {
     }
 
     public void showChoose(CommandSender sender, @NotNull Consumer<TextureAsset> action, @Nullable Consumer<InventoryClickEvent> backAction) {
-        var t = ItemMods.subTranslation("choose.texture", "gui");
+        var t = ItemMods.subTranslation("choose.texture", "action", "gui");
         if (!(sender instanceof Player)) {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getTextures()
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getTextures()
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
-                        .displayName("item").lore("action").build()) {{
+                        .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
                     setClickAction(event -> action.accept(asset));
                 }}).toArray(GuiItem[]::new));

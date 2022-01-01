@@ -18,9 +18,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class CustomBlockManager {
+    private static CustomBlockManager instance;
 
-    private static @NotNull
-    String locationToString(final @Nullable Location location) {
+    private CustomBlockManager() {
+    }
+
+    public static CustomBlockManager getInstance() {
+        return instance == null ? instance = new CustomBlockManager() : instance;
+    }
+
+    private static @NotNull String locationToString(final @Nullable Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }
@@ -68,6 +75,7 @@ public class CustomBlockManager {
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
         block.setType(Material.SPAWNER);
+        CreatureSpawner spawner = (CreatureSpawner) block.getState();
         NBTTileEntity tent = new NBTTileEntity(block.getState());
         tent.setInteger("RequiredPlayerRange", 0);
         tent.setInteger("SpawnCount", 0);

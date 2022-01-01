@@ -22,12 +22,13 @@ import java.util.zip.ZipOutputStream;
  * @author CodeDoctorDE
  */
 public class PackManager {
+    private static @Nullable PackManager instance;
     private final @NotNull Path packPath;
     private final @NotNull Path presetPath;
     private final List<ItemModsPack> packs = new ArrayList<>();
     private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
-    public PackManager() {
+    private PackManager() {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
         presetPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "preset");
         try {
@@ -40,6 +41,10 @@ public class PackManager {
         }
 
         reload();
+    }
+
+    public static @NotNull PackManager getInstance() {
+        return instance == null ? instance = new PackManager() : instance;
     }
 
     private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {

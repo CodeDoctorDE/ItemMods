@@ -4,7 +4,7 @@ title: Støttet
 
 ## Serveren som støttes
 
-Prøvd på spigot, papir, fly og papir. Støttede versjoner er 1.14.4-1.17.1.
+Prøvd på spigot, papir, fly og papir. Supported versions are 1.14.4-1.18.1.
 
 ## Støttede plugins
 

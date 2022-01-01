@@ -16,4 +16,6 @@ public interface CommandAction {
     }
 
     String getTranslation(String key, Object... placeholders);
+
+    boolean hasTranslation(String key);
 }
