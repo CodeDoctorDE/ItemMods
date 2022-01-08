@@ -44,12 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build with Maven
-        run: mvn clean install javadoc:javadoc
+      - name: Build with Gradle
+        run: ./gradlew javadoc
       - uses: actions/upload-artifact@v2
         with:
           name: "JavaDoc-Snapshot"
-          path: "target/site/apidocs"
+          path: "build/docs/javadoc"
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
