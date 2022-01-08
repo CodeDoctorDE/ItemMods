@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
           java-version: 11
       - name: Build with Maven
-        run: ./gradlew clean build shadowJar
+        run: bash ./gradlew clean build shadowJar
       - uses: actions/upload-artifact@v2
         with:
           name: "ItemMods"

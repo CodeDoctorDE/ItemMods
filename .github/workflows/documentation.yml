@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build with Gradle
-        run: ./gradlew javadoc
+        run: bash ./gradlew javadoc
       - uses: actions/upload-artifact@v2
         with:
           name: "JavaDoc-Snapshot"
