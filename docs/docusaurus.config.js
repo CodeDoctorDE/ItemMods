@@ -121,19 +121,6 @@ module.exports = {
             },
         ],
     ],
-    plugins: [
-        [
-            '@docusaurus/plugin-content-docs',
-            {
-                id: 'foodmods',
-                path: 'foodmods',
-                routeBasePath: 'foodmods',
-                sidebarPath: require.resolve('./sidebarsFoodMods.js'),
-
-            },
-        ],
-
-    ],
     i18n: {
         defaultLocale: 'en',
         locales: ['en', 'de', 'fr', 'no', 'es', 'zh'],

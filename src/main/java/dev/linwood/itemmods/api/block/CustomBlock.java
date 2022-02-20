@@ -27,7 +27,8 @@ public class CustomBlock implements CustomElement<BlockAsset> {
         this(block.getLocation());
     }
 
-    public @Nullable BlockAsset getConfig() {
+    public @Nullable
+    BlockAsset getConfig() {
         var packObject = getPackObject();
         if (packObject == null)
             return null;
@@ -38,11 +39,13 @@ public class CustomBlock implements CustomElement<BlockAsset> {
         return location;
     }
 
-    private @NotNull String getType() {
+    private @NotNull
+    String getType() {
         return getString(TYPE_KEY);
     }
 
-    public @NotNull String getData() {
+    public @NotNull
+    String getData() {
         return getString(DATA_KEY);
     }
 
@@ -59,11 +62,13 @@ public class CustomBlock implements CustomElement<BlockAsset> {
         getBlock().breakNaturally();
     }
 
-    public @NotNull Block getBlock() {
+    public @NotNull
+    Block getBlock() {
         return location.getBlock();
     }
 
-    private @NotNull String getString(@NotNull NamespacedKey key) {
+    private @NotNull
+    String getString(@NotNull NamespacedKey key) {
         BlockState blockState = getBlock().getState();
         if (blockState instanceof TileState) {
             TileState tileState = (TileState) blockState;
@@ -88,7 +93,8 @@ public class CustomBlock implements CustomElement<BlockAsset> {
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 
-    public @Nullable PackObject getPackObject() {
+    public @Nullable
+    PackObject getPackObject() {
         var type = getType();
         if (type.equals(""))
             return null;

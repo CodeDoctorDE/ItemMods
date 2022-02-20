@@ -47,7 +47,8 @@ public abstract class RawAsset extends PackAsset {
         data.remove(variation);
     }
 
-    public @NotNull Set<String> getVariations() {
+    public @NotNull
+    Set<String> getVariations() {
         return data.keySet();
     }
 

@@ -14,13 +14,15 @@ import org.jetbrains.annotations.Nullable;
 public class CustomItem implements CustomElement<ItemAsset> {
     protected static final NamespacedKey TYPE_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_type");
     protected static final NamespacedKey DATA_KEY = new NamespacedKey(ItemMods.getPlugin(), "custom_item_data");
-    private final @NotNull ItemStack itemStack;
+    private final @NotNull
+    ItemStack itemStack;
 
     public CustomItem(@NotNull ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
-    public @Nullable ItemAsset getConfig() {
+    public @Nullable
+    ItemAsset getConfig() {
         var packObject = getPackObject();
         if (packObject == null)
             return null;
@@ -32,11 +34,13 @@ public class CustomItem implements CustomElement<ItemAsset> {
         setString(new NamespacedKey(ItemMods.getPlugin(), "data"), "");
     }
 
-    private @NotNull String getType() {
+    private @NotNull
+    String getType() {
         return getString(TYPE_KEY);
     }
 
-    public @NotNull String getData() {
+    public @NotNull
+    String getData() {
         return getString(DATA_KEY);
     }
 
@@ -44,7 +48,8 @@ public class CustomItem implements CustomElement<ItemAsset> {
         setString(DATA_KEY, data);
     }
 
-    private @NotNull String getString(@NotNull NamespacedKey key) {
+    private @NotNull
+    String getString(@NotNull NamespacedKey key) {
         ItemMeta itemMeta = itemStack.getItemMeta();
         assert itemMeta != null;
         return itemMeta.getPersistentDataContainer().getOrDefault(key, PersistentDataType.STRING, "");
@@ -57,7 +62,8 @@ public class CustomItem implements CustomElement<ItemAsset> {
         itemStack.setItemMeta(itemMeta);
     }
 
-    public @Nullable PackObject getPackObject() {
+    public @Nullable
+    PackObject getPackObject() {
         var type = getType();
         if (type.equals(""))
             return null;
@@ -65,7 +71,8 @@ public class CustomItem implements CustomElement<ItemAsset> {
     }
 
 
-    public @NotNull ItemStack getItemStack() {
+    public @NotNull
+    ItemStack getItemStack() {
         return itemStack;
     }
 }

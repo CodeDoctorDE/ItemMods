@@ -27,7 +27,8 @@ public class CustomItemManager {
         return new CustomItem(itemStack);
     }
 
-    public @Nullable CustomItem create(@NotNull PackObject packObject) {
+    public @Nullable
+    CustomItem create(@NotNull PackObject packObject) {
         var asset = packObject.getItem();
         if (asset == null || asset.getModelObject() == null)
             return null;

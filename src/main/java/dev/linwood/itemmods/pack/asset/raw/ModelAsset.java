@@ -17,8 +17,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.StreamSupport;
 
 public class ModelAsset extends RawAsset {
-    private @NotNull Material fallbackTexture = Material.STONE;
-    private @Nullable Integer staticModel = null;
+    private @NotNull
+    Material fallbackTexture = Material.STONE;
+    private @Nullable
+    Integer staticModel = null;
 
     public ModelAsset(@NotNull String name) {
         super(name);
@@ -45,7 +47,8 @@ public class ModelAsset extends RawAsset {
         return staticModel != null;
     }
 
-    public @Nullable Integer getStaticModel() {
+    public @Nullable
+    Integer getStaticModel() {
         return staticModel;
     }
 
@@ -53,7 +56,8 @@ public class ModelAsset extends RawAsset {
         this.staticModel = staticModel;
     }
 
-    public @NotNull Material getFallbackTexture() {
+    public @NotNull
+    Material getFallbackTexture() {
         return fallbackTexture;
     }
 

@@ -27,7 +27,8 @@ public class CustomBlockManager {
         return instance == null ? instance = new CustomBlockManager() : instance;
     }
 
-    private static @NotNull String locationToString(final @Nullable Location location) {
+    private static @NotNull
+    String locationToString(final @Nullable Location location) {
         if (location == null) return "";
         return Objects.requireNonNull(location.getWorld()).getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
     }

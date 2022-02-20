@@ -211,7 +211,7 @@ public class PackObject {
      * @param <T>        The type of the asset
      * @return Returns the custom generator or null if nothing found
      */
-    @SuppressWarnings ("unchecked")
+    @SuppressWarnings("unchecked")
     public @Nullable <T extends PackAsset> CustomGenerator<T> getGeneratorByType(Class<T> assetClass) {
         if (ItemAsset.class.isAssignableFrom(assetClass))
             return (CustomGenerator<T>) getItemGenerator();
