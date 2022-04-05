@@ -10,8 +10,8 @@ Testé sur broche, papier, avion et papier. Les versions supportées sont 1.14.4
 
 __Soutenu par l'auteur lui-même__
 
-* (Dépassé) :loudspeaker : [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (Dépassé) 🚀 [Générateur de minerai personnalisé](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+* (v2.0.0-alpha.2 or above is required) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (v2.0.0-alpha.2 or above is required) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
 __Soutenu par moi__
 

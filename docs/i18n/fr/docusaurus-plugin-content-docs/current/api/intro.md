@@ -1,7 +1,7 @@
 ---
 title: "API"
 slug: "/api"
-sidebar_label: "Home"
+sidebar_label: "Domicile"
 sidebar_position: 0
 ---
 
@@ -14,14 +14,14 @@ La dernière version peut vous permettre de trouver [ici](https://ci.codemc.io/j
     <repositories>
         <repository>
             <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <url>https://repo. odemc. rg/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev.linwood</groupId>
+            <groupId>dev. en bois</groupId>
             <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.2</version>
+            <version>2. .0-alpha.</version>
         </dependency>
     </dependencies>
   </project>

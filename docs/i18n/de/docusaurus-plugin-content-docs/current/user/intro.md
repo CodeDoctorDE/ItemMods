@@ -12,10 +12,10 @@ Willkommen im ItemMods Wiki! Benutzen Sie den Navigator, um zwischen den Seiten 
 
 ## Permissons
 
-- `itemmods.admin` for /itemmods commands
-- `itemmods.give` for /givecustomitem commands
+- `itemmods.admin` für /itemmods Befehle
+- `itemmods.give` für /givecustomitem Befehle
 
-## Resource Pages
+## Ressourcen-Seiten
 
 * [SpigotMC](https://www.spigotmc.org/resources/72461/)
 * [Polymart](https://polymart.org/resource/15)

@@ -1,7 +1,7 @@
 ---
 title: "API"
 slug: "/api"
-sidebar_label: "Home"
+sidebar_label: "首页"
 sidebar_position: 0
 ---
 
@@ -14,14 +14,14 @@ sidebar_position: 0
     <repositories>
         <repository>
             <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
+            <url>https://repo. odemc. rg/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>dev.linwood</groupId>
+            <groupId>dev. inwood</groupId>
             <artifactId>ItemMods</artifactId>
-            <version>2.0.0-alpha.2</version>
+            <version>2。 0-字母。</version>
         </dependency>
     </dependencies>
   </project>

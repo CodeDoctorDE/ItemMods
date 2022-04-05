@@ -17,7 +17,8 @@ title: Modelos personalizados
     * Si eliges internet, necesitas el enlace directo a json
         * Si lo eliges, por favor añade `.json` a la url, por ejemplo `https://example.com/YOURFILE.json`
 
-:::caution Necesitas exportar el paquete de recursos antes de tener un modelo personalizado. :::
+:::caution Necesitas exportar el paquete de recursos antes de tener un modelo personalizado.
+:::
 
 ## Ejemplos
 

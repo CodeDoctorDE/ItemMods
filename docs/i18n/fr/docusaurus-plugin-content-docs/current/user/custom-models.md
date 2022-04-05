@@ -17,7 +17,8 @@ title: Modèles personnalisés
     * Si vous choisissez Internet, vous avez besoin du lien direct vers le json
         * Si vous le choisissez, veuillez ajouter `.json` à l'url, par exemple `https://example.com/YOURFILE.json`
 
-:::caution Vous devez exporter le pack de ressources avant d'avoir un modèle personnalisé. :::
+:::caution Vous devez exporter le pack de ressources avant d'avoir un modèle personnalisé.
+:::
 
 ## Exemples
 

@@ -10,8 +10,8 @@ Getestet auf Spigot, Papier, Flugzeug und Papier. Unterstützte Versionen sind 1
 
 __Unterstützt vom Autor selbst__
 
-* (veraltet) 📢 [OreAnkündiger](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (veraltet) 🚀 [Eigener Erzgenerator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+* (v2.0.0-alpha.2 or above is required) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (v2.0.0-alpha.2 or above is required) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
 __Unterstützt von mir__
 
