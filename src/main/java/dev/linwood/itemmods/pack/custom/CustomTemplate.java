@@ -13,7 +13,7 @@ public abstract class CustomTemplate extends PackAsset {
         super(name);
     }
 
-    public @Nullable CommandAction generateItemAction(PackObject packObject, CustomData data, CustomPackAsset asset) {
+    public @Nullable CommandAction generateItemAction(PackObject packObject, TemplateData data) {
         return null;
     }
 
@@ -24,5 +24,5 @@ public abstract class CustomTemplate extends PackAsset {
 
     public abstract @NotNull ItemStack getPreviewIcon();
 
-    public abstract @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, CustomPackAsset asset);
+    public abstract @NotNull ItemStack getItemIcon(PackObject packObject, TemplateData data);
 }

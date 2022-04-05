@@ -4,16 +4,16 @@ import com.google.gson.JsonElement;
 import dev.linwood.itemmods.pack.PackObject;
 import org.jetbrains.annotations.Nullable;
 
-public class CustomData {
+public class TemplateData {
     private final PackObject object;
     private @Nullable JsonElement data;
 
-    public CustomData(PackObject object, @Nullable JsonElement data) {
+    public TemplateData(PackObject object, @Nullable JsonElement data) {
         this.object = object;
         this.data = data;
     }
 
-    public CustomData(PackObject object) {
+    public TemplateData(PackObject object) {
         this(object, null);
     }
 

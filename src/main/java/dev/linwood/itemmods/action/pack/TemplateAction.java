@@ -72,15 +72,15 @@ public class TemplateAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var asset = packObject.getAssetByType(assetClass);
+        var asset = packObject.getAsset(assetClass);
         assert asset != null;
-        var gui = new ListGui(getTranslationNamespace(), 4, listGui -> asset.getCustomData().stream().map(customTemplateData ->
-                new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getItemIcon(packObject, customTemplateData, asset)) {{
+        var gui = new ListGui(getTranslationNamespace(), 4, listGui -> asset.getTemplates().stream().map(customTemplateData ->
+                new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getItemIcon(packObject, customTemplateData)) {{
                     setClickAction(event -> {
                         if (event.getClick() == ClickType.DROP)
-                            asset.unregisterCustomData(packObject);
+                            asset.unregisterTemplate(packObject);
                         else if (event.getClick() == ClickType.LEFT) {
-                            var action = customTemplateData.getTemplate().generateItemAction(packObject, customTemplateData, asset);
+                            var action = customTemplateData.getTemplate().generateItemAction(packObject, customTemplateData);
                             if (action != null)
                                 action.showGui(event.getWhoClicked());
                         }
@@ -91,7 +91,7 @@ public class TemplateAction implements TranslationCommandAction {
             setBackAction(back);
             setCreateAction(event -> new PacksAction().showChoose(sender, itemModsPack -> TemplateAction
                     .showChoose(sender, itemModsPack.getName(), customTemplate -> {
-                        asset.registerCustomData(new PackObject(itemModsPack.getName(), customTemplate.getName()));
+                        asset.registerTemplate(new PackObject(itemModsPack.getName(), customTemplate.getName()));
                         packObject.save();
                         gui.rebuild();
                         gui.show((Player) event.getWhoClicked());

@@ -1,11 +1,9 @@
 package dev.linwood.itemmods.pack;
 
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
-import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomGenerator;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.NamespacedKey;
@@ -87,18 +85,6 @@ public class PackObject {
         return PackManager.getInstance().getPack(namespace);
     }
 
-    /**
-     * Returns an item asset that can be found with this namespace and name
-     *
-     * @return An item asset or null if it does not exist
-     */
-    @Nullable
-    public ItemAsset getItem() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getItem(name);
-    }
 
     /**
      * Returns a block asset that can be found with this namespace and name
@@ -106,19 +92,14 @@ public class PackObject {
      * @return A block asset or null if it does not exist
      */
     @Nullable
-    public BlockAsset getBlock() {
+    public <T extends PackAsset> T getAsset(Class<T> type) {
         var pack = getPack();
         if (pack == null)
             return null;
-        return pack.getBlock(name);
+        return pack.getAsset(type, name);
     }
 
-    /**
-     * Returns a template that can be found with this namespace and name
-     *
-     * @return A template or null if it does not exist
-     */
-    @Nullable
+
     public CustomTemplate getTemplate() {
         var pack = getPack();
         if (pack == null)
@@ -126,30 +107,12 @@ public class PackObject {
         return pack.getTemplate(name);
     }
 
-    /**
-     * Returns a generator that can be found with this namespace and name
-     *
-     * @return A generator or null if it does not exist
-     */
     @Nullable
-    public ModelAsset getModel() {
+    public <T extends CustomPackAsset> CustomGenerator<T> getGenerator(Class<T> type) {
         var pack = getPack();
         if (pack == null)
             return null;
-        return pack.getModel(name);
-    }
-
-    /**
-     * Returns a texture asset that can be found with this namespace and name
-     *
-     * @return A texture asset or null if it does not exist
-     */
-    @Nullable
-    public TextureAsset getTexture() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getTexture(name);
+        return pack.getGenerator(type, name);
     }
 
     /**
@@ -160,7 +123,7 @@ public class PackObject {
      * @return A custom model or null if it does not exist
      */
     public @Nullable Integer getCustomModel() {
-        var asset = getModel();
+        var asset = getAsset(ModelAsset.class);
         assert asset != null;
         if (asset.getStaticModel() != null)
             return asset.getStaticModel();
@@ -183,93 +146,4 @@ public class PackObject {
     public @NotNull String toString() {
         return namespace + ":" + name;
     }
-
-    /**
-     * Get the asset by the class
-     *
-     * @param assetClass The class of the searched asset
-     * @return Returns null if nothing found or the asset
-     */
-    public @Nullable <T extends PackAsset> T getAssetByType(Class<T> assetClass) {
-        if (ItemAsset.class.isAssignableFrom(assetClass))
-            return assetClass.cast(getItem());
-        if (BlockAsset.class.isAssignableFrom(assetClass))
-            return assetClass.cast(getBlock());
-        if (CustomTemplate.class.isAssignableFrom(assetClass))
-            return assetClass.cast(getTemplate());
-        if (ModelAsset.class.isAssignableFrom(assetClass))
-            return assetClass.cast(getModel());
-        if (TextureAsset.class.isAssignableFrom(assetClass))
-            return assetClass.cast(getTexture());
-        return null;
-    }
-
-    /**
-     * Get the custom generator by the asset class.
-     *
-     * @param assetClass The class of the searched asset
-     * @param <T>        The type of the asset
-     * @return Returns the custom generator or null if nothing found
-     */
-    @SuppressWarnings("unchecked")
-    public @Nullable <T extends PackAsset> CustomGenerator<T> getGeneratorByType(Class<T> assetClass) {
-        if (ItemAsset.class.isAssignableFrom(assetClass))
-            return (CustomGenerator<T>) getItemGenerator();
-        if (BlockAsset.class.isAssignableFrom(assetClass))
-            return (CustomGenerator<T>) getBlockGenerator();
-        if (ModelAsset.class.isAssignableFrom(assetClass))
-            return (CustomGenerator<T>) getModelGenerator();
-        if (TextureAsset.class.isAssignableFrom(assetClass))
-            return (CustomGenerator<T>) getTextureGenerator();
-        return null;
-    }
-
-    /**
-     * Returns an item asset generator that can be found with this namespace and name
-     *
-     * @return An item asset generator or null if it does not exist
-     */
-    public @Nullable CustomGenerator<ItemAsset> getItemGenerator() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getItemGenerator(name);
-    }
-
-    /**
-     * Returns a block asset generator that can be found with this namespace and name
-     *
-     * @return A block asset generator or null if it does not exist
-     */
-    public @Nullable CustomGenerator<BlockAsset> getBlockGenerator() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getBlockGenerator(name);
-    }
-
-    /**
-     * Returns a model asset generator that can be found with this namespace and name
-     *
-     * @return A model asset generator or null if it does not exist
-     */
-    public @Nullable CustomGenerator<TextureAsset> getTextureGenerator() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getTextureGenerator(name);
-    }
-
-    /**
-     * Returns a model asset generator that can be found with this namespace and name
-     *
-     * @return A model asset generator or null if it does not exist
-     */
-    public @Nullable CustomGenerator<ModelAsset> getModelGenerator() {
-        var pack = getPack();
-        if (pack == null)
-            return null;
-        return pack.getModelGenerator(name);
-    }
-
 }

@@ -43,7 +43,7 @@ public class CustomBlockManager {
 
     public BlockAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
-        return packObject.getBlock();
+        return packObject.getAsset(BlockAsset.class);
     }
 
     public CustomBlock fromLocation(Location location) {
@@ -64,7 +64,7 @@ public class CustomBlockManager {
         var customBlock = new CustomBlock(location);
         if (customBlock.getConfig() != null)
             return null;
-        var asset = packObject.getBlock();
+        var asset = packObject.getAsset(BlockAsset.class);
         if (location.getBlock().getType().isSolid() || asset == null)
             return null;
         var model = asset.getModel();

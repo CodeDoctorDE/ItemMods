@@ -12,7 +12,7 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
-import dev.linwood.itemmods.pack.custom.CustomData;
+import dev.linwood.itemmods.pack.custom.TemplateData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -38,7 +38,7 @@ public class CubitBlockModel extends ModelAsset {
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).build();
     }
 
-    public @Nullable Map<String, PackObject> getTextures(CustomData data) {
+    public @Nullable Map<String, PackObject> getTextures(TemplateData data) {
         if (data.getData() == null)
             return null;
         var textures = new HashMap<String, PackObject>();
@@ -46,7 +46,7 @@ public class CubitBlockModel extends ModelAsset {
         return textures;
     }
 
-    public void setTextures(CustomData data, @Nullable Map<String, PackObject> textures) {
+    public void setTextures(TemplateData data, @Nullable Map<String, PackObject> textures) {
         if (textures == null)
             data.setData(JsonNull.INSTANCE);
         else {
@@ -56,7 +56,7 @@ public class CubitBlockModel extends ModelAsset {
         }
     }
 
-    public ListGui createGui(CustomData data) {
+    public ListGui createGui(TemplateData data) {
         var loadedTextures = getTextures(data);
         if (loadedTextures == null)
             loadedTextures = new HashMap<>();

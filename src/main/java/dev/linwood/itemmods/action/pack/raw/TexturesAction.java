@@ -41,7 +41,7 @@ public class TexturesAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getTextures()
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getAssets(TextureAsset.class)
                 .stream().filter(textureAsset -> textureAsset.getName().contains(listGui.getSearchText())).map(textureAsset ->
                         new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, textureAsset.getName()).toString()));
@@ -59,7 +59,7 @@ public class TexturesAction implements TranslationCommandAction {
                     try {
                         var pack = PackManager.getInstance().getPack(namespace);
                         assert pack != null;
-                        pack.registerTexture(new TextureAsset(s));
+                        pack.register(new TextureAsset(s));
                         new PackObject(namespace, s).save();
                         p.sendMessage(getTranslation("create.success", s));
                         gui.rebuild();
@@ -90,7 +90,7 @@ public class TexturesAction implements TranslationCommandAction {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getTextures()
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getAssets(TextureAsset.class)
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(Material.ITEM_FRAME)
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

@@ -39,7 +39,7 @@ public class TextureAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = packObject.getTexture();
+        var asset = packObject.getAsset(TextureAsset.class);
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(TextureTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
@@ -90,7 +90,7 @@ public class TextureAction implements TranslationCommandAction {
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
-                                    Objects.requireNonNull(packObject.getPack()).unregisterTexture(asset.getName());
+                                    Objects.requireNonNull(packObject.getPack()).unregister(asset.getName());
                                     new TexturesAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{

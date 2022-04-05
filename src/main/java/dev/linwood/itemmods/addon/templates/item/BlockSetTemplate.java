@@ -14,8 +14,8 @@ import dev.linwood.itemmods.action.pack.TemplateAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.CustomPackAsset;
-import dev.linwood.itemmods.pack.custom.CustomData;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
+import dev.linwood.itemmods.pack.custom.TemplateData;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -34,7 +34,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getItemIcon(PackObject packObject, CustomData data, CustomPackAsset asset) {
+    public @NotNull ItemStack getItemIcon(PackObject packObject, TemplateData data) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
@@ -53,7 +53,7 @@ public class BlockSetTemplate extends CustomTemplate {
 
 
     @Override
-    public @Nullable CommandAction generateItemAction(PackObject packObject, CustomData data, CustomPackAsset asset) {
+    public @Nullable CommandAction generateItemAction(PackObject packObject, TemplateData data) {
         return new TranslationCommandAction() {
             @Override
             public Translation getTranslationNamespace() {
@@ -83,13 +83,13 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
 
-    public @Nullable PackObject getBlock(CustomData data) {
+    public @Nullable PackObject getBlock(TemplateData data) {
         if (data.getData() == null)
             return null;
         return new PackObject(data.getData().getAsString());
     }
 
-    public void setBlock(CustomData data, @Nullable PackObject packObject) {
+    public void setBlock(TemplateData data, @Nullable PackObject packObject) {
         if (packObject == null)
             data.setData(JsonNull.INSTANCE);
         else

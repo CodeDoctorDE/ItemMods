@@ -6,7 +6,9 @@ import com.google.gson.JsonPrimitive;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
+import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.PackAsset;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import dev.linwood.itemmods.pack.asset.raw.TextureAsset;
 import dev.linwood.itemmods.pack.custom.CustomGenerator;
@@ -14,9 +16,9 @@ import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,22 +27,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static dev.linwood.itemmods.ItemMods.GSON;
 
 public class ItemModsPack implements NamedPackObject {
     public static final Pattern NAME_PATTERN = Pattern.compile("^[a-z_\\-]+$");
     private final boolean editable;
-    private final List<CustomGenerator<ItemAsset>> itemGenerators = new ArrayList<>();
-    private final List<ItemAsset> items = new ArrayList<>();
-    private final List<CustomGenerator<BlockAsset>> blockGenerators = new ArrayList<>();
-    private final List<BlockAsset> blocks = new ArrayList<>();
     private final List<String> dependencies = new ArrayList<>();
-    private final List<CustomTemplate> templates = new ArrayList<>();
-    private final List<CustomGenerator<TextureAsset>> textureGenerators = new ArrayList<>();
-    private final List<TextureAsset> textures = new ArrayList<>();
-    private final List<CustomGenerator<ModelAsset>> modelGenerators = new ArrayList<>();
-    private final List<ModelAsset> models = new ArrayList<>();
+    private final List<PackAsset> assets = new ArrayList<>();
     private String name;
     private @NotNull Material icon = Material.GRASS_BLOCK;
     private String description = "";
@@ -65,9 +60,8 @@ public class ItemModsPack implements NamedPackObject {
         var itemsPath = Paths.get(path.toString(), "items");
         Files.walk(itemsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                var fileName = FileUtils.getFileName(itemsPath.relativize(current));
-                items.add(new ItemAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
-            } catch (IOException e) {
+                registerFile(current, ItemAsset.class);
+            } catch (IOException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         });
@@ -75,9 +69,8 @@ public class ItemModsPack implements NamedPackObject {
         var blocksPath = Paths.get(path.toString(), "blocks");
         Files.walk(blocksPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                var fileName = FileUtils.getFileName(blocksPath.relativize(current));
-                blocks.add(new BlockAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
-            } catch (IOException e) {
+                registerFile(current, BlockAsset.class);
+            } catch (IOException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         });
@@ -85,9 +78,8 @@ public class ItemModsPack implements NamedPackObject {
         var modelsPath = Paths.get(path.toString(), "models");
         Files.walk(modelsPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                var fileName = FileUtils.getFileName(modelsPath.relativize(current));
-                models.add(new ModelAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
-            } catch (IOException e) {
+                registerFile(current, ModelAsset.class);
+            } catch (IOException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         });
@@ -95,12 +87,26 @@ public class ItemModsPack implements NamedPackObject {
         var texturesPath = Paths.get(path.toString(), "textures");
         Files.walk(texturesPath).filter(Files::isRegularFile).forEach(current -> {
             try {
-                var fileName = FileUtils.getFileName(texturesPath.relativize(current));
-                textures.add(new TextureAsset(fileName, GSON.fromJson(Files.readString(current), JsonObject.class)));
-            } catch (IOException e) {
+                registerFile(current, TextureAsset.class);
+            } catch (IOException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    private <T extends PackAsset> void registerFile(@NotNull Path path, @NotNull Class<T> type) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        var fileName = FileUtils.getFileName(path);
+        var asset = type.getConstructor(String.class, JsonObject.class).newInstance(fileName, GSON.fromJson(Files.readString(path), JsonObject.class));
+        register(asset);
+    }
+
+    public <T extends PackAsset> void register(T asset) {
+        if (PackObject.NAME_PATTERN.matcher(asset.getName()).matches())
+            assets.add(asset);
+    }
+
+    public void unregister(String name) {
+        assets.removeIf(asset -> asset.getName().equals(name));
     }
 
     @Override
@@ -127,117 +133,26 @@ public class ItemModsPack implements NamedPackObject {
         dependencies.removeIf(dependency -> dependency.equals(name));
     }
 
-    public @NotNull List<ItemAsset> getItems() {
-        return Collections.unmodifiableList(items);
+    public List<PackAsset> getAssets() {
+        return Collections.unmodifiableList(assets);
     }
 
-    public void registerItem(@NotNull ItemAsset itemAsset) {
-        if (PackObject.NAME_PATTERN.matcher(itemAsset.getName()).matches())
-            items.add(itemAsset);
+    public <T extends PackAsset> List<? extends T> getAssets(Class<T> type) {
+        return assets.stream().filter(type::isInstance).map(type::cast).collect(Collectors.toList());
     }
 
-    public void unregisterItem(String name) {
-        items.removeIf(itemAsset -> itemAsset.getName().equals(name));
+    public @NotNull List<? extends CustomTemplate> getTemplates() {
+        return getAssets(CustomTemplate.class);
     }
 
-    public @NotNull List<BlockAsset> getBlocks() {
-        return Collections.unmodifiableList(blocks);
+    public @NotNull <T extends CustomPackAsset> List<CustomGenerator<T>> getGenerators(@NotNull Class<T> type) {
+        //noinspection unchecked
+        return (List<CustomGenerator<T>>) getAssets(CustomGenerator.class);
     }
 
-    public void registerBlock(@NotNull BlockAsset blockAsset) {
-        if (PackObject.NAME_PATTERN.matcher(blockAsset.getName()).matches())
-            blocks.add(blockAsset);
-    }
-
-    public void unregisterBlock(String name) {
-        blocks.removeIf(blockAsset -> blockAsset.getName().equals(name));
-    }
-
-    public @NotNull List<TextureAsset> getTextures() {
-        return Collections.unmodifiableList(textures);
-    }
-
-    public void registerTexture(@NotNull TextureAsset textureAsset) {
-        if (PackObject.NAME_PATTERN.matcher(textureAsset.getName()).matches())
-            textures.add(textureAsset);
-    }
-
-    public void unregisterTexture(String name) {
-        textures.removeIf(textureAsset -> textureAsset.getName().equals(name));
-    }
-
-    public @NotNull List<ModelAsset> getModels() {
-        return Collections.unmodifiableList(models);
-    }
-
-    public void registerModel(@NotNull ModelAsset modelAsset) {
-        if (PackObject.NAME_PATTERN.matcher(modelAsset.getName()).matches())
-            models.add(modelAsset);
-    }
-
-    public void unregisterModel(String name) {
-        models.removeIf(modelAsset -> modelAsset.getName().equals(name));
-    }
-
-    public @NotNull List<CustomTemplate> getTemplates() {
-        return Collections.unmodifiableList(templates);
-    }
-
-    public void registerTemplate(@NotNull CustomTemplate customTemplate) {
-        if (PackObject.NAME_PATTERN.matcher(customTemplate.getName()).matches())
-            templates.add(customTemplate);
-    }
-
-    public void unregisterTemplate(String name) {
-        templates.removeIf(templateAsset -> templateAsset.getName().equals(name));
-    }
-
-    public @NotNull List<CustomGenerator<ItemAsset>> getItemGenerators() {
-        return Collections.unmodifiableList(itemGenerators);
-    }
-
-    public void registerItemGenerator(@NotNull CustomGenerator<ItemAsset> generator) {
-        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
-            itemGenerators.add(generator);
-    }
-
-    public void unregisterItemGenerator(String name) {
-        itemGenerators.removeIf(generator -> generator.getName().equals(name));
-    }
-
-    public @NotNull List<CustomGenerator<BlockAsset>> getBlockGenerators() {
-        return Collections.unmodifiableList(blockGenerators);
-    }
-
-    public void registerBlockGenerator(@NotNull CustomGenerator<BlockAsset> generator) {
-        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
-            blockGenerators.add(generator);
-    }
-
-    public void unregisterBlockGenerator(String name) {
-        blockGenerators.removeIf(generator -> generator.getName().equals(name));
-    }
-
-    public @NotNull List<CustomGenerator<TextureAsset>> getTextureGenerators() {
-        return Collections.unmodifiableList(textureGenerators);
-    }
-
-    public void registerModelGenerator(@NotNull CustomGenerator<ModelAsset> generator) {
-        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
-            modelGenerators.add(generator);
-    }
-
-    public void unregisterModelGenerator(String name) {
-        modelGenerators.removeIf(generator -> generator.getName().equals(name));
-    }
-
-    public void registerTextureGenerator(@NotNull CustomGenerator<TextureAsset> generator) {
-        if (PackObject.NAME_PATTERN.matcher(generator.getName()).matches())
-            textureGenerators.add(generator);
-    }
-
-    public void unregisterTextureGenerator(String name) {
-        textureGenerators.removeIf(generator -> generator.getName().equals(name));
+    public @NotNull List<CustomGenerator<?>> getGenerators() {
+        //noinspection unchecked
+        return (List<CustomGenerator<?>>) getAssets(CustomGenerator.class);
     }
 
     public String getDescription() {
@@ -260,46 +175,6 @@ public class ItemModsPack implements NamedPackObject {
         this.icon = icon;
     }
 
-    @Nullable
-    public BlockAsset getBlock(String name) {
-        return blocks.stream().filter(blockAsset -> blockAsset.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public ItemAsset getItem(String name) {
-        return items.stream().filter(packItem -> packItem.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public ModelAsset getModel(String name) {
-        return models.stream().filter(modelAsset -> modelAsset.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public TextureAsset getTexture(String name) {
-        return textures.stream().filter(textureAsset -> textureAsset.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public CustomGenerator<ItemAsset> getItemGenerator(String name) {
-        return itemGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public CustomGenerator<BlockAsset> getBlockGenerator(String name) {
-        return blockGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public CustomGenerator<ModelAsset> getModelGenerator(String name) {
-        return modelGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public CustomGenerator<TextureAsset> getTextureGenerator(String name) {
-        return textureGenerators.stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
-    }
-
     void save(@NotNull Path path) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("icon", new JsonPrimitive(icon.name()));
@@ -312,7 +187,7 @@ public class ItemModsPack implements NamedPackObject {
         var itemsDir = Paths.get(path.toString(), "items");
         if (!Files.exists(itemsDir))
             Files.createDirectories(itemsDir);
-        items.forEach(itemAsset -> {
+        getAssets(ItemAsset.class).forEach(itemAsset -> {
             var current = itemAsset.save(getName());
             try {
                 var currentPath = Paths.get(itemsDir.toString(), itemAsset.getName() + ".json");
@@ -326,7 +201,7 @@ public class ItemModsPack implements NamedPackObject {
         var blocksDir = Paths.get(path.toString(), "blocks");
         if (!Files.exists(blocksDir))
             Files.createDirectories(blocksDir);
-        blocks.forEach(blockAsset -> {
+        getAssets(BlockAsset.class).forEach(blockAsset -> {
             var current = blockAsset.save(getName());
             try {
                 var currentPath = Paths.get(blocksDir.toString(), blockAsset.getName() + ".json");
@@ -340,7 +215,7 @@ public class ItemModsPack implements NamedPackObject {
         var texturesDir = Paths.get(path.toString(), "textures");
         if (!Files.exists(texturesDir))
             Files.createDirectories(texturesDir);
-        textures.forEach(textureAsset -> {
+        getAssets(TextureAsset.class).forEach(textureAsset -> {
             var current = textureAsset.save(getName());
             try {
                 var currentPath = Paths.get(texturesDir.toString(), textureAsset.getName() + ".json");
@@ -354,7 +229,7 @@ public class ItemModsPack implements NamedPackObject {
         var modelsDir = Paths.get(path.toString(), "models");
         if (!Files.exists(modelsDir))
             Files.createDirectories(modelsDir);
-        models.forEach(modelAsset -> {
+        getAssets(ModelAsset.class).forEach(modelAsset -> {
             var current = modelAsset.save(getName());
             try {
                 var currentPath = Paths.get(modelsDir.toString(), modelAsset.getName() + ".json");
@@ -367,11 +242,28 @@ public class ItemModsPack implements NamedPackObject {
     }
 
     public void export(String variation, int packFormat, @NotNull Path path) throws IOException {
-        for (ModelAsset model : models) model.export(getName(), variation, packFormat, path);
-        for (TextureAsset texture : textures) texture.export(getName(), variation, packFormat, path);
+        for (ModelAsset model : getAssets(ModelAsset.class)) model.export(getName(), variation, packFormat, path);
+        for (TextureAsset texture : getAssets(TextureAsset.class))
+            texture.export(getName(), variation, packFormat, path);
+    }
+
+    public PackAsset getAsset(String name) {
+        return getAssets().stream().filter(asset -> asset.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public <T extends PackAsset> T getAsset(@NotNull Class<T> type, @NotNull String name) {
+        return getAssets(type).stream().filter(asset -> asset.getName().equals(name)).findFirst().orElse(null);
     }
 
     public CustomTemplate getTemplate(String name) {
-        return templates.stream().filter(template -> template.getName().equals(name)).findFirst().orElse(null);
+        return getTemplates().stream().filter(template -> template.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public CustomGenerator<?> getGenerator(String name) {
+        return getGenerators().stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public <T extends CustomPackAsset> CustomGenerator<T> getGenerator(Class<T> type, String name) {
+        return getGenerators(type).stream().filter(generator -> generator.getName().equals(name)).findFirst().orElse(null);
     }
 }

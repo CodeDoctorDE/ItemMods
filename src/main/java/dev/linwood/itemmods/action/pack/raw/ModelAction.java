@@ -40,7 +40,7 @@ public class ModelAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = packObject.getModel();
+        var asset = packObject.getAsset(ModelAsset.class);
         assert asset != null;
         var placeholder = new StaticItem(new ItemStackBuilder(Material.BLACK_STAINED_GLASS_PANE).displayName(" ").build());
         Arrays.stream(ModelTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
@@ -99,7 +99,7 @@ public class ModelAction implements TranslationCommandAction {
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
-                                    Objects.requireNonNull(packObject.getPack()).unregisterModel(asset.getName());
+                                    Objects.requireNonNull(packObject.getPack()).unregister(asset.getName());
                                     new ModelsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{

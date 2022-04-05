@@ -26,7 +26,7 @@ public class CustomItem implements CustomElement<ItemAsset> {
         var packObject = getPackObject();
         if (packObject == null)
             return null;
-        return packObject.getItem();
+        return packObject.getAsset(ItemAsset.class);
     }
 
     @Override

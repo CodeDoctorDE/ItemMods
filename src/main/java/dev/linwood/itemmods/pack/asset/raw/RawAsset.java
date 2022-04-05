@@ -1,7 +1,7 @@
 package dev.linwood.itemmods.pack.asset.raw;
 
 import com.google.gson.JsonObject;
-import dev.linwood.itemmods.pack.asset.PackAsset;
+import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class RawAsset extends PackAsset {
+public abstract class RawAsset extends CustomPackAsset {
     protected final Map<String, byte[]> data = new HashMap<>();
 
     public RawAsset(@NotNull String name) {

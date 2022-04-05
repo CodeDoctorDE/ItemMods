@@ -20,6 +20,6 @@ public class BaseAddon extends ItemModsPack {
         super("itemmods", false);
         setIcon(Material.EMERALD_ORE);
         setDescription(addonTranslation.getTranslation("description"));
-        registerTemplate(new BlockSetTemplate());
+        register(new BlockSetTemplate());
     }
 }

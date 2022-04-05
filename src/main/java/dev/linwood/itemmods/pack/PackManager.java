@@ -149,24 +149,24 @@ public class PackManager {
     }
 
     public void deletePack(String name) {
-        packs.stream().filter(itemModsPack -> itemModsPack.getName().equals(name)).collect(Collectors.toList()).forEach(itemModsPack -> {
-            packs.remove(itemModsPack);
-            if (itemModsPack.isEditable()) {
-                var rootPath = Paths.get(packPath.toString(), itemModsPack.getName());
-                try (Stream<Path> walk = Files.walk(rootPath)) {
-                    walk.sorted(Comparator.reverseOrder())
-                            .forEach((path) -> {
-                                try {
-                                    Files.delete(path);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        var pack = getPack(name);
+        if (pack == null) return;
+        packs.remove(pack);
+        if (pack.isEditable()) {
+            var rootPath = Paths.get(packPath.toString(), pack.getName());
+            try (Stream<Path> walk = Files.walk(rootPath)) {
+                walk.sorted(Comparator.reverseOrder())
+                        .forEach((path) -> {
+                            try {
+                                Files.delete(path);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
+        }
     }
 
     public @NotNull Path getPackPath() {

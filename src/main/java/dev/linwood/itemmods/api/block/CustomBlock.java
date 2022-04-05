@@ -32,7 +32,7 @@ public class CustomBlock implements CustomElement<BlockAsset> {
         var packObject = getPackObject();
         if (packObject == null)
             return null;
-        return packObject.getBlock();
+        return packObject.getAsset(BlockAsset.class);
     }
 
     public Location getLocation() {

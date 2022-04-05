@@ -3,15 +3,15 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.custom.CustomData;
+import dev.linwood.itemmods.pack.custom.TemplateData;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class CustomPackAsset extends PackAsset {
-    private final List<CustomData> customData = new ArrayList<>();
+public abstract class CustomPackAsset extends CustomNamedAsset {
+    private final List<TemplateData> templates = new ArrayList<>();
 
 
     public CustomPackAsset(@NotNull String name) {
@@ -23,44 +23,44 @@ public abstract class CustomPackAsset extends PackAsset {
         jsonObject.getAsJsonArray("templates").forEach(o -> {
             var current = o.getAsJsonObject();
             try {
-                registerCustomData(new CustomData(new PackObject(current.get("object").getAsString()), current.get("data")));
+                registerTemplate(new TemplateData(new PackObject(current.get("object").getAsString()), current.get("data")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public @NotNull List<CustomData> getCustomData() {
-        return Collections.unmodifiableList(customData);
+    public @NotNull List<TemplateData> getTemplates() {
+        return Collections.unmodifiableList(templates);
     }
 
-    public void registerCustomData(CustomData data) {
-        customData.add(data);
+    public void registerTemplate(TemplateData data) {
+        templates.add(data);
     }
 
-    public void registerCustomData(PackObject template) {
-        customData.add(new CustomData(template));
+    public void registerTemplate(PackObject template) {
+        templates.add(new TemplateData(template));
     }
 
-    public void unregisterCustomData(int index) {
-        customData.remove(index);
+    public void unregisterTemplate(int index) {
+        templates.remove(index);
     }
 
-    public void unregisterCustomData(PackObject packObject) {
-        customData.removeIf(customTemplateData -> customTemplateData.getObject().equals(packObject));
+    public void unregisterTemplate(PackObject packObject) {
+        templates.removeIf(customTemplateData -> customTemplateData.getObject().equals(packObject));
     }
 
     @Override
     public JsonObject save(String namespace) {
         var jsonObject = super.save(namespace);
-        var customDataArray = new JsonArray();
-        customData.stream().map(customTemplateData -> {
+        var templatesArray = new JsonArray();
+        templates.stream().map(customTemplateData -> {
             JsonObject current = new JsonObject();
             current.add("data", customTemplateData.getData());
             current.addProperty("object", customTemplateData.getObject().toString());
             return current;
-        }).forEach(customDataArray::add);
-        jsonObject.add("templates", customDataArray);
+        }).forEach(templatesArray::add);
+        jsonObject.add("templates", templatesArray);
         return jsonObject;
     }
 }

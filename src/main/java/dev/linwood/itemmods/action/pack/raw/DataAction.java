@@ -52,7 +52,7 @@ public class DataAction implements TranslationCommandAction {
             return true;
         }
         var gui = new ListGui(getTranslationNamespace(), 4);
-        var current = packObject.getAssetByType(assetClass);
+        var current = packObject.getAsset(assetClass);
         assert current != null;
         gui.setPlaceholders(new PackObject(packObject.getNamespace(), current.getName()).toString());
         gui.setItemBuilder((listGui) -> new ArrayList<>(current.getVariations()) {{
@@ -97,7 +97,7 @@ public class DataAction implements TranslationCommandAction {
     }
 
     void create(@NotNull Player player, String variation, Runnable action) {
-        var asset = packObject.getAssetByType(assetClass);
+        var asset = packObject.getAsset(assetClass);
         assert asset != null;
         var gui = new TranslatedChestGui(ItemMods.subTranslation("raw.data.create.gui"), 4);
         gui.setPlaceholders(asset.getName());

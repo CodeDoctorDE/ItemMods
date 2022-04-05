@@ -5,7 +5,7 @@ import dev.linwood.itemmods.pack.TranslatableName;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class CustomNamedAsset extends CustomPackAsset {
+public abstract class CustomNamedAsset extends PackAsset {
     private @Nullable TranslatableName displayName;
 
     public CustomNamedAsset(@NotNull String name) {

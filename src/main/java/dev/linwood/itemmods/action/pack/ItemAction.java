@@ -16,6 +16,7 @@ import dev.linwood.itemmods.action.pack.raw.ModelsAction;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
+import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -45,7 +46,7 @@ public class ItemAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var asset = packObject.getItem();
+        var asset = packObject.getAsset(ItemAsset.class);
         assert asset != null;
         var placeholder = new StaticItem(ItemStackBuilder.placeholder().build());
         Arrays.stream(ItemTab.values()).map(value -> new TranslatedChestGui(getTranslationNamespace(), 4) {{
@@ -115,10 +116,10 @@ public class ItemAction implements TranslationCommandAction {
                             var p = (Player) event.getWhoClicked();
                             var modelObject = asset.getModelObject();
                             if (modelObject == null && event.getClick() == ClickType.SHIFT_LEFT)
-                                if (packObject.getPack().getModel(packObject.getName()) != null)
+                                if (packObject.getPack().getAsset(ModelAsset.class, packObject.getName()) != null)
                                     event.getWhoClicked().sendMessage(ItemAction.this.getTranslation("model.exist"));
                                 else {
-                                    pack.registerItem(new ItemAsset(pack.getName()));
+                                    pack.register(new ItemAsset(pack.getName()));
                                     reloadAll();
                                 }
                             if (modelObject == null || event.getClick() == ClickType.RIGHT)
@@ -151,7 +152,7 @@ public class ItemAction implements TranslationCommandAction {
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
-                                    Objects.requireNonNull(packObject.getPack()).unregisterItem(asset.getName());
+                                    Objects.requireNonNull(packObject.getPack()).unregister(asset.getName());
                                     packObject.save();
                                     new ItemsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });

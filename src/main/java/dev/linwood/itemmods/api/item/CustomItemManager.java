@@ -20,7 +20,7 @@ public class CustomItemManager {
 
     public ItemAsset getAssetByKey(String key) throws UnsupportedOperationException {
         var packObject = new PackObject(key);
-        return packObject.getItem();
+        return packObject.getAsset(ItemAsset.class);
     }
 
     public CustomItem fromItemStack(ItemStack itemStack) {
@@ -29,7 +29,7 @@ public class CustomItemManager {
 
     public @Nullable
     CustomItem create(@NotNull PackObject packObject) {
-        var asset = packObject.getItem();
+        var asset = packObject.getAsset(ItemAsset.class);
         if (asset == null || asset.getModelObject() == null)
             return null;
         var customModel = asset.getModelObject().getCustomModel();

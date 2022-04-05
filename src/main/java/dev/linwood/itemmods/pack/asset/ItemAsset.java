@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ItemAsset extends CustomNamedAsset {
+public class ItemAsset extends CustomPackAsset {
     @Nullable
     private PackObject modelObject;
     private @Nullable TranslatableName displayName;
@@ -46,7 +46,7 @@ public class ItemAsset extends CustomNamedAsset {
     public void setModelObject(@Nullable PackObject modelObject) {
         if (modelObject == null)
             this.modelObject = null;
-        else if (modelObject.getModel() != null)
+        else if (modelObject.getAsset(ModelAsset.class) != null)
             this.modelObject = modelObject;
     }
 
@@ -54,7 +54,7 @@ public class ItemAsset extends CustomNamedAsset {
     public ModelAsset getModel() {
         if (modelObject == null)
             return null;
-        return modelObject.getModel();
+        return modelObject.getAsset(ModelAsset.class);
     }
 
     @Nullable
