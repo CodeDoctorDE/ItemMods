@@ -17,7 +17,8 @@ title: Eigene Modelle
     * Wenn du Internet wählst, benötigst du den direkten Link zum json
         * Wenn Sie es wählen, fügen Sie bitte `.json` der URL hinzu, zum Beispiel `https://example.com/YOURFILE.json`
 
-:::caution Du musst das Ressourcenpaket exportieren, bevor du ein benutzerdefiniertes Modell hast. :::
+:::caution Du musst das Ressourcenpaket exportieren, bevor du ein benutzerdefiniertes Modell hast.
+:::
 
 ## Beispiele
 
