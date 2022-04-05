@@ -4,7 +4,7 @@ title: Soportado
 
 ## Servidor soportado
 
-Pruebas sobre espigota, papel, avión y papel. Supported versions are 1.14.4-1.18.1.
+Pruebas sobre espigota, papel, avión y papel. Las versiones soportadas son 1.14.4-1.18.1.
 
 ## Plugins soportados
 
