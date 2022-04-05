@@ -4,7 +4,7 @@ title: Supporté
 
 ## Serveur supporté
 
-Testé sur broche, papier, avion et papier. Supported versions are 1.14.4-1.18.1.
+Testé sur broche, papier, avion et papier. Les versions supportées sont 1.14.4-1.18.1.
 
 ## Plugins pris en charge
 
