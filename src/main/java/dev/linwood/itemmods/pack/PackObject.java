@@ -104,15 +104,16 @@ public class PackObject {
         var pack = getPack();
         if (pack == null)
             return null;
-        return pack.getTemplate(name);
+        return pack.getAsset(CustomTemplate.class, name);
     }
 
+    @SuppressWarnings("unchecked")
     @Nullable
     public <T extends CustomPackAsset> CustomGenerator<T> getGenerator(Class<T> type) {
         var pack = getPack();
         if (pack == null)
             return null;
-        return pack.getGenerator(type, name);
+        return (CustomGenerator<T>) pack.getAsset(CustomGenerator.class, name);
     }
 
     /**

@@ -252,7 +252,11 @@ public class ItemMods extends JavaPlugin {
         if (version.isLowerThan(new Version("1.14")) || version.isBiggerThan(new Version("1.18"))) {
             Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
         }
-        PackManager.getInstance().registerPack(new BaseAddon());
+        try {
+            PackManager.getInstance().registerPack(new BaseAddon());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         BaseCommand baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();

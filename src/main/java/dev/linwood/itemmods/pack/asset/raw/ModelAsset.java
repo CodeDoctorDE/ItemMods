@@ -94,7 +94,7 @@ public class ModelAsset extends RawAsset {
     }
 
     @Override
-    public void export(String namespace, String variation, int packFormat, @NotNull Path path) throws IOException {
+    public void export(String namespace, String variation, @NotNull Path path) throws IOException {
         var packObject = new PackObject(namespace, getName());
         var fallbackPath = Paths.get(path.toString(), "assets", "minecraft", "models", fallbackTexture.isBlock() ? "block" : "item",
                 fallbackTexture.name().toLowerCase() + ".json");

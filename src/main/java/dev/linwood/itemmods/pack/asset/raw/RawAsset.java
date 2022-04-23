@@ -90,7 +90,7 @@ public abstract class RawAsset extends CustomPackAsset {
         return jsonObject;
     }
 
-    public void export(String namespace, String variation, int packFormat, Path path) throws IOException {
+    public void export(String namespace, String variation, Path path) throws IOException {
 
     }
 }

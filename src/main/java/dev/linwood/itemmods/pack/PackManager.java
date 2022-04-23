@@ -218,8 +218,7 @@ public class PackManager {
                         }
                     });
         var packMeta = ItemMods.GSON.fromJson(Files.readString(Paths.get(output.toString(), "pack.mcmeta")), JsonObject.class);
-        var packFormat = packMeta.getAsJsonObject("pack").get("pack_format").getAsInt();
-        for (ItemModsPack pack : packs) pack.export(variation, packFormat, output);
+        for (ItemModsPack pack : packs) pack.export(variation, output);
         pack(output, Paths.get(ItemMods.getTempPath().toString(), "output.zip"));
     }
 

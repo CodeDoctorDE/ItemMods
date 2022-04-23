@@ -22,7 +22,7 @@ public class SoundAsset extends RawAsset {
     }
 
     @Override
-    public void export(String namespace, String variation, int packFormat, @NotNull Path path) throws IOException {
+    public void export(String namespace, String variation, @NotNull Path path) throws IOException {
         var currentPath = Paths.get(path.toString(), "assets", namespace, "sounds", getName() + ".ogg");
         Files.createDirectories(currentPath.getParent());
         Files.write(currentPath, getDataOrDefault(variation));

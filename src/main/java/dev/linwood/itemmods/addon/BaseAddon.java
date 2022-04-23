@@ -7,6 +7,8 @@ import dev.linwood.itemmods.pack.ItemModsPack;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+
 /**
  * Default addon for elemental features
  *
@@ -16,7 +18,7 @@ public class BaseAddon extends ItemModsPack {
     @NotNull
     final Translation addonTranslation = ItemMods.subTranslation("addon.main");
 
-    public BaseAddon() {
+    public BaseAddon() throws IOException {
         super("itemmods", false);
         setIcon(Material.EMERALD_ORE);
         setDescription(addonTranslation.getTranslation("description"));

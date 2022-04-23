@@ -99,7 +99,7 @@ public class ModelAction implements TranslationCommandAction {
                             setPlaceholders(packObject.toString());
                             setActions(new TranslatedGuiItem(new ItemStackBuilder(Material.GREEN_BANNER).displayName("yes").build()) {{
                                 setClickAction(event -> {
-                                    Objects.requireNonNull(packObject.getPack()).unregister(asset.getName());
+                                    Objects.requireNonNull(packObject.getPack()).unregister(asset);
                                     new ModelsAction(packObject.getNamespace()).showGui(event.getWhoClicked());
                                 });
                             }}, new TranslatedGuiItem(new ItemStackBuilder(Material.RED_BANNER).displayName("no").build()) {{

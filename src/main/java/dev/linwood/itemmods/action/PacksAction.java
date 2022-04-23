@@ -17,6 +17,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class PacksAction implements TranslationCommandAction {
@@ -84,7 +85,7 @@ public class PacksAction implements TranslationCommandAction {
         request.setSubmitAction(s -> {
             try {
                 createPack(sender, s);
-            } catch (UnsupportedOperationException e) {
+            } catch (UnsupportedOperationException | IOException e) {
                 p.sendMessage(getTranslation("create.failed"));
             } finally {
                 if (action != null)
@@ -93,7 +94,7 @@ public class PacksAction implements TranslationCommandAction {
         });
     }
 
-    public void createPack(CommandSender sender, String name) throws UnsupportedOperationException {
+    public void createPack(CommandSender sender, String name) throws UnsupportedOperationException, IOException {
         PackManager.getInstance().registerPack(new ItemModsPack(name, true));
         PackManager.getInstance().save(name);
         sender.sendMessage(getTranslation("create.success", name));

@@ -85,7 +85,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
         if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
         else if (args.length == 2)
-            available.addAll(PackManager.getInstance().getPacks().stream().flatMap(itemModsPack -> itemModsPack.getAssets(ItemAsset.class).stream().map((itemAsset -> new PackObject(itemModsPack.getName(), itemAsset.getName())))).map(PackObject::toString).collect(Collectors.toList()));
+            available.addAll(PackManager.getInstance().getPacks().stream().flatMap(itemModsPack -> itemModsPack.getCollection(ItemAsset.class).stream().map((itemAsset -> new PackObject(itemModsPack.getName(), itemAsset.getName())))).map(PackObject::toString).collect(Collectors.toList()));
         else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
         StringUtil.copyPartialMatches(args[args.length - 1], available, completions);
