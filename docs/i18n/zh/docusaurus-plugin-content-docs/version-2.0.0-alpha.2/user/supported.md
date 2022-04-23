@@ -10,8 +10,8 @@ title: 支持的
 
 __得到提交人本人的支持__
 
-* (v2.0.0-alpha.2 or above is required) 📢 [OreAnnouncer](https://alessiodp.com/docs/oreannouncer/editblock#custom)
-* (v2.0.0-alpha.2 or above is required) 🚀 [Custom Ore Generator](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
+* (v2.0.0-alpha.2 或以上是必需的) 📢 [Ore公告器](https://alessiodp.com/docs/oreannouncer/editblock#custom)
+* (v2.0.0-alpha.2 或更高版本) :火箭: [自定义Ore 生成器](https://github.com/DerFrZocker/Custom-Ore-Generator/wiki/ItemMods)
 
 __我支持的__
 
