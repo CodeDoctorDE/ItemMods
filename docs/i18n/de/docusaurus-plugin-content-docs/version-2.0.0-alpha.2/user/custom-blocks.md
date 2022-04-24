@@ -2,7 +2,7 @@
 title: Eigene Blöcke
 ---
 
-:::note To have custom blocks, you need to have a pack.
+:::note Um eigene Blöcke zu haben, musst du ein Paket haben.
 
 Click [here](pack.md#create-a-pack) to see how you can create one.
 
