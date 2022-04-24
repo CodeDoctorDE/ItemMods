@@ -15,4 +15,4 @@ __Soutenu par l'auteur lui-même__
 
 __Soutenu par moi__
 
-* 📌 [BetterGui](better-gui.md)
+* 📌 [BetterGui](better-gui)
