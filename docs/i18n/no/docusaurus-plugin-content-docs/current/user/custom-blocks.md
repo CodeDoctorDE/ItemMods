@@ -2,13 +2,14 @@
 title: Egne blokker
 ---
 
-::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
+::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack#create-a-pack) for å se hvordan du kan lage
+en. :::
 
 ## Opprette en egendefinert blokk
 
-* Opprett et [referanseelement](custom-items.md)
+* Opprett et [referanseelement](custom-items)
 * Gå til blokklisten og klikk på kunnskapsboken
 * Gi blokken et navn
-* [Lag en modell](custom-models.md) for denne blokken
+* [Lag en modell](custom-models) for denne blokken
 * Angi modell i blokk gui
 * Legg til malen `Blokk sett` til referanseelementet og sett den gjeldende blokken

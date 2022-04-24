@@ -11,7 +11,7 @@ En pakke er en samling blokker, gjenstander, modeller, teksturer og mer.
 * Klikk på kunnskapsboken og gi et navn. Navnet bør bare ha a-z, - og _.
 * Ferdig
 
-Nå kan du opprette [egendefinerte elementer](custom-items.md), [egendefinerte blokker](custom-blocks.md) og mer...
+Nå kan du opprette [egendefinerte elementer](custom-items), [egendefinerte blokker](custom-blocks) og mer...
 
 ## Del pakken
 

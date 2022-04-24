@@ -2,7 +2,8 @@
 title: Modèles personnalisés
 ---
 
-:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack.md#create-a-pack) pour voir comment vous pouvez créer un. :::
+:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack#create-a-pack) pour voir
+comment vous pouvez créer un. :::
 
 ## Créer un modèle personnalisé
 

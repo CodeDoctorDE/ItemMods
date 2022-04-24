@@ -11,7 +11,7 @@ title: 包
 * 点击知识书并给出一个名字。 名称只能有 a-z，- 和 _。
 * 完成
 
-现在您可以创建 [个自定义项](custom-items.md), [自定义块](custom-blocks.md) 及更多...
+现在您可以创建 [个自定义项](custom-items), [自定义块](custom-blocks) 及更多...
 
 ## 分享包
 

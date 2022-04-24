@@ -11,7 +11,7 @@ A pack is a collection of blocks, items, models, textures and more.
 * Click on the knowledge book and give a name. The name should only have a-z, - and _.
 * Done
 
-Now you can create [custom items](custom-items.md), [custom blocks](custom-blocks.md) and more...
+Now you can create [custom items](custom-items), [custom blocks](custom-blocks) and more...
 
 ## Share the pack
 

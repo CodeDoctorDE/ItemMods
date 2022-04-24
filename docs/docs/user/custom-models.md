@@ -4,7 +4,7 @@ title: Custom models
 
 :::note To have custom models, you need to have a pack.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 

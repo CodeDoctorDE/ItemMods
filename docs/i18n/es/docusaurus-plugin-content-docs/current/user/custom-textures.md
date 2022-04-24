@@ -2,7 +2,8 @@
 title: Texturas personalizadas
 ---
 
-:::note Para tener texturas personalizadas, necesitas tener un paquete. Mira [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno. :::
+:::note Para tener texturas personalizadas, necesitas tener un paquete. Mira [aquí](pack#create-a-pack) para ver cómo
+puedes crear uno. :::
 
 ## Crear una textura personalizada
 

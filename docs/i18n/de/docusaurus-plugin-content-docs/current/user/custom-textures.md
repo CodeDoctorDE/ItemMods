@@ -2,7 +2,8 @@
 title: Eigene Texturen
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack.md#create-a-pack) um zu sehen, wie Sie erstellen können. :::
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack#create-a-pack) um zu sehen,
+wie Sie erstellen können. :::
 
 ## Eigene Textur erstellen
 
