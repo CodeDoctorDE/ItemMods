@@ -4,7 +4,7 @@ title: Egendefinerte teksturer
 
 ::note For å ha egendefinerte tekster, må du ha en pakke.
 
-Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
