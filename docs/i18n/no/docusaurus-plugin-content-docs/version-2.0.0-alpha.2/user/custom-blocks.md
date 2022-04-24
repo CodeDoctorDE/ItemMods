@@ -2,9 +2,9 @@
 title: Egne blokker
 ---
 
-:::note To have custom blocks, you need to have a pack.
+::note For å ha tilpassede blokker, må du ha en pakke.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
 
 :::
 
