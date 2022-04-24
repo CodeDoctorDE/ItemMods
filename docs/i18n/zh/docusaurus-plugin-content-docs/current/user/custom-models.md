@@ -2,7 +2,11 @@
 title: 自定义模型
 ---
 
-:::note 要有自定义的纹理，你需要有一个包。 查看 [这里](pack.md#create-a-pack) 来查看您如何创建 一个。 :::
+:::note To have custom models, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
+:::
 
 ## 创建自定义模型
 
@@ -17,16 +21,16 @@ title: 自定义模型
     * 如果您选择互联网，您需要直接链接到json
         * 如果您选择它，请将 `.json` 添加到网址上，例如 `https://example.com/YOURFILE.json`
 
-::::在有自定义模型之前你需要导出资源包。
+:::caution You need to export the resource pack before having a custom model.
 :::
 
 ## 示例：
 
-在临时目录中创建带有此内容的文件。 用您的值替换 *<placeholder\>* 并将其分配到 模型
+Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
 
 ### 块模型
 
-默认块型号：
+The default block model:
 
 ```json title="block.json"
 {
