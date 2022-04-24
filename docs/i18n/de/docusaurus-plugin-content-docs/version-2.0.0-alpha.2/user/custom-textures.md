@@ -2,7 +2,7 @@
 title: Eigene Texturen
 ---
 
-:::note To have custom textures, you need to have a pack.
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben.
 
 Click [here](pack.md#create-a-pack) to see how you can create one.
 
@@ -21,4 +21,4 @@ Click [here](pack.md#create-a-pack) to see how you can create one.
     * Wenn du das Internet wählst, benötigst du den direkten Link zu den png
         * Wenn Sie imgur wählen, fügen Sie bitte `.png` zur URL hinzu, zum Beispiel `https://example.com/YOURFILE.png`
 
-Be sure that you have the default model file as [preset](preset).
+Stellen Sie sicher, dass Sie die Standard-Modelldatei als [Voreinstellung](preset) haben.
