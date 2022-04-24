@@ -11,7 +11,7 @@ Ein Pack ist eine Sammlung von Blöcken, Gegenständen, Models, Texturen und meh
 * Klicken Sie auf das Wissensbuch und geben Sie einen Namen. Der Name sollte nur a-z, - und _.
 * Fertig
 
-Jetzt können Sie [benutzerdefinierte Elemente](custom-items.md), [benutzerdefinierte Blöcke](custom-blocks.md) und mehr...
+Now you can create [custom items](custom-items), [custom blocks](custom-blocks) and more...
 
 ## Paket teilen
 
