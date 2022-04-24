@@ -2,7 +2,7 @@
 title: 自定义块
 ---
 
-:::note To have custom blocks, you need to have a pack.
+:::note 要有自定义块，你需要有一个包。
 
 Click [here](pack.md#create-a-pack) to see how you can create one.
 
