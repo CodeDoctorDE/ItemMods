@@ -2,9 +2,9 @@
 title: Bloques personalizados
 ---
 
-:::note To have custom blocks, you need to have a pack.
+:::note Para tener bloques personalizados, necesitas tener un paquete.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Haz clic [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno.
 
 :::
 
