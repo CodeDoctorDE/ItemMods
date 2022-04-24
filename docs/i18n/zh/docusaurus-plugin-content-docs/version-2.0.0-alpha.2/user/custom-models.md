@@ -4,7 +4,7 @@ title: 自定义模型
 
 :::note 要有自定义模型，你需要有一个包。
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
