@@ -2,7 +2,11 @@
 title: Modèles personnalisés
 ---
 
-:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack.md#create-a-pack) pour voir comment vous pouvez créer un. :::
+:::note To have custom models, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
+:::
 
 ## Créer un modèle personnalisé
 
@@ -17,16 +21,16 @@ title: Modèles personnalisés
     * Si vous choisissez Internet, vous avez besoin du lien direct vers le json
         * Si vous le choisissez, veuillez ajouter `.json` à l'url, par exemple `https://example.com/YOURFILE.json`
 
-:::caution Vous devez exporter le pack de ressources avant d'avoir un modèle personnalisé.
+:::caution You need to export the resource pack before having a custom model.
 :::
 
 ## Exemples
 
-Créer un fichier avec ce contenu dans le répertoire temp. Remplacez le *\<placeholder\>* par vos valeurs et assignez-le à un modèle
+Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
 
 ### Modèle de bloc
 
-Le modèle de bloc par défaut :
+The default block model:
 
 ```json title="block.json"
 {
