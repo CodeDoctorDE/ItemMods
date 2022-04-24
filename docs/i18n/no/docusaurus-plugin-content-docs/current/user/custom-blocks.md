@@ -2,7 +2,11 @@
 title: Egne blokker
 ---
 
-::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
+:::note To have custom blocks, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
+:::
 
 ## Opprette en egendefinert blokk
 
