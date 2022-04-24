@@ -18,5 +18,13 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Download": {
+    "message": "Download",
+    "description": "Navbar item with label Download"
+  },
+  "item.label.Community": {
+    "message": "社区",
+    "description": "Navbar item with label Community"
   }
 }
