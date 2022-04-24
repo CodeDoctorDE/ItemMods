@@ -85,4 +85,9 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "gh-actions"
           yarn --immutable
-          yarn deploy
+          yarn build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: docs/build # The folder the action should deploy.
