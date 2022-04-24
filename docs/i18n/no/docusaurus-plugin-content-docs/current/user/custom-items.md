@@ -2,9 +2,9 @@
 title: Egendefinerte elementer
 ---
 
-:::note To have custom items, you need to have a pack.
+::note for å ha egendefinerte elementer, må du ha en pakke.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
 
 :::
 
