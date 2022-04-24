@@ -4,7 +4,7 @@ title: Eigene Elemente
 
 :::note Um benutzerdefinierte Items zu haben, benötigst du ein Paket.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
@@ -12,5 +12,5 @@ Click [here](pack.md#create-a-pack) to see how you can create one.
 
 * Gehe zur Artikelliste und klicke auf das Wissensbuch
 * Geben Sie dem Element einen Namen
-* [Erstelle ein Modell](custom-models.md) für diesen Block
+* [Create a model](custom-models) for this block
 * Setze das Modell im Artikelgui
