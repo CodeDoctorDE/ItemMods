@@ -4,7 +4,7 @@ title: Egendefinerte elementer
 
 ::note for å ha egendefinerte elementer, må du ha en pakke.
 
-Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
@@ -12,5 +12,5 @@ Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
 
 * Gå til produktlisten og klikk på kunnskapsboken
 * Gi objektet et navn
-* [Lag en modell](custom-models.md) for denne blokken
+* [Create a model](custom-models) for this block
 * Angi modellen i elementet gui
