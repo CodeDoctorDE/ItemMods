@@ -2,7 +2,10 @@
 title: Custom textures
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one.
+:::note To have custom textures, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
 :::
 
 ## Create a custom texture
@@ -17,3 +20,5 @@ title: Custom textures
         * Now you need to enter the file name, for example `ruby.png`
     * If you choose internet, you need the direct link to the png
         * If you choose imgur, please add `.png` to the url, for example `https://example.com/YOURFILE.png`
+
+Be sure that you have the default model file as [preset](preset).

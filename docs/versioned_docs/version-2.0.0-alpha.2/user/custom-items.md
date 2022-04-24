@@ -2,7 +2,10 @@
 title: Custom items
 ---
 
-:::note To have custom textures, you need to have a pack. See [here](pack.md#create-a-pack) to see how you can create one.
+:::note To have custom items, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
 :::
 
 ## Create a custom item

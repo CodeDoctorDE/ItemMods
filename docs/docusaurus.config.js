@@ -10,6 +10,11 @@ module.exports = {
     organizationName: "CodeDoctorDE", // Usually your GitHub org/ name.
     projectName: "ItemMods", // Usually your repo name.
     themeConfig: {
+        colorMode: {
+            defaultMode: 'dark',
+            disableSwitch: false,
+            respectPrefersColorScheme: true,
+        },
         navbar: {
             title: "ItemMods",
             logo: {
@@ -28,6 +33,16 @@ module.exports = {
                     docId: 'api/intro',
                     label: 'API',
                     position: 'left'
+                },
+                {
+                    to: 'download',
+                    label: 'Download',
+                    position: 'left'
+                },
+                {
+                    to: 'community',
+                    position: 'left',
+                    label: 'Community',
                 },
                 {to: "/blog", label: "Blog", position: "left"},
                 /*{
@@ -118,6 +133,18 @@ module.exports = {
                 theme: {
                     customCss: require.resolve("./src/css/custom.css"),
                 },
+            },
+        ],
+    ],
+    plugins: [
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'community',
+                path: 'community',
+                routeBasePath: '/',
+                sidebarPath: require.resolve('./sidebarsCommunity.js')
+
             },
         ],
     ],
