@@ -2,9 +2,9 @@
 title: Egendefinerte teksturer
 ---
 
-:::note To have custom textures, you need to have a pack.
+::note For å ha egendefinerte tekster, må du ha en pakke.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
 
 :::
 
@@ -21,4 +21,4 @@ Click [here](pack.md#create-a-pack) to see how you can create one.
     * Hvis du velger internett, trenger du direkte link til png
         * Hvis du velger imgur, legg til `.png` til nettadressen, f.eks `https://example.com/YOURFILE.png`
 
-Be sure that you have the default model file as [preset](preset).
+Vær sikker på at du har standardfila som [forhåndsinnstilt](preset).
