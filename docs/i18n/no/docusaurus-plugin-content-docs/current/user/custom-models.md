@@ -4,7 +4,7 @@ title: Egendefinerte modeller
 
 ::note For å ha tilpassede modeller, trenger du en pakke.
 
-Klikk [her](pack.md#create-a-pack) for å se hvordan du kan lage en.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
