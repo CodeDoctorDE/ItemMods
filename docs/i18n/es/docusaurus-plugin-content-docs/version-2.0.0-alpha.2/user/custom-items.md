@@ -4,7 +4,7 @@ title: Elementos personalizados
 
 :::note Para tener objetos personalizados, necesitas tener un paquete.
 
-Haz clic [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
@@ -12,5 +12,5 @@ Haz clic [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno.
 
 * Ve a la lista de artículos y haz clic en el libro de conocimientos
 * Dar un nombre al objeto
-* [Crear un modelo](custom-models.md) para este bloque
+* [Create a model](custom-models) for this block
 * Establecer el modelo en el gui del artículo
