@@ -2,7 +2,11 @@
 title: Egendefinerte modeller
 ---
 
-::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack.md#create-a-pack) for å se hvordan du kan lage en. :::
+:::note To have custom models, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
+:::
 
 ## Opprett en tilpasset modell
 
@@ -17,15 +21,16 @@ title: Egendefinerte modeller
     * Dersom du velger internett, trenger du direkte link til json
         * Hvis du velger det, legg til `.json` til nettadressen, for eksempel `https://example.com/YOURFILE.json`
 
-::caution Du må eksportere ressurspakken før du har en egendefinert modell. :::
+:::caution You need to export the resource pack before having a custom model.
+:::
 
 ## Eksempler
 
-Lag en fil med dette innholdet i den midlertidige mappen. Erstatt *\<placeholder\>* med verdiene dine og tilordne det til en modell
+Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
 
 ### Blokk modell
 
-Standard blokkmodell:
+The default block model:
 
 ```json title="block.json"
 {
