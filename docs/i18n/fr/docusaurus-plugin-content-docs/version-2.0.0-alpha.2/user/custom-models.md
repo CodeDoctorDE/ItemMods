@@ -4,7 +4,7 @@ title: Modèles personnalisés
 
 :::note Pour avoir des modèles personnalisés, vous devez avoir un pack.
 
-Cliquez sur [ici](pack.md#create-a-pack) pour voir comment vous pouvez en créer un.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
