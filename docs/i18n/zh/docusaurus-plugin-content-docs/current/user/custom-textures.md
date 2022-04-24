@@ -2,7 +2,7 @@
 title: 自定义纹理
 ---
 
-:::note To have custom textures, you need to have a pack.
+:::note 要有自定义的纹理，你需要有一个包。
 
 Click [here](pack.md#create-a-pack) to see how you can create one.
 
@@ -21,4 +21,4 @@ Click [here](pack.md#create-a-pack) to see how you can create one.
     * 如果您选择互联网，您需要直接链接到png
         * 如果您选择imgur, 请将 `.png` 添加到URL, 例如 `https://example.com/YOURFILE.png`
 
-Be sure that you have the default model file as [preset](preset).
+请确保您的默认模型文件为 [预设](preset)。
