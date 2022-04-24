@@ -15,4 +15,4 @@ __得到提交人本人的支持__
 
 __我支持的__
 
-* :packpin: [BetterGui](better-gui.md)
+* 📌 [BetterGui](better-gui)
