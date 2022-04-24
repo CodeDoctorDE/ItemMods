@@ -3716,7 +3716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/theme-common@npm:2.0.0-beta.18":
+"@docusaurus/theme-common@npm:2.0.0-beta.18, @docusaurus/theme-common@npm:^2.0.0-beta.18":
   version: 2.0.0-beta.18
   resolution: "@docusaurus/theme-common@npm:2.0.0-beta.18"
   dependencies:
@@ -5552,6 +5552,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"butterfly-docs@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "butterfly-docs@workspace:."
+  dependencies:
+    "@docusaurus/core": 2.0.0-beta.18
+    "@docusaurus/plugin-client-redirects": 2.0.0-beta.18
+    "@docusaurus/plugin-content-docs": 2.0.0-beta.18
+    "@docusaurus/plugin-pwa": 2.0.0-beta.18
+    "@docusaurus/preset-classic": 2.0.0-beta.18
+    "@docusaurus/theme-common": ^2.0.0-beta.18
+    "@mdx-js/react": ^1
+    clsx: ^1.1.1
+    markdownlint-cli2: ^0.4.0
+    prism-react-renderer: ^1.3.1
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    ua-parser-js: ^1.0.2
+  dependenciesMeta:
+    react@17.0.2:
+      unplugged: true
+  languageName: unknown
+  linkType: soft
+
 "bytes@npm:3.0.0":
   version: 3.0.0
   resolution: "bytes@npm:3.0.0"
@@ -7024,6 +7047,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "entities@npm:2.1.0"
+  checksum: a10a877e489586a3f6a691fe49bf3fc4e58f06c8e80522f08214a5150ba457e7017b447d4913a3fa041bda06ee4c92517baa4d8d75373eaa79369e9639225ffd
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
@@ -7804,6 +7834,20 @@ fsevents@~2.3.2:
   version: 11.12.0
   resolution: "globals@npm:11.12.0"
   checksum: 67051a45eca3db904aee189dfc7cd53c20c7d881679c93f6146ddd4c9f4ab2268e68a919df740d39c71f4445d2b38ee360fc234428baea1dbdfe68bbcb46979e
+  languageName: node
+  linkType: hard
+
+"globby@npm:12.1.0":
+  version: 12.1.0
+  resolution: "globby@npm:12.1.0"
+  dependencies:
+    array-union: ^3.0.1
+    dir-glob: ^3.0.1
+    fast-glob: ^3.2.7
+    ignore: ^5.1.9
+    merge2: ^1.4.1
+    slash: ^4.0.0
+  checksum: aeee6856a5a9644c946b38d13175ca3da1181739aaced9ead15e210a53470ee922d6fa6f18e51169e54e77430af6f6958b8e65950314667781509d8f41901a18
   languageName: node
   linkType: hard
 
@@ -8946,22 +8990,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"itemmods-docs@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "itemmods-docs@workspace:."
-  dependencies:
-    "@docusaurus/core": 2.0.0-beta.18
-    "@docusaurus/plugin-client-redirects": 2.0.0-beta.18
-    "@docusaurus/plugin-content-docs": 2.0.0-beta.18
-    "@docusaurus/plugin-pwa": 2.0.0-beta.18
-    "@docusaurus/preset-classic": 2.0.0-beta.18
-    "@mdx-js/react": ^1
-    clsx: ^1.1.1
-    react: ^17.0.2
-    react-dom: ^17.0.2
-  languageName: unknown
-  linkType: soft
-
 "jake@npm:^10.6.1":
   version: 10.8.2
   resolution: "jake@npm:10.8.2"
@@ -9200,6 +9228,15 @@ fsevents@~2.3.2:
   version: 1.1.6
   resolution: "lines-and-columns@npm:1.1.6"
   checksum: 198a5436b1fa5cf703bae719c01c686b076f0ad7e1aafd95a58d626cabff302dc0414822126f2f80b58a8c3d66cda8a7b6da064f27130f87e1d3506d6dfd0d68
+  languageName: node
+  linkType: hard
+
+"linkify-it@npm:^3.0.1":
+  version: 3.0.3
+  resolution: "linkify-it@npm:3.0.3"
+  dependencies:
+    uc.micro: ^1.0.1
+  checksum: 31367a4bb70c5bbc9703246236b504b0a8e049bcd4e0de4291fa50f0ebdebf235b5eb54db6493cb0b1319357c6eeafc4324c9f4aa34b0b943d9f2e11a1268fbc
   languageName: node
   linkType: hard
 
@@ -9480,6 +9517,65 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"markdown-it@npm:12.3.2":
+  version: 12.3.2
+  resolution: "markdown-it@npm:12.3.2"
+  dependencies:
+    argparse: ^2.0.1
+    entities: ~2.1.0
+    linkify-it: ^3.0.1
+    mdurl: ^1.0.1
+    uc.micro: ^1.0.5
+  bin:
+    markdown-it: bin/markdown-it.js
+  checksum: 890555711c1c00fa03b936ca2b213001a3b9b37dea140d8445ae4130ce16628392aad24b12e2a0a9935336ca5951f2957a38f4e5309a2e38eab44e25ff32a41e
+  languageName: node
+  linkType: hard
+
+"markdownlint-cli2-formatter-default@npm:0.0.3":
+  version: 0.0.3
+  resolution: "markdownlint-cli2-formatter-default@npm:0.0.3"
+  peerDependencies:
+    markdownlint-cli2: ">=0.0.4"
+  checksum: 9f42c30e9588c2e2f28577135ed734cfce04077a2468eabbe573f1ff738d87666168fd18594c333ca48a2caf0712d79ef07b01b54fef4e5aa758307b3ef260f4
+  languageName: node
+  linkType: hard
+
+"markdownlint-cli2@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "markdownlint-cli2@npm:0.4.0"
+  dependencies:
+    globby: 12.1.0
+    markdownlint: 0.25.1
+    markdownlint-cli2-formatter-default: 0.0.3
+    markdownlint-rule-helpers: 0.16.0
+    micromatch: 4.0.4
+    strip-json-comments: 4.0.0
+    yaml: 1.10.2
+  bin:
+    markdownlint-cli2: markdownlint-cli2.js
+    markdownlint-cli2-config: markdownlint-cli2-config.js
+    markdownlint-cli2-fix: markdownlint-cli2-fix.js
+  checksum: cbf19ccc8ca4cac495ba2f952fc66b0e425eeba7034b40dc1838536c7c5533e8071c74e6dca86ed22da77a98a12175f8213219add9f16818c0dbe4f5b2b69127
+  languageName: node
+  linkType: hard
+
+"markdownlint-rule-helpers@npm:0.16.0":
+  version: 0.16.0
+  resolution: "markdownlint-rule-helpers@npm:0.16.0"
+  checksum: 995b7197298435b613f1d237f619d5fe716d7a71c9fba9666f084bfd0236a715b3cc198d0d4a494500fce26e68c7ced5936e751b60ef144cb6fcac87dc77d8dc
+  languageName: node
+  linkType: hard
+
+"markdownlint@npm:0.25.1":
+  version: 0.25.1
+  resolution: "markdownlint@npm:0.25.1"
+  dependencies:
+    markdown-it: 12.3.2
+  checksum: 3daf6aae6ad96754960611353658ef8daeeec17b44ebe8dec6c67a863ed39f33417d32f120264f0e4146be25a40ca82943da5c65ef8401008a03c0022c07890f
+  languageName: node
+  linkType: hard
+
 "mdast-squeeze-paragraphs@npm:^4.0.0":
   version: 4.0.0
   resolution: "mdast-squeeze-paragraphs@npm:4.0.0"
@@ -9528,7 +9624,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"mdurl@npm:^1.0.0":
+"mdurl@npm:^1.0.0, mdurl@npm:^1.0.1":
   version: 1.0.1
   resolution: "mdurl@npm:1.0.1"
   checksum: 71731ecba943926bfbf9f9b51e28b5945f9411c4eda80894221b47cc105afa43ba2da820732b436f0798fd3edbbffcd1fc1415843c41a87fea08a41cc1e3d02b
@@ -9588,7 +9684,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4":
+"micromatch@npm:4.0.4, micromatch@npm:^4.0.2, micromatch@npm:^4.0.4":
   version: 4.0.4
   resolution: "micromatch@npm:4.0.4"
   dependencies:
@@ -12929,6 +13025,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"strip-json-comments@npm:4.0.0":
+  version: 4.0.0
+  resolution: "strip-json-comments@npm:4.0.0"
+  checksum: 26bd0fbedd631d673dc5382163efd39cffdff0b7fcaf61e522a1c6d976968811eff6b2d3a3d5fec1d7563efac516f45ced1352df1ab2cf4991cc93fcfb94d05a
+  languageName: node
+  linkType: hard
+
 "strip-json-comments@npm:^3.1.1":
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
@@ -13348,6 +13451,20 @@ fsevents@~2.3.2:
   version: 0.7.28
   resolution: "ua-parser-js@npm:0.7.28"
   checksum: a7da4ad54527211e878ee016c2ef64efad5c2f5a31277d36c9da93b4c89ecaa64f391ad4cf158ada76a9ad8e53004a950705ff1c2f27a52ca8bfb3f1381c39ff
+  languageName: node
+  linkType: hard
+
+"ua-parser-js@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "ua-parser-js@npm:1.0.2"
+  checksum: ff7f6d79a9c1a38aa85a0e751040fc7e17a0b621bda876838d14ebe55aca4e50e68da0350f181e58801c2d8a35e7db4e12473776e558910c4b7cabcec96aa3bf
+  languageName: node
+  linkType: hard
+
+"uc.micro@npm:^1.0.1, uc.micro@npm:^1.0.5":
+  version: 1.0.6
+  resolution: "uc.micro@npm:1.0.6"
+  checksum: 6898bb556319a38e9cf175e3628689347bd26fec15fc6b29fa38e0045af63075ff3fea4cf1fdba9db46c9f0cbf07f2348cd8844889dd31ebd288c29fe0d27e7a
   languageName: node
   linkType: hard
 
@@ -14338,7 +14455,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.10.0, yaml@npm:^1.10.2, yaml@npm:^1.7.2":
+"yaml@npm:1.10.2, yaml@npm:^1.10.0, yaml@npm:^1.10.2, yaml@npm:^1.7.2":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
