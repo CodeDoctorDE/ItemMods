@@ -2,7 +2,11 @@
 title: Elementos personalizados
 ---
 
-:::note Para tener texturas personalizadas, necesitas tener un paquete. Mira [aquí](pack.md#create-a-pack) para ver cómo puedes crear uno. :::
+:::note To have custom items, you need to have a pack.
+
+Click [here](pack.md#create-a-pack) to see how you can create one.
+
+:::
 
 ## Crear un elemento personalizado
 
