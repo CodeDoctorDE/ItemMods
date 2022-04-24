@@ -2,7 +2,7 @@
 title: Eigene Elemente
 ---
 
-:::note To have custom items, you need to have a pack.
+:::note Um benutzerdefinierte Items zu haben, benötigst du ein Paket.
 
 Click [here](pack.md#create-a-pack) to see how you can create one.
 
