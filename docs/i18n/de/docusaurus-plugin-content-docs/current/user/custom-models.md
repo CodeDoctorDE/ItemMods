@@ -4,7 +4,7 @@ title: Eigene Modelle
 
 :::note Um benutzerdefinierte Modelle zu haben, benötigen Sie ein Paket.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Click [here](pack#create-a-pack) to see how you can create one.
 
 :::
 
