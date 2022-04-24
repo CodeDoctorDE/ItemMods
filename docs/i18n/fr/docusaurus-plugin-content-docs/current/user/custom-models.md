@@ -2,9 +2,9 @@
 title: Modèles personnalisés
 ---
 
-:::note To have custom models, you need to have a pack.
+:::note Pour avoir des modèles personnalisés, vous devez avoir un pack.
 
-Click [here](pack.md#create-a-pack) to see how you can create one.
+Cliquez sur [ici](pack.md#create-a-pack) pour voir comment vous pouvez en créer un.
 
 :::
 
@@ -21,16 +21,16 @@ Click [here](pack.md#create-a-pack) to see how you can create one.
     * Si vous choisissez Internet, vous avez besoin du lien direct vers le json
         * Si vous le choisissez, veuillez ajouter `.json` à l'url, par exemple `https://example.com/YOURFILE.json`
 
-:::caution You need to export the resource pack before having a custom model.
+:::caution Vous devez exporter le pack de ressources avant d'avoir un modèle personnalisé.
 :::
 
 ## Exemples
 
-Create a file with this content in the temp directory. Replace the *\<placeholder\>* with your values and assign it to a model
+Créer un fichier avec ce contenu dans le répertoire temp. Remplacez le *\<placeholder\>* par vos valeurs et assignez-le à un modèle
 
 ### Modèle de bloc
 
-The default block model:
+Le modèle de bloc par défaut :
 
 ```json title="block.json"
 {
