@@ -9,6 +9,7 @@ module.exports = {
     favicon: "img/favicon.ico",
     organizationName: "CodeDoctorDE", // Usually your GitHub org/ name.
     projectName: "ItemMods", // Usually your repo name.
+    trailingSlash: false,
     themeConfig: {
         colorMode: {
             defaultMode: 'dark',

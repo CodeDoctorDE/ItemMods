@@ -3,7 +3,6 @@ package dev.linwood.itemmods.pack.asset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.TranslatableName;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +15,6 @@ import java.util.List;
 public class ItemAsset extends CustomPackAsset {
     @Nullable
     private PackObject modelObject;
-    private @Nullable TranslatableName displayName;
     private List<String> lore = new ArrayList<>();
 
 
@@ -55,17 +53,6 @@ public class ItemAsset extends CustomPackAsset {
         if (modelObject == null)
             return null;
         return modelObject.getAsset(ModelAsset.class);
-    }
-
-    @Nullable
-    @Override
-    public TranslatableName getDisplayName() {
-        return displayName;
-    }
-
-    @Override
-    public void setDisplayName(@Nullable TranslatableName displayName) {
-        this.displayName = displayName;
     }
 
     @NotNull
