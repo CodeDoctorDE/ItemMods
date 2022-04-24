@@ -71,17 +71,17 @@ public class ItemModsPack implements NamedPackObject {
 
     @SuppressWarnings("unchecked")
     public <T extends PackAsset> AssetCollection<T> getCollection(@NotNull Class<T> type) {
-        if (type == ItemAsset.class) {
+        if (type.equals(ItemAsset.class)) {
             return (AssetCollection<T>) itemAssets;
-        } else if (type == BlockAsset.class) {
+        } else if (type.equals(BlockAsset.class)) {
             return (AssetCollection<T>) blockAssets;
-        } else if (type == ModelAsset.class) {
+        } else if (type.equals(ModelAsset.class)) {
             return (AssetCollection<T>) modelAssets;
-        } else if (type == TextureAsset.class) {
+        } else if (type.equals(TextureAsset.class)) {
             return (AssetCollection<T>) textureAssets;
-        } else if (type == SoundAsset.class) {
+        } else if (type.equals(SoundAsset.class)) {
             return (AssetCollection<T>) soundAssets;
-        } else if (type == CustomTemplate.class) {
+        } else if (CustomTemplate.class.isAssignableFrom(type)) {
             return (AssetCollection<T>) templateAssets;
         } else {
             throw new IllegalArgumentException("Invalid asset type");
@@ -133,6 +133,7 @@ public class ItemModsPack implements NamedPackObject {
     }
 
     void save(@NotNull Path path) throws IOException {
+        if (!editable) return;
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("icon", new JsonPrimitive(icon.name()));
         var dependenciesArray = new JsonArray();

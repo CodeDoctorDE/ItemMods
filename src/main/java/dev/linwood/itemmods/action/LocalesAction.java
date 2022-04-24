@@ -14,6 +14,15 @@ import org.bukkit.entity.Player;
 import java.io.IOException;
 
 public class LocalesAction implements TranslationCommandAction {
+    @Override
+    public boolean handleCommand(CommandSender sender, String[] args) {
+        if (args.length == 0) showGui(sender);
+        else if (args.length == 1) selectLocale(args[0]);
+        else
+            return false;
+        return true;
+    }
+
     public void selectLocale(String locale) {
         ItemMods.getMainConfig().setLocale(locale);
         ItemMods.saveMainConfig();
@@ -44,6 +53,7 @@ public class LocalesAction implements TranslationCommandAction {
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new MainAction().showGui(event.getWhoClicked()));
         }});
+        gui.show((Player) sender);
         return true;
     }
 
