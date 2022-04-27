@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd docs
-          yarn --immutable
+          yarn
       - name: Test Build
         run: |
           cd docs
@@ -84,7 +84,7 @@ jobs:
           cd docs
           git config --global user.email "actions@github.com"
           git config --global user.name "gh-actions"
-          yarn --immutable
+          yarn
           yarn build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.0
