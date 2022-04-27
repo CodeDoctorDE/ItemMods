@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ItemMods Blog</title>
+        <link>https://itemmods.linwood.dev/es/blog</link>
+        <description>ItemMods Blog</description>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>es</language>
+        <item>
+            <title><![CDATA[2.0.0-alpha.2 liberado]]></title>
+            <link>https://itemmods.linwood.dev/es/blog/2021/12/28/2.0.0-alpha.2-released</link>
+            <guid>/2021/12/28/2.0.0-alpha.2-released</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Merry Christmas!]]></description>
+            <content:encoded><![CDATA[<p>Merry Christmas!</p><p>Esta actualización incluye:</p><ul><li>Soporte 1.18</li><li>Marco de comandos simple</li></ul><p>¡Que tengas un buen día!</p>]]></content:encoded>
+            <category>alfa</category>
+            <category>publicado</category>
+            <category>elementos</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.1 liberado]]></title>
+            <link>https://itemmods.linwood.dev/es/blog/2021/09/15/2.0.0-alpha.1-released</link>
+            <guid>/2021/09/15/2.0.0-alpha.1-released</guid>
+            <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Esta es una actualización de mantenimiento. Se corrigieron errores de traducción (#18) y se implementaron nuevos métodos de api.]]></description>
+            <content:encoded><![CDATA[<p>Esta es una actualización de mantenimiento. Se corrigieron errores de traducción (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) y se implementaron nuevos métodos de api.</p>]]></content:encoded>
+            <category>alfa</category>
+            <category>publicado</category>
+            <category>elementos</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.0 liberado]]></title>
+            <link>https://itemmods.linwood.dev/es/blog/2021/09/05/2.0.0-alpha.0-released</link>
+            <guid>/2021/09/05/2.0.0-alpha.0-released</guid>
+            <pubDate>Sun, 05 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[¡ItemMods tiene su primer cumpleaños! ¡Feliz cumpleaños! ¡Ven a la discordia para celebrar esto! He reescrito el plugin.]]></description>
+            <content:encoded><![CDATA[<p>¡ItemMods tiene su primer cumpleaños! ¡Feliz cumpleaños! ¡Ven a <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">la discordia</a> para celebrar esto! He reescrito el plugin.</p><p>Aquí están los resaltados:</p><ul><li>Cada elemento y bloque está en un paquete y tiene su propio archivo en el directorio de paquetes</li><li>Mejoras de GUI: pestañas, gui más pequeño, ...</li><li>Generador de paquetes de recursos: El plugin construirá un paquete de recursos para usted. Solo tienes que añadir un preset, y las texturas requeridas</li><li>Nueva traducción: Es más fácil de traducir. He añadido crowdin para dar la opinión de añadir su propio idioma al plugin</li><li>Nuevos documentos: He creado un sitio web propio para el plugin. Aquí puede ver todas las noticias, documentación y más. Ver <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">aquí</a></li><li>Eliminar dependencia de nms, api tutorial añadido</li><li>Siga la versión semántica 2.0: Cada versión se nombra en el siguiente esquema: MAJOR.MINOR.PATCH. Los candidatos alfa, beta y lanzamiento tienen un número después (por ejemplo 2.0.0-alpha.0)</li></ul><p>Y aquí está el primer lanzamiento en 2021 para ItemMods! Diviértete. Los documentos no están terminados, así que por favor use la discordia para las preguntas.</p><p>Gracias por esperar :)</p>]]></content:encoded>
+            <category>alfa</category>
+            <category>publicado</category>
+            <category>elementos</category>
+            <category>cumpleaños</category>
+        </item>
+    </channel>
+</rss>

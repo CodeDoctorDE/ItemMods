@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://itemmods.linwood.dev/zh/blog</id>
+    <title>ItemMods Blog</title>
+    <updated>2021-12-28T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://itemmods.linwood.dev/zh/blog"/>
+    <subtitle>ItemMods Blog</subtitle>
+    <icon>https://itemmods.linwood.dev/zh/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.2 发布]]></title>
+        <id>/2021/12/28/2.0.0-alpha.2-released</id>
+        <link href="https://itemmods.linwood.dev/zh/blog/2021/12/28/2.0.0-alpha.2-released"/>
+        <updated>2021-12-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Merry Christmas!]]></summary>
+        <content type="html"><![CDATA[<p>Merry Christmas!</p><p>本次更新包括：</p><ul><li>1.18 支助</li><li>简单的命令框架</li></ul><p>祝你好日！</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="透明的" term="透明的"/>
+        <category label="已发布" term="已发布"/>
+        <category label="项目模组" term="项目模组"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.1 发布]]></title>
+        <id>/2021/09/15/2.0.0-alpha.1-released</id>
+        <link href="https://itemmods.linwood.dev/zh/blog/2021/09/15/2.0.0-alpha.1-released"/>
+        <updated>2021-09-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[这是一个维护更新。 翻译bug(#18)已经修复 并且执行了新的 api 方法。]]></summary>
+        <content type="html"><![CDATA[<p>这是一个维护更新。 翻译bug(<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>)已经修复 并且执行了新的 api 方法。</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="透明的" term="透明的"/>
+        <category label="已发布" term="已发布"/>
+        <category label="项目模组" term="项目模组"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[发布了 2.0.0-alpha.0]]></title>
+        <id>/2021/09/05/2.0.0-alpha.0-released</id>
+        <link href="https://itemmods.linwood.dev/zh/blog/2021/09/05/2.0.0-alpha.0-released"/>
+        <updated>2021-09-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[物品有一岁生日 ！ 生日快乐！ 来到 Discord 到 庆祝这个！ 我重写了该插件。]]></summary>
+        <content type="html"><![CDATA[<p>物品有一岁生日 ！ 生日快乐！ 来到 <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">Discord</a> 到 庆祝这个！ 我重写了该插件。</p><p>下面是要点：</p><ul><li>每个项目和方块都在包中，在包目录中有自己的文件</li><li>图形界面改进：标签，较小的界面...</li><li>资源包生成器：插件将为您构建一个资源包。 您只需要添加预设和 所需纹理</li><li>新的翻译api：翻译更加容易。 我添加了crowdin 来给 插件添加他们自己的语言</li><li>新文档：我为插件创建了自己的网站。 您可以在这里看到所有新闻、文档和更多。 See it <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">here</a></li><li>删除 nms 依赖项，添加了 nbt api</li><li>按照语义版本2.0：每个版本都在以下方案中命名：MAJOR.MINOR.pATCH。 alpha, beta 和释放候选人后有一个数字 (例如，2.0.0-alphay.0)</li></ul><p>这是2021年首次发布的物品！ 玩得愉快。 文档尚未完成，所以请使用Discord获取问题。</p><p>感谢您等待 :)</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="透明的" term="透明的"/>
+        <category label="已发布" term="已发布"/>
+        <category label="项目模组" term="项目模组"/>
+        <category label="生日" term="生日"/>
+    </entry>
+</feed>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ItemMods Blog</title>
+        <link>https://itemmods.linwood.dev/zh/blog</link>
+        <description>ItemMods Blog</description>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh</language>
+        <item>
+            <title><![CDATA[2.0.0-alpha.2 发布]]></title>
+            <link>https://itemmods.linwood.dev/zh/blog/2021/12/28/2.0.0-alpha.2-released</link>
+            <guid>/2021/12/28/2.0.0-alpha.2-released</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Merry Christmas!]]></description>
+            <content:encoded><![CDATA[<p>Merry Christmas!</p><p>本次更新包括：</p><ul><li>1.18 支助</li><li>简单的命令框架</li></ul><p>祝你好日！</p>]]></content:encoded>
+            <category>透明的</category>
+            <category>已发布</category>
+            <category>项目模组</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.1 发布]]></title>
+            <link>https://itemmods.linwood.dev/zh/blog/2021/09/15/2.0.0-alpha.1-released</link>
+            <guid>/2021/09/15/2.0.0-alpha.1-released</guid>
+            <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[这是一个维护更新。 翻译bug(#18)已经修复 并且执行了新的 api 方法。]]></description>
+            <content:encoded><![CDATA[<p>这是一个维护更新。 翻译bug(<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>)已经修复 并且执行了新的 api 方法。</p>]]></content:encoded>
+            <category>透明的</category>
+            <category>已发布</category>
+            <category>项目模组</category>
+        </item>
+        <item>
+            <title><![CDATA[发布了 2.0.0-alpha.0]]></title>
+            <link>https://itemmods.linwood.dev/zh/blog/2021/09/05/2.0.0-alpha.0-released</link>
+            <guid>/2021/09/05/2.0.0-alpha.0-released</guid>
+            <pubDate>Sun, 05 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[物品有一岁生日 ！ 生日快乐！ 来到 Discord 到 庆祝这个！ 我重写了该插件。]]></description>
+            <content:encoded><![CDATA[<p>物品有一岁生日 ！ 生日快乐！ 来到 <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">Discord</a> 到 庆祝这个！ 我重写了该插件。</p><p>下面是要点：</p><ul><li>每个项目和方块都在包中，在包目录中有自己的文件</li><li>图形界面改进：标签，较小的界面...</li><li>资源包生成器：插件将为您构建一个资源包。 您只需要添加预设和 所需纹理</li><li>新的翻译api：翻译更加容易。 我添加了crowdin 来给 插件添加他们自己的语言</li><li>新文档：我为插件创建了自己的网站。 您可以在这里看到所有新闻、文档和更多。 See it <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">here</a></li><li>删除 nms 依赖项，添加了 nbt api</li><li>按照语义版本2.0：每个版本都在以下方案中命名：MAJOR.MINOR.pATCH。 alpha, beta 和释放候选人后有一个数字 (例如，2.0.0-alphay.0)</li></ul><p>这是2021年首次发布的物品！ 玩得愉快。 文档尚未完成，所以请使用Discord获取问题。</p><p>感谢您等待 :)</p>]]></content:encoded>
+            <category>透明的</category>
+            <category>已发布</category>
+            <category>项目模组</category>
+            <category>生日</category>
+        </item>
+    </channel>
+</rss>

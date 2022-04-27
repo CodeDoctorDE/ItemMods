@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://itemmods.linwood.dev/blog</id>
+    <title>ItemMods Blog</title>
+    <updated>2021-12-28T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://itemmods.linwood.dev/blog"/>
+    <subtitle>ItemMods Blog</subtitle>
+    <icon>https://itemmods.linwood.dev/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.2 released]]></title>
+        <id>/2021/12/28/2.0.0-alpha.2-released</id>
+        <link href="https://itemmods.linwood.dev/blog/2021/12/28/2.0.0-alpha.2-released"/>
+        <updated>2021-12-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Merry Christmas!]]></summary>
+        <content type="html"><![CDATA[<p>Merry Christmas!</p><p>This update includes:</p><ul><li>1.18 support</li><li>Simple command framework</li></ul><p>Have a nice day!</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="released" term="released"/>
+        <category label="itemmods" term="itemmods"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.1 released]]></title>
+        <id>/2021/09/15/2.0.0-alpha.1-released</id>
+        <link href="https://itemmods.linwood.dev/blog/2021/09/15/2.0.0-alpha.1-released"/>
+        <updated>2021-09-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This is a maintenance update. Translation bugs (#18) were fixed]]></summary>
+        <content type="html"><![CDATA[<p>This is a maintenance update. Translation bugs (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) were fixed
+and new api methods were implemented.</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="released" term="released"/>
+        <category label="itemmods" term="itemmods"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.0 released]]></title>
+        <id>/2021/09/05/2.0.0-alpha.0-released</id>
+        <link href="https://itemmods.linwood.dev/blog/2021/09/05/2.0.0-alpha.0-released"/>
+        <updated>2021-09-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ItemMods has its first birthday! Happy birthday! Come to the discord to]]></summary>
+        <content type="html"><![CDATA[<p>ItemMods has its first birthday! Happy birthday! Come to <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">the discord</a> to
+celebrate this!
+I rewrote the plugin.</p><p>Here are the highlights:</p><ul><li>Every item and block is in a pack and have its own file in the pack directory</li><li>GUI improvements: tabs, smaller gui, ...</li><li>Resource pack generator: The plugin will build a resource pack for you. You only need to add a preset, and the
+required textures</li><li>New translation api: It's easier to translate. I added crowdin to give the opinion to add their own language to the
+plugin</li><li>New docs: I created an own website for the plugin. Here you can see all news, documentation and more. See
+it <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">here</a></li><li>Remove nms dependency, added nbt api</li><li>Follow the semantic versioning 2.0: Every version is named in the following schema: MAJOR.MINOR.PATCH. The alpha, beta
+and release candidates has a number after it (for example 2.0.0-alpha.0)</li></ul><p>And here is the first release in 2021 for ItemMods!
+Have fun. The docs are not finished, so please use the discord for questions.</p><p>Thank you for waiting :)</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="released" term="released"/>
+        <category label="itemmods" term="itemmods"/>
+        <category label="birthday" term="birthday"/>
+    </entry>
+</feed>

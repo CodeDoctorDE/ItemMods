@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[9565],{2481:function(u){u.exports=JSON.parse('{"plugin":{"name":"docusaurus-plugin-content-docs","id":"community"}}')}}]);

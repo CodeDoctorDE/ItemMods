@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://itemmods.linwood.dev/de/blog</id>
+    <title>ItemMods Blog</title>
+    <updated>2021-12-28T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://itemmods.linwood.dev/de/blog"/>
+    <subtitle>ItemMods Blog</subtitle>
+    <icon>https://itemmods.linwood.dev/de/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.2 veröffentlicht]]></title>
+        <id>/2021/12/28/2.0.0-alpha.2-released</id>
+        <link href="https://itemmods.linwood.dev/de/blog/2021/12/28/2.0.0-alpha.2-released"/>
+        <updated>2021-12-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Merry Christmas!]]></summary>
+        <content type="html"><![CDATA[<p>Merry Christmas!</p><p>Dieses Update enthält:</p><ul><li>1.18 Support</li><li>Einfaches Kommando-Framework</li></ul><p>Viel einen schönen Tag!</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="freigegeben" term="freigegeben"/>
+        <category label="itemmods" term="itemmods"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.1 veröffentlicht]]></title>
+        <id>/2021/09/15/2.0.0-alpha.1-released</id>
+        <link href="https://itemmods.linwood.dev/de/blog/2021/09/15/2.0.0-alpha.1-released"/>
+        <updated>2021-09-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Dies ist ein Wartungs-Update. Übersetzungsfehler (#18) wurden behoben und neue Api-Methoden wurden implementiert.]]></summary>
+        <content type="html"><![CDATA[<p>Dies ist ein Wartungs-Update. Übersetzungsfehler (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) wurden behoben und neue Api-Methoden wurden implementiert.</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="freigegeben" term="freigegeben"/>
+        <category label="itemmods" term="itemmods"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[2.0.0-alpha.0 veröffentlicht]]></title>
+        <id>/2021/09/05/2.0.0-alpha.0-released</id>
+        <link href="https://itemmods.linwood.dev/de/blog/2021/09/05/2.0.0-alpha.0-released"/>
+        <updated>2021-09-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[ItemMods hat seinen ersten Geburtstag! Glücklicher Geburtstag! Come to the discord to celebrate this! Ich habe das Plugin neu geschrieben.]]></summary>
+        <content type="html"><![CDATA[<p>ItemMods hat seinen ersten Geburtstag! Glücklicher Geburtstag! Come to <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">the discord</a> to celebrate this! Ich habe das Plugin neu geschrieben.</p><p>Hier sind die Highlights:</p><ul><li>Jedes Element und jeder Block ist in einem Paket und hat eine eigene Datei im Paketverzeichnis</li><li>GUI Verbesserungen: Tabs, kleinere gui, ...</li><li>Ressourcenpack-Generator: Das Plugin erstellt ein Ressourcenpaket für Sie. Sie müssen nur eine Voreinstellung und die erforderlichen Texturen hinzufügen</li><li>Neue Übersetzung api: Es ist einfacher zu übersetzen. Ich habe crowdin hinzugefügt, um die Meinung zu geben, ihre eigene Sprache dem Plugin hinzuzufügen</li><li>Neue Doktor: Ich habe eine eigene Website für das Plugin erstellt. Hier finden Sie alle Neuigkeiten, Dokumentation und vieles mehr. Siehe es <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">hier</a></li><li>Nms-Abhängigkeit entfernen, nbt api hinzugefügt</li><li>Folgen Sie der semantischen Versionierung 2.0: Jede Version ist im folgenden Schema: MAJOR.MINOR.PATCH. Die Alpha, Beta und Release-Kandidaten haben eine Zahl danach (z.B. 2.0.0-alpha.0)</li></ul><p>Und hier ist die erste Veröffentlichung im Jahr 2021 für ItemMods! Viel Spaß. Die Dokumentation ist noch nicht fertig, bitte benutzen Sie die Zwietracht für Fragen.</p><p>Vielen Dank für das Warten :)</p>]]></content>
+        <author>
+            <name>CodeDoctorDE</name>
+            <uri>https://github.com/CodeDoctorDE</uri>
+        </author>
+        <category label="alpha" term="alpha"/>
+        <category label="freigegeben" term="freigegeben"/>
+        <category label="itemmods" term="itemmods"/>
+        <category label="Geburtstag" term="Geburtstag"/>
+    </entry>
+</feed>

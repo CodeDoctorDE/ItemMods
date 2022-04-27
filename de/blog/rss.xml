@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ItemMods Blog</title>
+        <link>https://itemmods.linwood.dev/de/blog</link>
+        <description>ItemMods Blog</description>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>de</language>
+        <item>
+            <title><![CDATA[2.0.0-alpha.2 veröffentlicht]]></title>
+            <link>https://itemmods.linwood.dev/de/blog/2021/12/28/2.0.0-alpha.2-released</link>
+            <guid>/2021/12/28/2.0.0-alpha.2-released</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Merry Christmas!]]></description>
+            <content:encoded><![CDATA[<p>Merry Christmas!</p><p>Dieses Update enthält:</p><ul><li>1.18 Support</li><li>Einfaches Kommando-Framework</li></ul><p>Viel einen schönen Tag!</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>freigegeben</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.1 veröffentlicht]]></title>
+            <link>https://itemmods.linwood.dev/de/blog/2021/09/15/2.0.0-alpha.1-released</link>
+            <guid>/2021/09/15/2.0.0-alpha.1-released</guid>
+            <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Dies ist ein Wartungs-Update. Übersetzungsfehler (#18) wurden behoben und neue Api-Methoden wurden implementiert.]]></description>
+            <content:encoded><![CDATA[<p>Dies ist ein Wartungs-Update. Übersetzungsfehler (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) wurden behoben und neue Api-Methoden wurden implementiert.</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>freigegeben</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.0 veröffentlicht]]></title>
+            <link>https://itemmods.linwood.dev/de/blog/2021/09/05/2.0.0-alpha.0-released</link>
+            <guid>/2021/09/05/2.0.0-alpha.0-released</guid>
+            <pubDate>Sun, 05 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[ItemMods hat seinen ersten Geburtstag! Glücklicher Geburtstag! Come to the discord to celebrate this! Ich habe das Plugin neu geschrieben.]]></description>
+            <content:encoded><![CDATA[<p>ItemMods hat seinen ersten Geburtstag! Glücklicher Geburtstag! Come to <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">the discord</a> to celebrate this! Ich habe das Plugin neu geschrieben.</p><p>Hier sind die Highlights:</p><ul><li>Jedes Element und jeder Block ist in einem Paket und hat eine eigene Datei im Paketverzeichnis</li><li>GUI Verbesserungen: Tabs, kleinere gui, ...</li><li>Ressourcenpack-Generator: Das Plugin erstellt ein Ressourcenpaket für Sie. Sie müssen nur eine Voreinstellung und die erforderlichen Texturen hinzufügen</li><li>Neue Übersetzung api: Es ist einfacher zu übersetzen. Ich habe crowdin hinzugefügt, um die Meinung zu geben, ihre eigene Sprache dem Plugin hinzuzufügen</li><li>Neue Doktor: Ich habe eine eigene Website für das Plugin erstellt. Hier finden Sie alle Neuigkeiten, Dokumentation und vieles mehr. Siehe es <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">hier</a></li><li>Nms-Abhängigkeit entfernen, nbt api hinzugefügt</li><li>Folgen Sie der semantischen Versionierung 2.0: Jede Version ist im folgenden Schema: MAJOR.MINOR.PATCH. Die Alpha, Beta und Release-Kandidaten haben eine Zahl danach (z.B. 2.0.0-alpha.0)</li></ul><p>Und hier ist die erste Veröffentlichung im Jahr 2021 für ItemMods! Viel Spaß. Die Dokumentation ist noch nicht fertig, bitte benutzen Sie die Zwietracht für Fragen.</p><p>Vielen Dank für das Warten :)</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>freigegeben</category>
+            <category>itemmods</category>
+            <category>Geburtstag</category>
+        </item>
+    </channel>
+</rss>

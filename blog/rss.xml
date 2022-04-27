@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ItemMods Blog</title>
+        <link>https://itemmods.linwood.dev/blog</link>
+        <description>ItemMods Blog</description>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[2.0.0-alpha.2 released]]></title>
+            <link>https://itemmods.linwood.dev/blog/2021/12/28/2.0.0-alpha.2-released</link>
+            <guid>/2021/12/28/2.0.0-alpha.2-released</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Merry Christmas!]]></description>
+            <content:encoded><![CDATA[<p>Merry Christmas!</p><p>This update includes:</p><ul><li>1.18 support</li><li>Simple command framework</li></ul><p>Have a nice day!</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>released</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.1 released]]></title>
+            <link>https://itemmods.linwood.dev/blog/2021/09/15/2.0.0-alpha.1-released</link>
+            <guid>/2021/09/15/2.0.0-alpha.1-released</guid>
+            <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[This is a maintenance update. Translation bugs (#18) were fixed]]></description>
+            <content:encoded><![CDATA[<p>This is a maintenance update. Translation bugs (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) were fixed
+and new api methods were implemented.</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>released</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.0 released]]></title>
+            <link>https://itemmods.linwood.dev/blog/2021/09/05/2.0.0-alpha.0-released</link>
+            <guid>/2021/09/05/2.0.0-alpha.0-released</guid>
+            <pubDate>Sun, 05 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[ItemMods has its first birthday! Happy birthday! Come to the discord to]]></description>
+            <content:encoded><![CDATA[<p>ItemMods has its first birthday! Happy birthday! Come to <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">the discord</a> to
+celebrate this!
+I rewrote the plugin.</p><p>Here are the highlights:</p><ul><li>Every item and block is in a pack and have its own file in the pack directory</li><li>GUI improvements: tabs, smaller gui, ...</li><li>Resource pack generator: The plugin will build a resource pack for you. You only need to add a preset, and the
+required textures</li><li>New translation api: It's easier to translate. I added crowdin to give the opinion to add their own language to the
+plugin</li><li>New docs: I created an own website for the plugin. Here you can see all news, documentation and more. See
+it <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">here</a></li><li>Remove nms dependency, added nbt api</li><li>Follow the semantic versioning 2.0: Every version is named in the following schema: MAJOR.MINOR.PATCH. The alpha, beta
+and release candidates has a number after it (for example 2.0.0-alpha.0)</li></ul><p>And here is the first release in 2021 for ItemMods!
+Have fun. The docs are not finished, so please use the discord for questions.</p><p>Thank you for waiting :)</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>released</category>
+            <category>itemmods</category>
+            <category>birthday</category>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>ItemMods Blog</title>
+        <link>https://itemmods.linwood.dev/fr/blog</link>
+        <description>ItemMods Blog</description>
+        <lastBuildDate>Tue, 28 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>fr</language>
+        <item>
+            <title><![CDATA[2.0.0-alpha.2 publié]]></title>
+            <link>https://itemmods.linwood.dev/fr/blog/2021/12/28/2.0.0-alpha.2-released</link>
+            <guid>/2021/12/28/2.0.0-alpha.2-released</guid>
+            <pubDate>Tue, 28 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Merry Christmas!]]></description>
+            <content:encoded><![CDATA[<p>Merry Christmas!</p><p>Cette mise à jour comprend :</p><ul><li>Support 1.18</li><li>Cadre de commande simple</li></ul><p>Passez une bonne journée !</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>libéré</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.1 publié]]></title>
+            <link>https://itemmods.linwood.dev/fr/blog/2021/09/15/2.0.0-alpha.1-released</link>
+            <guid>/2021/09/15/2.0.0-alpha.1-released</guid>
+            <pubDate>Wed, 15 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Il s'agit d'une mise à jour de maintenance. Translation bugs (#18) were fixed and new api methods were implemented.]]></description>
+            <content:encoded><![CDATA[<p>Il s'agit d'une mise à jour de maintenance. Translation bugs (<a href="https://github.com/CodeDoctorDE/ItemMods/issues/18" target="_blank" rel="noopener noreferrer">#18</a>) were fixed and new api methods were implemented.</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>libéré</category>
+            <category>itemmods</category>
+        </item>
+        <item>
+            <title><![CDATA[2.0.0-alpha.0 publié]]></title>
+            <link>https://itemmods.linwood.dev/fr/blog/2021/09/05/2.0.0-alpha.0-released</link>
+            <guid>/2021/09/05/2.0.0-alpha.0-released</guid>
+            <pubDate>Sun, 05 Sep 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[ItemMods a son premier anniversaire ! Joyeux anniversaire! Venez à la discorde pour célébrer cela ! J'ai réécrit le plugin.]]></description>
+            <content:encoded><![CDATA[<p>ItemMods a son premier anniversaire ! Joyeux anniversaire! Venez à <a href="https://go.linwood.dev/itemmods-discord" target="_blank" rel="noopener noreferrer">la discorde</a> pour célébrer cela ! J'ai réécrit le plugin.</p><p>Voici les points forts :</p><ul><li>Chaque élément et bloc est dans un pack et a son propre fichier dans le répertoire des packs</li><li>Améliorations de l'interface graphique: onglets, interface plus petite, ...</li><li>Générateur de pack de ressources: Le plugin va construire un pack de ressources pour vous. Vous n'avez qu'à ajouter un préréglage et les textures requises</li><li>Nouvelle traduction api: Il est plus facile de traduire. J'ai ajouté crowdin pour donner mon avis pour ajouter leur propre langue au plugin</li><li>Nouvelles docs : j'ai créé un site web pour le plugin. Ici vous pouvez voir toutes les nouvelles, la documentation et plus encore. Voir la <a href="https://itemmods.linwood.dev" target="_blank" rel="noopener noreferrer">ici</a></li><li>Supprimer les dépendances Nms, ajout de nbt api</li><li>Suivez la version sémantique 2.0 : chaque version est nommée dans le schéma suivant : MAJOR.MINOR.PATCH. L'alpha, la bêta et la publication des candidats ont un nombre après lui (par exemple 2.0.0-alpha.0)</li></ul><p>Et voici la première version en 2021 pour ItemMods! Amusez-vous bien. Les documents ne sont pas terminés, veuillez donc utiliser la discorde pour les questions.</p><p>Merci d'avoir attendu :)</p>]]></content:encoded>
+            <category>alpha</category>
+            <category>libéré</category>
+            <category>itemmods</category>
+            <category>anniversaire</category>
+        </item>
+    </channel>
+</rss>

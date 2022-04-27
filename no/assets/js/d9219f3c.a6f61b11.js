@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[165],{1578:function(e){e.exports=JSON.parse('{"permalink":"/no/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"Blogg","blogTitle":"Blogg"}')}}]);
