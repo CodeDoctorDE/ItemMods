@@ -2,8 +2,11 @@
 title: Eigene Elemente
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack#create-a-pack) um zu sehen,
-wie Sie erstellen können. :::
+:::note Um benutzerdefinierte Items zu haben, benötigst du ein Paket.
+
+Click [here](pack#create-a-pack) to see how you can create one.
+
+:::
 
 ## Benutzerdefiniertes Element erstellen
 
