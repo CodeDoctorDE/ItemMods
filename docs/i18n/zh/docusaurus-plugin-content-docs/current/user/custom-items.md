@@ -2,7 +2,11 @@
 title: 自定义项目
 ---
 
-:::note 要有自定义的纹理，你需要有一个包。 查看 [这里](pack#create-a-pack) 来查看您如何创建 一个。 :::
+:::note 要有自定义项目，你需要有一个包。
+
+Click [here](pack#create-a-pack) to see how you can create one.
+
+:::
 
 ## 创建一个自定义项
 
