@@ -2,8 +2,11 @@
 title: Eigene Modelle
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack#create-a-pack) um zu sehen,
-wie Sie erstellen können. :::
+:::note Um benutzerdefinierte Modelle zu haben, benötigen Sie ein Paket.
+
+Click [here](pack#create-a-pack) to see how you can create one.
+
+:::
 
 ## Ein individuelles Modell erstellen
 
