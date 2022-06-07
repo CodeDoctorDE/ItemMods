@@ -53,11 +53,11 @@ module.exports = {
                     items: [
                         {
                             label: 'JavaDocs',
-                            href: '/apidocs',
+                            href: 'https://itemmods.linwood.dev/apidocs',
                         },
                         {
                             label: "JavaDocs Snapshot",
-                            href: "/apidocs-snapshot"
+                            href: "https://itemmods.linwood.dev/apidocs-snapshot"
                         },
                         {
                             label: 'Discord',
