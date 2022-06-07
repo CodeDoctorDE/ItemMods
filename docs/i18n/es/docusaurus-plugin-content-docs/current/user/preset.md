@@ -9,7 +9,7 @@ El directorio predefinido es el preset para el paquete de recursos. Aquí puedes
 Necesita esta estructura de carpetas para tener un paquete de recursos de trabajo. Si tienes un elemento con el diamante de la textura de recurso, necesitas tener un `diamond.json`.
 
 ```markdown
-★ pack.mcmeta, assets → → → minecraft, modelos, y el elemento → tv diamond.json
+├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
 ```
 
 El `pack.mcmeta` necesita tener este contenido:
