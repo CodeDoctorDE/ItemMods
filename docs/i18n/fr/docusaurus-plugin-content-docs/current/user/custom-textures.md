@@ -2,8 +2,11 @@
 title: Textures personnalisées
 ---
 
-:::note Pour avoir des textures personnalisées, vous devez avoir un pack. Voir [ici](pack#create-a-pack) pour voir
-comment vous pouvez créer un. :::
+:::note Pour avoir des textures personnalisées, vous devez avoir un pack.
+
+Cliquez sur [ici](pack#create-a-pack) pour voir comment vous pouvez en créer un.
+
+:::
 
 ## Créer une texture personnalisée
 
@@ -17,3 +20,5 @@ comment vous pouvez créer un. :::
         * Vous devez maintenant entrer le nom du fichier, par exemple `ruby.png`
     * Si vous choisissez Internet, vous avez besoin du lien direct vers le png
         * Si vous choisissez imgur, veuillez ajouter `.png` à l'url, par exemple `https://example.com/YOURFILE.png`
+
+Assurez-vous que vous avez le fichier modèle par défaut comme [prédéfini](preset).
