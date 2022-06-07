@@ -9,17 +9,17 @@ Den forhåndsinnstilte mappen er forhåndsinnstillingen for ressurspakken. Her k
 Du trenger denne mappestrukturen for å ha en fungerende ressurspakke. Hvis du har et element med fallback-teksturdiamant, må du ha en `diamond.json`.
 
 ```markdown
-➜ pack.mcmeta ➠ ″assets ″″″minecraftminecraft ″-minecraft φ models εminecraftitem ε″″diamond.json
+├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
 ```
 
 `pakken .mcmeta` må ha dette innholdet:
 
 ```json title="pack.mcmeta"
 {
-  "pakke": {
+  "pack": {
     "description": "The name of the resource pack",
     "pack_format": 7
-
+  }
 }
 ```
 
@@ -39,7 +39,7 @@ Modellfilen bør ligne dette slik:
   "textures": {
     "layer0": "minecraft:item/diamond"
   }
-
+}
 ```
 
 Hvis du har en blokk fallback-tekstur som en gressblokk, er modellfilen i blokkunderkatalogen, for example `assets/minecraft/models/block/grass_block. sønn`.
