@@ -31,7 +31,7 @@ dependencies {
     implementation 'me.lucko:commodore:1.13'
     shadow group: 'de.tr7zw', name: 'item-nbt-api', version: '2.9.2'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
-    shadow 'org.apache.commons:commons-io:2.11.0'
+    shadow 'commons-io:commons-io:2.11.0'
     shadow 'dev.linwood:ui-templates:3.2.1'
     shadow 'dev.linwood:serializer:3.2.1'
     shadow 'dev.linwood:ui:3.2.1'

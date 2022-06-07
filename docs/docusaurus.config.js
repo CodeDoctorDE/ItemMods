@@ -46,14 +46,45 @@ module.exports = {
                     label: 'Community',
                 },
                 {to: "/blog", label: "Blog", position: "left"},
-                /*{
-                  label: "Addons",
-                  to: "addons",
-                },
                 {
-                  label: "Mods",
-                  to: "mods",
-                },*/
+                    type: 'dropdown',
+                    label: 'More',
+                    position: 'left',
+                    items: [
+                        {
+                            label: 'JavaDocs',
+                            href: '/apidocs',
+                        },
+                        {
+                            label: "JavaDocs Snapshot",
+                            href: "/apidocs-snapshot"
+                        },
+                        {
+                            label: 'Discord',
+                            href: 'https://go.linwood.dev/itemmods-discord',
+                        },
+                        {
+                            label: 'GitHub',
+                            href: 'https://github.com/CodeDoctorDE/ItemMods',
+                        },
+                        {
+                            label: 'Blog',
+                            href: 'https://linwood.dev/blog'
+                        },
+                        {
+                            label: 'Crowdin',
+                            href: 'https://translate.linwood.dev/ItemMods'
+                        },
+                        {
+                            label: 'Twitter',
+                            href: 'https://twitter.com/LinwoodCloud',
+                        },
+                        {
+                            label: 'License',
+                            href: 'https://github.com/CodeDoctorDE/ItemMods/blob/develop/LICENSE'
+                        }
+                    ],
+                },
                 {
                     type: 'docsVersionDropdown',
                     position: 'right',
@@ -62,11 +93,6 @@ module.exports = {
                 {
                     type: 'localeDropdown',
                     position: 'right',
-                },
-                {
-                    href: "https://github.com/CodeDoctorDE/ItemMods",
-                    label: "GitHub",
-                    position: "right",
                 },
             ],
         },
