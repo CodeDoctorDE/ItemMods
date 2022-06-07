@@ -2,8 +2,11 @@
 title: Eigene Texturen
 ---
 
-:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben. Siehe [hier](pack#create-a-pack) um zu sehen,
-wie Sie erstellen können. :::
+:::note Um benutzerdefinierte Texturen zu haben, musst du ein Paket haben.
+
+Click [here](pack#create-a-pack) to see how you can create one.
+
+:::
 
 ## Eigene Textur erstellen
 
@@ -17,3 +20,5 @@ wie Sie erstellen können. :::
         * Jetzt müssen Sie den Dateinamen eingeben, zum Beispiel `ruby.png`
     * Wenn du das Internet wählst, benötigst du den direkten Link zu den png
         * Wenn Sie imgur wählen, fügen Sie bitte `.png` zur URL hinzu, zum Beispiel `https://example.com/YOURFILE.png`
+
+Stellen Sie sicher, dass Sie die Standard-Modelldatei als [Voreinstellung](preset) haben.
