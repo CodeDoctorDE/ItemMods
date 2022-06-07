@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[2397],{9932:function(e){e.exports=JSON.parse('{"allTagsPath":"/de/blog/tags","name":"itemmods","count":3,"permalink":"/de/blog/tags/itemmods"}')}}]);

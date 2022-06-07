@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[3721],{424:function(e){e.exports=JSON.parse('{"label":"elementos","permalink":"/es/blog/tags/elementos","allTagsPath":"/es/blog/tags","count":3}')}}]);

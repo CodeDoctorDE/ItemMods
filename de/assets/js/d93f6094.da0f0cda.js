@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[1711],{6174:function(e){e.exports=JSON.parse('{"allTagsPath":"/de/blog/tags","name":"freigegeben","count":3,"permalink":"/de/blog/tags/freigegeben"}')}}]);

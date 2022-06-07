@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[682],{9431:function(e){e.exports=JSON.parse('{"label":"lib\xe9r\xe9","permalink":"/fr/blog/tags/libere","allTagsPath":"/fr/blog/tags","count":3}')}}]);

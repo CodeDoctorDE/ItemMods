@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[7033],{1181:function(s){s.exports=JSON.parse('{"label":"cumplea\xf1os","permalink":"/es/blog/tags/cumpleanos","allTagsPath":"/es/blog/tags","count":1}')}}]);

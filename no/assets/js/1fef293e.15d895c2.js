@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[6228],{446:function(t){t.exports=JSON.parse('{"allTagsPath":"/no/blog/tags","name":"frigjort","count":3,"permalink":"/no/blog/tags/frigjort"}')}}]);

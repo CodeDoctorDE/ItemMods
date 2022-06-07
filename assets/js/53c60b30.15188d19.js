@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[3944],{7678:function(t){t.exports=JSON.parse('{"label":"birthday","permalink":"/blog/tags/birthday","allTagsPath":"/blog/tags","count":1}')}}]);

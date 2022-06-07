@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkbutterfly_docs=self.webpackChunkbutterfly_docs||[]).push([[4556],{3943:function(s){s.exports=JSON.parse('{"allTagsPath":"/zh/blog/tags","name":"\u9879\u76ee\u6a21\u7ec4","count":3,"permalink":"/zh/blog/tags/\u9879\u76ee\u6a21\u7ec4"}')}}]);
