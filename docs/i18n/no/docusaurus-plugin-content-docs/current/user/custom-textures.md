@@ -2,8 +2,11 @@
 title: Egendefinerte teksturer
 ---
 
-::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack#create-a-pack) for å se hvordan du kan lage
-en. :::
+::note For å ha egendefinerte tekster, må du ha en pakke.
+
+Klikk [her](pack#create-a-pack) for å se hvordan du kan lage en.
+
+:::
 
 ## Opprett en egendefinert tekstur
 
@@ -17,3 +20,5 @@ en. :::
         * Nå må du skrive inn filnavnet, for eksempel `ruby.png`
     * Hvis du velger internett, trenger du direkte link til png
         * Hvis du velger imgur, legg til `.png` til nettadressen, f.eks `https://example.com/YOURFILE.png`
+
+Vær sikker på at du har standardfila som [forhåndsinnstilt](preset).
