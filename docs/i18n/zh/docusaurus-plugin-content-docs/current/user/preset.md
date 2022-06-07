@@ -9,16 +9,16 @@ title: Preset
 您需要此文件夹结构才能有一个工作资源包。 如果你有一个带有后退纹理钻石的物品， 你需要一个 `钻石.json`
 
 ```markdown
-* E/ICEF/2006/13。
+├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
 ```
 
 `pack.mcmeta` 需要有这个内容：
 
 ```json title="pack.mcmeta"
-主席:
-  "pack":
-    "description": "资源包的名称",
-    "pack_格式": 7
+{
+  "pack": {
+    "description": "The name of the resource pack",
+    "pack_format": 7
   }
 }
 ```
