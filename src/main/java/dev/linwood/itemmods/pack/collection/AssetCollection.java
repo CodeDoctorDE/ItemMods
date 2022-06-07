@@ -6,6 +6,7 @@ import dev.linwood.itemmods.pack.asset.PackAsset;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -25,6 +26,10 @@ public class AssetCollection<T extends PackAsset> {
 
     public Set<T> getAssets() {
         return Collections.unmodifiableSet(assets);
+    }
+
+    public List<T> getAssetsAsList() {
+        return List.copyOf(assets);
     }
 
     public void registerAsset(T asset) {

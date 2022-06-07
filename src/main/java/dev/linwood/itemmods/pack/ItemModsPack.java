@@ -173,4 +173,56 @@ public class ItemModsPack implements NamedPackObject {
         AssetCollection<T> collection = (AssetCollection<T>) getCollection(asset.getClass());
         collection.unregisterAsset(asset.getName());
     }
+
+    // region Asset Collections
+
+    public List<BlockAsset> getBlocks() {
+        return new ArrayList<>(blockAssets.getAssetsAsList());
+    }
+
+    public List<ItemAsset> getItems() {
+        return new ArrayList<>(itemAssets.getAssetsAsList());
+    }
+
+    public List<ModelAsset> getModels() {
+        return new ArrayList<>(modelAssets.getAssetsAsList());
+    }
+
+    public List<TextureAsset> getTextures() {
+        return new ArrayList<>(textureAssets.getAssetsAsList());
+    }
+
+    public List<SoundAsset> getSounds() {
+        return new ArrayList<>(soundAssets.getAssetsAsList());
+    }
+
+    public List<CustomTemplate> getTemplates() {
+        return new ArrayList<>(templateAssets.getAssetsAsList());
+    }
+
+    public BlockAsset getBlock(String name) {
+        return blockAssets.getAsset(name);
+    }
+
+    public ItemAsset getItem(String name) {
+        return itemAssets.getAsset(name);
+    }
+
+    public ModelAsset getModel(String name) {
+        return modelAssets.getAsset(name);
+    }
+
+    public TextureAsset getTexture(String name) {
+        return textureAssets.getAsset(name);
+    }
+
+    public SoundAsset getSound(String name) {
+        return soundAssets.getAsset(name);
+    }
+
+    public CustomTemplate getTemplate(String name) {
+        return templateAssets.getAsset(name);
+    }
+
+    // endregion
 }
