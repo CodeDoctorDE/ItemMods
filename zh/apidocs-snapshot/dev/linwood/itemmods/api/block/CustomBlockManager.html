@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":9,"i5":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -179,6 +179,11 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInstance()">getInstance</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#registerListener()">registerListener</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -210,6 +215,15 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getInstance</h4>
 <pre class="methodSignature">public static&nbsp;<a href="CustomBlockManager.html" title="class in dev.linwood.itemmods.api.block">CustomBlockManager</a>&nbsp;getInstance()</pre>
+</li>
+</ul>
+<a id="registerListener()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>registerListener</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;registerListener()</pre>
 </li>
 </ul>
 <a id="getAssetByKey(java.lang.String)">
@@ -253,7 +267,8 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;<a href="CustomBlock.html" title="class in dev.linwood.itemmods.api.block">CustomBlock</a>&nbsp;create&#8203;(org.bukkit.Location&nbsp;location,
                           <a href="../../pack/PackObject.html" title="class in dev.linwood.itemmods.pack">PackObject</a>&nbsp;packObject,
                           @Nullable
-                          @Nullable org.bukkit.entity.Player&nbsp;player)</pre>
+                          @Nullable org.bukkit.entity.Player&nbsp;player)
+                   throws java.io.IOException</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>location</code> - The location where the custom block will be placed!</dd>
@@ -261,6 +276,8 @@ extends java.lang.Object</pre>
 <dd><code>player</code> - The player who is placing the block</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Returns if it was placed!</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>

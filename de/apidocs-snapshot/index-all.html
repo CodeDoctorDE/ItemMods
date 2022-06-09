@@ -188,6 +188,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/api/block/CustomBlockManager.html#create(org.bukkit.Location,dev.linwood.itemmods.pack.PackObject,org.bukkit.entity.Player)">create(Location, PackObject, Player)</a></span> - Method in class dev.linwood.itemmods.api.block.<a href="dev/linwood/itemmods/api/block/CustomBlockManager.html" title="class in dev.linwood.itemmods.api.block">CustomBlockManager</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html#createDirectory()">createDirectory()</a></span> - Method in class dev.linwood.itemmods.pack.collection.<a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html" title="class in dev.linwood.itemmods.pack.collection">SavedAssetCollection</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/addon/model/CubitBlockModel.html#createGui(dev.linwood.itemmods.pack.custom.TemplateData)">createGui(TemplateData)</a></span> - Method in class dev.linwood.itemmods.addon.model.<a href="dev/linwood/itemmods/addon/model/CubitBlockModel.html" title="class in dev.linwood.itemmods.addon.model">CubitBlockModel</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/PacksAction.html#createPack(org.bukkit.command.CommandSender)">createPack(CommandSender)</a></span> - Method in class dev.linwood.itemmods.action.<a href="dev/linwood/itemmods/action/PacksAction.html" title="class in dev.linwood.itemmods.action">PacksAction</a></dt>
@@ -460,8 +462,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html#getDirectoryPath()">getDirectoryPath()</a></span> - Method in class dev.linwood.itemmods.pack.collection.<a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html" title="class in dev.linwood.itemmods.pack.collection">SavedAssetCollection</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/BlockAsset.html#getDisplayName()">getDisplayName()</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/BlockAsset.html" title="class in dev.linwood.itemmods.pack.asset">BlockAsset</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/CustomNamedAsset.html#getDisplayName()">getDisplayName()</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/CustomNamedAsset.html" title="class in dev.linwood.itemmods.pack.asset">CustomNamedAsset</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/DisplayedObject.html#getDisplayName()">getDisplayName()</a></span> - Method in interface dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/DisplayedObject.html" title="interface in dev.linwood.itemmods.pack">DisplayedObject</a></dt>
@@ -502,13 +502,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/api/item/CustomItemManager.html#getInstance()">getInstance()</a></span> - Static method in class dev.linwood.itemmods.api.item.<a href="dev/linwood/itemmods/api/item/CustomItemManager.html" title="class in dev.linwood.itemmods.api.item">CustomItemManager</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#getInstance()">getInstance()</a></span> - Static method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#getItem(java.lang.String)">getItem(String)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html#getItemIcon(dev.linwood.itemmods.pack.PackObject,dev.linwood.itemmods.pack.custom.TemplateData)">getItemIcon(PackObject, TemplateData)</a></span> - Method in class dev.linwood.itemmods.addon.templates.item.<a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html" title="class in dev.linwood.itemmods.addon.templates.item">BlockSetTemplate</a></dt>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html#getItemIcon(dev.linwood.itemmods.pack.PackObject,java.lang.Class,dev.linwood.itemmods.pack.custom.TemplateData)">getItemIcon(PackObject, Class&lt;? extends CustomPackAsset&gt;, TemplateData)</a></span> - Method in class dev.linwood.itemmods.addon.templates.item.<a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html" title="class in dev.linwood.itemmods.addon.templates.item">BlockSetTemplate</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html#getItemIcon(dev.linwood.itemmods.pack.PackObject,dev.linwood.itemmods.pack.custom.TemplateData)">getItemIcon(PackObject, TemplateData)</a></span> - Method in class dev.linwood.itemmods.pack.custom.<a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html" title="class in dev.linwood.itemmods.pack.custom">CustomTemplate</a></dt>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html#getItemIcon(dev.linwood.itemmods.pack.PackObject,java.lang.Class,dev.linwood.itemmods.pack.custom.TemplateData)">getItemIcon(PackObject, Class&lt;? extends CustomPackAsset&gt;, TemplateData)</a></span> - Method in class dev.linwood.itemmods.pack.custom.<a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html" title="class in dev.linwood.itemmods.pack.custom">CustomTemplate</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#getItems()">getItems()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
 <dd>&nbsp;</dd>
@@ -585,6 +583,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#getPack(java.lang.String)">getPack(String)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/ItemMods.html#getPackManager()">getPackManager()</a></span> - Static method in class dev.linwood.itemmods.<a href="dev/linwood/itemmods/ItemMods.html" title="class in dev.linwood.itemmods">ItemMods</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#getPackNames()">getPackNames()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/api/block/CustomBlock.html#getPackObject()">getPackObject()</a></span> - Method in class dev.linwood.itemmods.api.block.<a href="dev/linwood/itemmods/api/block/CustomBlock.html" title="class in dev.linwood.itemmods.api.block">CustomBlock</a></dt>
@@ -615,6 +615,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html#getPreviewIcon()">getPreviewIcon()</a></span> - Method in class dev.linwood.itemmods.pack.custom.<a href="dev/linwood/itemmods/pack/custom/CustomTemplate.html" title="class in dev.linwood.itemmods.pack.custom">CustomTemplate</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/ItemMods.html#getProtocolManager()">getProtocolManager()</a></span> - Static method in class dev.linwood.itemmods.<a href="dev/linwood/itemmods/ItemMods.html" title="class in dev.linwood.itemmods">ItemMods</a></dt>
+<dd>
+<div class="block">Get protocol manager of ProtocolLib</div>
+</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/BlockAsset.html#getReferenceItem()">getReferenceItem()</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/BlockAsset.html" title="class in dev.linwood.itemmods.pack.asset">BlockAsset</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#getSound(java.lang.String)">getSound(String)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
@@ -721,6 +725,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#hasNoPreset()">hasNoPreset()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/ItemMods.html#hasProtocolLib()">hasProtocolLib()</a></span> - Static method in class dev.linwood.itemmods.<a href="dev/linwood/itemmods/ItemMods.html" title="class in dev.linwood.itemmods">ItemMods</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/CommandAction.html#hasTranslation(java.lang.String)">hasTranslation(String)</a></span> - Method in interface dev.linwood.itemmods.action.<a href="dev/linwood/itemmods/action/CommandAction.html" title="interface in dev.linwood.itemmods.action">CommandAction</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/TranslationCommandAction.html#hasTranslation(java.lang.String)">hasTranslation(String)</a></span> - Method in interface dev.linwood.itemmods.action.<a href="dev/linwood/itemmods/action/TranslationCommandAction.html" title="interface in dev.linwood.itemmods.action">TranslationCommandAction</a></dt>
@@ -753,10 +759,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#isEditable()">isEditable()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/ItemMods.html#isRunningOnPaper()">isRunningOnPaper()</a></span> - Static method in class dev.linwood.itemmods.<a href="dev/linwood/itemmods/ItemMods.html" title="class in dev.linwood.itemmods">ItemMods</a></dt>
-<dd>
-<div class="block">Test if the server is running on paper</div>
-</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/raw/ModelAsset.html#isStatic()">isStatic()</a></span> - Method in class dev.linwood.itemmods.pack.asset.raw.<a href="dev/linwood/itemmods/pack/asset/raw/ModelAsset.html" title="class in dev.linwood.itemmods.pack.asset.raw">ModelAsset</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/TranslatableName.html#isTranslated()">isTranslated()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/TranslatableName.html" title="class in dev.linwood.itemmods.pack">TranslatableName</a></dt>
@@ -911,6 +913,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack"><span class="typeNameLink">PackManager</span></a> - Class in <a href="dev/linwood/itemmods/pack/package-summary.html">dev.linwood.itemmods.pack</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#%3Cinit%3E()">PackManager()</a></span> - Constructor for class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/pack/BlockAction.html#packObject">packObject</a></span> - Variable in class dev.linwood.itemmods.action.pack.<a href="dev/linwood/itemmods/action/pack/BlockAction.html" title="class in dev.linwood.itemmods.action.pack">BlockAction</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/pack/ItemAction.html#packObject">packObject</a></span> - Variable in class dev.linwood.itemmods.action.pack.<a href="dev/linwood/itemmods/action/pack/ItemAction.html" title="class in dev.linwood.itemmods.action.pack">ItemAction</a></dt>
@@ -961,6 +965,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#registerDependency(java.lang.String)">registerDependency(String)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/api/block/CustomBlockManager.html#registerListener()">registerListener()</a></span> - Method in class dev.linwood.itemmods.api.block.<a href="dev/linwood/itemmods/api/block/CustomBlockManager.html" title="class in dev.linwood.itemmods.api.block">CustomBlockManager</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#registerPack(dev.linwood.itemmods.pack.ItemModsPack)">registerPack(ItemModsPack)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/CustomPackAsset.html#registerTemplate(dev.linwood.itemmods.pack.custom.TemplateData)">registerTemplate(TemplateData)</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/CustomPackAsset.html" title="class in dev.linwood.itemmods.pack.asset">CustomPackAsset</a></dt>
@@ -974,6 +980,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/collection/AssetCollection.html#reload()">reload()</a></span> - Method in class dev.linwood.itemmods.pack.collection.<a href="dev/linwood/itemmods/pack/collection/AssetCollection.html" title="class in dev.linwood.itemmods.pack.collection">AssetCollection</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html#reload()">reload()</a></span> - Method in class dev.linwood.itemmods.pack.collection.<a href="dev/linwood/itemmods/pack/collection/SavedAssetCollection.html" title="class in dev.linwood.itemmods.pack.collection">SavedAssetCollection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#reload()">reload()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/PackManager.html#reload()">reload()</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/PackManager.html" title="class in dev.linwood.itemmods.pack">PackManager</a></dt>
 <dd>&nbsp;</dd>
@@ -1049,6 +1057,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/action/LocalesAction.html#selectLocale(java.lang.String)">selectLocale(String)</a></span> - Method in class dev.linwood.itemmods.action.<a href="dev/linwood/itemmods/action/LocalesAction.html" title="class in dev.linwood.itemmods.action">LocalesAction</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/api/block/CustomBlock.html#send(org.bukkit.entity.Player)">send(Player)</a></span> - Method in class dev.linwood.itemmods.api.block.<a href="dev/linwood/itemmods/api/block/CustomBlock.html" title="class in dev.linwood.itemmods.api.block">CustomBlock</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/config/DatabaseConfig.html#setActive(boolean)">setActive(boolean)</a></span> - Method in class dev.linwood.itemmods.config.<a href="dev/linwood/itemmods/config/DatabaseConfig.html" title="class in dev.linwood.itemmods.config">DatabaseConfig</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html#setBlock(dev.linwood.itemmods.pack.custom.TemplateData,dev.linwood.itemmods.pack.PackObject)">setBlock(TemplateData, PackObject)</a></span> - Method in class dev.linwood.itemmods.addon.templates.item.<a href="dev/linwood/itemmods/addon/templates/item/BlockSetTemplate.html" title="class in dev.linwood.itemmods.addon.templates.item">BlockSetTemplate</a></dt>
@@ -1078,8 +1088,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/raw/ModelAsset.html#setDefaultJsonObject(com.google.gson.JsonObject)">setDefaultJsonObject(JsonObject)</a></span> - Method in class dev.linwood.itemmods.pack.asset.raw.<a href="dev/linwood/itemmods/pack/asset/raw/ModelAsset.html" title="class in dev.linwood.itemmods.pack.asset.raw">ModelAsset</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/ItemModsPack.html#setDescription(java.lang.String)">setDescription(String)</a></span> - Method in class dev.linwood.itemmods.pack.<a href="dev/linwood/itemmods/pack/ItemModsPack.html" title="class in dev.linwood.itemmods.pack">ItemModsPack</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/BlockAsset.html#setDisplayName(dev.linwood.itemmods.pack.TranslatableName)">setDisplayName(TranslatableName)</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/BlockAsset.html" title="class in dev.linwood.itemmods.pack.asset">BlockAsset</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="dev/linwood/itemmods/pack/asset/CustomNamedAsset.html#setDisplayName(dev.linwood.itemmods.pack.TranslatableName)">setDisplayName(TranslatableName)</a></span> - Method in class dev.linwood.itemmods.pack.asset.<a href="dev/linwood/itemmods/pack/asset/CustomNamedAsset.html" title="class in dev.linwood.itemmods.pack.asset">CustomNamedAsset</a></dt>
 <dd>&nbsp;</dd>
