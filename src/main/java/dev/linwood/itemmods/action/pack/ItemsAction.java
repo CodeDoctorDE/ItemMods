@@ -9,7 +9,6 @@ import dev.linwood.api.ui.template.gui.pane.list.VerticalListControls;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.command.CommandSender;
@@ -39,14 +38,14 @@ public class ItemsAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getCollection(ItemAsset.class).stream()
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getCollection(ItemAsset.class).stream()
                 .filter(itemAsset -> itemAsset.getName().contains(listGui.getSearchText())).map(itemAsset -> new TranslatedGuiItem(new ItemStackBuilder(itemAsset.getIcon()).displayName("item")
                         .lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(itemAsset.getName()));
                     setClickAction(event -> openItem(sender, itemAsset.getName()));
                 }}).toArray(GuiItem[]::new));
         gui.setPlaceholders(namespace);
-        var pack = PackManager.getInstance().getPack(namespace);
+        var pack = ItemMods.getPackManager().getPack(namespace);
         assert pack != null;
         gui.setListControls(new VerticalListControls() {{
             setBackAction(event -> new PackAction(namespace).showGui(event.getWhoClicked()));
@@ -88,7 +87,7 @@ public class ItemsAction implements TranslationCommandAction {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getCollection(ItemAsset.class)
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getCollection(ItemAsset.class)
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getIcon())
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(asset.getName()));

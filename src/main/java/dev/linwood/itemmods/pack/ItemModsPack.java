@@ -53,6 +53,7 @@ public class ItemModsPack implements NamedPackObject {
         textureAssets = new ExportedAssetCollection<>(this, "textures", (asset, element) -> new TextureAsset(asset, element.getAsJsonObject()));
         soundAssets = new ExportedAssetCollection<>(this, "sounds", (asset, element) -> new SoundAsset(asset, element.getAsJsonObject()));
         templateAssets = new AssetCollection<>(this);
+        reload();
     }
 
     public ItemModsPack(@NotNull String name) throws IOException {
@@ -67,6 +68,15 @@ public class ItemModsPack implements NamedPackObject {
         if (jsonObject.has("icon") && jsonObject.get("icon").isJsonPrimitive())
             icon = Objects.requireNonNull(Material.getMaterial(jsonObject.get("icon").getAsString()));
         jsonObject.getAsJsonArray("dependencies").forEach(jsonElement -> dependencies.add(jsonElement.getAsString()));
+    }
+
+    public void reload() throws IOException {
+        itemAssets.reload();
+        blockAssets.reload();
+        modelAssets.reload();
+        textureAssets.reload();
+        soundAssets.reload();
+        templateAssets.reload();
     }
 
     @SuppressWarnings("unchecked")

@@ -28,7 +28,7 @@ public class PackManager {
     private final List<ItemModsPack> packs = new ArrayList<>();
     private final List<ItemModsPack> inactivePacks = new ArrayList<>();
 
-    private PackManager() {
+    public PackManager() {
         packPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "packs");
         presetPath = Paths.get(ItemMods.getPlugin().getDataFolder().getPath(), "preset");
         try {
@@ -40,11 +40,6 @@ public class PackManager {
             e.printStackTrace();
         }
 
-        reload();
-    }
-
-    public static @NotNull PackManager getInstance() {
-        return instance == null ? instance = new PackManager() : instance;
     }
 
     private static void pack(Path sourceDirPath, Path zipFilePath) throws IOException {

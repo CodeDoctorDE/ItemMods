@@ -14,7 +14,6 @@ import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.raw.ModelsAction;
 import dev.linwood.itemmods.action.pack.raw.TexturesAction;
 import dev.linwood.itemmods.pack.ItemModsPack;
-import dev.linwood.itemmods.pack.PackManager;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -39,7 +38,7 @@ public class PackAction implements TranslationCommandAction {
             return true;
         }
         var gui = new GuiCollection();
-        var pack = PackManager.getInstance().getPack(name);
+        var pack = ItemMods.getPackManager().getPack(name);
         assert pack != null;
         if (!pack.isEditable()) {
             gui.registerItem(4, 2, new TranslatedGuiItem(new ItemStackBuilder(Material.STRUCTURE_VOID).displayName("readonly.title").lore("readonly.description").build()));
@@ -63,7 +62,7 @@ public class PackAction implements TranslationCommandAction {
                 case ADMINISTRATION:
                     addItem(new TranslatedGuiItem() {{
                         setRenderAction(gui -> {
-                            var activated = PackManager.getInstance().isActivated(pack.getName());
+                            var activated = ItemMods.getPackManager().isActivated(pack.getName());
                             var prefix = activated ? "activated." : "deactivated.";
                             setItemStack(new ItemStackBuilder(activated ? Material.GREEN_BANNER : Material.RED_BANNER).displayName(prefix + "title").lore(prefix + "description").build());
                         });
@@ -168,12 +167,12 @@ public class PackAction implements TranslationCommandAction {
     }
 
     public ItemModsPack getPack() {
-        return PackManager.getInstance().getPack(name);
+        return ItemMods.getPackManager().getPack(name);
     }
 
     public void setName(CommandSender sender, String s) {
         getPack().setName(s);
-        PackManager.getInstance().save(name);
+        ItemMods.getPackManager().save(name);
         sender.sendMessage(getTranslation("name.success", s));
     }
 
@@ -197,13 +196,13 @@ public class PackAction implements TranslationCommandAction {
     }
 
     public void deletePack(CommandSender sender) {
-        PackManager.getInstance().deletePack(name);
+        ItemMods.getPackManager().deletePack(name);
     }
 
     public void exportPack(CommandSender sender) {
         sender.sendMessage(getTranslation("export.message", "plugins/ItemMods/exports/" + name));
         try {
-            PackManager.getInstance().zip(name);
+            ItemMods.getPackManager().zip(name);
             sender.sendMessage(getTranslation("export.success", "plugins/ItemMods/exports/" + name));
         } catch (IOException e) {
             sender.sendMessage(getTranslation("export.failed"));
@@ -212,10 +211,10 @@ public class PackAction implements TranslationCommandAction {
     }
 
     public void togglePack(CommandSender sender) {
-        if (PackManager.getInstance().isActivated(name))
-            PackManager.getInstance().deactivatePack(name);
+        if (ItemMods.getPackManager().isActivated(name))
+            ItemMods.getPackManager().deactivatePack(name);
         else
-            PackManager.getInstance().activatePack(name);
+            ItemMods.getPackManager().activatePack(name);
     }
 
     @Override

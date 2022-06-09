@@ -12,8 +12,8 @@ import dev.linwood.itemmods.action.pack.BlocksAction;
 import dev.linwood.itemmods.action.pack.ItemAction;
 import dev.linwood.itemmods.action.pack.TemplateAction;
 import dev.linwood.itemmods.pack.PackObject;
-import dev.linwood.itemmods.pack.asset.BlockAsset;
 import dev.linwood.itemmods.pack.asset.CustomPackAsset;
+import dev.linwood.itemmods.pack.asset.ItemAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
 import dev.linwood.itemmods.pack.custom.TemplateData;
 import org.bukkit.Material;
@@ -34,7 +34,7 @@ public class BlockSetTemplate extends CustomTemplate {
     }
 
     @Override
-    public @NotNull ItemStack getItemIcon(PackObject packObject, TemplateData data) {
+    public @NotNull ItemStack getItemIcon(PackObject packObject, Class<? extends CustomPackAsset> assetClass, TemplateData data) {
         var block = getBlock(data);
         return new ItemStackBuilder(Material.GRASS_BLOCK).displayName(t.getTranslation("title")).lore(
                 block != null ?
@@ -75,7 +75,7 @@ public class BlockSetTemplate extends CustomTemplate {
                     var block = new PackObject(pack.getName(), asset.getName());
                     setBlock(data, block);
                     packObject.save();
-                    new TemplateAction(packObject, BlockAsset.class).showGui(sender, event -> back(player));
+                    new TemplateAction(packObject, ItemAsset.class).showGui(sender, event -> back(player));
                 }, event -> back(player)), event -> back(player));
                 return true;
             }

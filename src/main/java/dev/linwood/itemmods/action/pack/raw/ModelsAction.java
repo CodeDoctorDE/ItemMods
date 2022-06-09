@@ -10,7 +10,6 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.TranslationCommandAction;
 import dev.linwood.itemmods.action.pack.PackAction;
-import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.raw.ModelAsset;
 import org.bukkit.command.CommandSender;
@@ -40,7 +39,7 @@ public class ModelsAction implements TranslationCommandAction {
             sender.sendMessage(getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getCollection(ModelAsset.class)
+        var gui = new ListGui(getTranslationNamespace(), 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getCollection(ModelAsset.class)
                 .stream().filter(modelAsset -> modelAsset.getName().contains(listGui.getSearchText())).map(modelAsset ->
                         new TranslatedGuiItem(new ItemStackBuilder(modelAsset.getFallbackTexture()).displayName("item").lore("actions").build()) {{
                             setRenderAction(gui -> setPlaceholders(new PackObject(namespace, modelAsset.getName()).toString()));
@@ -56,7 +55,7 @@ public class ModelsAction implements TranslationCommandAction {
                 gui.hide(p);
                 request.setSubmitAction(s -> {
                     try {
-                        var pack = PackManager.getInstance().getPack(namespace);
+                        var pack = ItemMods.getPackManager().getPack(namespace);
                         assert pack != null;
                         pack.register(new ModelAsset(s));
                         new PackObject(namespace, s).save();
@@ -89,7 +88,7 @@ public class ModelsAction implements TranslationCommandAction {
             sender.sendMessage(t.getTranslation("no-player"));
             return;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getCollection(ModelAsset.class)
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getCollection(ModelAsset.class)
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getFallbackTexture())
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));

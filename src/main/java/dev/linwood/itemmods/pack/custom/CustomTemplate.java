@@ -24,5 +24,5 @@ public abstract class CustomTemplate extends PackAsset {
 
     public abstract @NotNull ItemStack getPreviewIcon();
 
-    public abstract @NotNull ItemStack getItemIcon(PackObject packObject, TemplateData data);
+    public abstract @NotNull ItemStack getItemIcon(PackObject packObject, Class<? extends CustomPackAsset> assetClass, TemplateData data);
 }

@@ -1,5 +1,7 @@
 package dev.linwood.itemmods;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -12,6 +14,7 @@ import dev.linwood.api.translations.TranslationConfig;
 import dev.linwood.api.ui.Gui;
 import dev.linwood.api.utils.FileUtils;
 import dev.linwood.itemmods.addon.BaseAddon;
+import dev.linwood.itemmods.api.block.CustomBlockManager;
 import dev.linwood.itemmods.commands.BaseCommand;
 import dev.linwood.itemmods.commands.GiveItemCommand;
 import dev.linwood.itemmods.config.MainConfig;
@@ -28,6 +31,7 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -59,9 +63,11 @@ public class ItemMods extends JavaPlugin {
     private static Path mainConfigFile;
     private static MainConfig mainConfig;
     private static TranslationConfig translationConfig;
+    private static PackManager packManager;
     private static Path tempPath;
     private static Path translationsPath;
-    private static boolean runningOnPaper;
+    @Nullable
+    private static ProtocolManager protocolManager = null;
     private Connection connection;
 
     /**
@@ -128,6 +134,10 @@ public class ItemMods extends JavaPlugin {
         return getPlugin().getDescription().getVersion();
     }
 
+    public static PackManager getPackManager() {
+        return packManager;
+    }
+
     /**
      * Get the directory located in plugins/ItemMods/temp
      *
@@ -176,28 +186,29 @@ public class ItemMods extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PackManager.getInstance().reload();
+        ItemMods.getPackManager().reload();
         reloadMainConfig();
     }
 
     /**
-     * Test if the server is running on paper
+     * Get protocol manager of ProtocolLib
      *
      * @return Returns true if the server is running on paper
      */
-    public static boolean isRunningOnPaper() {
-        return runningOnPaper;
+    public static @Nullable ProtocolManager getProtocolManager() {
+        return protocolManager;
+    }
+
+    public static boolean hasProtocolLib() {
+        return protocolManager != null;
     }
 
     @Override
     public void onEnable() {
         plugin = this;
         translationsPath = Paths.get(getDataFolder().getAbsolutePath(), "translations");
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-            runningOnPaper = true;
-        } catch (ClassNotFoundException e) {
-            runningOnPaper = false;
+        if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
+            protocolManager = ProtocolLibrary.getProtocolManager();
         }
         try {
             Files.createDirectories(translationsPath);
@@ -252,11 +263,15 @@ public class ItemMods extends JavaPlugin {
         if (version.isLowerThan(new Version("1.14")) || version.isBiggerThan(new Version("1.18"))) {
             Bukkit.getConsoleSender().sendMessage(translationConfig.getTranslation("plugin.compatible"));
         }
+        packManager = new PackManager();
+        packManager.reload();
         try {
-            PackManager.getInstance().registerPack(new BaseAddon());
+            ItemMods.getPackManager().registerPack(new BaseAddon());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        CustomBlockManager.getInstance().registerListener();
 
         BaseCommand baseCommand = new BaseCommand();
         GiveItemCommand giveItemCommand = new GiveItemCommand();

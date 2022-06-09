@@ -22,6 +22,8 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+
 public class CustomBlockListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -63,8 +65,12 @@ public class CustomBlockListener implements Listener {
                 }
                 if (location.distance(event.getPlayer().getLocation()) < 1 || location.distance(event.getPlayer().getEyeLocation()) < 1)
                     return;
-                if (CustomBlockManager.getInstance().create(location, template.getBlock(customTemplateData), player) == null)
-                    return;
+                try {
+                    if (CustomBlockManager.getInstance().create(location, template.getBlock(customTemplateData), player) == null)
+                        return;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 if (event.getPlayer().getGameMode() != GameMode.CREATIVE)
                     event.getItem().setAmount(event.getItem().getAmount() - 1);
             }

@@ -15,7 +15,7 @@ java {
 
 repositories {
     codemc()
-
+    protocolLib()
     spigotmc()
 
     maven {
@@ -44,8 +44,9 @@ dependencies {
     shadow 'dev.linwood:utils:3.2.1'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'org.jetbrains:annotations:23.0.0'
-    compileOnly spigot('1.18.1')
+    compileOnly spigot('1.19')
     compileOnly 'me.HSGamer:BetterGUI:6.6'
+    compileOnly protocolLib('4.8.0')
 }
 
 shadowJar {
@@ -107,6 +108,7 @@ spigot {
     softDepends 'BetterGUI'
     apiVersion "1.18"
     load STARTUP
+    softDepends 'ProtocolLib'
     commands {
         itemmods {
             aliases "itemmods", "itemmod", "itemm", "imods", "imod", "im", "ims"

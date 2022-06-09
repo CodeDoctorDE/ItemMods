@@ -10,7 +10,6 @@ import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.action.PacksAction;
 import dev.linwood.itemmods.action.TranslationCommandAction;
-import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.CustomPackAsset;
 import dev.linwood.itemmods.pack.custom.CustomTemplate;
@@ -43,7 +42,7 @@ public class TemplateAction implements TranslationCommandAction {
             sender.sendMessage(t.getTranslation("no-player"));
             return true;
         }
-        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(PackManager.getInstance().getPack(namespace)).getCollection(CustomTemplate.class)
+        var gui = new ListGui(t, 4, (listGui) -> Objects.requireNonNull(ItemMods.getPackManager().getPack(namespace)).getCollection(CustomTemplate.class)
                 .stream().filter(asset -> new PackObject(namespace, asset.getName()).toString().contains(listGui.getSearchText())).map(asset -> new TranslatedGuiItem(new ItemStackBuilder(asset.getPreviewIcon())
                         .displayName("item").lore("actions").build()) {{
                     setRenderAction(gui -> setPlaceholders(new PackObject(namespace, asset.getName()).toString()));
@@ -75,7 +74,7 @@ public class TemplateAction implements TranslationCommandAction {
         var asset = packObject.getAsset(assetClass);
         assert asset != null;
         var gui = new ListGui(getTranslationNamespace(), 4, listGui -> asset.getTemplates().stream().map(customTemplateData ->
-                new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getItemIcon(packObject, customTemplateData)) {{
+                new StaticItem(Objects.requireNonNull(customTemplateData.getObject().getTemplate()).getItemIcon(packObject, assetClass, customTemplateData)) {{
                     setClickAction(event -> {
                         if (event.getClick() == ClickType.DROP)
                             asset.unregisterTemplate(packObject);

@@ -1,6 +1,11 @@
 package dev.linwood.itemmods.api.block;
 
-import de.tr7zw.changeme.nbtapi.NBTTileEntity;
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.ListenerPriority;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
+import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.events.CustomBlockPlaceEvent;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.BlockAsset;
@@ -8,13 +13,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.EntityType;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class CustomBlockManager {
@@ -25,6 +30,22 @@ public class CustomBlockManager {
 
     public static CustomBlockManager getInstance() {
         return instance == null ? instance = new CustomBlockManager() : instance;
+    }
+
+    public void registerListener() {
+        if (!ItemMods.hasProtocolLib()) return;
+        ProtocolManager protocolManager = ItemMods.getProtocolManager();
+        assert protocolManager != null;
+        protocolManager.addPacketListener(
+                new PacketAdapter(ItemMods.getPlugin(), ListenerPriority.NORMAL,
+                        PacketType.Play.Server.BLOCK_CHANGE) {
+                    @Override
+                    public void onPacketSending(PacketEvent event) {
+                        Location location = event.getPacket().getBlockPositionModifier().read(0).toLocation(event.getPlayer().getWorld());
+                        CustomBlock customBlock = new CustomBlock(location);
+                        if (customBlock.isCustom()) event.setCancelled(true);
+                    }
+                });
     }
 
     private static @NotNull
@@ -60,7 +81,7 @@ public class CustomBlockManager {
      * @param player     The player who is placing the block
      * @return Returns if it was placed!
      */
-    public CustomBlock create(Location location, PackObject packObject, @Nullable Player player) {
+    public CustomBlock create(Location location, PackObject packObject, @Nullable Player player) throws IOException {
         var customBlock = new CustomBlock(location);
         if (customBlock.getConfig() != null)
             return null;
@@ -75,22 +96,17 @@ public class CustomBlockManager {
         if (event.isCancelled())
             return null;
         Block block = Objects.requireNonNull(location.getWorld()).getBlockAt(location);
-        block.setType(Material.SPAWNER);
-        CreatureSpawner spawner = (CreatureSpawner) block.getState();
-        NBTTileEntity tent = new NBTTileEntity(block.getState());
-        tent.setInteger("RequiredPlayerRange", 0);
-        tent.setInteger("SpawnCount", 0);
-        var spawnData = tent.addCompound("SpawnData");
-        spawnData.setString("id", EntityType.ARMOR_STAND.getKey().toString());
-        var handItems = spawnData.getCompoundList("HandItems");
-        var hand = handItems.addCompound();
-        hand.setString("id", model.getFallbackTexture().getKey().toString());
-        hand.addCompound("tag").setInteger("CustomModelData", asset.getModelObject() == null ? null : asset.getModelObject().getCustomModel());
-        hand.setByte("Count", (byte) 1);
-        var state = (CreatureSpawner) block.getState();
+        block.setType(Material.COMMAND_BLOCK);
+        var state = (CommandBlock) block.getState();
         state.getPersistentDataContainer().set(CustomBlock.TYPE_KEY, PersistentDataType.STRING, packObject.toString());
-        state.update();
-
+        state.update(true, false);
+        Bukkit.getScheduler().runTask(ItemMods.getPlugin(), () -> {
+            try {
+                customBlock.send(player);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         return customBlock;
     }

@@ -82,7 +82,7 @@ public class PackObject {
      */
     @Nullable
     public ItemModsPack getPack() {
-        return PackManager.getInstance().getPack(namespace);
+        return ItemMods.getPackManager().getPack(namespace);
     }
 
 
@@ -135,7 +135,7 @@ public class PackObject {
      * Saves the pack where the pack object is located
      */
     public void save() {
-        PackManager.getInstance().save(namespace);
+        ItemMods.getPackManager().save(namespace);
     }
 
     /**

@@ -6,7 +6,6 @@ import dev.linwood.api.ui.item.StaticItem;
 import dev.linwood.api.ui.template.gui.TranslatedChestGui;
 import dev.linwood.api.ui.template.item.TranslatedGuiItem;
 import dev.linwood.itemmods.ItemMods;
-import dev.linwood.itemmods.pack.PackManager;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -72,7 +71,7 @@ public class MainAction implements CommandAction, TranslationCommandAction, SubC
     public void export(CommandSender sender) {
         sender.sendMessage(getTranslation("export.message"));
         try {
-            PackManager.getInstance().export("default");
+            ItemMods.getPackManager().export("default");
             sender.sendMessage(getTranslation("export.success"));
         } catch (Exception e) {
             sender.sendMessage(getTranslation("export.failed"));

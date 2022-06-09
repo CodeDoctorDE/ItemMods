@@ -3,7 +3,6 @@ package dev.linwood.itemmods.commands;
 import dev.linwood.api.translations.Translation;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.api.item.CustomItemManager;
-import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.PackObject;
 import dev.linwood.itemmods.pack.asset.ItemAsset;
 import org.bukkit.Bukkit;
@@ -85,7 +84,7 @@ public class GiveItemCommand implements TabCompleter, CommandExecutor {
         if (args.length == 1)
             available.addAll(Bukkit.getOnlinePlayers().stream().map(Player::getName).collect(Collectors.toList()));
         else if (args.length == 2)
-            available.addAll(PackManager.getInstance().getPacks().stream().flatMap(itemModsPack -> itemModsPack.getCollection(ItemAsset.class).stream().map((itemAsset -> new PackObject(itemModsPack.getName(), itemAsset.getName())))).map(PackObject::toString).collect(Collectors.toList()));
+            available.addAll(ItemMods.getPackManager().getPacks().stream().flatMap(itemModsPack -> itemModsPack.getCollection(ItemAsset.class).stream().map((itemAsset -> new PackObject(itemModsPack.getName(), itemAsset.getName())))).map(PackObject::toString).collect(Collectors.toList()));
         else if (args.length == 3) available.addAll(Arrays.asList("1", "16", "32", "64"));
         //copy matches of first argument from list (ex: if first arg is 'm' will return just 'minecraft')
         StringUtil.copyPartialMatches(args[args.length - 1], available, completions);

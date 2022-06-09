@@ -3,7 +3,6 @@ package dev.linwood.itemmods.pack.collection;
 import com.google.gson.JsonElement;
 import dev.linwood.itemmods.ItemMods;
 import dev.linwood.itemmods.pack.ItemModsPack;
-import dev.linwood.itemmods.pack.PackManager;
 import dev.linwood.itemmods.pack.asset.PackAsset;
 
 import javax.annotation.Nullable;
@@ -33,7 +32,7 @@ public class SavedAssetCollection<T extends PackAsset> extends AssetCollection<T
         if (directoryName == null) {
             return null;
         }
-        return Paths.get(PackManager.getInstance().getPackPath().toString(), parent.getName(), directoryName);
+        return Paths.get(ItemMods.getPackManager().getPackPath().toString(), parent.getName(), directoryName);
     }
 
     public void reload() throws IOException {
@@ -41,6 +40,7 @@ public class SavedAssetCollection<T extends PackAsset> extends AssetCollection<T
         if (directoryName == null) {
             return;
         }
+        createDirectory();
         Files.list(getDirectoryPath()).filter(Files::isRegularFile).forEach(path -> {
             T asset;
             String fileName = path.getFileName().toString().substring(0, path.getFileName().toString().lastIndexOf('.'));
@@ -56,11 +56,19 @@ public class SavedAssetCollection<T extends PackAsset> extends AssetCollection<T
         });
     }
 
+    public void createDirectory() throws IOException {
+        if (directoryName == null) {
+            return;
+        }
+        Files.createDirectories(getDirectoryPath());
+    }
+
     public void save(T asset) throws IOException {
         if (directoryName == null) {
             return;
         }
-        Files.write(getDirectoryPath().resolve(asset.getName() + ".json"), ItemMods.GSON.toJson(asset).getBytes());
+        createDirectory();
+        Files.write(getDirectoryPath().resolve(asset.getName() + ".json"), asset.save(parent.getName()).toString().getBytes());
     }
 
     public void save() {
