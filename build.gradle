@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'me.lucko:commodore:2.0'
+    implementation 'me.lucko:commodore:2.2'
     shadow group: 'de.tr7zw', name: 'item-nbt-api', version: '2.9.2'
     implementation 'org.bstats:bstats-bukkit:3.0.0'
     shadow 'commons-io:commons-io:2.11.0'
