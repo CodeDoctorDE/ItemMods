@@ -9,7 +9,7 @@ Das Preset-Verzeichnis ist die Voreinstellung für das Resource Pack. Hier könn
 Sie benötigen diese Ordnerstruktur, um ein funktionierendes Ressourcenpaket zu haben. If you have an item with the fallback texture diamond, you need to have a `diamond.json`.
 
 ```markdown
-<unk> 本<unk> pack.mcmeta <unk> 本<unk> Assets <unk> ร<unk> minecraft <unk> ร<unk> Modelle <unk> 本<unk> Item <unk> <unk> <unk> diamond.json
+├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
 ```
 
 Die `pack.mcmeta` muss diesen Inhalt haben:
@@ -17,7 +17,7 @@ Die `pack.mcmeta` muss diesen Inhalt haben:
 ```json title="pack.mcmeta"
 {
   "pack": {
-    "description": "Der Name des Resource Pack",
+    "description": "The name of the resource pack",
     "pack_format": 7
   }
 }

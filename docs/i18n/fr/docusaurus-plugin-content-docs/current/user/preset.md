@@ -9,7 +9,7 @@ Le répertoire prédéfini est le préréglage pour le pack de ressources. Ici, 
 Vous avez besoin de cette structure de dossier pour avoir un pack de ressources de travail. Si vous avez un élément avec la texture de repli diamant, vous devez avoir un `diamond.json`.
 
 ```markdown
-── pack.mcmeta <unk> ─ assets <unk> ─ minecraft <unk> ── models <unk> ── item <unk> ── diamond.json
+├── pack.mcmeta └── assets └── minecraft └── models └── item └── diamond.json
 ```
 
 Le `pack.mcmeta` doit avoir ce contenu:
@@ -17,10 +17,10 @@ Le `pack.mcmeta` doit avoir ce contenu:
 ```json title="pack.mcmeta"
 {
   "pack": {
-    "description": "Le nom du pack de ressources",
+    "description": "The name of the resource pack",
     "pack_format": 7
   }
- } }
+}
 ```
 
 Le `diamond.json` doit avoir le même contenu que la texture par défaut du minecraft.

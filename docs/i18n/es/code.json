@@ -175,10 +175,6 @@
     "message": "En esta página",
     "description": "The label used by the button on the collapsible TOC component"
   },
-  "theme.tags.tagsPageTitle": {
-    "message": "Etiquetas",
-    "description": "The title of the tag list page"
-  },
   "theme.ErrorPageContent.title": {
     "message": "Esta página ha fallado.",
     "description": "The title of the fallback page when the page crashed"
@@ -194,5 +190,44 @@
   "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
     "message": "Cambiar la categoría de barra lateral colapsable '{label}'",
     "description": "The ARIA label to toggle the collapsible sidebar category"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Leer más sobre {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Cambiar entre modo oscuro y claro (actualmente {mode})",
+    "description": "The ARIA label for the navbar color mode toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "modo oscuro",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "modo de luz",
+    "description": "The name for the light color mode"
+  },
+  "theme.docs.DocCard.categoryDescription": {
+    "message": "{count} objetos",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Versión: {versionLabel}"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Idiomas",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Home page",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Breadcrumbs",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Toggle word wrap",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   }
 }

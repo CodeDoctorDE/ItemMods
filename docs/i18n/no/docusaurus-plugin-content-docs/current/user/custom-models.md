@@ -2,8 +2,11 @@
 title: Egendefinerte modeller
 ---
 
-::note For å ha egendefinerte tekster, må du ha en pakke. Se [her](pack#create-a-pack) for å se hvordan du kan lage
-en. :::
+::note For å ha tilpassede modeller, trenger du en pakke.
+
+Klikk [her](pack#create-a-pack) for å se hvordan du kan lage en.
+
+:::
 
 ## Opprett en tilpasset modell
 

@@ -2,8 +2,11 @@
 title: Modelos personalizados
 ---
 
-:::note Para tener texturas personalizadas, necesitas tener un paquete. Mira [aquí](pack#create-a-pack) para ver cómo
-puedes crear uno. :::
+:::note Para tener modelos personalizados, necesitas tener un paquete.
+
+Haz clic [aquí](pack#create-a-pack) para ver cómo puedes crear uno.
+
+:::
 
 ## Crear un modelo personalizado
 
