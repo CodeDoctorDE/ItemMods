@@ -42,7 +42,7 @@ dependencies {
     shadow 'dev.linwood:request:3.2.1'
     shadow 'dev.linwood:item:3.2.1'
     shadow 'dev.linwood:utils:3.2.1'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
     implementation 'org.jetbrains:annotations:23.0.0'
     compileOnly spigot('1.19')
     compileOnly 'me.HSGamer:BetterGUI:6.6'
